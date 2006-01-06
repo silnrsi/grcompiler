@@ -112,7 +112,7 @@ public:
 	bool CheckSelectors();
 
 	//	Pre-compiler:
-	bool PreCompileFeatures(GrcFont * pfont);
+	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont);
 	int ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,

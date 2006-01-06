@@ -104,6 +104,7 @@ Symbol GrcSymbolTable::AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFil
 		pfeat->SetLineAndFile(lnf);
 		psymAdded->SetData(pfeat);
 	}
+	psymAdded->SetExpType(kexptNumber);
 
 	return psymAdded;
 }

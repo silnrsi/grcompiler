@@ -31,10 +31,10 @@ DEFINE_THIS_FILE
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::PreCompileFeatures(GrcFont * pfont)
 {
-	return m_prndr->PreCompileFeatures(pfont);
+	return m_prndr->PreCompileFeatures(this, pfont);
 }
 
-bool GdlRenderer::PreCompileFeatures(GrcFont * pfont)
+bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont)
 {
 	int nInternalID = 0;
 
@@ -56,7 +56,7 @@ bool GdlRenderer::PreCompileFeatures(GrcFont * pfont)
 		if (pfeat->ErrorCheck())
 		{
 			pfeat->SetStdStyleFlag();
-			pfeat->FillInBoolean();
+			pfeat->FillInBoolean(pcman->SymbolTable());
 			pfeat->ErrorCheckContd();
 			pfeat->CalculateDefault();
 			pfeat->AssignInternalID(nInternalID);

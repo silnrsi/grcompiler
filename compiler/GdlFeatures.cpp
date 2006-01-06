@@ -139,10 +139,12 @@ void GdlFeatureDefn::SetStdStyleFlag()
 /*----------------------------------------------------------------------------------------------
 	If there are no settings for this feature, fill in with the default boolean settings.
 ----------------------------------------------------------------------------------------------*/
-void GdlFeatureDefn::FillInBoolean()
+void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 {
 	if (m_fStdLang)
 		return;
+
+	bool fBoolean = false;
 
 	if (m_vpfset.Size() == 0)
 	{
@@ -165,6 +167,22 @@ void GdlFeatureDefn::FillInBoolean()
 		if (!m_fDefaultSet)
 			m_nDefault = 0;
 		m_fDefaultSet = true;
+
+		fBoolean = true;
+
+	}
+	else if (m_vpfset.Size() == 2)
+	{
+		fBoolean = ((m_vpfset[0]->m_nValue == 0 && m_vpfset[1]->m_nValue == 1)
+			|| (m_vpfset[0]->m_nValue == 1 && m_vpfset[1]->m_nValue == 0));
+	}
+
+	if (fBoolean)
+	{
+		// Mark the expression type as boolean, not number.
+		Symbol psymFeat = psymtbl->FindSymbol(m_staName);
+		Assert(psymFeat->ExpType() == kexptNumber);
+		psymFeat->SetExpType(kexptBoolean);
 	}
 }
 
