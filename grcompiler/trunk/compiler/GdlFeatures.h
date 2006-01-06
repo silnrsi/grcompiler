@@ -201,7 +201,7 @@ public:
 	//	Pre-compiler:
 	bool ErrorCheck();
 	void SetStdStyleFlag();
-	void FillInBoolean();
+	void FillInBoolean(GrcSymbolTable * psymtbl);
 	void ErrorCheckContd();
 	void CalculateDefault();
 	void AssignInternalID(int n)
