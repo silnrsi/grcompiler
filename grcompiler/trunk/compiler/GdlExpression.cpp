@@ -2753,14 +2753,20 @@ void GdlLookupExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 			{
 				Assert(iritAttachTo != -1);
 				int nSel = (m_pexpSelector) ? m_pexpSelector->m_nIOIndex : iritAttachTo;
-				vbOutput.Push(kopPushAttToGlyphAttr);
+				vbOutput.Push(kopPushAttToGAttrObs);
 				vbOutput.Push(m_psymName->InternalID());
+				//int nID = m_psymName->InternalID();
+				//vbOutput.Push(nID >> 8);
+				//vbOutput.Push(nID & 0x000000FF);
 				vbOutput.Push(nSel - iritAttachTo);	// relative to attach.to target
 			}
 			else
 			{
-				vbOutput.Push(kopPushGlyphAttr);
+				vbOutput.Push(kopPushGlyphAttrObs);
 				vbOutput.Push(m_psymName->InternalID());
+				//int nID = m_psymName->InternalID();
+				//vbOutput.Push(nID >> 8);
+				//vbOutput.Push(nID & 0x000000FF);
 				vbOutput.Push(nSelOffset);
 			}
 		}

@@ -166,7 +166,7 @@ enum ActionCommand {
 	kopLess,			kopGtr,				kopLessEq,		kopGtrEq,
 
 	kopNext,			kopNextN,			kopCopyNext,
-	kopPutGlyph,		kopPutSubs,			kopPutCopy,
+	kopPutGlyph8bitObs,	kopPutSubs8bitObs,	kopPutCopy,
 	kopInsert,			kopDelete,
 	kopAssoc,
 	kopCntxtItem,
@@ -174,15 +174,18 @@ enum ActionCommand {
 	kopAttrSet,			kopAttrAdd,			kopAttrSub,
 	kopAttrSetSlot,
 	kopIAttrSetSlot,
-	kopPushSlotAttr,	kopPushGlyphAttr,	kopPushGlyphMetric,		kopPushFeat,
-	kopPushAttToGlyphAttr,	kopPushAttToGlyphMetric,
+	kopPushSlotAttr,		kopPushGlyphAttrObs,	kopPushGlyphMetric,		kopPushFeat,
+	kopPushAttToGAttrObs,	kopPushAttToGlyphMetric,
 	kopPushISlotAttr,
 
 	kopPushIGlyphAttr,	// not yet implemented
 
 	kopPopRet,			kopRetZero,			kopRetTrue,
 	kopIAttrSet,		kopIAttrAdd,		kopIAttrSub,
-	kopPushProcState,
+	kopPushProcState,	kopPutVersion,
+	kopPutSubs,			kopPutSubs2,		kopPutSubs3,
+	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr,
+
 };
 
 
