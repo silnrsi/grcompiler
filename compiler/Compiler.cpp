@@ -331,28 +331,32 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<by
 			//	rather a simple replacement, under the following circumstances:
 			if (psymSel->FitsSymbolType(ksymtSpecialUnderscore))
 				//	(a) there is no selector class
-				op = kopPutGlyph;
+				op = kopPutGlyph8bitObs;
 			else if (pglfcSel && pglfcSel->GlyphIDCount() == 0)
 				//	(b) the selector class has no glyphs
-				op = kopPutGlyph;
+				op = kopPutGlyph8bitObs;
 			else if (pglfcOutput && pglfcOutput->GlyphIDCount() <= 1)
 				//	(c) there is only one glyph in the output class
-				op = kopPutGlyph;
+				op = kopPutGlyph8bitObs;
 			else
 			{
 				//	Otherwise we're doing a replacement of a glyph from the selector class
 				//	with the corresponding glyph from the output class.
 				Assert(pglfcSel);
-				op = kopPutSubs;
+				op = kopPutSubs8bitObs;
 			}
 			vbOutput.Push(op);
 			Assert(pglfcOutput->ReplcmtOutputID() >= 0);
 
-			if (op == kopPutGlyph)
+			if (op == kopPutGlyph8bitObs)
 			{
 				vbOutput.Push(pglfcOutput->ReplcmtOutputID());
+
+				//int nOutputID = pglfcOutput->ReplcmtOutputID();
+				//vbOutput.Push(nOutputID >> 8);
+				//vbOutput.Push(nOutputID & 0x000000FF);
 			}
-			else // op == kopPutSubs
+			else // op == kopPutSubs8bitObs
 			{
 				int nSelIO = (m_nSelector == -1) ? nIIndex : m_nSelector;
 				int bSelOffset = nSelIO - nIIndex;
@@ -882,50 +886,109 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
 		int op = vb[ib++];
 		strmOut << EngineCodeDebugString(op).Chars();
 
-		int cArgs = 0;
+		int cbArgs = 0;
 		int slat;
+		unsigned int nUnsigned;
+		int nSigned;
+		signed short int nSignedShort;
 		int gmet;
 		int pstat;
 		switch (op)
 		{
-		case kopNop:				cArgs = 0;		break;
-		case kopPushByte:			cArgs = 1;		break;
-		case kopPushByteU:			cArgs = 1;		break;
-		case kopPushShort:			cArgs = 2;		break;
-		case kopPushShortU:			cArgs = 2;		break;
-		case kopPushLong:			cArgs = 4;		break;
-		case kopAdd:				cArgs = 0;		break;
-		case kopSub:				cArgs = 0;		break;
-		case kopMul:				cArgs = 0;		break;
-		case kopDiv:				cArgs = 0;		break;
-		case kopMin:				cArgs = 0;		break;
-		case kopMax:				cArgs = 0;		break;
-		case kopNeg:				cArgs = 0;		break;
-		case kopTrunc8:				cArgs = 0;		break;
-		case kopTrunc16:			cArgs = 0;		break;
-		case kopCond:				cArgs = 0;		break;
-		case kopAnd:				cArgs = 0;		break;
-		case kopOr:					cArgs = 0;		break;
-		case kopNot:				cArgs = 0;		break;
-		case kopEqual:				cArgs = 0;		break;
-		case kopNotEq:				cArgs = 0;		break;
-		case kopLess:				cArgs = 0;		break;
-		case kopGtr:				cArgs = 0;		break;
-		case kopLessEq:				cArgs = 0;		break;
-		case kopGtrEq:				cArgs = 0;		break;
-		case kopNext:				cArgs = 0;		break;
-		case kopNextN:				cArgs = 1;		break;	// N
-		case kopCopyNext:			cArgs = 0;		break;
-		case kopPutGlyph:			cArgs = 1;		break;	// output class
-		case kopPutSubs:			cArgs = 3;		break;	// sel, input class, output class
-		case kopPutCopy:			cArgs = 1;		break;	// selector
-		case kopInsert:				cArgs = 0;		break;
-		case kopDelete:				cArgs = 0;		break;
-		case kopAssoc:
-			cArgs = vb[ib++];
-			strmOut << " " << cArgs;
+		case kopNop:				cbArgs = 0;		break;
+		case kopPushByte:			cbArgs = 1;		break;
+		case kopPushByteU:
+			nUnsigned = (unsigned int)vb[ib++];
+			strmOut << " " << nUnsigned;
 			break;
-		case kopCntxtItem:			cArgs = 2;		break;
+		case kopPushShort:
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;
+			break;
+		case kopPushShortU:
+			nUnsigned = (unsigned int)vb[ib++];
+			nUnsigned = (nUnsigned << 8) + vb[ib++];
+			strmOut << " " << nUnsigned;
+			break;
+		case kopPushLong:
+			nUnsigned = (int)vb[ib++];
+			nUnsigned = (nUnsigned << 8) + vb[ib++];
+			nUnsigned = (nUnsigned << 8) + vb[ib++];
+			nUnsigned = (nUnsigned << 8) + vb[ib++];
+			nSigned = (signed int)nUnsigned;
+			strmOut << " " << nSigned;
+			break;
+		case kopAdd:				cbArgs = 0;		break;
+		case kopSub:				cbArgs = 0;		break;
+		case kopMul:				cbArgs = 0;		break;
+		case kopDiv:				cbArgs = 0;		break;
+		case kopMin:				cbArgs = 0;		break;
+		case kopMax:				cbArgs = 0;		break;
+		case kopNeg:				cbArgs = 0;		break;
+		case kopTrunc8:				cbArgs = 0;		break;
+		case kopTrunc16:			cbArgs = 0;		break;
+		case kopCond:				cbArgs = 0;		break;
+		case kopAnd:				cbArgs = 0;		break;
+		case kopOr:					cbArgs = 0;		break;
+		case kopNot:				cbArgs = 0;		break;
+		case kopEqual:				cbArgs = 0;		break;
+		case kopNotEq:				cbArgs = 0;		break;
+		case kopLess:				cbArgs = 0;		break;
+		case kopGtr:				cbArgs = 0;		break;
+		case kopLessEq:				cbArgs = 0;		break;
+		case kopGtrEq:				cbArgs = 0;		break;
+		case kopNext:				cbArgs = 0;		break;
+		case kopNextN:				cbArgs = 1;		break;	// N
+		case kopCopyNext:			cbArgs = 0;		break;
+		case kopPutGlyph8bitObs:	cbArgs = 1;		break;	// output class
+		case kopPutSubs8bitObs:		cbArgs = 3;		break;	// sel, input class, output class
+		case kopPutCopy:			cbArgs = 1;		break;	// selector
+		case kopInsert:				cbArgs = 0;		break;
+		case kopDelete:				cbArgs = 0;		break;
+
+		case kopPutGlyph:
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;	// output class
+			break;
+
+		case kopPutSubs3:
+			nSigned = (int)vb[ib++];
+			strmOut << " " << nSigned;	// slot offset
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;	// input class
+			// fall through
+		case kopPutSubs2:
+			nSigned = (int)vb[ib++];
+			strmOut << " " << nSigned;	// slot offset
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;	// input class
+			// fall through
+		case kopPutSubs:
+			nSigned = (int)vb[ib++];
+			strmOut << " " << nSigned;	// slot offset
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;	// input class
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;	// output class
+			break;
+
+		case kopAssoc:
+			cbArgs = vb[ib++];
+			strmOut << " " << cbArgs;
+			break;
+		case kopCntxtItem:			cbArgs = 2;		break;
 
 		case kopAttrSet:
 		case kopAttrAdd:
@@ -933,7 +996,7 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
 		case kopAttrSetSlot:
 			slat = vb[ib++];
 			strmOut << " " << SlotAttributeDebugString(slat).Chars();
-			cArgs = 0;
+			cbArgs = 0;
 			break;
 		case kopIAttrSet:
 		case kopIAttrAdd:
@@ -941,44 +1004,54 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
 		case kopIAttrSetSlot:
 			slat = vb[ib++];
 			strmOut << " " << SlotAttributeDebugString(slat).Chars();
-			cArgs = 1;
+			cbArgs = 1;
 			break;
 		case kopPushSlotAttr:
 			slat = vb[ib++];
 			strmOut << " " << SlotAttributeDebugString(slat).Chars();
-			cArgs = 1;	// selector
+			cbArgs = 1;	// selector
 			break;
 		case kopPushISlotAttr:
 			slat = vb[ib++];
 			strmOut << " " << SlotAttributeDebugString(slat).Chars();
-			cArgs = 2;	// selector, index
+			cbArgs = 2;	// selector, index
 			break;
 		case kopPushGlyphAttr:
 		case kopPushAttToGlyphAttr:
-			cArgs = 2;	// attr name, selector
+			nSignedShort = (signed short int)vb[ib++];
+			nSignedShort = (nSignedShort << 8) + vb[ib++];
+			nSigned = (signed int)nSignedShort;
+			strmOut << " " << nSigned;	// glyph attribute
+			cbArgs = 1;					// selector
+			break;
+		case kopPushGlyphAttrObs:
+		case kopPushAttToGAttrObs:
+			cbArgs = 2;	// attr name, selector
 			break;
 		case kopPushGlyphMetric:
 		case kopPushAttToGlyphMetric:
 			gmet = vb[ib++];
 			strmOut << " " << GlyphMetricDebugString(gmet).Chars();
-			cArgs = 2;	// selector, cluster
+			cbArgs = 2;	// selector, cluster
 			break;
-		case kopPushFeat:			cArgs = 2;		break;	// feature, selector
-		//case kopPushIGlyphAttr:	cArgs = 2;		break;	// glyph attr, index
+		case kopPushFeat:			cbArgs = 2;		break;	// feature, selector
+		//case kopPushIGlyphAttr:	cbArgs = 2;		break;	// glyph attr, index
 		case kopPushProcState:
 			pstat = vb[ib++];
 			strmOut << " " << ProcessStateDebugString(pstat).Chars();
-			cArgs = 0;
+			cbArgs = 0;
 			break;
-		case kopPopRet:				cArgs = 0;		break;
-		case kopRetZero:			cArgs = 0;		break;
-		case kopRetTrue:			cArgs = 0;		break;
+		case kopPutVersion:			cbArgs = 0;		break;
+		case kopPopRet:				cbArgs = 0;		break;
+		case kopRetZero:			cbArgs = 0;		break;
+		case kopRetTrue:			cbArgs = 0;		break;
 		default:
 			Assert(false);
-			cArgs = 0;
+			cbArgs = 0;
 		}
 
-		for (int iTmp = 0; iTmp < cArgs; iTmp++)
+		// This loop handles only 8-bit signed values.
+		for (int iTmp = 0; iTmp < cbArgs; iTmp++)
 		{
 			int n = (char)vb[ib++];
 			strmOut << " " << n;
@@ -1104,7 +1177,11 @@ StrAnsi GdlRule::EngineCodeDebugString(int op)
 	case kopNextN:				return "NextN";
 	case kopCopyNext:			return "CopyNext";
 	case kopPutGlyph:			return "PutGlyph";
+	case kopPutGlyph8bitObs:	return "PutGlyph(Obs-8bit)";
+	case kopPutSubs8bitObs:		return "PutSubs(Obs-8bit)";
 	case kopPutSubs:			return "PutSubs";
+	case kopPutSubs2:			return "PutSubs2";
+	case kopPutSubs3:			return "PutSubs3";
 	case kopPutCopy:			return "PutCopy";
 	case kopInsert:				return "Insert";
 	case kopDelete:				return "Delete";
@@ -1118,11 +1195,14 @@ StrAnsi GdlRule::EngineCodeDebugString(int op)
 	case kopPushSlotAttr:		return "PushSlotAttr";
 	case kopPushISlotAttr:		return "PushISlotAttr";
 	case kopPushGlyphAttr:		return "PushGlyphAttr";
+	case kopPushGlyphAttrObs:	return "PushGlyphAttr(Obs)";
 	case kopPushGlyphMetric:	return "PushGlyphMetric";
 	case kopPushFeat:			return "PushFeat";
 	case kopPushAttToGlyphAttr:	return "PushAttToGlyphAttr";
+	case kopPushAttToGAttrObs:	return "PushAttToGlyphAttr(Obs)";
 	case kopPushAttToGlyphMetric: return "PushAttToGlyphMetric";
 	case kopPushIGlyphAttr:		return "PushIGlyphAttr";
+	case kopPutVersion:			return "PutVersion";
 	case kopPopRet:				return "PopRet";
 	case kopRetZero:			return "RetZero";
 	case kopRetTrue:			return "RetTrue";
