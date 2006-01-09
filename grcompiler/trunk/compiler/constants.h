@@ -125,7 +125,7 @@ enum {
 	kMaxPasses				= 128,		// Sil_sub table would allow 256
 	kMaxPseudos				= 65536,
 	kMaxScriptTags			= 256,
-	kMaxReplcmtClasses		= 65535,	// Class map
+	kMaxReplcmtClasses		= 256,		// Class map
 	kMaxComponents			= 16383,
 };
 
