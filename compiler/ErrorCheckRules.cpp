@@ -62,7 +62,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 			g_errorList.AddWarning(NULL,
 				"Version ",
 				VersionString(FontTableVersion()),
-				" of the font tables is in adequate for your specfication; version ",
+				" of the font tables is inadequate for your specfication; version ",
 				VersionString(fxdVersionNeeded),
 				" will be generated instead.");
 		SetFontTableVersion(fxdVersionNeeded, false);

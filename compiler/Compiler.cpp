@@ -133,7 +133,6 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman,
 		{
 			//	Return -1.
 			vbActions.Push(kopPushByte);
-//			vbActions.Push(-1);
             vbActions.Push(0xFF);
 			vbActions.Push(kopPopRet);
 		}
@@ -367,6 +366,16 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<by
 				vbOutput.Push((char)bSelOffset);
 				vbOutput.Push(pglfcSel->ReplcmtInputID());
 				vbOutput.Push(pglfcOutput->ReplcmtOutputID());
+
+vbOutput.Push(kopAdd);
+
+				//kopPutSubs
+				//int nInputID = pglfcSel->ReplcmtInputID();
+				//int nOutputID = pglfcOutput->ReplcmtOutputID();
+				//vbOutput.Push(nInputID >> 8);
+				//vbOutput.Push(nInputID & 0x000000FF);
+				//vbOutput.Push(nOutputID >> 8);
+				//vbOutput.Push(nOutputID & 0x000000FF);
 			}
 		}
 	}

@@ -382,7 +382,7 @@ subElseIf		:	( Zelseif^ | "elseif"^ )
 subEntryList	:	(subEntry)*;
 
 //	Note that if there is no left-hand-side, the right-hand-side will be treated here like
-//	the left-hand-side, and the tree-walker will straighted it out later.
+//	the left-hand-side, and the tree-walker will straighten it out later.
 subRule!		:	L:(! L1:subLhs { #L = #([Zlhs], L1); } )
 					(	OP_GT!
 						R:(! R1:subRhs { #R = #([Zrhs], R1); } )
