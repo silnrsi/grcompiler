@@ -88,9 +88,14 @@ int utf16cmp(const utf16 *s1, const char *s2)
 }
 #else // not _WIN32
 
-#include <iostream>
+// Standard Headers
 #include <cstdlib>
 #include <cstring>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+// Platform headers
+#include <iconv.h>
 
 
 namespace gr
@@ -117,23 +122,6 @@ utf16 *utf16cpy(utf16 *dest, const utf16 *src)
 	memcpy(dest, src, sizeof(utf16) * srcsize);
 	return dest;
 }
-
-// utf16 *utf16cpy(utf16 *dest, const char *src)
-// {
-// 	#ifdef UTF16DEBUG
-// 	std::cerr << "utf16cpy8: " << src << std::endl;
-// 	#endif
-// 	return NULL;
-// 
-// }
-// 
-// utf16 *utf16cpy(utf16 *dest, const utf32 *src)
-// {
-// 	#ifdef UTF16DEBUG
-// 	std::cerr << "utf16cpy32: " << src << std::endl;
-// 	#endif
-// 	return NULL;
-// }
 
 
 utf16 *utf16ncpy(utf16 *dest, const utf16 *src, size_t n)
@@ -300,69 +288,49 @@ size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, int cchsSrc
 }
 
 
-// char * itoa(int value, char *string, int radix)
-// {
-// 	std::ostringstream oss;
-// 	
-// 	oss << std::setbase(radix) << value;
-// 	
-// 	// We don't get passed the size of the destionation buffer which is very
-// 	//  unwise, so plump for a reasonable value.  I don't reckon Graphite
-// 	//  needs more than 64 didits of output.
-// 	// std::string::copy doesn't null terminate the string to don't forget to 
-// 	//  do it.
-// 	string[oss.str().copy(string, 64)] = '\0';
-// 	
-// 	return string;
-// }
+char * itoa(int value, char *string, int radix)
+{
+	std::ostringstream oss;
+	
+	oss << std::setbase(radix) << value;
+	
+	// We don't get passed the size of the destionation buffer which is very
+	//  unwise, so plump for a reasonable value.  I don't reckon Graphite
+	//  needs more than 64 didits of output.
+	// std::string::copy doesn't null terminate the string to don't forget to 
+	//  do it.
+	string[oss.str().copy(string, 64)] = '\0';
+	
+	return string;
+}
 
 
-// int MultiByteToWideChar(
-//   UINT CodePage,         // code page
-//   DWORD dwFlags,         // character-type options
-//   const char * prgchsSrc, int cchsSrc, utf16 * prgchwDst, int cchwDst
-// /*
-//   const char *lpMultiByteStr, // string to map
-//   int cbMultiByte,       // number of bytes in string
-//   wchar *lpWideCharStr,  // wide-character buffer
-//   int cchWideChar        // size of buffer
-// */
-// )
-// {
-// 	#ifdef UTF16DEBUG
-// 	std::cerr << "MultiByteToWideChar: " << prgchsSrc << " " << cchwDst << std::endl;
-// 	#endif
-// 	if (!cchwDst)
-// 	{
-// 	#ifdef UTF16DEBUG
-// 	std::cerr << "MultiByteToWideChar returning: " << cchsSrc << std::endl;
-// 	#endif
-// 		return cchsSrc;
-// 	}
-// #ifndef NOT_HAVE_ICONV
-// 	iconv_t cdesc;
-// 	char cpage[16];
-// 	sprintf(cpage, "CP%d", CodePage);
-// 	size_t iSrc = cchsSrc;
-// 	size_t iDst = sizeof(utf16) * cchwDst;
-// 	cdesc = iconv_open("UCS-2", cpage); // tocode, fromcode
-// 	char *chsDst = (char *)prgchwDst;
-// 	char *chsSrc = const_cast<char*>(prgchsSrc);
-// 	iconv(cdesc, &chsSrc, &iSrc, &chsDst, &iDst);
-// 	iconv_close(cdesc);
-// #else
-// 	// Quick and dirty cp1252 hack conversion. Only needed for file names anyway!
-// 	while (cchsSrc-- > 0 && cchwDst-- > 0)
-// 	{ *prgchwDst++ = (utf16)(*prgchsSrc++); }
-// 	if (cchwDst > 0) *prgchwDst = 0;
-// #endif
-// 	#ifdef UTF16DEBUG
-// 	std::cerr << "MultiByteToWideChar output: ";
-// 	utf16Output(prgchwDst);
-// 	std::cerr << " " << cchwDst << std::endl;
-// 	#endif
-// 	return cchsSrc;
-// }
+unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long, 
+        const char * source, size_t src_count, 
+        unsigned short * dest, size_t dst_count)
+{
+    if (!dest)	// An error condition is indicated by 0
+        return 0;
+
+    if (src_count == size_t(-1))     // When passed -1 it should find the 
+	src_count = strlen(source);  // length of the source it's self
+
+    if (dst_count == 0)		// We cannot find the completed size so esitmate it.
+	return src_count*3;
+
+    std::ostringstream oss("CP"); oss << code_page;
+    iconv_t cdesc = iconv_open("UCS-2", oss.str().c_str()); // tocode, fromcode
+   
+    char *dst_ptr = reinterpret_cast<char *>(dest);
+    ICONV_CONST char *src_ptr = const_cast<char *>(source);
+    dst_count *= sizeof(unsigned short);    
+   
+    iconv(cdesc, &src_ptr, &src_count, &dst_ptr, &dst_count);
+    iconv_close(cdesc);
+    
+    return src_count;
+}
+
 
 } // namespace gr
 #endif // _WIN32

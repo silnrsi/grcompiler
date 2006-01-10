@@ -61,8 +61,8 @@ am_grcompiler_OBJECTS = Compiler.$(OBJEXT) ErrorCheckClasses.$(OBJEXT) \
 	GrcMasterTable.$(OBJEXT) GrcSymTable.$(OBJEXT) \
 	GrpExtensions.$(OBJEXT) GrpLexer.$(OBJEXT) GrpParser.$(OBJEXT) \
 	GrpParserDebug.$(OBJEXT) main.$(OBJEXT) OutputToFont.$(OBJEXT) \
-	ParserTreeWalker.$(OBJEXT) Platform.$(OBJEXT) \
-	PostParser.$(OBJEXT) TtfUtil.$(OBJEXT)
+	ParserTreeWalker.$(OBJEXT) PostParser.$(OBJEXT) \
+	TtfUtil.$(OBJEXT)
 grcompiler_OBJECTS = $(am_grcompiler_OBJECTS)
 grcompiler_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir)
@@ -246,8 +246,6 @@ grcompiler_SOURCES = \
         main.h \
         OutputToFont.cpp \
         ParserTreeWalker.cpp \
-        Platform.cpp \
-        Platform.h \
         PostParser.cpp \
         StrAnsiHash.h \
         TtFscdefs.h \
@@ -346,7 +344,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/GrpParserDebug.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OutputToFont.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ParserTreeWalker.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Platform.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PostParser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TtfUtil.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@

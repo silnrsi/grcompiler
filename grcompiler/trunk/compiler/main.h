@@ -31,7 +31,7 @@ using std::min;
 #include "GrPlatform.h"
 #else
 #include "GrCommon.h"
-#include "Platform.h"
+#include "GrPlatform.h"
 #endif
 
 using namespace gr;

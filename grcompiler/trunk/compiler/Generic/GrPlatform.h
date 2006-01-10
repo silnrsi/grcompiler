@@ -101,7 +101,7 @@ typedef unsigned short int data16;	// generic 16-bit data
 // std::_Ios_Openmode isn't defined in the Windows compiler
 #ifdef __GNUC__
     typedef std::_Ios_Openmode openmode_t;
-#elif defined(__INTEL_COMPILER)
+#elif defined(__INTEL_COMPILER)iota
     typedef std::ios_base::openmode openmode_t;
 #else
     typedef int openmode_t;
@@ -177,6 +177,13 @@ size_t utf8len(const char *s);
 int utf16cmp(const utf16 *s1, const utf16 *s2);
 int utf16ncmp(const utf16 *s1, const utf16 *s2, size_t n);
 int utf16cmp(const utf16 *s1, const char *s2);
+
+char * itoa(int value, char *string, int radix);
+
+unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long, 
+        const char * source, size_t src_count, 
+        unsigned short * dest, size_t dst_count);
+
 
 } // namespace gr
 
