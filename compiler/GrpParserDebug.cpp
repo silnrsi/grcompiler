@@ -14,10 +14,6 @@ Description:
 #include "Grp.h"
 #include "GrPlatform.h"
 
-#ifndef GR_FW
-#include "Platform.h"
-#endif
-
 #pragma hdrstop
 #undef THIS_FILE
 DEFINE_THIS_FILE

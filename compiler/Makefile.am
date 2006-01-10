@@ -61,8 +61,6 @@ grcompiler_SOURCES = \
         main.h \
         OutputToFont.cpp \
         ParserTreeWalker.cpp \
-        Platform.cpp \
-        Platform.h \
         PostParser.cpp \
         StrAnsiHash.h \
         TtFscdefs.h \
