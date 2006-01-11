@@ -117,7 +117,6 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	// needs to be changed to achar but we then need to make sure that this works with 
 	// memset and memcpy. This has the possibility of creating a very nasty bug 
 	achar rgchCommandLine[200];
-    Assert(_tcslen(strCommandLine.Chars()) < 200);
 	_tcscpy(rgchCommandLine, strCommandLine.Chars());
 	//memset(rgchCommandLine, 0, 200);
 	//memcpy(rgchCommandLine, staCommandLine.Chars(), staCommandLine.Length());
