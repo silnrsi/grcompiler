@@ -471,7 +471,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 		{
 			for (int ich = 0; ich < m_sta.Length(); ich++)
 			{
-				char rgchCdPt[2];
+				char rgchCdPt[2] = {0,0};
 				rgchCdPt[0] = m_sta.GetAt(ich);
 				nUnicode = pfont->UnicodeFromCodePage(m_wCodePage, m_sta[ich], this);
 				if (nUnicode == 0)
