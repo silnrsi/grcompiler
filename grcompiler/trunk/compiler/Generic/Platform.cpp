@@ -89,6 +89,7 @@ int utf16cmp(const utf16 *s1, const char *s2)
 #else // not _WIN32
 
 // Standard Headers
+#include <cerrno>
 #include <cstdlib>
 #include <cstring>
 #include <iomanip>
@@ -299,7 +300,7 @@ char * itoa(int value, char *string, int radix)
 	//  needs more than 64 didits of output.
 	// std::string::copy doesn't null terminate the string to don't forget to 
 	//  do it.
-	string[oss.str().copy(string, 64)] = '\0';
+	string[oss.str().copy(string, 63)] = '\0';
 	
 	return string;
 }
@@ -318,17 +319,26 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
     if (dst_count == 0)		// We cannot find the completed size so esitmate it.
 	return src_count*3;
 
-    std::ostringstream oss("CP"); oss << code_page;
+    std::ostringstream oss; oss << "CP" << code_page;
     iconv_t cdesc = iconv_open("UCS-2", oss.str().c_str()); // tocode, fromcode
    
+    if (cdesc == iconv_t(-1))
+    {
+	std::cerr << program_invocation_short_name 
+                  << ": iconv_open(\"UCS-2\", \"" << oss.str() << "\"): "
+                  << strerror(errno) << std::endl;
+	exit(1);
+    }
+
     char *dst_ptr = reinterpret_cast<char *>(dest);
     ICONV_CONST char *src_ptr = const_cast<char *>(source);
     dst_count *= sizeof(unsigned short);    
-   
+    const size_t dst_size = dst_count;
+
     iconv(cdesc, &src_ptr, &src_count, &dst_ptr, &dst_count);
     iconv_close(cdesc);
     
-    return src_count;
+    return dst_size - dst_count;
 }
 
 
