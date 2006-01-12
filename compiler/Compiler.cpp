@@ -367,8 +367,6 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<by
 				vbOutput.Push(pglfcSel->ReplcmtInputID());
 				vbOutput.Push(pglfcOutput->ReplcmtOutputID());
 
-vbOutput.Push(kopAdd);
-
 				//kopPutSubs
 				//int nInputID = pglfcSel->ReplcmtInputID();
 				//int nOutputID = pglfcOutput->ReplcmtOutputID();
