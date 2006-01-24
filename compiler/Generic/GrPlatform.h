@@ -29,6 +29,9 @@
 #pragma warning(disable: 4710) // not inlined.
 #pragma warning(disable: 4786) // identifier truncated in debug info.
 #pragma warning(disable: 4800) // forcing value to bool 'true' or 'false' (performance warning).
+
+#pragma warning(disable: 4067) // to avoid problem with "defined(__INTEL_COMPILER)iota" below - SC
+
 #endif
 
 
@@ -178,8 +181,6 @@ int utf16cmp(const utf16 *s1, const utf16 *s2);
 int utf16ncmp(const utf16 *s1, const utf16 *s2, size_t n);
 int utf16cmp(const utf16 *s1, const char *s2);
 
-char * itoa(int value, char *string, int radix);
-
 unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long, 
         const char * source, size_t src_count, 
         unsigned short * dest, size_t dst_count);
@@ -190,5 +191,9 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
 #if !defined(GR_NAMESPACE)
 using namespace gr;
 #endif
+
+// Don't put this in the gr namespace; it confuses the compiler:
+char * itoa(int value, char *string, int radix);
+
 
 #endif

@@ -482,8 +482,7 @@ template<class K, class T, class H, class Eq>
 	return m_ihsndLim - chsndFree;
 }
 
-//:Ignore
-#ifdef DEBUG
+#ifdef _DEBUG
 /*----------------------------------------------------------------------------------------------
 	Return the number of buckets (hash slots) currently allocated for the hash map.  This is
 	useful only for debugging the hash map mechanism itself.

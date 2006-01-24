@@ -278,7 +278,7 @@ public:
 	}
 
 	//:Ignore
-#ifdef DEBUG
+#ifdef _DEBUG
 	int _BucketCount();
 	int _EmptyBuckets();
 	int _BucketsUsed();
@@ -324,7 +324,7 @@ protected:
 	//:End Ignore
 };
 
-}
+} /* namespace gr */
 
 #if !defined(GR_NAMESPACE)
 using namespace gr;

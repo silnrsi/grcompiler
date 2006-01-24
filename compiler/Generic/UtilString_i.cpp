@@ -19,8 +19,8 @@ Last reviewed: 27Sep99
 #include "UtilString.h"
 
 #pragma hdrstop
-#undef THIS_FILE
-DEFINE_THIS_FILE
+//#undef THIS_FILE
+//DEFINE_THIS_FILE
 
 namespace gr
 {

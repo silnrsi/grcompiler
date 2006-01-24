@@ -105,7 +105,7 @@ protected:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	bool GenerateAttrSettingCode(GrcManager *, Vector<byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, int nIIndex, int iritAttachTo);
 
 private:
@@ -270,9 +270,10 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	void GenerateConstraintEngineCode(GrcManager *, Vector<byte> & vbOutput,
+	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> & viritInput, int iritFirstModItem);
-	virtual void GenerateActionEngineCode(GrcManager *, Vector<byte> & vbOutput,
+	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
+		Vector<byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 	static void GenerateInsertEqualsFalse(Vector<byte> & vbOutput);
 	void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
@@ -463,9 +464,11 @@ protected:
 
 public:
 	//	Compiler:
-	virtual void GenerateActionEngineCode(GrcManager *, Vector<byte> & vbOutput,
+	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
+		Vector<byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
-	bool GenerateAttrSettingCode(GrcManager *, Vector<byte> & vbOutput, int irit, int nIIndex);
+	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
+		int irit, int nIIndex);
 
 	//	debuggers:
 	virtual void LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
@@ -584,7 +587,7 @@ protected:
 	virtual void AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput);
 
 	//	Compiler:
-	virtual void GenerateActionEngineCode(GrcManager *, Vector<byte> & vbOutput,
+	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 public:
 	//	debuggers:
@@ -818,9 +821,9 @@ public:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	void GenerateEngineCode(GrcManager *,
+	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
 		Vector<byte> & vbActions, Vector<byte> & vbConstraints);
-	void GenerateConstraintEngineCode(GrcManager *, Vector<byte> & vbOutput);
+	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput);
 	GdlRuleItem * InputItem(int n);
 	int NumberOfInputItems();
 	int NumberOfPreModContextItems()
@@ -829,8 +832,8 @@ public:
 	}
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, std::ostream & strmOut);
-	static void DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
+	static void DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
 	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut);
 	static StrAnsi SlotAttributeDebugString(int slat);
 	static StrAnsi GlyphMetricDebugString(int gmet);

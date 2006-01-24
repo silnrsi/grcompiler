@@ -52,11 +52,11 @@ int main(int argc, char * argv[])
 #endif
 
 #ifdef GR_FW
-	std::cout << "Graphite Compiler Version 1.9\n"
+	std::cout << "Graphite Compiler Version 3.0\n"
 		<< COPYRIGHTRESERVED << "\n";
 #else
-	std::cout << "Graphite Compiler Version 1.9\n"
-		<< "Copyright © 2002-2004, by SIL International.  All rights reserved.\n";
+	std::cout << "Graphite Compiler Version 3.0\n"
+		<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
 #endif // GR_FW
 
 	char * pchGdlFile = NULL;
@@ -84,7 +84,7 @@ int main(int argc, char * argv[])
 		std::cout << "\nOptions:\n";
 		std::cout << "   /d     - output debugger files\n";
 		std::cout << "   /nNNNN - set name table start location\n";
-		std::cout << "   /vN    - set font table version number\n";
+		std::cout << "   /vN    - set Silf table version number\n";
 		return 2;
 	}
 
@@ -153,7 +153,8 @@ int main(int argc, char * argv[])
 		<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
 		<< "Output TT file: " << rgchOutputFile << "\n"
 		<< "Output font name: " << staFamily.Chars() << "\n"
-		<< "Font table version: " << staVersion.Chars() << "\n\n";
+		<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
+				<< ": " << staVersion.Chars() << "\n\n";
 
 	// simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
 	byte bFirst, bSecond, bThird;
