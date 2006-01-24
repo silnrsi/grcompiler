@@ -1841,20 +1841,31 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 /*----------------------------------------------------------------------------------------------
 	Check that the rules and glyph attributes are compatible with the requested version.
 	If not, return the version required.
+
+	This routine assumes that we can always sucessfully use a later version.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	*pfxdNeeded = fxdVersion;
 
-	if (fxdVersion >= 0x00020000)
+	if (fxdVersion >= kfxdCompilerVersion)
 		return true;
 
 	if (!m_fBasicJust)
 	{
-		*pfxdNeeded = 0x00020000;
+		*pfxdNeeded = max(0x00020000, *pfxdNeeded);
 	}
 
-	return m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+	if (m_vpglfcReplcmtClasses.Size() >= kMaxReplcmtClassesV1_2)
+	{
+		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
+	}
+
+	bool fRet = (*pfxdNeeded <= fxdVersion);
+
+	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet);
+
+	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/

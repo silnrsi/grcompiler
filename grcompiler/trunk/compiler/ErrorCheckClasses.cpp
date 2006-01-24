@@ -1211,10 +1211,13 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                     }
                     else
                     {
-                        if (nUnicode == 0x0020 || nUnicode == 0x00A0 || nUnicode == 0x1680 || nUnicode == 0x180E
-                                || (nUnicode >= 0x2000 && nUnicode <= 0x200A) || nUnicode == 0x202F
-                                || nUnicode == 0x205F || nUnicode == 0x3000)
+                        if (nUnicode == 0x0020 || nUnicode == 0x00A0 || nUnicode == 0x1680
+							|| nUnicode == 0x180E
+                            || (nUnicode >= 0x2000 && nUnicode <= 0x200A) || nUnicode == 0x202F
+                            || nUnicode == 0x205F || nUnicode == 0x3000)
+						{
                             fIsSep = 1;
+						}
                         else
                             fIsSep = 0;
                         hr = S_OK;
@@ -1242,7 +1245,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                 }
                 else
                     break;	// ...out of the character loop; this is not an attribute
-								// it makes sense to read from the db
+							// it makes sense to read from the db
 
 				if (FAILED(hr))
 				{

@@ -35,11 +35,14 @@ static const wchar_t szSpace[5] = L" \t\r\n"; // whitespace characters
 //:>********************************************************************************************
 
 //:Associate with StrBase<utf16>.
-template <utf16> StrBase<utf16>::StrBuffer StrBase<utf16>::s_bufEmpty; // Instantiation of empty utf16 buffer.
+//This form of the statement doesn't compile with MS's compiler:
+//template <utf16> StrBase<utf16>::StrBuffer StrBase<utf16>::s_bufEmpty;
+template <> StrBase<utf16>::StrBuffer StrBase<utf16>::s_bufEmpty; // Instantiation of empty utf16 buffer.
 template class StrBase<utf16>; // Instantiation for XChar = utf16.
 
 //:Associate with StrBase<schar>.
-template <schar> StrBase<schar>::StrBuffer StrBase<schar>::s_bufEmpty; // Instantiation of empty schar buffer.
+//template <schar> StrBase<schar>::StrBuffer StrBase<schar>::s_bufEmpty;
+template <> StrBase<schar>::StrBuffer StrBase<schar>::s_bufEmpty; // Instantiation of empty schar buffer.
 template class StrBase<schar>; // Instantiation for XChar = schar.
 
 

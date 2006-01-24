@@ -126,7 +126,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded) = 0;
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue) = 0;
 
@@ -266,7 +266,7 @@ public:
 	}
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue)
 	{
@@ -366,7 +366,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -475,7 +475,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -565,7 +565,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -659,7 +659,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -760,7 +760,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -869,7 +869,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -1054,7 +1054,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(Vector<byte> & vbOutput,
+	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 		int irit, Vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 

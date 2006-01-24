@@ -20,7 +20,7 @@ to build release binaries:
     
 to build debug binaries:
 
-    nmake -f makefile.mak CFG="debug"
+    nmake CFG=DEBUG -f makefile.mak
     
 In each case two executabales are built:
     gdlpp	- The GDL preprocessor

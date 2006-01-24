@@ -105,7 +105,7 @@ public:
 	{
 		return m_nGlobalID + 1;
 	}
-	void GenerateEngineCode(GrcManager *, Vector<byte> & vbConstraints);
+	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
 	void GenerateFsmMachineClasses(GrcManager * pcman);
 	void GenerateFsmTable(GrcManager * pcman);
@@ -135,7 +135,7 @@ public:
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking);
@@ -276,7 +276,7 @@ public:
 		Vector<int> & vnOffsets);
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 

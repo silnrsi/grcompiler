@@ -72,10 +72,10 @@ bool GrcManager::Compile(GrcFont * pfont)
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints and actions of a rule.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateEngineCode(GrcManager * pcman,
+void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	Vector<byte> & vbActions, Vector<byte> & vbConstraints)
 {
-	GenerateConstraintEngineCode(pcman, vbConstraints);
+	GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints);
 	//	Save the size of the rule constraints from the -if- statements.
 	int cbGenConstraint = vbConstraints.Size();
 
@@ -101,11 +101,11 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman,
 	{
 		if (iritFirstModItem <= irit && irit < iritLimMod)
 		{
-			m_vprit[irit]->GenerateActionEngineCode(pcman, vbActions, this, irit,
+			m_vprit[irit]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, irit,
 				&fSetInsertToFalse);
 		}
 
-		m_vprit[irit]->GenerateConstraintEngineCode(pcman, vbConstraints,
+		m_vprit[irit]->GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints,
 			irit, m_viritInput, iritFirstModItem);
 	}
 	if (fSetInsertToFalse)
@@ -114,10 +114,10 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman,
 		//	set insert = false (due to some attachment). So here we create the code to
 		//	set the attribute, and then back up one to get the scan advance position back
 		//	to where it should be.
-		m_vprit[iritLimMod]->GenerateActionEngineCode(pcman, vbActions, this, irit,
+		m_vprit[iritLimMod]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, irit,
 			&fSetInsertToFalse);
 		Assert(!fSetInsertToFalse);
-		m_vprit[iritLimMod]->GenerateConstraintEngineCode(pcman, vbConstraints,
+		m_vprit[iritLimMod]->GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints,
 			irit, m_viritInput, iritFirstModItem);
 		fBackUpOneMore = true;
 	}
@@ -133,7 +133,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman,
 		{
 			//	Return -1.
 			vbActions.Push(kopPushByte);
-            vbActions.Push(0xFF);
+			vbActions.Push(0xFF);
 			vbActions.Push(kopPopRet);
 		}
 		else
@@ -163,7 +163,8 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman,
 	Generate engine code for the constraints of a given rule that were in -if- statements,
 	minus the final pop-and-return command.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, Vector<byte> & vbOutput)
+void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.Size() == 0)
 	{
@@ -172,10 +173,12 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, Vector<byte> & vbO
 
 	//	'and' all the constraints together; the separate constraints come from separate
 	//	-if- or -elseif- statements.
-	m_vpexpConstraints[0]->GenerateEngineCode(vbOutput, -1, NULL, -1, false, -1, false);
+	m_vpexpConstraints[0]->GenerateEngineCode(fxdRuleVersion, vbOutput,
+		-1, NULL, -1, false, -1, false);
 	for (int ipexp = 1; ipexp < m_vpexpConstraints.Size(); ipexp++)
 	{
-		m_vpexpConstraints[ipexp]->GenerateEngineCode(vbOutput, -1, NULL, -1, false, -1, false);
+		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
+			-1, NULL, -1, false, -1, false);
 		vbOutput.Push(kopAnd);
 	}
 }
@@ -189,7 +192,8 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, Vector<byte> & vbO
 		viritInput			- input indices for items of this rule
 		irit				- index of item
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, Vector<byte> & vbOutput,
+void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput,
 	int irit, Vector<int> & viritInput, int iritFirstModItem)
 {
 	if (!m_pexpConstraint)
@@ -211,7 +215,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, Vector<byte> 
 	vbOutput.Push(iritByte - iritFirstModItem);
 	vbOutput.Push(0); // place holder
 	int ibSkipLoc = vbOutput.Size();
-	m_pexpConstraint->GenerateEngineCode(vbOutput, irit, &viritInput, irit,
+	m_pexpConstraint->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, &viritInput, irit,
 		fInserting, -1, false);
 
 	//	Go back and fill in number of bytes to skip if we are not at the 
@@ -225,7 +229,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, Vector<byte> 
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints of a pass.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateEngineCode(GrcManager * pcman, Vector<byte> & vbOutput)
+void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion, Vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.Size() == 0)
 	{
@@ -234,10 +238,12 @@ void GdlPass::GenerateEngineCode(GrcManager * pcman, Vector<byte> & vbOutput)
 
 	//	'and' all the constraints together; multiple constraints result from an -else if-
 	//	structure.
-	m_vpexpConstraints[0]->GenerateEngineCode(vbOutput, -1, NULL, -1, false, -1, false);
+	m_vpexpConstraints[0]->GenerateEngineCode(fxdRuleVersion, vbOutput,
+		-1, NULL, -1, false, -1, false);
 	for (int ipexp = 1; ipexp < m_vpexpConstraints.Size(); ipexp++)
 	{
-		m_vpexpConstraints[ipexp]->GenerateEngineCode(vbOutput, -1, NULL, -1, false, -1, false);
+		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
+			-1, NULL, -1, false, -1, false);
 		vbOutput.Push(kopAnd);
 	}
 	vbOutput.Push(kopPopRet);
@@ -246,7 +252,8 @@ void GdlPass::GenerateEngineCode(GrcManager * pcman, Vector<byte> & vbOutput)
 /*----------------------------------------------------------------------------------------------
 	Generate engine code to perform the actions for a given item.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateActionEngineCode(GrcManager * pcman, Vector<byte> & vbOutput,
+void GdlRuleItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	if (*pfSetInsertToFalse)
@@ -263,7 +270,8 @@ void GdlRuleItem::GenerateActionEngineCode(GrcManager * pcman, Vector<byte> & vb
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, Vector<byte> & vbOutput,
+void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	if (m_vpavs.Size() == 0 && !*pfSetInsertToFalse)
@@ -277,13 +285,15 @@ void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, Vector<byte> &
 		vbOutput.Push(0);
 		if (*pfSetInsertToFalse)
 			GenerateInsertEqualsFalse(vbOutput);
-		*pfSetInsertToFalse = GenerateAttrSettingCode(pcman, vbOutput, irit, nIIndex);
+		*pfSetInsertToFalse = GenerateAttrSettingCode(pcman, fxdRuleVersion, vbOutput,
+			irit, nIIndex);
 		vbOutput.Push(kopNext);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<byte> & vbOutput,
+void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	bool fInserting = (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore));
@@ -330,50 +340,73 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<by
 			//	rather a simple replacement, under the following circumstances:
 			if (psymSel->FitsSymbolType(ksymtSpecialUnderscore))
 				//	(a) there is no selector class
-				op = kopPutGlyph8bitObs;
+				op = kopPutGlyph;
 			else if (pglfcSel && pglfcSel->GlyphIDCount() == 0)
 				//	(b) the selector class has no glyphs
-				op = kopPutGlyph8bitObs;
+				op = kopPutGlyph;
 			else if (pglfcOutput && pglfcOutput->GlyphIDCount() <= 1)
 				//	(c) there is only one glyph in the output class
-				op = kopPutGlyph8bitObs;
+				op = kopPutGlyph;
 			else
 			{
 				//	Otherwise we're doing a replacement of a glyph from the selector class
 				//	with the corresponding glyph from the output class.
 				Assert(pglfcSel);
-				op = kopPutSubs8bitObs;
+				op = kopPutSubs;
+			}
+			if (fxdRuleVersion <= 0x00020000)
+			{
+				// Use old 8-bit versions of these commands.
+				switch (op)
+				{
+				case kopPutGlyph:	op = kopPutGlyphV1_2;	break;
+				case kopPutSubs:	op = kopPutSubsV1_2;	break;
+				default: break;
+				}
 			}
 			vbOutput.Push(op);
-			Assert(pglfcOutput->ReplcmtOutputID() >= 0);
 
-			if (op == kopPutGlyph8bitObs)
+			int nOutputID = pglfcOutput->ReplcmtOutputID();
+			Assert(nOutputID >= 0);
+
+			switch (op)
 			{
-				vbOutput.Push(pglfcOutput->ReplcmtOutputID());
+			case kopPutGlyph:
+				vbOutput.Push(nOutputID >> 8);
+				vbOutput.Push(nOutputID & 0x000000FF);
+				break;
+			case kopPutGlyphV1_2:
+				vbOutput.Push(nOutputID);
+				break;
+			case kopPutSubs:
+			case kopPutSubsV1_2:
+				{
+					int nSelIO = (m_nSelector == -1) ? nIIndex : m_nSelector;
+					int bSelOffset = nSelIO - nIIndex;
+					Assert((abs(bSelOffset) & 0xFFFF0000) == 0);	// check for truncation error
 
-				//int nOutputID = pglfcOutput->ReplcmtOutputID();
-				//vbOutput.Push(nOutputID >> 8);
-				//vbOutput.Push(nOutputID & 0x000000FF);
-			}
-			else // op == kopPutSubs8bitObs
-			{
-				int nSelIO = (m_nSelector == -1) ? nIIndex : m_nSelector;
-				int bSelOffset = nSelIO - nIIndex;
-				Assert((abs(bSelOffset) & 0xFFFFFF00) == 0);	// check for truncation error
+					Assert(pglfcSel->ReplcmtInputID() >= 0);
 
-				Assert(pglfcSel->ReplcmtInputID() >= 0);
+					vbOutput.Push((char)bSelOffset);
 
-				vbOutput.Push((char)bSelOffset);
-				vbOutput.Push(pglfcSel->ReplcmtInputID());
-				vbOutput.Push(pglfcOutput->ReplcmtOutputID());
-
-				//kopPutSubs
-				//int nInputID = pglfcSel->ReplcmtInputID();
-				//int nOutputID = pglfcOutput->ReplcmtOutputID();
-				//vbOutput.Push(nInputID >> 8);
-				//vbOutput.Push(nInputID & 0x000000FF);
-				//vbOutput.Push(nOutputID >> 8);
-				//vbOutput.Push(nOutputID & 0x000000FF);
+					int nInputID = pglfcSel->ReplcmtInputID();
+					if (op == kopPutSubsV1_2)
+					{
+						vbOutput.Push(nInputID);
+						vbOutput.Push(nOutputID);
+					}
+					else
+					{
+						vbOutput.Push(nInputID >> 8);
+						vbOutput.Push(nInputID & 0x000000FF);
+						vbOutput.Push(nOutputID >> 8);
+						vbOutput.Push(nOutputID & 0x000000FF);
+					}
+					break;
+				}
+			default:
+				Assert(false);
+				break;
 			}
 		}
 	}
@@ -397,7 +430,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<by
 	if (*pfSetInsertToFalse)
 		GenerateInsertEqualsFalse(vbOutput);
 
-	*pfSetInsertToFalse = GenerateAttrSettingCode(pcman, vbOutput, irit, nIIndex);
+	*pfSetInsertToFalse = GenerateAttrSettingCode(pcman, fxdRuleVersion, vbOutput, irit, nIIndex);
 
 	//	Go on to the next slot.
 	vbOutput.Push(kopNext);
@@ -408,20 +441,25 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, Vector<by
 	Generate engine code to set slot attributes. Return true if we need to set
 	insert = false on the following item (because this item makes a forward attachment).
 ----------------------------------------------------------------------------------------------*/
-bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, Vector<byte> & vbOutput,
+bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput,
 	int irit, int nIIndex)
 {
 	bool fAttachForward = false;
 	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
 	{
-		if (m_vpavs[ipavs]->GenerateAttrSettingCode(pcman, vbOutput, irit, nIIndex, AttachTo()))
+		if (m_vpavs[ipavs]->GenerateAttrSettingCode(pcman, fxdRuleVersion, vbOutput,
+			irit, nIIndex, AttachTo()))
+		{
 			fAttachForward = true;
+		}
 	}
 	return fAttachForward;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, Vector<byte> & vbOutput,
+bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
+	Vector<byte> & vbOutput,
 	int irit, int nIIndex, int iritAttachTo)
 {
 	bool fAttachForward = false;
@@ -438,7 +476,8 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, Vector<byte> 
 
 	if (m_psymName->IsIndexedSlotAttr())	// eg, component.XXX.ref, user1
 	{
-		m_pexpValue->GenerateEngineCode(vbOutput, irit, NULL, nIIndex, false, -1, &nBogus);
+		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput,
+			irit, NULL, nIIndex, false, -1, &nBogus);
 
 		if (m_psymName->IsComponentRef() || pcman->VersionForTable(ktiSilf) < 0x00020000)
 		{
@@ -463,7 +502,7 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, Vector<byte> 
 	{
 		Assert(staOp == "=");
 		int nValue;
-		m_pexpValue->GenerateEngineCode(vbOutput, irit, NULL, nIIndex,
+		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
 			false, iritAttachTo, &nValue);
 
 		vbOutput.Push(kopAttrSetSlot);
@@ -493,7 +532,7 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, Vector<byte> 
 		else
 			Assert(false);
 
-		m_pexpValue->GenerateEngineCode(vbOutput, irit, NULL, nIIndex,
+		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
 			fAttachAt, iritAttachTo, &nBogus);
 
 		vbOutput.Push(op);
@@ -810,37 +849,39 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 {
 	GdlRuleTable * prultbl;
 
+	int fxdRuleVersion = pcman->VersionForRules();
+
 	if ((prultbl = FindRuleTable("linebreak")) != NULL)
-		prultbl->DebugEngineCode(pcman, strmOut);
+		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
-		prultbl->DebugEngineCode(pcman, strmOut);
+		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
-		prultbl->DebugEngineCode(pcman, strmOut);
+		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 
 	if ((prultbl = FindRuleTable("positioning")) != NULL)
-		prultbl->DebugEngineCode(pcman, strmOut);
+		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
+void GdlRuleTable::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName().Chars() << "\n";
 	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
 	{
-		m_vppass[ippass]->DebugEngineCode(pcman, strmOut);
+		m_vppass[ippass]->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlPass::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
+void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
 	int nPassNum = PassDebuggerNumber();
 	strmOut << "\nPASS: " << nPassNum << "\n";
 
 	Vector<byte> vbPassConstraints;
-	GenerateEngineCode(pcman, vbPassConstraints);
+	GenerateEngineCode(pcman, fxdRuleVersion, vbPassConstraints);
 	if (vbPassConstraints.Size() == 0)
 	{
 		strmOut << "\nPASS CONSTRAINTS: none\n";
@@ -848,7 +889,7 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 	else
 	{
 		strmOut << "\nPASS CONSTRAINTS:\n";
-		GdlRule::DebugEngineCode(vbPassConstraints, strmOut);
+		GdlRule::DebugEngineCode(vbPassConstraints, fxdRuleVersion, strmOut);
 	}
 
 	for (int iprul = 0; iprul < m_vprule.Size(); iprul++)
@@ -859,20 +900,20 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 
 		m_vprule[iprul]->RulePrettyPrint(pcman, strmOut);
 		strmOut << "\n";
-		m_vprule[iprul]->DebugEngineCode(pcman, strmOut);
+		m_vprule[iprul]->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRule::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
 	Vector<byte> vbActions;
 	Vector<byte> vbConstraints;
 
-	GenerateEngineCode(pcman, vbActions, vbConstraints);
+	GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 
 	strmOut << "\nACTIONS:\n";
-	DebugEngineCode(vbActions, strmOut);
+	DebugEngineCode(vbActions, fxdRuleVersion, strmOut);
 
 	if (vbConstraints.Size() == 0)
 	{
@@ -881,11 +922,11 @@ void GdlRule::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 	else
 	{
 		strmOut << "\nCONSTRAINTS:\n";
-		DebugEngineCode(vbConstraints, strmOut);
+		DebugEngineCode(vbConstraints, fxdRuleVersion, strmOut);
 	}
 }
 
-void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut)
 {
 	int ib = 0;
 	while (ib < vb.Size())
@@ -949,8 +990,20 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
 		case kopNext:				cbArgs = 0;		break;
 		case kopNextN:				cbArgs = 1;		break;	// N
 		case kopCopyNext:			cbArgs = 0;		break;
-		case kopPutGlyph8bitObs:	cbArgs = 1;		break;	// output class
-		case kopPutSubs8bitObs:		cbArgs = 3;		break;	// sel, input class, output class
+		case kopPutGlyphV1_2:
+			nUnsigned = (unsigned int)vb[ib++];	// output class
+			strmOut << " " << nUnsigned;
+			cbArgs = 0;
+			break;
+		case kopPutSubsV1_2:
+			nSigned = (signed int)vb[ib++];		// selector
+			strmOut << " " << nSigned;
+			nUnsigned = (unsigned int)vb[ib++];	// input class
+			strmOut << " " << nUnsigned;
+			nUnsigned = (unsigned int)vb[ib++];	// output class
+			strmOut << " " << nUnsigned;
+			cbArgs = 0;
+			break;
 		case kopPutCopy:			cbArgs = 1;		break;	// selector
 		case kopInsert:				cbArgs = 0;		break;
 		case kopDelete:				cbArgs = 0;		break;
@@ -1031,9 +1084,11 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
 			strmOut << " " << nSigned;	// glyph attribute
 			cbArgs = 1;					// selector
 			break;
-		case kopPushGlyphAttrObs:
-		case kopPushAttToGAttrObs:
-			cbArgs = 2;	// attr name, selector
+		case kopPushGlyphAttrV1_2:
+		case kopPushAttToGAttrV1_2:
+			nUnsigned = (unsigned int)vb[ib++]; // glyph attribute
+			strmOut << " " << nUnsigned;
+			cbArgs = 1;							// selector
 			break;
 		case kopPushGlyphMetric:
 		case kopPushAttToGlyphMetric:
@@ -1048,7 +1103,7 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, std::ostream & strmOut)
 			strmOut << " " << ProcessStateDebugString(pstat).Chars();
 			cbArgs = 0;
 			break;
-		case kopPutVersion:			cbArgs = 0;		break;
+		case kopPushVersion:		cbArgs = 0;		break;
 		case kopPopRet:				cbArgs = 0;		break;
 		case kopRetZero:			cbArgs = 0;		break;
 		case kopRetTrue:			cbArgs = 0;		break;
@@ -1155,68 +1210,68 @@ StrAnsi GdlRule::EngineCodeDebugString(int op)
 	StrAnsi sta("bad-engine-op-");
 	switch (op)
 	{
-	case kopNop:				return "Nop";
-	case kopPushByte:			return "PushByte";
-	case kopPushByteU:			return "PushByteU";
-	case kopPushShort:			return "PushShort";
-	case kopPushShortU:			return "PushShortU";
-	case kopPushLong:			return "PushLong";
-	case kopAdd:				return "Add";
-	case kopSub:				return "Sub";
-	case kopMul:				return "Mul";
-	case kopDiv:				return "Div";
-	case kopMin:				return "Min";
-	case kopMax:				return "Max";
-	case kopNeg:				return "Neg";
-	case kopTrunc8:				return "Trunc8";
-	case kopTrunc16:			return "Trunc16";
-	case kopCond:				return "Cond";
-	case kopAnd:				return "And";
-	case kopOr:					return "Or";
-	case kopNot:				return "Not";
-	case kopEqual:				return "Equal";
-	case kopNotEq:				return "NotEq";
-	case kopLess:				return "Less";
-	case kopGtr:				return "Gtr";
-	case kopLessEq:				return "LessEq";
-	case kopGtrEq:				return "GtrEq";
-	case kopNext:				return "Next";
-	case kopNextN:				return "NextN";
-	case kopCopyNext:			return "CopyNext";
-	case kopPutGlyph:			return "PutGlyph";
-	case kopPutGlyph8bitObs:	return "PutGlyph(Obs-8bit)";
-	case kopPutSubs8bitObs:		return "PutSubs(Obs-8bit)";
-	case kopPutSubs:			return "PutSubs";
-	case kopPutSubs2:			return "PutSubs2";
-	case kopPutSubs3:			return "PutSubs3";
-	case kopPutCopy:			return "PutCopy";
-	case kopInsert:				return "Insert";
-	case kopDelete:				return "Delete";
-	case kopAssoc:				return "Assoc";
-	case kopCntxtItem:			return "CntxtItem";
-	case kopAttrSet:			return "AttrSet";
-	case kopAttrAdd:			return "AttrAdd";
-	case kopAttrSub:			return "AttrSub";
-	case kopAttrSetSlot:		return "AttrSetSlot";
-	case kopIAttrSetSlot:		return "IAttrSetSlot";
-	case kopPushSlotAttr:		return "PushSlotAttr";
-	case kopPushISlotAttr:		return "PushISlotAttr";
-	case kopPushGlyphAttr:		return "PushGlyphAttr";
-	case kopPushGlyphAttrObs:	return "PushGlyphAttr(Obs)";
-	case kopPushGlyphMetric:	return "PushGlyphMetric";
-	case kopPushFeat:			return "PushFeat";
-	case kopPushAttToGlyphAttr:	return "PushAttToGlyphAttr";
-	case kopPushAttToGAttrObs:	return "PushAttToGlyphAttr(Obs)";
-	case kopPushAttToGlyphMetric: return "PushAttToGlyphMetric";
-	case kopPushIGlyphAttr:		return "PushIGlyphAttr";
-	case kopPutVersion:			return "PutVersion";
-	case kopPopRet:				return "PopRet";
-	case kopRetZero:			return "RetZero";
-	case kopRetTrue:			return "RetTrue";
-	case kopIAttrSet:			return "IAttrSet";
-	case kopIAttrAdd:			return "IAttrAdd";
-	case kopIAttrSub:			return "IAttrSub";
-	case kopPushProcState:		return "PushProcState";
+	case kopNop:					return "Nop";
+	case kopPushByte:				return "PushByte";
+	case kopPushByteU:				return "PushByteU";
+	case kopPushShort:				return "PushShort";
+	case kopPushShortU:				return "PushShortU";
+	case kopPushLong:				return "PushLong";
+	case kopAdd:					return "Add";
+	case kopSub:					return "Sub";
+	case kopMul:					return "Mul";
+	case kopDiv:					return "Div";
+	case kopMin:					return "Min";
+	case kopMax:					return "Max";
+	case kopNeg:					return "Neg";
+	case kopTrunc8:					return "Trunc8";
+	case kopTrunc16:				return "Trunc16";
+	case kopCond:					return "Cond";
+	case kopAnd:					return "And";
+	case kopOr:						return "Or";
+	case kopNot:					return "Not";
+	case kopEqual:					return "Equal";
+	case kopNotEq:					return "NotEq";
+	case kopLess:					return "Less";
+	case kopGtr:					return "Gtr";
+	case kopLessEq:					return "LessEq";
+	case kopGtrEq:					return "GtrEq";
+	case kopNext:					return "Next";
+	case kopNextN:					return "NextN";
+	case kopCopyNext:				return "CopyNext";
+	case kopPutGlyph:				return "PutGlyph";
+	case kopPutGlyphV1_2:			return "PutGlyph(V1&2)";
+	case kopPutSubsV1_2:			return "PutSubs(V1&2)";
+	case kopPutSubs:				return "PutSubs";
+	case kopPutSubs2:				return "PutSubs2";
+	case kopPutSubs3:				return "PutSubs3";
+	case kopPutCopy:				return "PutCopy";
+	case kopInsert:					return "Insert";
+	case kopDelete:					return "Delete";
+	case kopAssoc:					return "Assoc";
+	case kopCntxtItem:				return "CntxtItem";
+	case kopAttrSet:				return "AttrSet";
+	case kopAttrAdd:				return "AttrAdd";
+	case kopAttrSub:				return "AttrSub";
+	case kopAttrSetSlot:			return "AttrSetSlot";
+	case kopIAttrSetSlot:			return "IAttrSetSlot";
+	case kopPushSlotAttr:			return "PushSlotAttr";
+	case kopPushISlotAttr:			return "PushISlotAttr";
+	case kopPushGlyphAttr:			return "PushGlyphAttr";
+	case kopPushGlyphAttrV1_2:		return "PushGlyphAttr(V1&2)";
+	case kopPushGlyphMetric:		return "PushGlyphMetric";
+	case kopPushFeat:				return "PushFeat";
+	case kopPushAttToGlyphAttr:		return "PushAttToGlyphAttr";
+	case kopPushAttToGAttrV1_2:		return "PushAttToGlyphAttr(V1&2)";
+	case kopPushAttToGlyphMetric:	return "PushAttToGlyphMetric";
+	case kopPushIGlyphAttr:			return "PushIGlyphAttr";
+	case kopPushVersion:			return "PushVersion";
+	case kopPopRet:					return "PopRet";
+	case kopRetZero:				return "RetZero";
+	case kopRetTrue:				return "RetTrue";
+	case kopIAttrSet:				return "IAttrSet";
+	case kopIAttrAdd:				return "IAttrAdd";
+	case kopIAttrSub:				return "IAttrSub";
+	case kopPushProcState:			return "PushProcState";
 	default:
 		Assert(false);
 		char rgch[20];

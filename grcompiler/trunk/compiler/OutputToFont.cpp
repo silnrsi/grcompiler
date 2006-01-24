@@ -655,7 +655,7 @@ bool GrcManager::BuildFontNames(uint16 * pchFamilyName, uint8 * pSubFamily, uint
 		pchwFullName[cchwFamilyName] = swapw(0x0020); // big endian Unicode space
 		utf16ncpy(pchwFullName + cchwFamilyName + 1, (utf16 *)(pSubFamily), 
 			cbSubFamily / sizeof(utf16));
-        pchwFullName[cchwFullName] = 0;
+		pchwFullName[cchwFullName] = 0;
 	}
 
 	*ppchwFamilyName = pchwFamilyName;
@@ -1618,14 +1618,25 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 	case ktiSile:
 		return 0x00010000;
 	case ktiSilf:
-		break;
+		break; // see below
 	default:
 		Assert(false);
 	}
 	if (fxdSpecVersion == 0x00010000)
 		return 0x00010000;
-	else
+	else if (fxdSpecVersion == 0x00020000)
 		return 0x00020000;
+	else
+		// No version specified, or an invalid version:
+		return kfxdCompilerVersion;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return the version of the action commands to use for the rules.
+----------------------------------------------------------------------------------------------*/
+int GrcManager::VersionForRules()
+{
+	return VersionForTable(ktiSilf); // somebody these may be different
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1682,9 +1693,20 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilOffset, in
 	//	version number
 	pbstrm->WriteInt(fxdVersion);
 
+	//	compiler version
+	if (fxdVersion >= 0x00030000)
+		pbstrm->WriteInt(kfxdCompilerVersion);
+
 	//	number of sub-tables
 	pbstrm->WriteShort(1);
-	if (fxdVersion >= 0x00020000)
+	if (fxdVersion >= 0x00030000)
+	{
+		//	reserved - pad bytes
+		pbstrm->WriteShort(0);
+		//	offset of zeroth table relative to the start of this table
+		pbstrm->WriteInt(isizeof(int) * 3 + isizeof(utf16) * 2);
+	}
+	else if (fxdVersion >= 0x00020000)
 	{
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
@@ -1698,6 +1720,10 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilOffset, in
 	//	Sub-table
 
 	long lTableStart = pbstrm->Position();
+
+	//	rule version - right now this is the same as the table version
+	if (fxdVersion >= 0x00030000)
+		pbstrm->WriteInt(fxdVersion);
 
 	//	maximum valid glyph ID
 	pbstrm->WriteShort(m_cwGlyphIDs - 1);
@@ -2180,6 +2206,7 @@ void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lo
 void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart)
 {
 	int fxdFontTableVersion = pcman->VersionForTable(ktiSilf);
+	int fxdRuleVersion = fxdFontTableVersion; // someday these may be different
 
 	int nOffsetToPConstraint;
 	long lOffsetToPConstraintPos;
@@ -2326,7 +2353,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 		nOffsetToPConstraint = pbstrm->Position() - lTableStart;
 		Vector<byte> vbPassConstr;
-		this->GenerateEngineCode(pcman, vbPassConstr);
+		this->GenerateEngineCode(pcman, fxdRuleVersion, vbPassConstr);
 		for (ib = 0; ib < vbPassConstr.Size(); ib++)
 			pbstrm->WriteByte(vbPassConstr[ib]);
 		cbPassConstraint = vbPassConstr.Size();
@@ -2352,7 +2379,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	for (irule = 0; irule < m_vprule.Size(); irule++)
 	{
 		vbConstraints.Clear();
-		m_vprule[irule]->GenerateEngineCode(pcman, vbActions, vbConstraints);
+		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 		if (vbConstraints.Size() == 0)
 			vnConstraintOffsets.Push(0);
 		else
@@ -2370,7 +2397,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	{
 		vbActions.Clear();
 		vnActionOffsets.Push(pbstrm->Position() - nOffsetToAction - lTableStart);
-		m_vprule[irule]->GenerateEngineCode(pcman, vbActions, vbConstraints);
+		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 		for (int ib = 0; ib < vbActions.Size(); ib++)
 			pbstrm->WriteByte(vbActions[ib]);
 	}

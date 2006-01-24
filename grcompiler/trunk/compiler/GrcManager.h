@@ -60,11 +60,11 @@ public:
 	int MaxFontVersion()
 	{
 		// Highest version of the font tables this version of the compiler can generate:
-		return 0x00020000;
+		return kfxdCompilerVersion;
 	}
 	int DefaultFontVersion()
 	{
-		return 0x00010000;
+		return 0x00020000; // kfxdCompilerVersion;
 	}
 	bool UserSpecifiedVersion()
 	{
@@ -73,6 +73,7 @@ public:
 
 	int VersionForTable(int ti);
 	int VersionForTable(int ti, int fxdRequestedVersion);
+	int VersionForRules();
 
 	void SetSeparateControlFile(bool f)
 	{
@@ -408,6 +409,8 @@ protected:
 	//	(which in turn have a record of the ID). (FSM-classes are classes that are used for
 	//	matching input.) There is one vector per pass.
 	Vector<GdlGlyphClassDefn *> * m_prgvpglfcFsmClasses;
+
+	int cReplcmntClasses;
 
 public:
 	//	For test procedures:

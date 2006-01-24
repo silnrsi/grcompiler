@@ -2551,6 +2551,16 @@ bool GdlLookupExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded
 		fRet = false;
 	}
 
+	if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
+	{
+		int nID = m_psymName->InternalID();
+		if (nID >= 0xFF)
+		{
+			*pfxdNeeded = max(*pfxdNeeded, 0x00030000);
+			fRet = false;
+		}
+	}
+
 	return fRet;
 }
 
@@ -2580,6 +2590,7 @@ bool GdlStringExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded
 /*----------------------------------------------------------------------------------------------
 	Translate the expression into engine code and append it to the code block.
 	Arguments:
+		fxdRuleVersion	- version of rule code to generate
 		vbOutput		- vector of bytes, engine code being generated
 		iritCurrent		- current rule item index (0-based); -1 if we are in an -if- statement
 		pviritInput		- vector of input indices for this rule; only relevant when
@@ -2595,11 +2606,11 @@ bool GdlStringExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded
 							needs to decide how to handle the accompanying insert = false;
 							only slot references need to worry about it
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
-	m_pexpOperand->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+	m_pexpOperand->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, pnValue);
 
 	StrAnsi staOp = m_psymOperator->FullName();
@@ -2614,14 +2625,16 @@ void GdlUnaryExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	int nBogus;
-	m_pexpOperand1->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+	m_pexpOperand1->GenerateEngineCode(fxdRuleVersion, vbOutput,
+		iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, &nBogus);
-	m_pexpOperand2->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+	m_pexpOperand2->GenerateEngineCode(fxdRuleVersion, vbOutput,
+		iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, &nBogus);
 
 	StrAnsi staOp = m_psymOperator->FullName();
@@ -2659,28 +2672,29 @@ void GdlBinaryExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	int nBogus;
-	m_pexpTest->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+	m_pexpTest->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, &nBogus);
-	m_pexpTrue->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+	m_pexpTrue->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, pnValue);
-	m_pexpFalse->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+	m_pexpFalse->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, pnValue);
 	vbOutput.Push(kopCond);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	if (m_pexpSimplified)
 	{
-		m_pexpSimplified->GenerateEngineCode(vbOutput, iritCurrent, pviritInput, nIIndex,
+		m_pexpSimplified->GenerateEngineCode(fxdRuleVersion, vbOutput,
+			iritCurrent, pviritInput, nIIndex,
 			fAttachAt, iritAttachTo, pnValue);
 		return;
 	}
@@ -2749,24 +2763,42 @@ void GdlLookupExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 		}
 		else
 		{
+			int nID = m_psymName->InternalID();
 			if (fAttachAt)
 			{
 				Assert(iritAttachTo != -1);
 				int nSel = (m_pexpSelector) ? m_pexpSelector->m_nIOIndex : iritAttachTo;
-				vbOutput.Push(kopPushAttToGAttrObs);
-				vbOutput.Push(m_psymName->InternalID());
-				//int nID = m_psymName->InternalID();
-				//vbOutput.Push(nID >> 8);
-				//vbOutput.Push(nID & 0x000000FF);
+
+				if (fxdRuleVersion <= 0x00020000)
+				{
+					// Use old 8-bit version of this command.
+					vbOutput.Push(kopPushAttToGAttrV1_2);
+					vbOutput.Push(nID);
+				}
+				else
+				{
+					vbOutput.Push(kopPushAttToGlyphAttr);
+					vbOutput.Push(nID >> 8);
+					vbOutput.Push(nID & 0x000000FF);
+				}
+
 				vbOutput.Push(nSel - iritAttachTo);	// relative to attach.to target
 			}
 			else
 			{
-				vbOutput.Push(kopPushGlyphAttrObs);
-				vbOutput.Push(m_psymName->InternalID());
-				//int nID = m_psymName->InternalID();
-				//vbOutput.Push(nID >> 8);
-				//vbOutput.Push(nID & 0x000000FF);
+				if (fxdRuleVersion <= 0x00020000)
+				{
+					// Use old 8-bit version of this command.
+					vbOutput.Push(kopPushGlyphAttrV1_2);
+					vbOutput.Push(nID);
+				}
+				else
+				{
+					vbOutput.Push(kopPushGlyphAttr);
+					vbOutput.Push(nID >> 8);
+					vbOutput.Push(nID & 0x000000FF);
+				}
+
 				vbOutput.Push(nSelOffset);
 			}
 		}
@@ -2814,7 +2846,7 @@ void GdlLookupExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -2850,7 +2882,7 @@ void GdlNumericExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlSlotRefExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -2872,7 +2904,7 @@ void GdlSlotRefExpression::GenerateEngineCode(Vector<byte> & vbOutput,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::GenerateEngineCode(Vector<byte> & vbOutput,
+void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
 	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {

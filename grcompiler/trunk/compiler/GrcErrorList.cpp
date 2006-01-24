@@ -197,7 +197,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 	strmOut << "Input font file: " << staInputFontFile.Chars() << "\n";
 	strmOut << "Output font file: " << staOutputFile.Chars() << "\n";
 	strmOut << "Output font family: " << staOutputFamily.Chars() << "\n";
-	strmOut << "Font table version: " << staVersion.Chars() << "\n";
+	strmOut << "Silf table version: " << staVersion.Chars() << "\n";
 	strmOut << "Create separate control file: " << (fSepCtrlFile ? "yes" : "no") << "\n";
 	strmOut << "\n*******************************************************\n\n";
 
