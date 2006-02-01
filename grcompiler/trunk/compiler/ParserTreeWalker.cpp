@@ -83,7 +83,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	//       and security
 	// Search MSDN for "Creating a Child Process with Redirected Input and Output" for 
 	// more proper way. Using the C RTL is much easier than the proper way with the Win API.
-	char * pszPreProcErr = NewObj char[L_tmpnam + strlen("c:")];
+	char * pszPreProcErr = new char[L_tmpnam + strlen("c:")];
 	if (!pszPreProcErr)
 	{
 	    g_errorList.AddError(NULL, "Out of memory");
@@ -838,6 +838,9 @@ void GrcManager::WalkTableTree(RefAST ast)
 	case LITERAL_feature:
 		WalkFeatureTableTree(ast);
 		break;
+	case LITERAL_language:
+		WalkLanguageTableTree(ast);
+		break;
 	case LITERAL_name:
 		WalkNameTableTree(ast);
 		break;
@@ -900,6 +903,9 @@ void GrcManager::WalkTableElement(RefAST ast, TableType tblt,
 		{
 		case ktbltFeature:
 			WalkFeatureTableElement(ast);
+			break;
+		case ktbltLanguage:
+			WalkLanguageTableElement(ast);
 			break;
 		case ktbltName:
 			WalkNameTableElement(ast);
@@ -1572,7 +1578,6 @@ void GrcManager::WalkFeatureTableTree(RefAST ast)
 	Assert(ast->getType() == LITERAL_table);
 	Assert(ast->getFirstChild()->getType() == LITERAL_feature);
 
-
 	RefAST astContents = ast->getFirstChild()->getNextSibling();
 	while (astContents)
 	{
@@ -1667,7 +1672,9 @@ void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<StrAnsi> & vsta)
 			pexpValue->SetLineAndFile(LineAndFile(ast));
 		}
 		else
+		{
 			pexpValue = WalkExpressionTree(astValue);
+		}
 		m_mtbFeatures->AddItem(psym, pexpValue,
 			PointRadius(), PointRadiusUnits(), AttrOverride(), LineAndFile(ast),
 			"feature setting");
@@ -1686,6 +1693,128 @@ void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<StrAnsi> & vsta)
 	vsta.Pop();
 }
 
+/*----------------------------------------------------------------------------------------------
+	Process the language table.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::WalkLanguageTableTree(RefAST ast)
+{
+	Assert(ast->getType() == LITERAL_table);
+	Assert(ast->getFirstChild()->getType() == LITERAL_language);
+
+	RefAST astContents = ast->getFirstChild()->getNextSibling();
+	while (astContents)
+	{
+		int nodetyp = astContents->getType();
+		switch (nodetyp)
+		{
+		case OP_DOT:
+		case ZdotStruct:
+			WalkLanguageTableElement(astContents);
+			break;
+
+		default:
+			WalkTableElement(astContents, ktbltLanguage, NULL, NULL);
+		}
+
+		astContents = astContents->getNextSibling();
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Process a top level element in the language table.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::WalkLanguageTableElement(RefAST ast)
+{
+	RefAST astLabel = ast->getFirstChild();
+	StrAnsi staLabel = astLabel->getText().c_str();
+
+	RefAST astItem = astLabel->getNextSibling();
+
+	// Find or create the language class with that name:
+	GdlLangClass * plcls;
+	for (int ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
+	{
+		if (m_vplcls[ilcls]->m_staLabel == staLabel)
+		{
+			plcls = m_vplcls[ilcls];
+			break;
+		}
+	}
+	if (ilcls >= m_vplcls.Size())
+	{
+		plcls = new GdlLangClass(staLabel);
+		m_vplcls.Push(plcls);
+	}
+
+	WalkLanguageItem(astItem, plcls);
+}
+
+/*----------------------------------------------------------------------------------------------
+	Process one assignment in the language table.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::WalkLanguageItem(RefAST ast, GdlLangClass * plcls)
+{
+	RefAST astItem = ast;
+	while (astItem)
+	{
+		Assert(astItem->getType() == OP_EQ);
+
+		RefAST astLhs = astItem->getFirstChild();
+		StrAnsi staLhs = astLhs->getText().c_str();
+		if (staLhs == "language" || staLhs == "languages")
+		{
+			if (plcls->m_vplang.Size() > 0)
+			{
+				g_errorList.AddError(NULL,
+					"Redefining list of languages for language group '", plcls->m_staLabel, "'",
+					LineAndFile(astLhs));
+			}
+
+			RefAST astLangList = astLhs->getNextSibling();
+			WalkLanguageCodeList(astLangList, plcls);
+		}
+		else // feature setting
+		{
+			RefAST astValue = astLhs->getNextSibling();
+			StrAnsi staValue = astValue->getText().c_str();
+			GdlExpression * pexpVal = NULL;
+			if (astValue->getType() != IDENT)
+				pexpVal = WalkExpressionTree(astValue);
+			plcls->AddFeatureValue(staLhs, staValue, pexpVal, LineAndFile(astValue));
+		}
+
+		astItem = astItem->getNextSibling();
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Process one line in the language table.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::WalkLanguageCodeList(RefAST astList, GdlLangClass * plcls)
+{
+	RefAST astNext = astList;
+	while (astNext && astNext->getType() == LIT_STRING)
+	{
+		StrAnsi staLang = astNext->getText().c_str();
+		if (staLang.Length() > 4)
+		{
+			g_errorList.AddError(NULL,
+				"Language codes may contain a maximum of 4 characters",
+				LineAndFile(astNext));
+		}
+		// Create a language.
+		GrcStructName xns(staLang);
+		GrpLineAndFile lnf;
+		Symbol psymLang = SymbolTable()->AddLanguageSymbol(xns, lnf);
+		GdlLanguageDefn * plang = psymLang->LanguageDefnData();
+		Assert(plang);
+		plang->SetCode(staLang);
+		m_prndr->AddLanguage(plang);
+		plcls->AddLanguage(plang);
+
+		astNext = astNext->getNextSibling();
+	}
+}
 
 /*----------------------------------------------------------------------------------------------
 	Process the name table.

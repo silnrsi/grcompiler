@@ -295,6 +295,30 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
     if (!dest)	// An error condition is indicated by 0
         return 0;
 
+char * itoa(int value, char *string, int radix)
+{
+	std::ostringstream oss;
+	
+	oss << std::setbase(radix) << value;
+	
+	// We don't get passed the size of the destionation buffer which is very
+	//  unwise, so plump for a reasonable value.  I don't reckon Graphite
+	//  needs more than 64 didits of output.
+	// std::string::copy doesn't null terminate the string to don't forget to 
+	//  do it.
+	string[oss.str().copy(string, 63)] = '\0';
+	
+	return string;
+}
+
+
+unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long, 
+        const char * source, size_t src_count, 
+        unsigned short * dest, size_t dst_count)
+{
+    if (!dest)	// An error condition is indicated by 0
+        return 0;
+
     if (src_count == size_t(-1))     // When passed -1 it should find the 
 	src_count = strlen(source);  // length of the source it's self
 
@@ -316,13 +340,6 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
     ICONV_CONST char *src_ptr = const_cast<char *>(source);
     dst_count *= sizeof(unsigned short);    
     const size_t dst_size = dst_count;
-
-    iconv(cdesc, &src_ptr, &src_count, &dst_ptr, &dst_count);
-    iconv_close(cdesc);
-    
-    return dst_size - dst_count;
-}
-
 
 } // namespace gr
 

@@ -158,6 +158,8 @@ const char * GrpASTNode::debugString()
 	case LITERAL_false:			return "LITERAL_false";
 	case LITERAL_true:			return "LITERAL_true";
 	case LITERAL_justification:	return "LITERAL_justification";
+	case LITERAL_languages:		return "LITERAL_languages";
+	case LITERAL_language:		return "LITERAL_language";
 
 	case Zalias:				return "Zalias";
 	case Zassocs:				return "Zassocs";

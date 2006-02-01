@@ -16,6 +16,17 @@ Description:
 		GrpParser.hpp
 		GrpParser.cpp
 		GrpParserTokenTypes.hpp
+		
+	Notes on ANTLR syntax (what I remember from 6 years ago):
+		(A|B) = A or B
+		* = zero or more
+		? = optional item
+		^ = make this item the root of the (default) returned tree construct
+		! = in LHS: don't return the default tree construct; return the explicit one if any
+			in RHS: syntactic marker only--don't include in output tree
+		: = associate a label with an item, which can be used to explicitly build the
+				return tree construct
+		{#label = #(...) } = builds an explicit tree construct
 ----------------------------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------------------------
@@ -144,7 +155,7 @@ directive		:	IDENT OP_EQ^ expr;
 //
 
 tableDecl		:	"table"^
-					(	tableName | tableGlyph | tableFeature
+					(	tableName | tableGlyph | tableFeature | tableLanguage
 					|	tableSub | tableJust | tablePos | tableLineBreak
 					|	tableOther
 					)
@@ -340,6 +351,55 @@ featureSpecFlat!	:	(	( I:IDENT | In:"name" )
 									{ #featureSpecFlat = #(E2, N, Vn1, Vn2, Vn3); }	
 						)
 ;
+
+//
+// Language Table
+//
+
+tableLanguage	:	OP_LPAREN! "language" OP_RPAREN! (directives)? (OP_SEMI!)?
+					( languageEnv | languageSpecList | tableDecl )*;
+
+languageEnv		:	"environment"^
+					(directives)?
+					(OP_SEMI!)?
+					( languageSpecList | languageEnv | tableDecl )*
+					"endenvironment"!
+					(OP_SEMI!)?
+;
+
+languageSpecList	:	(	languageSpec (languageSpecList)?
+						|	languageSpec (OP_SEMI! languageSpecList)? (OP_SEMI!)?
+						)
+;
+
+languageSpec!		:	I:IDENT
+						(	OP_DOT X1:languageSpecItem
+								{ #languageSpec = #([ZdotStruct], I, X1); }
+						|	OP_LBRACE X2:languageItemList OP_RBRACE! (OP_SEMI!)?
+								{ #languageSpec = #([ZdotStruct], I, X2); }
+						)
+;
+
+languageItemList	:	(languageSpecItem)*
+;
+
+languageSpecItem!	:	(	I:IDENT
+							E1:OP_EQ
+							(Vi1:signedInt | Vi2:IDENT)
+								{ #languageSpecItem = #(E1, I, Vi1, Vi2); }
+						|	( Ilang:"language" | Ilangs:"languages" )
+							E2:OP_EQ
+							LL:languageCodeList
+								{ #languageSpecItem = #(E2, Ilang, Ilangs, LL); }
+						)
+						(OP_SEMI!)?
+;
+
+languageCodeList	:	(	LIT_STRING
+						|	OP_LPAREN! LIT_STRING (OP_COMMA! LIT_STRING)* OP_RPAREN
+						)
+;
+
 
 
 //
@@ -541,7 +601,7 @@ posRhsItem		:	subRhsItem;
 
 
 //
-//	LineBreak Table
+//	Line-break Table
 //
 
 tableLineBreak	:	OP_LPAREN! "linebreak" OP_RPAREN! (directives)? (OP_SEMI!)? (posEntry)*;

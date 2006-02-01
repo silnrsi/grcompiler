@@ -95,6 +95,7 @@ public:
 	{
 		m_vpfeat.Push(pfeat);
 	}
+	bool AddLanguage(GdlLanguageDefn * plang);
 
 	NameDefnMap & NameAssignmentsMap()
 	{
@@ -113,6 +114,7 @@ public:
 
 	//	Pre-compiler:
 	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont);
+	void CheckLanguageFeatureSize();
 	int ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
@@ -190,6 +192,7 @@ public:
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<StrUni> * pvstuExtNames, 
 		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart);
+	void OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart);
 
 protected:
 	//	Instance variables:
@@ -198,6 +201,7 @@ protected:
 
 	Vector<GdlGlyphClassDefn *>		m_vpglfc;
 	Vector<GdlFeatureDefn *>		m_vpfeat;
+	Vector<GdlLanguageDefn *>		m_vplang;
 	NameDefnMap						m_hmNameDefns;
 //	GdlStdStyle						m_rgsty[FeatureDefn::kstvLim];
 

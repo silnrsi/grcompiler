@@ -34,6 +34,15 @@ Last reviewed:
 #include <algorithm>
 #include <string>
 
+// Uncomment this to allow multiple versions of gr to coexist
+// in the same program e.g. pangographite with gtk uses namespace gr
+// mozilla graphite defines this to gr2moz incase the 2 libraries are 
+// incompatible.
+// Provided the client includes GrClient.h first this #define is
+// picked up by all files.
+
+//#define gr gr2
+
 // Project headers
 #include "GrPlatform.h"
 #include "GrDebug.h"		// Debug related definitions.
@@ -119,12 +128,12 @@ inline bool ValidWritePtrSize(void *pv, int cb)
 
 
 // TODO Remove these as soon as they are no longer needed by GrCompiler:
-#include "UtilMem.h"
-#include "UtilRect.h"
-#include "UtilString.h"
-#include "UtilVector.h"
+//#include "UtilMem.h"
+//#include "UtilRect.h"
+//#include "UtilString.h"
+//#include "UtilVector.h"
 
-#if !defined(GR_NAMESPACE)
+#if defined(GR_NO_NAMESPACE)
 using namespace gr;
 #endif
 

@@ -61,6 +61,7 @@ Hungarian: fset
 class GdlFeatureSetting : public GdlObject
 {
 	friend class GdlFeatureDefn;
+	friend class GdlLanguageDefn;
 
 public:
 	//	Constructor:
@@ -241,6 +242,108 @@ protected:
 	int	m_nInternalID;
 	GdlFeatureSetting * m_pfsetDefault;
 	utf16 m_wNameTblId;
+};
+
+/*----------------------------------------------------------------------------------------------
+Class: GdlLanguageDefn
+Description: A mapping of a language identifier onto a set of feature values.
+Hungarian: lang
+----------------------------------------------------------------------------------------------*/
+class GdlLanguageDefn : public GdlDefn
+{
+	friend class GdlFeatureDefn;
+	friend class GdlFeatureSetting;
+
+public:
+	// General:
+	unsigned int Code()
+	{
+		unsigned int nCode;
+		memcpy(&nCode, m_rgchID, sizeof(m_rgchID));
+		return nCode;
+	}
+
+	void SetCode(StrAnsi staCode)
+	{
+		Assert(staCode.Length() <= 4);
+		staCode = staCode.Left(4);
+		memset(m_rgchID, 0, sizeof(m_rgchID));
+		memcpy(m_rgchID, staCode.Chars(), staCode.Length() * sizeof(char));
+	}
+
+	int NumberOfSettings()
+	{
+		return m_vpfset.Size();
+	}
+
+	// Pre-compiler:
+	void AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting * pfset,
+		int nFset, GrpLineAndFile & lnf);
+
+	// Compiler:
+	void OutputSettings(GrcBinaryStream * pbstrm);
+
+protected:
+	//	Instance variables:
+	char m_rgchID[4];
+	Vector<GdlFeatureDefn*> m_vpfeat;
+	Vector<GdlFeatureSetting*> m_vpfset;
+	Vector<int> m_vnFset;
+};
+
+
+/*----------------------------------------------------------------------------------------------
+Class: GdlLangClass
+Description: A collection of language maps and the feature settings for them.
+Hungarian: lcls
+----------------------------------------------------------------------------------------------*/
+class GdlLangClass
+{
+	friend class GrcManager;
+
+	GdlLangClass(StrAnsi sta)
+	{
+		m_staLabel = sta;
+	}
+
+	~GdlLangClass()
+	{
+		for (int i = 0; i < m_vpexpVal.Size(); i++)
+			delete m_vpexpVal[i];
+	}
+
+	void AddLanguage(GdlLanguageDefn * plang)
+	{
+		for (int i = 0; i < m_vplang.Size(); i++)
+		{
+			if (m_vplang[i] == plang)
+				return;
+		}
+		m_vplang.Push(plang);
+	}
+
+	void AddFeatureValue(StrAnsi staFeat, StrAnsi staVal, GdlExpression * pexpVal, GrpLineAndFile lnf)
+	{
+		m_vstaFeat.Push(staFeat);
+		m_vstaVal.Push(staVal);
+		m_vpexpVal.Push(pexpVal);
+		m_vlnf.Push(lnf);
+		Assert(m_vstaFeat.Size() == m_vstaVal.Size());
+		Assert(m_vstaFeat.Size() == m_vpexpVal.Size());
+		Assert(m_vstaFeat.Size() == m_vlnf.Size());
+	}
+
+	bool PreCompile(GrcManager * pcman);
+
+protected:
+	GrpLineAndFile m_lnf;
+	StrAnsi m_staLabel;
+	Vector<GdlLanguageDefn *> m_vplang;
+	// These four are parallel vectors, each item corresponding to a feature assignment:
+	Vector<StrAnsi> m_vstaFeat;			// name of feature
+	Vector<StrAnsi> m_vstaVal;			// text of value
+	Vector<GdlExpression*> m_vpexpVal;	// expression, if not an identifer
+	Vector<GrpLineAndFile> m_vlnf;
 };
 
 #endif // FEATURES_INCLUDED

@@ -63,6 +63,7 @@ typedef enum SymbolType {	// hungarian: symt
 	ksymtFeature,				// user-defined
 		ksymtFeatStyle,			// user-defined
 	ksymtFeatSetting,			// user-defined
+	ksymtLanguage,				// user defined
 	ksymtGlobal,				// pre-defined
 	ksymtGlyph,
 		ksymtGlyphAttr,			// pre-defined and user-defined
@@ -118,6 +119,7 @@ typedef enum TableType {	// hungarian: tblt
 	ktbltFeature,
 	ktbltGlyph,
 	ktbltRule,
+	ktbltLanguage,
 } TableType;
 
 

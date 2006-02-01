@@ -673,6 +673,7 @@ long TtfUtil::TableIdTag(TableId ktiTableId)
 	case ktiGloc:	return tag_Gloc;
 	case ktiSilf:	return tag_Silf;
 	case ktiSile:	return tag_Sile;
+	case ktiSill:	return tag_Sill;
 	default:		return 0;
 	}
 }

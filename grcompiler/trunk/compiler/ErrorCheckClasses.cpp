@@ -341,7 +341,7 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 	GdlGlyphClassDefn * pglfcAny = psym->GlyphClassDefnData();
 	Assert(pglfcAny);
 
-	GdlGlyphDefn * pglf = NewObj GdlGlyphDefn(kglftGlyphID, (utf16)0, m_cwGlyphIDs - 1);
+	GdlGlyphDefn * pglf = new GdlGlyphDefn(kglftGlyphID, (utf16)0, m_cwGlyphIDs - 1);
 	pglfcAny->AddMember(pglf);
 
 	pglfcAny->AssignGlyphIDs(pfont, m_cwGlyphIDs, hmActualForPseudo);
