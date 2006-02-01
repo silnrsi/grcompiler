@@ -242,7 +242,7 @@ void GdlRule::FixRulePreContexts(Symbol psymAnyClass, int critNeeded)
 
 	for (int iritToAdd = 0; iritToAdd < m_critPrependedAnys; iritToAdd++)
 	{
-		GdlRuleItem * prit = NewObj GdlRuleItem(psymAnyClass);
+		GdlRuleItem * prit = new GdlRuleItem(psymAnyClass);
 		prit->SetLineAndFile(LineAndFile());
 		prit->m_iritContextPos = iritToAdd;
 		m_vprit.Insert(iritToAdd, prit);

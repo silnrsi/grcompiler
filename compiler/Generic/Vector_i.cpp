@@ -26,6 +26,17 @@ Description:
 #include "UtilVector.h"
 #include "Throwable.h"
 
+/*----------------------------------------------------------------------------------------------
+	This moves cv items from pvSrc to pvDst. It handles overlapping blocks. It doesn't invoke
+	assignment operators - it just moves bytes.
+----------------------------------------------------------------------------------------------*/
+template<typename T>
+	inline void MoveItems(const T * pvSrc, T * pvDst, int cv)
+{
+	memmove(pvDst, pvSrc, cv * isizeof(T));
+}
+
+
 /***********************************************************************************************
 	Methods
 ********************************************************************************//*:End Ignore*/
@@ -320,7 +331,6 @@ template<class T>
 
 	AssertObj(this);
 }
-
 
 /*----------------------------------------------------------------------------------------------
 	Pop erases the last element stored in the vector.  vx.Pop(pe) is equivalent to

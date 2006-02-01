@@ -68,6 +68,9 @@ GdlRenderer::~GdlRenderer()
 	for (i = 0; i < m_vpfeat.Size(); ++i)
 		delete m_vpfeat[i];
 
+	for (i = 0; i < m_vplang.Size(); ++i)
+		delete m_vplang[i];
+
 	for (NameDefnMap::iterator itmap = m_hmNameDefns.Begin();
 		itmap != m_hmNameDefns.End();
 		++itmap)
@@ -79,6 +82,41 @@ GdlRenderer::~GdlRenderer()
 		delete m_pexpXAscent;
 	if (m_pexpXDescent)
 		delete m_pexpXDescent;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Add a language to the list. Keep them in sorted order. Return false if the language
+	was already present.
+----------------------------------------------------------------------------------------------*/
+bool GdlRenderer::AddLanguage(GdlLanguageDefn * plang)
+{
+	int iplangLo = 0;
+	int iplangHi = m_vplang.Size();
+	while (true)
+	{
+		int iplangMid = (iplangLo + iplangHi) >> 1; // div by 2
+		if (iplangMid >= m_vplang.Size())
+		{
+			m_vplang.Push(plang);
+			return true;
+		}
+
+		unsigned int nCodeThis = plang->Code();
+		unsigned int nCodeThat = m_vplang[iplangMid]->Code();
+		int cmp = strcmp((char*)&nCodeThis, (char*)&nCodeThat);
+
+		if (cmp == 0)
+			return false; // already present
+		if (iplangHi - iplangLo == 1)
+		{
+			m_vplang.Insert(iplangLo + ((cmp<0) ? 0 : 1), plang);
+			return true;
+		}
+		if (cmp < 0)
+			iplangHi = iplangMid;
+		else
+			iplangLo = iplangMid;
+	}
 }
 
 
@@ -141,7 +179,6 @@ GdlRuleTable * GdlRenderer::FindRuleTable(Symbol psymTableName)
 	
 	return NULL;
 }
-
 
 /***********************************************************************************************
 	Methods: Pre-compiler

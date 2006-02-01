@@ -51,7 +51,7 @@ static int CompareDirEntries(const void *,  const void *); // compare fn for qso
 int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	utf16 * pchDstFontFamily, utf16 * pchSrcFontFamily)
 {
-	const int kcExtraTables = 4; // count of tables to add to font
+	const int kcExtraTables = 5; // count of tables to add to font
 	std::ifstream strmSrc(pchSrcFileName, std::ios::binary);
 	GrcBinaryStream bstrmDst(pchDstFileName); // this deletes pre-existing file
 
@@ -144,7 +144,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		TtfUtil::HeadTableModifyTime(pbTableHeadSrc, &rgnModifyTime[0], &rgnModifyTime[1]);
 		delete[] pbTableHeadSrc;
 
-		cTableOut = cTableMin + kcExtraTables + 1; // Five extra tables: Sile, Silf, Feat, Gloc, Glat
+		cTableOut = cTableMin + kcExtraTables + 1; // Six extra tables: Sile, Silf, Feat, Gloc, Glat, Sill
 		// This is the file we're really copying.
 		pOffsetTableOut = &OffsetTableMin;
 		cTableCopy = cTableMin;
@@ -299,6 +299,13 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	// Feat
 	OutputFeatTable(&bstrmDst, (int *)&ibOffset, (int *)&cbSize);
 	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Feat);
+	pDirEntryOut[nCurTable].length = swapl(cbSize);
+	pDirEntryOut[nCurTable].offset = swapl(ibOffset);
+	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+
+	// Sill
+	OutputSillTable(&bstrmDst, (int *)&ibOffset, (int *)&cbSize);
+	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Sill);
 	pDirEntryOut[nCurTable].length = swapl(cbSize);
 	pDirEntryOut[nCurTable].offset = swapl(ibOffset);
 	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
@@ -1617,6 +1624,8 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 		return 0x00010000;
 	case ktiSile:
 		return 0x00010000;
+	case ktiSill:
+		return 0x00010000;
 	case ktiSilf:
 		break; // see below
 	default:
@@ -1684,9 +1693,9 @@ void GrcManager::SplitLargeStretchValue(int wGlyphID, int nAttrIdJStr)
 /*----------------------------------------------------------------------------------------------
 	Write the Silf table and related subtables to the stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilOffset, int * pnSilSize)
+void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, int * pnSilfSize)
 {
-	*pnSilOffset = pbstrm->Position();
+	*pnSilfOffset = pbstrm->Position();
 
 	int fxdVersion = VersionForTable(ktiSilf);
 
@@ -1900,7 +1909,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilOffset, in
 	pbstrm->SetPosition(lSavePos);
 
 	// handle size and padding
-	*pnSilSize = lSavePos - *pnSilOffset;
+	*pnSilfSize = lSavePos - *pnSilfOffset;
 	pbstrm->SeekPadLong(lSavePos);
 }
 
@@ -2701,6 +2710,99 @@ void GdlFeatureDefn::OutputSettings(GrcBinaryStream * pbstrm)
 	}
 }
 
+
+/*----------------------------------------------------------------------------------------------
+	Write the "Sill" table and related subtables to the stream.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, int * pnSillSize)
+{
+	*pnSillOffset = pbstrm->Position();
+
+	//	version number
+	pbstrm->WriteInt(VersionForTable(ktiSill));
+
+	m_prndr->OutputSillTable(pbstrm, *pnSillOffset);
+
+	// handle size and padding
+	int nTmp = pbstrm->Position();
+	*pnSillSize = nTmp - *pnSillOffset;
+	pbstrm->SeekPadLong(nTmp);
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
+{
+	// Note: if the format of the Sill table changes, the CheckLanguageFeatureSize method
+	// needs to be changed to match.
+
+	Vector<int> vnOffsets;
+	Vector<long> vlOffsetPos;
+
+	//	search constants
+	int n = m_vplang.Size();
+	int nPowerOf2, nLog;
+	BinarySearchConstants(n, &nPowerOf2, &nLog);
+	pbstrm->WriteShort(n); // number of languages
+	pbstrm->WriteShort(nPowerOf2);
+	pbstrm->WriteShort(nLog);
+	pbstrm->WriteShort(n - nPowerOf2);
+
+	int ilang;
+	for (ilang = 0; ilang < m_vplang.Size(); ilang++)
+	{
+		//	language ID
+		unsigned int nCode = m_vplang[ilang]->Code();
+		char rgchCode[4];
+		memcpy(rgchCode, &nCode, 4);
+		pbstrm->Write(rgchCode, 4);
+
+		//	number of settings
+		pbstrm->WriteShort(m_vplang[ilang]->NumberOfSettings());
+
+		//	offset to setting--fill in later
+		vlOffsetPos.Push(pbstrm->Position());
+		pbstrm->WriteShort(0);
+	}
+	// Extra bogus entry to make it easy to find length of last.
+	pbstrm->WriteInt(0x80808080);
+	pbstrm->WriteShort(0);
+	vlOffsetPos.Push(pbstrm->Position());
+	pbstrm->WriteShort(0);
+
+	for (ilang = 0; ilang < m_vplang.Size(); ilang++)
+	{
+		vnOffsets.Push(pbstrm->Position() - lTableStart);
+		m_vplang[ilang]->OutputSettings(pbstrm);
+	}
+	vnOffsets.Push(pbstrm->Position() - lTableStart); // offset of bogus entry gives length of last real one
+
+	Assert(vnOffsets.Size() == m_vplang.Size() + 1);
+
+	//	Now fill in the offsets.
+
+	long lSavePos = pbstrm->Position();
+
+	for (ilang = 0; ilang < vnOffsets.Size(); ilang++)
+	{
+		pbstrm->SetPosition(vlOffsetPos[ilang]);
+		pbstrm->WriteShort(vnOffsets[ilang]);
+	}
+
+	pbstrm->SetPosition(lSavePos);
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+void GdlLanguageDefn::OutputSettings(GrcBinaryStream * pbstrm)
+{
+	Assert(m_vpfeat.Size() == m_vnFset.Size());
+	for (int ifset = 0; ifset < m_vpfset.Size(); ifset++)
+	{
+		pbstrm->WriteShort(m_vpfeat[ifset]->ID());	// feature ID
+		pbstrm->WriteShort(m_vnFset[ifset]);		// value
+	}
+}
 
 /*----------------------------------------------------------------------------------------------
 	Calculate the standard search constants for the given number n:

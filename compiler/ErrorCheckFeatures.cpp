@@ -34,6 +34,8 @@ bool GrcManager::PreCompileFeatures(GrcFont * pfont)
 	return m_prndr->PreCompileFeatures(this, pfont);
 }
 
+/*--------------------------------------------------------------------------------------------*/
+
 bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont)
 {
 	int nInternalID = 0;
@@ -82,4 +84,110 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont)
 	return true;
 }
 
+/***********************************************************************************************
+	Languages
+***********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Do the pre-compilation tasks for the language-to-feature mappings. Return false if
+	compilation cannot continue due to an unrecoverable error.
+----------------------------------------------------------------------------------------------*/
+
+bool GrcManager::PreCompileLanguages(GrcFont * pfont)
+{
+	for (int ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
+		m_vplcls[ilcls]->PreCompile(this);
+
+	m_prndr->CheckLanguageFeatureSize();
+
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+
+bool GdlLangClass::PreCompile(GrcManager * pcman)
+{
+	// Each item in the vectors corresponds to a feature assignment.
+	for (int ifasgn = 0; ifasgn < m_vstaFeat.Size(); ifasgn++)
+	{
+		Symbol psymFeat = pcman->SymbolTable()->FindSymbol(m_vstaFeat[ifasgn]);
+		if (!psymFeat)
+		{
+			g_errorList.AddError(NULL, "Undefined feature: ", m_vstaFeat[ifasgn], m_vlnf[ifasgn]);
+			continue;
+		}
+
+		GdlFeatureDefn * pfeat = psymFeat->FeatureDefnData();
+		Assert(pfeat);
+		StrAnsi staValue = m_vstaVal[ifasgn];
+		GdlExpression * pexpVal = m_vpexpVal[ifasgn];
+		int nVal;
+		GdlFeatureSetting * pfset;
+		if (pexpVal)
+		{
+			if (!pexpVal->ResolveToInteger(&nVal, false))
+			{
+				g_errorList.AddError(pexpVal,
+					"Feature value cannot be evaluated", m_vlnf[ifasgn]);
+				continue;
+			}
+			else
+			{
+				pfset = pfeat->FindSettingWithValue(nVal);
+				if (!pfset)
+				{
+					char rgchValue[20];
+					itoa(nVal, rgchValue, 10);
+					g_errorList.AddWarning(NULL,
+						"Feature ", pfeat->Name(), " has no defined setting corresponding to value ",
+						rgchValue,
+						m_vlnf[ifasgn]);
+				}
+			}
+		}
+		else
+		{
+			// Feature setting identifier
+			pfset = pfeat->FindSetting(staValue);
+			if (!pfset)
+			{
+				g_errorList.AddError(NULL, "Undefined feature setting: ", staValue, m_vlnf[ifasgn]);
+				continue;
+			}
+			nVal = pfset->Value();
+		}
+
+		// Store the feature values in the language items.
+		for (int ilang = 0; ilang < m_vplang.Size(); ilang++)
+			m_vplang[ilang]->AddFeatureValue(pfeat, pfset, nVal, m_vlnf[ifasgn]);
+
+		if (m_vplang.Size() == 0 && ifasgn == 0)
+		{
+			g_errorList.AddWarning(NULL, "No languages specified for language group '", m_staLabel,
+				"'; settings will have no effect",
+				m_vlnf[0]);
+		}
+	}
+	return true;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Determine if there are enough languages and features to overflow the Sill table.
+	Actually what would happen is that the offsets would overflow the 16 bits allotted for them.
+----------------------------------------------------------------------------------------------*/
+void GdlRenderer::CheckLanguageFeatureSize()
+{
+	// 12 = table info, + 8 bytes per language
+	int cbSillSize = 12 + (m_vplang.Size() * 8);
+	cbSillSize += 8; // bogus entry
+
+	for (int ilang = 0; ilang < m_vplang.Size(); ilang++)
+		cbSillSize += m_vplang[ilang]->NumberOfSettings() * 4; // 4 bytes per feature setting
+
+	if (cbSillSize >= 0x0000FFFF)
+	{
+		g_errorList.AddError(NULL,
+			"Too many language-feature assignments to fit in Sill table");
+	}
+}
 

@@ -26,7 +26,7 @@ enum TableId
 	ktiCmap, ktiCvt, ktiCryp, ktiHead, ktiFpgm, ktiGdir, ktiGlyf, 
 	ktiHdmx, ktiHhea, ktiHmtx, ktiLoca, ktiKern, ktiLtsh, ktiMaxp, 
 	ktiName, ktiOs2, ktiPost, ktiPrep, ktiFeat, ktiGlat, ktiGloc,
-	ktiSilf, ktiSile, 
+	ktiSilf, ktiSile, ktiSill,
 	ktiLast /*This gives the enum length - it is not a real table*/
 };
 

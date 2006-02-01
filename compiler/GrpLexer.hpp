@@ -123,4 +123,3 @@ private:
 };
 
 #endif /*INC_GrpLexer_hpp_*/
-

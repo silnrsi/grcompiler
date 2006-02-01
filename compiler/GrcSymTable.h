@@ -114,6 +114,7 @@ public:
 		switch (m_symt)
 		{
 		case ksymtFeature:			return "feature";
+		case ksymtLanguage:			return "language";
 		case ksymtGlyphAttr:		return "glyph attribute";
 		case ksymtGlyphMetric:		return "glyph metric";
 		case ksymtSlotAttr:			return "slot attribute";
@@ -158,6 +159,7 @@ public:
 
 	GdlGlyphClassDefn * GlyphClassDefnData();
 	GdlFeatureDefn * FeatureDefnData();
+	GdlLanguageDefn * LanguageDefnData();
 
 	int JustificationLevel();
 
@@ -292,6 +294,7 @@ public:
 
 	Symbol AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const&);
 	Symbol AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFile const&);
+	Symbol AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf);
 	Symbol AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndFile const&,
 		ExpressionType expt, bool fMetric = false);
 	//Symbol AddComponentField(const GrcStructName & xns, GrpLineAndFile &);

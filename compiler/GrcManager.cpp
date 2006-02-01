@@ -82,7 +82,8 @@ void GrcManager::Clear()
 	if (m_prgvpglfcFsmClasses)
 		delete[] m_prgvpglfcFsmClasses;
 
-	for (int i = 0; i < m_vpexpModified.Size(); ++i)
+	int i;
+	for (i = 0; i < m_vpexpModified.Size(); ++i)
 		delete m_vpexpModified[i];
 	m_vpexpModified.Clear();
 
@@ -103,6 +104,10 @@ void GrcManager::Clear()
 
 	if (m_psymtbl)
 		delete m_psymtbl;
+
+	for (i = 0; i < this->m_vplcls.Size(); i++)
+		delete m_vplcls[i];
+	m_vplcls.Clear();
 }
 
 

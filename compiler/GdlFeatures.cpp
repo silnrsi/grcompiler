@@ -335,3 +335,29 @@ bool GdlFeatureDefn::NameTblInfo(Vector<StrUni> * pvstuExtNames, Vector<utf16> *
 void GdlFeatureDefn::RecordDebugInfo()
 {
 }
+
+/*----------------------------------------------------------------------------------------------
+	Record something about the feature in the debug database.
+----------------------------------------------------------------------------------------------*/
+void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting * pfset,
+	int nFset, GrpLineAndFile & lnf)
+{
+	for (int ifeat = 0; ifeat < m_vpfeat.Size(); ifeat++)
+	{
+		if (m_vpfeat[ifeat] == pfeat)
+		{
+			if (m_vnFset[ifeat] == nFset)
+				return;
+			else 
+			{
+				g_errorList.AddError(NULL, "Duplicate language feature setting", lnf);
+				return;
+			}
+		}
+	}
+	m_vpfeat.Push(pfeat);
+	m_vpfset.Push(pfset);
+	m_vnFset.Push(nFset);
+	Assert(m_vpfeat.Size() == m_vpfset.Size());
+	Assert(m_vpfeat.Size() == m_vnFset.Size());
+}

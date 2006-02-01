@@ -125,6 +125,7 @@ typedef long sfnt_TableTag;
 #define tag_Gloc				0x636f6c47
 #define tag_Silf				0x666c6953
 #define tag_Sile				0x656c6953
+#define tag_Sill				0x6c6c6953
 #else                           /* Constants defined in Motorola order */
 #define SFNT_SWAPTAG(tag)       swapl(tag)
 #define tag_CharToIndexMap      0x636d6170        /* 'cmap' */
@@ -154,6 +155,7 @@ typedef long sfnt_TableTag;
 #define tag_Gloc				0x476c6f63
 #define tag_Silf				0x53696c66
 #define tag_Sile				0x53696c65
+#define tag_Sill				0x53696c6c
 #endif
 
 #endif      /* not sfnt_enums */

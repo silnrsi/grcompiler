@@ -63,6 +63,7 @@ public:
 	public: void tableName();
 	public: void tableGlyph();
 	public: void tableFeature();
+	public: void tableLanguage();
 	public: void tableSub();
 	public: void tableJust();
 	public: void tablePos();
@@ -99,6 +100,12 @@ public:
 	public: void featureSpecList();
 	public: void featureSpecStruct();
 	public: void featureSpecFlat();
+	public: void languageEnv();
+	public: void languageSpecList();
+	public: void languageSpec();
+	public: void languageSpecItem();
+	public: void languageItemList();
+	public: void languageCodeList();
 	public: void subEntry();
 	public: void subIf();
 	public: void subRule();
@@ -323,7 +330,12 @@ private:
 	static const BitSet _tokenSet_82;
 	static const unsigned long _tokenSet_83_data_[];
 	static const BitSet _tokenSet_83;
+	static const unsigned long _tokenSet_84_data_[];
+	static const BitSet _tokenSet_84;
+	static const unsigned long _tokenSet_85_data_[];
+	static const BitSet _tokenSet_85;
+	static const unsigned long _tokenSet_86_data_[];
+	static const BitSet _tokenSet_86;
 };
 
 #endif /*INC_GrpParser_hpp_*/
-

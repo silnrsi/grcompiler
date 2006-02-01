@@ -149,6 +149,10 @@ protected:
 	void WalkFeatureTableTree(RefAST ast);
 	void WalkFeatureTableElement(RefAST ast);
 	void WalkFeatureSettingsTree(RefAST ast, Vector<StrAnsi> & vsta);
+	void WalkLanguageTableTree(RefAST ast);
+	void WalkLanguageTableElement(RefAST ast);
+	void WalkLanguageItem(RefAST ast, GdlLangClass * plcls);
+	void WalkLanguageCodeList(RefAST astList, GdlLangClass * plcls);
 	void WalkNameTableTree(RefAST ast);
 	void WalkNameTableElement(RefAST ast);
 	void WalkNameIDTree(RefAST ast, Vector<StrAnsi> & vsta);
@@ -216,6 +220,7 @@ protected:
 	bool PreCompileFeatures(GrcFont *);
 	bool PreCompileClassesAndGlyphs(GrcFont *);
 	bool PreCompileRules(GrcFont *);
+	bool PreCompileLanguages(GrcFont * pfont);
 
 	bool GeneratePseudoGlyphs(GrcFont *);
 	utf16 FirstFreeGlyph(GrcFont *);
@@ -294,9 +299,10 @@ protected:
 		int * pibOffset, int * pcbSize);
 	void OutputGlatAndGloc(GrcBinaryStream * pbstrm, int * pnGlocOffset, int * pnGlocSize,
 		int * pnGlatOffset, int * pnGlatSize);
-	void OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilOffset, int * pnSilSize);
+	void OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, int * pnSilfSize);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, int * pnFeatSize);
 	void OutputSileTable(GrcBinaryStream * pbstrm, utf16 * pchwFontName, long nChecksum);
+	void OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, int * pnSillSize);
 
 public:
 
@@ -345,6 +351,8 @@ protected:
 	GrcMasterTable *		m_mtbFeatures;
 	GrcMasterValueList *	m_mvlNameStrings;
 	Vector<Symbol>			m_vpsymStyles;
+	// Also language classes:
+	Vector<GdlLangClass *>	m_vplcls;
 
 	Vector<GrcEnv> m_venv;
 	HashMap<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass

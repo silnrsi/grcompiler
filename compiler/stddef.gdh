@@ -11,6 +11,7 @@
 #define endenv endenvironment
 #define env environment
 #define just justification
+#define lang language
 #define lb linebreak
 #define lsb leftsidebearing
 #define pos position

@@ -75,6 +75,7 @@ using namespace gr;
 class GrcErrorList;
 class GrcManager;
 class GdlFeatureDefn;
+class GdlLanguageDefn;
 class GdlGlyphClassDefn;
 class GdlRuleItem;
 class FsmTable;

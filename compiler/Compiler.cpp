@@ -43,6 +43,9 @@ bool GrcManager::PreCompile(GrcFont * pfont)
 	if (!PreCompileFeatures(pfont))
 		return false;
 
+	if (!PreCompileLanguages(pfont)) // do after features
+		return false;
+
 	if (!PreCompileClassesAndGlyphs(pfont))
 		return false;
 

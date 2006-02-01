@@ -111,6 +111,28 @@ Symbol GrcSymbolTable::AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFil
 
 
 /*----------------------------------------------------------------------------------------------
+    Add a symbol that is the name of a feature to the main symbol table (if it is not already
+	there). Also, ensure that it has an GdlFeatureDefn as its data.
+----------------------------------------------------------------------------------------------*/
+Symbol GrcSymbolTable::AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf)
+{
+	Assert(m_cLevel == 0);
+	Assert(xns.NumFields() == 1);
+
+	Symbol psymAdded = AddSymbolAux(xns, ksymtLanguage, ksymtInvalid, lnf);
+	if (!psymAdded->HasData())
+	{
+		GdlLanguageDefn * plang = new GdlLanguageDefn();
+		plang->SetLineAndFile(lnf);
+		psymAdded->SetData(plang);
+	}
+	psymAdded->SetExpType(kexptNumber);
+
+	return psymAdded;
+}
+
+
+/*----------------------------------------------------------------------------------------------
     Add a symbol that is the name of a class's glyph attribute to the main symbol table
 	(if it is not already there).
 	Ensure that there is a generic version of the glyph attribute in the symbol table
@@ -972,6 +994,18 @@ GdlFeatureDefn * GrcSymbolTableEntry::FeatureDefnData()
 
 	GdlFeatureDefn * pfeat = dynamic_cast<GdlFeatureDefn *>(Data());
 	return pfeat;
+}
+
+/*----------------------------------------------------------------------------------------------
+    Return the language-map that is stored as data, or NULL.
+----------------------------------------------------------------------------------------------*/
+GdlLanguageDefn * GrcSymbolTableEntry::LanguageDefnData()
+{
+	if (!HasData())
+		return NULL;
+
+	GdlLanguageDefn * plang = dynamic_cast<GdlLanguageDefn *>(Data());
+	return plang;
 }
 
 /*----------------------------------------------------------------------------------------------
