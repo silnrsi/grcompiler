@@ -1732,7 +1732,8 @@ void GrcManager::WalkLanguageTableElement(RefAST ast)
 
 	// Find or create the language class with that name:
 	GdlLangClass * plcls;
-	for (int ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
+  int ilcls;
+	for (ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
 	{
 		if (m_vplcls[ilcls]->m_staLabel == staLabel)
 		{
