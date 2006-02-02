@@ -30,8 +30,6 @@
 #pragma warning(disable: 4786) // identifier truncated in debug info.
 #pragma warning(disable: 4800) // forcing value to bool 'true' or 'false' (performance warning).
 
-#pragma warning(disable: 4067) // to avoid problem with "defined(__INTEL_COMPILER)iota" below - SC
-
 #endif
 
 
@@ -104,7 +102,7 @@ typedef unsigned short int data16;	// generic 16-bit data
 // std::_Ios_Openmode isn't defined in the Windows compiler
 #ifdef __GNUC__
     typedef std::_Ios_Openmode openmode_t;
-#elif defined(__INTEL_COMPILER)iota
+#elif defined(__INTEL_COMPILER)
     typedef std::ios_base::openmode openmode_t;
 #else
     typedef int openmode_t;
