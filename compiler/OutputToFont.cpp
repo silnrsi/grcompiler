@@ -154,7 +154,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	else
 	{
 		//	We'll output a copy of the base font, glyphs and all.
-		cTableOut = cTableSrc + kcExtraTables; // Four extra tables: Silf, Feat, Gloc, Glat
+		cTableOut = cTableSrc + kcExtraTables; // Five extra tables: Silf, Feat, Gloc, Glat, Sill
 		cTableMin = cTableSrc;
 		pOffsetTableOut = &OffsetTableSrc;
 		cTableCopy = cTableSrc;
@@ -1728,11 +1728,19 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	//	Sub-table
 
-	long lTableStart = pbstrm->Position();
+	long lTableStartSub = pbstrm->Position();
 
 	//	rule version - right now this is the same as the table version
 	if (fxdVersion >= 0x00030000)
 		pbstrm->WriteInt(fxdVersion);
+
+	long lOffsetsPos = pbstrm->Position();
+	if (fxdVersion >= 0x00030000)
+	{
+		// Place holders for offsets to passes and pseudo-glyphs.
+		pbstrm->WriteShort(0);
+		pbstrm->WriteShort(0);
+	}
 
 	//	maximum valid glyph ID
 	pbstrm->WriteShort(m_cwGlyphIDs - 1);
@@ -1868,10 +1876,12 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	array of offsets to passes, relative to the start of this subtable--fill in later;
 	//	for now, write (cpass + 1) place holders
 	long lPassOffsetsPos = pbstrm->Position();
+	long nPassOffset = lPassOffsetsPos - lTableStartSub;
 	for (i = 0; i <= cpass; i++)
 		pbstrm->WriteInt(0);
 
 	//	number of pseudo mappings and search constants
+	long nPseudoOffset = pbstrm->Position() - lTableStartSub;
 	int n = m_vwPseudoForUnicode.Size();
 	int nPowerOf2, nLog;
 	BinarySearchConstants(n, &nPowerOf2, &nLog);
@@ -1895,12 +1905,19 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	//	passes
 	Vector<int> vnPassOffsets;
-	m_prndr->OutputPasses(this, pbstrm, lTableStart, vnPassOffsets);
+	m_prndr->OutputPasses(this, pbstrm, lTableStartSub, vnPassOffsets);
 	Assert(vnPassOffsets.Size() == cpass + 1);
 
 	//	Now go back and fill in the offsets.
 
 	long lSavePos = pbstrm->Position();
+
+	if (fxdVersion >= 0x00030000)
+	{
+		pbstrm->SetPosition(lOffsetsPos);
+		pbstrm->WriteShort(nPassOffset);
+		pbstrm->WriteShort(nPseudoOffset);
+	}
 
 	pbstrm->SetPosition(lPassOffsetsPos);
 	for (i = 0; i < vnPassOffsets.Size(); i++)
@@ -2214,8 +2231,10 @@ void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lo
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart)
 {
-	int fxdFontTableVersion = pcman->VersionForTable(ktiSilf);
-	int fxdRuleVersion = fxdFontTableVersion; // someday these may be different
+	long lPassStart = pbstrm->Position();
+
+	int fxdSilfVersion = pcman->VersionForTable(ktiSilf);
+	int fxdRuleVersion = fxdSilfVersion; // someday these may be different
 
 	int nOffsetToPConstraint;
 	long lOffsetToPConstraintPos;
@@ -2240,9 +2259,10 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	number of rules
 	pbstrm->WriteShort(m_vprule.Size());
 
-	if (fxdFontTableVersion >= 0x00020000)
+	long lFsmOffsetPos = pbstrm->Position();
+	if (fxdSilfVersion >= 0x00020000)
 	{
-		// reserved - pad bytes
+		// offset to row information, or (<=v2) reserved
 		pbstrm->WriteShort(0);
 		// pass constraint byte count--fill in later
 		lOffsetToPConstraintPos = pbstrm->Position();
@@ -2258,6 +2278,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	offset to debug strings--fill in later
 	lOffsetToDebugArraysPos = pbstrm->Position();
 	pbstrm->WriteInt(0);
+
+	long nFsmOffset = pbstrm->Position() - lPassStart;
 
 	//	number of FSM rows
 	pbstrm->WriteShort(NumStates());
@@ -2333,7 +2355,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	Vector<int> vnActionOffsets;
 	Vector<int> vnConstraintOffsets;
 	long lCodeOffsets = pbstrm->Position();
-	if (fxdFontTableVersion >= 0x00020000)
+	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved - pad byte
 		pbstrm->WriteByte(0);
@@ -2355,7 +2377,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int ib;
 
 	int cbPassConstraint;
-	if (fxdFontTableVersion >= 0x00020000)
+	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved - pad byte
 		pbstrm->WriteByte(0);
@@ -2422,7 +2444,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	long lSavePos = pbstrm->Position();
 
-	if (fxdFontTableVersion >= 0x00020000)
+	if (fxdSilfVersion >= 0x00020000)
 	{
 		pbstrm->SetPosition(lOffsetToPConstraintPos);
 		pbstrm->WriteInt(nOffsetToPConstraint);
@@ -2435,12 +2457,18 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	pbstrm->WriteInt(nOffsetToDebugArrays);
 
 	pbstrm->SetPosition(lCodeOffsets);
-	if (fxdFontTableVersion >= 0x00020000)
+	if (fxdSilfVersion >= 0x00020000)
 		pbstrm->WriteShort(cbPassConstraint);
 	for (i = 0; i < vnConstraintOffsets.Size(); i++)
 		pbstrm->WriteShort(vnConstraintOffsets[i]);
 	for (i = 0; i < vnActionOffsets.Size(); i++)
 		pbstrm->WriteShort(vnActionOffsets[i]);
+
+	if (fxdSilfVersion >= 0x00030000)
+	{
+		pbstrm->SetPosition(lFsmOffsetPos);
+		pbstrm->WriteShort(nFsmOffset);
+	}
 
 	pbstrm->SetPosition(lSavePos);
 }
@@ -2618,9 +2646,10 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 	*pnFeatOffset = pbstrm->Position();
 
 	//	version number
-	pbstrm->WriteInt(VersionForTable(ktiFeat));
+	int fxdFeatVersion = VersionForTable(ktiFeat);
+	pbstrm->WriteInt(fxdFeatVersion);
 
-	m_prndr->OutputFeatTable(pbstrm, *pnFeatOffset);
+	m_prndr->OutputFeatTable(pbstrm, *pnFeatOffset, fxdFeatVersion);
 
 	// handle size and padding
 	int nTmp = pbstrm->Position();
@@ -2630,7 +2659,8 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 
 /*---------------------------------------------------------------------------------------------*/
 
-void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart)
+void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
+	int fxdVersion)
 {
 	Vector<int> vnOffsets;
 	Vector<long> vlOffsetPos;
@@ -2646,10 +2676,16 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart)
 	for (ifeat = 0; ifeat < m_vpfeat.Size(); ifeat++)
 	{
 		//	feature id
-		pbstrm->WriteShort(m_vpfeat[ifeat]->ID());
+		if (fxdVersion >= 0x00020000)
+			pbstrm->WriteInt(m_vpfeat[ifeat]->ID());
+		else
+			pbstrm->WriteShort(m_vpfeat[ifeat]->ID());
 
 		//	number of settings
 		pbstrm->WriteShort(m_vpfeat[ifeat]->NumberOfSettings());
+
+		if (fxdVersion >= 0x00020000)
+			pbstrm->WriteShort(0); // pad bytes
 
 		//	offset to setting--fill in later
 		vlOffsetPos.Push(pbstrm->Position());
