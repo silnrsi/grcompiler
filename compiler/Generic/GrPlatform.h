@@ -83,6 +83,8 @@ typedef unsigned long int utf32;	// UTF32 encoded unicode codepoints.
 typedef unsigned short int utf16;	// UTF16 encoded unicode codepoints.
 typedef unsigned short int gid16;	// glyph ID
 typedef unsigned short int data16;	// generic 16-bit data
+typedef unsigned long int fontTableId32;	// ID to pass to getTable()
+
 
 //typedef unsigned char		uchar;
 //typedef unsigned int		uint;

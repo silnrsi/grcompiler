@@ -113,7 +113,7 @@ public:
 	bool CheckSelectors();
 
 	//	Pre-compiler:
-	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont);
+	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
 	int ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
 	int ActualForPseudo(utf16 wPseudo);

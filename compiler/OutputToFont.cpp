@@ -1621,23 +1621,23 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 	case ktiGlat:
 		return 0x00010000;
 	case ktiFeat:
-		return 0x00010000;
+		return m_fxdFeatVersion;
 	case ktiSile:
 		return 0x00010000;
 	case ktiSill:
 		return 0x00010000;
 	case ktiSilf:
-		break; // see below
+		if (fxdSpecVersion == 0x00010000)
+			return 0x00010000;
+		else if (fxdSpecVersion == 0x00020000)
+			return 0x00020000;
+		else
+			// No version specified, or an invalid version:
+			return kfxdCompilerVersion;
 	default:
 		Assert(false);
 	}
-	if (fxdSpecVersion == 0x00010000)
-		return 0x00010000;
-	else if (fxdSpecVersion == 0x00020000)
-		return 0x00020000;
-	else
-		// No version specified, or an invalid version:
-		return kfxdCompilerVersion;
+	return fxdSpecVersion;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2835,8 +2835,9 @@ void GdlLanguageDefn::OutputSettings(GrcBinaryStream * pbstrm)
 	Assert(m_vpfeat.Size() == m_vnFset.Size());
 	for (int ifset = 0; ifset < m_vpfset.Size(); ifset++)
 	{
-		pbstrm->WriteShort(m_vpfeat[ifset]->ID());	// feature ID
+		pbstrm->WriteInt(m_vpfeat[ifset]->ID());	// feature ID
 		pbstrm->WriteShort(m_vnFset[ifset]);		// value
+		pbstrm->WriteShort(0);						// pad
 	}
 }
 

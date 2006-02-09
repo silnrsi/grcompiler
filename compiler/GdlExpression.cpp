@@ -452,6 +452,36 @@ bool GdlStringExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 	return false;
 }
 
+/*----------------------------------------------------------------------------------------------
+	Return the corresponding feature ID. This is the same as ResolveToInteger except that
+	strings of <= 4 characters can be treated as feature IDs.
+----------------------------------------------------------------------------------------------*/
+bool GdlExpression::ResolveToFeatureID(unsigned int * pnRet)
+{
+	int nRet;
+	bool fRet = ResolveToInteger(&nRet, false);
+	*pnRet = (unsigned int)nRet;
+	return fRet;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlStringExpression::ResolveToFeatureID(unsigned int * pnRet)
+{
+	if (m_staValue.Length() > 4)
+		return false;
+
+	union {
+		char rgch[4];
+		unsigned int n;
+	} featid;
+	// The way we do the assignments ensures the characters are left-aligned
+	// in the 4-byte integer (ie, occupying the most significant bytes).
+	for (int ich = 0; ich < 4; ich++)
+		featid.rgch[3-ich] = (ich < m_staValue.Length()) ? m_staValue[ich] : 0;
+	*pnRet = featid.n;
+	return true;
+}
+
 /***********************************************************************************************
 	Methods: Pre-compiler
 ***********************************************************************************************/

@@ -354,6 +354,8 @@ protected:
 	// Also language classes:
 	Vector<GdlLangClass *>	m_vplcls;
 
+	int m_fxdFeatVersion;	// version of feature table to generate
+
 	Vector<GrcEnv> m_venv;
 	HashMap<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass
 	Vector<GdlExpression *> m_vpexpConditionals;

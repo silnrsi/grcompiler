@@ -22,9 +22,7 @@ Description:
 #include "Tt.h"
 #include "string.h" // NULL
 #include "limits.h" // INT_MAX, INT_MIN
-/////////#ifndef _WIN32
-#include "GrPlatform.h"
-/////////#endif // !_WIN32
+
 
 /***********************************************************************************************
 	Forward declarations
@@ -109,7 +107,7 @@ bool TtfUtil::GetTableDirInfo(const void * pHdr, long & lOffset, long & lSize)
 bool TtfUtil::GetTableInfo(TableId ktiTableId, const void * pHdr, const void * pTableDir, 
 						   long & lOffset, long & lSize)
 {
-	long lTableTag = TableIdTag(ktiTableId);
+	fontTableId32 lTableTag = TableIdTag(ktiTableId);
 	if (!lTableTag)
 	{
 		lOffset = INT_MAX;
@@ -646,7 +644,7 @@ bool TtfUtil::HorMetrics(int nGlyphId, const void * pHmtx, long lHmtxSize, const
 	Return standard TTF tag for the given TableId enumeration constant
 	If requested ktiTableId doesn't exist, return 0;
 ----------------------------------------------------------------------------------------------*/
-long TtfUtil::TableIdTag(TableId ktiTableId)
+fontTableId32 TtfUtil::TableIdTag(TableId ktiTableId)
 {
 	switch(ktiTableId)
 	{

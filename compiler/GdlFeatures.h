@@ -151,7 +151,7 @@ public:
 
 	//	Setters:
 	void SetName(StrAnsi sta)	{ m_staName = sta; }
-	void SetID(int n)			{ m_nID = n; m_fIDSet = true; }
+	void SetID(unsigned int n)	{ m_nID = n; m_fIDSet = true; }
 	void SetDefault(int n)		{ m_nDefault = n; m_fDefaultSet = true; }
 	void AddExtName(utf16 wLangID, StrUni stu)
 	{
@@ -181,7 +181,7 @@ public:
 	{
 		return m_vpfset.Size();
 	}
-	int ID()
+	unsigned int ID()
 	{
 		return m_nID;
 	}
@@ -222,7 +222,7 @@ public:
 protected:
 	//	Instance variables:
 	StrAnsi						m_staName;
-	int							m_nID;
+	unsigned int				m_nID;
 	Vector<GdlExtName>			m_vextname;
 	Vector<GdlFeatureSetting *>	m_vpfset;
 	int					 		m_nDefault;

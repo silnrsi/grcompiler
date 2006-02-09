@@ -31,25 +31,39 @@ DEFINE_THIS_FILE
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::PreCompileFeatures(GrcFont * pfont)
 {
-	return m_prndr->PreCompileFeatures(this, pfont);
+	return m_prndr->PreCompileFeatures(this, pfont, &m_fxdFeatVersion);
 }
 
 /*--------------------------------------------------------------------------------------------*/
 
-bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont)
+bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion)
 {
+	*pfxdFeatVersion = 0x00010000;
+
 	int nInternalID = 0;
 
-	Set<int> setID;
+	Set<unsigned int> setID;
 
 	for (int ipfeat = 0; ipfeat < m_vpfeat.Size(); ipfeat++)
 	{
 		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
-		int nID = pfeat->ID();
+		unsigned int nID = pfeat->ID();
 		if (setID.IsMember(nID))
 		{
 			char rgch[20];
-			itoa(nID, rgch, 10);
+			if (nID > 0x00FFFFFF)
+			{
+				char rgchID[5];
+				memcpy(rgch, &nID, 4);
+				rgchID[0] = rgch[3]; rgchID[1] = rgch[2]; rgchID[2] = rgch[1]; rgchID[3] = rgch[0];
+				rgchID[4] = 0;
+				StrAnsi staTmp = "'";
+				staTmp.Append(rgchID);
+				staTmp.Append("'");
+				memcpy(rgch, staTmp.Chars(), staTmp.Length() + 1);
+			}
+			else
+				itoa(nID, rgch, 10);
 			g_errorList.AddError(pfeat, "Duplicate feature ID: ", rgch);
 		}
 		else
@@ -64,6 +78,9 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont)
 			pfeat->AssignInternalID(nInternalID);
 			pfeat->RecordDebugInfo();
 		}
+
+		if (nID > 0x0000FFFF)
+			*pfxdFeatVersion = 0x00020000;
 
 		nInternalID++;
 	}
