@@ -20,6 +20,9 @@ Description:
 
 #include <cstddef>
 
+#include "GrPlatform.h"
+///typedef unsigned long int fontTableId32;	// ID to pass to getTable() - stolen from GrPlatform.h
+
 // Enumeration used to specify a table in a TTF file
 enum TableId
 {
@@ -91,7 +94,7 @@ public:
 		const void * pHhea, int & nLsb, int & nAdvWid);
 
 	///////////////////////////////// convert our TableId enum to standard TTF tags
-	static long TableIdTag(TableId ktiTableId);
+	static gr::fontTableId32 TableIdTag(TableId ktiTableId);
 
 	////////////////////////////////// primitives for loca and glyf lookup 
 	static long LocaLookup(int nGlyphId, const void * pLoca, long lLocaSize, 

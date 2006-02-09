@@ -83,6 +83,7 @@ public:
 	virtual bool ReplaceAliases(GdlRule *) = 0;
 	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *) = 0;
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef) = 0;
+	virtual bool ResolveToFeatureID(unsigned int * pnRet);
 
 public:
 	//	Pre-compiler:
@@ -536,6 +537,7 @@ public:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToFeatureID(unsigned int *pnRet);
 
 	StrUni ConvertToUnicode();
 

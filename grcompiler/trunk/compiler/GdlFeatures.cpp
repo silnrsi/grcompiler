@@ -337,7 +337,7 @@ void GdlFeatureDefn::RecordDebugInfo()
 }
 
 /*----------------------------------------------------------------------------------------------
-	Record something about the feature in the debug database.
+	Add a default feature setting to the language definition.
 ----------------------------------------------------------------------------------------------*/
 void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting * pfset,
 	int nFset, GrpLineAndFile & lnf)

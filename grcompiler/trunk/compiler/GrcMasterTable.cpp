@@ -181,10 +181,10 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			//	feature.id
 			if (psym->FieldCount() == 2)
 			{
-				int nID;
-				if (!pexp->ResolveToInteger(&nID, false))
+				unsigned int nID;
+				if (!pexp->ResolveToFeatureID(&nID))
 					g_errorList.AddError(pexp,
-						"Feature id must be an integer");
+						"Feature id must be an integer or string of 4 characters or less");
 				else if (nID == GdlFeatureDefn::kfidStdLang)
 				{
 					char rgch[20];
