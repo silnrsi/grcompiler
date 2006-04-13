@@ -141,7 +141,7 @@ enum {
 //	Maxima permitted by the engine implementation. These codes MUST match those used by
 //	the engine.
 enum {
-	kMaxFeatures			=    32,
+	kMaxFeatures			=    64,
 	kFieldsPerComponent		=     4,	// four corners of the box
 	kMaxSlotsPerRule		=    64,
 	kMaxGlyphsPerInputClass	= 65535,
