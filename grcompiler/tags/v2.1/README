@@ -1,0 +1,37 @@
+			SILGRAPHITE COMPILER
+
+The SIL Graphite compiler builds a Graphite enabled font from a smart font
+description, written in GDL (Graphite Description Language) and a TrueType
+font by adding extra TrueType tables to it which the Graphite engine can 
+interpret.
+
+INSTALL
+
+UNIX style systems:
+
+The grcompiler project uses GNU autobuild tools to manage building and 
+installation, please see the INSTALL file for more details.
+
+Win32 based systems:
+
+to build release binaries:
+
+    nmake -f makefile.mak
+    
+to build debug binaries:
+
+    nmake CFG=DEBUG -f makefile.mak
+    
+In each case two executabales are built:
+    gdlpp	- The GDL preprocessor
+    grcompiler	- The GDL to smart font compiler.
+
+Cleaning up, to remove all .obj files without removing the binaries:
+
+    nmake -f makefile.mak clean
+
+To remove the binaries as well:
+
+    nmake -f makefile.mak realclean
+
+this deletes the libraries as well.
