@@ -94,7 +94,7 @@ typedef enum {
     name_Postscript
 } sfnt_NameIndex;
 
-typedef long sfnt_TableTag;
+typedef gr::fontTableId32 sfnt_TableTag;
 
 #ifdef PC_OS                    /* Constants defined in Intel order */
 #define SFNT_SWAPTAG(tag)       (tag)   
