@@ -21,7 +21,6 @@ Description:
 #include <cstddef>
 
 #include "GrPlatform.h"
-///typedef unsigned long int fontTableId32;	// ID to pass to getTable() - stolen from GrPlatform.h
 
 // Enumeration used to specify a table in a TTF file
 enum TableId
