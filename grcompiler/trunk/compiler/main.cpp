@@ -72,7 +72,14 @@ int main(int argc, char * argv[])
 	g_cman.SetFontTableVersion(g_cman.DefaultFontVersion(), false);
 	g_cman.SetSeparateControlFile(false);
 
-	while (argc >= 2 + cargExtra && argv[1 + cargExtra][0] == '/')
+	// on linux systems an argument starting with a / may be a path
+	// so use - for options. On Windows allow both / or -
+#ifdef _WIN32 
+	while (argc >= 2 + cargExtra && (argv[1 + cargExtra][0] == '/' ||
+           argv[1 + cargExtra][0] == '-'))
+#else
+	while (argc >= 2 + cargExtra && argv[1 + cargExtra][0] == '-')
+#endif
 	{
 		HandleCompilerOptions(argv[1 + cargExtra]);
 		cargExtra++;
