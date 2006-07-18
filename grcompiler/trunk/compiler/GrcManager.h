@@ -126,6 +126,8 @@ public:
 
 	bool OutputDebugFiles()				{ return m_fOutputDebugFiles; }
 	void SetOutputDebugFiles(bool f)	{ m_fOutputDebugFiles = f; }
+	void SetVerbose(bool verbose) 		{ m_verbose = verbose; }
+	bool IsVerbose()					{ return m_verbose; }
 
 public:
 	//	Parser:
@@ -421,6 +423,8 @@ protected:
 	Vector<GdlGlyphClassDefn *> * m_prgvpglfcFsmClasses;
 
 	int cReplcmntClasses;
+
+	bool m_verbose;
 
 public:
 	//	For test procedures:

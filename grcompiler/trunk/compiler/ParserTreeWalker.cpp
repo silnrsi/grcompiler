@@ -110,7 +110,9 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 
 	achar rgchErrorCode[20];
 
-	StrApp strCommandLine = _T("gdlpp -V ");
+	StrApp strCommandLine = _T("gdlpp ");
+	if (m_verbose)
+		 strCommandLine = _T("gdlpp -V ");
 	strCommandLine += staFileName;
 	strCommandLine += _T(" $_temp.gdl");	// output file
 
@@ -188,7 +190,11 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	switch(pid=fork()){
 		case -1: cout << "can't fork\n";
 		exit(-1);
-		case 0 : testexec = execlp("gdlpp","gdlpp","-V",staFileName.Chars(),tmpgdl,0); // this is the code the child runs
+		case 0 : 
+			if (m_verbose)
+				testexec = execlp("gdlpp","gdlpp","-V",staFileName.Chars(),tmpgdl,0); // this is the code the child runs
+			else
+				testexec = execlp("gdlpp","gdlpp",staFileName.Chars(),tmpgdl,0); // this is 
 			cout << "// exec retval:" << testexec << ", errno:" << strerror(errno) << "(" << errno << ")\n";
 			cout << "// tmpfile " << tmpgdl << endl;
 			cout << "// file " << staFileName.Chars() << endl;

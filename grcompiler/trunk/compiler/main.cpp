@@ -51,14 +51,6 @@ int main(int argc, char * argv[])
 	::CoInitialize(NULL);
 #endif
 
-#ifdef GR_FW
-	std::cout << "Graphite Compiler Version 3.0\n"
-		<< COPYRIGHTRESERVED << "\n";
-#else
-	std::cout << "Graphite Compiler Version 3.0\n"
-		<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
-#endif // GR_FW
-
 	char * pchGdlFile = NULL;
 	char * pchFontFile = NULL;
 	char rgchOutputFile[128];
@@ -71,6 +63,7 @@ int main(int argc, char * argv[])
 	g_cman.SetOutputDebugFiles(false);
 	g_cman.SetFontTableVersion(g_cman.DefaultFontVersion(), false);
 	g_cman.SetSeparateControlFile(false);
+	g_cman.SetVerbose(true);
 
 	// on linux systems an argument starting with a / may be a path
 	// so use - for options. On Windows allow both / or -
@@ -84,14 +77,25 @@ int main(int argc, char * argv[])
 		HandleCompilerOptions(argv[1 + cargExtra]);
 		cargExtra++;
 	}
+	if (g_cman.IsVerbose())
+	{
+#ifdef GR_FW
+		std::cout << "Graphite Compiler Version 3.0\n"
+			<< COPYRIGHTRESERVED << "\n";
+#else
+		std::cout << "Graphite Compiler Version 3.0\n"
+			<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
+#endif // GR_FW
+	}
 
 	if (argc < 3 + cargExtra)
 	{
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
-		std::cout << "   /d     - output debugger files\n";
-		std::cout << "   /nNNNN - set name table start location\n";
-		std::cout << "   /vN    - set Silf table version number\n";
+		std::cout << "   -d     - output debugger files\n";
+		std::cout << "   -nNNNN - set name table start location\n";
+		std::cout << "   -vN    - set Silf table version number\n";
+		std::cout << "   -q     - quiet mode (no messages except on error)\n";
 		return 2;
 	}
 
@@ -156,13 +160,15 @@ int main(int argc, char * argv[])
 	}
 
 	StrAnsi staFamily(rgchwOutputFontFamily);
-	std::cout << "GDL file: " << pchGdlFile << "\n"
-		<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
-		<< "Output TT file: " << rgchOutputFile << "\n"
-		<< "Output font name: " << staFamily.Chars() << "\n"
-		<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
-				<< ": " << staVersion.Chars() << "\n\n";
-
+	if (g_cman.IsVerbose())
+	{
+		std::cout << "GDL file: " << pchGdlFile << "\n"
+			<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
+			<< "Output TT file: " << rgchOutputFile << "\n"
+			<< "Output font name: " << staFamily.Chars() << "\n"
+			<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
+					<< ": " << staVersion.Chars() << "\n\n";
+	}
 	// simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
 	byte bFirst, bSecond, bThird;
 	bool fEncodingErr = false;
@@ -189,15 +195,16 @@ int main(int argc, char * argv[])
 
 	if (!fEncodingErr)
 	{
-		std::cout << "Parsing file " << pchGdlFile << "...\n";
+		if (g_cman.IsVerbose())
+			std::cout << "Parsing file " << pchGdlFile << "...\n";
 		if (g_cman.Parse(pchGdlFile))
 		{
-			std::cout << "Initial processing...\n";
+			if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
 			if (g_cman.PostParse())
 			{
 				if (nFontError == 0)
 				{
-					std::cout << "Checking for errors...\n";
+					if (g_cman.IsVerbose()) std::cout << "Checking for errors...\n";
 
 					if (g_cman.FontTableVersion() > g_cman.MaxFontVersion())
 					{
@@ -218,7 +225,7 @@ int main(int argc, char * argv[])
 
 					if (g_cman.PreCompile(pfont) && !g_errorList.AnyFatalErrors())
 					{
-						std::cout << "Compiling...\n";
+						if (g_cman.IsVerbose()) std::cout << "Compiling...\n";
 						g_cman.Compile(pfont);
 						if (g_cman.OutputDebugFiles())
 						{
@@ -228,12 +235,16 @@ int main(int argc, char * argv[])
 							g_cman.DebugClasses();
 							//g_cman.DebugOutput();
 							g_cman.DebugCmap(pfont);
-							std::cout << "Debug files generated.\n";
+							if (g_cman.IsVerbose())
+								std::cout << "Debug files generated.\n";
 						}
 						int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile, rgchwOutputFontFamily,
 							rgchwInputFontFamily);
 						if (nRet == 0)
-							std::cout << "Compilation successful!\n";
+						{
+							if (g_cman.IsVerbose())
+								std::cout << "Compilation successful!\n";
+						}
 						else
 						{
 							std::cout << "ERROR IN WRITING FONT FILE.\n";
@@ -353,6 +364,10 @@ void HandleCompilerOptions(char * arg)
 		{
 			g_cman.SetNameTableStart(nValue);
 		}
+	}
+	else if (arg[1] == 'q')
+	{
+		g_cman.SetVerbose(false);
 	}
 	//else if (arg[1] == 's')
 	//{
