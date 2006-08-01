@@ -758,6 +758,8 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	if (fOkay)
 	{
 		CalculateIOIndices();
+		if (grfrco & kfrcoSetPos)	// positioning pass
+			GiveOverlapWarnings(pfont, prndr->ScriptDirections());
 	}
 	else
 	{
@@ -1302,20 +1304,28 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	
 	if (fKeepChecking)
 	{
-		if (!m_pexpValue->CheckRuleExpression(pfont, prndr, vfLb, vfIns, vfDel,
-			true, fValueIsInputSlot))
+		int nTmp;
+		if (m_psymName->IsAttachTo() && m_pexpValue->ResolveToInteger(&nTmp, true) && nTmp == 0)
 		{
-			fOkay = false;
+			// okay - attach.to = @0 has a special meaning
 		}
-		if (m_psymName->IsAttachTo())
+		else
 		{
-			GdlSlotRefExpression * pexpsr = dynamic_cast<GdlSlotRefExpression *>(m_pexpValue);
-			if (pexpsr)
+			if (!m_pexpValue->CheckRuleExpression(pfont, prndr, vfLb, vfIns, vfDel,
+				true, fValueIsInputSlot))
 			{
-				if (pexpsr->SlotNumber() == irit + 1)
-					g_errorList.AddWarning(this,
-						"Item ", prit->PosString(),
-						": slot is being attached to itself--no attachment will result");
+				fOkay = false;
+			}
+			if (m_psymName->IsAttachTo())
+			{
+				GdlSlotRefExpression * pexpsr = dynamic_cast<GdlSlotRefExpression *>(m_pexpValue);
+				if (pexpsr)
+				{
+					if (pexpsr->SlotNumber() == irit + 1)
+						g_errorList.AddWarning(this,
+							"Item ", prit->PosString(),
+							": slot is being attached to itself--no attachment will result");
+				}
 			}
 		}
 
@@ -1561,6 +1571,138 @@ void GdlAttrValueSpec::AdjustToIOIndices(GdlRuleItem * prit,
 		m_pexpValue->AdjustToIOIndices(viritInput, NULL);
 }
 
+
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Generate warning messages if there are any contiguous glyphs whose bounding boxes
+	overlap (in the vertical dimension) but are not attached.
+	Note that these checks are only run for positioning rules.
+----------------------------------------------------------------------------------------------*/
+
+void GdlRule::GiveOverlapWarnings(GrcFont * pfont, int grfsdc)
+{
+	int irit;
+	for (irit = 0; irit < m_vprit.Size() - 1; irit++)
+	{
+		GdlRuleItem * prit1 = m_vprit[irit];
+		GdlRuleItem * prit2 = m_vprit[irit + 1];
+
+		if (prit1->m_iritContextPosOrig < 0 || prit1->m_iritContextPosOrig >= m_vprit.Size()) // eg, ANY
+			continue;
+		if (prit2->m_iritContextPosOrig < 0 || prit2->m_iritContextPosOrig >= m_vprit.Size()) // eg, ANY
+			continue;
+
+		// Figure out what these items are attached to. A value of zero means it is
+		// deliberately attached to nothing.
+		int nAtt1 = prit1->AttachedToSlot();
+		int nAtt2 = prit2->AttachedToSlot();
+		if (nAtt1 == 0 || nAtt2 == 0)
+			continue;
+		if (nAtt1 == prit2->m_iritContextPos + 1) // m_iritContextPos is 0-based
+			continue;
+		if (nAtt2 == prit1->m_iritContextPos + 1)
+			continue;
+
+		if (prit1->OverlapsWith(prit2, pfont, grfsdc))
+		{
+			// Give warning.
+			g_errorList.AddWarning(this,
+				"Vertical overlap between glyphs in items ", prit1->PosString(), " and ",
+				prit2->PosString(), "; attachment may be needed");
+		}
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return the slot the item is attached to, or -1 if none.
+----------------------------------------------------------------------------------------------*/
+int GdlRuleItem::AttachedToSlot()
+{
+	return -1;
+}
+
+int GdlSetAttrItem::AttachedToSlot()
+{
+	Assert(m_nInputIndex == m_nOutputIndex); // because this is a positioning rule
+	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	{
+		if (m_vpavs[ipavs]->m_psymName->IsAttachTo())
+		{
+			int nSlot;
+			m_vpavs[ipavs]->m_pexpValue->ResolveToInteger(&nSlot, true);
+			return nSlot;
+		}
+	}
+	return -1;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return true if any glyph in the recipient item's glyph class overlaps along the 
+	vertical axis with any glyph in the argument item's glyph class.
+----------------------------------------------------------------------------------------------*/
+bool GdlRuleItem::OverlapsWith(GdlRuleItem * prit, GrcFont * pfont, int grfsdc)
+{
+	Symbol psymGlyphs1 = this->m_psymInput;
+	Symbol psymGlyphs2 = prit->m_psymInput;
+
+	GdlGlyphClassDefn * glfd1 = psymGlyphs1->GlyphClassDefnData();
+	GdlGlyphClassDefn * glfd2 = psymGlyphs2->GlyphClassDefnData();
+
+	if (!glfd1 || !glfd2)
+		return false;
+
+	if ((grfsdc & kfsdcHorizLtr || grfsdc == 0) && glfd1->HasOverlapWith(glfd2, pfont))
+		return true;
+	if (grfsdc & kfsdcHorizRtl && glfd2->HasOverlapWith(glfd1, pfont))
+		return true;
+	return false;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return true if there are any overlaps along the x-axis between any glyphs in the two
+	classes.
+----------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfont)
+{
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	{
+		if (m_vpglfdMembers[iglfd]->HasOverlapWith(pglfdLeft, pfont))
+			return true;
+	}
+	return false;
+}
+
+bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfont)
+{
+	GdlGlyphDefn * pglf = dynamic_cast<GdlGlyphDefn*>(pglfdLeft);
+	if (pglf)
+	{
+		for (int iw1 = 0; iw1 < this->m_vwGlyphIDs.Size(); iw1++)
+		{
+			utf16 w1 = this->m_vwGlyphIDs[iw1];
+			int nLsb = pfont->GetGlyphMetric(w1, kgmetLsb, this);
+			for (int iw2 = 0; iw2 < pglf->m_vwGlyphIDs.Size(); iw2++)
+			{
+				utf16 w2 = pglf->m_vwGlyphIDs[iw2];
+				int nRsb = pfont->GetGlyphMetric(w2, kgmetRsb, pglf);
+				if (nLsb + nRsb < 0)
+					return true;
+			}
+		}
+	}
+	else
+	{
+		GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn*>(pglfdLeft);
+		Assert(pglfc);
+		for (int iglfd = 0; iglfd < pglfc->m_vpglfdMembers.Size(); iglfd++)
+		{
+			if (HasOverlapWith(pglfc->m_vpglfdMembers[iglfd], pfont))
+				return true;
+		}
+	}
+	return false;
+}
 
 /**********************************************************************************************/
 

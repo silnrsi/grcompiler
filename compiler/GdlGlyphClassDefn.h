@@ -90,6 +90,7 @@ public:
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		Vector<GdlExpression *> & vpexpExtra) = 0;
 	virtual bool IncludesGlyph(utf16) = 0;
+	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont) = 0;
 
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc) = 0;
@@ -113,6 +114,8 @@ Hungarian: glfc
 ----------------------------------------------------------------------------------------------*/
 class GdlGlyphClassDefn : public GdlGlyphClassMember
 {
+	friend class GdlGlyphDefn;
+
 public:
 	//	Constructors & destructors:
 	GdlGlyphClassDefn()
@@ -187,8 +190,7 @@ public:
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		Vector<GdlExpression *> & vpexpExtra);
 	void MarkFsmClass(int nPassID, int nClassID);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
-	
+
 	bool IsFsmClass(int ipass)
 	{
 		if (ipass >= m_vfFsm.Size())
@@ -211,6 +213,10 @@ public:
 	bool ReplcmtOutputClass()				{ return m_fReplcmtOut; }
 	int ReplcmtInputID()					{ return m_nReplcmtInID; }
 	int ReplcmtOutputID()					{ return m_nReplcmtOutID; }
+
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+
+	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont);
 
 public:
 	//	Compiler:

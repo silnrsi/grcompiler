@@ -98,7 +98,7 @@ private:
 extern RefAST nullAST;
 
 #ifdef NEEDS_OPERATOR_LESS_THAN
-inline operator<(RefAST l,RefAST r); // {return true;}
+inline bool operator<(RefAST l,RefAST r); // {return true;}
 #endif
 
 #endif //INC_AST_hpp__

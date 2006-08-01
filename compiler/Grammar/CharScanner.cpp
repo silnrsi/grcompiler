@@ -51,7 +51,7 @@ bool CharScannerLiteralsLess::operator() (const std::string& x,const std::string
 		return std::less<std::string>()(x,y);
 	} else {
 #ifdef NO_STRCASECMP
-		return (stricmp(x.c_str(),y.c_str())<0);
+		return (_stricmp(x.c_str(),y.c_str())<0);
 #else
 		return (strcasecmp(x.c_str(),y.c_str())<0);
 #endif

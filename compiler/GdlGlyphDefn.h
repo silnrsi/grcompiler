@@ -270,6 +270,8 @@ public:
 		return false;
 	}
 
+	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont);
+
 public:
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);
