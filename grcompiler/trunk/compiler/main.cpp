@@ -156,10 +156,10 @@ int main(int argc, char * argv[])
 	else
 	{
 		StrUni stu("unknown");
-		utf16cpy(rgchwOutputFontFamily, stu.Chars());
+		utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
 	}
 
-	StrAnsi staFamily(rgchwOutputFontFamily);
+	StrAnsi staFamily((char*)rgchwOutputFontFamily);
 	if (g_cman.IsVerbose())
 	{
 		std::cout << "GDL file: " << pchGdlFile << "\n"
@@ -439,10 +439,10 @@ void GenerateOutputControlFileName(char * pchFontFile, char * pchOutputFont)
 ----------------------------------------------------------------------------------------------*/
 void GenerateOutputControlFontFamily(utf16 * pchFontName, utf16 * pchOutputName)
 {
-	StrUni stu(pchFontName);
+	StrUni stu((wchar_t*)pchFontName);
 	stu.Append(" Graphite");
 
-	utf16cpy(pchOutputName, stu.Chars());
+	utf16cpy(pchOutputName, (const utf16*)stu.Chars());
 	pchOutputName[stu.Length() + 1] = 0;
 }
 

@@ -99,7 +99,7 @@ private:
 };
 
 #ifdef NEEDS_OPERATOR_LESS_THAN
-inline operator<(RefToken l,RefToken r); //{return true;}
+inline bool operator<(RefToken l,RefToken r); //{return true;}
 #endif
 
 extern RefToken nullToken;

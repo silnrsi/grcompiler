@@ -21,6 +21,10 @@ Description:
 #ifndef GRCOMPILER_H
 #define GRCOMPILER_H 1
 
+// It's okay to use functions that were declared deprecated by VS 2005:
+#define _CRT_SECURE_NO_DEPRECATE
+#pragma warning(disable: 4996) // warning: function was declared deprecated
+
 #define NO_EXCEPTIONS 1
 
 #ifdef GR_FW

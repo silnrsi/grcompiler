@@ -1907,7 +1907,7 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 			itoa(irit+1, rgch, 10);
 			g_errorList.AddError(this,
 				"Item ", rgch,
-				"no input class for selector on glyph attribute ",
+				": no input class for selector on glyph attribute ",
 				m_psymName->FullName());
 			return;
 		}
@@ -2400,7 +2400,10 @@ void GdlNumericExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSlotRefExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
 {
-	m_nIOIndex = virit[m_srNumber - 1];
+	if (m_srNumber == 0)
+		m_nIOIndex = -1;
+	else
+		m_nIOIndex = virit[m_srNumber - 1];
 	if (prit)
 		prit->SetAttachTo(m_nIOIndex);
 }
@@ -2421,7 +2424,7 @@ StrUni GdlStringExpression::ConvertToUnicode()
 	const schar * pchs = m_staValue.Chars();
 	utf16 * pchw = new utf16[cch];
 	Platform_8bitToUnicode(m_nCodepage, pchs, cch, pchw, cch);
-	StrUni stuRet(pchw, cch);
+	StrUni stuRet((wchar_t*)pchw, cch);
 	delete[] pchw;
 	return stuRet;
 }

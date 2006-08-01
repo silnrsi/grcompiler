@@ -1939,7 +1939,11 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 				if (pexpSR)
 				{
 					int srAttachTo = pexpSR->SlotNumber();
-					if (prule->NumberOfSlots() <= srAttachTo - 1)
+					if (srAttachTo == 0)
+					{
+						// no attachment
+					}
+					else if (prule->NumberOfSlots() <= srAttachTo - 1)
 					{
 						//	slot out of range--error will be produced later
 					}

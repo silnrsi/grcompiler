@@ -58,7 +58,7 @@ GrcFont::GrcFont(char * pchFontFile) :
 	if (cch)
 	{
 		m_pchFileName =  new char[cch];
-		strcpy (m_pchFileName, pchFontFile);
+		strcpy(m_pchFileName, pchFontFile); // strcpy_s(m_pchFileName, cch, pchFontFile)
 	}
 	else
 	{
@@ -383,7 +383,7 @@ void GrcFont::GetGlyphsFromCmap(utf16 * rgchwUniToGlyphID)
 unsigned int GrcFont::UnicodeFromCodePage(utf16 wCodePage, utf16 wCodePoint, GdlObject * pgdlobj)
 {
 	utf16 wUnicode; // should never return supplementary plane characters!
-	if (!MultiByteToWideChar(wCodePage, 0, (char *)&wCodePoint, 1, &wUnicode, 1))
+	if (!MultiByteToWideChar(wCodePage, 0, (char *)&wCodePoint, 1, (LPWSTR)&wUnicode, 1))
 	{
 		g_errorList.AddWarning(pgdlobj, "Failed to convert CodePoint to Unicode");
 		return 0; // calling method provides error message

@@ -505,18 +505,25 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 	{
 		Assert(staOp == "=");
 		int nValue;
-		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
-			false, iritAttachTo, &nValue);
-
-		vbOutput.Push(kopAttrSetSlot);
-		vbOutput.Push(slat);
-
-		if (slat == kslatAttTo)
+		if (slat == kslatAttTo && iritAttachTo == -1)
 		{
-			if (nValue < 0)
-				GdlRuleItem::GenerateInsertEqualsFalse(vbOutput);	// for this slot
-			else if (nValue > 0)
-				fAttachForward = true;	// generate insert = false for next slot
+			// attach.to = @0 means no attachment
+		}
+		else
+		{
+			m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
+				false, iritAttachTo, &nValue);
+
+			vbOutput.Push(kopAttrSetSlot);
+			vbOutput.Push(slat);
+
+			if (slat == kslatAttTo)
+			{
+				if (nValue < 0)
+					GdlRuleItem::GenerateInsertEqualsFalse(vbOutput);	// for this slot
+				else if (nValue > 0)
+					fAttachForward = true;	// generate insert = false for next slot
+			}
 		}
 	}
 	else

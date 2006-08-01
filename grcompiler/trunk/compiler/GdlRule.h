@@ -264,6 +264,8 @@ public:
 	{
 		return -1;
 	}
+	virtual int AttachedToSlot();
+	bool OverlapsWith(GdlRuleItem * prit, GrcFont * pfont, int grfsdc);
 ///	void CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
 	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
@@ -458,6 +460,7 @@ protected:
 	{
 		return m_nAttachTo;
 	}
+	virtual int AttachedToSlot();
 
 protected:
 	int AttachToSettingValue();
@@ -814,6 +817,7 @@ public:
 		GdlRenderer * prndr, Symbol psymTable, int grfrco);
 	bool CheckForJustificationConstraint();
 	void CalculateIOIndices();
+	void GiveOverlapWarnings(GrcFont * pfont, int grfsdc);
 	bool CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
 	bool HasReprocessing();
 	void ReplaceKern(GrcManager * pcman);
