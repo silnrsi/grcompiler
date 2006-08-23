@@ -439,7 +439,7 @@ void GenerateOutputControlFileName(char * pchFontFile, char * pchOutputFont)
 ----------------------------------------------------------------------------------------------*/
 void GenerateOutputControlFontFamily(utf16 * pchFontName, utf16 * pchOutputName)
 {
-	StrUni stu((wchar_t*)pchFontName);
+	StrUni stu(pchFontName);
 	stu.Append(" Graphite");
 
 	utf16cpy(pchOutputName, (const utf16*)stu.Chars());
