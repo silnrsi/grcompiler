@@ -73,7 +73,7 @@ typedef unsigned long 	DWORD;
 
 typedef signed long	    HRESULT;
 typedef DWORD 			COLORREF;
-
+typedef unsigned short* LPWSTR;
 
 inline const long InterlockedIncrement(long *const intr_lck) {
 	return ++*intr_lck;
