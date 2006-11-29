@@ -78,12 +78,12 @@ class ILgCharacterPropertyEngine
 public:
 	HRESULT get_IsSeparator(wchar wUnicode,  ComBool * pfIsSep)
 	{
-		Assert(false);
+		GrAssert(false);
 		return E_NOTIMPL;
 	}
 	HRESULT get_BidiCategory(wchar wUnicode,  LgBidiCategory * pbidi)
 	{
-		Assert(false);
+		GrAssert(false);
 		return E_NOTIMPL;
 	}
 	int Release()

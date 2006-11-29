@@ -2424,7 +2424,11 @@ StrUni GdlStringExpression::ConvertToUnicode()
 	const schar * pchs = m_staValue.Chars();
 	utf16 * pchw = new utf16[cch];
 	Platform_8bitToUnicode(m_nCodepage, pchs, cch, pchw, cch);
+#ifdef GR_FW
+	StrUni stuRet((wchar_t*)pchw, cch); // something about the new VS compiler needs this :-(
+#else
 	StrUni stuRet(pchw, cch);
+#endif // GR_FW
 	delete[] pchw;
 	return stuRet;
 }

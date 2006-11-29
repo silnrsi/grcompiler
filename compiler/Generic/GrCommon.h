@@ -15,8 +15,8 @@ Last reviewed:
 		USING_MFC
 ----------------------------------------------------------------------------------------------*/
 
-#ifndef Common_H
-#define Common_H 1
+#ifndef GRCOMMON_INCLUDED
+#define GRCOMMON_INCLUDED
 
 
 // Standard Headers.
@@ -45,7 +45,11 @@ Last reviewed:
 
 // Project headers
 #include "GrPlatform.h"
-#include "GrDebug.h"		// Debug related definitions.
+
+#ifndef GrAssert
+#include <cassert>
+#define GrAssert(exp) assert(exp)
+#endif
 
 using std::max;
 using std::min;
@@ -137,5 +141,5 @@ inline bool ValidWritePtrSize(void *pv, int cb)
 using namespace gr;
 #endif
 
-#endif // !Common_H
+#endif // !GRCOMMON_INCLUDED
 
