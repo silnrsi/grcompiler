@@ -398,6 +398,8 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 	unsigned int nUnicode;
 	utf16 wFirst, wLast;
 
+	bool fIgnoreBad = g_cman.IgnoreBadGlyphs();
+
 	switch (m_glft)
 	{
 	case kglftGlyphID:
@@ -441,9 +443,19 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 				if (!fLookUpPseudos || (wGlyphID = g_cman.PseudoForUnicode(n)) == 0)
 					wGlyphID = pfont->GlyphFromCmap(n, this);
 				if (wGlyphID == 0)
-					g_errorList.AddError(this,
-						"Unicode character not present in cmap: U+",
-						CodepointIDString(n));
+				{
+					if (fIgnoreBad)
+					{
+						g_errorList.AddWarning(this,
+							"Unicode character not present in cmap: U+",
+							CodepointIDString(n), "; definition will be ignored");
+						m_vwGlyphIDs.Push(kBadGlyph);
+					}
+					else
+						g_errorList.AddError(this,
+							"Unicode character not present in cmap: U+",
+							CodepointIDString(n));
+				}
 				else
 					m_vwGlyphIDs.Push(wGlyphID);
 			}
@@ -455,11 +467,21 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 		break;
 
 	case kglftPostscript:
-		wGlyphID = pfont->GlyphFromPostscript(m_sta, this);
+		wGlyphID = pfont->GlyphFromPostscript(m_sta, this, !fIgnoreBad);
 		if (wGlyphID == 0)
-			g_errorList.AddError(this,
-				"Invalid postscript name: ",
-				m_sta);
+		{
+			if (fIgnoreBad)
+			{
+				g_errorList.AddWarning(this,
+					"Invalid postscript name: ",
+					m_sta, "; definition will be ignored");
+				m_vwGlyphIDs.Push(kBadGlyph);
+			}
+			else
+				g_errorList.AddError(this,
+					"Invalid postscript name: ",
+					m_sta);
+		}
 		else
 			m_vwGlyphIDs.Push(wGlyphID);
 		break;
@@ -485,14 +507,29 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 					if (!fLookUpPseudos || (wGlyphID = g_cman.PseudoForUnicode(nUnicode)) == 0)
 						wGlyphID = pfont->GlyphFromCmap(nUnicode, this);
 					if (wGlyphID == 0)
-						g_errorList.AddError(this,
-							"Unicode character U+",
-							GlyphIDString(nUnicode),
-							" (ie, codepoint '",
-							rgchCdPt,
-							"' in codepage ",
-							rgchCdPg,
-							") not present in cmap");
+					{
+						if (fIgnoreBad)
+						{
+							g_errorList.AddWarning(this,
+								"Unicode character U+",
+								GlyphIDString(nUnicode),
+								" (ie, codepoint '",
+								rgchCdPt,
+								"' in codepage ",
+								rgchCdPg,
+								") not present in cmap; definition will be ignored");
+							m_vwGlyphIDs.Push(kBadGlyph);
+						}
+						else
+							g_errorList.AddError(this,
+								"Unicode character U+",
+								GlyphIDString(nUnicode),
+								" (ie, codepoint '",
+								rgchCdPt,
+								"' in codepage ",
+								rgchCdPg,
+								") not present in cmap");
+					}
 					else
 						m_vwGlyphIDs.Push(wGlyphID);
 				}
@@ -520,14 +557,29 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 				{
 					wGlyphID = pfont->GlyphFromCmap(nUnicode, this);
 					if (wGlyphID == 0)
-						g_errorList.AddError(this,
-							"Unicode character U+",
-							GlyphIDString(nUnicode),
-							" (ie, codepoint 0x",
-							GlyphIDString(w),
-							" in codepage ",
-							rgchCdPg,
-							") not present in cmap");
+					{
+						if (fIgnoreBad)
+						{
+							g_errorList.AddWarning(this,
+								"Unicode character U+",
+								GlyphIDString(nUnicode),
+								" (ie, codepoint 0x",
+								GlyphIDString(w),
+								" in codepage ",
+								rgchCdPg,
+								") not present in cmap; definition will be ignored");
+							m_vwGlyphIDs.Push(kBadGlyph);
+						}
+						else
+							g_errorList.AddError(this,
+								"Unicode character U+",
+								GlyphIDString(nUnicode),
+								" (ie, codepoint 0x",
+								GlyphIDString(w),
+								" in codepage ",
+								rgchCdPg,
+								") not present in cmap");
+					}
 					else
 						m_vwGlyphIDs.Push(wGlyphID);
 				}
@@ -547,14 +599,41 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 		//	is more than one, or none, or the glyph ID == 0.
 		m_pglfOutput->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim, hmActualForPseudo, false);
 		if (m_pglfOutput->m_vwGlyphIDs.Size() > 1)
-			g_errorList.AddError(this,
-				"Pseudo-glyph -> glyph ID mapping results in more than one glyph");
+		{
+			if (fIgnoreBad)
+			{
+				g_errorList.AddWarning(this,
+					"Pseudo-glyph -> glyph ID mapping results in more than one glyph; definition will be ignored");
+				m_vwGlyphIDs.Push(kBadGlyph);
+			}
+			else
+				g_errorList.AddError(this,
+					"Pseudo-glyph -> glyph ID mapping results in more than one glyph");
+		}
 		else if (m_pglfOutput->m_vwGlyphIDs.Size() == 0)
-			g_errorList.AddError(this,
-				"Pseudo-glyph -> glyph ID mapping results in no valid glyph");
+		{
+			if (fIgnoreBad)
+			{
+				g_errorList.AddWarning(this,
+					"Pseudo-glyph -> glyph ID mapping results in no valid glyph; definition will be ignored");
+				m_vwGlyphIDs.Push(kBadGlyph);
+			}
+			else
+				g_errorList.AddError(this,
+					"Pseudo-glyph -> glyph ID mapping results in no valid glyph");
+		}
 		else if (m_pglfOutput->m_vwGlyphIDs[0] == 0)
-			g_errorList.AddError(this,
-				"Pseudo-glyph cannot be mapped to glyph ID 0");
+		{
+			if (fIgnoreBad)
+			{
+				g_errorList.AddWarning(this,
+					"Pseudo-glyph cannot be mapped to glyph ID 0; definition will be ignored");
+				m_vwGlyphIDs.Push(kBadGlyph);
+			}
+			else
+				g_errorList.AddError(this,
+					"Pseudo-glyph cannot be mapped to glyph ID 0");
+		}
 		else
 		{
 			//	It is the assigned pseudo glyph ID which is the 'contents' of this glyph defn.
@@ -584,7 +663,13 @@ int GdlGlyphClassDefn::GlyphIDCount()
 /*--------------------------------------------------------------------------------------------*/
 int GdlGlyphDefn::GlyphIDCount()
 {
-	return m_vwGlyphIDs.Size();
+	int cGlyph = 0;
+	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+	{
+		if (m_vwGlyphIDs[iw] != kBadGlyph)
+			cGlyph++;
+	}
+	return cGlyph;
 }
 
 /**********************************************************************************************/
@@ -1115,6 +1200,9 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		//	For each glyph ID covered by this definition's range:
 		for (int iwGlyphID = 0; iwGlyphID < m_vwGlyphIDs.Size(); iwGlyphID++)
 		{
+			if (m_vwGlyphIDs[iwGlyphID] == kBadGlyph) // invalid glyph
+				continue;
+
 			//	Compare the new assignment with the previous.
 			GdlExpression * pexpOld;
 			int nPROld;
@@ -1144,7 +1232,6 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 			}
 		}
 	}
-
 }
 
 
@@ -1501,7 +1588,6 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 					}
 				}
 			}
-
 		}
 
 		ConvertBetweenXYAndGpoint(pfont, wGlyphID);
@@ -2249,6 +2335,9 @@ void GdlGlyphDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 
 	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
 	{
+		if (m_vwGlyphIDs[iw] == kBadGlyph)
+			continue;
+
 		utf16 wGlyphID = m_vwGlyphIDs[iw];
 		if ((fGpoint && !pgax->GpointDefined(wGlyphID, nGlyphAttrID)) ||
 			(!fGpoint && !pgax->Defined(wGlyphID, nGlyphAttrID)))
@@ -2350,6 +2439,10 @@ void GdlGlyphDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
 	{
 		utf16 wGlyphID = m_vwGlyphIDs[iw];
+
+		if (wGlyphID == kBadGlyph)
+			continue;
+
 		if (psymGpoint && pgax->GpointDefined(wGlyphID, psymGpoint->InternalID()))
 		{
 			bool fShadowX, fShadowY;
@@ -2438,6 +2531,10 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
 	{
 		utf16 wGlyphID = m_vwGlyphIDs[iw];
+
+		if (wGlyphID == kBadGlyph)
+			continue;
+
 		if (!psymTop || !pgax->Defined(wGlyphID, psymTop->InternalID()))
 		{
 			g_errorList.AddError(pgdlSetAttrItem,
@@ -2744,10 +2841,17 @@ unsigned int GdlGlyphClassDefn::FirstGlyphInClass(bool * pfMoreThanOne)
 /*--------------------------------------------------------------------------------------------*/
 unsigned int GdlGlyphDefn::FirstGlyphInClass(bool * pfMoreThanOne)
 {
-	if (m_vwGlyphIDs.Size() == 0)
-		return 0; // pathological?
+	// This could be more accurate (for instance, it won't exactly handle a class with all
+	// bad glyphs except for one good one), but the more-than-one flag is just there for the
+	// sake of giving a warning, so this is good enough.
 	if (m_vwGlyphIDs.Size() > 1)
 		*pfMoreThanOne = true;
-	return m_vwGlyphIDs[0];
+	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+	{
+		if (m_vwGlyphIDs[iw] == kBadGlyph)
+			continue;
+		return m_vwGlyphIDs[iw];
+	}
+	return 0; // pathological?
 }
 

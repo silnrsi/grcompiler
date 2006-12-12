@@ -186,6 +186,20 @@ bool GdlGlyphClassDefn::IncludesGlyph(utf16 w)
 }
 
 
+/*----------------------------------------------------------------------------------------------
+	Return true if the class include a bad glyph definition
+----------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::HasBadGlyph()
+{
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	{
+		if (m_vpglfdMembers[iglfd]->HasBadGlyph())
+			return true;
+	}
+	return false;
+}
+
+
 #if 0
 
 /*----------------------------------------------------------------------------------------------

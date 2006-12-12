@@ -419,7 +419,7 @@ utf16 GrcFont::GlyphFromCmap(unsigned int nUnicode, GdlObject * pgdlobj)
 	Convert the given postscript name to a glyph ID. 
 	Return 0 if the postscript name is invalid.
 ----------------------------------------------------------------------------------------------*/
-utf16 GrcFont::GlyphFromPostscript(StrAnsi staPostscriptName, GdlObject * pgdlobj)
+utf16 GrcFont::GlyphFromPostscript(StrAnsi staPostscriptName, GdlObject * pgdlobj, bool fError)
 {
 	Assert(m_pFile);
 	Assert(m_pPost);
@@ -430,12 +430,15 @@ utf16 GrcFont::GlyphFromPostscript(StrAnsi staPostscriptName, GdlObject * pgdlob
 		return nGlyphId;
 
 	// calling method outputs invalid postscript name
-	if (nGlyphId == -1)
-		g_errorList.AddError(pgdlobj, "Postscript name not found");
-	if (nGlyphId == -2)
-		g_errorList.AddError(pgdlobj, "No Postscript name data in font");
-	if (nGlyphId < -2)
-		g_errorList.AddError(pgdlobj, "Postscript name lookup error");
+	if (fError)
+	{
+		if (nGlyphId == -1)
+			g_errorList.AddError(pgdlobj, "Postscript name not found");
+		if (nGlyphId == -2)
+			g_errorList.AddError(pgdlobj, "No Postscript name data in font");
+		if (nGlyphId < -2)
+			g_errorList.AddError(pgdlobj, "Postscript name lookup error");
+	}
 	return 0;
 
 }

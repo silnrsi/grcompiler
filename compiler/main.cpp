@@ -68,8 +68,8 @@ int main(int argc, char * argv[])
 	// on linux systems an argument starting with a / may be a path
 	// so use - for options. On Windows allow both / or -
 #ifdef _WIN32 
-	while (argc >= 2 + cargExtra && (argv[1 + cargExtra][0] == '/' ||
-           argv[1 + cargExtra][0] == '-'))
+	while (argc >= 2 + cargExtra
+		&& (argv[1 + cargExtra][0] == '/' || argv[1 + cargExtra][0] == '-'))
 #else
 	while (argc >= 2 + cargExtra && argv[1 + cargExtra][0] == '-')
 #endif
@@ -93,6 +93,7 @@ int main(int argc, char * argv[])
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
 		std::cout << "   -d     - output debugger files\n";
+		std::cout << "   -g     - permit and ignore invalid glyph definitions\n";
 		std::cout << "   -nNNNN - set name table start location\n";
 		std::cout << "   -vN    - set Silf table version number\n";
 		std::cout << "   -q     - quiet mode (no messages except on error)\n";
@@ -337,7 +338,11 @@ void HandleCompilerOptions(char * arg)
 {
 	if (arg[1] == 'd')
 	{
-		 g_cman.SetOutputDebugFiles(true);
+		g_cman.SetOutputDebugFiles(true);
+	}
+	else if (arg[1] == 'g')
+	{
+		g_cman.SetIgnoreBadGlyphs(true);
 	}
 	else if (arg[1] == 'v' || arg[1] == 'n')
 	{

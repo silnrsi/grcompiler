@@ -272,6 +272,19 @@ public:
 
 	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont);
 
+	virtual bool HasBadGlyph()
+	{
+		for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+		{
+			if (m_vwGlyphIDs[iw] == kBadGlyph)
+				return true;
+		}
+		return false;
+	}
+
+	virtual bool WarnAboutBadGlyphs(bool fTop);
+	virtual bool DeleteBadGlyphs();
+
 public:
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);

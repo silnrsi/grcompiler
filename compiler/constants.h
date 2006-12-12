@@ -18,7 +18,9 @@ enum {
 };
 
 enum {
-	kMaxGlyphsPerFont = 65536
+	kMaxGlyphsPerFont = 65530,
+	// Reserve 6 glyphs for defined constants.
+	kBadGlyph = 65531
 };
 
 //	Kludge to ensure that certain error messages come last:
