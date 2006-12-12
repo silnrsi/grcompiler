@@ -75,15 +75,6 @@ public:
 	int VersionForTable(int ti, int fxdRequestedVersion);
 	int VersionForRules();
 
-	void SetSeparateControlFile(bool f)
-	{
-		m_fSepCtrlFile = f;
-	}
-	int SeparateControlFile()
-	{
-		return m_fSepCtrlFile;
-	}
-
 	void SetNameTableStart(int n)
 	{
 		m_nNameTblStart = n;
@@ -126,8 +117,12 @@ public:
 
 	bool OutputDebugFiles()				{ return m_fOutputDebugFiles; }
 	void SetOutputDebugFiles(bool f)	{ m_fOutputDebugFiles = f; }
-	void SetVerbose(bool verbose) 		{ m_verbose = verbose; }
+	bool IgnoreBadGlyphs()				{ return m_fIgnoreBadGlyphs; }
+	void SetIgnoreBadGlyphs(bool f)		{ m_fIgnoreBadGlyphs = f; }
 	bool IsVerbose()					{ return m_verbose; }
+	void SetVerbose(bool verbose) 		{ m_verbose = verbose; }
+	int SeparateControlFile()			{ return m_fSepCtrlFile; }
+	void SetSeparateControlFile(bool f)	{ m_fSepCtrlFile = f; }
 
 public:
 	//	Parser:
@@ -341,6 +336,9 @@ protected:
 
 	//	Where to start the feature names in the name table.
 	int m_nNameTblStart;
+
+	//	Ignore nonexistent glyphs?
+	bool m_fIgnoreBadGlyphs;
 
 	//	The top-level object representing the GDL program.
 	GdlRenderer * m_prndr;

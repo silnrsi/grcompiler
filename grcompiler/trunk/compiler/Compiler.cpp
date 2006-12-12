@@ -1967,6 +1967,8 @@ void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 {
 	Assert(m_vwGlyphIDs.Size() > 0);
 
+	// TODO: check for kBadGlyph values
+
 	//unsigned int n;
 	//unsigned int nUnicode;
 	//utf16 w;

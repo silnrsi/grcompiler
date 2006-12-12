@@ -91,6 +91,9 @@ public:
 		Vector<GdlExpression *> & vpexpExtra) = 0;
 	virtual bool IncludesGlyph(utf16) = 0;
 	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont) = 0;
+	virtual bool HasBadGlyph() = 0;
+	virtual bool WarnAboutBadGlyphs(bool fTop) = 0;
+	virtual bool DeleteBadGlyphs() = 0;
 
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc) = 0;
@@ -217,6 +220,9 @@ public:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont);
+	virtual bool HasBadGlyph();
+	virtual bool WarnAboutBadGlyphs(bool fTop);
+	virtual bool DeleteBadGlyphs();
 
 public:
 	//	Compiler:

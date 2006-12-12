@@ -863,7 +863,7 @@ int TtfUtil::Cmap310Lookup(const void * pCmap310, unsigned int uUnicodeId)
 {
 	const sfnt_Cmap12 * pTable = reinterpret_cast<const sfnt_Cmap12 *>(pCmap310);
 
-	uint32 uLength = swapl(pTable->length); //could use to test for premature end of table
+	//uint32 uLength = swapl(pTable->length); //could use to test for premature end of table
 	uint32 ucGroups = swapl(pTable->nGroups);
 
 	for (unsigned int i = 0; i < ucGroups; i++)

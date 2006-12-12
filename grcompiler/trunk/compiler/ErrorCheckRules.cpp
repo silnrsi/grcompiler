@@ -318,6 +318,9 @@ bool GrcManager::AssignClassInternalIDs()
 	Set<GdlGlyphClassDefn *> setpglfc;
 	m_prndr->MarkReplacementClasses(this, setpglfc);
 
+	//	Now that we've given warnings about invalid glyphs, delete them from the classes.
+	m_prndr->DeleteAllBadGlyphs();
+
 	//	Now actually assign the IDs for all substitution classes in the resulting set.
 	//	The first batch of sub-IDs are assigned to the output classes, the second
 	//	batch to input classes. Note that some classes may have both an input
@@ -447,9 +450,9 @@ void GdlRule::MarkReplacementClasses(GrcManager * pcman, int nPassID,
 	for (irit = 0; irit < m_vprit.Size(); irit++)
 	{
 		if (vfInput[irit])
-			m_vprit[irit]->MarkClassAsReplacementClass(setpglfcReplace, true);
+			m_vprit[irit]->MarkClassAsReplacementClass(pcman, setpglfcReplace, true);
 		if (vfOutput[irit])
-			m_vprit[irit]->MarkClassAsReplacementClass(setpglfcReplace, false);
+			m_vprit[irit]->MarkClassAsReplacementClass(pcman, setpglfcReplace, false);
 	}
 }
 
@@ -543,8 +546,8 @@ void GdlSubstitutionItem::FindSubstitutionSlots(int irit,
 /*----------------------------------------------------------------------------------------------
 	Mark this item's class as a replacement class, and add it to the list.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::MarkClassAsReplacementClass(Set<GdlGlyphClassDefn *> & setpglfcReplace,
-	bool fInput)
+void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
+	Set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput)
 {
 	GdlDefn * pdefn;
 	if (fInput)
@@ -576,6 +579,9 @@ void GdlRuleItem::MarkClassAsReplacementClass(Set<GdlGlyphClassDefn *> & setpglf
 
 	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn *>(pdefn);
 	Assert(pglfc);
+
+	if (pcman->IgnoreBadGlyphs())
+		pglfc->WarnAboutBadGlyphs(true);
 
 	(fInput) ? pglfc->MarkReplcmtInputClass() : pglfc->MarkReplcmtOutputClass();
 
@@ -621,6 +627,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(Set<GdlGlyphClassDefn *> & setpglf
 	* reference to slot beyond length of rule
 	* setting something other than a slot attribute
 	* too many slots in the rule
+	* invalid glyphs in replacement class
 	* mismatch between size of class in left- and right-hand-sides
 	* invalid user-definable slot attribute
 ----------------------------------------------------------------------------------------------*/
@@ -1681,10 +1688,14 @@ bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfo
 		for (int iw1 = 0; iw1 < this->m_vwGlyphIDs.Size(); iw1++)
 		{
 			utf16 w1 = this->m_vwGlyphIDs[iw1];
+			if (w1 == kBadGlyph)
+				continue;
 			int nLsb = pfont->GetGlyphMetric(w1, kgmetLsb, this);
 			for (int iw2 = 0; iw2 < pglf->m_vwGlyphIDs.Size(); iw2++)
 			{
 				utf16 w2 = pglf->m_vwGlyphIDs[iw2];
+				if (w2 == kBadGlyph)
+					continue;
 				int nRsb = pfont->GetGlyphMetric(w2, kgmetRsb, pglf);
 				if (nLsb + nRsb < 0)
 					return true;
@@ -1703,6 +1714,75 @@ bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfo
 	}
 	return false;
 }
+
+
+/**********************************************************************************************/
+/*----------------------------------------------------------------------------------------------
+	Delete all invalid glyphs.
+----------------------------------------------------------------------------------------------*/
+void GdlRenderer::DeleteAllBadGlyphs()
+{
+	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
+		m_vpglfc[iglfc]->DeleteBadGlyphs();
+}
+
+/*----------------------------------------------------------------------------------------------
+	Delete invalid glyphs from the class
+----------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::DeleteBadGlyphs()
+{
+	bool fRet = false;
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	{
+		fRet = (fRet || m_vpglfdMembers[iglfd]->DeleteBadGlyphs());
+	}
+	return fRet;
+}
+
+bool GdlGlyphDefn::DeleteBadGlyphs()
+{
+	bool fRet = false;
+	for (int i = m_vwGlyphIDs.Size() - 1; i >=0; i--)
+	{
+		if (m_vwGlyphIDs[i] == kBadGlyph)
+		{
+			m_vwGlyphIDs.Delete(i);
+			fRet = true;
+		}
+	}
+	return fRet;
+}
+
+
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Give a warning about any invalid glyphs in the class.
+----------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::WarnAboutBadGlyphs(bool fTop)
+{
+	bool fRet = false;
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	{
+		fRet = (fRet || m_vpglfdMembers[iglfd]->WarnAboutBadGlyphs(false));
+	}
+	if (fRet && fTop)
+		g_errorList.AddWarning(this,
+			"Class '", m_staName, "' is used in substitution but has invalid glyphs");
+	return fRet;
+}
+
+bool GdlGlyphDefn::WarnAboutBadGlyphs(bool fTop)
+{
+	Assert(!fTop);
+	bool fRet = false;
+	for (int i = m_vwGlyphIDs.Size() - 1; i >=0; i--)
+	{
+		fRet = (fRet || m_vwGlyphIDs[i] == kBadGlyph);
+	}
+	return fRet;
+}
+
 
 /**********************************************************************************************/
 
