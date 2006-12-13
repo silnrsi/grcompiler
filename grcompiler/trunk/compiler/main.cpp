@@ -160,7 +160,14 @@ int main(int argc, char * argv[])
 		utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
 	}
 
-	StrAnsi staFamily((char*)rgchwOutputFontFamily);
+	//StrAnsi staFamily((char*)rgchwOutputFontFamily);
+	char rgchFamily[128];
+	int cchw = 0;
+	utf16 * pchw = rgchwOutputFontFamily;
+	while (*pchw++)
+		cchw++;
+	Platform_UnicodeToANSI(rgchwOutputFontFamily, cchw, rgchFamily, 128);
+	StrAnsi staFamily(rgchFamily);
 	if (g_cman.IsVerbose())
 	{
 		std::cout << "GDL file: " << pchGdlFile << "\n"
