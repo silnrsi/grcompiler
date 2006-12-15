@@ -136,7 +136,7 @@ int GrcFont::Init(GrcManager * pcman)
 	
 	if (!OpenFile()) // open the TTF file passed in the ctor
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(107, NULL, 
 			"Could not open font file");
 		return 1;
 	}
@@ -148,13 +148,13 @@ int GrcFont::Init(GrcManager * pcman)
 		return 2;
 	if (!ReadData(&pHdr, lnOffset, lnSize))
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(108, NULL, 
 			"Error reading font offset table.");
 		return 3;
 	}
 	if (!TtfUtil::CheckHeader(pHdr))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(109, NULL,
 			"Font file has bad offset table");
 		return 4;
 	}
@@ -163,14 +163,14 @@ int GrcFont::Init(GrcManager * pcman)
 		return 5;
 	if (!ReadData(&pTableDir, lnOffset, lnSize))
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(110, NULL, 
 			"Error reading font Table Directory.");
 		return 6;
 	}
 
 	if (IsGraphiteFont(pHdr, pTableDir))
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(111, NULL, 
 			"Font already has Graphite table(s) present.");
 		return 7;
 	}
@@ -193,7 +193,7 @@ int GrcFont::Init(GrcManager * pcman)
 
 	if (m_pCmap_3_10 == NULL && m_pCmap_3_1 == NULL)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(112, NULL,
 			"Microsoft Unicode cmap could not be found.");
 		return 11;
 	}
@@ -201,7 +201,7 @@ int GrcFont::Init(GrcManager * pcman)
 	{
 		if (!TtfUtil::CheckCmap310Subtable(m_pCmap_3_10))
 		{
-			g_errorList.AddError(NULL, "cmap platform 3 encoding 10 subtable is invalid.");
+			g_errorList.AddError(113, NULL, "cmap platform 3 encoding 10 subtable is invalid.");
 			return 12;
 		}
 	}
@@ -210,16 +210,16 @@ int GrcFont::Init(GrcManager * pcman)
 		if (!TtfUtil::CheckCmap31Subtable(m_pCmap_3_1))
 		{
 			if (m_pCmap_3_10) // we can survive
-				g_errorList.AddWarning(NULL, "cmap platform 3 encoding 1 subtable is invalid.");
+				g_errorList.AddWarning(506, NULL, "cmap platform 3 encoding 1 subtable is invalid.");
 			else
-				g_errorList.AddError(NULL, "cmap platform 3 encoding 1 subtable is invalid.");
+				g_errorList.AddError(114, NULL, "cmap platform 3 encoding 1 subtable is invalid.");
 			return 13;
 		}
 	}
 	else if (m_pCmap_3_10)
 	{
 		// All fonts are supposed to have a 16-bit table.
-		g_errorList.AddWarning(NULL, "cmap platform 3 encoding 1 subtable not found");
+		g_errorList.AddWarning(507, NULL, "cmap platform 3 encoding 1 subtable not found");
 	}
 		
 	// glyf
@@ -267,7 +267,7 @@ int GrcFont::Init(GrcManager * pcman)
 
 	if (AnySupplementaryPlaneChars() && pcman->FontTableVersion() <= 0x00010000)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(115, NULL,
 			"Supplementary plane characters are not supported in version 1.0");
 	}
 
@@ -385,7 +385,7 @@ unsigned int GrcFont::UnicodeFromCodePage(utf16 wCodePage, utf16 wCodePoint, Gdl
 	utf16 wUnicode; // should never return supplementary plane characters!
 	if (!MultiByteToWideChar(wCodePage, 0, (char *)&wCodePoint, 1, (LPWSTR)&wUnicode, 1))
 	{
-		g_errorList.AddWarning(pgdlobj, "Failed to convert CodePoint to Unicode");
+		g_errorList.AddWarning(508, pgdlobj, "Failed to convert CodePoint to Unicode");
 		return 0; // calling method provides error message
 	}
 	return (int)wUnicode;
@@ -433,11 +433,11 @@ utf16 GrcFont::GlyphFromPostscript(StrAnsi staPostscriptName, GdlObject * pgdlob
 	if (fError)
 	{
 		if (nGlyphId == -1)
-			g_errorList.AddError(pgdlobj, "Postscript name not found");
+			g_errorList.AddError(116, pgdlobj, "Postscript name not found");
 		if (nGlyphId == -2)
-			g_errorList.AddError(pgdlobj, "No Postscript name data in font");
+			g_errorList.AddError(117, pgdlobj, "No Postscript name data in font");
 		if (nGlyphId < -2)
-			g_errorList.AddError(pgdlobj, "Postscript name lookup error");
+			g_errorList.AddError(118, pgdlobj, "Postscript name lookup error");
 	}
 	return 0;
 
@@ -474,7 +474,7 @@ int GrcFont::ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * p
 
 	char rgch[20];
 	itoa(nPathNumber, rgch, 10);
-	g_errorList.AddError(pgdlobj,
+	g_errorList.AddError(119, pgdlobj,
 		"Cannot find point number for path number ",
 		rgch,
 		" in glyph 0x",
@@ -544,7 +544,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	{
 		if (!TtfUtil::HorMetrics(wGlyphID, m_pHmtx, m_cHhea, m_pHhea, nLsb, nAdvWid))
 		{
-			g_errorList.AddError(pgdlobj, 
+			g_errorList.AddError(120, pgdlobj, 
 				"Unable to get horizontal metrics for glyph 0x", 
 				GdlGlyphDefn::GlyphIDString(wGlyphID));
 			return INT_MIN;
@@ -565,7 +565,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 		if (gmet == kgmetRsb)
 			return nAdvWid; // for space. RSB same as adv width to agree with compiler
 
-		g_errorList.AddWarning(pgdlobj, 
+		g_errorList.AddWarning(509, pgdlobj, 
 			"Requesting bounding box metric for white space glyph 0x", 
 			GdlGlyphDefn::GlyphIDString(wGlyphID), 
 			"; 0 will be used");
@@ -641,7 +641,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 		}
 	}
 
-	g_errorList.AddError(pgdlobj, 
+	g_errorList.AddError(121, pgdlobj, 
 		"Unable to get bounding box for glyph 0x", 
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return INT_MIN;
@@ -686,7 +686,7 @@ bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj
 	// if we reach here, point doesn't exist in glyph so give error
 	char rgch[20];
 	itoa(nPointNumber, rgch, 10);
-	g_errorList.AddError(pgdlobj,
+	g_errorList.AddError(122, pgdlobj,
 		"Cannot find contour for point number ",
 		rgch,
 		" in glyph 0x",
@@ -716,7 +716,7 @@ int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY,
 
  	char rgch[20];
 	itoa(nPointNumber, rgch, 10);
-	g_errorList.AddError(pgdlobj,
+	g_errorList.AddError(123, pgdlobj,
 		"Cannot find coordinates for point number ",
 		rgch,
 		" in glyph 0x",
@@ -764,7 +764,7 @@ int GrcFont::GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlO
 	char rgch2[20];
 	itoa(mX, rgch1, 10);
 	itoa(mY, rgch2, 10);
-	g_errorList.AddWarning(pgdlobj,
+	g_errorList.AddWarning(510, pgdlobj,
 		"Cannot find point number for coordinates (",
 		rgch1, ", ", rgch2,
 		") in glyph 0x",
@@ -794,7 +794,7 @@ int GrcFont::OpenFile()
 	m_pFile = fopen(m_pchFileName, "rb");
 	if (!m_pFile)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(124, NULL,
 			"Unable to open font file: ",
 			m_pchFileName);
 		return false;
@@ -822,19 +822,19 @@ int GrcFont::ReadData(byte ** ppData, long lnOffset, long lnSize)
 	*ppData = new byte[lnSize];
 	if (!*ppData)
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(125, NULL, 
 			"Memory failure: could not allocate ppData array while reading font file");
 		return false;
 	}
 	if (fseek(m_pFile, lnOffset, SEEK_SET))
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(126, NULL, 
 			"Could not seek to correct place in font file");
 		return false;
 	}
 	if (fread(*ppData, lnSize, 1, m_pFile) != 1)
 	{
-		g_errorList.AddError(NULL, 
+		g_errorList.AddError(127, NULL, 
 			"Could not read requested data from font file");
 		return false;
 	}
@@ -872,7 +872,7 @@ error:
 
 	if (!lnTableTag)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(128, NULL,
 			"Error reading table: ",
 			chTableTag);
 	}
@@ -948,7 +948,7 @@ int GrcFont::ScanGlyfIds(void)
 	unsigned int *prgnUsed = new unsigned int[0x10000];
 	if (!prgnUsed)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(129, NULL,
 			"Memory failure: could not allocate prgUsed array when scanning glyph ids");
 		return false;
 	}

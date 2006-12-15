@@ -59,7 +59,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	if (!CompatibleWithVersion(FontTableVersion(), &fxdVersionNeeded))
 	{
 		if (UserSpecifiedVersion())
-			g_errorList.AddWarning(NULL,
+			g_errorList.AddWarning(3501, NULL,
 				"Version ",
 				VersionString(FontTableVersion()),
 				" of the font tables is inadequate for your specfication; version ",
@@ -106,7 +106,7 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 		char rgch2[20];
 		itoa(nPassNum, rgch1, 10);
 		itoa(kMaxPasses - 1, rgch2, 10);
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(3101, NULL,
 			"Number of passes (",
 			rgch1,
 			") exceeds maximum of ",
@@ -114,7 +114,7 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 	}
 	else if (nPassNum == 0)
 	{
-		g_errorList.AddWarning(NULL,
+		g_errorList.AddWarning(3502, NULL,
 			"No valid passes");
 	}
 
@@ -126,7 +126,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 {
 	if (m_vppass.Size() > 1 && m_vppass[0]->HasRules())
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3102, this,
 			m_psymName->FullName(),
 			" table is multi-pass, so all rules must be explicitly placed in a pass");
 
@@ -149,7 +149,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 		{
 			char rgch[20];
 			itoa(ipass, rgch, 10);
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3503, this,
 				"Pass ",
 				StrAnsi(rgch),
 				" of ",
@@ -386,7 +386,7 @@ bool GrcManager::AssignClassInternalIDs()
 		char rgch2[20];
 		itoa(nSubID, rgch1, 10);
 		itoa(kMaxReplcmtClasses - 1, rgch2, 10);
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(3103, NULL,
 			"Number of classes used in glyph substitution (",
 			rgch1,
 			") exceeds maximum of ",
@@ -556,7 +556,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 			pdefn = m_psymInput->Data();
 		else
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3104, this,
 				"Item ",
 				PosString(),
 				" used as selector has no class specified");
@@ -594,7 +594,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 			itoa(kMaxGlyphsPerInputClass, rgchMax, 10);
 			char rgchCount[20];
 			itoa(cw, rgchCount, 10);
-			g_errorList.AddError(this,
+			g_errorList.AddError(3105, this,
 				"Number of glyphs (",
 				rgchCount,
 				") in class ",
@@ -686,7 +686,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		itoa(kMaxSlotsPerRule, rgchMax, 10);
 		char rgchCount[20];
 		itoa(m_vprit.Size(), rgchCount, 10);
-		g_errorList.AddError(this,
+		g_errorList.AddError(3106, this,
 			"Number of slots (",
 			rgchCount,
 			") exceeds maximum of ",
@@ -747,7 +747,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 //		if (m_nScanAdvance > -1 && irit >= m_nScanAdvance &&
 //			(vfInsertion[irit] || vfDeletion[irit]))
 //		{
-//			g_errorList.AddError(m_vprit[irit],
+//			g_errorList.AddError(3107, m_vprit[irit],
 //				"Cannot place the scan advance position (^) before insertions or deletions");
 //			fOkay = false;
 //		}
@@ -789,7 +789,7 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 		bool fKeepChecking = m_pexpConstraint->CheckTypeAndUnits(&expt);
 		if (expt != kexptBoolean && expt != kexptOne && expt != kexptZero)
 		{
-			g_errorList.AddWarning(m_pexpConstraint,
+			g_errorList.AddWarning(3504, m_pexpConstraint,
 				"Boolean value expected as result of constraint");
 		}
 		if (fKeepChecking)
@@ -832,7 +832,7 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	if ((grfrco & kfrcoLb) == 0)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3108, this,
 			"Line-break inappropriate in ",
 			psymTable->FullName(),
 			" table");
@@ -881,7 +881,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	bool fOkay = true;
 	if ((grfrco & kfrcoSubst) == 0)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3109, this,
 			"Substitution (left-hand-side) not permitted in ",
 			psymTable->FullName(),
 			" table");
@@ -894,7 +894,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		//	Deletion
 		if (m_vpavs.Size())
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3505, this,
 				"Item ", PosString(),
 				": setting attributes of a deleted item");
 			for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
@@ -905,7 +905,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		if (m_vpexpAssocs.Size())
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3506, this,
 				"Item ", PosString(),
 				": setting associations of a deleted item");
 			for (int ipexp = 0; ipexp < m_vpexpAssocs.Size(); ipexp++)
@@ -919,13 +919,13 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		//	Insertion
 		if (m_vpexpAssocs.Size() == 0)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3507, this,
 				"Item ", PosString(),
 				": inserted item was not given association");
 		}
 		if (m_pexpConstraint)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3110, this,
 				"Item ", PosString(),
 				": cannot include constraint on inserted item");
 		}
@@ -965,7 +965,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		if (!fOkay)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3508, this,
 				"Item ", PosString(),
 				": mismatch between associations and component references");
 		}			
@@ -985,13 +985,13 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		{
 			int cwOutput = OutputSymbol()->GlyphClassDefnData()->GlyphIDCount();
 			if (cwOutput == 0)
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(3509, this,
 					"Item ", PosString(),
 					": empty class '",
 					OutputSymbol()->FullName(),
 					"' in right-hand-side");
 			else if (cwInput == 0 && cwOutput > 1)
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(3510, this,
 					"Item ", PosString(),
 					": class '",
 					OutputSymbol()->FullName(),
@@ -1000,13 +1000,13 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 			{	// okay
 			}
 			else if (cwInput > cwOutput && cwOutput > 1)
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(3511, this,
 					"Item ", PosString(),
 					": class '",
 					OutputSymbol()->FullName(),
 					"' in rhs is smaller than selector class");
 			else if (cwInput < cwOutput)
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(3512, this,
 					"Item ", PosString(),
 					": mismatched class sizes");
 			else
@@ -1030,7 +1030,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		}
 		else if (vfLb[srSel - 1])
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3111, this,
 				"Item ", PosString(),
 				": line-break item (#) cannot serve as glyph selector");
 			fOkay = false;
@@ -1038,7 +1038,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		else if (vfIns[srSel - 1])
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3112, this,
 				"Item ", PosString(),
 				": glyph selector cannot indicate an inserted item");
 			fOkay = false;
@@ -1050,7 +1050,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		int srAssoc = m_vpexpAssocs[ipexp]->SlotNumber(); // 1-based
 		if (srAssoc < 1 || srAssoc > crit)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3113, this,
 				"Item ", PosString(),
 				": association out of range");
 			fOkay = false;
@@ -1058,7 +1058,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		else if (vfLb[srAssoc - 1])
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3114, this,
 				"Item ", PosString(),
 				": association cannot be made with line-break item (#)");
 			fOkay = false;
@@ -1066,7 +1066,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		else if (vfIns[srAssoc - 1])
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3115, this,
 				"Item ", PosString(),
 				": association with an inserted item");
 			fOkay = false;
@@ -1083,7 +1083,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel)
 {
 	if (!m_psymOperator->FitsSymbolType(ksymtOpAssign))
-		g_errorList.AddError(this,
+		g_errorList.AddError(3116, this,
 			"Attribute assignment must use an assignment operator");
 
 	bool fValueIsInputSlot = false;	// true if the value of an attribute indicates a slot
@@ -1093,13 +1093,13 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	if (!m_psymName->FitsSymbolType(ksymtSlotAttr))
 	{
 		if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
-			g_errorList.AddError(this,
+			g_errorList.AddError(3117, this,
 				"Cannot set glyph attributes in rules");
 		else if (m_psymName->FitsSymbolType(ksymtGlyphMetric))
-			g_errorList.AddError(this,
+			g_errorList.AddError(3118, this,
 				"Cannot set glyph metrics");
 		else
-			g_errorList.AddError(this,
+			g_errorList.AddError(3119, this,
 				"Cannot set anything but slot attributes in rules");
 		return false;
 	}
@@ -1108,7 +1108,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	if (m_psymName->IsReadOnlySlotAttr())
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3120, this,
 			"The '",
 			m_psymName->FullName(),
 			"' attribute is read-only");
@@ -1119,7 +1119,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	{
 		if ((grfrco & kfrcoSetPos) == 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3121, this,
 				"Cannot set the ",
 				m_psymName->FullName(),
 				" attribute in the ",
@@ -1130,7 +1130,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		GdlGlyphClassDefn * pglfc = prit->OutputSymbol()->GlyphClassDefnData();
 		if (pglfc && pglfc->IncludesGlyph(g_cman.LbGlyphId()))
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3513, this,
 				"Moving a line-break glyph will have no effect");
 		}
 		// else undefined class
@@ -1140,7 +1140,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	{
 		if ((grfrco & kfrcoSetPos) == 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3122, this,
 				"Cannot set the ",
 				m_psymName->FullName(),
 				" attribute in the ",
@@ -1151,7 +1151,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		GdlGlyphClassDefn * pglfcTmp = prit->OutputSymbol()->GlyphClassDefnData();
 		if (pglfcTmp && pglfcTmp->IncludesGlyph(g_cman.LbGlyphId()))
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3514, this,
 				"Attaching a line-break glyph will have no effect");
 		}
 	}
@@ -1160,7 +1160,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	{
 		if ((grfrco & kfrcoSetBreak) == 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3123, this,
 				"Cannot set the breakweight attribute in the ",
 				psymTable->FullName(),
 				" table");
@@ -1172,7 +1172,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	{
 		if ((grfrco & kfrcoSetCompRef) == 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3124, this,
 				"Cannot set the ",
 				m_psymName->FullName(),
 				" attribute in the ",
@@ -1187,7 +1187,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	{
 		if ((grfrco & kfrcoSetDir) == 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3125, this,
 				"Cannot set the directionality attribute in the ",
 				psymTable->FullName(),
 				" table");
@@ -1199,7 +1199,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	{
 		if ((grfrco & kfrcoSetInsert) == 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3126, this,
 				"Cannot set the insert attribute in the ",
 				psymTable->FullName(),
 				" table");
@@ -1213,7 +1213,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		{
 			if (m_psymName->LastFieldIs("width"))
 			{
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(3515, this,
 					"Setting ",
 					m_psymName->FullName(),
 					" too early in the process (should be before the bidi pass)");
@@ -1224,7 +1224,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 			if (m_psymName->LastFieldIs("stretch") || m_psymName->LastFieldIs("shrink") ||
 				m_psymName->LastFieldIs("step") || m_psymName->LastFieldIs("weight"))
 			{
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(3516, this,
 					"Setting ",
 					m_psymName->FullName(),
 					" too late in the process (should be before the bidi pass)");
@@ -1242,7 +1242,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		int nIndex = m_psymName->UserDefinableSlotAttrIndex();
 		if (nIndex < 0)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3127, this,
 				"Invalid slot attribute: ", m_psymName->FullName());
 			fOkay = false;
 		}
@@ -1250,7 +1250,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		{
 			char rgch[20];
 			itoa(kMaxUserDefinableSlotAttrs, rgch, 10);
-			g_errorList.AddError(this,
+			g_errorList.AddError(3128, this,
 				"Invalid slot attribute: ", m_psymName->FullName(),
 				"; maximum is ", rgch);
 			fOkay = false;
@@ -1276,7 +1276,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		if (exptExpected == kexptSlotRef)
 		{
 			//	Make it an error, not a warning, because we can't do adequate checking below.
-			g_errorList.AddError(this,
+			g_errorList.AddError(3129, this,
 				"Value for ",
 				m_psymName->FullName(),
 				" attribute must be a slot reference");
@@ -1285,14 +1285,14 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		}
 		else if (exptExpected == kexptMeas && exptFound == kexptNumber)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3517, this,
 				"Slot attribute ",
 				m_psymName->FullName(),
 				" expects a scaled number");
 		}
 		else if (exptFound == kexptUnknown)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(3130, this,
 				"Invalid value for ",
 				m_psymName->FullName());
 			fOkay = false;
@@ -1303,7 +1303,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 			// any value is appropriate
 		}
 		else
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3518, this,
 				"Assigned value has inappropriate type for '",
 				m_psymName->FullName(),
 				"' attribute");
@@ -1329,7 +1329,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 				if (pexpsr)
 				{
 					if (pexpsr->SlotNumber() == irit + 1)
-						g_errorList.AddWarning(this,
+						g_errorList.AddWarning(3519, this,
 							"Item ", prit->PosString(),
 							": slot is being attached to itself--no attachment will result");
 				}
@@ -1396,7 +1396,7 @@ bool GdlRule::CheckForJustificationConstraint()
 	}
 
 	//	No such constraint on the items. Record a warning.
-	g_errorList.AddWarning(this,
+	g_errorList.AddWarning(3520, this,
 		"Rules in justification table should test justification status.");
 
 	return false;
@@ -1614,7 +1614,7 @@ void GdlRule::GiveOverlapWarnings(GrcFont * pfont, int grfsdc)
 		if (prit1->OverlapsWith(prit2, pfont, grfsdc))
 		{
 			// Give warning.
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3521, this,
 				"Vertical overlap between glyphs in items ", prit1->PosString(), " and ",
 				prit2->PosString(), "; attachment may be needed");
 		}
@@ -1767,7 +1767,7 @@ bool GdlGlyphClassDefn::WarnAboutBadGlyphs(bool fTop)
 		fRet = (fRet || m_vpglfdMembers[iglfd]->WarnAboutBadGlyphs(false));
 	}
 	if (fRet && fTop)
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(3522, this,
 			"Class '", m_staName, "' is used in substitution but has invalid glyphs");
 	return fRet;
 }
@@ -1886,7 +1886,7 @@ bool GdlRule::CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPos
 
 	if (critLB > 2 || (critLB == 2 && (critPreTmp > 0 || critPost2Tmp > 0)))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3131, this,
 			"Cross-line contextualization involving more than two lines.");
 		return true;
 	}
@@ -2022,7 +2022,7 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 	Symbol psymNameAdvance = pcman->SymbolTable()->FindSymbol(xns);
 	if (!psymNameAdvance)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3132, this,
 			"Invalid kern assignment");
 		return false;
 	}
@@ -2031,7 +2031,7 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 	Symbol psymNameShift = pcman->SymbolTable()->FindSymbol(xns);
 	if (!psymNameShift)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3133, this,
 			"Invalid kern assignment");
 		return false;
 	}

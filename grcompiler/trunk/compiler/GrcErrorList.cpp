@@ -9,7 +9,45 @@ Responsibility: Sharon Correll
 Last reviewed: Not yet.
 
 Description:
-    
+
+Here are how the error and warning IDs are assigned:
+
+global - highest error: 140 / highest warning: 510
+		main.cpp
+		GrpParser.g
+		GrpLexer
+		GrpParser
+		GrcFont
+
+parsing - highest error: 1184 / 1511
+		ParserTreeWalker
+		PostParser
+
+error checking:
+	general - highest error: 2162 / highest warning: 2535
+		GdlExpression
+		GrcMasterTable
+		GrcSymTable
+		GdlNameDefn
+		GdlObject
+		GrcBinaryStream
+		GrcEnv
+		GdlRenderer
+	rules - highest error: 3160 / highest warning: 3526
+		ErrorCheckRules
+		GdlRule
+		GdlTablePass
+		Fsm
+	classes - highest error: 4145 / highest warning: 4517
+		ErrorCheckClass
+		GrcGlyphAttrMatrix
+		GdlGlyphDefn
+		GdlGlyphClassDefn
+
+compilation:	highest error: 5101 / highest warning: 5502
+		OutputToFont
+
+test and debug: highest error: 6106 / highest warning: 6500
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -38,7 +76,7 @@ GrcErrorList g_errorList;
 /*----------------------------------------------------------------------------------------------
 	Add an error or warning to the list.
 ----------------------------------------------------------------------------------------------*/
-void GrcErrorList::AddItem(bool fFatal, GdlObject * pgdlObj, const GrpLineAndFile * plnf,
+void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpLineAndFile * plnf,
 	StrAnsi staMsg)
 {
 	GrpLineAndFile lnf(0, 0, "");
@@ -50,14 +88,14 @@ void GrcErrorList::AddItem(bool fFatal, GdlObject * pgdlObj, const GrpLineAndFil
 	else
 		lnf = *plnf;
 	
-	GrcErrorItem * perr = new GrcErrorItem(fFatal, lnf, staMsg, pgdlObj);
+	GrcErrorItem * perr = new GrcErrorItem(fFatal, nID, lnf, staMsg, pgdlObj);
 	m_vperr.Push(perr);
 
 	if (fFatal)
 		m_fFatalError = true;
 }
 
-void GrcErrorList::AddItem(bool fFatal, GdlObject * pgdlObj, const GrpLineAndFile * plnf,
+void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpLineAndFile * plnf,
 	StrAnsi * psta1, StrAnsi * psta2, StrAnsi * psta3, StrAnsi * psta4,
 	StrAnsi * psta5, StrAnsi * psta6, StrAnsi * psta7, StrAnsi * psta8)
 {
@@ -79,7 +117,7 @@ void GrcErrorList::AddItem(bool fFatal, GdlObject * pgdlObj, const GrpLineAndFil
 	if (psta8)
 		staMsg += *psta8;
 
-	AddItem(fFatal, pgdlObj, plnf, staMsg);
+	AddItem(fFatal, nID, pgdlObj, plnf, staMsg);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -174,7 +212,7 @@ void GrcErrorList::WriteErrorsToFile(StrAnsi staFileName,
 	strmOut.open(staFileName.Chars());
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(106, NULL,
 			"Error in writing to file ",
 			staFileName);
 		return;
@@ -203,9 +241,17 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 
 	int cError = 0;
 	int cWarning = 0;
+	int cWarningIgnored = 0;
 	for (int iperr = 0; iperr < m_vperr.Size(); iperr++)
 	{
 		GrcErrorItem * perr = m_vperr[iperr];
+
+		if (!perr->m_fFatal && IgnoreWarning(perr->m_nID))
+		{
+			cWarningIgnored++;
+			continue;	// ignore this warning
+		}
+
 		if (perr->m_lnf.File() != "" ||
 			(perr->m_lnf.OriginalLine() != 0 &&
 				perr->m_lnf.OriginalLine() != kMaxFileLineNumber))
@@ -214,7 +260,9 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 		}
 
 		if (!perr->m_fMsgIncludesFatality)
-			strmOut << ((perr->m_fFatal) ? "error: " : "warning: ");
+		{
+			strmOut << ((perr->m_fFatal) ? "error(" : "warning(") << perr->m_nID << "): ";
+		}
 		(perr->m_fFatal) ? cError++ : cWarning++;
 
 		strmOut << perr->m_staMsg.Chars() << "\n";
@@ -228,6 +276,9 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 		strmOut << "Compilation succeeded";
 	strmOut << " - " << cError << " error" << ((cError == 1) ? ", " : "s, ")
 		<< cWarning << " warning" << ((cWarning == 1) ? "" : "s");
+	if (cWarningIgnored > 0)
+		strmOut << " (" << cWarningIgnored << " warning" << ((cWarningIgnored == 1) ? "" : "s")
+			<< " ignored)";
 }
 
 
@@ -247,21 +298,60 @@ int GrcErrorList::NumberOfWarnings()
 
 
 /*----------------------------------------------------------------------------------------------
+	Store or remove an indication that the given warning should be ignored in the output.
+----------------------------------------------------------------------------------------------*/
+void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
+{
+	int iFound = -1;
+	for (int i = 0; i < m_vnIgnoreWarnings.Size(); i++)
+	{
+		if (m_vnIgnoreWarnings[i] == nWarning)
+		{
+			iFound = i;
+			break;
+		}
+	}
+	if (f)
+	{
+		if (iFound == -1)
+			m_vnIgnoreWarnings.Push(nWarning);
+	}
+	else
+	{
+		if (iFound > -1)
+			m_vnIgnoreWarnings.Delete(iFound);
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Store or remove an indication that the given warning should be ignored in the output.
+----------------------------------------------------------------------------------------------*/
+bool GrcErrorList::IgnoreWarning(int nWarning)
+{
+	for (int i = 0; i < m_vnIgnoreWarnings.Size(); i++)
+	{
+		if (m_vnIgnoreWarnings[i] == nWarning)
+			return true;
+	}
+	return false;
+}
+
+/*----------------------------------------------------------------------------------------------
 	Global functions for use by the parser.
 ----------------------------------------------------------------------------------------------*/
-void AddGlobalError(bool fFatal, std::string msg, int nLine)
+void AddGlobalError(bool fFatal, int nID, std::string msg, int nLine)
 {
 	if (fFatal)
-		g_errorList.AddError(NULL, msg.c_str(), GrpLineAndFile(nLine, 0, ""));
+		g_errorList.AddError(nID, NULL, msg.c_str(), GrpLineAndFile(nLine, 0, ""));
 	else
-		g_errorList.AddWarning(NULL, msg.c_str(), GrpLineAndFile(nLine, 0, ""));
+		g_errorList.AddWarning(nID, NULL, msg.c_str(), GrpLineAndFile(nLine, 0, ""));
 }
 
 
-void AddGlobalError(bool fFatal, std::string msg, GrpLineAndFile const& lnf)
+void AddGlobalError(bool fFatal, int nID, std::string msg, GrpLineAndFile const& lnf)
 {
 	if (fFatal)
-		g_errorList.AddError(NULL, msg.c_str(), lnf);
+		g_errorList.AddError(nID, NULL, msg.c_str(), lnf);
 	else
-		g_errorList.AddWarning(NULL, msg.c_str(), lnf);
+		g_errorList.AddWarning(nID, NULL, msg.c_str(), lnf);
 }

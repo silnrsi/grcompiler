@@ -45,8 +45,8 @@ using namespace gr;
 #include "GrpLexer.hpp"
 #include "GrpParser.hpp"
 
-void AddGlobalError(bool, std::string, int nLine);
-void AddGlobalError(bool, std::string, GrpLineAndFile const&);
+void AddGlobalError(bool, int nID, std::string, int nLine);
+void AddGlobalError(bool, int nID, std::string, GrpLineAndFile const&);
 
 
 #endif // !GRAMMAR_H

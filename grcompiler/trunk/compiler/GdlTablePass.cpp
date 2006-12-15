@@ -42,7 +42,7 @@ GdlPass* GdlRuleTable::GetPass(GrpLineAndFile & lnf, int ipassNumber,
 {
 	if (ipassNumber < 0)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(3150, NULL,
 			StrAnsi("Invalid pass number"),
 			lnf);
 		return NULL;

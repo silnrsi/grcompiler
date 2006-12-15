@@ -81,7 +81,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 		{
 			if (!psymClass || !psymClass->FitsSymbolType(ksymtClass))
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(3134, this,
 					"Undefined class name: ",
 					staInput,
 					lnf);
@@ -110,7 +110,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
 	StrAnsi staClassOrAt, int nSel, StrAnsi staAlias)
 {
-	g_errorList.AddError(this,
+	g_errorList.AddError(3135, this,
 		"Cannot specify a selector in the context");
 
 	if (staClassOrAt = "@")
@@ -122,7 +122,7 @@ GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
 GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
 	StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias)
 {
-	g_errorList.AddError(this,
+	g_errorList.AddError(3136, this,
 		"Cannot specify a selector in the context");
 
 	if (staClassOrAt = "@")
@@ -166,7 +166,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 						!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialLb) &&
 						!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialAt)))
 				{
-					g_errorList.AddError(this,
+					g_errorList.AddError(3137, this,
 						"Undefined class name: ",
 						staInput,
 						lnf);
@@ -219,7 +219,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 LLbError:
 	if (staInput == "#")
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3138, this,
 			StrAnsi("Line break indicator # cannot appear in the right-hand-side"));
 		return NULL;
 	}
@@ -229,7 +229,7 @@ LLbError:
 			!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialUnderscore) &&
 			!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialAt)))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3139, this,
 			"Undefined class name: ",
 			staInput,
 			lnf);
@@ -240,7 +240,7 @@ LLbError:
 	//	there was an extra _ on the end of the context.
 	if (fContext)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3140, this,
 			StrAnsi("Context does not account for all items in the right-hand-side"));
 	}
 
@@ -340,7 +340,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 						!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialUnderscore) &&
 						!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialLb)))
 				{
-					g_errorList.AddError(this,
+					g_errorList.AddError(3141, this,
 						"Undefined class name: ",
 						staInput,
 						lnf);
@@ -387,7 +387,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 LLbError:
 	if (staInput == "#")
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3142, this,
 			StrAnsi("Line break indicator # cannot appear in the left-hand-side"));
 		return NULL;
 	}
@@ -396,7 +396,7 @@ LLbError:
 		(!psymClassOrPlaceHolder->FitsSymbolType(ksymtClass) &&
 			!psymClassOrPlaceHolder->FitsSymbolType(ksymtSpecialUnderscore)))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3143, this,
 			"Undefined class name: ",
 			staInput,
 			lnf);
@@ -404,10 +404,10 @@ LLbError:
 	}
 
 	if (fContext)
-		g_errorList.AddError(this,
+		g_errorList.AddError(3144, this,
 			StrAnsi("Context does not account for all items in the left-hand-side"));
 	else
-		g_errorList.AddError(this,
+		g_errorList.AddError(3145, this,
 			StrAnsi("Number of items in left- and right-hand-sides do not match"));
 
 	//	Pretend it is a deletion.
@@ -436,7 +436,7 @@ LLbError:
 GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 	StrAnsi staClassOrAt, int nSel, StrAnsi staAlias)
 {
-	g_errorList.AddError(this,
+	g_errorList.AddError(3146, this,
 		"Cannot specify a selector in the lhs");
 
 	if (staClassOrAt = "@")
@@ -448,7 +448,7 @@ GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 	StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias)
 {
-	g_errorList.AddError(this,
+	g_errorList.AddError(3147, this,
 		"Cannot specify a selector in the lhs");
 
 	if (staClassOrAt = "@")
@@ -482,14 +482,14 @@ void GdlRule::AddOptionalRange(int iritStart, int crit, bool fContext)
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, int n)
 {
-	g_errorList.AddError(NULL,
+	g_errorList.AddError(3148, NULL,
 		"Associations are only permitted in the rhs of a substitution rule",
 		lnf);
 }
 
 void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, StrAnsi sta)
 {
-	g_errorList.AddError(NULL,
+	g_errorList.AddError(3149, NULL,
 		"Associations are only permitted in the rhs of a substitution rule",
 		lnf);
 }

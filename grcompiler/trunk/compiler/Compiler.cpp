@@ -733,7 +733,7 @@ void GrcManager::DebugRulePrecedence()
 	strmOut.open("dbg_ruleprec.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(6101, NULL,
 			"Error in writing to file ",
 			"dbg_ruleprec.txt");
 		return;
@@ -837,7 +837,7 @@ void GrcManager::DebugEngineCode()
 	strmOut.open("dbg_enginecode.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(6102, NULL,
 			"Error in writing to file ",
 			"dbg_enginecode.txt");
 		return;
@@ -1319,7 +1319,7 @@ void GrcManager::DebugGlyphAttributes()
 	strmOut.open("dbg_glyphattrs.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(6103, NULL,
 			"Error in Griting to file ",
 			"dbg_glyphattrs.txt");
 		return;
@@ -1639,7 +1639,7 @@ void GrcManager::DebugClasses()
 	strmOut.open("dbg_classes.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(6104, NULL,
 			"Error in writing to file ",
 			"dbg_classes.txt");
 		return;
@@ -1740,7 +1740,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 	strmOut.open("dbg_cmap.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(6105, NULL,
 			"Error in writing to file ",
 			"dbg_cmap.txt");
 		return;

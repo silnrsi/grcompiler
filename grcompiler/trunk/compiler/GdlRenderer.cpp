@@ -141,7 +141,7 @@ GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableN
 	Assert(psymTableName);
 	if (!psymTableName || !psymTableName->FitsSymbolType(ksymtTableRule))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(2162, NULL,
 			"The ",
 			staTableName,
 			" table cannot hold rules",

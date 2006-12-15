@@ -160,7 +160,7 @@ Symbol GrcSymbolTable::AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndF
 			StrAnsi staMsg("Cannot set the value of a glyph metric: ");
 			StrAnsi staName = psymGeneric->FullName();
 			staMsg.Append(staName.Chars());
-			g_errorList.AddItem(true, NULL, &lnf, staMsg); // fatal error
+			g_errorList.AddItem(true, 1184, NULL, &lnf, staMsg); // fatal error
 			return NULL;
 		}
 		if (psymGeneric->m_symt == ksymtInvalid)
