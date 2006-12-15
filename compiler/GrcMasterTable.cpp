@@ -74,7 +74,7 @@ void GrcMasterTable::AddItem(Symbol psym, GdlExpression * pexpValue,
 //		StrAnsi staT = (psym->FitsSymbolType(ksymtGlyphAttr)) ?
 //			StrAnsi("glyph attribute assignment") :
 //			StrAnsi("feature setting");
-//		g_errorList.AddWarning(pexpValue,
+//		g_errorList.AddWarning(2523, pexpValue,
 //			"Duplicate ", staT);
 //		
 //		if ((lnf.PreProcessedLine() > pasgn->PreProcessedLine() && fOverride) ||
@@ -108,7 +108,7 @@ void GrcMasterValueList::AddItem(Symbol psym, GdlExpression * pexpValue,
 	}
 	else
 	{
-		g_errorList.AddWarning(pexpValue,
+		g_errorList.AddWarning(2524, pexpValue,
 			"Duplicate ", staDescription);
 		
 		if ((lnf.PreProcessedLine() > pasgn->PreProcessedLine() && fOverride) ||
@@ -183,13 +183,13 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			{
 				unsigned int nID;
 				if (!pexp->ResolveToFeatureID(&nID))
-					g_errorList.AddError(pexp,
+					g_errorList.AddError(2147, pexp,
 						"Feature id must be an integer or string of 4 characters or less");
 				else if (nID == GdlFeatureDefn::kfidStdLang)
 				{
 					char rgch[20];
 					itoa(nID, rgch, 10);
-					g_errorList.AddError(pexp,
+					g_errorList.AddError(2148, pexp,
 						"Feature ID ", rgch, " is a reserved value");
 					pfeat->SetID(nID);	// set it anyway, to avoid extra error message
 				}
@@ -197,7 +197,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 					pfeat->SetID(nID);
 			}
 			else
-				g_errorList.AddError(pexp,
+				g_errorList.AddError(2149, pexp,
 					"Invalid feature id statement");
 		}
 
@@ -207,7 +207,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			if (psym->FieldCount() == 2)
 				pexpDefault = pexp;	// save for later
 			else
-				g_errorList.AddError(pexp,
+				g_errorList.AddError(2150, pexp,
 					"Invalid feature default statement");
 		}
 
@@ -222,7 +222,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 				int nLangID;
 				if (psym->FieldCount() != 5)
 				{
-					g_errorList.AddWarning(pexp,
+					g_errorList.AddWarning(2525, pexp,
 						"Invalid feature name statement");
 					nLangID = LG_USENG;
 				}
@@ -237,7 +237,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 						nLangID = atoi(strLang);							// 1033
 					if (nLangID == 0 && psym->FieldAt(4) != "0")
 					{
-						g_errorList.AddWarning(pexp,
+						g_errorList.AddWarning(2526, pexp,
 							"Invalid language ID: ",
 							psym->FieldAt(4),
 							"--should be an integer");
@@ -245,7 +245,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 					}
 				}
 				if (!pexp->TypeCheck(kexptString))
-					g_errorList.AddWarning(pexp,
+					g_errorList.AddWarning(2527, pexp,
 						"Feature setting name must be a string");
 				else
 					pfset->AddExtName((utf16)nLangID, pexp);
@@ -255,19 +255,19 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			{
 				int nValue;
 				if (!pexp->ResolveToInteger(&nValue, false))
-					g_errorList.AddError(pexp,
+					g_errorList.AddError(2151, pexp,
 						"Feature value must be an integer");
 				else
 				{
 					if (!pexp->TypeCheck(kexptNumber, kexptZero, kexptOne))
-						g_errorList.AddWarning(pexp,
+						g_errorList.AddWarning(2528, pexp,
 							"Feature setting value should not be a scaled number");
 					pfset->SetValue(nValue);
 				}
 			}
 
 			else
-				g_errorList.AddError(pexp,
+				g_errorList.AddError(2152, pexp,
 					"Invalid feature settings field");
 		}
 
@@ -277,7 +277,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			int nLangID;
 			if (psym->FieldCount() != 3)
 			{
-				g_errorList.AddWarning(pexp,
+				g_errorList.AddWarning(2529, pexp,
 					"Invalid feature name statement");
 				nLangID = LG_USENG;
 			}
@@ -292,7 +292,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 					nLangID = atoi(strLang);							// 1033
 				if (nLangID == 0 && psym->FieldAt(2) != "0")
 				{
-					g_errorList.AddWarning(pexp,
+					g_errorList.AddWarning(2530, pexp,
 						"Invalid language ID: ",
 						psym->FieldAt(2),
 						"--should be an integer");
@@ -300,14 +300,14 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 				}
 			}
 			if (!pexp->TypeCheck(kexptString))
-				g_errorList.AddWarning(pexp,
+				g_errorList.AddWarning(2531, pexp,
 						"Feature name must be a string.");
 			else
 				pfeat->AddExtName((utf16)nLangID, pexp);
 		}
 
 		else
-			g_errorList.AddError(pexp, "Invalid feature statement");
+			g_errorList.AddError(2153, pexp, "Invalid feature statement");
 
 	}
 
@@ -318,7 +318,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 		if (pexpDefault->ResolveToInteger(&nDefault, false))
 		{
 			if (!pexpDefault->TypeCheck(kexptNumber, kexptZero, kexptOne))
-				g_errorList.AddWarning(pexpDefault,
+				g_errorList.AddWarning(2532, pexpDefault,
 					"Feature setting value should not be a scaled number");
 			if (!pfeat->FindSettingWithValue(nDefault))
 			{
@@ -328,7 +328,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 				}
 				else
 				{
-					g_errorList.AddWarning(pexpDefault,
+					g_errorList.AddWarning(2533, pexpDefault,
 						"Default feature setting is not among the defined values");
 				}
 			}
@@ -342,7 +342,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 				dynamic_cast<GdlSlotRefExpression *>(pexpDefault);
 			if (!pexpsr || pexpsr->Alias() == "")
 			{
-				g_errorList.AddError(pexpDefault,
+				g_errorList.AddError(2154, pexpDefault,
 					"Invalid default feature setting");
 			}
 			else
@@ -350,7 +350,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 				GdlFeatureSetting * pfsetDefault =
 					pfeat->FindSetting(pexpsr->Alias());
 				if (!pfsetDefault)
-					g_errorList.AddError(pexpDefault,
+					g_errorList.AddError(2155, pexpDefault,
 						"Default feature setting is undefined: ",
 						pexpsr->Alias());
 				else
@@ -411,7 +411,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 				vpsymProcessed.Push(psym);
 			}
 			else
-				g_errorList.AddError(pexp,
+				g_errorList.AddError(2156, pexp,
 					"Invalid use of directionality attribute");
 		}
 		else if (psym->FieldIs(1, "breakweight"))
@@ -422,7 +422,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 				vpsymProcessed.Push(psym);
 			}
 			else
-				g_errorList.AddError(pexp,
+				g_errorList.AddError(2157, pexp,
 					"Invalid use of breakweight attribute");
 		}
 		else if (psym->FieldIs(1, "component"))
@@ -437,13 +437,13 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 				vpsymProcessed.Push(psym);
 			}
 			else
-				g_errorList.AddError(pexp, "Invalid use of component attribute");
+				g_errorList.AddError(2158, pexp, "Invalid use of component attribute");
 		}
 		else
 		{
 			if (psym->FitsSymbolType(ksymtGlyphMetric))
 				//	We should never get here, but just in case.
-				g_errorList.AddError(pexp, "Cannot set the value of a glyph metric.");
+				g_errorList.AddError(2159, pexp, "Cannot set the value of a glyph metric.");
 			else
 			{
 				//	User-defined glyph attribute.
@@ -484,10 +484,10 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 		GdlStringExpression * pexpstr = dynamic_cast<GdlStringExpression *>(pexp);
 
 		if (psym->FieldCount() != 2)
-			g_errorList.AddError(pexp, "Invalid name table entry.");
+			g_errorList.AddError(2160, pexp, "Invalid name table entry.");
 
 		else if (!pexpstr)
-			g_errorList.AddError(pexp,
+			g_errorList.AddError(2161, pexp,
 				"Value of name table entry must be a string");
 
 		else
@@ -497,13 +497,13 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 
 			int nNameID = atoi(staNameID.Chars());
 			if (nNameID == 0 && staNameID != "0")
-				g_errorList.AddWarning(pexp,
+				g_errorList.AddWarning(2534, pexp,
 					"Invalid name ID: ",
 					staNameID,
 					"--should be an integer");
 			int nLangID = atoi(staLangID.Chars());
 			if (nLangID == 0 && staLangID != "0")
-				g_errorList.AddWarning(pexp,
+				g_errorList.AddWarning(2535, pexp,
 					"Invalid language ID: ",
 					staLangID,
 					"--should be an integer");

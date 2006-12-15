@@ -206,7 +206,7 @@ bool GdlSlotRefExpression::ReplaceAliases(GdlRule * prule)
 		m_srNumber = prule->LookupAliasIndex(m_staName);
 		if (m_srNumber < 1)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(1101, this,
 				"Undefined slot alias: ",
 				m_staName);
 			m_srNumber = 0;
@@ -292,7 +292,7 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 		sr = prule->LookupAliasIndex(m_staName);
 		if (sr < 1)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(1102, this,
 				"Undefined slot alias: ",
 				m_staName);
 			return false;
@@ -305,12 +305,12 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 		{
 			char rgch[20];
 			itoa(m_srNumber, rgch, 10);
-			g_errorList.AddError(this,
+			g_errorList.AddError(1103, this,
 				"Optional item referenced: ",
 				rgch);
 		}
 		else
-			g_errorList.AddError(this,
+			g_errorList.AddError(1103, this,
 				"Optional item referenced: ",
 				m_staName);
 		return false;
@@ -369,7 +369,7 @@ bool GdlBinaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 	{
 		if (nTmp2 == 0)
 		{
-			g_errorList.AddError(this, "Divide by zero.");
+			g_errorList.AddError(1104, this, "Divide by zero.");
 			return false;
 		}
 		*pnRet = nTmp1 / nTmp2;
@@ -645,7 +645,7 @@ bool GdlUnaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 
 	if (expt == kexptSlotRef)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2101, this,
 			"Cannot use '",
 			m_psymOperator->FullName(),
 			"' operator with slot index");
@@ -655,7 +655,7 @@ bool GdlUnaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 	if (m_psymOperator->MatchesOp("!"))
 	{
 		if (expt != kexptBoolean && expt != kexptZero && expt != kexptOne)
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2501, this,
 				"Boolean expression expected as target of '!' operator.");
 		*pexptRet = kexptBoolean;
 		return true;
@@ -663,14 +663,14 @@ bool GdlUnaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 	else if (m_psymOperator->MatchesOp("-"))
 	{
 		if (expt != kexptNumber && expt != kexptMeas && expt != kexptZero && expt != kexptOne)
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2502, this,
 				"Numeric expression expected as target of '-' operator.");
 		*pexptRet = expt;
 		return true;
 	}
 	else
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2102, this,
 			"Invalid unary operator: ",
 			m_psymOperator->FieldAt(1));
 	}
@@ -696,7 +696,7 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		//	Additive, multiplicative
 		if (expt1 == kexptSlotRef || expt2 == kexptSlotRef)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2103, this,
 				"Using '",
 				m_psymOperator->FullName(),
 				"' operator with slot indices");
@@ -707,7 +707,7 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 			(expt2 != kexptNumber && expt2 != kexptMeas &&
 				expt2 != kexptZero && expt2 != kexptOne))
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2503, this,
 				"Numeric expression expected as target of ",
 				m_psymOperator->FullName(),
 				" operator.");
@@ -716,13 +716,13 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		if (m_psymOperator->MatchesOp("+") || m_psymOperator->MatchesOp("-"))
 		{
 			if (!EquivalentTypes(expt1, expt2) && expt1 != kexptUnknown && expt2 != kexptUnknown)
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(2504, this,
 					"Adding measurement to non-measurement");
 		}
 		else if (m_psymOperator->MatchesOp("*"))
 		{
 			if (expt1 == kexptMeas && expt2 == kexptMeas)
-				g_errorList.AddWarning(this,
+				g_errorList.AddWarning(2505, this,
 					"Multiplying two measurements");
 
 			if (expt1 == kexptMeas || expt2 == kexptMeas)
@@ -733,9 +733,9 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		else if (m_psymOperator->MatchesOp("/"))
 		{
 			if (expt2 == kexptMeas)
-				g_errorList.AddWarning(this, "Divisor is a measurement");
+				g_errorList.AddWarning(2506, this, "Divisor is a measurement");
 			else if (expt2 == kexptZero)
-				g_errorList.AddError(this, "Dividing by zero");
+				g_errorList.AddError(2104, this, "Dividing by zero");
 		}
 	}
 	else if (m_psymOperator->MatchesOp("&&") || m_psymOperator->MatchesOp("||"))
@@ -744,13 +744,13 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		if ((expt1 != kexptBoolean && expt1 != kexptZero && expt1 != kexptOne) ||
 			(expt2 != kexptBoolean && expt2 != kexptZero && expt2 != kexptOne))
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2507, this,
 				"Boolean expression expected as target of ",
 				m_psymOperator->FullName(),
 				" operator");
 		}
 		if (!EquivalentTypes(expt1, expt2) && expt1 != kexptUnknown && expt2 != kexptUnknown)
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2508, this,
 				"Logically combining expressions of different types");
 
 		*pexptRet = kexptBoolean;
@@ -761,7 +761,7 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 	{
 		//	Comparative
 		if (!EquivalentTypes(expt1, expt2) && expt1 != kexptUnknown && expt2 != kexptUnknown)
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2509, this,
 				"Comparing expressions of different types");
 
 		*pexptRet = kexptBoolean;
@@ -774,13 +774,13 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 			expt2 != kexptNumber && expt2 != kexptMeas &&
 			expt2 != kexptSlotRef && expt2 != kexptZero && expt2 != kexptOne)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2510, this,
 				"Numeric expression expected as target of ",
 				m_psymOperator->FullName(),
 				" function");
 		}
 		if (!EquivalentTypes(expt1, expt2) && expt1 != kexptUnknown && expt2 != kexptUnknown)
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2511, this,
 				"Calculating ",
 				m_psymOperator->FullName(),
 				" of different expression types");
@@ -790,14 +790,14 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		m_psymOperator->MatchesOp("*=") || m_psymOperator->MatchesOp("/="))
 	{
 		//	Assignment
-		g_errorList.AddError(this,
+		g_errorList.AddError(2105, this,
 			m_psymOperator->FullName(),
 			" assignment operator not permitted in expression");
 		return false;
 	}
 	else
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2106, this,
 			"Invalid binary operator: ",
 			m_psymOperator->FullName());
 		return false;
@@ -814,7 +814,7 @@ bool GdlCondExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		return false;
 
 	if (exptTest != kexptBoolean)
-		g_errorList.AddWarning(this, "Boolean expression expected as condition");
+		g_errorList.AddWarning(2512, this, "Boolean expression expected as condition");
 
 	ExpressionType expt1;
 	if (!m_pexpTrue->CheckTypeAndUnits(&expt1))
@@ -827,10 +827,10 @@ bool GdlCondExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 	{
 		if (expt1 == kexptSlotRef || expt2 == kexptSlotRef)
 			//	One or the other is sure to be wrong.
-			g_errorList.AddError(this,
+			g_errorList.AddError(2107, this,
 				"Inconsistent types in conditional branches");
 		else
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2513, this,
 				"Non-matching types in conditional branches");
 	}
 
@@ -913,21 +913,21 @@ void GdlLookupExpression::GlyphAttrCheck()
 	}
 	else if (m_psymName->FitsSymbolType(ksymtSlotAttr))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2108, this,
 			"Slot attribute references are not permitted in glyph attribute values");
 	}
 	else if (m_psymName->FitsSymbolType(ksymtFeature))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2109, this,
 			"Feature references are not permitted in glyph attribute values");
 	}
 	else if (m_psymName->FitsSymbolType(ksymtProcState))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2110, this,
 			"Processing-state references are not permitted in glyph attribute values");
 	}
 	else
-		g_errorList.AddError(this,
+		g_errorList.AddError(2111, this,
 			"Unknown attribute: ",
 			m_psymName->FullName());
 }
@@ -940,7 +940,7 @@ void GdlNumericExpression::GlyphAttrCheck()
 /*--------------------------------------------------------------------------------------------*/
 void GdlSlotRefExpression::GlyphAttrCheck()
 {
-	g_errorList.AddError(this,
+	g_errorList.AddError(2112, this,
 		StrAnsi("Slot references are not permitted in glyph attribute values"));
 }
 
@@ -1013,7 +1013,7 @@ void GdlBinaryExpression::FixFeatureTestsInRules(GrcFont *pfont)
 				{
 					char rgch[20];
 					itoa(pexpnum->Value(), rgch, 10);
-					g_errorList.AddWarning(this,
+					g_errorList.AddWarning(2514, this,
 						"Feature '",
 						pfeat->Name(),
 						"' has no setting with value ",
@@ -1068,7 +1068,7 @@ void GdlStringExpression::FixFeatureTestsInRules(GrcFont *pfont)
 GdlExpression * GdlUnaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
 {
 	if (pfeat->IsLanguageFeature())
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(2515, this,
 			"Arithmetic calculation of language ID value");
 
 	GdlExpression * pexpNew = m_pexpOperand->ConvertFeatureSettingValue(pfeat);
@@ -1084,7 +1084,7 @@ GdlExpression * GdlUnaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * 
 GdlExpression * GdlBinaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
 {
 	if (pfeat->IsLanguageFeature())
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(2516, this,
 			"Arithmetic calculation of language ID value");
 
 	GdlExpression * pexpNew;
@@ -1132,13 +1132,13 @@ GdlExpression * GdlCondExpression::ConvertFeatureSettingValue(GdlFeatureDefn * p
 GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
 {
 	if (pfeat->IsLanguageFeature())
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(2517, this,
 			"Arithmetic calculation of language ID value");
 
 	//	Note: normally the symbol type will be ksymtInvalid.
 	if (m_psymName->FieldCount() > 1)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2113, this,
 			"Invalid feature setting: ",
 			m_psymName->FullName());
 		return this;
@@ -1147,7 +1147,7 @@ GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	GdlFeatureSetting * pfset = pfeat->FindSetting(m_psymName->LastField());
 	if (!pfset)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2114, this,
 			"Feature '",
 			pfeat->Name(),
 			"' has no setting '",
@@ -1165,7 +1165,7 @@ GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
 {
 	if (pfeat->IsLanguageFeature())
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(2518, this,
 			"Numeric value where language ID string expected");
 
 	return this;
@@ -1177,7 +1177,7 @@ GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn 
 	//	Caller will replace slot-ref expression with numeric expression.
 	char rgch[20];
 	itoa(m_srNumber, rgch, 10);
-	g_errorList.AddWarning(this,
+	g_errorList.AddWarning(2519, this,
 		"Inappropriate value of feature setting: @",
 		rgch);
 	GdlNumericExpression * pexpValue = new GdlNumericExpression(m_srNumber);
@@ -1193,12 +1193,12 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 		int cb = m_staValue.Length();
 		if (m_staValue.Length() > 4)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2115, this,
 				"Invalid language ID--must be a 4-byte string");
 		}
 		else if (m_staValue.Length() < 4)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2520, this,
 				"Possibly invalid language ID--4-byte string expected");
 		}
 		byte b1, b2, b3, b4;
@@ -1214,7 +1214,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	}
 	else
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2116, this,
 			"Inappropriate value of feature setting: ",
 			m_staValue);
 	}
@@ -1253,7 +1253,7 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 {
 	if (!m_psymName)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2117, this,
 			"Undefined attribute");
 		return;
 	}
@@ -1267,19 +1267,19 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 		m_psymName->FitsSymbolType(ksymtProcState))
 	{
 		if (m_nClusterLevel != 0)
-			g_errorList.AddError(this,
+			g_errorList.AddError(2118, this,
 				"Composite metric indicator is incompatible with ",
 				m_psymName->TypeDescriptorString());
 	}
 	else if (m_psymName->FitsSymbolType(ksymtInvalidGlyphAttr))
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2119, this,
 			"Incomplete glyph attribute: ",
 			m_psymName->FullName());
 	}
 	else
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2120, this,
 			"Undefined attribute: ",
 			m_psymName->FullName());
 		return;
@@ -1290,7 +1290,7 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 		if (!m_psymName->FitsSymbolType(ksymtFeature) &&
 			!m_psymName->FitsSymbolType(ksymtProcState))
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2121, this,
 				"Only features and the processing state may be tested within 'if' statements; ",
 				m_psymName->TypeDescriptorString(),
 				"s not permitted");
@@ -1300,7 +1300,7 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 		{
 			char rgch[20];
 			itoa(m_pexpSelector->SlotNumber(), rgch, 10);
-			g_errorList.AddError(this,
+			g_errorList.AddError(2122, this,
 				"Slot selectors are not permitted in 'if' statements: @",
 				rgch);
 		}
@@ -1516,7 +1516,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 		GdlGlyphClassDefn * pglfc = psymTmp->GlyphClassDefnData();
 		if (!pglfc)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2123, this,
 				"Undefined glyph class: ", psymTmp->FullName());
 			return NULL;
 		}
@@ -1536,20 +1536,20 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 			fDefined = (fDefined || pgax->Defined(nGlyphIDFirst, nAttrID));
 			if (!fDefined)
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(2124, this,
 					"Undefined glyph attribute: ", m_psymName->FullName());
 				return NULL;
 			}
 		}
 		else if (!fDefined)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2125, this,
 				"Undefined identifier: ", m_psymName->FullName());
 		}
 
 		if (fMoreThanOne)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(2521, this,
 				"Class '",
 				pglfc->Name(),
 				"' has size > 1; first glyph will be used to evaluate ",
@@ -1581,7 +1581,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 			int nValue;
 			if (gmet == -1)
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(2126, this,
 					"Invalid glyph metric: ",
 					m_psymName->FullName());
 				nValue = 0;
@@ -1613,7 +1613,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 	{
 		if (wGlyphID == 0xFFFF)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2127, this,
 				"Illegal use of glyph metric: ",
 				m_psymName->FullName());
 			return this;
@@ -1623,7 +1623,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 		int nValue;
 		if (gmet == -1)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2128, this,
 				"Invalid glyph metric: ",
 				m_psymName->FullName());
 			nValue = 0;
@@ -1660,7 +1660,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 		if (!pgax->Defined(wGlyphID, nAttrID))
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2129, this,
 				"The glyph attribute ",
 				m_psymName->FullName(),
 				" is not defined for glyph 0x",
@@ -1669,7 +1669,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 		}
 		else if (setpsym.IsMember(m_psymName))
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2130, this,
 				"Circular definition of glyph attribute ",
 				m_psymName->FullName(),
 				" for glyph 0x",
@@ -1782,14 +1782,14 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 			nSel = irit;
 		if (nSel < 0 || nSel >= vpglfcInClasses.Size())
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2131, this,
 				"Item ", rgchItem,
 				": glyph attribute selector out of range");
 			return;
 		}
 		else if (vpglfcInClasses[nSel] == NULL)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2132, this,
 				"Item ", rgchItem,
 				": no input class for selector");
 			return;
@@ -1806,7 +1806,7 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		//	GdlGlyphClassDefn * pglfc = psymBaseClass->GlyphClassDefnData();
 		//	if (pglfc != vpglfcInClasses[nSel])
 		//	{
-		//		g_errorList.AddWarning(this,
+		//		g_errorList.AddWarning(2522, this,
 		//			"Item ", rgchItem,
 		//			": Invalid glyph attribute: ",
 		//			m_psymName->FullName());
@@ -1894,7 +1894,7 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 		{
 			char rgch[20];
 			itoa(irit+1, rgch, 10);
-			g_errorList.AddError(this,
+			g_errorList.AddError(2133, this,
 				"Item ", rgch,
 				"slot selector on glyph attribute ",
 				m_psymName->FullName(),
@@ -1905,7 +1905,7 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 		{
 			char rgch[20];
 			itoa(irit+1, rgch, 10);
-			g_errorList.AddError(this,
+			g_errorList.AddError(2134, this,
 				"Item ", rgch,
 				": no input class for selector on glyph attribute ",
 				m_psymName->FullName());
@@ -2151,13 +2151,13 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 		m_psymName->FitsSymbolType(ksymtInvalid));
 
 	if (m_nClusterLevel != 0 && !m_psymName->FitsSymbolType(ksymtGlyphMetric))
-		g_errorList.AddError(this,
+		g_errorList.AddError(2135, this,
 			"Composite metrics are only available for glyph metrics");
 
 	if (m_psymName->FitsSymbolType(ksymtSlotAttr))
 	{
 		if (m_psymName->IsWriteOnlySlotAttr())
-			g_errorList.AddError(this,
+			g_errorList.AddError(2136, this,
 				"The '",
 				m_psymName->FullName(),
 				"' attribute is write-only");
@@ -2168,13 +2168,13 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 			{
 				int nIndex = m_psymName->UserDefinableSlotAttrIndex();
 				if (nIndex < 0)
-					g_errorList.AddError(this,
+					g_errorList.AddError(2137, this,
 						"Invalid slot attribute: ", m_psymName->FullName());
 				else if (nIndex >= kMaxUserDefinableSlotAttrs)
 				{
 					char rgch[20];
 					itoa(kMaxUserDefinableSlotAttrs, rgch, 10);
-					g_errorList.AddError(this,
+					g_errorList.AddError(2138, this,
 						"Invalid slot attribute: ", m_psymName->FullName(),
 						"; maximum is ", rgch);
 				}
@@ -2185,7 +2185,7 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 			}
 			else
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(2139, this,
 					"Not permitted to read the '",
 					m_psymName->FullName(), "' attribute");
 			}
@@ -2206,7 +2206,7 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 
 		if (sr < 1 || sr > crit)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2140, this,
 				"Slot selector out of range: @",
 				rgchSlotNumber,
 				".",
@@ -2218,7 +2218,7 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 		//	Never okay to read the attribute of an inserted item.
 		else if (vfIns[sr - 1])
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(2141, this,
 				"Slot selector indicates an inserted item: @",
 				rgchSlotNumber,
 				".",
@@ -2250,7 +2250,7 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 
 	if (m_srNumber < 1 || m_srNumber > vfLb.Size())
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(2142, this,
 			"Slot reference out of range: @",
 			rgchSlotNumber);
 		return false;
@@ -2259,7 +2259,7 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 	else if (fValue && vfLb[m_srNumber - 1])
 	{
 		//	Eg, attach.to = @2 or comp.X.ref = @2, where @2 is a LB slot
-		g_errorList.AddError(this,
+		g_errorList.AddError(2143, this,
 			"Illegal reference to line-break slot: @",
 			rgchSlotNumber);
 		return false;
@@ -2268,7 +2268,7 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 	else if ((!fValue || fValueIsInputSlot) && vfIns[m_srNumber - 1])
 	{
 		//	Eg, @1.bb.width or comp.X.ref = @1, where @1 is being inserted
-		g_errorList.AddError(this,
+		g_errorList.AddError(2144, this,
 			"Illegal reference to inserted slot: @",
 			rgchSlotNumber);
 		return false;
@@ -2277,7 +2277,7 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 	else if (fValue && !fValueIsInputSlot && vfDel[m_srNumber - 1])
 	{
 		//	Eg, attach.to = @3, where @3 is being deleted
-		g_errorList.AddError(this,
+		g_errorList.AddError(2145, this,
 			"Illegal reference to deleted slot: @",
 			rgchSlotNumber);
 		return false;
@@ -2294,7 +2294,7 @@ bool GdlStringExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 {
 	//	By this point any value string values (eg, values of the "lang" feature) should
 	//	have been converted to integers.
-	g_errorList.AddError(this,
+	g_errorList.AddError(2146, this,
 		"Illegal expression: ",
 		m_staValue);
 

@@ -16,7 +16,7 @@
 #include "Antlr/CharScanner.hpp"
 
 //	Header stuff here
-void AddGlobalError(bool, std::string, int nLine);
+void AddGlobalError(bool, int nID, std::string, int nLine);
 class GrpTokenStreamFilter;
 
 class GrpLexer : public CharScanner
@@ -33,11 +33,11 @@ public:
 
 	void reportError(const std::string& s)
 	{
-		AddGlobalError(true, s.c_str(), 0);
+		AddGlobalError(true, 105, s.c_str(), 0);
 	}
 	void reportWarning(const std::string& s)
 	{
-		AddGlobalError(false, s.c_str(), 0);
+		AddGlobalError(false, 505, s.c_str(), 0);
 	}
 	RefToken publicMakeToken(int t)
 	{

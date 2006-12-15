@@ -135,7 +135,7 @@ void GrpTokenStreamFilter::ReportLexerError(const ScannerException & ex)
 {
 	int nLinePre = ex.getLine();
 	int nLineOrig = nLinePre + m_nLineOffset;
-	AddGlobalError(true, ex.getErrorMessage(), GrpLineAndFile(nLinePre, nLineOrig, m_staFile));
+	AddGlobalError(true, 101, ex.getErrorMessage(), GrpLineAndFile(nLinePre, nLineOrig, m_staFile));
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -146,9 +146,9 @@ void GrpTokenStreamFilter::ReportParserError(const ParserException & ex)
 	int nLinePre = ex.getLine();
 	if (nLinePre <= m_nLastLineMarker)
 		//	Problematic token was before the last line marker in the pre-processed file.
-		AddGlobalError(true, ex.getErrorMessage(),
+		AddGlobalError(true, 102, ex.getErrorMessage(),
 			GrpLineAndFile(nLinePre, nLinePre + m_nPrevLineOffset, m_staPrevFile));
 	else
-		AddGlobalError(true, ex.getErrorMessage(),
+		AddGlobalError(true, 103, ex.getErrorMessage(),
 			GrpLineAndFile(nLinePre, nLinePre + m_nLineOffset, m_staFile));
 }

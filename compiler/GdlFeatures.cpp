@@ -95,7 +95,7 @@ bool GdlFeatureDefn::ErrorCheck()
 	//	Feature with no ID: fatal error
 	if (m_fIDSet == false)
 	{
-		g_errorList.AddError(this,
+		g_errorList.AddError(3158, this,
 			"No id specified for feature ",
 			m_staName);
 		m_fFatalError = true;
@@ -109,7 +109,7 @@ bool GdlFeatureDefn::ErrorCheck()
 		int nValue = m_vpfset[ifset]->m_nValue;
 		if (setnIDs.IsMember(nValue))
 		{
-			g_errorList.AddError(m_vpfset[ifset],
+			g_errorList.AddError(3159, m_vpfset[ifset],
 				"Duplicate feature setting values in ",
 				m_staName);
 			m_fFatalError = true;
@@ -120,7 +120,7 @@ bool GdlFeatureDefn::ErrorCheck()
 
 	//	Feature with only one setting: warning
 	if (m_vpfset.Size() == 1)
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(3525, this,
 			"Only one setting given for feature ",
 			m_staName);
 
@@ -202,7 +202,7 @@ void GdlFeatureDefn::ErrorCheckContd()
 		//	Feature setting with no value set: warning
 		if (!m_vpfset[ifset]->m_fHasValue)
 		{
-			g_errorList.AddWarning(this,
+			g_errorList.AddWarning(3526, this,
 				"Feature setting with no value specified; value will be zero: ",
 				m_vpfset[ifset]->m_staName);
 		}
@@ -350,7 +350,7 @@ void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting 
 				return;
 			else 
 			{
-				g_errorList.AddError(NULL, "Duplicate language feature setting", lnf);
+				g_errorList.AddError(3160, NULL, "Duplicate language feature setting", lnf);
 				return;
 			}
 		}

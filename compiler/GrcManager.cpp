@@ -143,7 +143,7 @@ GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, StrAnsi staTableName)
 	Symbol psymTable = SymbolTable()->FindSymbol(staTableName);
 	if (!psymTable || !psymTable->FitsSymbolType(ksymtTable))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1181, NULL,
 			"Invalid table name: ",
 			staTableName,
 			lnf);
@@ -182,7 +182,7 @@ GrcEnv * GrcManager::PushPassEnv(GrpLineAndFile & lnf, int nPass)
 
 	if (!psymTable->FitsSymbolType(ksymtTableRule))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1182, NULL,
 			psymTable->FullName(),
 			" table cannot hold passes",
 			lnf);
@@ -223,7 +223,7 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
 	//	is initialized with one.
 	if (m_venv.Size() <= 1)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1183, NULL,
 			"End",
 			staStmt,
 			" encountered without balancing ",

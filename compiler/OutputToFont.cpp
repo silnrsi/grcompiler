@@ -459,7 +459,7 @@ bool GrcManager::AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint
 	{
 		char rgch[20];
 		itoa(nNameTblId, rgch, 10);
-		g_errorList.AddWarning(NULL,
+		g_errorList.AddWarning(5501, NULL,
 			"Feature strings must start at ", rgch, " in the name table");
 	}
 	nNameTblId = max(nNameTblId, m_nNameTblStart);
@@ -470,7 +470,7 @@ bool GrcManager::AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint
 
 	if (!AssignFeatTableNameIds(nNameTblId, &vstuExtNames, &vsuLangIds, &vsuNameTblIds))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(5101, NULL,
 			"Insufficient space available for feature strings in name table.");
 		return false; // checks for legal values
 	}
@@ -1159,7 +1159,7 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 
 	if (fTruncated)
 	{
-		g_errorList.AddWarning(NULL,
+		g_errorList.AddWarning(5502, NULL,
 			"cmap format 4 subtable truncated--does not match format 12 subtable");
 	}
 

@@ -114,7 +114,7 @@ void GdlRule::ReplaceAliases()
 				{
 					char rgch[20];
 					itoa(m_vpalias[ipalias]->m_srIndex, rgch, 10);
-					g_errorList.AddWarning(this,
+					g_errorList.AddWarning(1510, this,
 						"Item ",
 						StrAnsi(rgch),
 						" was assigned more than one slot alias");
@@ -123,7 +123,7 @@ void GdlRule::ReplaceAliases()
 			else if (m_vpalias[ipalias]->m_staName ==
 						m_vpalias[ipalias2]->m_staName)
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(1173, this,
 					"Slot alias '",
 					m_vpalias[ipalias]->m_staName,
 					"' was assigned to more than one item");
@@ -321,7 +321,7 @@ bool GdlRule::AdjustOptRanges()
 						m_viritOptRangeEnd[i2] > m_viritOptRangeEnd[i1])
 					//	Overlapping ranges, eg, 3-6 and 4-7
 				{
-					g_errorList.AddError(this,
+					g_errorList.AddError(1174, this,
 						"Invalid optional ranges.");
 					return false;
 				}
@@ -341,9 +341,9 @@ bool GdlRule::AdjustOptRanges()
 		if (!fFoundNonInsertion)
 		{
 			if (m_viritOptRangeStart[iirit] == m_viritOptRangeEnd[iirit])
-				g_errorList.AddError(this, "Optional item is an insertion.");
+				g_errorList.AddError(1175, this, "Optional item is an insertion.");
 			else
-				g_errorList.AddError(this, "Optional range includes only inserted items.");
+				g_errorList.AddError(1176, this, "Optional range includes only inserted items.");
 			return false;
 		}
 	}
@@ -469,7 +469,7 @@ void GdlRule::GenerateOneRuleVersion(Vector<GdlRule*> & vpruleNewList,
 	}
 	if (!fNonEmpty)
 	{
-		g_errorList.AddWarning(this,
+		g_errorList.AddWarning(1511, this,
 			"All items are optional");
 		return;
 	}
@@ -685,7 +685,7 @@ void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int irit, int crit)
 
 			if (m_pexpSelector->SlotNumber() <= 0)
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(1177, this,
 					"Item ",
 					PosString(),
 					": invalid selector following '@'");
@@ -694,7 +694,7 @@ void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int irit, int crit)
 			}
 			else if (m_pexpSelector->SlotNumber() > crit)
 			{
-				g_errorList.AddError(this,
+				g_errorList.AddError(1178, this,
 					"Item ",
 					PosString(),
 					": selector out of range");
@@ -712,7 +712,7 @@ void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int irit, int crit)
 				{	// Error handled elsewhere
 				}
 				else
-					g_errorList.AddError(this,
+					g_errorList.AddError(1179, this,
 						"Item ",
 						PosString(),
 						": input not specified for slot indicated by selector");
@@ -728,7 +728,7 @@ void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int irit, int crit)
 	{
 		if (m_pexpSelector)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(1180, this,
 				"Item ",
 				PosString(),
 				": selectors can only be used with class names and '@'");

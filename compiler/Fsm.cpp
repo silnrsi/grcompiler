@@ -997,7 +997,7 @@ void GrcManager::DebugFsm()
 	strmOut.open("dbg_fsm.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(3151, NULL,
 			"Error in writing to file ",
 			"dbg_fsm.txt");
 		return;

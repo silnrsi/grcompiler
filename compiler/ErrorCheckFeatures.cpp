@@ -64,7 +64,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 			}
 			else
 				itoa(nID, rgch, 10);
-			g_errorList.AddError(pfeat, "Duplicate feature ID: ", rgch);
+			g_errorList.AddError(3152, pfeat, "Duplicate feature ID: ", rgch);
 		}
 		else
 			setID.Insert(nID);
@@ -91,7 +91,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 		itoa(kMaxFeatures, rgchMax, 10);
 		char rgchCount[20];
 		itoa(m_vpfeat.Size(), rgchCount, 10);
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(3153, NULL,
 			"Number of features (",
 			rgchCount,
 			") exceeds maximum of ",
@@ -130,7 +130,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 		Symbol psymFeat = pcman->SymbolTable()->FindSymbol(m_vstaFeat[ifasgn]);
 		if (!psymFeat)
 		{
-			g_errorList.AddError(NULL, "Undefined feature: ", m_vstaFeat[ifasgn], m_vlnf[ifasgn]);
+			g_errorList.AddError(3154, NULL, "Undefined feature: ", m_vstaFeat[ifasgn], m_vlnf[ifasgn]);
 			continue;
 		}
 
@@ -144,7 +144,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 		{
 			if (!pexpVal->ResolveToInteger(&nVal, false))
 			{
-				g_errorList.AddError(pexpVal,
+				g_errorList.AddError(3155, pexpVal,
 					"Feature value cannot be evaluated", m_vlnf[ifasgn]);
 				continue;
 			}
@@ -155,7 +155,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 				{
 					char rgchValue[20];
 					itoa(nVal, rgchValue, 10);
-					g_errorList.AddWarning(NULL,
+					g_errorList.AddWarning(3523, NULL,
 						"Feature ", pfeat->Name(), " has no defined setting corresponding to value ",
 						rgchValue,
 						m_vlnf[ifasgn]);
@@ -168,7 +168,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 			pfset = pfeat->FindSetting(staValue);
 			if (!pfset)
 			{
-				g_errorList.AddError(NULL, "Undefined feature setting: ", staValue, m_vlnf[ifasgn]);
+				g_errorList.AddError(3156, NULL, "Undefined feature setting: ", staValue, m_vlnf[ifasgn]);
 				continue;
 			}
 			nVal = pfset->Value();
@@ -180,7 +180,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 
 		if (m_vplang.Size() == 0 && ifasgn == 0)
 		{
-			g_errorList.AddWarning(NULL, "No languages specified for language group '", m_staLabel,
+			g_errorList.AddWarning(3524, NULL, "No languages specified for language group '", m_staLabel,
 				"'; settings will have no effect",
 				m_vlnf[0]);
 		}
@@ -203,7 +203,7 @@ void GdlRenderer::CheckLanguageFeatureSize()
 
 	if (cbSillSize >= 0x0000FFFF)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(3157, NULL,
 			"Too many language-feature assignments to fit in Sill table");
 	}
 }

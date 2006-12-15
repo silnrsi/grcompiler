@@ -57,7 +57,7 @@ bool GrcManager::Parse(StrAnsi staFileName)
 	strmIn.open(staFilePreProc.Chars());
 	if (strmIn.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1105, NULL,
 			"File ",
 			staFileName,
 			" does not exist--compilation aborted");
@@ -86,7 +86,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	char * pszPreProcErr = new char[L_tmpnam + strlen("c:")];
 	if (!pszPreProcErr)
 	{
-	    g_errorList.AddError(NULL, "Out of memory");
+	    g_errorList.AddError(1106, NULL, "Out of memory");
 	    return false;
 	}
 	strcpy(pszPreProcErr, "c:");
@@ -94,7 +94,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	FILE * pFilePreProcErr = fopen(pszPreProcErr, "w+");
 	if (!pFilePreProcErr)
 	{
-	    g_errorList.AddError(NULL, "Could not create temporary file to run pre-processor");
+	    g_errorList.AddError(1107, NULL, "Could not create temporary file to run pre-processor");
 		delete[] pszPreProcErr;
 	    return false;
 	}
@@ -103,7 +103,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	int nOrigStderr = _dup(2); // save original stderr, 2 is stderr file handle
 	if (-1 == _dup2(_fileno(pFilePreProcErr), 2)) //stderr now refers to tmp file opened above
 	{
-		g_errorList.AddError(NULL, "Could not redirect stderr.");
+		g_errorList.AddError(1108, NULL, "Could not redirect stderr.");
 	}
 	
 	PROCESS_INFORMATION procinfo = {0};
@@ -131,7 +131,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	if (f == FALSE)
 	{
 		_itot((int)d, rgchErrorCode, 10);
-		g_errorList.AddWarning(NULL,
+		g_errorList.AddWarning(1502, NULL,
 			"Could not create process to run pre-processor gdlpp.exe (error = ",
 			rgchErrorCode,
 			"); compiling ",
@@ -147,7 +147,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	fflush(pFilePreProcErr);
 	if (fseek(pFilePreProcErr, 0, SEEK_SET)) // returns 0 on success
 	{
-	    g_errorList.AddError(NULL, "Error in pre-processor temporary file");
+	    g_errorList.AddError(1109, NULL, "Error in pre-processor temporary file");
 	    return false;
 	}
 	RecordPreProcessorErrors(pFilePreProcErr);
@@ -155,7 +155,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	// clean up stderr file & delete tmp file used to catch errors
 	if (-1 == _dup2(nOrigStderr, 2)) // restore stderr
 	{
-		g_errorList.AddError(NULL, "Could not restore stderr from being redirected.");
+		g_errorList.AddError(1110, NULL, "Could not restore stderr from being redirected.");
 	}
 	// fprintf(stderr, "hello stderr 2\n");
 	fclose(pFilePreProcErr);
@@ -168,7 +168,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	{
 		GrpLineAndFile lnf(0, kMaxFileLineNumber, "");	// make this message come last	
 		_itot((int)exitCode, rgchErrorCode, 10);
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1111, NULL,
 			"Fatal error in pre-processor gdlpp.exe--compilation aborted",
 			lnf);
 		g_errorList.SetLastMsgIncludesFatality(true);
@@ -179,7 +179,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 	char tmpgdl[15] = "/tmp/gdlXXXXXX";
 	if (mkstemp(tmpgdl)==-1)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1112, NULL,
 			"Could not create process to run pre-processor gdlpp",
 			"compiling ",
 			staFileName);
@@ -198,7 +198,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 			cout << "// exec retval:" << testexec << ", errno:" << strerror(errno) << "(" << errno << ")\n";
 			cout << "// tmpfile " << tmpgdl << endl;
 			cout << "// file " << staFileName.Chars() << endl;
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1113, NULL,
 			"Failed to run pre-processor gdlpp",
 			"compiling ",
 			staFileName);
@@ -304,12 +304,12 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 		lnf.SetFile(StrAnsi(pchFileMin, pchFileLim - pchFileMin));
 		lnf.SetOriginalLine(nLineNo);
 		if (fFatal)
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1114, NULL,
 				"Gdlpp.exe ",
 				StrAnsi(pchMsgMin, pchMsgLim - pchMsgMin),
 				lnf);
 		else
-			g_errorList.AddWarning(NULL,
+			g_errorList.AddWarning(1503, NULL,
 				"Gdlpp.exe ",
 				StrAnsi(pchMsgMin, pchMsgLim - pchMsgMin),
 				lnf);
@@ -390,7 +390,7 @@ bool GrcManager::ParseFile(std::ifstream & strmIn, StrAnsi staFileName)
 	catch(ANTLRException & e)
 	{
 		// Handle exceptions that happen during parsing.
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1115, NULL,
 			e.getMessage().c_str());
 			//e.getLine());
 	}
@@ -414,7 +414,7 @@ void GrcManager::WalkParseTree(RefAST ast)
 {
 	if (ast == NULL)
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1116, NULL,
 			"Invalid input file--compilation aborted");
 		return;
 	}
@@ -479,7 +479,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 	Symbol psym = SymbolTable()->FindSymbol(staName);
 	if (!psym || !psym->FitsSymbolType(ksymtGlobal))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1117, NULL,
 			"Invalid global: ",
 			staName,
 			LineAndFile(ast));
@@ -493,7 +493,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 	{
 		if (ast->getType() == OP_PLUSEQUAL)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1118, NULL,
 				"Inappropriate use of += operator",
 				LineAndFile(ast));
 			return;
@@ -509,7 +509,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 			bool fM;
 			nValue = NumericValue(astValue, &fM);
 			if (fM)
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1119, NULL,
 					"The AutoPseudo global does not expect a scaled number",
 					LineAndFile(astValue));
 			else
@@ -517,7 +517,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		}
 
 		if (astValue->getNextSibling())
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1120, NULL,
 				"The AutoPseudo global cannot take multiple values",
 				LineAndFile(ast));
 	}
@@ -526,7 +526,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 	{
 		if (ast->getType() == OP_PLUSEQUAL)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1121, NULL,
 				"Inappropriate use of += operator",
 				LineAndFile(ast));
 			return;
@@ -542,7 +542,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 			bool fM;
 			nValue = NumericValue(astValue, &fM);
 			if (fM)
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1122, NULL,
 					"The Bidi global does not expect a scaled number",
 					LineAndFile(astValue));
 			else
@@ -550,7 +550,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		}
 
 		if (astValue->getNextSibling())
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1123, NULL,
 				"The Bidi global cannot take multiple values",
 				LineAndFile(ast));
 	}
@@ -564,7 +564,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		{
 			if (pexpOld)
 			{
-				g_errorList.AddWarning(NULL,
+				g_errorList.AddWarning(1504, NULL,
 					"The ", staName, " global setting overrode a previous value",
 					LineAndFile(ast));
 				delete pexpOld;
@@ -574,7 +574,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		}
 		if (astValue->getType() != LIT_INT)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1124, NULL,
 				"Invalid value for ", staName, " global",
 				LineAndFile(ast));
 		}
@@ -584,13 +584,13 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 			bool fM;
 			nValue = NumericValue(astValue, &fM);
 			if (!fM)
-				g_errorList.AddWarning(NULL,
+				g_errorList.AddWarning(1505, NULL,
 					"The ", staName, " global setting expects a scaled number",
 					LineAndFile(astValue));
 
 			if (pexpOld && (pexpOld->Units() != MUnits()))
 			{
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1125, NULL,
 					"Cannot combine the new value of the ", staName,
 					"global with the previous because the units are different",
 					LineAndFile(ast));
@@ -610,7 +610,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		}
 
 		if (astValue->getNextSibling())
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1126, NULL,
 				"The ", staName, " global cannot take multiple values",
 				LineAndFile(ast));
 	}
@@ -621,7 +621,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		{
 			bool fNotEmpty = m_prndr->ClearScriptDirections();
 			if (fNotEmpty)
-				g_errorList.AddWarning(NULL,
+				g_errorList.AddWarning(1506, NULL,
 					staName, " global setting overrode a previous value",
 					LineAndFile(ast));
 		}
@@ -634,7 +634,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 				GdlExpression * pexp = WalkExpressionTree(astValue);
 				if (!pexp->ResolveToInteger(&nValue, false))
 				{
-					g_errorList.AddError(pexp,
+					g_errorList.AddError(1128, pexp,
 						"Invalid value for ScriptDirection");
 				}
 				else
@@ -642,7 +642,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 				delete pexp;
 			}
 			else
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1129, NULL,
 					"Invalid value for ScriptDirection",
 					LineAndFile(ast));
 
@@ -656,7 +656,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		{
 			bool fNotEmpty = m_prndr->ClearScriptTags();
 			if (fNotEmpty)
-				g_errorList.AddWarning(NULL,
+				g_errorList.AddWarning(1507, NULL,
 					staName, " global setting overrode a previous value",
 					LineAndFile(ast));
 		}
@@ -665,7 +665,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		{
 			if (astValue->getType() != LIT_STRING)
 			{
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1130, NULL,
 					"The ScriptTags global expects a string value",
 					LineAndFile(astValue));
 				return;
@@ -675,13 +675,13 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 			int cb = sta.Length();
 			if (cb > 4)
 			{
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1131, NULL,
 					"Invalid script tag value--must be a 4-byte string",
 					LineAndFile(astValue));
 				return;
 			}
 			else if (cb < 4)
-				g_errorList.AddWarning(NULL,
+				g_errorList.AddWarning(1508, NULL,
 					"Unexpected script tag value--should be a 4-byte string",
 					LineAndFile(astValue));
 
@@ -702,7 +702,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 			char rgch2[20];
 			itoa(m_prndr->NumScriptTags(), rgch1, 10);
 			itoa(kMaxScriptTags, rgch2, 10);
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1132, NULL,
 				"Number of script tags (",
 				rgch1,
 				") exceeds maximum of ",
@@ -780,14 +780,14 @@ void GrcManager::WalkDirectivesTree(RefAST ast)
 
 		Symbol psym = SymbolTable()->FindSymbol(staName);
 		if (!psym || !psym->FitsSymbolType(ksymtDirective))
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1133, NULL,
 				"Invalid directive: ",
 				staName,
 				LineAndFile(ast));
 		else
 		{
 			if (fM && psym->ExpType() != kexptMeas)
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1134, NULL,
 					"The ",
 					staName,
 					" directive does not expect a scaled value",
@@ -812,7 +812,7 @@ void GrcManager::WalkDirectivesTree(RefAST ast)
 			{
 				Assert(psym->ExpType() == kexptMeas);
 				if (!fM)
-					g_errorList.AddError(NULL,
+					g_errorList.AddError(1135, NULL,
 						"The PointRadius directive requires a scaled value",
 						LineAndFile(ast));
 				SetPointRadius(nValue, MUnits());
@@ -858,7 +858,7 @@ void GrcManager::WalkTableTree(RefAST ast)
 		WalkRuleTableTree(ast, nodetyp);
 		break;
 	case IDENT:
-		g_errorList.AddWarning(NULL,
+		g_errorList.AddWarning(1509, NULL,
 			"Skipping '",
 			astTableType->getText().c_str(),
 			"' table--unrecognized table name",
@@ -977,7 +977,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 	{
 		if (!psymClass->FitsSymbolType(ksymtClass))
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1136, NULL,
 				"Name conflict: '",
 				staClassName,
 				"' cannot be used as a glyph class name",
@@ -988,7 +988,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 		Assert(pglfc);
 		if (ast->getType() == OP_EQ)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1137, NULL,
 				"Duplicate definition of class ",
 				staClassName,
 				LineAndFile(ast));
@@ -1049,7 +1049,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<StrAnsi> & vsta)
 		if (psymBase && !psymBase->FitsSymbolType(ksymtGlyphAttr) &&
 			!psymBase->FitsSymbolType(ksymtInvalid))
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1138, NULL,
 				"Invalid glyph attribute name: ",
 				psymBase->FullName(),
 				LineAndFile(ast));
@@ -1077,7 +1077,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<StrAnsi> & vsta)
 		nodetyp == OP_MULTEQUAL || nodetyp == OP_DIVEQUAL)
 	{
 		StrAnsi staOp = ast->getText().c_str();
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1139, NULL,
 			"Cannot assign a glyph attribute with ",
 			staOp,
 			LineAndFile(ast));
@@ -1259,7 +1259,7 @@ void GrcManager::ProcessFunction(RefAST ast, Vector<StrAnsi> & vsta,
 
 	else
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1140, NULL,
 			"Undefined glyph attribute function: ",
 			staName,
 			LineAndFile(ast));
@@ -1313,7 +1313,7 @@ void GrcManager::ProcessFunctionArg(bool fSlotAttr, GrcStructName const& xns,
 	{
 		Symbol psymSlotAttr = SymbolTable()->FindSlotAttr(xns, lnf);
 		if (!psymSlotAttr)
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1141 ,NULL,
 				"Invalid slot attribute: ",
 				xns.FullString(),
 				lnf);
@@ -1338,7 +1338,7 @@ void GrcManager::ProcessFunctionArg(bool fSlotAttr, GrcStructName const& xns,
 void GrcManager::BadFunctionError(GrpLineAndFile & lnf, StrAnsi staFunction,
 	StrAnsi staArgsExpected)
 {
-	g_errorList.AddError(NULL,
+	g_errorList.AddError(1142, NULL,
 		"Invalid number of arguments for '",
 		staFunction,
 		"'; ",
@@ -1407,7 +1407,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 			if (astItem && !pglfc)
 			{
 				//	Can't put more than one output glyph in a pseudo.
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1143, NULL,
 					"Pseudo-glyph -> glyph ID mapping contains more than one glyph",
 					LineAndFile(astItem));
 				break;
@@ -1438,7 +1438,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 			if (astItem && !pglfc)
 			{
 				//	Can't put more than one output glyph in a pseudo.
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1144, NULL,
 					"Pseudo-glyph -> glyph ID mapping contains more than one glyph",
 					LineAndFile(astItem));
 				break;
@@ -1473,7 +1473,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 		psymSubClass = SymbolTable()->FindSymbol(staSubClassName);
 		if (!psymSubClass)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1145, NULL,
 				"Undefined glyph class: ",
 				staSubClassName,
 				LineAndFile(ast));
@@ -1481,7 +1481,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 		}
 		if (!psymSubClass->FitsSymbolType(ksymtClass))
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1146, NULL,
 				"Name conflict: '",
 				staSubClassName,
 				"' cannot be used as a glyph class name",
@@ -1616,7 +1616,7 @@ void GrcManager::WalkFeatureTableElement(RefAST ast)
 	{
 		if (staFeatureName == "lang")
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1147, NULL,
 				"Attempt to redefine reserved feature: 'lang'",
 				LineAndFile(ast));
 			return;
@@ -1630,7 +1630,7 @@ void GrcManager::WalkFeatureTableElement(RefAST ast)
 	}
 	else if (!psymFeat->FitsSymbolType(ksymtFeature))
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1148, NULL,
 			"Identifier conflict: '",
 			staFeatureName,
 			"' cannot be used as a feature name",
@@ -1655,7 +1655,7 @@ void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<StrAnsi> & vsta)
 	{
 		if (vsta.Size() < 2)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1149, NULL,
 				"Invalid feature statement",
 				LineAndFile(ast));
 			return;
@@ -1772,7 +1772,7 @@ void GrcManager::WalkLanguageItem(RefAST ast, GdlLangClass * plcls)
 		{
 			if (plcls->m_vplang.Size() > 0)
 			{
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1150, NULL,
 					"Redefining list of languages for language group '", plcls->m_staLabel, "'",
 					LineAndFile(astLhs));
 			}
@@ -1805,7 +1805,7 @@ void GrcManager::WalkLanguageCodeList(RefAST astList, GdlLangClass * plcls)
 		StrAnsi staLang = astNext->getText().c_str();
 		if (staLang.Length() > 4)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1151, NULL,
 				"Language codes may contain a maximum of 4 characters",
 				LineAndFile(astNext));
 		}
@@ -1948,7 +1948,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppas
 	bool fM;
 	int nPassNumber = NumericValue(astPassNumber, &fM);
 	if (fM)
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1152, NULL,
 			"Pass number should not be a scaled number",
 			LineAndFile(ast));
 
@@ -2125,7 +2125,7 @@ bool GrcManager::AllContentsArePasses(RefAST ast)
 
 	if (fOne && !fAll)
 	{
-		g_errorList.AddWarning(NULL,
+		g_errorList.AddWarning(1501, NULL,
 			"Not all elements of if statement are passes; test will be applied at rule level.",
 			LineAndFile(ast));
 	}
@@ -2238,7 +2238,7 @@ void GrcManager::ProcessItemRange(RefAST astItem, GdlRuleTable * prultbl, GdlPas
 		if (prule->ScanAdvance() == -1)
 			prule->SetScanAdvance(*pirit);
 		else
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1153, NULL,
 				"Cannot have more than one scan advance marker per rule",
 				LineAndFile(astItem));
 	}
@@ -2283,7 +2283,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 
 		if (lrc == 2)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1154, NULL,
 				"@ not permitted in lhs",
 				lnf);
 			staClass = "_";
@@ -2292,11 +2292,11 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 		if (astSel && astSel->getType() == Zselector)
 		{
 			if (lrc == 2)
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1155, NULL,
 					"Cannot specify a selector in the lhs",
 					lnf);
 			else if (lrc == 1 && !fHasLhs)
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1156, NULL,
 					"Selectors not permitted in a rule with no lhs",
 					lnf);
 			else
@@ -2333,11 +2333,11 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 	if (astNext && astNext->getType() == Zselector)
 	{
 		if (lrc == 2)
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1157, NULL,
 				"Cannot specify a selector in the lhs",
 				lnf);
 		else if (lrc == 1 && !fHasLhs)
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1158, NULL,
 				"Selectors not permitted in a rule with no lhs",
 				lnf);
 		else
@@ -2419,7 +2419,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 				}
 			}
 			else if (lrc == 2)
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1159, NULL,
 					"Cannot set attributes in the lhs",
 					lnf);
 			else
@@ -2527,7 +2527,7 @@ void GrcManager::ProcessSlotIndicator(RefAST ast, GdlAlias * palias)
 		bool fM;
 		int sr = NumericValue(ast, &fM);
 		if (fM)
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1160, NULL,
 				"Slot indicators should not be scaled numbers",
 				LineAndFile(ast));
 		palias->SetIndex(sr);
@@ -2549,15 +2549,15 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 	GrpLineAndFile lnf = LineAndFile(ast);
 
 	if (lrc == 0)	// context
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1161, NULL,
 			"Cannot set associations in the context",
 			lnf);
 	else if (lrc == 2)	// lhs
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1162, NULL,
 			"Cannot set associations in the lhs",
 			lnf);
 	else if (!prultbl->Substitution())
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1163, NULL,
 			"Cannot set associations in the ",
 			prultbl->NameSymbol()->FullName(),
 			" table",
@@ -2580,7 +2580,7 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 		}
 		else
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1164, NULL,
 				"Cannot set associations in a rule with no lhs",
 				lnf);
 		}
@@ -2608,7 +2608,7 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, Vector<StrAnsi
 
 		Symbol psymSlotAttr = SymbolTable()->FindSlotAttr(GrcStructName(vsta), LineAndFile(ast));
 		if (!psymSlotAttr)
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1165, NULL,
 				"Invalid slot attribute: ",
 				GrcStructName(vsta).FullString(),
 				LineAndFile(ast));
@@ -2675,7 +2675,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 	switch (nodetyp)
 	{
 	case OP_EQ:
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(1166, NULL,
 			"'=' cannot be used in an expression (use '==')",
 			LineAndFile(ast));
 		// fall through and treat as if it were ==
@@ -2715,7 +2715,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 		astOperand1 = ast->getFirstChild();
 		if (!astOperand1)
 		{
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1167, NULL,
 				"No arguments for ",
 				ast->getText().c_str(),
 				" function",
@@ -2834,7 +2834,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 		else if (astT->getType() == LITERAL_true || astT->getType() == LITERAL_false)
 		{
 			Assert(false);	// grammar should not allow this
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(1168, NULL,
 				"Slot reference cannot contain a boolean",
 				LineAndFile(astT));
 			pexpRet = new GdlSlotRefExpression(ast->getType() == LITERAL_true);
@@ -2852,7 +2852,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 			if (fM)
 			{
 				Assert(false);	// grammar should not allow this
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(1169, NULL,
 					"Slot reference cannot contain a scaled value",
 					LineAndFile(astT));
 			}
@@ -3088,7 +3088,7 @@ void GdlRule::CheckInputClass()
 
 		if (!psymInput)
 		{
-			g_errorList.AddError(this,
+			g_errorList.AddError(1170, this,
 				"Mismatched items between lhs and rhs");
 			psymInput = g_cman.SymbolTable()->FindSymbol("_");
 			m_vprit[iritT]->m_psymInput = psymInput;
@@ -3107,13 +3107,13 @@ void GdlRule::CheckInputClass()
 				if (!psymOutput ||
 					(!psymOutput->FitsSymbolType(ksymtClass) &&
 						(!psymOutput->FitsSymbolType(ksymtSpecialAt))))
-					g_errorList.AddError(this,
+					g_errorList.AddError(1171, this,
 						"Item ",
 						pritsub->PosString(),
 						": no input or output class specified");
 			}
 			else
-				g_errorList.AddError(this,
+				g_errorList.AddError(1172, this,
 					"Mismatched items among context, lhs and/or rhs");
 		}
 	}
@@ -3174,7 +3174,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 						if ((iritLhs1 >= iritC1 && iritLhs1 <= iritC2) ||
 							(iritLhs2 >= iritC1 && iritLhs2 <= iritC2))
 						{
-							g_errorList.AddError(this,
+							g_errorList.AddError(1127, this,
 								"Conflict between optional ranges in lhs and context");
 							m_viritOptRangeStart.Clear();
 							m_viritOptRangeEnd.Clear();
@@ -3228,7 +3228,7 @@ void GrcManager::DebugParseTree(RefAST ast)
 	strmOut.open("dbg_parsetree.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(6106, NULL,
 			"Error in writing to file ",
 			"dbg_parsetree.txt");
 		return;

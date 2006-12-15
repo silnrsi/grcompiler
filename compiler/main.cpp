@@ -188,17 +188,17 @@ int main(int argc, char * argv[])
 	if (bFirst == 0xFF && bSecond == 0xFE || bFirst == 0xFE && bSecond == 0xFF)
 	{
 	    fEncodingErr = true;
-	    g_errorList.AddError(NULL, "Illegal encoding in GDL file - probably UTF-16 encoding.");
+	    g_errorList.AddError(130, NULL, "Illegal encoding in GDL file - probably UTF-16 encoding.");
 	}
 	else if (bFirst == 0xEF && bSecond == 0xBB && bThird == 0xBF)
 	{
 	    fEncodingErr = true;
-	    g_errorList.AddError(NULL, "Illegal encoding in GDL file - probably UTF-8 encoding.");
+	    g_errorList.AddError(131, NULL, "Illegal encoding in GDL file - probably UTF-8 encoding.");
 	}
 	else if (bFirst & 0x80 || bSecond & 0x80 || bThird & 0x80)
 	{ // not really a UTF check but might as well test for illegal values here
 	    fEncodingErr = true;
-	    g_errorList.AddError(NULL, "Illegal encoding in GDL file - only 7 bit characters are legal.");
+	    g_errorList.AddError(132, NULL, "Illegal encoding in GDL file - only 7 bit characters are legal.");
 	}
 
 	if (!fEncodingErr)
@@ -216,7 +216,7 @@ int main(int argc, char * argv[])
 
 					if (g_cman.FontTableVersion() > g_cman.MaxFontVersion())
 					{
-						g_errorList.AddError(NULL,
+						g_errorList.AddError(133, NULL,
 							"Invalid font table version: ",
 							VersionString(g_cman.FontTableVersion()).Chars());
 					}
@@ -226,7 +226,7 @@ int main(int argc, char * argv[])
 					{
 						char rgch[20];
 						itoa(g_cman.NameTableStart(), rgch, 10);
-						g_errorList.AddError(NULL,
+						g_errorList.AddError(134, NULL,
 							"Invalid name table start ID: ", rgch,
 							"; must be in range 256 - 32767.");
 					}
@@ -258,14 +258,14 @@ int main(int argc, char * argv[])
 							std::cout << "ERROR IN WRITING FONT FILE.\n";
 							char rgch[20];
 							itoa(nRet, rgch, 10);
-							g_errorList.AddError(NULL,
+							g_errorList.AddError(135, NULL,
 								"Error in writing font file--error code = ", rgch);
 						}
 					}
 					else
 					{
 						std::cout << "Compilation failed.\n";
-						g_errorList.AddError(NULL,
+						g_errorList.AddError(136, NULL,
 							"Compilation failed");
 					}
 				}
@@ -280,28 +280,28 @@ int main(int argc, char * argv[])
 					std::cout << "Could not open font--error code = " << nFontError << "\n";
 					char rgch[20];
 					itoa(nFontError, rgch, 10);
-					g_errorList.AddError(NULL,
+					g_errorList.AddError(137, NULL,
 						"Could not open font--error code = ", rgch);
 				}
 			}
 			else
 			{
 				std::cout << "Initial processing failed.\n";
-				g_errorList.AddError(NULL,
+				g_errorList.AddError(138, NULL,
 					"Initial processing failed");
 			}
 		}
 		else
 		{
 			std::cout << "Parsing failed.\n";
-			g_errorList.AddError(NULL,
+			g_errorList.AddError(139, NULL,
 				"Parsing failed");
 		}
 	}
 	else
 	{
 		std::cout << "Illegal encoding in GDL file.\n";
-		g_errorList.AddError(NULL,
+		g_errorList.AddError(140, NULL,
 			"Illegal encoding in GDL file");
 	}
 
@@ -351,7 +351,7 @@ void HandleCompilerOptions(char * arg)
 	{
 		g_cman.SetIgnoreBadGlyphs(true);
 	}
-	else if (arg[1] == 'v' || arg[1] == 'n')
+	else if (arg[1] == 'n' || arg[1] == 'v' || arg[1] == 'w')
 	{
 		int nValue = 0;
 		char rgch[20];
@@ -364,7 +364,11 @@ void HandleCompilerOptions(char * arg)
 		}
 		rgch[i - 2] = 0;
 
-		if (arg[1] == 'v')
+		if (arg[1] == 'n')
+		{
+			g_cman.SetNameTableStart(nValue);
+		}
+		else if (arg[1] == 'v')
 		{
             int fxdVersion = nValue << 16; // put in "fixed" format
 
@@ -372,9 +376,9 @@ void HandleCompilerOptions(char * arg)
 
 			g_cman.SetFontTableVersion(fxdVersion, true);
 		}
-		else if (arg[1] == 'n')
+		else if (arg[1] == 'w')
 		{
-			g_cman.SetNameTableStart(nValue);
+			g_errorList.SetIgnoreWarning(nValue);
 		}
 	}
 	else if (arg[1] == 'q')
