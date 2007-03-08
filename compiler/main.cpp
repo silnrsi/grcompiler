@@ -80,10 +80,10 @@ int main(int argc, char * argv[])
 	if (g_cman.IsVerbose())
 	{
 #ifdef GR_FW
-		std::cout << "Graphite Compiler Version 3.0\n"
+		std::cout << "Graphite Compiler Version 2.4\n"
 			<< COPYRIGHTRESERVED << "\n";
 #else
-		std::cout << "Graphite Compiler Version 3.0\n"
+		std::cout << "Graphite Compiler Version 2.4\n"
 			<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
 #endif // GR_FW
 	}
@@ -162,6 +162,7 @@ int main(int argc, char * argv[])
 
 	//StrAnsi staFamily((char*)rgchwOutputFontFamily);
 	char rgchFamily[128];
+	memset(rgchFamily, 0, sizeof(char) * 128);
 	int cchw = 0;
 	utf16 * pchw = rgchwOutputFontFamily;
 	while (*pchw++)
