@@ -206,7 +206,9 @@ GrcEnv * GrcManager::PushGeneralEnv(GrpLineAndFile & lnf)
 ----------------------------------------------------------------------------------------------*/
 GrcEnv * GrcManager::PushEnvAux()
 {
-	m_venv.Push(*m_venv.Top());
+	GrcEnv envToCopy(*m_venv.Top()); // make a local copy, because the act of pushing can cause
+									// the vector to resize, losing the item to copy
+	m_venv.Push(envToCopy);
 	return m_venv.Top();
 }
 
