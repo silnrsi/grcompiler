@@ -235,7 +235,7 @@ typedef enum GlyphMetric {
 //	Directionality codes. These codes MUST match those used by the engine.
 typedef enum DirCode {  // Hungarian: dirc
 
-	kdircUnknown	= -1,
+	kdircUnknown	= -1,	// not yet determined by the bidi algorithm
 	kdircNeutral	=  0,	// other neutrals (default) - ON
 	kdircL			=  1,	// left-to-right, strong - L
 	kdircR			=  2,	// right-to-left, strong - R

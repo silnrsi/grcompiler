@@ -33,7 +33,7 @@ error checking:
 		GrcBinaryStream
 		GrcEnv
 		GdlRenderer
-	rules - highest error: 3160 / highest warning: 3526
+	rules - highest error: 3160 / highest warning: 3528
 		ErrorCheckRules
 		GdlRule
 		GdlTablePass
@@ -291,6 +291,21 @@ int GrcErrorList::NumberOfWarnings()
 	for (int ierr = 0; ierr < m_vperr.Size(); ierr++)
 	{
 		if (!IsFatal(ierr))
+			cerrRet++;
+	}
+	return cerrRet;
+}
+
+
+/*----------------------------------------------------------------------------------------------
+	Return the number of non-fatal errors that were not ignored.
+----------------------------------------------------------------------------------------------*/
+int GrcErrorList::NumberOfWarningsGiven()
+{
+	int cerrRet = 0;
+	for (int ierr = 0; ierr < m_vperr.Size(); ierr++)
+	{
+		if (!IsFatal(ierr) && !IgnoreWarning(m_vperr[ierr]->m_nID))
 			cerrRet++;
 	}
 	return cerrRet;

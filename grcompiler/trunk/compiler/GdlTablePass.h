@@ -33,6 +33,7 @@ public:
 			m_nMaxBackup(nMaxBackup),
 			m_fBidi(false),
 			m_nGlobalID(-1),
+			m_nPreBidiPass(0),
 			m_pfsm(NULL)
 	{
 	}
@@ -50,9 +51,15 @@ public:
 	bool HasReprocessing()			{ return m_fReproc; }
 	int MaxRuleContext()			{ return m_nMaxRuleContext; }
 
+	int MaxRuleLoop()				{ return m_nMaxRuleLoop; }
+	int MaxBackup()					{ return m_nMaxBackup; }
+
 	//	Setters:
 	void SetBidi(bool f)			{ m_fBidi = f; }
 	void AddRule(GdlRule* prule)	{ m_vprule.Push(prule); }
+
+	void SetMaxRuleLoop(int n)		{ m_nMaxRuleLoop = n; }
+	void SetMaxBackup(int n)		{ m_nMaxBackup = n; }
 
 public:
 	//	Parser:
@@ -96,6 +103,12 @@ public:
 		return (m_vprule.Size() > 0);
 	}
 
+	void SetPreBidiPass(int n)
+	{
+		Assert(n == 0 || n == 1);
+		m_nPreBidiPass = n;
+	}
+
 	//	Compiler:
 	int GlobalID()
 	{
@@ -103,7 +116,7 @@ public:
 	}
 	int PassDebuggerNumber()
 	{
-		return m_nGlobalID + 1;
+		return m_nGlobalID + m_nPreBidiPass + 1;
 	}
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
@@ -156,6 +169,7 @@ protected:
 	//	for compiler use:
 //	int m_nNumber2;		// with respect to all the passes in all tables
 	int m_nGlobalID;	// -1 if invalid--no rules
+	int m_nPreBidiPass;	// 1 if there is a previous bidi pass, 0 otherwise
 	int m_nMaxRuleContext;	// number of slots of input needed
 
 	bool m_fLB;			// true if there is a rule containing line-break items

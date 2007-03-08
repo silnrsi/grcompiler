@@ -313,19 +313,36 @@ int main(int argc, char * argv[])
 
 	int cerrFatal = g_errorList.NumberOfErrors();
 	int cerrWarning = g_errorList.NumberOfWarnings();
+	int cerrWarningGiven = g_errorList.NumberOfWarningsGiven();	// ie, not ignored
 	cerrFatal = cerrFatal - cerrWarning;
+	int cerrWarningIgnored = cerrWarning - cerrWarningGiven;
 
 	if (cerrFatal > 0)
 	{
 		std::cout << cerrFatal << " error" << (cerrFatal > 1 ? "s " : " ");
-		if (cerrWarning > 0)
-			std::cout << "and " << cerrWarning << " warning" << (cerrWarning > 1 ? "s " : " ");
-		std::cout << ((cerrFatal + cerrWarning > 1) ? "have" : "has")
-			<< " been output to gdlerr.txt.\n";
+		if (cerrWarningGiven > 0)
+			std::cout << "and " << cerrWarningGiven << " warning" << (cerrWarningGiven > 1 ? "s " : " ");
+		std::cout << ((cerrFatal + cerrWarningGiven > 1) ? "have" : "has")
+			<< " been output to gdlerr.txt";
+		if (cerrWarningIgnored > 0)
+			std::cout << " (" << cerrWarningIgnored
+				<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored)";
+		std::cout << ".\n";
 	}
-	else if (cerrWarning > 0)
-		std::cout << cerrWarning << " warning"
-			<< (cerrWarning > 1 ? "s have" : " has") << " been output to gdlerr.txt.\n";
+	else if (cerrWarningGiven > 0)
+	{
+		std::cout << cerrWarningGiven << " warning"
+			<< (cerrWarningGiven > 1 ? "s have" : " has") << " been output to gdlerr.txt";
+		if (cerrWarningIgnored > 0)
+			std::cout << " (" << cerrWarningIgnored
+				<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored)";
+		std::cout << ".\n";
+	}
+	else if (cerrWarningIgnored > 0)
+	{
+		std::cout << cerrWarningIgnored
+			<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored.\n";
+	}
 
 	delete pfont;
 
