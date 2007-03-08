@@ -1692,33 +1692,44 @@ bool GdlGlyphClassDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont 
 
 bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfont)
 {
-	GdlGlyphDefn * pglf = dynamic_cast<GdlGlyphDefn*>(pglfdLeft);
-	if (pglf)
+	GdlGlyphDefn * pglfLeft = dynamic_cast<GdlGlyphDefn*>(pglfdLeft);
+	if (m_glft == kglftPseudo)
 	{
-		for (int iw1 = 0; iw1 < this->m_vwGlyphIDs.Size(); iw1++)
+		return m_pglfOutput->HasOverlapWith(pglfdLeft, pfont);
+	}
+	else if (pglfLeft)
+	{
+		if (pglfLeft->m_glft == kglftPseudo)
 		{
-			utf16 w1 = this->m_vwGlyphIDs[iw1];
-			if (w1 == kBadGlyph)
-				continue;
-			int nLsb = pfont->GetGlyphMetric(w1, kgmetLsb, this);
-			for (int iw2 = 0; iw2 < pglf->m_vwGlyphIDs.Size(); iw2++)
+			return HasOverlapWith(pglfLeft->m_pglfOutput, pfont);
+		}
+		else
+		{
+			for (int iw1 = 0; iw1 < this->m_vwGlyphIDs.Size(); iw1++)
 			{
-				utf16 w2 = pglf->m_vwGlyphIDs[iw2];
-				if (w2 == kBadGlyph)
+				utf16 w1 = this->m_vwGlyphIDs[iw1];
+				if (w1 == kBadGlyph)
 					continue;
-				int nRsb = pfont->GetGlyphMetric(w2, kgmetRsb, pglf);
-				if (nLsb + nRsb < 0)
-					return true;
+				int nLsb = pfont->GetGlyphMetric(w1, kgmetLsb, this);
+				for (int iw2 = 0; iw2 < pglfLeft->m_vwGlyphIDs.Size(); iw2++)
+				{
+					utf16 w2 = pglfLeft->m_vwGlyphIDs[iw2];
+					if (w2 == kBadGlyph)
+						continue;
+					int nRsb = pfont->GetGlyphMetric(w2, kgmetRsb, pglfLeft);
+					if (nLsb + nRsb < 0)
+						return true;
+				}
 			}
 		}
 	}
 	else
 	{
-		GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn*>(pglfdLeft);
-		Assert(pglfc);
-		for (int iglfd = 0; iglfd < pglfc->m_vpglfdMembers.Size(); iglfd++)
+		GdlGlyphClassDefn * pglfcLeft = dynamic_cast<GdlGlyphClassDefn*>(pglfdLeft);
+		Assert(pglfcLeft);
+		for (int iglfd = 0; iglfd < pglfcLeft->m_vpglfdMembers.Size(); iglfd++)
 		{
-			if (HasOverlapWith(pglfc->m_vpglfdMembers[iglfd], pfont))
+			if (HasOverlapWith(pglfcLeft->m_vpglfdMembers[iglfd], pfont))
 				return true;
 		}
 	}
