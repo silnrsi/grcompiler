@@ -91,6 +91,11 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
 
+	if (m_fBidi)
+		m_iPassBidi = nPassNum;
+	else
+		m_iPassBidi = -1;
+
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
 
@@ -139,6 +144,11 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 		{
 			m_vppass[ipass]->AssignGlobalID(*pnPassNum);
 			(*pnPassNum)++;
+			if (pcman->Renderer()->Bidi()
+				&& (m_psymName->LastFieldIs("positioning") || m_psymName->LastFieldIs("justification")))
+			{
+				m_vppass[ipass]->SetPreBidiPass(1);
+			}
 		}
 		else if (ipass == 0)
 		{

@@ -271,6 +271,7 @@ public:
 	}
 
 	int NumberOfWarnings();
+	int NumberOfWarningsGiven();
 
 	bool IsFatal(int iperr)
 	{

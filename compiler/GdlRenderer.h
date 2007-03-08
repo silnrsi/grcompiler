@@ -208,6 +208,7 @@ protected:
 
 	bool m_fAutoPseudo;
 	bool m_fBidi;
+	int m_iPassBidi;
 	int m_grfsdc;		// supported script directions
 	Vector<int>	m_vnScriptTags;
 	GdlNumericExpression * m_pexpXAscent;

@@ -760,6 +760,9 @@ void GdlRenderer::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->DebugRulePrecedence(pcman, strmOut);
 
+	if (m_iPassBidi > -1)
+		strmOut << "\nPASS " << m_iPassBidi + 1 << ": bidi\n";
+
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 		prultbl->DebugRulePrecedence(pcman, strmOut);
 
@@ -866,6 +869,9 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
+
+	if (m_iPassBidi > -1)
+		strmOut << "\nPASS " << m_iPassBidi + 1 << ": bidi\n";
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
