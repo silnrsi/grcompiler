@@ -50,7 +50,10 @@ using namespace gr;
 
 #else
 #include "LgCharPropsStub.h"
-
+// ICU:
+//#include <unicode\uclean.h> // u_init
+//#include <unicode\putil.h> // u_getDataDirectory
+#include <unicode\uchar.h>	// 
 #endif
 
 

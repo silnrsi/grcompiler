@@ -35,3 +35,16 @@ To remove the binaries as well:
     nmake -f makefile.mak realclean
 
 this deletes the libraries as well.
+
+
+ICU
+
+The Graphite compiler requires library modules from ICU. We are currently
+using version 3.6. You will need to download the ICU source code from the
+following web site:
+
+    http://www.icu-project.org/download/
+
+The only module that is needed at this time is icuuc.lib (icuucd.lib
+for the debug version). Quite a number of the source header files are
+needed as well.

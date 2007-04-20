@@ -126,7 +126,7 @@ public:
 		Vector<Symbol> & vpsymSysDefined, Vector<int> & vnSysDefValues,
 		Vector<GdlExpression *> & vpexpExtra,
 		Vector<Symbol> & vpsymGlyphAttrs);
-	DirCode ConvertBidiCode(LgBidiCategory bic, utf16 wUnicode);
+	DirCode ConvertBidiCode(UCharDirection diricu, utf16 wUnicode);
 	void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		Vector<GdlExpression *> & vpexpExtra);
 
