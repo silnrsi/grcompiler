@@ -44,6 +44,10 @@ public:
 		m_staFile = lnf.m_staFile;
 	}
 
+	~GrpLineAndFile()
+	{
+	}
+
 	GrpLineAndFile & operator=(const GrpLineAndFile & lnf)
 	{
 		m_nLinePre = lnf.m_nLinePre;

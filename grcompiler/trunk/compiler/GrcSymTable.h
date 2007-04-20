@@ -222,6 +222,8 @@ public:
 	{
 		if (fMain)
 			InitWithPreDefined();
+
+		//m_staLabelDbg.Assign(""); // DEBUG
 	}
 
 	~GrcSymbolTable();
@@ -249,6 +251,18 @@ protected:
 		m_psymParent = psym;
 		m_cLevel = psym->Level() + 1;
 		psym->SetSubTable(this);
+
+		// DEBUG
+/*
+		if (m_psymParent)
+		{
+			m_staLabelDbg.Assign(m_psymParent->m_psymtbl->m_staLabelDbg);
+			m_staLabelDbg.Append("%");
+			m_staLabelDbg.Append(m_psymParent->m_staFieldName);
+		}
+		else
+			m_staLabelDbg.Assign("");
+*/
 	}
 
 protected:
@@ -350,6 +364,8 @@ protected:
 	//	the following counter is used to generate unique names for anonymous
 	//	classes:
 	int	m_csymAnonClass;
+
+	//StrAnsi m_staLabelDbg; // debug
 };
 
 
