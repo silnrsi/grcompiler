@@ -1110,7 +1110,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	Vector<Symbol> vpsymSysDefined;
 	Vector<int> vnSysDefValues;
 	vpsymSysDefined.Push(SymbolTable()->FindSymbol("directionality"));
-	vnSysDefValues.Push(0);
+	vnSysDefValues.Push(kdircNeutral);
 	//	breakweight = letter
 	vpsymSysDefined.Push(SymbolTable()->FindSymbol("breakweight"));
 	vnSysDefValues.Push(klbLetterBreak);
@@ -1244,33 +1244,25 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 	Vector<GdlExpression *> & vpexpExtra,
 	Vector<Symbol> & vpsymGlyphAttrs)
 {
-	bool fGotCharPropEng;
-	ILgCharacterPropertyEnginePtr qchprpeng;
-
-#ifdef GR_FW
-	try
-	{
-		qchprpeng.CreateInstance(CLSID_LgIcuCharPropEngine);
-		fGotCharPropEng = true;
+	bool fIcuAvailable = false;
+	try {
+		if (UCharCategory(u_charType(0x0020)) == U_SPACE_SEPARATOR
+			&& u_charDirection(0x0020) == U_WHITE_SPACE_NEUTRAL)
+		{
+			fIcuAvailable = true;
+		}
 	}
 	catch (...)
 	{
-		fGotCharPropEng = false;
 	}
-	ComBool fIsSep;
-#else
-	qchprpeng = NULL;
-	fGotCharPropEng = false;
-	bool fIsSep = false;
-#endif
 
 	Assert(vpsymSysDefined.Size() == vnSysDefValues.Size());
 
 	for (int i = 0; i < vpsymSysDefined.Size(); i++) // loop over attributes
 	{
-		bool fError = false;
+		bool fErrorForAttr = false;
 		Symbol psym = vpsymSysDefined[i];
-		int nValue = vnSysDefValues[i];
+		int nDefaultValue = vnSysDefValues[i]; // default for the entire attribute, non-char-specific
 
 		int nGlyphAttrID = psym->InternalID();
 
@@ -1281,20 +1273,24 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 		for (iUni = 0, fit = pfont->Begin(); fit != pfont->End(); ++fit, ++iUni) // loop over chars
 		{
 			int nUnicode = *fit;
+
 			int wGlyphID = pfont->GlyphFromCmap(nUnicode, NULL);
 			if (wGlyphID > 0)
 			{
-				//  Read from character properties database.
+				//  Read the character property from ICU.
 				//	How do we handle values from the Private Use Area? Just hard-code the
 				//	range to skip?
 				int nUnicodeStd;
-				HRESULT hr;
+				bool fInitFailed = false;
 
                 if (psym->LastFieldIs("breakweight"))
                 {
-                    if (fGotCharPropEng)
+					bool fIsSep;
+                    if (fIcuAvailable)
                     {
-                        hr = qchprpeng->get_IsSeparator(nUnicode, &fIsSep);
+                        UCharCategory catICU = UCharCategory(u_charType(nUnicode));
+						fIsSep = (catICU == U_SPACE_SEPARATOR
+							|| catICU == U_LINE_SEPARATOR || catICU == U_PARAGRAPH_SEPARATOR);
                     }
                     else
                     {
@@ -1306,10 +1302,12 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                             fIsSep = 1;
 						}
                         else
+						{
                             fIsSep = 0;
-                        hr = S_OK;
+							fInitFailed = true; // not sure we got the right answer
+						}
                     }
-                    nUnicodeStd = (fIsSep) ? klbWordBreak : nValue;
+                    nUnicodeStd = (fIsSep) ? klbWordBreak : nDefaultValue;
                 }
                 else if (psym->LastFieldIs("directionality"))
                 {
@@ -1317,41 +1315,15 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                     if (!Bidi())
                     {
                         // Don't really care about the failure, since there's no Bidi pass.
-                        hr = S_OK;
-                        nUnicodeStd = kdircNeutral;
+                        nUnicodeStd = nDefaultValue;
                     }
-                    else if (fGotCharPropEng)
+                    else if (fIcuAvailable)
                     {
-                        LgBidiCategory bidi;
-                        hr = qchprpeng->get_BidiCategory(nUnicode, &bidi);
-                        if (!FAILED(hr))
-                            nUnicodeStd = ConvertBidiCode(bidi, nUnicode);
+						UCharDirection diricu = u_charDirection(nUnicode);
+						nUnicodeStd = ConvertBidiCode(diricu, nUnicode);
                     }
                     else
-                        hr = E_FAIL;
-                }
-                else
-                    break;	// ...out of the character loop; this is not an attribute
-							// it makes sense to read from the db
-
-				if (FAILED(hr))
-				{
-					//	Supply a few basic defaults that we know about.
-					if (psym->LastFieldIs("breakweight"))
 					{
-						nUnicodeStd = -1;
-						switch (nUnicode)
-						{
-						case kchwSpace:		nUnicodeStd = klbWordBreak; break;
-						case kchwHyphen:	nUnicodeStd = klbHyphenBreak; break;
-						default:
-							break;
-						}
-						hr = (nUnicodeStd == -1) ? E_FAIL : S_OK;
-					}
-					else if (psym->LastFieldIs("directionality"))
-					{
-						nUnicodeStd = -1;
 						switch (nUnicode)
 						{
 						case kchwSpace:	nUnicodeStd = kdircWhiteSpace; break;
@@ -1363,22 +1335,26 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 						case kchwRLE:	nUnicodeStd = kdircRLE; break;
 						case kchwPDF:	nUnicodeStd = kdircPDF; break;
 						default:
+							fInitFailed = true;
 							break;
 						}
-						hr = (nUnicodeStd == -1) ? E_FAIL : S_OK;
 					}
-				}
+                }
+                else
+                    break;	// ...out of the character loop; this is not an attribute
+							// it makes sense to read from the db
 
-				if (FAILED(hr))
+				if (fInitFailed)
 				{
-					if (!fError)
+					if (!fErrorForAttr)
 					{
+						// First time an error has been encountered for this attribute.
 						g_errorList.AddWarning(4509, NULL,
 							"Unable to initialize ",
 							psym->FullName(),
 							" glyph attribute from Unicode char props database");
 					}
-					fError = true;
+					fErrorForAttr = true; // don't give the warning again
 				}
 				else if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 				{
@@ -1390,7 +1366,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 			}
 		}			
 
-		if (nValue == 0)
+		if (nDefaultValue == 0)
 			continue;	// don't need to set zero values explicitly
 
 		//	Now set any remaining attributes that weren't handled above to the standard defaults.
@@ -1398,7 +1374,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 		{
 			if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 			{
-				GdlExpression * pexpDefault = new GdlNumericExpression(nValue);
+				GdlExpression * pexpDefault = new GdlNumericExpression(nDefaultValue);
 				vpexpExtra.Push(pexpDefault);
 				pgax->Set(wGlyphID, nGlyphAttrID,
 					pexpDefault, 0, 0, false, false, GrpLineAndFile());
@@ -1435,37 +1411,35 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 	Convert the bidi categories defined by the character properties engine to those used
 	by Graphite.
 ----------------------------------------------------------------------------------------------*/
-DirCode GdlRenderer::ConvertBidiCode(LgBidiCategory bic, utf16 wUnicode)
+DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 {
 	StrAnsi staCode;
 
-	switch (bic)
+	switch (diricu)
 	{
-	case kbicL:			return kdircL;
-	case kbicLRE:		return kdircLRE; // staCode = "LRE"; break;
-	case kbicLRO:		return kdircLRO; // staCode = "LRO"; break;
-	case kbicR:			return kdircR;
-	case kbicAL:		return kdircRArab;
-	case kbicRLE:		return kdircRLE; // staCode = "RLE"; break;
-	case kbicRLO:		return kdircRLO; // staCode = "RLO"; break;
-	case kbicPDF:		return kdircPDF; // staCode = "PDF"; break;
+	case U_LEFT_TO_RIGHT:				return kdircL;
+	case U_RIGHT_TO_LEFT:				return kdircR;
+	case U_EUROPEAN_NUMBER:				return kdircEuroNum;
+	case U_EUROPEAN_NUMBER_SEPARATOR:	return kdircEuroSep;
+	case U_EUROPEAN_NUMBER_TERMINATOR:	return kdircEuroTerm;
+	case U_ARABIC_NUMBER:				return kdircArabNum;
+	case U_COMMON_NUMBER_SEPARATOR:		return kdircComSep;
+	case U_WHITE_SPACE_NEUTRAL:			return kdircWhiteSpace;
+	case U_OTHER_NEUTRAL:				return kdircNeutral;
+	case U_LEFT_TO_RIGHT_EMBEDDING:		return kdircLRE;
+	case U_LEFT_TO_RIGHT_OVERRIDE:		return kdircLRO;
+	case U_RIGHT_TO_LEFT_ARABIC:		return kdircRArab;
+	case U_RIGHT_TO_LEFT_EMBEDDING:		return kdircRLE;
+	case U_RIGHT_TO_LEFT_OVERRIDE:		return kdircRLO;
+	case U_POP_DIRECTIONAL_FORMAT:		return kdircPDF;
+	case U_DIR_NON_SPACING_MARK:		return kdircNSM;
+	case U_BOUNDARY_NEUTRAL:			return kdircBndNeutral;
 
-	case kbicEN:		return kdircEuroNum;
-	case kbicES:		return kdircEuroSep;
-	case kbicET:		return kdircEuroTerm;
-	case kbicAN:		return kdircArabNum;
-	case kbicCS:		return kdircComSep;
-
-	case kbicNSM:		return kdircNSM;
-	case kbicBN:		return kdircBndNeutral;
-	case kbicB:			staCode = "B"; break;
-	case kbicS:			staCode = "S"; break;
-
-	case kbicWS:		return kdircWhiteSpace;
-	case kbicON:		return kdircNeutral;
+	case U_BLOCK_SEPARATOR:				staCode = "B"; break; // not handled
+	case U_SEGMENT_SEPARATOR:			staCode = "S"; break; // not handled
 	default:
 		char rgch[20];
-		itoa(bic, rgch, 10);
+		itoa(diricu, rgch, 10);
 		staCode = rgch;
 		break;
 	}
