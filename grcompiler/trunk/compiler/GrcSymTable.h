@@ -209,9 +209,11 @@ class GrcSymbolTable
 {
 	friend class GrcSymbolTableEntry;
 
-	typedef GrcSymbolTableEntry::OpPrec		OpPrec;
+	typedef GrcSymbolTableEntry::OpPrec OpPrec;
 
-	typedef HashMap<StrAnsi, Symbol, HashStrAnsi, EqlStrAnsi> SymbolTableMap;
+	typedef std::pair<std::string, Symbol> SymbolTablePair;
+	typedef stdext::hash_map<std::string, Symbol> SymbolTableMap;
+	//typedef HashMap<StrAnsi, Symbol, HashStrAnsi, EqlStrAnsi> SymbolTableMap;
 
 public:
 	//	Constructor and destructor:
@@ -336,12 +338,12 @@ public:
 	//	Iterators:
 	SymbolTableMap::iterator EntriesBegin()
 	{
-		return m_hmstasymEntries.Begin();
+		return m_hmstasymEntries.begin();
 	}
 
 	SymbolTableMap::iterator EntriesEnd()
 	{
-		return m_hmstasymEntries.End();
+		return m_hmstasymEntries.end();
 	}
 
 public:

@@ -154,13 +154,20 @@ GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, StrAnsi staTableName)
 		GrcEnv * penvPrev = &(m_venv[m_venv.Size() - 1]);
 		Symbol psymPrevTable = penvPrev->Table();
 		int nPrevPass = penvPrev->Pass();
-		m_hmpsymnCurrPass.Insert(psymPrevTable, nPrevPass, true);
+		std::pair<Symbol, int> hmpair;
+		hmpair.first = psymPrevTable;
+		hmpair.second = nPrevPass;
+		m_hmpsymnCurrPass.insert(hmpair);
+		//m_hmpsymnCurrPass.Insert(psymPrevTable, nPrevPass, true);
 
 		GrcEnv * penvNew = PushEnvAux();
 
 		penvNew->SetTable(psymTable);
 		int nPass = 0;
-		m_hmpsymnCurrPass.Retrieve(psymTable, &nPass);
+		stdext::hash_map<Symbol, int>::iterator hmit = m_hmpsymnCurrPass.find(psymTable);
+		if (hmit != m_hmpsymnCurrPass.end())
+			nPass = hmit->second;
+		//m_hmpsymnCurrPass.Retrieve(psymTable, &nPass);
 		penvNew->SetPass(nPass);
 
 		return penvNew;
@@ -178,7 +185,12 @@ GrcEnv * GrcManager::PushPassEnv(GrpLineAndFile & lnf, int nPass)
 	penvNew->SetPass(nPass);
 
 	Symbol psymTable = penvNew->Table();
-	m_hmpsymnCurrPass.Insert(psymTable, nPass, true);
+
+	std::pair<Symbol, int> hmpair;
+	hmpair.first = psymTable;
+	hmpair.second = nPass;
+	m_hmpsymnCurrPass.insert(hmpair);
+	//m_hmpsymnCurrPass.Insert(psymTable, nPass, true);
 
 	if (!psymTable->FitsSymbolType(ksymtTableRule))
 	{
@@ -240,7 +252,13 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
 	GrcEnv * penv = m_venv.Top();
 	Symbol psymTable = penv->Table();
 	int nPass = penv->Pass();
-	m_hmpsymnCurrPass.Insert(psymTable, nPass, true);	// true: overwrite previous value
+
+	m_hmpsymnCurrPass.erase(psymTable);
+	std::pair<Symbol, int> hmpair;
+	hmpair.first = psymTable;
+	hmpair.second = nPass;
+	m_hmpsymnCurrPass.insert(hmpair);
+    //m_hmpsymnCurrPass.Insert(psymTable, nPass, true);	// true: overwrite previous value
 
 	return penv;
 }

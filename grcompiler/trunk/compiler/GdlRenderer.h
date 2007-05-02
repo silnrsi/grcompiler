@@ -118,7 +118,7 @@ public:
 	int ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
-		HashMap<utf16, utf16> & hmActualForPseudos);
+		stdext::hash_map<utf16, utf16> & hmActualForPseudos);
 	void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GrcLigComponentList * plclist);
 	void AssignGlyphAttrDefaultValues(GrcFont * pfont,

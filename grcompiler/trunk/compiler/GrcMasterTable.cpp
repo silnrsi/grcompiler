@@ -54,11 +54,19 @@ void GrcMasterTable::AddItem(Symbol psym, GdlExpression * pexpValue,
 
 	GrcMasterValueList * pmvl;
 
-	if (!m_vlistmapEntries.Retrieve(psymBase, &pmvl) || !pmvl)
+	ValueListMap::iterator hmit = m_vlistmapEntries.find(psymBase);
+	if (hmit == m_vlistmapEntries.end() || hmit->second == NULL)
+	//if (!m_vlistmapEntries.Retrieve(psymBase, &pmvl) || !pmvl)
 	{
 		pmvl = new GrcMasterValueList();
-		m_vlistmapEntries.Insert(psymBase, pmvl);
+		ValueListPair hmpair;
+		hmpair.first = psymBase;
+		hmpair.second = pmvl;
+		m_vlistmapEntries.insert(hmpair);
+		//m_vlistmapEntries.Insert(psymBase, pmvl);
 	}
+	else
+		pmvl = hmit->second;
 
 	pmvl->AddItem(psym, pexpValue, nPR, munitPR, fOverride, lnf, staDescription);
 
@@ -101,13 +109,20 @@ void GrcMasterValueList::AddItem(Symbol psym, GdlExpression * pexpValue,
 {
 	GdlAssignment * pasgn;
 	
-	if (!m_valmapEntries.Retrieve(psym, &pasgn) || !pasgn)
+	ValueMap::iterator hmit = m_valmapEntries.find(psym);
+	if (hmit == m_valmapEntries.end())
+	//if (!m_valmapEntries.Retrieve(psym, &pasgn) || !pasgn)
 	{
 		pasgn = new GdlAssignment(pexpValue, nPR, munitPR, fOverride, lnf);
-		m_valmapEntries.Insert(psym, pasgn);
+		ValuePair hmpair;
+		hmpair.first = psym;
+		hmpair.second = pasgn;
+		m_valmapEntries.insert(hmpair);
+		//m_valmapEntries.Insert(psym, pasgn);
 	}
 	else
 	{
+		pasgn = hmit->second;
 		g_errorList.AddWarning(2524, pexpValue,
 			"Duplicate ", staDescription);
 		
@@ -129,7 +144,12 @@ GrcMasterValueList * GrcMasterTable::ValueListFor(Symbol psym)
 	Assert(psym->FitsSymbolType(ksymtClass) || psym->FitsSymbolType(ksymtFeature));
 
 	GrcMasterValueList * pmvl;
-	m_vlistmapEntries.Retrieve(psym, &pmvl);
+	ValueListMap::iterator hmit = m_vlistmapEntries.find(psym);
+	if (hmit == m_vlistmapEntries.end())
+		pmvl = NULL;
+	else
+        pmvl = hmit->second;
+	//m_vlistmapEntries.Retrieve(psym, &pmvl);
 	return pmvl;
 }
 
@@ -139,12 +159,12 @@ GrcMasterValueList * GrcMasterTable::ValueListFor(Symbol psym)
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterTable::SetupFeatures()
 {
-	for (ValueListMap::iterator itvlistmap = m_vlistmapEntries.Begin();
-		itvlistmap != m_vlistmapEntries.End();
+	for (ValueListMap::iterator itvlistmap = EntriesBegin();
+		itvlistmap != EntriesEnd();
 		++itvlistmap)
 	{
-		Symbol psymFeatName = itvlistmap.GetKey();
-		GrcMasterValueList * pmvl = itvlistmap.GetValue();
+		Symbol psymFeatName = itvlistmap->first;  // GetKey();
+		GrcMasterValueList * pmvl = itvlistmap->second; //GetValue();
 
 		Assert(psymFeatName->FitsSymbolType(ksymtFeature));
 
@@ -165,13 +185,13 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 
 	GdlExpression * pexpDefault = NULL;
 
-	for (ValueMap::iterator itvalmap = m_valmapEntries.Begin();
-		itvalmap != m_valmapEntries.End();
+	for (ValueMap::iterator itvalmap = EntriesBegin();
+		itvalmap != EntriesEnd();
 		++itvalmap)
 	{
-		Symbol psym = itvalmap.GetKey();
+		Symbol psym = itvalmap->first; // GetKey();
 		Assert(psym->FitsSymbolType(ksymtFeatSetting));
-		GdlAssignment * pasgnValue = itvalmap.GetValue();
+		GdlAssignment * pasgnValue = itvalmap->second; // GetValue();
 		GdlExpression * pexp = pasgnValue->m_pexp;
 
 		Assert(psym->FieldIs(0, fName));
@@ -366,12 +386,12 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterTable::SetupGlyphAttrs()
 {
-	for (ValueListMap::iterator itvlistmap = m_vlistmapEntries.Begin();
-		itvlistmap != m_vlistmapEntries.End();
+	for (ValueListMap::iterator itvlistmap = EntriesBegin();
+		itvlistmap != EntriesEnd();
 		++itvlistmap)
 	{
-		Symbol psymClassName = itvlistmap.GetKey();
-		GrcMasterValueList * pmvl = itvlistmap.GetValue();
+		Symbol psymClassName = itvlistmap->first;   // GetKey();
+		GrcMasterValueList * pmvl = itvlistmap->second;  // GetValue();
 
 		Assert(psymClassName->FitsSymbolType(ksymtClass));
 
@@ -389,12 +409,12 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 {
 	Vector<Symbol> vpsymProcessed;
 
-	for (ValueMap::iterator itvalmap = m_valmapEntries.Begin();
-		itvalmap != m_valmapEntries.End();
+	for (ValueMap::iterator itvalmap = EntriesBegin();
+		itvalmap != EntriesEnd();
 		++itvalmap)
 	{
-		Symbol psym = itvalmap.GetKey();
-		GdlAssignment * pasgnValue = itvalmap.GetValue();
+		Symbol psym = itvalmap->first; // GetKey();
+		GdlAssignment * pasgnValue = itvalmap->second; // GetValue();
 		GdlExpression * pexp = pasgnValue->m_pexp;
 //		int nPR = pasgnValue->m_nPR;
 //		int munitPR = pasgnValue->m_munitPR;
@@ -458,7 +478,8 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 
 	for (int ipsym = 0; ipsym < vpsymProcessed.Size(); ipsym++)
 	{
-		m_valmapEntries.Delete(vpsymProcessed[ipsym]);
+		m_valmapEntries.erase(vpsymProcessed[ipsym]);
+		//m_valmapEntries.Delete(vpsymProcessed[ipsym]);
 	}
 }
 
@@ -470,12 +491,12 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 {
 //	Vector<Symbol> vpsymProcessed;
 
-	for (ValueMap::iterator itvalmap = m_valmapEntries.Begin();
-		itvalmap != m_valmapEntries.End();
+	for (ValueMap::iterator itvalmap = EntriesBegin();
+		itvalmap != EntriesEnd();
 		++itvalmap)
 	{
-		Symbol psym = itvalmap.GetKey();
-		GdlAssignment * pasgnValue = itvalmap.GetValue();
+		Symbol psym = itvalmap->first; // GetKey();
+		GdlAssignment * pasgnValue = itvalmap->second; // GetValue();
 		GdlExpression * pexp = pasgnValue->m_pexp;
 		//int nPR = pasgnValue->m_nPR;
 		//int munitPR = pasgnValue->m_munitPR;
@@ -509,11 +530,17 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 					"--should be an integer");
 
 			GdlNameDefn * pndefn;
-			if (!hmNameMap.Retrieve(nNameID, &pndefn))
+			NameDefnMap::iterator itmap = hmNameMap.find(nNameID);
+			if (itmap == hmNameMap.end())
+			//if (!hmNameMap.Retrieve(nNameID, &pndefn))
 			{
 				pndefn = new GdlNameDefn();
 				pndefn->SetLineAndFile(pasgnValue->LineAndFile());
-				hmNameMap.Insert(nNameID, pndefn);
+				std::pair<int, GdlNameDefn *> hmpair;
+				hmpair.first = nNameID;
+				hmpair.second = pndefn;
+				hmNameMap.insert(hmpair);
+				//hmNameMap.Insert(nNameID, pndefn);
 			}
 
 			bool fFoundLang = false;

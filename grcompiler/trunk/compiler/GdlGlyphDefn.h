@@ -221,7 +221,7 @@ public:
 	virtual int GlyphIDCount();
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne);
 	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
-		HashMap<utf16, utf16> & hmActualForPseudo,
+		stdext::hash_map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true);
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,

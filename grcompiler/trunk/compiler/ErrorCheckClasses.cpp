@@ -256,12 +256,16 @@ int GrcManager::PseudoForUnicode(int nUnicode)
 int GrcManager::ActualForPseudo(utf16 wPseudo)
 {
 	utf16 wActual = 0;
-	if (m_hmActualForPseudo.Retrieve(wPseudo, &wActual))
-		return wActual;
-	else
+	stdext::hash_map<utf16, utf16>::iterator hmit = m_hmActualForPseudo.find(wPseudo);
+	if (hmit == m_hmActualForPseudo.end()) // no value
 		return 0;
+	else
+		return hmit->second;
 
-//	return m_prndr->ActualForPseudo(wPseudo);
+	//if (m_hmActualForPseudo.Retrieve(wPseudo, &wActual))
+	//	return wActual;
+	//else
+	//	return 0;
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -335,7 +339,7 @@ void GrcManager::SortPseudoMappings()
 	the pseudo-glyphs and defined the phantom glyph, because they must be included too.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
-	HashMap<utf16, utf16> & hmActualForPseudo)
+	stdext::hash_map<utf16, utf16> & hmActualForPseudo)
 {
 	Symbol psym = m_psymtbl->FindSymbol("ANY");
 	GdlGlyphClassDefn * pglfcAny = psym->GlyphClassDefnData();
@@ -357,7 +361,7 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 	codepoints, postscript to glyph ID.
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-	HashMap<utf16, utf16> & hmActualForPseudo)
+	stdext::hash_map<utf16, utf16> & hmActualForPseudo)
 {
 	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
 		m_vpglfc[iglfc]->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
@@ -367,7 +371,7 @@ bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-	HashMap<utf16, utf16> & hmActualForPseudo)
+	stdext::hash_map<utf16, utf16> & hmActualForPseudo)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 	{
@@ -381,14 +385,14 @@ void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 	of a class. Only do this for simple glyphs; classes are handled separately.
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
-	HashMap<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
+	stdext::hash_map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
 {
 	//	Do nothing; this class will be handled separately at the top level.
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
-	HashMap<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
+	stdext::hash_map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
 {
 	Assert(m_vwGlyphIDs.Size() == 0);
 
@@ -640,7 +644,11 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 			m_vwGlyphIDs.Push(m_wPseudo);
 
 			//	Store the pseudo-to-actual assignment in the map.
-			hmActualForPseudo.Insert(m_wPseudo, m_pglfOutput->m_vwGlyphIDs[0], true);
+			std::pair<utf16, utf16> hmPair;
+			hmPair.first = m_wPseudo;
+			hmPair.second = m_pglfOutput->m_vwGlyphIDs[0];
+			hmActualForPseudo.insert(hmPair);
+			//hmActualForPseudo.Insert(m_wPseudo, m_pglfOutput->m_vwGlyphIDs[0], true);
 		}
 		break;
 		
@@ -908,11 +916,21 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 		return true;
 	}
 
-	for (SymbolTableMap::iterator it = m_hmstasymEntries.Begin();
-		it != m_hmstasymEntries.End();
+	// Make a separate list of symbols to process, because the iterators get confused when you are
+	// changing the hash-map underneath it the same time.
+	Vector<Symbol> vpsymToProcess;
+	for (SymbolTableMap::iterator it = EntriesBegin();
+		it != EntriesEnd();
 		++it)
 	{
-		Symbol psym = it.GetValue();
+		Symbol psym = it->second; // GetValue();
+		//Symbol psym = it->GetValue();
+		vpsymToProcess.Push(psym);
+	}
+
+	for (int ipsym = 0; ipsym < vpsymToProcess.Size(); ipsym++)
+	{
+		Symbol psym = vpsymToProcess[ipsym];
 
 		if (psym->m_psymtblSubTable)
 		{

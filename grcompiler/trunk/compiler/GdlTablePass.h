@@ -184,7 +184,7 @@ protected:
 	FsmTable * m_pfsm;
 
 	//	Mapping from glyph ID to column in the FSM
-	HashMap<utf16, int> m_hmGlyphToColumn;
+	stdext::hash_map<utf16, int> m_hmGlyphToColumn;
 
 	//	Master list of machine classes:
 	Vector<FsmMachineClass *> m_vpfsmc;
@@ -203,7 +203,7 @@ protected:
 	//	have a value which is a vector of three MachineClasses: the first containing
 	//	SourceClasses 2 & 6, the second containing SourceClasses 1, 3, & 4, and the
 	//	third containing SourceClass 8.
-	HashMap<int, MachineClassList> m_hmMachineClassMap;
+	stdext::hash_map<int, MachineClassList> m_hmMachineClassMap;
 
 	Vector<int> m_vifsWorkToFinal;	// final indices of states, causing them to be ordered
 									// as expected by the font/engine data structures:

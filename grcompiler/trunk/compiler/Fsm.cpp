@@ -129,7 +129,13 @@ void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 	{
 		int ifsmcColumn = AssignGlyphIDToMachineClasses(w, m_nGlobalID);
 		if (ifsmcColumn > -1)
-			m_hmGlyphToColumn.Insert(w, ifsmcColumn);
+		{
+			std::pair<utf16, utf16> hmPair;
+			hmPair.first = w;
+			hmPair.second = ifsmcColumn;
+			m_hmGlyphToColumn.insert(hmPair);
+			//m_hmGlyphToColumn.Insert(w, ifsmcColumn);
+		}
 	}
 
 	// TODO SharonC: for each machine class, generate debug string based on source class list.
@@ -187,11 +193,36 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 
 	Vector<FsmMachineClass *> * pvpfsmc;
 	FsmMachineClass * pfsmc;
-	if (m_hmMachineClassMap.Retrieve(nKey, &pvpfsmc))
+	stdext::hash_map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.find(nKey);
+	if (hmit == m_hmMachineClassMap.end())
+	{
+		//	Create a new machine class corresponding to the combination of source classes.
+		//	Make this glyph ID be a member of that machine class.
+		pfsmc = new FsmMachineClass(nPassID);
+		pfsmc->SetColumn(m_vpfsmc.Size());
+		pfsmc->AddGlyph(wGlyphID);
+		pfsmc->SetSourceClasses(pscsThisGlyph);
+
+		//	Add the new machine class to the master list.
+		m_vpfsmc.Push(pfsmc);
+
+		//	Put the new machine class in the map, so another glyph ID that is a member of the
+		//	same set of source classes can find it.
+		pvpfsmc = new Vector<FsmMachineClass *>;
+		pvpfsmc->Push(pfsmc);
+		std::pair<int, MachineClassList> hmPair;
+		hmPair.first = nKey;
+		hmPair.second = pvpfsmc;
+		m_hmMachineClassMap.insert(hmPair);
+		//m_hmMachineClassMap.Insert(nKey, pvpfsmc);
+	}
+	else
+	//if (m_hmMachineClassMap.Retrieve(nKey, &pvpfsmc))
 	{
 		//	We have a list of machine-classes (and their SCS's) whose source-class FSM-ID's
 		//	sum up to the key. Look through the list to see if any of them exactly match this
 		//	glyph's SCS.
+		pvpfsmc = hmit->second;
 		pfsmc = MachineClassMatching(*pvpfsmc, wGlyphID);
 		if (pfsmc)
 		{
@@ -213,24 +244,6 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 			//	Add the new machine class to the vector for this key, where it belongs.
 			pvpfsmc->Push(pfsmc);
 		}
-	}
-	else
-	{
-		//	Create a new machine class corresponding to the combination of source classes.
-		//	Make this glyph ID be a member of that machine class.
-		pfsmc = new FsmMachineClass(nPassID);
-		pfsmc->SetColumn(m_vpfsmc.Size());
-		pfsmc->AddGlyph(wGlyphID);
-		pfsmc->SetSourceClasses(pscsThisGlyph);
-
-		//	Add the new machine class to the master list.
-		m_vpfsmc.Push(pfsmc);
-
-		//	Put the new machine class in the map, so another glyph ID that is a member of the
-		//	same set of source classes can find it.
-		pvpfsmc = new Vector<FsmMachineClass *>;
-		pvpfsmc->Push(pfsmc);
-		m_hmMachineClassMap.Insert(nKey, pvpfsmc);
 	}
 
 	//	Record the fact that this glyph is assigned to the machine class that we found
@@ -941,8 +954,12 @@ void GdlPass::GenerateStartStates(GrcManager * pcman)
 {
 	utf16 wPhantomGlyph = pcman->PhantomGlyph();
 	int ifsmcPhantom;
-	if (!m_hmGlyphToColumn.Retrieve(wPhantomGlyph, &ifsmcPhantom))
+	stdext::hash_map<utf16, int>::iterator hmit = m_hmGlyphToColumn.find(wPhantomGlyph);
+	if (hmit == m_hmGlyphToColumn.end()) // no value
+	//if (!m_hmGlyphToColumn.Retrieve(wPhantomGlyph, &ifsmcPhantom))
 		ifsmcPhantom = -1;
+	else
+		ifsmcPhantom = hmit->second;
 
 	//	The first state is always zero.
 	int row = 0;
@@ -1065,8 +1082,15 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 
 		if (w == kMaxTotalGlyphs)
 			ifsmcColumn = -1;
-		else if (!m_hmGlyphToColumn.Retrieve(wTmp, &ifsmcColumn))
-			ifsmcColumn = -1;
+		else
+		{
+			//if (!m_hmGlyphToColumn.Retrieve(wTmp, &ifsmcColumn))
+			stdext::hash_map<utf16, int>::iterator hmit = m_hmGlyphToColumn.find(wTmp);
+			if (hmit == m_hmGlyphToColumn.end()) // no value
+				ifsmcColumn = -1;
+			else
+				ifsmcColumn = hmit->second;
+		}
 		if (ifsmcColCurr != ifsmcColumn)
 		{
 			//	Output previous group of assignments.

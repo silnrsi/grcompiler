@@ -40,11 +40,12 @@ GrcSymbolTable::~GrcSymbolTable()
 {
 	m_psymParent = NULL;
 
-	for (SymbolTableMap::iterator it = m_hmstasymEntries.Begin();
-		it != m_hmstasymEntries.End();
+	for (SymbolTableMap::iterator it = EntriesBegin();
+		it != EntriesEnd();
 		++it)
 	{
-		delete it.GetValue();
+		delete it->second; // GetValue();
+		//delete it->GetValue();
 	}
 }
 
@@ -315,7 +316,12 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 			psym = new GrcSymbolTableEntry(staField,
 				((i == xns.NumFields() - 1) ? symtLeaf : symtOther),
 				psymtbl);
-			psymtbl->m_hmstasymEntries.Insert(staField, psym);
+			SymbolTablePair hmpair;
+			std::string staFieldStl(staField.Chars());
+			hmpair.first = staFieldStl;
+			hmpair.second = psym;
+			psymtbl->m_hmstasymEntries.insert(hmpair);
+			//psymtbl->m_hmstasymEntries.Insert(staField, psym);
 		}
 		psymtbl = psym->m_psymtblSubTable;
 	}
@@ -405,11 +411,18 @@ bool GrcSymbolTableEntry::FitsSymbolType(SymbolType symt)
 ----------------------------------------------------------------------------------------------*/
 Symbol GrcSymbolTable::FindField(StrAnsi staField)
 {
-	Symbol psymRet;
-	if (m_hmstasymEntries.Retrieve(staField, &psymRet))
-		return psymRet;
-	else
+	std::string staFieldStl(staField.Chars());
+	SymbolTableMap::iterator hmit = m_hmstasymEntries.find(staFieldStl);
+	if (hmit == m_hmstasymEntries.end())
 		return NULL;
+	else
+		return hmit->second;
+
+	//Symbol psymRet;
+	//if (m_hmstasymEntries.Retrieve(staField, &psymRet))
+	//	return psymRet;
+	//else
+	//	return NULL;
 }
 
 /*----------------------------------------------------------------------------------------------
