@@ -109,15 +109,16 @@ GdlPass::~GdlPass()
 void GdlPass::ClearFsmWorkSpace()
 {
 	//	Delete all the machine-class lists in the hash map.
-	for (HashMap<int, MachineClassList>::iterator it = m_hmMachineClassMap.Begin();
-		it != m_hmMachineClassMap.End();
-		++it)
+	for (stdext::hash_map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.begin();
+		hmit != m_hmMachineClassMap.end();
+		++hmit)
 	{
-		delete *it;	// vector containing a group of machine classes with the same key;
-					// notice that we store a pointer to the vector which is separately
-					// allocated, not the vector itself, due to the limitations of HashMap.
+		delete hmit->second;	// vector containing a group of machine classes with the same key;
+								// notice that we store a pointer to the vector which is separately
+								// allocated, not the vector itself, due to the limitations of the
+								// previous HashMap implementation.
 	}
-	m_hmMachineClassMap.Clear();
+	m_hmMachineClassMap.clear();
 
 	//	Delete all the FsmMachineClasses and clear the master list.
 	for (int i = 0; i < m_vpfsmc.Size(); i++)

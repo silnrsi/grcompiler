@@ -69,15 +69,16 @@ using namespace gr;
 #ifdef GR_FW
 #include "Vector.h"
 #include "UtilString.h"
-#include "HashMap.h"
+////#include "HashMap.h"
 #include "Set.h"
 #else
 #include "UtilVector.h"
 #include "UtilString.h"
-#include "UtilHashMap.h"
+////#include "UtilHashMap.h"
 #include "UtilSet.h"
 #include "UtilInt.h"
 #endif
+#include <hash_map>
 
 class GrcErrorList;
 class GrcManager;

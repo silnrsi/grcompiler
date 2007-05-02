@@ -224,7 +224,7 @@ protected:
 	void CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 wGlyphID);
 	void SortPseudoMappings();
 
-	bool AddAllGlyphsToTheAnyClass(GrcFont * pfont, HashMap<utf16, utf16> & hmActualForPseudo);
+	bool AddAllGlyphsToTheAnyClass(GrcFont * pfont, stdext::hash_map<utf16, utf16> & hmActualForPseudo);
 
 	bool MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
@@ -357,7 +357,7 @@ protected:
 	int m_fxdFeatVersion;	// version of feature table to generate
 
 	Vector<GrcEnv> m_venv;
-	HashMap<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass
+	stdext::hash_map<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass
 	Vector<GdlExpression *> m_vpexpConditionals;
 	Vector<GdlExpression *> m_vpexpPassConstraints;
 
@@ -377,7 +377,7 @@ protected:
 	unsigned int m_nMaxPseudoUnicode;
 	utf16 m_wFirstAutoPseudo;
 
-	HashMap<utf16, utf16> m_hmActualForPseudo;
+	stdext::hash_map<utf16, utf16> m_hmActualForPseudo;
 
 	utf16 m_wLineBreak;	// line break pseudo glyph
 

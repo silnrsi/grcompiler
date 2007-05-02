@@ -1408,11 +1408,12 @@ void GrcManager::DebugGlyphAttributes()
 ----------------------------------------------------------------------------------------------*/
 void GrcSymbolTable::GlyphAttrList(Vector<Symbol> & vpsym)
 {
-	for (SymbolTableMap::iterator it = m_hmstasymEntries.Begin();
-		it != m_hmstasymEntries.End();
+	for (SymbolTableMap::iterator it = EntriesBegin();
+		it != EntriesEnd();
 		++it)
 	{
-		Symbol psym = it.GetValue();
+		Symbol psym = it->second; // GetValue();
+		//Symbol psym = it.GetValue();
 
 		if (psym->m_psymtblSubTable)
 			psym->m_psymtblSubTable->GlyphAttrList(vpsym);

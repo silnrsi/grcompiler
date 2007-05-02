@@ -71,11 +71,11 @@ GdlRenderer::~GdlRenderer()
 	for (i = 0; i < m_vplang.Size(); ++i)
 		delete m_vplang[i];
 
-	for (NameDefnMap::iterator itmap = m_hmNameDefns.Begin();
-		itmap != m_hmNameDefns.End();
+	for (NameDefnMap::iterator itmap = m_hmNameDefns.begin();
+		itmap != m_hmNameDefns.end();
 		++itmap)
 	{
-		delete itmap->GetValue();
+		delete itmap->second;
 	}
 
 	if (m_pexpXAscent)

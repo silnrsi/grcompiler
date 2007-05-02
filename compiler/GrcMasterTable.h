@@ -73,7 +73,8 @@ class GrcMasterValueList	// hungarian: mvl
 {
 	friend class GrcMasterTable;
 
-	typedef HashMap<Symbol, GdlAssignment*> ValueMap; // hungarian: valmap
+	typedef std::pair<Symbol, GdlAssignment*> ValuePair;
+	typedef stdext::hash_map<Symbol, GdlAssignment*> ValueMap; // hungarian: valmap
 
 public:
 	//	Constructor
@@ -86,11 +87,11 @@ public:
 	{
 		//	Once the list has been processed, the assignment items might be deleted
 		//	as part of the class definition, or whatever, so don't do it here.
-		for (ValueMap::iterator it = m_valmapEntries.Begin();
-			it != m_valmapEntries.End();
+		for (ValueMap::iterator it = m_valmapEntries.begin();
+			it != m_valmapEntries.end();
 			++it)
 		{
-			delete it.GetValue();
+			delete it->second; // GetValue();
 		}
 	}
 
@@ -101,11 +102,11 @@ public:
 	//	Iterators:
 	ValueMap::iterator EntriesBegin()
 	{
-		return m_valmapEntries.Begin();
+		return m_valmapEntries.begin();
 	}
 	ValueMap::iterator EntriesEnd()
 	{
-		return m_valmapEntries.End();
+		return m_valmapEntries.end();
 	}
 
 	//	Post-parser:
@@ -139,17 +140,19 @@ class GrcMasterTable
 {
 	friend class GrcMasterValueList;
 
-	typedef HashMap<Symbol, GrcMasterValueList*> ValueListMap;	// hungarian: vlistmap
+	typedef std::pair<Symbol, GrcMasterValueList*> ValueListPair;
+	typedef stdext::hash_map<Symbol, GrcMasterValueList*> ValueListMap;	// hungarian: vlistmap
 
 public:
 	//	Destructor:
 	~GrcMasterTable()
 	{
-		for (ValueListMap::iterator it = m_vlistmapEntries.Begin();
-			it != m_vlistmapEntries.End();
+		for (ValueListMap::iterator it = EntriesBegin();
+			it != EntriesEnd();
 			++it)
 		{
-			delete it.GetValue();
+			delete it->second;
+			//delete it.GetValue();
 		}
 	}
 
@@ -168,11 +171,11 @@ public:
 	//	Iterators:
 	ValueListMap::iterator EntriesBegin()
 	{
-		return m_vlistmapEntries.Begin();
+		return m_vlistmapEntries.begin();
 	}
 	ValueListMap::iterator EntriesEnd()
 	{
-		return m_vlistmapEntries.End();
+		return m_vlistmapEntries.end();
 	}
 
 public:
