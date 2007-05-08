@@ -386,6 +386,8 @@ bool GrcManager::ParseFile(std::ifstream & strmIn, StrAnsi staFileName)
 		InitPreDefined();
 		
 		WalkParseTree(ast);
+		
+		ast->iterativeRemoveChildren(true);	// to avoid stack overflows
 	}
 	catch(ANTLRException & e)
 	{

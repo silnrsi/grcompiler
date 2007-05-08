@@ -59,6 +59,9 @@ public:
 
 	static ASTNode* factory();
 
+	// Sharon added:
+	int debug(int level) { return -1; }
+
 private:
 	int ttype;
 	std::string text;

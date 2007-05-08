@@ -12,8 +12,8 @@ Description:
     Customized tree node that contains line and file information.
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
-#ifndef WRPASTNODE
-#define WRPASTNODE
+#ifndef GRPASTNODE
+#define GRPASTNODE
 
 class GrpASTNode : public CommonASTNode
 {
@@ -43,9 +43,21 @@ public:
 		return m_lnf;
 	}
 
+	int debug(int level)
+	{
+		int nLine = m_lnf.PreProcessedLine();
+		char rgch[20];
+		itoa(nLine, rgch, 10);
+		for (int l = 0; l < level; l++)
+			OutputDebugString(" ");
+		OutputDebugString(rgch);
+		OutputDebugString("\n");
+		return nLine;
+	}
+
 	//	Debugger:
 	const char * debugString();
 };
 
 
-#endif // !WRPASTNODE
+#endif // !GRPASTNODE

@@ -55,6 +55,9 @@ public:
 	virtual void setText(const std::string& txt)=0;
 	virtual void setType(int type)=0;
 
+	// Sharon added:
+	virtual int debug(int level) = 0;
+
 private:
 	ASTNode(const ASTNode& other);
 	ASTNode& operator=(const ASTNode& other);
