@@ -40,6 +40,8 @@ AST::AST(ASTNode* n)
 
 AST::~AST()
 {
+	//int nLine = node->debug(); // debugger
+
 	delete node;
 }
 
@@ -350,3 +352,48 @@ std::string AST::toStringTree() const
 // this is nasty, but it makes the code generation easier
 RefAST nullAST;
 
+
+// Sharon added:
+// This approach handles siblings interatively instead of one long recursive chain,
+// to avoid stack overflows. When doSiblings == true, recipient is the first sibling in a chain.
+void AST::iterativeRemoveChildren(bool doSiblings, int level)
+{
+	deleteNode(level);
+	if (down)
+	{
+		down->iterativeRemoveChildren(true, level + 1);
+		down = nullAST;
+	}
+	if (doSiblings)
+	{
+		RefAST next;
+		AST * last = NULL;
+		AST * loop = this;
+		// We set up a reverse sibling chain to allow us to delete the siblings in reverse order.
+		// This is because deleting the first causes a chain reaction (due to reference counting)
+		// that causes all the other siblings to be deleted, and that can cause a stack overflow.
+		this->setPreviousSibling(NULL);
+		while (loop)
+		{
+			next = loop->getNextSibling();
+			loop->iterativeRemoveChildren(false, level);
+			if (next)
+			{
+				next->setPreviousSibling(loop);
+				last = next;
+			}
+			loop = next;
+		}
+		next = nullAST;
+		// Now follow the back-pointers to delete the items in reverse order.
+		loop = last;
+		AST * prev;
+		while (loop)
+		{
+			prev = loop->getPreviousSibling();
+			loop->setPreviousSibling(NULL);
+			loop->setNextSibling(nullAST);	// this should delete the sibling
+			loop = prev;
+		}
+	}
+}

@@ -81,11 +81,27 @@ public:
 
 	//	Sharon added:
 #include "ASTDebug.hpp"
+	void iterativeRemoveChildren(bool doSiblings, int level = 0);
+	void deleteNode(int level)
+	{
+		if (node)
+		{
+			//int nLine = node->debug(level); // debugger
+			delete node;
+		}
+		node = NULL;
+	}
+	AST * getPreviousSibling() { return prev; }
+	void setPreviousSibling(AST * node) { prev = node; }
+
 
 private:
 	RefAST down;
 	RefAST right;
 	ASTNode* node;
+
+	// Sharon added, for iterativeRemoveChildren:
+	AST * prev;
 
 	void doWorkForFindAll(std::vector<const AST*>& v,
 			RefAST target,bool partialMatch) const;
