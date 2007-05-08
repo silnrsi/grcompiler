@@ -57,9 +57,9 @@ public:
 	}
 
 	//	Getters and setters:
-	int PreProcessedLine() const			{ return m_nLinePre; };
-	int OriginalLine() const			{ return m_nLineOrig; }
-	StrAnsi File() const				{ return m_staFile; }
+	int PreProcessedLine() const	{ return m_nLinePre; };
+	int OriginalLine() const		{ return m_nLineOrig; }
+	StrAnsi File() const			{ return m_staFile; }
 
 	void SetOriginalLine(int n)		{ m_nLineOrig = n; }
 	void SetPreProcessedLine(int n)	{ m_nLinePre = n; }

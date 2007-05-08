@@ -55,7 +55,7 @@ options
 #include "Grp.h"
 
 //	This function needs to go in the .cpp file, not the .hpp file, after the
-//	WprASTNode class is defined.
+//	GrpASTNode class is defined.
 void GrpParser::init(GrpTokenStreamFilter & tsf)
 {
 	m_ptsf = &tsf;
