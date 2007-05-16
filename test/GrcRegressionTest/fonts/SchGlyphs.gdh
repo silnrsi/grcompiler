@@ -1,0 +1,2727 @@
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	File: SchGlyphs.gdh
+//
+//	Glyph definitions and attachment points for Scheherazade
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+
+environment {AttributeOverride = true};
+
+
+table(glyph)
+
+//------------------------------------------------------------------------------------------
+//
+//	Glyphs
+//
+
+r__a	= postscript("A") { above = point(555m, 1090m) };
+r__c	= postscript("C") { below = point(553m,  -72m) };
+r__e	= postscript("E") { above = point(471m, 1090m) };
+r__i	= postscript("I") { above = point(258m, 1090m) };
+r__n	= postscript("N") { above = point(551m, 1090m) };
+r__o	= postscript("O") { above = point(554m, 1090m) };
+r__s	= postscript("S") { above = point(437m, 1090m) };
+r__u	= postscript("U") { above = point(561m, 1090m) };
+r__y	= postscript("Y") { above = point(554m, 1090m) };
+r__z	= postscript("Z") { above = point(511m, 1090m) };
+r_a	= postscript("a") { above = point(336m, 760m) };
+r_c	= postscript("c") { below = point(351m, -65m) };
+r_e	= postscript("e") { above = point(375m, 760m) };
+r_n	= postscript("n") { above = point(389m, 760m) };
+r_o	= postscript("o") { above = point(385m, 760m) };
+r_s	= postscript("s") { above = point(311m, 760m) };
+r_u	= postscript("u") { above = point(387m, 760m) };
+r_y	= postscript("y") { above = point(420m, 760m) };
+r_z	= postscript("z") { above = point(377m, 760m) };
+r_grave		= postscript("grave") { above_ = point(294m, 760m) };
+r_circumflex	= postscript("circumflex") { above_ = point(242m, 770m) };
+r_tilde		= postscript("tilde") { above_ = point(257m, 760m) };
+r_dieresis	= postscript("dieresis") { above_ = point(242m, 770m) };
+r_acute		= postscript("acute") { above_ = point(227m, 760m) };
+r_cedilla	= postscript("cedilla") { below_ = point(154m, -50m) };
+r_dotlessi	= postscript("dotlessi") { above = point(221m, 760m) };
+r_circledash	= postscript("circledash") { diaA = point(520m, 1080m); diaB = point(520m, -120m) };
+
+gbraceleft	= postscript("braceleft");
+gbraceright	= postscript("braceright");
+gbracketleft	= postscript("bracketleft");
+gbracketright	= postscript("bracketright");
+gless		= postscript("less");
+ggreater	= postscript("greater");
+gparenleft	= postscript("parenleft");
+gparenright	= postscript("parenright");
+
+// 254
+absAlefMaddaAbove = postscript("absAlefMaddaAbove")
+	{ diaB = point(100m, -180m); diaA = point(120m, 1395m) };
+absAlefHamzaAbove = postscript("absAlefHamzaAbove")
+	{ diaB = point(100m, -180m); diaA = point(120m, 1470m) };
+absAlefHamzaBelow = postscript("absAlefHamzaBelow")
+	{ diaB = point(100m, -495m); diaA = point(120m, 1100m) };
+absAlef = postscript("absAlef")
+	{ above = point(148m, 1039m); below = point(148m, -56m); diaA = point(120m, 1100m);
+	  diaB = point(100m, -180m) };
+absAlefWavyHamzaAbove = postscript("absAlefWavyHamzaAbove")
+	{ diaB = point(100m, -180m); diaA = point(120m, 1455m) };
+absAlefWavyHamzaBelow = postscript("absAlefWavyHamzaBelow")
+	{ diaB = point(100m, -500m); diaA = point(120m, 1100m) };
+// 260
+absHighHamzaAlef = postscript("absHighHamzaAlef")
+	{ diaB = point(100m, -180m); diaA = point(90m, 1215m) };
+absAlefWasla = postscript("absAlefWasla")
+	{ diaB = point(100m, -180m); diaA = point(135m, 1370m) };
+absWawHamzaAbove = postscript("absWawHamzaAbove")
+	{ diaB = point(250m, -600m); diaA = point(332m, 988m); alef = point(141m, 740m) };
+absWaw = postscript("absWaw")
+	{ above = point(384m, 497m); below = point(384m, -461m); ring = point(246m, -67m);
+	  through = point(383m, -129m); center = point(383m, -129m); diaA = point(363m, 691m);
+	  diaB = point(250m, -600m); alef = point(133m, 615m) };
+absHighHamzaWaw = postscript("absHighHamzaWaw")
+	{ diaB = point(250m, -600m); diaA = point(225m, 900m); alef = point(133m, 615m) };
+absUHamzaAbove = postscript("absUHamzaAbove")
+	{ diaB = point(250m, -600m); diaA = point(258m, 1078m); alef = point(101m, 953m) };
+absWawRing = postscript("absWawRing")
+	{ diaB = point(250m, -600m); diaA = point(363m, 691m); alef = point(133m, 615m) };
+absKirghizOe = postscript("absKirghizOe")
+	{ diaB = point(250m, -600m); diaA = point(359m, 691m); alef = point(133m, 615m) };
+absOe = postscript("absOe")
+	{ diaB = point(250m, -600m); diaA = point(355m, 1035m); alef = point(125m, 941m) };
+absU = postscript("absU")
+	{ diaB = point(250m, -600m); diaA = point(363m, 1059m); alef = point(125m, 865m) };
+// 270
+absYu = postscript("absYu")
+	{ diaB = point(250m, -600m); diaA = point(348m, 1039m); alef = point(137m, 756m) };
+absKirghizYu = postscript("absKirghizYu")
+	{ diaB = point(250m, -600m); diaA = point(355m, 1031m); alef = point(129m, 796m) };
+absWawTwoDotsAbove = postscript("absWawTwoDotsAbove")
+	{ diaB = point(250m, -600m); diaA = point(355m, 1035m); alef = point(133m, 804m) };
+absVe = postscript("absVe")
+	{ diaB = point(250m, -600m); diaA = point(359m, 1129m); alef = point(129m, 865m) };
+absWawDotAbove = postscript("absWawDotAbove")
+	{ diaB = point(250m, -600m); diaA = point(359m, 1035m); alef = point(121m, 800m) };
+absWawDotBelow = postscript("absWawDotBelow")
+	{ diaB = point(338m, -795m); diaA = point(359m, 687m); alef = point(133m, 615m) };
+absDal = postscript("absDal")
+	{ above = point(313m, 646m); below = point(313m, -58m); ring = point(336m, 59m); 
+	  diaA = point(266m, 859m); diaB = point(250m, -180m); alef = point(121m, 800m) };
+absThal = postscript("absThal")
+	{ diaB = point(250m, -180m); diaA = point(258m, 1094m); alef = point(113m, 961m) };
+absDdal = postscript("absDdal")
+	{ diaB = point(250m, -180m); diaA = point(234m, 1363m); alef = point(88m, 977m) };
+absDalRing = postscript("absDalRing")
+	{ diaB = point(250m, -400m); diaA = point(262m, 848m); alef = point(121m, 800m) };
+// 280
+absDalDotBelow = postscript("absDalDotBelow")
+	{ diaB = point(250m, -450m); diaA = point(262m, 852m); alef = point(121m, 800m) };
+absDalDotBelowSmallTah = postscript("absDalDotBelowSmallTah")
+	{ diaB = point(250m, -450m); diaA = point(234m, 1379m); alef = point(88m, 989m) };
+absDahal = postscript("absDahal")
+	{ diaB = point(250m, -180m); diaA = point(258m, 1176m); alef = point(121m, 1045m) };
+absDdahal = postscript("absDdahal")
+	{ diaB = point(250m, -450m); diaA = point(258m, 855m); alef = point(121m, 800m) };
+absDul = postscript("absDul")
+	{ diaB = point(250m, -180m); diaA = point(258m, 1211m); alef = point(113m, 1082m) };
+absDalThreeDotsAboveDownwards = postscript("absDalThreeDotsAboveDownwards")
+	{ diaB = point(250m, -180m); diaA = point(258m, 1203m); alef = point(117m, 1130m) };
+absDalFourDotsAbove = postscript("absDalFourDotsAbove")
+	{ diaB = point(250m, -180m); diaA = point(262m, 1199m); alef = point(113m, 1130m) };
+absDalHat = postscript("absDalHat")
+	{ diaB = point(250m, -180m); diaA = point(266m, 1094m); alef = point(109m, 1017m) };
+absDalTwoVertBelowSmallTah = postscript("absDalTwoVertBelowSmallTah")
+	{ diaB = point(261m, -564m); diaA = point(234m, 1348m); alef = point(101m, 989m) };
+absDalInvSmallVBelow = postscript("absDalInvSmallVBelow")
+	{ diaB = point(261m, -500m); diaA = point(256m, 863m); alef = point(121m, 800m) };
+// 290
+absReh = postscript("absReh")
+	{ above = point(375m, 394m); below = point(375m, -401m); ring = point(365m, -226m); 
+	  center = point(176m, 64m); through = point(332m, -113m); diaA = point(224m, 750m); 
+	  diaB = point(150m, -530m); alef = point(117m, 684m) };
+absZain = postscript("absZain")
+	{ diaB = point(150m, -530m); diaA = point(210m, 840m); alef = point(117m, 772m) };
+absRreh = postscript("absRreh")
+	{ diaB = point(150m, -530m); diaA = point(210m, 1200m); alef = point(121m, 744m) };
+absRehSmallV = postscript("absRehSmallV")
+	{ diaB = point(150m, -530m); diaA = point(210m, 1000m); alef = point(117m, 836m) };
+absRehRing = postscript("absRehRing")
+	{ diaB = point(175m, -628m); diaA = point(224m, 750m); alef = point(117m, 684m) };
+absRehDotBelow = postscript("absRehDotBelow")
+	{ diaB = point(200m, -700m); diaA = point(224m, 750m); alef = point(117m, 684m) };
+absRehSmallVBelow = postscript("absRehSmallVBelow")
+	{ diaB = point(222m, -837m); diaA = point(224m, 750m); alef = point(117m, 684m) };
+absRehDotBelowDotAbove = postscript("absRehDotBelowDotAbove")
+	{ diaB = point(200m, -700m); diaA = point(224m, 750m); alef = point(117m, 684m) };
+absRehTwoDotsAbove = postscript("absRehTwoDotsAbove")
+	{ diaB = point(150m, -530m); diaA = point(210m, 1000m); alef = point(109m, 848m) };
+absJeh = postscript("absJeh")
+	{ diaB = point(150m, -530m); diaA = point(210m, 1000m); alef = point(109m, 889m) };
+// 300
+absRehFourDotsAbove = postscript("absRehFourDotsAbove")
+	{ diaB = point(150m, -530m); diaA = point(210m, 1000m); alef = point(105m, 901m) };
+absRehTwoVertAbove = postscript("absRehTwoVertAbove")
+	{ diaB = point(150m, -530m); diaA = point(280m, 1020m); alef = point(113m, 881m) };
+absRehHamzaAbove = postscript("absRehHamzaAbove")
+	{ diaB = point(150m, -530m); diaA = point(280m, 960m); alef = point(121m, 796m) };
+absJehRetro1 = postscript("absJehRetro1")
+	{ diaB = point(150m, -530m); diaA = point(231m, 1320m); alef = point(121m, 945m) };
+absJehRetro2 = postscript("absJehRetro2")
+	{ diaB = point(150m, -530m); diaA = point(192m, 1487m); alef = point(113m, 1130m) };
+absJeh__dotHat = postscript("absJeh.dotHat")
+	{ diaB = point(150m, -530m); diaA = point(226m, 1115m); alef = point(121m, 933m) };
+absRehHat = postscript("absRehHat")
+	{ diaB = point(150m, -530m); diaA = point(255m, 870m); alef = point(109m, 796m) };
+absRehBar = postscript("absRehBar")
+	{ diaB = point(150m, -530m); diaA = point(224m, 750m); alef = point(117m, 684m) };
+absYehBarree = postscript("absYehBarree")
+	{ above = point(394m, 498m); below = point(745m, -306m); diaA = point(345m, 645m); 
+	  diaB = point(500m, -400m) };
+absYehBarreeHamzaAbove = postscript("absYehBarreeHamzaAbove")
+	{ diaB = point(500m, -400m); diaA = point(329m, 944m) };
+// 310
+absYehHamzaAbove = postscript("absYehHamzaAbove")
+	{ diaB = point(450m, -400m); diaA = point(359m, 1008m) };
+absYeh = postscript("absYeh")
+	{ diaB = point(342m, -620m); diaA = point(325m, 709m) };
+absYeh__noDots = postscript("absYeh.noDots")
+	{ above = point(410m, 512m); below = point(410m, -287m); diaA = point(329m, 705m); 
+	  diaB = point(453m, -406m) };
+absHighHamzaYeh = postscript("absHighHamzaYeh")
+	{ diaB = point(450m, -400m); diaA = point(179m, 692m) };
+absFarsiYeh = postscript("absFarsiYeh")
+	{ diaB = point(450m, -400m); diaA = point(325m, 706m) };
+absYehSmallV = postscript("absYehSmallV")
+	{ diaB = point(450m, -400m); diaA = point(402m, 1030m) };
+absE = postscript("absE")
+	{ diaB = point(385m, -731m); diaA = point(420m, 705m) };
+absYehThreeDotsBelow = postscript("absYehThreeDotsBelow")
+	{ diaB = point(385m, -782m); diaA = point(420m, 705m) };
+absYehTail = postscript("absYehTail")
+	{ diaA = point(389m, 739m); diaB = point(400m, -400m) };
+absAlefMaksura = postscript("absAlefMaksura")
+	{ diaB = point(400m, -400m); diaA = point(495m, 675m) };
+// 320
+absBehNoDots = postscript("absBehNoDots")
+	{ above = point(662m, 410m); below = point(657m, -98m); ring = point(636m, 12m); 
+	  diaA = point(660m, 585m); diaB = point(651m, -310m); alef = point(298m, 583m) };
+absBeh = postscript("absBeh")
+	{ diaB = point(645m, -427m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+absTeh = postscript("absTeh")
+	{ diaB = point(651m, -310m); diaA = point(602m, 906m); alef = point(298m, 684m) };
+absTheh = postscript("absTheh")
+	{ diaB = point(651m, -310m); diaA = point(598m, 1030m); alef = point(298m, 684m) };
+absTteh = postscript("absTteh")
+	{ diaB = point(651m, -310m); diaA = point(581m, 1149m); alef = point(294m, 684m) };
+absTteheh = postscript("absTteheh")
+	{ diaB = point(651m, -310m); diaA = point(600m, 1000m); alef = point(290m, 684m) };
+absBeeh = postscript("absBeeh")
+	{ diaB = point(645m, -598m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+absTehRing = postscript("absTehRing")
+	{ diaB = point(598m, -436m); diaA = point(598m, 893m); alef = point(290m, 684m) };
+absTehThreeDotsAboveDownwards = postscript("absTehThreeDotsAboveDownwards")
+	{ diaB = point(651m, -310m); diaA = point(600m, 1000m); alef = point(290m, 684m) };
+absPeh = postscript("absPeh")
+	{ diaB = point(654m, -628m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+// 330
+absTeheh = postscript("absTeheh")
+	{ diaB = point(651m, -310m); diaA = point(600m, 1000m); alef = point(290m, 684m) };
+absBeheh = postscript("absBeheh")
+	{ diaB = point(637m, -645m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+absBehThreeDotsHorizBelow = postscript("absBehThreeDotsHorizBelow")
+	{ diaB = point(628m, -474m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+absBehThreeDotsAboveDotBelow = postscript("absBehThreeDotsAboveDotBelow")
+	{ diaB = point(641m, -461m); diaA = point(607m, 1021m); alef = point(290m, 684m) };
+absBehThreeDotsUpwardBelow = postscript("absBehThreeDotsUpwardBelow")
+	{ diaB = point(624m, -628m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+absBehTwoDotsAboveThreeDotsUpwardBelow = postscript("absBehTwoDotsAboveThreeDotsUpwardBelow")
+	{ diaB = point(624m, -624m); diaA = point(620m, 863m); alef = point(290m, 684m) };
+absBehDotAboveTwoDotsBelow = postscript("absBehDotAboveTwoDotsBelow")
+	{ diaB = point(624m, -487m); diaA = point(624m, 863m); alef = point(290m, 684m) };
+absBehInvSmallVBelow = postscript("absBehInvSmallVBelow")
+	{ diaB = point(620m, -521m); diaA = point(660m, 585m); alef = point(298m, 583m) };
+absBehSmallVAbove = postscript("absBehSmallVAbove")
+	{ diaB = point(651m, -310m); diaA = point(658m, 914m); alef = point(290m, 684m) };
+absJeem = postscript("absJeem")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(201m, 684m) };
+// 340
+absHah = postscript("absHah")
+	{ above = point(525m, 443m); center = point(526m, -200m); diaA = point(400m, 750m); 
+	  diaB = point(400m, -825m); alef = point(201m, 684m) };
+absKhah = postscript("absKhah")
+	{ diaB = point(400m, -825m); diaA = point(400m, 900m); alef = point(201m, 684m) };
+absHahHamzaAbove = postscript("absHahHamzaAbove")
+	{ diaB = point(400m, -825m); diaA = point(400m, 950m); alef = point(201m, 684m) };
+absHahTwoDotsVerticalAbove = postscript("absHahTwoDotsVerticalAbove")
+	{ diaB = point(400m, -825m); diaA = point(400m, 1020m); alef = point(201m, 800m) };
+absNyeh = postscript("absNyeh")
+	{ diaB = point(400m, -825m); diaA = point(400m, 750m); alef = point(201m, 684m) };
+absDyeh = postscript("absDyeh")
+	{ diaB = point(400m, -825m); diaA = point(400m, 750m); alef = point(201m, 684m) };
+absHahThreeDotsAbove = postscript("absHahThreeDotsAbove")
+	{ diaB = point(400m, -825m); diaA = point(400m, 1100m); alef = point(201m, 800m) };
+absTcheh = postscript("absTcheh")
+	{ diaB = point(400m, -825m); diaA = point(400m, 750m); alef = point(201m, 684m) };
+absTcheheh = postscript("absTcheheh")
+	{ diaB = point(400m, -825m); diaA = point(400m, 750m); alef = point(201m, 684m) };
+absTchehDotAbove = postscript("absTchehDotAbove")
+	{ diaB = point(400m, -825m); diaA = point(400m, 900m); alef = point(201m, 684m) };
+// 350
+absTchehRetro1 = postscript("absTchehRetro1")
+	{ diaB = point(400m, -825m); diaA = point(393m, 1192m); alef = point(197m, 788m) };
+absTchehRetro2 = postscript("absTchehRetro2")
+	{ diaB = point(400m, -825m); diaA = point(480m, 660m); alef = point(201m, 684m) };
+absJeemRetro1 = postscript("absJeemRetro1")
+	{ diaB = point(400m, -825m); diaA = point(480m, 660m); alef = point(201m, 684m) };
+absJeemRetro2 = postscript("absJeemRetro2")
+	{ diaB = point(400m, -825m); diaA = point(402m, 1196m); alef = point(205m, 788m) };
+absJeemRetro3 = postscript("absJeemRetro3")
+	{ diaB = point(400m, -825m); diaA = point(402m, 1192m); alef = point(201m, 780m) };
+absHahTwoDotsAbove = postscript("absHahTwoDotsAbove")
+	{ diaB = point(400m, -825m); diaA = point(436m, 970m); alef = point(201m, 800m) };
+absHahThreeDotsUpwardBelow = postscript("absHahThreeDotsUpwardBelow")
+	{ diaB = point(400m, -825m); diaA = point(400m, 750m); alef = point(201m, 684m) };
+absSeen = postscript("absSeen")
+	{ above = point(927m, 449m); below = point(1004m, -23m); diaA = point(400m, 450m); 
+	  diaB = point(300m, -600m) };
+absSheen = postscript("absSheen")
+	{ diaB = point(300m, -600m); diaA = point(355m, 555m) };
+absSeenDotBelowDotAbove = postscript("absSeenDotBelowDotAbove")
+	{ diaB = point(300m, -600m); diaA = point(400m, 450m) };
+// 360
+absSeenThreeDotsBelow = postscript("absSeenThreeDotsBelow")
+	{ diaB = point(300m, -600m); diaA = point(400m, 450m) };
+absSeenThreeDotsBelowThreeDotsAbove = postscript("absSeenThreeDotsBelowThreeDotsAbove")
+	{ diaB = point(300m, -600m); diaA = point(359m, 551m) };
+absSheenDotBelow = postscript("absSheenDotBelow")
+	{ diaB = point(300m, -600m); diaA = point(363m, 551m) };
+absSheenRetro1 = postscript("absSheenRetro1")
+	{ diaB = point(300m, -600m); diaA = point(325m, 996m) };
+absSheenRetro2 = postscript("absSheenRetro2")
+	{ diaB = point(300m, -600m); diaA = point(312m, 825m) };
+absSeenFourDotsAbove = postscript("absSeenFourDotsAbove")
+	{ diaB = point(300m, -600m); diaA = point(316m, 611m) };
+absSeenTwoVertAbove = postscript("absSeenTwoVertAbove")
+	{ diaB = point(300m, -600m); diaA = point(316m, 632m) };
+absSad = postscript("absSad")
+	{ above = point(972m, 446m); below = point(1085m, -90m); diaA = point(397m, 496m); 
+	  diaB = point(300m, -600m) };
+// 370
+absDad = postscript("absDad")
+	{ diaB = point(300m, -600m); diaA = point(400m, 500m) };
+absSadTwoDotsBelow = postscript("absSadTwoDotsBelow")
+	{ diaB = point(300m, -600m); diaA = point(400m, 500m) };
+absSadThreeDotsAbove = postscript("absSadThreeDotsAbove")
+	{ diaB = point(300m, -600m); diaA = point(400m, 600m) };
+absDadDotBelow = postscript("absDadDotBelow")
+	{ diaB = point(300m, -600m); diaA = point(393m, 500m) };
+absTah = postscript("absTah")
+	{ above = point(759m, 571m); below = point(524m, -48m); diaA = point(389m, 1231m); 
+	  diaB = point(500m, -180m); alef = point(201m, 684m) };
+absZah = postscript("absZah")
+	{ diaB = point(500m, -180m); diaA = point(389m, 1231m); alef = point(201m, 684m) };
+absTahThreeDotsAbove = postscript("absTahThreeDotsAbove")
+	{ diaB = point(500m, -180m); diaA = point(389m, 1235m); alef = point(201m, 684m) };
+absAin = postscript("absAin")
+	{ above = point(294m, 691m); below = point(455m, 103m); diaA = point(270m, 900m); 
+	  diaB = point(300m, -840m) };
+absGhain = postscript("absGhain")
+	{ diaB = point(300m, -840m); diaA = point(270m, 1100m) };
+absAinThreeDotsAbove = postscript("absAinThreeDotsAbove")
+	{ diaB = point(300m, -840m); diaA = point(222m, 1282m) };
+absGhainDotBelow = postscript("absGhainDotBelow")
+	{ diaB = point(300m, -840m); diaA = point(261m, 1107m) };
+absAinTwoDotsAbove = postscript("absAinTwoDotsAbove")
+	{ diaB = point(300m, -840m); diaA = point(256m, 1115m) };
+// 380
+absAinThreeDotsDownAbove = postscript("absAinThreeDotsDownAbove")
+	{ diaB = point(300m, -840m); diaA = point(252m, 1273m) };
+absAinTwoDotsVertAbove = postscript("absAinTwoDotsVertAbove")
+	{ diaB = point(300m, -840m); diaA = point(252m, 1290m) };
+absFeh = postscript("absFeh")
+	{ diaB = point(600m, -210m); diaA = point(479m, 917m); alef = point(342m, 740m) };
+absDotlessFeh = postscript("absDotlessFeh")
+	{ above = point(1162m, 785m); below = point(1104m, -6m); diaA = point(480m, 900m); 
+	  diaB = point(600m, -210m); alef = point(342m, 740m) };
+absFehDotMovedBelow = postscript("absFehDotMovedBelow")
+	{ diaB = point(600m, -210m); diaA = point(480m, 900m); alef = point(342m, 740m) };
+absFehDotBelow = postscript("absFehDotBelow")
+	{ diaB = point(602m, -209m); diaA = point(479m, 921m); alef = point(342m, 740m) };
+absVeh = postscript("absVeh")
+	{ diaB = point(600m, -210m); diaA = point(480m, 900m); alef = point(342m, 740m) };
+absFehThreeDotsBelow = postscript("absFehThreeDotsBelow")
+	{ diaB = point(581m, -329m); diaA = point(480m, 900m); alef = point(342m, 740m) };
+absPeheh = postscript("absPeheh")
+	{ diaB = point(600m, -210m); diaA = point(480m, 900m); alef = point(342m, 740m) };
+absFehTwoDotsBelow = postscript("absFehTwoDotsBelow")
+	{ diaB = point(600m, -210m); diaA = point(480m, 900m); alef = point(342m, 740m) };
+// 390
+absFehThreeDotsUpwardBelow = postscript("absFehThreeDotsUpwardBelow")
+	{ diaB = point(594m, -252m); diaA = point(480m, 900m); alef = point(342m, 740m) };
+absQafNoDots = postscript("absQafNoDots")
+	{ above = point(762m, 717m); below = point(762m, -166m); diaA = point(405m, 795m); 
+	  diaB = point(400m, -300m) };
+absQaf = postscript("absQaf")
+	{ diaB = point(400m, -300m); diaA = point(330m, 1020m) };
+absQafDotAbove = postscript("absQafDotAbove")
+	{ diaB = point(400m, -300m); diaA = point(330m, 1020m) };
+absQafThreeDotsAbove = postscript("absQafThreeDotsAbove")
+	{ diaB = point(400m, -300m); diaA = point(330m, 1020m) };
+absKaf = postscript("absKaf")
+	{ above = point(662m, 1136m); below = point(662m, -65m); diaA = point(315m, 1155m); 
+	  diaB = point(400m, -210m); alef = point(161m, 961m) };
+absKafDotAbove = postscript("absKafDotAbove")
+	{ diaB = point(400m, -210m); diaA = point(303m, 1141m); alef = point(161m, 961m) };
+absNg = postscript("absNg")
+	{ diaB = point(400m, -210m); diaA = point(256m, 1372m); alef = point(161m, 961m) };
+absKafThreeDotsBelow = postscript("absKafThreeDotsBelow")
+	{ diaB = point(414m, -513m); diaA = point(315m, 1100m); alef = point(161m, 961m) };
+absKeheh = postscript("absKeheh")
+	{ above = point(805m, 691m); below = point(811m, -185m); ring = point(1212m, 752m); 
+	  diaA = point(510m, 800m); diaB = point(585m, -299m); alef = point(241m, 684m) };
+// 400
+absKafRing = postscript("absKafRing")
+	{ diaB = point(585m, -299m); diaA = point(510m, 800m); alef = point(241m, 684m) };
+absGaf = postscript("absGaf")
+	{ diaB = point(585m, -299m); diaA = point(457m, 795m); alef = point(241m, 684m) };
+absGafRing = postscript("absGafRing")
+	{ diaB = point(585m, -299m); diaA = point(457m, 795m); alef = point(241m, 684m) };
+absNgoeh = postscript("absNgoeh")
+	{ diaB = point(585m, -299m); diaA = point(330m, 1200m); alef = point(241m, 684m) };
+absGafTwoDotsBelow = postscript("absGafTwoDotsBelow")
+	{ diaB = point(400m, -400m); diaA = point(457m, 795m); alef = point(241m, 684m) };
+absGueh = postscript("absGueh")
+	{ diaB = point(400m, -400m); diaA = point(457m, 795m); alef = point(241m, 684m) };
+absGafThreeDotsAbove = postscript("absGafThreeDotsAbove")
+	{ diaB = point(585m, -299m); diaA = point(315m, 1200m); alef = point(241m, 684m) };
+absKehehDotAbove = postscript("absKehehDotAbove")
+	{ diaB = point(581m, -299m); diaA = point(436m, 906m); alef = point(241m, 684m) };
+absKehehThreeDotsAbove = postscript("absKehehThreeDotsAbove")
+	{ diaB = point(585m, -299m); diaA = point(389m, 961m); alef = point(241m, 684m) };
+absKehehThreeDotsUpwardBelow = postscript("absKehehThreeDotsUpwardBelow")
+	{ diaB = point(346m, -406m); diaA = point(510m, 800m); alef = point(241m, 684m) };
+// 410
+absSwashKaf = postscript("absSwashKaf")
+	{ diaA = point(390m, 1000m); diaB = point(600m, -210m) };
+absLam = postscript("absLam")
+	{ above = point(597m, 1143m); below = point(668m, -236m); through = point(648m, 691m); 
+	  diaA = point(300m, 900m); diaB = point(400m, -330m); alef = point(460m, 800m) };
+absLamSmallV = postscript("absLamSmallV")
+	{ diaB = point(400m, -330m); diaA = point(538m, 1572m); alef = point(460m, 700m) };
+absLamDotAbove = postscript("absLamDotAbove")
+	{ diaB = point(400m, -330m); diaA = point(453m, 1470m); alef = point(460m, 650m) };
+absLamThreeDotsAbove = postscript("absLamThreeDotsAbove")
+	{ diaB = point(400m, -330m); diaA = point(390m, 1620m); alef = point(460m, 650m) };
+absLamThreeDotsBelow = postscript("absLamThreeDotsBelow")
+	{ diaB = point(250m, -500m); diaA = point(315m, 900m); alef = point(460m, 800m) };
+absLamRetro = postscript("absLamRetro")
+	{ diaB = point(400m, -330m); diaA = point(436m, 1769m); alef = point(460m, 540m) };
+absLamBar = postscript("absLamBar")
+	{ diaB = point(400m, -330m); diaA = point(300m, 1140m); alef = point(460m, 915m) };
+absMeem = postscript("absMeem")
+	{ above = point(297m, 546m); below = point(339m, 73m); diaA = point(192m, 837m); 
+	  diaB = point(165m, -660m) };
+absMeem__sindhi = postscript("absMeem.sindhi")
+	{ above = point(600m, 552m); below = point(600m, -100m); diaA = point(500m, 700m); 
+	  diaB = point(400m, -200m) };
+// 420
+absMeemDotAbove = postscript("absMeemDotAbove")
+	{ diaB = point(165m, -660m); diaA = point(188m, 1034m) };
+absMeemDotBelow = postscript("absMeemDotBelow")
+	{ diaB = point(165m, -660m); diaA = point(188m, 850m) };
+absNoon = postscript("absNoon")
+	{ diaB = point(400m, -210m); diaA = point(251m, 999m) };
+absNoonDotBelow = postscript("absNoonDotBelow")
+	{ diaB = point(406m, -487m); diaA = point(299m, 999m) };
+absNoonGhunna = postscript("absNoonGhunna")
+	{ above = point(407m, 591m); below = point(426m, -136m); ring = point(437m, -13m); 
+	  diaA = point(300m, 870m); diaB = point(400m, -210m) };
+absRnoon = postscript("absRnoon")
+	{ diaB = point(400m, -210m); diaA = point(270m, 1365m); alef = point(161m, 924m) };
+absNoonRing = postscript("absNoonRing")
+	{ diaB = point(397m, -397m); diaA = point(299m, 999m) };
+absNoonThreeDotsAbove = postscript("absNoonThreeDotsAbove")
+	{ diaB = point(400m, -210m); diaA = point(285m, 1245m) };
+absNoonTwoDotsBelow = postscript("absNoonTwoDotsBelow")
+	{ diaB = point(400m, -500m); diaA = point(299m, 999m) };
+absNoonRetro = postscript("absNoonRetro")
+	{ diaB = point(350m, -210m); diaA = point(286m, 1478m); alef = point(161m, 1188m) };
+// 430
+absNoonSmallV = postscript("absNoonSmallV")
+	{ diaB = point(350m, -210m); diaA = point(360m, 1275m) };
+absHehDoachashmee = postscript("absHehDoachashmee")
+	{ above = point(347m, 652m); below = point(347m, -17m); diaA = point(360m, 855m); 
+	  diaB = point(300m, -195m) };
+absHehHat = postscript("absHehHat")
+	{ diaB = point(340m, -195m); diaA = point(330m, 1070m) };
+absHeh = postscript("absHeh")
+	{ diaB = point(200m, -180m); diaA = point(261m, 769m) };
+absHeh__knotted = postscript("absHeh.knotted")
+	{ diaB = point(300m, -195m); diaA = point(360m, 855m) };
+absAe = postscript("absAe")
+	{ above = point(256m, 560m); below = point(256m, -60m); diaA = point(261m, 769m); 
+	  diaB = point(200m, -180m) };
+absTehMarbuta = postscript("absTehMarbuta")
+	{ diaB = point(200m, -180m); diaA = point(210m, 1000m) };
+absHehYehAbove = postscript("absHehYehAbove")
+	{ diaB = point(200m, -180m); diaA = point(209m, 1128m) };
+absHehGoal = postscript("absHehGoal")
+	{ diaB = point(200m, -195m); diaA = point(261m, 769m) };
+absHehGoalHamzaAbove = postscript("absHehGoalHamzaAbove")
+	{ diaB = point(200m, -180m); diaA = point(218m, 1132m) };
+// 440
+absTehMarbutaGoal = postscript("absTehMarbutaGoal")
+	{ diaB = point(200m, -180m); diaA = point(210m, 1000m) };
+absHamza = postscript("absHamza")
+	{ above = point(260m, 472m); below = point(265m, -155m); diaA = point(210m, 540m); 
+	  diaB = point(210m, -180m) };
+absSignSindhiAmpers = postscript("absSignSindhiAmpers")
+	{ diaB = point(244m, -649m); diaA = point(210m, 540m) };
+absSignSindhiPostpositionMen = postscript("absSignSindhiPostpositionMen")
+	{ diaA = point(500m, 700m); diaB = point(512m, -547m) };
+absTatweel = postscript("absTatweel")
+	{ diaA = point(150m, 790m); diaB = point(111m, -188m) };
+absLamAlef = postscript("absLamAlef")
+	{ above = point(691m, 1195m); below = point(651m, -58m); through = point(703m, 777m); 
+	  above2 = point(46m, 1185m); below2 = point(446m, -57m); dia2B1 = point(600m, -100m); 
+	  dia2B2 = point(350m, -135m); diaA1 = point(714m, 1278m); diaA2 = point(0m, 1218m); 
+	  diaB1 = point(600m, -100m); diaB2 = point(420m, -100m); alef1 = point(600m, 825m); 
+	  alef2 = point(0m, 1155m) };
+absLamSmallVAlef = postscript("absLamSmallVAlef")
+	{ alef2 = point(0m, 1155m); diaA2 = point(0m, 1218m); dia2B1 = point(600m, -100m); 
+	  dia2B2 = point(350m, -135m); diaB1 = point(600m, -100m); alef1 = point(600m, 825m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(667m, 1594m) };
+absLamDotAboveAlef = postscript("absLamDotAboveAlef")
+	{ alef2 = point(0m, 1155m); diaA2 = point(0m, 1218m); dia2B1 = point(600m, -100m); 
+	  dia2B2 = point(350m, -135m); diaB1 = point(600m, -100m); alef1 = point(600m, 825m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(658m, 1560m) };
+absLamThreeDotsAboveAlef = postscript("absLamThreeDotsAboveAlef")
+	{ alef2 = point(0m, 1155m); diaA2 = point(0m, 1218m); dia2B1 = point(600m, -100m); 
+	  dia2B2 = point(350m, -135m); diaB1 = point(600m, -100m); alef1 = point(600m, 825m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(615m, 1722m) };
+absLamThreeDotsBelowAlef = postscript("absLamThreeDotsBelowAlef")
+	{ alef2 = point(0m, 1155m); diaA2 = point(0m, 1218m); dia2B1 = point(628m, -555m); 
+	  dia2B2 = point(256m, -145m); diaB1 = point(628m, -555m); alef1 = point(600m, 825m); 
+	  diaB2 = point(256m, -145m); diaA1 = point(714m, 1278m) };
+// 450
+absLamRetroAlef = postscript("absLamRetroAlef")
+	{ alef2 = point(0m, 1155m); diaA2 = point(0m, 1218m); dia2B1 = point(600m, -100m); 
+	  dia2B2 = point(350m, -135m); diaB1 = point(600m, -100m); alef1 = point(480m, 1455m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(585m, 1786m) };
+absLamBarAlef = postscript("absLamBarAlef")
+	{ alef2 = point(0m, 1155m); diaA2 = point(0m, 1218m); dia2B1 = point(600m, -100m); 
+	  dia2B2 = point(350m, -135m); diaB1 = point(600m, -100m); alef1 = point(540m, 930m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(714m, 1278m) };
+absAlefMaddaAboveFin = postscript("absAlefMaddaAboveFin")
+	{ diaB = point(179m, -179m); diaA = point(100m, 1395m) };
+absAlefHamzaAboveFin = postscript("absAlefHamzaAboveFin")
+	{ diaB = point(179m, -179m); diaA = point(90m, 1445m) };
+absAlefHamzaBelowFin = postscript("absAlefHamzaBelowFin")
+	{ diaB = point(192m, -491m); diaA = point(100m, 1175m) };
+absAlefFin = postscript("absAlefFin")
+	{ above = point(136m, 1043m); below = point(227m, -50m); diaA = point(105m, 1175m); 
+	  diaB = point(179m, -179m) };
+absAlefWavyHamzaAboveFin = postscript("absAlefWavyHamzaAboveFin")
+	{ diaB = point(179m, -179m); diaA = point(60m, 1485m) };
+absAlefWavyHamzaBelowFin = postscript("absAlefWavyHamzaBelowFin")
+	{ diaB = point(158m, -513m); diaA = point(75m, 1185m) };
+absHighHamzaAlefFin = postscript("absHighHamzaAlefFin")
+	{ diaB = point(179m, -179m); diaA = point(105m, 1365m) };
+absAlefWaslaFin = postscript("absAlefWaslaFin")
+	{ diaB = point(179m, -179m); diaA = point(135m, 1370m) };
+// 460
+absWawHamzaAboveFin = postscript("absWawHamzaAboveFin")
+	{ diaB = point(250m, -600m); diaA = point(312m, 880m); alef = point(141m, 684m) };
+absWawFin = postscript("absWawFin")
+	{ above = point(375m, 397m); below = point(375m, -457m); ring = point(231m, -42m); 
+	  through = point(383m, -156m); diaA = point(308m, 684m); diaB = point(250m, -600m); 
+	  center = point(383m, -154m); alef = point(141m, 684m) };
+absHighHamzaWawFin = postscript("absHighHamzaWawFin")
+	{ diaB = point(250m, -600m); diaA = point(269m, 910m); alef = point(141m, 684m) };
+absUHamzaAboveFin = postscript("absUHamzaAboveFin")
+	{ diaB = point(250m, -600m); diaA = point(225m, 1000m) };
+absWawRingFin = postscript("absWawRingFin")
+	{ diaB = point(250m, -600m); diaA = point(308m, 684m); alef = point(141m, 684m) };
+absKirghizOeFin = postscript("absKirghizOeFin")
+	{ diaB = point(250m, -600m); diaA = point(308m, 684m); alef = point(141m, 684m) };
+absOeFin = postscript("absOeFin")
+	{ diaB = point(250m, -600m); diaA = point(308m, 923m); alef = point(137m, 816m) };
+absUFin = postscript("absUFin")
+	{ diaB = point(250m, -600m); diaA = point(303m, 1038m); alef = point(141m, 684m) };
+absYuFin = postscript("absYuFin")
+	{ diaB = point(250m, -600m); diaA = point(303m, 978m); alef = point(141m, 684m) };
+absKirghizYuFin = postscript("absKirghizYuFin")
+	{ diaB = point(250m, -600m); diaA = point(308m, 966m); alef = point(141m, 780m) };
+// 470
+absWawTwoDotsAboveFin = postscript("absWawTwoDotsAboveFin")
+	{ diaB = point(250m, -600m); diaA = point(308m, 936m); alef = point(141m, 736m) };
+absVeFin = postscript("absVeFin")
+	{ diaB = point(250m, -600m); diaA = point(308m, 1008m); alef = point(137m, 764m) };
+absWawDotAboveFin = postscript("absWawDotAboveFin")
+	{ diaB = point(250m, -600m); diaA = point(303m, 936m); alef = point(141m, 684m) };
+absWawDotBelowFin = postscript("absWawDotBelowFin")
+	{ diaB = point(359m, -765m); diaA = point(303m, 684m); alef = point(141m, 684m) };
+absDalFin = postscript("absDalFin")
+	{ above = point(468m, 814m); below = point(417m, -50m); ring = point(315m, 91m); 
+	  diaA = point(256m, 1000m); diaB = point(300m, -180m); alef = point(141m, 684m) };
+absThalFin = postscript("absThalFin")
+	{ diaB = point(300m, -180m); diaA = point(256m, 1196m); alef = point(137m, 861m) };
+absDdalFin = postscript("absDdalFin")
+	{ diaB = point(300m, -180m); diaA = point(295m, 1500m); alef = point(157m, 1154m) };
+absDalRingFin = postscript("absDalRingFin")
+	{ diaB = point(300m, -400m); diaA = point(256m, 1000m); alef = point(141m, 684m) };
+absDalDotBelowFin = postscript("absDalDotBelowFin")
+	{ diaB = point(376m, -402m); diaA = point(256m, 1000m); alef = point(141m, 684m) };
+absDalDotBelowSmallTahFin = postscript("absDalDotBelowSmallTahFin")
+	{ diaB = point(380m, -410m); diaA = point(295m, 1500m); alef = point(145m, 1154m) };
+// 480
+absDahalFin = postscript("absDahalFin")
+	{ diaB = point(300m, -180m); diaA = point(256m, 1260m); alef = point(137m, 921m) };
+absDdahalFin = postscript("absDdahalFin")
+	{ diaB = point(355m, -419m); diaA = point(256m, 1000m); alef = point(141m, 684m) };
+absDulFin = postscript("absDulFin")
+	{ diaB = point(300m, -180m); diaA = point(256m, 1303m); alef = point(133m, 945m) };
+absDalThreeDotsAboveDownwardsFin = postscript("absDalThreeDotsAboveDownwardsFin")
+	{ diaB = point(300m, -180m); diaA = point(225m, 1330m); alef = point(121m, 941m) };
+absDalFourDotsAboveFin = postscript("absDalFourDotsAboveFin")
+	{ diaB = point(300m, -180m); diaA = point(225m, 1300m); alef = point(145m, 929m) };
+absDalHatFin = postscript("absDalHatFin")
+	{ diaB = point(300m, -180m); diaA = point(359m, 1256m); alef = point(141m, 921m) };
+absDalTwoVertBelowSmallTahFin = postscript("absDalTwoVertBelowSmallTahFin")
+	{ diaB = point(385m, -560m); diaA = point(295m, 1500m); alef = point(149m, 1130m) };
+absDalInvSmallVBelowFin = postscript("absDalInvSmallVBelowFin")
+	{ diaB = point(380m, -410m); diaA = point(312m, 992m); alef = point(141m, 684m) };
+absRehFin = postscript("absRehFin")
+	{ above = point(349m, 242m); below = point(349m, -432m); ring = point(348m, -268m); 
+	  center = point(145m, 0m); through = point(320m, -164m); diaA = point(225m, 600m); 
+	  diaB = point(200m, -540m); alef = point(101m, 450m) };
+absZainFin = postscript("absZainFin")
+	{ diaB = point(200m, -540m); diaA = point(244m, 799m); alef = point(101m, 450m) };
+// 490
+absRrehFin = postscript("absRrehFin")
+	{ diaB = point(200m, -540m); diaA = point(214m, 953m); alef = point(109m, 571m) };
+absRehSmallVFin = postscript("absRehSmallVFin")
+	{ diaB = point(200m, -540m); diaA = point(248m, 855m); alef = point(97m, 623m) };
+absRehRingFin = postscript("absRehRingFin")
+	{ diaB = point(248m, -701m); diaA = point(225m, 600m); alef = point(101m, 450m) };
+absRehDotBelowFin = postscript("absRehDotBelowFin")
+	{ diaB = point(265m, -735m); diaA = point(225m, 600m); alef = point(101m, 450m) };
+absRehSmallVBelowFin = postscript("absRehSmallVBelowFin")
+	{ diaB = point(261m, -816m); diaA = point(225m, 600m); alef = point(101m, 450m) };
+absRehDotBelowDotAboveFin = postscript("absRehDotBelowDotAboveFin")
+	{ diaB = point(278m, -756m); diaA = point(225m, 600m); alef = point(101m, 450m) };
+absRehTwoDotsAboveFin = postscript("absRehTwoDotsAboveFin")
+	{ diaB = point(200m, -540m); diaA = point(225m, 800m); alef = point(101m, 555m) };
+absJehFin = postscript("absJehFin")
+	{ diaB = point(200m, -540m); diaA = point(235m, 927m); alef = point(105m, 599m) };
+absRehFourDotsAboveFin = postscript("absRehFourDotsAboveFin")
+	{ diaB = point(200m, -540m); diaA = point(235m, 923m); alef = point(101m, 659m) };
+absRehTwoVertAboveFin = postscript("absRehTwoVertAboveFin")
+	{ diaB = point(200m, -540m); diaA = point(261m, 889m); alef = point(109m, 603m) };
+// 500
+absRehHamzaAboveFin = postscript("absRehHamzaAboveFin")
+	{ diaB = point(200m, -540m); diaA = point(239m, 859m); alef = point(97m, 507m) };
+absJehRetro1Fin = postscript("absJehRetro1Fin")
+	{ diaB = point(200m, -540m); diaA = point(218m, 1171m); alef = point(109m, 780m) };
+absJehRetro2Fin = postscript("absJehRetro2Fin")
+	{ diaB = point(200m, -540m); diaA = point(179m, 1346m); alef = point(101m, 981m) };
+absJehFin__dotHat = postscript("absJehFin.dotHat")
+	{ diaB = point(201m, -538m); diaA = point(239m, 1021m); alef = point(97m, 684m) };
+absRehHatFin = postscript("absRehHatFin")
+	{ diaB = point(200m, -540m); diaA = point(244m, 812m); alef = point(105m, 515m) };
+absRehBarFin = postscript("absRehBarFin")
+	{ diaB = point(200m, -540m); diaA = point(225m, 600m); alef = point(101m, 450m) };
+absYehBarreeFin = postscript("absYehBarreeFin")
+	{ above = point(494m, 45m); below = point(680m, -787m); diaA = point(375m, 220m); 
+	  diaB = point(500m, -850m) };
+absYehBarreeHamzaAboveFin = postscript("absYehBarreeHamzaAboveFin")
+	{ diaB = point(500m, -850m); diaA = point(410m, 500m) };
+absYehHamzaAboveFin = postscript("absYehHamzaAboveFin")
+	{ diaB = point(450m, -650m); diaA = point(385m, 530m) };
+absYehFin = postscript("absYehFin")
+	{ diaB = point(419m, -910m); diaA = point(389m, 329m) };
+// 510
+absYehFin__noDots = postscript("absYehFin.noDots")
+	{ above = point(458m, 65m); below = point(446m, -594m); diaA = point(389m, 329m); 
+	  diaB = point(453m, -654m) };
+absHighHamzaYehFin = postscript("absHighHamzaYehFin")
+	{ diaB = point(450m, -650m); diaA = point(261m, 329m) };
+absFarsiYehFin = postscript("absFarsiYehFin")
+	{ diaB = point(450m, -650m); diaA = point(389m, 329m) };
+absYehSmallVFin = postscript("absYehSmallVFin")
+	{ diaB = point(450m, -650m); diaA = point(406m, 564m) };
+absEFin = postscript("absEFin")
+	{ diaB = point(427m, -1047m); diaA = point(389m, 329m) };
+absYehThreeDotsBelowFin = postscript("absYehThreeDotsBelowFin")
+	{ diaB = point(444m, -1094m); diaA = point(389m, 329m) };
+absYehTailFin = postscript("absYehTailFin")
+	{ diaA = point(389m, 329m); diaB = point(400m, -650m) };
+absAlefMaksuraFin = postscript("absAlefMaksuraFin")
+	{ diaB = point(450m, -650m); diaA = point(389m, 329m) };
+absBehNoDotsFin = postscript("absBehNoDotsFin")
+	{ above = point(649m, 300m); below = point(581m, -132m); ring = point(588m, -30m); 
+	  diaA = point(660m, 585m); diaB = point(659m, -310m); alef = point(302m, 583m) };
+absBehFin = postscript("absBehFin")
+	{ diaB = point(560m, -496m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+// 520
+absTehFin = postscript("absTehFin")
+	{ diaB = point(659m, -310m); diaA = point(632m, 820m); alef = point(302m, 583m) };
+absThehFin = postscript("absThehFin")
+	{ diaB = point(659m, -310m); diaA = point(615m, 953m); alef = point(302m, 583m) };
+absTtehFin = postscript("absTtehFin")
+	{ diaB = point(659m, -310m); diaA = point(551m, 1030m); alef = point(302m, 583m) };
+absTtehehFin = postscript("absTtehehFin")
+	{ diaB = point(659m, -310m); diaA = point(632m, 931m); alef = point(302m, 583m) };
+absBeehFin = postscript("absBeehFin")
+	{ diaB = point(568m, -620m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+absTehRingFin = postscript("absTehRingFin")
+	{ diaB = point(534m, -449m); diaA = point(632m, 833m); alef = point(302m, 583m) };
+absTehThreeDotsAboveDownwardsFin = postscript("absTehThreeDotsAboveDownwardsFin")
+	{ diaB = point(659m, -310m); diaA = point(628m, 970m); alef = point(302m, 583m) };
+absPehFin = postscript("absPehFin")
+	{ diaB = point(568m, -675m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+absTehehFin = postscript("absTehehFin")
+	{ diaB = point(659m, -310m); diaA = point(624m, 953m); alef = point(302m, 583m) };
+absBehehFin = postscript("absBehehFin")
+	{ diaB = point(555m, -675m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+// 530
+absBehThreeDotsHorizBelowFin = postscript("absBehThreeDotsHorizBelowFin")
+	{ diaB = point(547m, -461m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+absBehThreeDotsAboveDotBelowFin = postscript("absBehThreeDotsAboveDotBelowFin")
+	{ diaB = point(547m, -474m); diaA = point(607m, 927m); alef = point(302m, 583m) };
+absBehThreeDotsUpwardBelowFin = postscript("absBehThreeDotsUpwardBelowFin")
+	{ diaB = point(538m, -662m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+absBehTwoDotsAboveThreeDotsUpwardBelowFin = postscript("absBehTwoDotsAboveThreeDotsUpwardBelowFin")
+	{ diaB = point(530m, -662m); diaA = point(632m, 833m); alef = point(302m, 583m) };
+absBehDotAboveTwoDotsBelowFin = postscript("absBehDotAboveTwoDotsBelowFin")
+	{ diaB = point(551m, -521m); diaA = point(632m, 808m); alef = point(302m, 583m) };
+absBehInvSmallVBelowFin = postscript("absBehInvSmallVBelowFin")
+	{ diaB = point(547m, -521m); diaA = point(660m, 585m); alef = point(302m, 583m) };
+absBehSmallVAboveFin = postscript("absBehSmallVAboveFin")
+	{ diaB = point(659m, -310m); diaA = point(641m, 833m); alef = point(302m, 583m) };
+absJeemFin = postscript("absJeemFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absHahFin = postscript("absHahFin")
+	{ above = point(522m, 439m); center = point(520m, -229m); diaA = point(400m, 750m); 
+	  diaB = point(400m, -840m); alef = point(149m, 684m) };
+absKhahFin = postscript("absKhahFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 900m); alef = point(149m, 684m) };
+// 540
+absHahHamzaAboveFin = postscript("absHahHamzaAboveFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 950m); alef = point(149m, 684m) };
+absHahTwoDotsVerticalAboveFin = postscript("absHahTwoDotsVerticalAboveFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 1020m); alef = point(149m, 684m) };
+absNyehFin = postscript("absNyehFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absDyehFin = postscript("absDyehFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absHahThreeDotsAboveFin = postscript("absHahThreeDotsAboveFin")
+	{ diaB = point(400m, -840m); diaA = point(427m, 1034m); alef = point(149m, 684m) };
+absTchehFin = postscript("absTchehFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absTchehehFin = postscript("absTchehehFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absTchehDotAboveFin = postscript("absTchehDotAboveFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 900m); alef = point(149m, 684m) };
+absTchehRetro1Fin = postscript("absTchehRetro1Fin")
+	{ diaB = point(400m, -840m); diaA = point(402m, 1171m); alef = point(149m, 684m) };
+absTchehRetro2Fin = postscript("absTchehRetro2Fin")
+	{ diaB = point(400m, -840m); diaA = point(480m, 660m); alef = point(149m, 684m) };
+// 550
+absJeemRetro1Fin = postscript("absJeemRetro1Fin")
+	{ diaB = point(400m, -840m); diaA = point(480m, 660m); alef = point(149m, 684m) };
+absJeemRetro2Fin = postscript("absJeemRetro2Fin")
+	{ diaB = point(400m, -840m); diaA = point(397m, 1166m); alef = point(149m, 684m) };
+absJeemRetro3Fin = postscript("absJeemRetro3Fin")
+	{ diaB = point(400m, -840m); diaA = point(397m, 1171m); alef = point(149m, 684m) };
+absHahTwoDotsAboveFin = postscript("absHahTwoDotsAboveFin")
+	{ diaB = point(400m, -840m); diaA = point(406m, 906m); alef = point(149m, 684m) };
+absHahThreeDotsUpwardBelowFin = postscript("absHahThreeDotsUpwardBelowFin")
+	{ diaB = point(400m, -840m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absSeenFin = postscript("absSeenFin")
+	{ above = point(969m, 333m); below = point(1036m, -65m); diaA = point(400m, 450m); 
+	  diaB = point(338m, -602m) };
+absSheenFin = postscript("absSheenFin")
+	{ diaB = point(333m, -602m); diaA = point(400m, 450m) };
+absSeenDotBelowDotAboveFin = postscript("absSeenDotBelowDotAboveFin")
+	{ diaB = point(329m, -602m); diaA = point(400m, 450m) };
+absSeenThreeDotsBelowFin = postscript("absSeenThreeDotsBelowFin")
+	{ diaB = point(329m, -602m); diaA = point(400m, 450m) };
+absSeenThreeDotsBelowThreeDotsAboveFin = postscript("absSeenThreeDotsBelowThreeDotsAboveFin")
+	{ diaB = point(338m, -602m); diaA = point(402m, 564m) };
+// 560
+absSheenDotBelowFin = postscript("absSheenDotBelowFin")
+	{ diaB = point(338m, -607m); diaA = point(402m, 551m) };
+absSheenRetro1Fin = postscript("absSheenRetro1Fin")
+	{ diaB = point(350m, -600m); diaA = point(375m, 975m) };
+absSheenRetro2Fin = postscript("absSheenRetro2Fin")
+	{ diaB = point(350m, -600m); diaA = point(405m, 855m) };
+absSeenFourDotsAboveFin = postscript("absSeenFourDotsAboveFin")
+	{ diaB = point(350m, -600m); diaA = point(376m, 564m) };
+absSeenTwoVertAboveFin = postscript("absSeenTwoVertAboveFin")
+	{ diaB = point(350m, -600m); diaA = point(363m, 568m) };
+absSadFin = postscript("absSadFin")
+	{ above = point(1001m, 429m); below = point(1133m, -90m); diaA = point(400m, 450m); 
+	  diaB = point(300m, -600m) };
+absDadFin = postscript("absDadFin")
+	{ diaB = point(300m, -600m); diaA = point(397m, 547m) };
+absSadTwoDotsBelowFin = postscript("absSadTwoDotsBelowFin")
+	{ diaB = point(300m, -600m); diaA = point(400m, 450m) };
+absSadThreeDotsAboveFin = postscript("absSadThreeDotsAboveFin")
+	{ diaB = point(300m, -600m); diaA = point(393m, 662m) };
+absDadDotBelowFin = postscript("absDadDotBelowFin")
+	{ diaB = point(300m, -600m); diaA = point(397m, 547m) };
+// 570
+absTahFin = postscript("absTahFin")
+	{ above = point(743m, 562m); below = point(567m, -50m); diaA = point(390m, 1240m); 
+	  diaB = point(500m, -180m); alef = point(189m, 684m) };
+absZahFin = postscript("absZahFin")
+	{ diaB = point(500m, -180m); diaA = point(390m, 1240m); alef = point(189m, 684m) };
+absTahThreeDotsAboveFin = postscript("absTahThreeDotsAboveFin")
+	{ diaB = point(500m, -180m); diaA = point(390m, 1240m); alef = point(189m, 684m) };
+absAinFin = postscript("absAinFin")
+	{ above = point(375m, 507m); below = point(375m, 0m); diaA = point(300m, 670m); 
+	  diaB = point(400m, -800m) };
+absGhainFin = postscript("absGhainFin")
+	{ diaB = point(400m, -800m); diaA = point(300m, 955m) };
+absAinThreeDotsAboveFin = postscript("absAinThreeDotsAboveFin")
+	{ diaB = point(400m, -800m); diaA = point(300m, 1150m) };
+absGhainDotBelowFin = postscript("absGhainDotBelowFin")
+	{ diaB = point(400m, -800m); diaA = point(300m, 970m) };
+absAinTwoDotsAboveFin = postscript("absAinTwoDotsAboveFin")
+	{ diaB = point(400m, -800m); diaA = point(295m, 961m) };
+absAinThreeDotsDownAboveFin = postscript("absAinThreeDotsDownAboveFin")
+	{ diaB = point(400m, -800m); diaA = point(320m, 1115m) };
+absAinTwoDotsVertAboveFin = postscript("absAinTwoDotsVertAboveFin")
+	{ diaB = point(400m, -800m); diaA = point(312m, 1107m) };
+// 580
+absFehFin = postscript("absFehFin")
+	{ diaB = point(600m, -250m); diaA = point(496m, 684m); alef = point(330m, 551m) };
+absDotlessFehFin = postscript("absDotlessFehFin")
+	{ above = point(1182m, 559m); below = point(1083m, -141m); diaA = point(496m, 684m); 
+	  diaB = point(600m, -250m); alef = point(330m, 551m) };
+absFehDotMovedBelowFin = postscript("absFehDotMovedBelowFin")
+	{ diaB = point(598m, -291m); diaA = point(496m, 684m); alef = point(330m, 551m) };
+absFehDotBelowFin = postscript("absFehDotBelowFin")
+	{ diaB = point(594m, -295m); diaA = point(496m, 684m); alef = point(330m, 551m) };
+absVehFin = postscript("absVehFin")
+	{ diaB = point(600m, -250m); diaA = point(496m, 773m); alef = point(330m, 551m) };
+absFehThreeDotsBelowFin = postscript("absFehThreeDotsBelowFin")
+	{ diaB = point(600m, -350m); diaA = point(496m, 684m); alef = point(330m, 551m) };
+absPehehFin = postscript("absPehehFin")
+	{ diaB = point(600m, -250m); diaA = point(496m, 769m); alef = point(330m, 551m) };
+absFehTwoDotsBelowFin = postscript("absFehTwoDotsBelowFin")
+	{ diaB = point(602m, -299m); diaA = point(496m, 684m); alef = point(330m, 551m) };
+absFehThreeDotsUpwardBelowFin = postscript("absFehThreeDotsUpwardBelowFin")
+	{ diaB = point(594m, -376m); diaA = point(496m, 684m); alef = point(330m, 551m) };
+absQafNoDotsFin = postscript("absQafNoDotsFin")
+	{ above = point(652m, 349m); below = point(646m, -397m); diaA = point(360m, 510m); 
+	  diaB = point(376m, -594m) };
+// 590
+absQafFin = postscript("absQafFin")
+	{ diaB = point(380m, -594m); diaA = point(248m, 684m) };
+absQafDotAboveFin = postscript("absQafDotAboveFin")
+	{ diaB = point(376m, -598m); diaA = point(248m, 684m) };
+absQafThreeDotsAboveFin = postscript("absQafThreeDotsAboveFin")
+	{ diaB = point(372m, -598m); diaA = point(248m, 765m) };
+absKafFin = postscript("absKafFin")
+	{ above = point(1065m, 1065m); below = point(1062m, -107m); diaA = point(466m, 1034m); 
+	  diaB = point(600m, -300m); alef = point(261m, 800m) };
+absKafDotAboveFin = postscript("absKafDotAboveFin")
+	{ diaB = point(600m, -300m); diaA = point(466m, 1115m); alef = point(261m, 800m) };
+absNgFin = postscript("absNgFin")
+	{ diaB = point(600m, -300m); diaA = point(466m, 1282m); alef = point(261m, 800m) };
+absKafThreeDotsBelowFin = postscript("absKafThreeDotsBelowFin")
+	{ diaB = point(850m, -650m); diaA = point(466m, 1034m); alef = point(261m, 800m) };
+absKehehFin = postscript("absKehehFin")
+	{ above = point(805m, 768m); below = point(814m, -77m); ring = point(1212m, 855m); 
+	  diaA = point(510m, 800m); diaB = point(600m, -180m); alef = point(261m, 800m) };
+absKafRingFin = postscript("absKafRingFin")
+	{ diaB = point(600m, -180m); diaA = point(510m, 800m); alef = point(261m, 800m) };
+absGafFin = postscript("absGafFin")
+	{ diaB = point(600m, -180m); diaA = point(510m, 900m); alef = point(261m, 800m) };
+// 600
+absGafRingFin = postscript("absGafRingFin")
+	{ diaB = point(600m, -180m); diaA = point(510m, 900m); alef = point(261m, 800m) };
+absNgoehFin = postscript("absNgoehFin")
+	{ diaB = point(600m, -180m); diaA = point(414m, 1282m); alef = point(261m, 800m) };
+absGafTwoDotsBelowFin = postscript("absGafTwoDotsBelowFin")
+	{ diaB = point(607m, -402m); diaA = point(510m, 900m); alef = point(261m, 800m) };
+absGuehFin = postscript("absGuehFin")
+	{ diaB = point(765m, -555m); diaA = point(510m, 900m); alef = point(261m, 800m) };
+absGafThreeDotsAboveFin = postscript("absGafThreeDotsAboveFin")
+	{ diaB = point(600m, -180m); diaA = point(325m, 1282m); alef = point(261m, 800m) };
+absKehehDotAboveFin = postscript("absKehehDotAboveFin")
+	{ diaB = point(600m, -180m); diaA = point(466m, 983m); alef = point(261m, 800m) };
+absKehehThreeDotsAboveFin = postscript("absKehehThreeDotsAboveFin")
+	{ diaB = point(600m, -180m); diaA = point(367m, 1085m); alef = point(261m, 800m) };
+absKehehThreeDotsUpwardBelowFin = postscript("absKehehThreeDotsUpwardBelowFin")
+	{ diaB = point(701m, -602m); diaA = point(510m, 800m); alef = point(261m, 800m) };
+absSwashKafFin = postscript("absSwashKafFin")
+	{ diaA = point(390m, 1000m); diaB = point(600m, -180m) };
+absLamFin = postscript("absLamFin")
+	{ above = point(591m, 1023m); below = point(649m, -528m); through = point(602m, 602m); 
+	  diaA = point(300m, 800m); diaB = point(350m, -600m); alef = point(460m, 700m) };
+// 610
+absLamSmallVFin = postscript("absLamSmallVFin")
+	{ diaB = point(350m, -600m); diaA = point(526m, 1470m); alef = point(460m, 600m) };
+absLamDotAboveFin = postscript("absLamDotAboveFin")
+	{ diaB = point(350m, -600m); diaA = point(508m, 1440m); alef = point(460m, 600m) };
+absLamThreeDotsAboveFin = postscript("absLamThreeDotsAboveFin")
+	{ diaB = point(350m, -600m); diaA = point(440m, 1564m); alef = point(460m, 600m) };
+absLamThreeDotsBelowFin = postscript("absLamThreeDotsBelowFin")
+	{ diaB = point(250m, -800m); diaA = point(330m, 800m); alef = point(460m, 700m) };
+absLamRetroFin = postscript("absLamRetroFin")
+	{ diaB = point(400m, -600m); diaA = point(474m, 1662m); alef = point(460m, 400m) };
+absLamBarFin = postscript("absLamBarFin")
+	{ diaB = point(400m, -600m); diaA = point(330m, 1005m); alef = point(460m, 800m) };
+absMeemFin = postscript("absMeemFin")
+	{ above = point(416m, 339m); below = point(407m, -265m); diaA = point(273m, 684m); 
+	  diaB = point(170m, -750m) };
+absMeemFin__sindhi = postscript("absMeemFin.sindhi")
+	{ above = point(627m, 557m); below = point(649m, -168m); diaA = point(500m, 679m); 
+	  diaB = point(400m, -400m) };
+absMeemDotAboveFin = postscript("absMeemDotAboveFin")
+	{ diaB = point(170m, -750m); diaA = point(273m, 855m) };
+absMeemDotBelowFin = postscript("absMeemDotBelowFin")
+	{ diaB = point(170m, -750m); diaA = point(273m, 684m) };
+// 620
+absNoonFin = postscript("absNoonFin")
+	{ diaB = point(400m, -600m); diaA = point(342m, 684m); alef = point(225m, 499m) };
+absNoonDotBelowFin = postscript("absNoonDotBelowFin")
+	{ diaB = point(450m, -900m); diaA = point(342m, 684m); alef = point(225m, 499m) };
+absNoonGhunnaFin = postscript("absNoonGhunnaFin")
+	{ above = point(420m, 125m); below = point(410m, -549m); ring = point(397m, -424m); 
+	  diaA = point(346m, 491m); diaB = point(400m, -600m); alef = point(225m, 499m) };
+absRnoonFin = postscript("absRnoonFin")
+	{ diaB = point(400m, -600m); diaA = point(299m, 833m); alef = point(181m, 474m) };
+absNoonRingFin = postscript("absNoonRingFin")
+	{ diaB = point(400m, -800m); diaA = point(342m, 684m); alef = point(225m, 499m) };
+absNoonThreeDotsAboveFin = postscript("absNoonThreeDotsAboveFin")
+	{ diaB = point(400m, -600m); diaA = point(333m, 782m); alef = point(165m, 495m) };
+absNoonTwoDotsBelowFin = postscript("absNoonTwoDotsBelowFin")
+	{ diaB = point(450m, -900m); diaA = point(342m, 684m); alef = point(225m, 499m) };
+absNoonRetroFin = postscript("absNoonRetroFin")
+	{ diaB = point(350m, -600m); diaA = point(312m, 1034m); alef = point(187m, 703m) };
+absNoonSmallVFin = postscript("absNoonSmallVFin")
+	{ diaB = point(350m, -600m); diaA = point(359m, 897m); alef = point(106m, 532m) };
+absHehDoachashmeeFin = postscript("absHehDoachashmeeFin")
+	{ above = point(553m, 559m); below = point(402m, -412m); diaA = point(450m, 700m); 
+	  diaB = point(400m, -500m) };
+// 630
+absHehHatFin = postscript("absHehHatFin")
+	{ diaB = point(300m, -195m); diaA = point(350m, 961m) };
+absHehFin = postscript("absHehFin")
+	{ diaB = point(250m, -180m); diaA = point(300m, 790m) };
+absHehFin__knottedFlat = postscript("absHehFin.knottedFlat")
+	{ diaB = point(400m, -500m); diaA = point(450m, 700m) };
+absHehFin__knottedHigh = postscript("absHehFin.knottedHigh")
+	{ diaA = point(360m, 780m); diaB = point(300m, -195m); above = point(354m, 587m); 
+	  below = point(342m, -125m) };
+absHehFin__hooked = postscript("absHehFin.hooked")
+	{ diaB = point(200m, -300m); diaA = point(180m, 645m) };
+absAeFin = postscript("absAeFin")
+	{ above = point(311m, 671m); below = point(311m, -50m); diaA = point(300m, 790m); 
+	  diaB = point(250m, -180m) };
+absTehMarbutaFin = postscript("absTehMarbutaFin")
+	{ diaB = point(200m, -180m); diaA = point(225m, 1100m) };
+absHehYehAboveFin = postscript("absHehYehAboveFin")
+	{ diaB = point(200m, -180m); diaA = point(210m, 1135m) };
+absHehGoalFin = postscript("absHehGoalFin")
+	{ above = point(244m, 298m); below = point(244m, -177m); diaA = point(180m, 645m); 
+	  diaB = point(200m, -300m) };
+absHehGoalHamzaAboveFin = postscript("absHehGoalHamzaAboveFin")
+	{ diaB = point(200m, -250m); diaA = point(188m, 812m) };
+// 640
+absTehMarbutaGoalFin = postscript("absTehMarbutaGoalFin")
+	{ diaB = point(200m, -250m); diaA = point(192m, 790m) };
+absLamAlefFin = postscript("absLamAlefFin")
+	{ above = point(730m, 1020m); below = point(755m, -68m); through = point(723m, 644m); 
+	  dia2B1 = point(750m, -100m); dia2B2 = point(350m, -135m); diaA1 = point(720m, 1035m); 
+	  diaA2 = point(47m, 949m); diaB1 = point(750m, -100m); diaB2 = point(420m, -100m); 
+	  alef1 = point(600m, 700m); alef2 = point(0m, 1020m) };
+absLamSmallVAlefFin = postscript("absLamSmallVAlefFin")
+	{ diaA2 = point(47m, 940m); dia2B1 = point(750m, -100m); dia2B2 = point(350m, -135m); 
+	  diaB1 = point(750m, -100m); alef2 = point(0m, 1020m); alef1 = point(600m, 700m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(705m, 1448m) };
+absLamDotAboveAlefFin = postscript("absLamDotAboveAlefFin")
+	{ diaA2 = point(43m, 940m); dia2B1 = point(750m, -100m); dia2B2 = point(350m, -135m); 
+	  diaB1 = point(750m, -100m); alef2 = point(0m, 1020m); alef1 = point(600m, 700m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(679m, 1376m) };
+absLamThreeDotsAboveAlefFin = postscript("absLamThreeDotsAboveAlefFin")
+	{ diaA2 = point(47m, 936m); dia2B1 = point(750m, -100m); dia2B2 = point(350m, -135m); 
+	  diaB1 = point(750m, -100m); alef2 = point(0m, 1020m); alef1 = point(600m, 700m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(654m, 1530m) };
+absLamThreeDotsBelowAlefFin = postscript("absLamThreeDotsBelowAlefFin")
+	{ diaA2 = point(43m, 940m); dia2B1 = point(731m, -564m); dia2B2 = point(320m, -171m); 
+	  diaB1 = point(726m, -564m); alef2 = point(0m, 1020m); alef1 = point(600m, 700m); 
+	  diaB2 = point(320m, -171m); diaA1 = point(720m, 1035m) };
+absLamRetroAlefFin = postscript("absLamRetroAlefFin")
+	{ diaA2 = point(47m, 940m); dia2B1 = point(750m, -100m); dia2B2 = point(350m, -135m); 
+	  diaB1 = point(750m, -100m); alef2 = point(0m, 1020m); alef1 = point(480m, 1350m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(624m, 1654m) };
+absLamBarAlefFin = postscript("absLamBarAlefFin")
+	{ diaA2 = point(51m, 940m); dia2B1 = point(750m, -100m); dia2B2 = point(350m, -135m); 
+	  diaB1 = point(750m, -100m); alef2 = point(0m, 1020m); alef1 = point(570m, 795m); 
+	  diaB2 = point(420m, -100m); diaA1 = point(720m, 1035m) };
+absYehHamzaAboveMed = postscript("absYehHamzaAboveMed")
+	{ diaB = point(153m, -249m); diaA = point(200m, 900m); alef = point(60m, 800m) };
+absYehMed = postscript("absYehMed")
+	{ diaB = point(150m, -450m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+// 650
+absYehMed__noDots = postscript("absYehMed.noDots")
+	{ diaB = point(153m, -249m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absHighHamzaYehMed = postscript("absHighHamzaYehMed")
+	{ diaB = point(153m, -249m); diaA = point(158m, 953m); alef = point(60m, 599m) };
+absFarsiYehMed = postscript("absFarsiYehMed")
+	{ diaB = point(150m, -450m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absYehSmallVMed = postscript("absYehSmallVMed")
+	{ diaB = point(150m, -450m); diaA = point(154m, 863m); alef = point(60m, 720m) };
+absEMed = postscript("absEMed")
+	{ diaB = point(150m, -550m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absYehThreeDotsBelowMed = postscript("absYehThreeDotsBelowMed")
+	{ diaB = point(150m, -600m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absAlefMaksuraMed = postscript("absAlefMaksuraMed")
+	{ diaB = point(153m, -249m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absBehNoDotsMed = postscript("absBehNoDotsMed")
+	{ above = point(184m, 306m); below = point(184m, -50m); ring = point(215m, 106m); 
+	  diaA = point(200m, 600m); diaB = point(153m, -249m); alef = point(60m, 599m) };
+absBehMed = postscript("absBehMed")
+	{ diaB = point(150m, -450m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absTehMed = postscript("absTehMed")
+	{ diaB = point(153m, -249m); diaA = point(175m, 855m); alef = point(60m, 720m) };
+// 660
+absThehMed = postscript("absThehMed")
+	{ diaB = point(153m, -249m); diaA = point(150m, 957m); alef = point(60m, 800m) };
+absTtehMed = postscript("absTtehMed")
+	{ diaB = point(153m, -249m); diaA = point(103m, 1094m); alef = point(0m, 684m) };
+absTtehehMed = postscript("absTtehehMed")
+	{ diaB = point(153m, -249m); diaA = point(158m, 957m); alef = point(60m, 760m) };
+absBeehMed = postscript("absBeehMed")
+	{ diaB = point(150m, -550m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absTehRingMed = postscript("absTehRingMed")
+	{ diaB = point(162m, -299m); diaA = point(179m, 850m); alef = point(60m, 720m) };
+absTehThreeDotsAboveDownwardsMed = postscript("absTehThreeDotsAboveDownwardsMed")
+	{ diaB = point(153m, -249m); diaA = point(175m, 949m); alef = point(60m, 800m) };
+absPehMed = postscript("absPehMed")
+	{ diaB = point(150m, -600m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absTehehMed = postscript("absTehehMed")
+	{ diaB = point(153m, -249m); diaA = point(171m, 974m); alef = point(60m, 800m) };
+absBehehMed = postscript("absBehehMed")
+	{ diaB = point(150m, -600m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absBehThreeDotsHorizBelowMed = postscript("absBehThreeDotsHorizBelowMed")
+	{ diaB = point(145m, -414m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+// 670
+absBehThreeDotsAboveDotBelowMed = postscript("absBehThreeDotsAboveDotBelowMed")
+	{ diaB = point(154m, -402m); diaA = point(154m, 936m); alef = point(60m, 800m) };
+absBehThreeDotsUpwardBelowMed = postscript("absBehThreeDotsUpwardBelowMed")
+	{ diaB = point(145m, -581m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absBehTwoDotsAboveThreeDotsUpwardBelowMed = postscript("absBehTwoDotsAboveThreeDotsUpwardBelowMed")
+	{ diaB = point(150m, -594m); diaA = point(179m, 846m); alef = point(60m, 684m) };
+absBehDotAboveTwoDotsBelowMed = postscript("absBehDotAboveTwoDotsBelowMed")
+	{ diaB = point(154m, -432m); diaA = point(175m, 855m); alef = point(60m, 684m) };
+absBehInvSmallVBelowMed = postscript("absBehInvSmallVBelowMed")
+	{ diaB = point(141m, -397m); diaA = point(200m, 600m); alef = point(60m, 599m) };
+absBehSmallVAboveMed = postscript("absBehSmallVAboveMed")
+	{ diaB = point(153m, -249m); diaA = point(175m, 859m); alef = point(60m, 684m) };
+absJeemMed = postscript("absJeemMed")
+	{ diaB = point(470m, -397m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absHahMed = postscript("absHahMed")
+	{ above = point(522m, 505m); below = point(522m, -50m); diaA = point(400m, 750m); 
+	  diaB = point(449m, -201m); alef = point(149m, 684m) };
+absKhahMed = postscript("absKhahMed")
+	{ diaB = point(449m, -201m); diaA = point(400m, 950m); alef = point(149m, 684m) };
+absHahHamzaAboveMed = postscript("absHahHamzaAboveMed")
+	{ diaB = point(449m, -201m); diaA = point(400m, 1000m); alef = point(149m, 684m) };
+// 680
+absHahTwoDotsVerticalAboveMed = postscript("absHahTwoDotsVerticalAboveMed")
+	{ diaB = point(449m, -201m); diaA = point(400m, 1100m); alef = point(149m, 684m) };
+absNyehMed = postscript("absNyehMed")
+	{ diaB = point(449m, -410m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absDyehMed = postscript("absDyehMed")
+	{ diaB = point(479m, -517m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absHahThreeDotsAboveMed = postscript("absHahThreeDotsAboveMed")
+	{ diaB = point(449m, -201m); diaA = point(400m, 1150m); alef = point(149m, 816m) };
+absTchehMed = postscript("absTchehMed")
+	{ diaB = point(479m, -564m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absTchehehMed = postscript("absTchehehMed")
+	{ diaB = point(466m, -573m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absTchehDotAboveMed = postscript("absTchehDotAboveMed")
+	{ diaB = point(479m, -581m); diaA = point(400m, 950m); alef = point(149m, 684m) };
+absTchehRetro1Med = postscript("absTchehRetro1Med")
+	{ diaB = point(461m, -590m); diaA = point(406m, 1239m); alef = point(153m, 844m) };
+absTchehRetro2Med = postscript("absTchehRetro2Med")
+	{ diaB = point(466m, -859m); diaA = point(400m, 800m); alef = point(149m, 684m) };
+absJeemRetro1Med = postscript("absJeemRetro1Med")
+	{ diaB = point(470m, -679m); diaA = point(400m, 800m); alef = point(149m, 684m) };
+// 690
+absJeemRetro2Med = postscript("absJeemRetro2Med")
+	{ diaB = point(474m, -397m); diaA = point(414m, 1239m); alef = point(157m, 861m) };
+absJeemRetro3Med = postscript("absJeemRetro3Med")
+	{ diaB = point(449m, -201m); diaA = point(355m, 1265m); alef = point(149m, 852m) };
+absHahTwoDotsAboveMed = postscript("absHahTwoDotsAboveMed")
+	{ diaB = point(449m, -201m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absHahThreeDotsUpwardBelowMed = postscript("absHahThreeDotsUpwardBelowMed")
+	{ diaB = point(474m, -568m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absSeenMed = postscript("absSeenMed")
+	{ above = point(509m, 333m); below = point(509m, -50m); diaA = point(400m, 600m); 
+	  diaB = point(449m, -201m); alef = point(149m, 595m) };
+absSheenMed = postscript("absSheenMed")
+	{ diaB = point(449m, -201m); diaA = point(410m, 978m); alef = point(149m, 663m) };
+absSeenDotBelowDotAboveMed = postscript("absSeenDotBelowDotAboveMed")
+	{ diaB = point(496m, -372m); diaA = point(480m, 800m); alef = point(149m, 595m) };
+absSeenThreeDotsBelowMed = postscript("absSeenThreeDotsBelowMed")
+	{ diaB = point(496m, -538m); diaA = point(480m, 735m); alef = point(149m, 595m) };
+absSeenThreeDotsBelowThreeDotsAboveMed = postscript("absSeenThreeDotsBelowThreeDotsAboveMed")
+	{ diaB = point(487m, -538m); diaA = point(414m, 966m); alef = point(149m, 667m) };
+absSheenDotBelowMed = postscript("absSheenDotBelowMed")
+	{ diaB = point(496m, -393m); diaA = point(419m, 970m); alef = point(149m, 667m) };
+// 700
+absSheenRetro1Med = postscript("absSheenRetro1Med")
+	{ diaB = point(449m, -201m); diaA = point(367m, 1410m); alef = point(161m, 1033m) };
+absSheenRetro2Med = postscript("absSheenRetro2Med")
+	{ diaB = point(449m, -201m); diaA = point(376m, 1222m); alef = point(153m, 816m) };
+absSeenFourDotsAboveMed = postscript("absSeenFourDotsAboveMed")
+	{ diaB = point(449m, -201m); diaA = point(430m, 980m); alef = point(149m, 667m) };
+absSeenTwoVertAboveMed = postscript("absSeenTwoVertAboveMed")
+	{ diaB = point(449m, -201m); diaA = point(430m, 980m); alef = point(149m, 595m) };
+absSadMed = postscript("absSadMed")
+	{ above = point(639m, 489m); below = point(681m, -87m); diaA = point(500m, 800m); 
+	  diaB = point(406m, -312m); alef = point(149m, 595m) };
+absDadMed = postscript("absDadMed")
+	{ diaB = point(402m, -303m); diaA = point(500m, 900m); alef = point(149m, 595m) };
+absSadTwoDotsBelowMed = postscript("absSadTwoDotsBelowMed")
+	{ diaB = point(406m, -423m); diaA = point(500m, 800m); alef = point(149m, 595m) };
+absSadThreeDotsAboveMed = postscript("absSadThreeDotsAboveMed")
+	{ diaB = point(402m, -312m); diaA = point(500m, 1050m); alef = point(149m, 595m) };
+absDadDotBelowMed = postscript("absDadDotBelowMed")
+	{ diaB = point(402m, -380m); diaA = point(500m, 900m); alef = point(149m, 595m) };
+absTahMed = postscript("absTahMed")
+	{ above = point(497m, 559m); below = point(442m, -77m); diaA = point(175m, 1235m); 
+	  diaB = point(402m, -201m); alef = point(12m, 800m) };
+// 710
+absZahMed = postscript("absZahMed")
+	{ diaB = point(402m, -201m); diaA = point(175m, 1231m); alef = point(12m, 800m) };
+absTahThreeDotsAboveMed = postscript("absTahThreeDotsAboveMed")
+	{ diaB = point(402m, -201m); diaA = point(175m, 1231m); alef = point(12m, 800m) };
+absAinMed = postscript("absAinMed")
+	{ above = point(301m, 582m); below = point(295m, -50m); diaA = point(270m, 687m); 
+	  diaB = point(248m, -201m) };
+absGhainMed = postscript("absGhainMed")
+	{ diaB = point(248m, -201m); diaA = point(222m, 961m) };
+absAinThreeDotsAboveMed = postscript("absAinThreeDotsAboveMed")
+	{ diaB = point(248m, -201m); diaA = point(200m, 1170m) };
+absGhainDotBelowMed = postscript("absGhainDotBelowMed")
+	{ diaB = point(261m, -419m); diaA = point(222m, 961m) };
+absAinTwoDotsAboveMed = postscript("absAinTwoDotsAboveMed")
+	{ diaB = point(248m, -201m); diaA = point(222m, 991m) };
+absAinThreeDotsDownAboveMed = postscript("absAinThreeDotsDownAboveMed")
+	{ diaB = point(248m, -201m); diaA = point(231m, 1102m) };
+absAinTwoDotsVertAboveMed = postscript("absAinTwoDotsVertAboveMed")
+	{ diaB = point(248m, -201m); diaA = point(248m, 1085m) };
+absFehMed = postscript("absFehMed")
+	{ diaB = point(248m, -201m); diaA = point(295m, 1034m); alef = point(121m, 744m) };
+// 720
+absDotlessFehMed = postscript("absDotlessFehMed")
+	{ above = point(379m, 609m); below = point(296m, -50m); diaA = point(295m, 850m); 
+	  diaB = point(248m, -201m); alef = point(121m, 684m) };
+absFehDotMovedBelowMed = postscript("absFehDotMovedBelowMed")
+	{ diaB = point(256m, -423m); diaA = point(299m, 855m); alef = point(121m, 684m) };
+absFehDotBelowMed = postscript("absFehDotBelowMed")
+	{ diaB = point(252m, -419m); diaA = point(303m, 1034m); alef = point(117m, 748m) };
+absVehMed = postscript("absVehMed")
+	{ diaB = point(248m, -201m); diaA = point(282m, 1196m); alef = point(121m, 929m) };
+absFehThreeDotsBelowMed = postscript("absFehThreeDotsBelowMed")
+	{ diaB = point(250m, -600m); diaA = point(295m, 842m); alef = point(121m, 684m) };
+absPehehMed = postscript("absPehehMed")
+	{ diaB = point(248m, -201m); diaA = point(295m, 1213m); alef = point(101m, 941m) };
+absFehTwoDotsBelowMed = postscript("absFehTwoDotsBelowMed")
+	{ diaB = point(261m, -449m); diaA = point(299m, 855m); alef = point(121m, 684m) };
+absFehThreeDotsUpwardBelowMed = postscript("absFehThreeDotsUpwardBelowMed")
+	{ diaB = point(256m, -594m); diaA = point(295m, 859m); alef = point(121m, 684m) };
+absQafNoDotsMed = postscript("absQafNoDotsMed")
+	{ diaB = point(248m, -201m); diaA = point(295m, 859m); alef = point(121m, 684m) };
+absQafMed = postscript("absQafMed")
+	{ diaB = point(248m, -201m); diaA = point(295m, 1034m); alef = point(117m, 844m) };
+// 730
+absQafDotAboveMed = postscript("absQafDotAboveMed")
+	{ diaB = point(248m, -201m); diaA = point(295m, 1034m); alef = point(125m, 748m) };
+absQafThreeDotsAboveMed = postscript("absQafThreeDotsAboveMed")
+	{ diaB = point(248m, -201m); diaA = point(295m, 1213m); alef = point(125m, 941m) };
+absKafMed = postscript("absKafMed")
+	{ above = point(100m, 852m); below = point(139m, -48m); ring = point(533m, 981m); 
+	  diaA = point(195m, 1200m); diaB = point(200m, -150m); alef = point(101m, 1001m) };
+absKafDotAboveMed = postscript("absKafDotAboveMed")
+	{ diaB = point(200m, -150m); diaA = point(135m, 1335m); alef = point(16m, 1194m) };
+absNgMed = postscript("absNgMed")
+	{ diaB = point(200m, -150m); diaA = point(120m, 1485m); alef = point(24m, 1383m) };
+absKafThreeDotsBelowMed = postscript("absKafThreeDotsBelowMed")
+	{ diaB = point(162m, -611m); diaA = point(197m, 1192m); alef = point(101m, 1001m) };
+absKehehMed = postscript("absKehehMed")
+	{ diaB = point(200m, -150m); diaA = point(205m, 1201m); alef = point(101m, 1001m) };
+absKafRingMed = postscript("absKafRingMed")
+	{ diaB = point(200m, -150m); diaA = point(201m, 1196m); alef = point(101m, 1001m) };
+absGafMed = postscript("absGafMed")
+	{ diaB = point(200m, -150m); diaA = point(162m, 1248m); alef = point(84m, 1166m) };
+absGafRingMed = postscript("absGafRingMed")
+	{ diaB = point(200m, -150m); diaA = point(162m, 1248m); alef = point(88m, 1170m) };
+// 740
+absNgoehMed = postscript("absNgoehMed")
+	{ diaB = point(200m, -150m); diaA = point(90m, 1500m); alef = point(12m, 1427m) };
+absGafTwoDotsBelowMed = postscript("absGafTwoDotsBelowMed")
+	{ diaB = point(150m, -449m); diaA = point(158m, 1252m); alef = point(88m, 1174m) };
+absGuehMed = postscript("absGuehMed")
+	{ diaB = point(162m, -564m); diaA = point(158m, 1256m); alef = point(88m, 1174m) };
+absGafThreeDotsAboveMed = postscript("absGafThreeDotsAboveMed")
+	{ diaB = point(200m, -150m); diaA = point(30m, 1650m); alef = point(-60m, 1568m) };
+absKehehDotAboveMed = postscript("absKehehDotAboveMed")
+	{ diaB = point(200m, -150m); diaA = point(167m, 1226m); alef = point(24m, 1198m) };
+absKehehThreeDotsAboveMed = postscript("absKehehThreeDotsAboveMed")
+	{ diaB = point(200m, -150m); diaA = point(120m, 1419m); alef = point(24m, 1355m) };
+absKehehThreeDotsUpwardBelowMed = postscript("absKehehThreeDotsUpwardBelowMed")
+	{ diaB = point(162m, -594m); diaA = point(195m, 1200m); alef = point(101m, 1001m) };
+absSwashKafMed = postscript("absSwashKafMed")
+	{ diaA = point(390m, 1000m); diaB = point(600m, -150m); alef = point(169m, 901m) };
+absLamMed = postscript("absLamMed")
+	{ above = point(165m, 1075m); below = point(202m, -50m); through = point(160m, 687m); 
+	  diaA = point(137m, 1132m); diaB = point(150m, -201m); alef = point(30m, 750m) };
+absLamSmallVMed = postscript("absLamSmallVMed")
+	{ diaB = point(150m, -201m); diaA = point(135m, 1545m); alef = point(30m, 650m) };
+// 750
+absLamDotAboveMed = postscript("absLamDotAboveMed")
+	{ diaB = point(150m, -201m); diaA = point(100m, 1450m); alef = point(30m, 650m) };
+absLamThreeDotsAboveMed = postscript("absLamThreeDotsAboveMed")
+	{ diaB = point(150m, -201m); diaA = point(100m, 1650m); alef = point(30m, 650m) };
+absLamThreeDotsBelowMed = postscript("absLamThreeDotsBelowMed")
+	{ diaB = point(200m, -650m); diaA = point(141m, 1132m); alef = point(30m, 750m) };
+absLamRetroMed = postscript("absLamRetroMed")
+	{ diaB = point(150m, -201m); diaA = point(60m, 1675m); alef = point(30m, 450m) };
+absLamBarMed = postscript("absLamBarMed")
+	{ diaB = point(150m, -201m); diaA = point(150m, 1154m); alef = point(15m, 950m) };
+absMeemMed = postscript("absMeemMed")
+	{ above = point(368m, 394m); below = point(385m, -70m); diaA = point(291m, 688m); 
+	  diaB = point(299m, -201m); alef = point(121m, 603m) };
+absMeemDotAboveMed = postscript("absMeemDotAboveMed")
+	{ diaB = point(299m, -201m); diaA = point(291m, 825m); alef = point(117m, 688m) };
+absMeemDotBelowMed = postscript("absMeemDotBelowMed")
+	{ diaB = point(380m, -406m); diaA = point(291m, 684m); alef = point(121m, 603m) };
+absNoonMed = postscript("absNoonMed")
+	{ diaB = point(153m, -249m); diaA = point(179m, 846m); alef = point(60m, 684m) };
+absNoonDotBelowMed = postscript("absNoonDotBelowMed")
+	{ diaB = point(200m, -450m); diaA = point(184m, 846m); alef = point(60m, 684m) };
+// 760
+absNoonGhunnaMed = postscript("absNoonGhunnaMed")
+	{ diaB = point(153m, -249m); diaA = point(179m, 850m); alef = point(60m, 684m) };
+absRnoonMed = postscript("absRnoonMed")
+	{ diaB = point(153m, -249m); diaA = point(98m, 1034m); alef = point(0m, 651m) };
+absNoonRingMed = postscript("absNoonRingMed")
+	{ diaB = point(158m, -342m); diaA = point(175m, 850m); alef = point(60m, 684m) };
+absNoonThreeDotsAboveMed = postscript("absNoonThreeDotsAboveMed")
+	{ diaB = point(171m, -564m); diaA = point(179m, 684m); alef = point(60m, 599m) };
+absNoonTwoDotsBelowMed = postscript("absNoonTwoDotsBelowMed")
+	{ diaB = point(175m, -427m); diaA = point(179m, 846m); alef = point(60m, 684m) };
+absNoonRetroMed = postscript("absNoonRetroMed")
+	{ diaB = point(153m, -249m); diaA = point(85m, 1290m); alef = point(0m, 909m) };
+absNoonSmallVMed = postscript("absNoonSmallVMed")
+	{ diaB = point(153m, -249m); diaA = point(145m, 1098m); alef = point(44m, 977m) };
+absHehDoachashmeeMed = postscript("absHehDoachashmeeMed")
+	{ above = point(423m, 559m); below = point(347m, -412m); diaA = point(350m, 700m); 
+	  diaB = point(300m, -450m); alef = point(153m, 559m) };
+absHehHatMed = postscript("absHehHatMed")
+	{ diaB = point(295m, -167m); diaA = point(269m, 1001m) };
+absHehMed = postscript("absHehMed")
+	{ diaB = point(300m, -450m); diaA = point(350m, 700m); alef = point(153m, 559m) };
+// 770
+absHehMed__hooked = postscript("absHehMed.hooked")
+	{ diaB = point(150m, -500m); diaA = point(195m, 495m) };
+absHehMed__knottedHigh = postscript("absHehMed.knottedHigh")
+	{ diaB = point(295m, -167m); diaA = point(269m, 800m); above = point(294m, 635m); 
+	  below = point(294m, -80m); alef = point(101m, 740m) };
+absHehYehAboveMed = postscript("absHehYehAboveMed")
+	{ diaB = point(300m, -450m); diaA = point(346m, 1000m); alef = point(200m, 900m) };
+absHehGoalMed = postscript("absHehGoalMed")
+	{ diaA = point(195m, 495m); diaB = point(150m, -500m) };
+absHehGoalHamzaAboveMed = postscript("absHehGoalHamzaAboveMed")
+	{ diaA = point(300m, 800m); diaB = point(150m, -500m) };
+absYehHamzaAboveIni = postscript("absYehHamzaAboveIni")
+	{ diaB = point(98m, -201m); diaA = point(120m, 1020m); alef = point(8m, 925m) };
+absYehIni = postscript("absYehIni")
+	{ diaB = point(130m, -420m); diaA = point(175m, 684m); alef = point(40m, 684m) };
+absYehIni__noDots = postscript("absYehIni.noDots")
+	{ diaB = point(105m, -249m); diaA = point(184m, 688m); alef = point(40m, 684m) };
+absHighHamzaYehIni = postscript("absHighHamzaYehIni")
+	{ diaB = point(105m, -249m); diaA = point(77m, 1034m); alef = point(40m, 684m) };
+absFarsiYehIni = postscript("absFarsiYehIni")
+	{ diaB = point(130m, -420m); diaA = point(184m, 684m); alef = point(40m, 684m) };
+// 780
+absYehSmallVIni = postscript("absYehSmallVIni")
+	{ diaB = point(130m, -420m); diaA = point(150m, 1000m); alef = point(40m, 901m) };
+absEIni = postscript("absEIni")
+	{ diaB = point(141m, -577m); diaA = point(179m, 684m); alef = point(40m, 684m) };
+absYehThreeDotsBelowIni = postscript("absYehThreeDotsBelowIni")
+	{ diaB = point(137m, -594m); diaA = point(179m, 688m); alef = point(40m, 684m) };
+absAlefMaksuraIni = postscript("absAlefMaksuraIni")
+	{ diaB = point(105m, -249m); diaA = point(175m, 684m); alef = point(40m, 684m) };
+absBehNoDotsIni = postscript("absBehNoDotsIni")
+	{ above = point(168m, 504m); below = point(118m, -50m); ring = point(176m, 91m); 
+	  diaA = point(175m, 688m); diaB = point(105m, -249m); alef = point(40m, 684m) };
+absBehIni = postscript("absBehIni")
+	{ diaB = point(120m, -414m); diaA = point(179m, 688m); alef = point(40m, 684m) };
+absTehIni = postscript("absTehIni")
+	{ diaB = point(105m, -249m); diaA = point(150m, 950m); alef = point(40m, 852m) };
+absThehIni = postscript("absThehIni")
+	{ diaB = point(105m, -249m); diaA = point(150m, 1050m); alef = point(36m, 1049m) };
+absTtehIni = postscript("absTtehIni")
+	{ diaB = point(105m, -249m); diaA = point(107m, 1248m); alef = point(-48m, 844m) };
+absTtehehIni = postscript("absTtehehIni")
+	{ diaB = point(105m, -249m); diaA = point(150m, 1050m); alef = point(4m, 961m) };
+// 790
+absBeehIni = postscript("absBeehIni")
+	{ diaB = point(124m, -577m); diaA = point(179m, 688m); alef = point(40m, 684m) };
+absTehRingIni = postscript("absTehRingIni")
+	{ diaB = point(124m, -342m); diaA = point(145m, 949m); alef = point(40m, 873m) };
+absTehThreeDotsAboveDownwardsIni = postscript("absTehThreeDotsAboveDownwardsIni")
+	{ diaB = point(105m, -249m); diaA = point(150m, 1064m); alef = point(28m, 1033m) };
+absPehIni = postscript("absPehIni")
+	{ diaB = point(128m, -568m); diaA = point(179m, 684m); alef = point(40m, 684m) };
+absTehehIni = postscript("absTehehIni")
+	{ diaB = point(105m, -249m); diaA = point(150m, 1100m); alef = point(36m, 1049m) };
+absBehehIni = postscript("absBehehIni")
+	{ diaB = point(120m, -564m); diaA = point(175m, 684m); alef = point(40m, 684m) };
+absBehThreeDotsHorizBelowIni = postscript("absBehThreeDotsHorizBelowIni")
+	{ diaB = point(111m, -402m); diaA = point(179m, 688m); alef = point(40m, 684m) };
+absBehThreeDotsAboveDotBelowIni = postscript("absBehThreeDotsAboveDotBelowIni")
+	{ diaB = point(111m, -393m); diaA = point(132m, 1077m); alef = point(28m, 1045m) };
+absBehThreeDotsUpwardBelowIni = postscript("absBehThreeDotsUpwardBelowIni")
+	{ diaB = point(107m, -590m); diaA = point(179m, 684m); alef = point(40m, 684m) };
+absBehTwoDotsAboveThreeDotsUpwardBelowIni = postscript("absBehTwoDotsAboveThreeDotsUpwardBelowIni")
+	{ diaB = point(111m, -585m); diaA = point(150m, 944m); alef = point(32m, 913m) };
+// 800
+absBehDotAboveTwoDotsBelowIni = postscript("absBehDotAboveTwoDotsBelowIni")
+	{ diaB = point(107m, -432m); diaA = point(154m, 936m); alef = point(44m, 877m) };
+absBehInvSmallVBelowIni = postscript("absBehInvSmallVBelowIni")
+	{ diaB = point(94m, -427m); diaA = point(175m, 688m); alef = point(40m, 684m) };
+absBehSmallVAboveIni = postscript("absBehSmallVAboveIni")
+	{ diaB = point(105m, -249m); diaA = point(145m, 949m); alef = point(32m, 913m) };
+absJeemIni = postscript("absJeemIni")
+	{ diaB = point(427m, -363m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absHahIni = postscript("absHahIni")
+	{ above = point(441m, 505m); below = point(441m, -50m); diaA = point(400m, 750m); 
+	  diaB = point(450m, -150m); alef = point(149m, 684m) };
+absKhahIni = postscript("absKhahIni")
+	{ diaB = point(450m, -150m); diaA = point(400m, 950m); alef = point(149m, 684m) };
+absHahHamzaAboveIni = postscript("absHahHamzaAboveIni")
+	{ diaB = point(450m, -150m); diaA = point(400m, 1000m); alef = point(145m, 776m) };
+absHahTwoDotsVerticalAboveIni = postscript("absHahTwoDotsVerticalAboveIni")
+	{ diaB = point(450m, -150m); diaA = point(400m, 1100m); alef = point(145m, 808m) };
+absNyehIni = postscript("absNyehIni")
+	{ diaB = point(423m, -376m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absDyehIni = postscript("absDyehIni")
+	{ diaB = point(432m, -521m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+// 810
+absHahThreeDotsAboveIni = postscript("absHahThreeDotsAboveIni")
+	{ diaB = point(450m, -150m); diaA = point(400m, 1150m); alef = point(145m, 852m) };
+absTchehIni = postscript("absTchehIni")
+	{ diaB = point(423m, -526m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absTchehehIni = postscript("absTchehehIni")
+	{ diaB = point(423m, -530m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absTchehDotAboveIni = postscript("absTchehDotAboveIni")
+	{ diaB = point(427m, -530m); diaA = point(400m, 950m); alef = point(149m, 684m) };
+absTchehRetro1Ini = postscript("absTchehRetro1Ini")
+	{ diaB = point(432m, -555m); diaA = point(355m, 1265m); alef = point(145m, 848m) };
+absTchehRetro2Ini = postscript("absTchehRetro2Ini")
+	{ diaB = point(423m, -859m); diaA = point(400m, 800m); alef = point(149m, 684m) };
+absJeemRetro1Ini = postscript("absJeemRetro1Ini")
+	{ diaB = point(402m, -692m); diaA = point(400m, 800m); alef = point(149m, 684m) };
+absJeemRetro2Ini = postscript("absJeemRetro2Ini")
+	{ diaB = point(423m, -376m); diaA = point(355m, 1265m); alef = point(149m, 836m) };
+absJeemRetro3Ini = postscript("absJeemRetro3Ini")
+	{ diaB = point(450m, -150m); diaA = point(355m, 1265m); alef = point(153m, 844m) };
+absHahTwoDotsAboveIni = postscript("absHahTwoDotsAboveIni")
+	{ diaB = point(450m, -150m); diaA = point(410m, 949m); alef = point(141m, 780m) };
+// 820
+absHahThreeDotsUpwardBelowIni = postscript("absHahThreeDotsUpwardBelowIni")
+	{ diaB = point(406m, -594m); diaA = point(400m, 750m); alef = point(149m, 684m) };
+absSeenIni = postscript("absSeenIni")
+	{ above = point(500m, 429m); below = point(504m, -45m); diaA = point(390m, 550m); 
+	  diaB = point(449m, -201m); alef = point(149m, 551m) };
+absSheenIni = postscript("absSheenIni")
+	{ diaB = point(449m, -201m); diaA = point(420m, 1020m); alef = point(153m, 768m) };
+absSeenDotBelowDotAboveIni = postscript("absSeenDotBelowDotAboveIni")
+	{ diaB = point(500m, -400m); diaA = point(450m, 800m); alef = point(149m, 551m) };
+absSeenThreeDotsBelowIni = postscript("absSeenThreeDotsBelowIni")
+	{ diaB = point(500m, -600m); diaA = point(402m, 573m); alef = point(149m, 551m) };
+absSeenThreeDotsBelowThreeDotsAboveIni = postscript("absSeenThreeDotsBelowThreeDotsAboveIni")
+	{ diaB = point(500m, -600m); diaA = point(410m, 1000m); alef = point(145m, 784m) };
+absSheenDotBelowIni = postscript("absSheenDotBelowIni")
+	{ diaB = point(500m, -400m); diaA = point(410m, 1000m); alef = point(145m, 772m) };
+absSheenRetro1Ini = postscript("absSheenRetro1Ini")
+	{ diaB = point(449m, -201m); diaA = point(355m, 1490m); alef = point(145m, 1126m) };
+absSheenRetro2Ini = postscript("absSheenRetro2Ini")
+	{ diaB = point(449m, -201m); diaA = point(355m, 1265m); alef = point(145m, 917m) };
+absSeenFourDotsAboveIni = postscript("absSeenFourDotsAboveIni")
+	{ diaB = point(449m, -201m); diaA = point(402m, 983m); alef = point(149m, 772m) };
+// 830
+absSeenTwoVertAboveIni = postscript("absSeenTwoVertAboveIni")
+	{ diaB = point(449m, -201m); diaA = point(402m, 974m); alef = point(149m, 712m) };
+absSadIni = postscript("absSadIni")
+	{ above = point(597m, 465m); below = point(688m, -77m); diaA = point(500m, 800m); 
+	  diaB = point(402m, -295m); alef = point(149m, 551m) };
+absDadIni = postscript("absDadIni")
+	{ diaB = point(402m, -295m); diaA = point(500m, 900m); alef = point(149m, 551m) };
+absSadTwoDotsBelowIni = postscript("absSadTwoDotsBelowIni")
+	{ diaB = point(402m, -380m); diaA = point(500m, 800m); alef = point(149m, 551m) };
+absSadThreeDotsAboveIni = postscript("absSadThreeDotsAboveIni")
+	{ diaB = point(402m, -295m); diaA = point(500m, 1050m); alef = point(149m, 551m) };
+absDadDotBelowIni = postscript("absDadDotBelowIni")
+	{ diaB = point(402m, -359m); diaA = point(500m, 900m); alef = point(149m, 551m) };
+absTahIni = postscript("absTahIni")
+	{ above = point(491m, 575m); below = point(380m, -50m); diaA = point(154m, 1248m); 
+	  diaB = point(397m, -150m); alef = point(0m, 684m) };
+absZahIni = postscript("absZahIni")
+	{ diaB = point(397m, -150m); diaA = point(154m, 1235m); alef = point(0m, 684m) };
+absTahThreeDotsAboveIni = postscript("absTahThreeDotsAboveIni")
+	{ diaB = point(397m, -150m); diaA = point(154m, 1235m); alef = point(0m, 684m) };
+absAinIni = postscript("absAinIni")
+	{ above = point(330m, 648m); below = point(330m, -50m); diaA = point(256m, 842m); 
+	  diaB = point(308m, -150m) };
+// 840
+absGhainIni = postscript("absGhainIni")
+	{ diaB = point(308m, -150m); diaA = point(256m, 1085m) };
+absAinThreeDotsAboveIni = postscript("absAinThreeDotsAboveIni")
+	{ diaB = point(308m, -150m); diaA = point(200m, 1305m) };
+absGhainDotBelowIni = postscript("absGhainDotBelowIni")
+	{ diaB = point(308m, -397m); diaA = point(256m, 1085m) };
+absAinTwoDotsAboveIni = postscript("absAinTwoDotsAboveIni")
+	{ diaB = point(308m, -150m); diaA = point(226m, 1094m) };
+absAinThreeDotsDownAboveIni = postscript("absAinThreeDotsDownAboveIni")
+	{ diaB = point(308m, -150m); diaA = point(235m, 1213m) };
+absAinTwoDotsVertAboveIni = postscript("absAinTwoDotsVertAboveIni")
+	{ diaB = point(308m, -150m); diaA = point(252m, 1205m) };
+absFehIni = postscript("absFehIni")
+	{ diaB = point(154m, -150m); diaA = point(132m, 1102m) };
+absDotlessFehIni = postscript("absDotlessFehIni")
+	{ above = point(180m, 634m); below = point(180m, -50m); diaA = point(137m, 846m); 
+	  diaB = point(154m, -150m) };
+absFehDotMovedBelowIni = postscript("absFehDotMovedBelowIni")
+	{ diaB = point(175m, -414m); diaA = point(132m, 850m) };
+absFehDotBelowIni = postscript("absFehDotBelowIni")
+	{ diaB = point(162m, -414m); diaA = point(132m, 1102m) };
+// 850
+absVehIni = postscript("absVehIni")
+	{ diaB = point(150m, -150m); diaA = point(150m, 1200m) };
+absFehThreeDotsBelowIni = postscript("absFehThreeDotsBelowIni")
+	{ diaB = point(171m, -573m); diaA = point(132m, 850m) };
+absPehehIni = postscript("absPehehIni")
+	{ diaB = point(150m, -150m); diaA = point(150m, 1250m) };
+absFehTwoDotsBelowIni = postscript("absFehTwoDotsBelowIni")
+	{ diaB = point(158m, -423m); diaA = point(132m, 850m) };
+absFehThreeDotsUpwardBelowIni = postscript("absFehThreeDotsUpwardBelowIni")
+	{ diaB = point(150m, -560m); diaA = point(132m, 850m) };
+absQafNoDotsIni = postscript("absQafNoDotsIni")
+	{ diaB = point(150m, -150m); diaA = point(128m, 850m) };
+absQafIni = postscript("absQafIni")
+	{ diaB = point(150m, -150m); diaA = point(150m, 1100m) };
+absQafDotAboveIni = postscript("absQafDotAboveIni")
+	{ diaB = point(150m, -150m); diaA = point(150m, 1100m) };
+absQafThreeDotsAboveIni = postscript("absQafThreeDotsAboveIni")
+	{ diaB = point(150m, -150m); diaA = point(150m, 1200m) };
+absKafIni = postscript("absKafIni")
+	{ above = point(92m, 791m); below = point(158m, -48m); ring = point(473m, 873m); 
+	  diaA = point(150m, 1050m); diaB = point(175m, -175m); alef = point(48m, 929m) };
+// 860
+absKafDotAboveIni = postscript("absKafDotAboveIni")
+	{ diaB = point(175m, -175m); diaA = point(150m, 1231m); alef = point(24m, 1126m) };
+absNgIni = postscript("absNgIni")
+	{ diaB = point(175m, -175m); diaA = point(141m, 1393m); alef = point(4m, 1299m) };
+absKafThreeDotsBelowIni = postscript("absKafThreeDotsBelowIni")
+	{ diaB = point(154m, -590m); diaA = point(150m, 1050m); alef = point(48m, 929m) };
+absKehehIni = postscript("absKehehIni")
+	{ diaB = point(175m, -175m); diaA = point(162m, 1051m); alef = point(48m, 929m) };
+absKafRingIni = postscript("absKafRingIni")
+	{ diaB = point(175m, -175m); diaA = point(179m, 1047m); alef = point(48m, 929m) };
+absGafIni = postscript("absGafIni")
+	{ diaB = point(175m, -175m); diaA = point(200m, 1200m); alef = point(36m, 1033m) };
+absGafRingIni = postscript("absGafRingIni")
+	{ diaB = point(175m, -175m); diaA = point(200m, 1200m); alef = point(36m, 1033m) };
+absNgoehIni = postscript("absNgoehIni")
+	{ diaB = point(175m, -175m); diaA = point(100m, 1400m); alef = point(-4m, 1355m) };
+absGafTwoDotsBelowIni = postscript("absGafTwoDotsBelowIni")
+	{ diaB = point(154m, -419m); diaA = point(200m, 1200m); alef = point(36m, 1033m) };
+absGuehIni = postscript("absGuehIni")
+	{ diaB = point(158m, -547m); diaA = point(200m, 1200m); alef = point(36m, 1033m) };
+// 870
+absGafThreeDotsAboveIni = postscript("absGafThreeDotsAboveIni")
+	{ diaB = point(175m, -175m); diaA = point(50m, 1530m); alef = point(-72m, 1480m) };
+absKehehDotAboveIni = postscript("absKehehDotAboveIni")
+	{ diaB = point(175m, -175m); diaA = point(141m, 1218m); alef = point(28m, 1134m) };
+absKehehThreeDotsAboveIni = postscript("absKehehThreeDotsAboveIni")
+	{ diaB = point(175m, -175m); diaA = point(103m, 1372m); alef = point(20m, 1307m) };
+absKehehThreeDotsUpwardBelowIni = postscript("absKehehThreeDotsUpwardBelowIni")
+	{ diaB = point(132m, -560m); diaA = point(150m, 1050m); alef = point(48m, 917m) };
+absSwashKafIni = postscript("absSwashKafIni")
+	{ diaA = point(390m, 1000m); diaB = point(600m, -150m); alef = point(169m, 868m) };
+absLamIni = postscript("absLamIni")
+	{ above = point(120m, 1111m); below = point(120m, -50m); through = point(137m, 691m); 
+	  diaA = point(120m, 1209m); diaB = point(100m, -150m); alef = point(30m, 750m) };
+absLamSmallVIni = postscript("absLamSmallVIni")
+	{ diaB = point(100m, -150m); diaA = point(120m, 1545m); alef = point(30m, 650m) };
+absLamDotAboveIni = postscript("absLamDotAboveIni")
+	{ diaB = point(100m, -150m); diaA = point(120m, 1530m); alef = point(30m, 650m) };
+absLamThreeDotsAboveIni = postscript("absLamThreeDotsAboveIni")
+	{ diaB = point(100m, -150m); diaA = point(120m, 1710m); alef = point(30m, 650m) };
+absLamThreeDotsBelowIni = postscript("absLamThreeDotsBelowIni")
+	{ diaB = point(120m, -594m); diaA = point(128m, 1201m); alef = point(30m, 750m) };
+// 880
+absLamRetroIni = postscript("absLamRetroIni")
+	{ diaB = point(100m, -150m); diaA = point(30m, 1718m); alef = point(30m, 500m) };
+absLamBarIni = postscript("absLamBarIni")
+	{ diaB = point(100m, -150m); diaA = point(132m, 1213m); alef = point(30m, 950m) };
+absMeemIni = postscript("absMeemIni")
+	{ above = point(243m, 509m); below = point(323m, 0m); diaA = point(248m, 684m); 
+	  diaB = point(300m, -150m); alef = point(88m, 591m) };
+absMeemDotAboveIni = postscript("absMeemDotAboveIni")
+	{ diaB = point(300m, -150m); diaA = point(218m, 944m); alef = point(76m, 764m) };
+absMeemDotBelowIni = postscript("absMeemDotBelowIni")
+	{ diaB = point(300m, -300m); diaA = point(248m, 684m); alef = point(88m, 591m) };
+absNoonIni = postscript("absNoonIni")
+	{ diaB = point(105m, -249m); diaA = point(120m, 1000m); alef = point(36m, 861m) };
+absNoonDotBelowIni = postscript("absNoonDotBelowIni")
+	{ diaB = point(115m, -423m); diaA = point(120m, 1000m); alef = point(40m, 873m) };
+absNoonGhunnaIni = postscript("absNoonGhunnaIni")
+	{ diaB = point(105m, -249m); diaA = point(120m, 1000m); alef = point(40m, 861m) };
+absRnoonIni = postscript("absRnoonIni")
+	{ diaB = point(105m, -249m); diaA = point(94m, 1248m); alef = point(-16m, 840m) };
+absNoonRingIni = postscript("absNoonRingIni")
+	{ diaB = point(128m, -299m); diaA = point(120m, 1000m); alef = point(36m, 848m) };
+// 890
+absNoonThreeDotsAboveIni = postscript("absNoonThreeDotsAboveIni")
+	{ diaB = point(103m, -564m); diaA = point(167m, 846m); alef = point(40m, 684m) };
+absNoonTwoDotsBelowIni = postscript("absNoonTwoDotsBelowIni")
+	{ diaB = point(111m, -423m); diaA = point(120m, 1000m); alef = point(40m, 861m) };
+absNoonRetroIni = postscript("absNoonRetroIni")
+	{ diaB = point(105m, -249m); diaA = point(77m, 1474m); alef = point(-16m, 1098m) };
+absNoonSmallVIni = postscript("absNoonSmallVIni")
+	{ diaB = point(105m, -249m); diaA = point(115m, 1355m); alef = point(24m, 1214m) };
+absHehDoachashmeeIni = postscript("absHehDoachashmeeIni")
+	{ above = point(291m, 655m); below = point(315m, -50m); diaA = point(300m, 855m); 
+	  diaB = point(295m, -167m); alef = point(40m, 684m) };
+absHehHatIni = postscript("absHehHatIni")
+	{ diaB = point(295m, -167m); diaA = point(240m, 1050m); alef = point(48m, 925m) };
+absHehIni = postscript("absHehIni")
+	{ diaB = point(295m, -167m); diaA = point(270m, 840m); alef = point(40m, 684m) };
+absHehIni__hooked = postscript("absHehIni.hooked")
+	{ diaA = point(157m, 684m); diaB = point(145m, -457m); alef = point(40m, 684m) };
+absHehYehAboveIni = postscript("absHehYehAboveIni")
+	{ diaB = point(295m, -167m); diaA = point(248m, 1081m); alef = point(48m, 925m) };
+absHehGoalIni = postscript("absHehGoalIni")
+	{ diaA = point(157m, 684m); diaB = point(145m, -457m); alef = point(40m, 684m) };
+// 900
+absHehGoalHamzaAboveIni = postscript("absHehGoalHamzaAboveIni")
+	{ diaA = point(149m, 900m); diaB = point(145m, -457m); alef = point(44m, 820m) };
+absHighHamza = postscript("absHighHamza")
+	{ diaA = point(135m, 1365m); diaB = point(150m, 885m) };
+
+// absSmallWaw
+// absSmallYeh
+
+// 904
+absFathatan = postscript("absFathatan")
+	{ diaA_ = point(120m, 1020m); diaA = point(90m, 1425m) };
+absDammatan = postscript("absDammatan")
+	{ diaA_ = point(180m, 1005m); diaA = point(90m, 1455m) };
+absKasratan = postscript("absKasratan")
+	{ diaB_ = point(141m, -560m); diaB = point(165m, -975m) };
+absFatha = postscript("absFatha")
+	{ diaA_ = point(120m, 1020m); diaA = point(90m, 1290m) };
+absDamma = postscript("absDamma")
+	{ diaA_ = point(150m, 1020m); diaA = point(105m, 1515m) };
+absKasra = postscript("absKasra")
+	{ diaB_ = point(145m, -560m); diaB = point(165m, -810m) };
+// 910
+absShadda = postscript("absShadda")
+	{ diaA_ = point(195m, 960m); diaA = point(150m, 1365m) };
+absSukun = postscript("absSukun")
+	{ diaA_ = point(120m, 930m); diaA = point(90m, 1425m) };
+absMaddahAbove = postscript("absMaddahAbove")
+	{ diaA_ = point(120m, 1110m); diaA = point(90m, 1305m) };
+absHamzaAbove = postscript("absHamzaAbove")
+	{ diaA_ = point(120m, 1020m); diaA = point(60m, 1410m) };
+absHamzaBelow = postscript("absHamzaBelow")
+	{ diaB_ = point(105m, -120m); diaB = point(135m, -450m); dia2B_ = point(105m, -120m) };
+absSubscriptAlef = postscript("absSubscriptAlef")
+	{ diaB_ = point(92m, -18m); diaB = point(92m, -591m) };
+absUltaPesh = postscript("absUltaPesh")
+	{ diaA_ = point(120m, 930m); diaA = point(120m, 1450m) };
+absNoonGhunnaMark = postscript("absNoonGhunnaMark")
+	{ diaA_ = point(160m, 900m); diaA = point(160m, 1290m) };
+absZwarakay = postscript("absZwarakay")
+	{ diaA_ = point(207m, 969m); diaA = point(90m, 1290m); above_ = point(110m, 1018m) };
+absVowelSmallV = postscript("absVowelSmallV")
+	{ diaA_ = point(203m, 941m); diaA = point(197m, 1275m) };
+// 920
+absVowelInvSmallV = postscript("absVowelInvSmallV")
+	{ diaA_ = point(207m, 949m); diaA = point(209m, 1271m) };
+absVowelDotBelow = postscript("absVowelDotBelow")
+	{ diaB_ = point(164m, 203m); diaB = point(164m, -211m) };
+absReversedDamma = postscript("absReversedDamma")
+	{ diaA_ = point(150m, 1020m); diaA = point(106m, 1516m) };
+absFathaTwoDots = postscript("absFathaTwoDots")
+	{ diaA_ = point(105m, 945m); diaA = point(105m, 1319m) };
+absSuperscriptAlef = postscript("absSuperscriptAlef")
+	{ diaA_ = point(180m, 660m); diaA = point(180m, 1230m); alef_ = point(180m, 630m) };
+absSuperscriptAlef__large = postscript("absSuperscriptAlef.large")
+	{ diaA_ = point(450m, 510m); diaA = point(389m, 1136m) };
+absSmallHighSadLamAlefMaksura = postscript("absSmallHighSadLamAlefMaksura")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighQafLamAlefMaksura = postscript("absSmallHighQafLamAlefMaksura")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighMeemInitialForm = postscript("absSmallHighMeemInitialForm")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighLamAlef = postscript("absSmallHighLamAlef")
+	{ diaA_ = point(-15m, 915m) };
+// 930
+absSmallHighJeem = postscript("absSmallHighJeem")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighThreeDots = postscript("absSmallHighThreeDots")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighSeen = postscript("absSmallHighSeen")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighRoundedZero = postscript("absSmallHighRoundedZero")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighUprightRectangularZero = postscript("absSmallHighUprightRectangularZero")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighDotlessHeadOfKhah = postscript("absSmallHighDotlessHeadOfKhah")
+	{ diaA_ = point(-15m, 915m); diaA = point(-15m, 1270m) };
+absSmallHighMeemIsolatedForm = postscript("absSmallHighMeemIsolatedForm")
+	{ diaA_ = point(-15m, 1020m) };
+absSmallLowSeen = postscript("absSmallLowSeen")
+	{ diaB_ = point(0m, -150m); dia2B_ = point(100m, -150m) };
+absSmallHighMadda = postscript("absSmallHighMadda")
+	{ diaA_ = point(-15m, 915m) };
+absSmallHighYeh = postscript("absSmallHighYeh")
+	{ diaA_ = point(-15m, 915m) };
+// 940
+absSmallHighNoon = postscript("absSmallHighNoon")
+	{ diaA_ = point(-15m, 915m) };
+absEmptyCentreLowStop = postscript("absEmptyCentreLowStop")
+	{ diaB_ = point(0m, -200m); dia2B_ = point(0m, -150m) };
+absEmptyCentreHighStop = postscript("absEmptyCentreHighStop")
+	{ diaA_ = point(-15m, 915m) };
+absRoundedHighStopFilledCentre = postscript("absRoundedHighStopFilledCentre")
+	{ diaA_ = point(-15m, 915m) };
+absSmallLowMeem = postscript("absSmallLowMeem")
+	{ diaB_ = point(0m, -280m); dia2B_ = point(0m, -150m) };
+absNumberSign = postscript("absNumberSign")
+	{ digit = point(425m, 0m);
+	  directionality = DIR_ARABIC };
+absYearSign = postscript("absYearSign")
+	{ digit = point(1275m, 0m);
+	  directionality = DIR_ARABIC };
+absFootnoteSign = postscript("absFootnoteSign")
+	{ digit = point(700m, 0m);
+	  directionality = DIR_ARABIC };
+absPageSign = postscript("absPageSign")
+	{ digit = point(300m, 0m);
+	  directionality = DIR_ARABIC };
+absAfghaniSign = postscript("absAfghaniSign")
+	{ diaA = point(291m, 1120m); diaB = point(291m, -150m) };
+// 950
+absComma = postscript("absComma")
+	{ diaA = point(270m, 660m); diaB = point(270m, -195m) };
+absComma__downward = postscript("absComma.downward")
+	{ diaA = point(275m, 381m); diaB = point(281m, -497m) };
+
+// absVerseSign
+
+// 954
+absMisraSign = postscript("absMisraSign")
+	{ above = point(294m, 692m); below = point(456m, 104m); diaA = point(270m, 900m); 
+	  diaB = point(300m, -840m) };
+absSmallHighSadMark = postscript("absSmallHighSadMark")
+	{ diaA_ = point(540m, 998m); above_ = point(540m, 998m) };
+absSmallHighAinMark = postscript("absSmallHighAinMark")
+	{ diaA_ = point(514m, 996m); above_ = point(514m, 996m) };
+absSmallHighRehHahMark = postscript("absSmallHighRehHahMark")
+	{ diaA_ = point(526m, 978m); above_ = point(526m, 978m) };
+absSmallHighRehDadMark = postscript("absSmallHighRehDadMark")
+	{ diaA_ = point(508m, 986m); above_ = point(508m, 986m) };
+absNameMarker = postscript("absNameMarker")
+	{ diaA_ = point(270m, 1035m) };
+// 960
+absSmallHighTah = postscript("absSmallHighTah")
+	{ diaA_ = point(301m, 1035m) };
+absSemicolon = postscript("absSemicolon")
+	{ diaA = point(270m, 930m); diaB = point(270m, -195m) };
+absSemicolon__downward = postscript("absSemicolon.downward")
+	{ diaA = point(275m, 582m); diaB = point(272m, -473m) };
+// absTripleDotPunct
+absQuestionMark = postscript("absQuestionMark")
+	{ diaA = point(300m, 1185m); diaB = point(300m, -195m) };
+// absPercentSign
+// absDecimalSeparator
+// absThousandsSeparator
+absFivePointedStar = postscript("absFivePointedStar")
+	{ diaA = point(435m, 990m); diaB = point(420m, -120m) };
+absFullStop = postscript("absFullStop")
+	{ diaA = point(350m, 790m); diaB = point(250m, -120m) };
+// 970
+absEndOfAyah = postscript("absEndOfAyah")
+	{ digit = point(465m, 0m) };
+absEndOfAyah__alt = postscript("absEndOfAyah.alt")
+	{ digit = point(465m, 0m) };
+absEndOfAyah__altB = postscript("absEndOfAyah.altB")
+	{ digit = point(465m, 0m) };
+// absStartOfRubEIHuzb
+absPlaceOfSajdah = postscript("absPlaceOfSajdah")
+	{ diaA = point(390m, 1200m); diaB = point(300m, -120m) };
+
+// 979
+absZero	= postscript("absZero");
+absOne	= postscript("absOne");
+absTwo	= postscript("absTwo");
+absThree= postscript("absThree");
+absFour	= postscript("absFour");
+absFive	= postscript("absFive");
+absSix	= postscript("absSix");
+absSeven= postscript("absSeven");
+absEight= postscript("absEight");
+absNine	= postscript("absNine");
+
+// 989
+absEasternZero		= postscript("absEasternZero");
+absEasternOne		= postscript("absEasternOne");
+absEasternTwo		= postscript("absEasternTwo");
+absEasternThree		= postscript("absEasternThree");
+absEasternFour		= postscript("absEasternFour");
+absEasternFour__urdu	= postscript("absEasternFour.urdu")  { directionality = DIR_ARABICNUMBER };
+absEasternFive		= postscript("absEasternFive");
+absEasternSix		= postscript("absEasternSix");
+absEasternSix__urdu	= postscript("absEasternSix.urdu")   { directionality = DIR_ARABICNUMBER };
+absEasternSeven		= postscript("absEasternSeven");
+absEasternSeven__urdu	= postscript("absEasternSeven.urdu") { directionality = DIR_ARABICNUMBER };
+absEasternEight		= postscript("absEasternEight");
+absEasternNine		= postscript("absEasternNine");
+
+// 1002
+zeroMedium = postscript("zeroMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+oneMedium = postscript("oneMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+twoMedium = postscript("twoMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+threeMedium = postscript("threeMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+fourMedium = postscript("fourMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+fiveMedium = postscript("fiveMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+sixMedium = postscript("sixMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+sevenMedium = postscript("sevenMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+eightMedium = postscript("eightMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+nineMedium = postscript("nineMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+// 1012
+absZeroMedium = postscript("absZeroMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absOneMedium = postscript("absOneMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absTwoMedium = postscript("absTwoMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absThreeMedium = postscript("absThreeMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absFourMedium = postscript("absFourMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absFiveMedium = postscript("absFiveMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absSixMedium = postscript("absSixMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absSevenMedium = postscript("absSevenMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEightMedium = postscript("absEightMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absNineMedium = postscript("absNineMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+// 1022
+absEasternZeroMedium = postscript("absEasternZeroMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternOneMedium = postscript("absEasternOneMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternTwoMedium = postscript("absEasternTwoMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternThreeMedium = postscript("absEasternThreeMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternFourMedium = postscript("absEasternFourMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternFourMedium__urdu = postscript("absEasternFourMedium.urdu")
+	{ digit = point(451m, 0m); digit_ = point(0m, 0m) };
+absEasternFiveMedium = postscript("absEasternFiveMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternSixMedium = postscript("absEasternSixMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternSixMedium__urdu = postscript("absEasternSixMedium.urdu")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternSevenMedium = postscript("absEasternSevenMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternSevenMedium__urdu = postscript("absEasternSevenMedium.urdu")
+	{ digit = point(451m, 0m); digit_ = point(0m, 0m) };
+absEasternEightMedium = postscript("absEasternEightMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+absEasternNineMedium = postscript("absEasternNineMedium")
+	{ digit = point(450m, 0m); digit_ = point(0m, 0m) };
+// 1035
+zeroSmall = postscript("zeroSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+oneSmall = postscript("oneSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+twoSmall = postscript("twoSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+threeSmall = postscript("threeSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+fourSmall = postscript("fourSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+fiveSmall = postscript("fiveSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+sixSmall = postscript("sixSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+sevenSmall = postscript("sevenSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+eightSmall = postscript("eightSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+nineSmall = postscript("nineSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+// 1045
+absZeroSmall = postscript("absZeroSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absOneSmall = postscript("absOneSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absTwoSmall = postscript("absTwoSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absThreeSmall = postscript("absThreeSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absFourSmall = postscript("absFourSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absFiveSmall = postscript("absFiveSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absSixSmall = postscript("absSixSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absSevenSmall = postscript("absSevenSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEightSmall = postscript("absEightSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absNineSmall = postscript("absNineSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+// 1055
+absEasternZeroSmall = postscript("absEasternZeroSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternOneSmall = postscript("absEasternOneSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternTwoSmall = postscript("absEasternTwoSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternThreeSmall = postscript("absEasternThreeSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternFourSmall = postscript("absEasternFourSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternFourSmall__urdu = postscript("absEasternFourSmall.urdu")
+	{ digit = point(320m, 0m); digit_ = point(0m, 0m) };
+absEasternFiveSmall = postscript("absEasternFiveSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternSixSmall = postscript("absEasternSixSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternSixSmall__urdu = postscript("absEasternSixSmall.urdu")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternSevenSmall = postscript("absEasternSevenSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternSevenSmall__urdu = postscript("absEasternSevenSmall.urdu")
+	{ digit = point(320m, 0m); digit_ = point(0m, 0m) };
+absEasternEightSmall = postscript("absEasternEightSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+absEasternNineSmall = postscript("absEasternNineSmall")
+	{ digit = point(319m, 0m); digit_ = point(0m, 0m) };
+
+// 1104
+absShaddaFathatan = postscript("absShaddaFathatan")
+	{ diaA_ = point(165m, 990m); diaA = point(120m, 1710m) };
+absShaddaDammatan = postscript("absShaddaDammatan")
+	{ diaA_ = point(165m, 990m); diaA = point(90m, 1740m) };
+absShaddaKasratan = postscript("absShaddaKasratan")
+	{ diaA_ = point(135m, 1020m); diaA = point(90m, 1740m) };
+absShaddaFatha = postscript("absShaddaFatha")
+	{ diaA_ = point(165m, 990m); diaA = point(90m, 1530m) };
+absShaddaDamma = postscript("absShaddaDamma")
+	{ diaA_ = point(165m, 990m); diaA = point(90m, 1695m) };
+absShaddaKasra = postscript("absShaddaKasra")
+	{ diaA_ = point(150m, 975m); diaA = point(90m, 1560m) };
+// 1110
+absHamzaFatha = postscript("absHamzaFatha")
+	{ diaA_ = point(120m, 1020m); diaA = point(62m, 1534m) };
+absHamzaDamma = postscript("absHamzaDamma")
+	{ diaA_ = point(120m, 1020m); diaA = point(44m, 1744m) };
+absShaddaAlef = postscript("absShaddaAlef")
+	{ diaA_ = point(180m, 975m); diaA = point(90m, 1710m) };
+absSukun__leftOpen = postscript("absSukun.leftOpen")
+	{ diaA_ = point(160m, 900m); diaA = point(160m, 1320m) };
+absSukun__downOpen = postscript("absSukun.downOpen")
+	{ diaA_ = point(160m, 930m); diaA = point(160m, 1320m) };
+absDammatan__sixNine = postscript("absDammatan.sixNine")
+	{ diaA_ = point(150m, 1020m); diaA = point(0m, 1540m) };
+absAutoKashida = postscript("absAutoKashida")
+	{ diaA = point(150m, 790m); diaB = point(111m, -188m) };
+	
+// Not needed for Graphite:
+/***
+// 1117
+ring = postscript("ring")
+	{ above_ = point(144m, 760m) };
+caron = postscript("caron")
+	{ above_ = point(242m, 760m) };
+	
+_dot1 = postscript("_dot1")
+	{ below_ = point(2m, 131m); above_ = point(2m, -134m); _center = point(0m, 0m) };
+_dot1_tah = postscript("_dot1_tah")
+	{ below_ = point(-7m, 734m); above_ = point(-7m, -134m) };
+_dot1_smallV = postscript("_dot1_smallV")
+	{ below_ = point(-4m, 460m); above_ = point(-4m, -134m) };
+// 1122
+_dot1_hat = postscript("_dot1_hat")
+	{ below_ = point(-1m, 406m); above_ = point(-1m, -134m) };
+_dot2h = postscript("_dot2h")
+	{ below_ = point(2m, 142m); above_ = point(2m, -142m); _center = point(2m, 0m) };
+_dot2h_tah = postscript("_dot2h_tah")
+	{ below_ = point(-5m, 648m); above_ = point(-6m, -142m); _center = point(0m, 250m) };
+_dot2v = postscript("_dot2v")
+	{ below_ = point(1m, 218m); above_ = point(1m, -220m); _center = point(1m, 0m) };
+_dot3u = postscript("_dot3u")
+	{ below_ = point(0m, 227m); above_ = point(0m, -231m); _center = point(0m, -23m) };
+_dot3u_tah = postscript("_dot3u_tah")
+	{ below_ = point(-56m, 832m); above_ = point(0m, -145m); _center = point(-31m, 311m) };
+_dot3d = postscript("_dot3d")
+	{ below_ = point(1m, 140m); above_ = point(1m, -322m); _center = point(0m, -90m) };
+_dot3h = postscript("_dot3h")
+	{ below_ = point(2m, 142m); above_ = point(2m, -142m); _center = point(2m, 0m) };
+// 1130
+_dot4 = postscript("_dot4")
+	{ below_ = point(0m, 229m); above_ = point(0m, -227m); _center = point(0m, 0m) };
+_tah = postscript("_tah")
+	{ below_ = point(-24m, 453m); above_ = point(-24m, -157m); _center = point(-26m, 155m) };
+_madda = postscript("_madda")
+	{ above_ = point(19m, -119m) };
+_hamza = postscript("_hamza")
+	{ below_ = point(1m, 241m); above_ = point(1m, -178m) };
+_highHamza = postscript("_highHamza")
+	{ above_ = point(0m, 0m) };
+_wavyHamza = postscript("_wavyHamza")
+	{ below_ = point(0m, 252m); above_ = point(0m, -171m) };
+// _wavyHamza__b
+_wasla = postscript("_wasla")
+	{ below_ = point(-32m, 176m); above_ = point(-32m, -127m) };
+_hamzaDamma = postscript("_hamzaDamma")
+	{ above_ = point(-26m, -81m) };
+_bar = postscript("_bar")
+	{ _through = point(0m, 0m); _center = point(0m, 0m) };
+// 1140
+_ring = postscript("_ring")
+	{ _ring = point(25m, 141m) };
+_smallV = postscript("_smallV")
+	{ below_ = point(-3m, 157m); above_ = point(-3m, -162m) };
+_invSmallV = postscript("_invSmallV")
+	{ below_ = point(-3m, 157m); above_ = point(-3m, -162m) };
+_damma = postscript("_damma")
+	{ above_ = point(-19m, -174m) };
+_vline = postscript("_vline")
+	{ above_ = point(-3m, -221m) };
+_hat = postscript("_hat")
+	{ below_ = point(2m, 181m); above_ = point(2m, -138m) };
+// 1146
+_gafBar = postscript("_gafBar")
+	{ above_ = point(70m, 0m) };
+_gafBar_dot2h = postscript("_gafBar_dot2h")
+	{ above_ = point(70m, 0m) };
+_gafBar_dot3u = postscript("_gafBar_dot3u")
+	{ above_ = point(70m, 0m) };
+_gafBarShort = postscript("_gafBarShort")
+	{ above_ = point(70m, 0m) };
+_gafBarShort_dot2h = postscript("_gafBarShort_dot2h")
+	{ above_ = point(70m, 0m) };
+_gafBarShort_dot3u = postscript("_gafBarShort_dot3u")
+	{ above_ = point(70m, 0m) };
+_lines = postscript("_lines")
+	{ below_ = point(91m, 297m) };
+***/
+
+// 1153
+absEndOfAyah__2 = postscript("absEndOfAyah.2")
+	{ digit = point(245m, 0m) };
+absEndOfAyah__3 = postscript("absEndOfAyah.3")
+	{ digit = point(206m, 0m) };
+absEndOfAyah__alt__2 = postscript("absEndOfAyah.alt.2")
+	{ digit = point(245m, 0m) };
+absEndOfAyah__alt__3 = postscript("absEndOfAyah.alt.3")
+	{ digit = point(206m, 0m) };
+absEndOfAyah__altB__2 = postscript("absEndOfAyah.altB.2")
+	{ digit = point(245m, 0m) };
+absEndOfAyah__altB__3 = postscript("absEndOfAyah.altB.3")
+	{ digit = point(206m, 0m) };
+absNumberSign__2 = postscript("absNumberSign.2")
+	{ digit = point(200m, 0m) };
+// 1160
+absNumberSign__3 = postscript("absNumberSign.3")
+	{ digit = point(200m, 0m) };
+absYearSign__2 = postscript("absYearSign.2")
+	{ digit = point(1050m, 0m) };
+absYearSign__3 = postscript("absYearSign.3")
+	{ digit = point(825m, 0m) };
+absYearSign__4 = postscript("absYearSign.4")
+	{ digit = point(600m, 0m) };
+absFootnoteSign__2 = postscript("absFootnoteSign.2")
+	{ digit = point(475m, 0m) };
+absPageSign__2 = postscript("absPageSign.2")
+	{ digit = point(75m, 0m) };
+absPageSign__3 = postscript("absPageSign.3")
+	{ digit = point(75m, 0m) };
+absLamIni__preAlef = postscript("absLamIni.preAlef")
+	{ above = point(156m, 1195m); below = point(116m, -58m); through = point(168m, 777m); 
+	  diaA = point(179m, 1278m); diaB = point(65m, -100m); alef = point(65m, 825m); 
+	  exit = point(0m, 0m) };
+absLamSmallVIni__preAlef = postscript("absLamSmallVIni.preAlef")
+	{ diaB = point(65m, -100m); diaA = point(154m, 1569m); exit = point(0m, 0m); 
+	  alef = point(65m, 825m) };
+absLamDotAboveIni__preAlef = postscript("absLamDotAboveIni.preAlef")
+	{ diaB = point(65m, -100m); diaA = point(150m, 1540m); exit = point(0m, 0m); 
+	  alef = point(65m, 825m) };
+// 1170
+absLamThreeDotsAboveIni__preAlef = postscript("absLamThreeDotsAboveIni.preAlef")
+	{ diaB = point(65m, -100m); diaA = point(125m, 1700m); exit = point(0m, 0m); 
+	  alef = point(65m, 825m) };
+absLamThreeDotsBelowIni__preAlef = postscript("absLamThreeDotsBelowIni.preAlef")
+	{ diaB = point(121m, -568m); diaA = point(179m, 1278m); exit = point(0m, 0m); 
+	  alef = point(65m, 825m) };
+absLamRetroIni__preAlef = postscript("absLamRetroIni.preAlef")
+	{ diaB = point(65m, -100m); diaA = point(73m, 1862m); exit = point(0m, 0m); 
+	  alef = point(-55m, 1514m) };
+absLamBarIni__preAlef = postscript("absLamBarIni.preAlef")
+	{ diaB = point(65m, -100m); diaA = point(179m, 1278m); exit = point(0m, 0m); 
+	  alef = point(66m, 931m) };
+absAlefMaddaAboveFin__postLamIni = postscript("absAlefMaddaAboveFin.postLamIni")
+	{ diaB = point(420m, -100m); entry = point(535m, 0m); diaA = point(0m, 1459m); 
+	  alef = point(-26m, 1437m); dia2B = point(200m, -136m) };
+absAlefHamzaAboveFin__postLamIni = postscript("absAlefHamzaAboveFin.postLamIni")
+	{ diaB = point(420m, -100m); entry = point(535m, 0m); diaA = point(0m, 1600m); 
+	  alef = point(-128m, 1500m); dia2B = point(200m, -136m) };
+absAlefHamzaBelowFin__postLamIni = postscript("absAlefHamzaBelowFin.postLamIni")
+	{ diaB = point(455m, -462m); entry = point(535m, 0m); diaA = point(0m, 1218m); 
+	  alef = point(0m, 1155m); dia2B = point(455m, -462m) };
+absAlefFin__postLamIni = postscript("absAlefFin.postLamIni")
+	{ above = point(46m, 1185m); below = point(446m, -57m); dia2B = point(200m, -136m); 
+	  diaA = point(0m, 1218m); diaB = point(420m, -100m); alef = point(0m, 1155m); entry = point(535m, 0m) };
+absAlefWavyHamzaAboveFin__postLamIni = postscript("absAlefWavyHamzaAboveFin.postLamIni")
+	{ diaB = point(420m, -100m); entry = point(535m, 0m); diaA = point(0m, 1600m); 
+	  alef = point(-136m, 1423m); dia2B = point(200m, -136m) };
+absAlefWavyHamzaBelowFin__postLamIni = postscript("absAlefWavyHamzaBelowFin.postLamIni")
+	{ diaB = point(462m, -484m); entry = point(535m, 0m); diaA = point(0m, 1218m); 
+	  alef = point(0m, 1155m); dia2B = point(462m, -484m) };
+// 1180
+absHighHamzaAlefFin__postLamIni = postscript("absHighHamzaAlefFin.postLamIni")
+	{ diaB = point(420m, -100m); entry = point(535m, 0m); diaA = point(18m, 1551m); 
+	  alef = point(-40m, 1300m); dia2B = point(200m, -136m) };
+absAlefWaslaFin__postLamIni = postscript("absAlefWaslaFin.postLamIni")
+	{ diaB = point(420m, -100m); entry = point(535m, 0m); diaA = point(0m, 1500m); 
+	  alef = point(-100m, 1400m); dia2B = point(200m, -136m) };
+absLamMed__preAlef = postscript("absLamMed.preAlef")
+	{ above = point(230m, 1020m); below = point(255m, -68m); through = point(223m, 644m); 
+	  diaA = point(220m, 1035m); diaB = point(250m, -100m); alef = point(100m, 700m); 
+	  exit = point(150m, 250m) };
+absLamSmallVMed__preAlef = postscript("absLamSmallVMed.preAlef")
+	{ diaB = point(250m, -100m); diaA = point(235m, 1400m); exit = point(150m, 250m); 
+	  alef = point(100m, 700m) };
+absLamDotAboveMed__preAlef = postscript("absLamDotAboveMed.preAlef")
+	{ diaB = point(250m, -100m); diaA = point(216m, 1349m); exit = point(150m, 250m); 
+	  alef = point(100m, 700m) };
+absLamThreeDotsAboveMed__preAlef = postscript("absLamThreeDotsAboveMed.preAlef")
+	{ diaB = point(250m, -100m); diaA = point(183m, 1532m); exit = point(150m, 250m); 
+	  alef = point(18m, 1239m) };
+absLamThreeDotsBelowMed__preAlef = postscript("absLamThreeDotsBelowMed.preAlef")
+	{ diaB = point(253m, -572m); diaA = point(220m, 1035m); exit = point(150m, 250m); 
+	  alef = point(100m, 700m) };
+absLamRetroMed__preAlef = postscript("absLamRetroMed.preAlef")
+	{ diaB = point(250m, -100m); diaA = point(143m, 1661m); exit = point(150m, 250m); 
+	  alef = point(15m, 1360m) };
+absLamBarMed__preAlef = postscript("absLamBarMed.preAlef")
+	{ diaB = point(250m, -100m); diaA = point(220m, 1035m); exit = point(150m, 250m); 
+	  alef = point(100m, 821m) };
+absAlefMaddaAboveFin__postLamMed = postscript("absAlefMaddaAboveFin.postLamMed")
+	{ diaB = point(420m, -100m); entry = point(650m, 250m); diaA = point(33m, 1173m); 
+	  alef = point(-84m, 1166m); dia2B = point(300m, -154m) };
+// 1190
+absAlefHamzaAboveFin__postLamMed = postscript("absAlefHamzaAboveFin.postLamMed")
+	{ diaB = point(420m, -100m); entry = point(650m, 250m); diaA = point(0m, 1335m); 
+	  alef = point(-100m, 1280m); dia2B = point(300m, -154m) };
+absAlefHamzaBelowFin__postLamMed = postscript("absAlefHamzaBelowFin.postLamMed")
+	{ diaB = point(455m, -484m); entry = point(650m, 250m); diaA = point(47m, 949m); 
+	  alef = point(0m, 1020m); dia2B = point(455m, -484m) };
+absAlefFin__postLamMed = postscript("absAlefFin.postLamMed")
+	{ dia2B = point(300m, -154m); diaA = point(47m, 949m); diaB = point(420m, -100m); 
+	  alef = point(0m, 1020m); entry = point(650m, 250m); above = point(48m, 927m); 
+	  below = point(438m, -89m) };
+absAlefWavyHamzaAboveFin__postLamMed = postscript("absAlefWavyHamzaAboveFin.postLamMed")
+	{ diaB = point(420m, -100m); entry = point(650m, 250m); diaA = point(26m, 1316m); 
+	  alef = point(-100m, 1200m); dia2B = point(300m, -154m) };
+absAlefWavyHamzaBelowFin__postLamMed = postscript("absAlefWavyHamzaBelowFin.postLamMed")
+	{ diaB = point(480m, -521m); entry = point(650m, 250m); diaA = point(47m, 949m); 
+	  alef = point(0m, 1020m); dia2B = point(480m, -521m) };
+absHighHamzaAlefFin__postLamMed = postscript("absHighHamzaAlefFin.postLamMed")
+	{ diaB = point(420m, -100m); entry = point(650m, 250m); diaA = point(33m, 1236m); 
+	  alef = point(-40m, 1200m); dia2B = point(300m, -154m) };
+absAlefWaslaFin__postLamMed = postscript("absAlefWaslaFin.postLamMed")
+	{ diaB = point(420m, -100m); entry = point(650m, 250m); diaA = point(37m, 1243m); 
+	  alef = point(-84m, 1159m); dia2B = point(300m, -154m) };
+
+
+/***  NEW CHARACTERS   ******
+absSmallHighAlefLamYeh	// U+0616
+absSeenInvV 		// U+063B
+absKafTwoDotsAbove	// U+063C
+absKehehTwoDotsAbove	// U+063D
+absKehehThreeDotsBelow	// U+063E
+absFarsiYehInvV		// U+063F
+absFarsiYehTwoDotsAbove	// U+077E
+absFarsiYehThreeDotsAbove // U+077F
+
+absSmallHighZain	// U+0617
+absSmallFatha		// U+0618
+absSmallDamma		// U+0619
+absSmallKasra		// U+0620
+****************************/
+
+
+//------------------------------------------------------------------------------------------
+//
+//	Unencoded forms
+//
+
+#if EXPER_UNICODE5x
+
+uniJeemRetro1	= pseudo(postscript("absJeemRetro1"),  0x076E);
+uniTchehRetro2	= pseudo(postscript("absTchehRetro2"), 0x076F);
+uniSheenRetro2	= pseudo(postscript("absSheenRetro2"), 0x0770);
+uniJehRetro1	= pseudo(postscript("absJehRetro1"),   0x0771);
+uniJeemRetro3	= pseudo(postscript("absJeemRetro3"),  0x0772);
+
+
+cUnencodedChar	= (uniJeemRetro1 uniTchehRetro2 uniSheenRetro2 uniJehRetro1 uniJeemRetro3);
+cUnencodedGlyph	= (absJeemRetro1 absTchehRetro2 absSheenRetro2 absJehRetro1 absJeemRetro3);
+
+#endif // EXPER_UNICODE5x
+
+/***** Constructed Unicode 5.X characters *****/
+
+uniAlefEasternTwoAbove		= pseudo(postscript("question"), 0x0773);
+uniAlefEasternThreeAbove	= pseudo(postscript("question"), 0x0774);
+uniFarsiYehEasternTwoAbove	= pseudo(postscript("question"), 0x0775);
+uniFarsiYehEasternThreeAbove	= pseudo(postscript("question"), 0x0776);
+uniFarsiYehEasternFourBelow	= pseudo(postscript("question"), 0x0777);
+uniWawEasternTwoAbove		= pseudo(postscript("question"), 0x0778);
+uniWawEasternThreeAbove		= pseudo(postscript("question"), 0x0779);
+uniYehBarreeEasternTwoAbove	= pseudo(postscript("question"), 0x077A);
+uniYehBarreeEasternThreeAbove	= pseudo(postscript("question"), 0x077B);
+uniHahEasternFourBelow		= pseudo(postscript("question"), 0x077C);
+uniSeenEasternFourBelow		= pseudo(postscript("question"), 0x077D);
+
+// These "look" the same as the small digits, but conceptually and behaviorally they are different
+// since they function as diacritics:
+absTwoDiaDigitAbove		= pseudo(postscript("absEasternTwoSmall"));
+absThreeDiaDigitAbove		= pseudo(postscript("absEasternThreeSmall"));
+absFourDiaDigitAbove		= pseudo(postscript("absEasternFourSmall"));
+absFourDiaDigitBelow		= pseudo(postscript("absEasternFourSmall"));
+absFourDiaDigitAbove__urdu	= pseudo(postscript("absEasternFourSmall.urdu"));
+absFourDiaDigitBelow__urdu	= pseudo(postscript("absEasternFourSmall.urdu"));
+
+// The following three classes must match for substitution:
+cUnencodedChar2Parts = (uniAlefEasternTwoAbove uniAlefEasternThreeAbove uniFarsiYehEasternTwoAbove 
+	uniFarsiYehEasternThreeAbove uniFarsiYehEasternFourBelow uniWawEasternTwoAbove 
+	uniWawEasternThreeAbove uniYehBarreeEasternTwoAbove uniYehBarreeEasternThreeAbove 
+	uniHahEasternFourBelow uniSeenEasternFourBelow);
+
+cUnencodedGlyphPart1 = (absAlef absAlef absFarsiYeh absFarsiYeh absFarsiYeh absWaw absWaw 
+	absYehBarree absYehBarree absHah absSeen);
+	
+cUnencodedGlyphPart2 = (absTwoDiaDigitAbove absThreeDiaDigitAbove absTwoDiaDigitAbove
+	absThreeDiaDigitAbove absFourDiaDigitBelow absTwoDiaDigitAbove
+	absThreeDiaDigitAbove absTwoDiaDigitAbove absThreeDiaDigitAbove 
+	absFourDiaDigitBelow absFourDiaDigitAbove);
+
+// The following two classes are for positioning:
+cDiaDigitAbove = (absTwoDiaDigitAbove absThreeDiaDigitAbove absFourDiaDigitAbove
+			absFourDiaDigitAbove__urdu)
+		{ diaDigitA_ = point(bb.left + bb.width/2, bb.bottom);
+		  diaA = point(bb.left + bb.width/2, bb.top) };
+
+cDiaDigitBelow = (absFourDiaDigitBelow absFourDiaDigitBelow__urdu)
+		{ diaDigitB_ = point(bb.left + bb.width/2, bb.top);
+		  diaB = point(bb.left + bb.width/2, bb.bottom) };
+
+cDiaDigit = (cDiaDigitAbove cDiaDigitBelow);
+
+absAlef		{ diaDigitA = point(120m, 1100m) };
+absAlefFin	{ diaDigitA = point(105m, 1175m) };
+
+absFarsiYeh	{ diaDigitB = point(450m, -400m); diaDigitA = point(325m, 706m) };
+absFarsiYehIni	{ diaDigitB = point(130m, -420m); diaDigitA = point(184m, 684m) };
+absFarsiYehMed	{ diaDigitB = point(150m, -450m); diaDigitA = point(200m, 600m) };
+absFarsiYehFin	{ diaDigitB = point(450m, -650m); diaDigitA = point(389m, 329m) };
+
+absWaw		{ diaDigitA = point(363m, 691m) };
+absWawFin	{ diaDigitA = point(308m, 684m) };
+
+absYehBarree	{ diaDigitA = point(345m, 645m) };
+absYehBarreeFin	{ diaDigitA = point(375m, 220m) };
+
+absHah		{ diaDigitB = point(525m, -20m) };	// (400m, -825m) is under tail
+absHahIni	{ diaDigitB = point(450m, -150m) };
+absHahMed	{ diaDigitB = point(449m, -201m) };
+absHahFin	{ diaDigitB = point(500m, -50m) };	// (400m, -840m) is under tail
+
+absSeen		{ diaDigitA = point(400m, 450m) };
+absSeenIni	{ diaDigitA = point(390m, 550m) };
+absSeenMed	{ diaDigitA = point(400m, 600m) };
+absSeenFin	{ diaDigitA = point(800m, 450m) };   // (400m, 450m) is over bowl
+
+cTakesDiaDigitA = (absAlef absAlefFin absFarsiYeh absFarsiYehIni absFarsiYehMed
+	absFarsiYehFin absWaw absWawFin absYehBarree absYehBarreeFin absSeen absSeenIni
+	absSeenMed absSeenFin);
+cTakesDiaDigitB = (absFarsiYeh absFarsiYehIni absFarsiYehMed absFarsiYehFin 
+	absHah absHah absHahIni absHahMed absHahFin);
+	
+/********************************************************/
+
+//------------------------------------------------------------------------------------------
+//
+//	Contextual forms
+//
+
+zeroWidthJoiner = postscript("zerojoin");
+
+cDualLinkIso = (zeroWidthJoiner
+	absAin absAinThreeDotsAbove absAinThreeDotsDownAbove absAinTwoDotsAbove 
+	absAinTwoDotsVertAbove absAlefMaksura absBeeh absBeh absBeheh 
+	absBehDotAboveTwoDotsBelow absBehInvSmallVBelow absBehNoDots absBehSmallVAbove 
+	absBehThreeDotsAboveDotBelow absBehThreeDotsHorizBelow absBehThreeDotsUpwardBelow 
+	absBehTwoDotsAboveThreeDotsUpwardBelow absDad absDadDotBelow absDotlessFeh 
+	absDyeh absE absFarsiYeh absFeh absFehDotBelow absFehDotMovedBelow 
+	absFehThreeDotsBelow absFehThreeDotsUpwardBelow absFehTwoDotsBelow absGaf 
+	absGafRing absGafThreeDotsAbove absGafTwoDotsBelow absGhain  absGhainDotBelow 
+	absGueh absHah absHahHamzaAbove absHahThreeDotsAbove absHahThreeDotsUpwardBelow 
+	absHahTwoDotsAbove absHahTwoDotsVerticalAbove absHeh absHehDoachashmee absHehGoal 
+	absHehGoalHamzaAbove absHehHat absHehYehAbove absHighHamzaYeh absJeem 
+	absJeemRetro1 absJeemRetro2 absJeemRetro3 absKaf absKafDotAbove absKafRing 
+	absKafThreeDotsBelow absKeheh absKehehDotAbove absKehehThreeDotsAbove 
+	absKehehThreeDotsUpwardBelow absKhah absLam absLamBar 
+	absLamDotAbove absLamRetro absLamSmallV absLamThreeDotsAbove 
+	absLamThreeDotsBelow absMeem absMeemDotAbove absMeemDotBelow absNg 
+	absNgoeh absNoon absNoonDotBelow absNoonGhunna absNoonRetro absNoonRing 
+	absNoonSmallV absNoonThreeDotsAbove absNoonTwoDotsBelow absNyeh absPeh 
+	absPeheh absQaf absQafDotAbove absQafNoDots absQafThreeDotsAbove 
+	absRnoon absSad absSadThreeDotsAbove absSadTwoDotsBelow absSeen 
+	absSeenDotBelowDotAbove absSeenFourDotsAbove absSeenThreeDotsBelow 
+	absSeenThreeDotsBelowThreeDotsAbove absSeenTwoVertAbove absSheen 
+	absSheenDotBelow absSheenRetro1 absSheenRetro2 absSwashKaf absTah 
+	absTahThreeDotsAbove absTcheh absTchehDotAbove absTchehRetro1 absTchehRetro2 
+	absTcheheh absTeh absTeheh absTehRing absTehThreeDotsAboveDownwards 
+	absTheh absTteh absTteheh absVeh absYeh absYehHamzaAbove absYehSmallV 
+	absYehThreeDotsBelow absZah
+);
+// ADD absSeenInvV, absKafTwoDotsAbove, absKehehTwoDotsAbove, absKehehThreeDotsBelow,
+// absFarsiYehInvV, absFarsiYehTwoDotsAbove, absFarsiYehThreeDotsBelow
+
+cDualLinkIni = (zeroWidthJoiner
+	absAinIni absAinThreeDotsAboveIni absAinThreeDotsDownAboveIni absAinTwoDotsAboveIni 
+	absAinTwoDotsVertAboveIni absAlefMaksuraIni absBeehIni absBehIni absBehehIni 
+	absBehDotAboveTwoDotsBelowIni absBehInvSmallVBelowIni absBehNoDotsIni absBehSmallVAboveIni 
+	absBehThreeDotsAboveDotBelowIni absBehThreeDotsHorizBelowIni absBehThreeDotsUpwardBelowIni 
+	absBehTwoDotsAboveThreeDotsUpwardBelowIni absDadIni absDadDotBelowIni absDotlessFehIni 
+	absDyehIni absEIni absFarsiYehIni absFehIni absFehDotBelowIni absFehDotMovedBelowIni 
+	absFehThreeDotsBelowIni absFehThreeDotsUpwardBelowIni absFehTwoDotsBelowIni absGafIni 
+	absGafRingIni absGafThreeDotsAboveIni absGafTwoDotsBelowIni absGhainIni absGhainDotBelowIni 
+	absGuehIni absHahIni absHahHamzaAboveIni absHahThreeDotsAboveIni absHahThreeDotsUpwardBelowIni 
+	absHahTwoDotsAboveIni absHahTwoDotsVerticalAboveIni absHehIni absHehDoachashmeeIni absHehGoalIni 
+	absHehGoalHamzaAboveIni absHehHatIni absHehYehAboveIni absHighHamzaYehIni absJeemIni 
+	absJeemRetro1Ini absJeemRetro2Ini absJeemRetro3Ini absKafIni absKafDotAboveIni absKafRingIni 
+	absKafThreeDotsBelowIni absKehehIni absKehehDotAboveIni absKehehThreeDotsAboveIni 
+	absKehehThreeDotsUpwardBelowIni absKhahIni absLamIni absLamBarIni  
+	absLamDotAboveIni absLamRetroIni absLamSmallVIni absLamThreeDotsAboveIni 
+	absLamThreeDotsBelowIni absMeemIni absMeemDotAboveIni absMeemDotBelowIni absNgIni 
+	absNgoehIni absNoonIni absNoonDotBelowIni absNoonGhunnaIni absNoonRetroIni absNoonRingIni 
+	absNoonSmallVIni absNoonThreeDotsAboveIni absNoonTwoDotsBelowIni absNyehIni absPehIni 
+	absPehehIni absQafIni absQafDotAboveIni absQafNoDotsIni absQafThreeDotsAboveIni 
+	absRnoonIni absSadIni absSadThreeDotsAboveIni absSadTwoDotsBelowIni absSeenIni 
+	absSeenDotBelowDotAboveIni absSeenFourDotsAboveIni absSeenThreeDotsBelowIni 
+	absSeenThreeDotsBelowThreeDotsAboveIni absSeenTwoVertAboveIni absSheenIni 
+	absSheenDotBelowIni absSheenRetro1Ini absSheenRetro2Ini absSwashKafIni absTahIni 
+	absTahThreeDotsAboveIni absTchehIni absTchehDotAboveIni absTchehRetro1Ini absTchehRetro2Ini 
+	absTchehehIni absTehIni absTehehIni absTehRingIni absTehThreeDotsAboveDownwardsIni 
+	absThehIni absTtehIni absTtehehIni absVehIni absYehIni absYehHamzaAboveIni absYehSmallVIni 
+	absYehThreeDotsBelowIni absZahIni
+);
+cDualLinkMed = (zeroWidthJoiner
+	absAinMed absAinThreeDotsAboveMed absAinThreeDotsDownAboveMed absAinTwoDotsAboveMed 
+	absAinTwoDotsVertAboveMed absAlefMaksuraMed absBeehMed absBehMed absBehehMed 
+	absBehDotAboveTwoDotsBelowMed absBehInvSmallVBelowMed absBehNoDotsMed absBehSmallVAboveMed 
+	absBehThreeDotsAboveDotBelowMed absBehThreeDotsHorizBelowMed absBehThreeDotsUpwardBelowMed 
+	absBehTwoDotsAboveThreeDotsUpwardBelowMed absDadMed absDadDotBelowMed absDotlessFehMed 
+	absDyehMed absEMed absFarsiYehMed absFehMed absFehDotBelowMed absFehDotMovedBelowMed 
+	absFehThreeDotsBelowMed absFehThreeDotsUpwardBelowMed absFehTwoDotsBelowMed absGafMed 
+	absGafRingMed absGafThreeDotsAboveMed absGafTwoDotsBelowMed absGhainMed absGhainDotBelowMed 
+	absGuehMed absHahMed absHahHamzaAboveMed absHahThreeDotsAboveMed absHahThreeDotsUpwardBelowMed 
+	absHahTwoDotsAboveMed absHahTwoDotsVerticalAboveMed absHehMed absHehDoachashmeeMed absHehGoalMed 
+	absHehGoalHamzaAboveMed absHehHatMed absHehYehAboveMed absHighHamzaYehMed absJeemMed 
+	absJeemRetro1Med absJeemRetro2Med absJeemRetro3Med absKafMed absKafDotAboveMed absKafRingMed 
+	absKafThreeDotsBelowMed absKehehMed absKehehDotAboveMed absKehehThreeDotsAboveMed 
+	absKehehThreeDotsUpwardBelowMed absKhahMed absLamMed absLamBarMed  
+	absLamDotAboveMed absLamRetroMed absLamSmallVMed absLamThreeDotsAboveMed 
+	absLamThreeDotsBelowMed absMeemMed absMeemDotAboveMed absMeemDotBelowMed absNgMed 
+	absNgoehMed absNoonMed absNoonDotBelowMed absNoonGhunnaMed absNoonRetroMed absNoonRingMed 
+	absNoonSmallVMed absNoonThreeDotsAboveMed absNoonTwoDotsBelowMed absNyehMed absPehMed 
+	absPehehMed absQafMed absQafDotAboveMed absQafNoDotsMed absQafThreeDotsAboveMed 
+	absRnoonMed absSadMed absSadThreeDotsAboveMed absSadTwoDotsBelowMed absSeenMed 
+	absSeenDotBelowDotAboveMed absSeenFourDotsAboveMed absSeenThreeDotsBelowMed 
+	absSeenThreeDotsBelowThreeDotsAboveMed absSeenTwoVertAboveMed absSheenMed 
+	absSheenDotBelowMed absSheenRetro1Med absSheenRetro2Med absSwashKafMed absTahMed 
+	absTahThreeDotsAboveMed absTchehMed absTchehDotAboveMed absTchehRetro1Med absTchehRetro2Med 
+	absTchehehMed absTehMed absTehehMed absTehRingMed absTehThreeDotsAboveDownwardsMed 
+	absThehMed absTtehMed absTtehehMed absVehMed absYehMed absYehHamzaAboveMed absYehSmallVMed 
+	absYehThreeDotsBelowMed absZahMed
+);
+
+cDualLinkFin = (zeroWidthJoiner
+	absAinFin absAinThreeDotsAboveFin absAinThreeDotsDownAboveFin absAinTwoDotsAboveFin 
+	absAinTwoDotsVertAboveFin absAlefMaksuraFin absBeehFin absBehFin absBehehFin 
+	absBehDotAboveTwoDotsBelowFin absBehInvSmallVBelowFin absBehNoDotsFin absBehSmallVAboveFin 
+	absBehThreeDotsAboveDotBelowFin absBehThreeDotsHorizBelowFin absBehThreeDotsUpwardBelowFin 
+	absBehTwoDotsAboveThreeDotsUpwardBelowFin absDadFin absDadDotBelowFin absDotlessFehFin 
+	absDyehFin absEFin absFarsiYehFin absFehFin absFehDotBelowFin absFehDotMovedBelowFin 
+	absFehThreeDotsBelowFin absFehThreeDotsUpwardBelowFin absFehTwoDotsBelowFin absGafFin 
+	absGafRingFin absGafThreeDotsAboveFin absGafTwoDotsBelowFin absGhainFin absGhainDotBelowFin 
+	absGuehFin absHahFin absHahHamzaAboveFin absHahThreeDotsAboveFin absHahThreeDotsUpwardBelowFin 
+	absHahTwoDotsAboveFin absHahTwoDotsVerticalAboveFin absHehFin absHehDoachashmeeFin absHehGoalFin 
+	absHehGoalHamzaAboveFin absHehHatFin absHehYehAboveFin absHighHamzaYehFin absJeemFin 
+	absJeemRetro1Fin absJeemRetro2Fin absJeemRetro3Fin absKafFin absKafDotAboveFin absKafRingFin 
+	absKafThreeDotsBelowFin absKehehFin absKehehDotAboveFin absKehehThreeDotsAboveFin 
+	absKehehThreeDotsUpwardBelowFin absKhahFin absLamFin absLamBarFin 
+	absLamDotAboveFin absLamRetroFin absLamSmallVFin absLamThreeDotsAboveFin 
+	absLamThreeDotsBelowFin absMeemFin absMeemDotAboveFin absMeemDotBelowFin absNgFin 
+	absNgoehFin absNoonFin absNoonDotBelowFin absNoonGhunnaFin absNoonRetroFin absNoonRingFin 
+	absNoonSmallVFin absNoonThreeDotsAboveFin absNoonTwoDotsBelowFin absNyehFin absPehFin 
+	absPehehFin absQafFin absQafDotAboveFin absQafNoDotsFin absQafThreeDotsAboveFin 
+	absRnoonFin absSadFin absSadThreeDotsAboveFin absSadTwoDotsBelowFin absSeenFin 
+	absSeenDotBelowDotAboveFin absSeenFourDotsAboveFin absSeenThreeDotsBelowFin 
+	absSeenThreeDotsBelowThreeDotsAboveFin absSeenTwoVertAboveFin absSheenFin 
+	absSheenDotBelowFin absSheenRetro1Fin absSheenRetro2Fin absSwashKafFin absTahFin 
+	absTahThreeDotsAboveFin absTchehFin absTchehDotAboveFin absTchehRetro1Fin absTchehRetro2Fin 
+	absTchehehFin absTehFin absTehehFin absTehRingFin absTehThreeDotsAboveDownwardsFin 
+	absThehFin absTtehFin absTtehehFin absVehFin absYehFin absYehHamzaAboveFin absYehSmallVFin 
+	absYehThreeDotsBelowFin absZahFin
+);
+
+
+cRightLinkIso = (zeroWidthJoiner
+	absAe absAlef absAlefHamzaAbove absAlefHamzaBelow absAlefMaddaAbove 
+	absAlefWasla absAlefWavyHamzaAbove absAlefWavyHamzaBelow absDahal 
+	absDal absDalDotBelow absDalFourDotsAbove absDalHat absDalInvSmallVBelow 
+	absDalRing absDalThreeDotsAboveDownwards absDalTwoVertBelowSmallTah absDdahal 
+	absDdal absDul absHighHamzaAlef absHighHamzaWaw absJeh absJeh__dotHat 
+	absJehRetro1 absJehRetro2 absKirghizOe absKirghizYu absLamAlef absLamBarAlef absLamDotAboveAlef 
+	absLamRetroAlef absLamSmallVAlef absLamThreeDotsAboveAlef absLamThreeDotsBelowAlef 
+	absOe absReh absRehBar absRehDotBelow absRehDotBelowDotAbove absRehFourDotsAbove 
+	absRehHamzaAbove absRehHat absRehRing absRehTwoDotsAbove 
+	absRehTwoVertAbove absRreh absTehMarbuta absTehMarbutaGoal absThal absU 
+	absUHamzaAbove absVe absWaw absWawDotAbove absWawDotBelow absWawHamzaAbove 
+	absWawRing absWawTwoDotsAbove absYehBarree absYehBarreeHamzaAbove absYehTail 
+	absYu absZain
+);
+
+cRightLinkFin = (zeroWidthJoiner
+	absAeFin absAlefFin absAlefHamzaAboveFin absAlefHamzaBelowFin absAlefMaddaAboveFin 
+	absAlefWaslaFin absAlefWavyHamzaAboveFin absAlefWavyHamzaBelowFin absDahalFin 
+	absDalFin absDalDotBelowFin absDalFourDotsAboveFin absDalHatFin absDalInvSmallVBelowFin 
+	absDalRingFin absDalThreeDotsAboveDownwardsFin absDalTwoVertBelowSmallTahFin absDdahalFin 
+	absDdalFin absDulFin absHighHamzaAlefFin absHighHamzaWawFin absJehFin absJehFin__dotHat 
+	absJehRetro1Fin absJehRetro2Fin absKirghizOeFin absKirghizYuFin absLamAlefFin absLamBarAlefFin 
+	absLamDotAboveAlefFin 
+	absLamRetroAlefFin absLamSmallVAlefFin absLamThreeDotsAboveAlefFin absLamThreeDotsBelowAlefFin 
+	absOeFin absRehFin absRehBarFin absRehDotBelowFin absRehDotBelowDotAboveFin absRehFourDotsAboveFin 
+	absRehHamzaAboveFin absRehHatFin absRehRingFin absRehTwoDotsAboveFin 
+	absRehTwoVertAboveFin absRrehFin absTehMarbutaFin absTehMarbutaGoalFin absThalFin absUFin 
+	absUHamzaAboveFin absVeFin absWawFin absWawDotAboveFin absWawDotBelowFin absWawHamzaAboveFin 
+	absWawRingFin absWawTwoDotsAboveFin absYehBarreeFin absYehBarreeHamzaAboveFin absYehTailFin 
+	absYuFin absZainFin
+);
+
+//  Lam-alef ligatures
+
+cLamIso = (absLam            absLamBar       absLamDotAbove
+	absLamRetro          absLamSmallV
+	absLamThreeDotsAbove absLamThreeDotsBelow
+);
+
+cLamIni = (absLamIni            absLamBarIni       absLamDotAboveIni
+	absLamRetroIni          absLamSmallVIni
+	absLamThreeDotsAboveIni absLamThreeDotsBelowIni
+);
+         
+cLamMed = (absLamMed            absLamBarMed       absLamDotAboveMed
+	absLamRetroMed          absLamSmallVMed 
+	absLamThreeDotsAboveMed absLamThreeDotsBelowMed
+);
+
+cLamFin = (absLamFin            absLamBarFin       absLamDotAboveFin
+	absLamRetroFin          absLamSmallVFin 
+	absLamThreeDotsAboveFin absLamThreeDotsBelowFin
+);
+
+
+cLamIniPreAlef = (absLamIni__preAlef     absLamBarIni__preAlef       absLamDotAboveIni__preAlef
+	absLamRetroIni__preAlef          absLamSmallVIni__preAlef 
+	absLamThreeDotsAboveIni__preAlef absLamThreeDotsBelowIni__preAlef
+);
+         
+cLamMedPreAlef = (absLamMed__preAlef     absLamBarMed__preAlef       absLamDotAboveMed__preAlef
+	absLamRetroMed__preAlef          absLamSmallVMed__preAlef 
+	absLamThreeDotsAboveMed__preAlef absLamThreeDotsBelowMed__preAlef 
+);
+
+
+cAlefIso = (absAlef           absHighHamzaAlef
+	absAlefHamzaAbove     absAlefHamzaBelow
+	absAlefMaddaAbove     absAlefWasla
+	absAlefWavyHamzaAbove absAlefWavyHamzaBelow
+);
+
+cAlefFin = (absAlefFin           absHighHamzaAlefFin
+	absAlefHamzaAboveFin     absAlefHamzaBelowFin
+	absAlefMaddaAboveFin     absAlefWaslaFin
+	absAlefWavyHamzaAboveFin absAlefWavyHamzaBelowFin 
+);
+
+cAlefFinPostLamIni = (absAlefFin__postLamIni absHighHamzaAlefFin__postLamIni
+	absAlefHamzaAboveFin__postLamIni     absAlefHamzaBelowFin__postLamIni
+	absAlefMaddaAboveFin__postLamIni     absAlefWaslaFin__postLamIni
+	absAlefWavyHamzaAboveFin__postLamIni absAlefWavyHamzaBelowFin__postLamIni 
+);
+	
+cAlefFinPostLamMed = (absAlefFin__postLamMed absHighHamzaAlefFin__postLamMed
+	absAlefHamzaAboveFin__postLamMed     absAlefHamzaBelowFin__postLamMed
+	absAlefMaddaAboveFin__postLamMed     absAlefWaslaFin__postLamMed
+	absAlefWavyHamzaAboveFin__postLamMed absAlefWavyHamzaBelowFin__postLamMed 
+);
+
+// not used in Graphite:
+/***
+cLam = (absLam               absLamIni               absLamMed               absLamFin 
+	absLamBar            absLamBarIni            absLamBarMed            absLamBarFin 
+	absLamDotAbove       absLamDotAboveIni       absLamDotAboveMed       absLamDotAboveFin 
+	absLamRetro          absLamRetroIni          absLamRetroMed          absLamRetroFin
+	absLamSmallV         absLamSmallVIni         absLamSmallVMed         absLamSmallVFin 
+	absLamThreeDotsAbove absLamThreeDotsAboveIni absLamThreeDotsAboveMed absLamThreeDotsAboveFin 
+	absLamThreeDotsBelow absLamThreeDotsBelowIni absLamThreeDotsBelowMed absLamThreeDotsBelowFin 
+);
+
+cLamAlef = (absLamAlef               absLamAlefFin
+            absLamBarAlef            absLamBarAlefFin
+            absLamDotAboveAlef       absLamDotAboveAlefFin
+            absLamRetroAlef          absLamRetroAlefFin
+            absLamSmallVAlef         absLamSmallVAlefFin
+            absLamThreeDotsAboveAlef absLamThreeDotsAboveAlefFin
+            absLamThreeDotsBelowAlef absLamThreeDotsBelowAlefFin
+);
+
+// Place holder for the alef in lamalef ligature rules - rendered as zero-width space:
+gAlefPlaceholder = pseudo(unicode(0x200B)) {dir=DIR_ARABIC} ;	
+***/
+	
+// Decomposition   
+
+// QUESTION: are there more things that need to be decomposed?
+cAlefPlusMark = (absAlefMaddaAbove absAlefHamzaAbove absAlefHamzaBelow);
+cAlefMark = (absMaddahAbove absHamzaAbove absHamzaBelow);
+
+
+// Dagger-alef
+
+// OT: DaggerAlefToLarge
+cNeedsLargeDaggerAlef = (absYeh absHighHamzaYeh absFarsiYeh absE absYehThreeDotsBelow
+	absYehTail absAlefMaksura absSeen absSheen absSeenDotBelowDotAbove absSeenThreeDotsBelow
+	absSeenThreeDotsBelowThreeDotsAbove absSheenDotBelow absSheenRetro1 absSheenRetro2 
+	absSeenFourDotsAbove absSeenTwoVertAbove absSad absDad absSadTwoDotsBelow
+	absSadThreeDotsAbove absDadDotBelow 
+	absYehFin absHighHamzaYehFin absFarsiYehFin absEFin absYehThreeDotsBelowFin
+	absYehTailFin absAlefMaksuraFin absSeenFin absSheenFin absSeenDotBelowDotAboveFin 
+	absSeenThreeDotsBelowFin absSeenThreeDotsBelowThreeDotsAboveFin 
+	absSheenDotBelowFin absSheenRetro1Fin absSheenRetro2Fin absSeenFourDotsAboveFin 
+	absSeenTwoVertAboveFin absSadFin absDadFin absSadTwoDotsBelowFin
+	absSadThreeDotsAboveFin absDadDotBelowFin);
+
+// Lowered hamza
+
+cNeedsLoweredHamza = (
+	absWaw absYeh absHeh absHehGoal
+	absWawFin absYehFin absHehFin absHehGoalFin 
+	absYehMed absHehMed absHehGoalMed
+	absYehIni absHehIni absHehGoalIni);
+
+cWithLoweredHamza = (
+	absWawHamzaAbove absYehHamzaAbove absHehYehAbove absHehGoalHamzaAbove
+	absWawHamzaAboveFin absYehHamzaAboveFin absHehYehAboveFin absHehGoalHamzaAboveFin 
+	absYehHamzaAboveMed absHehYehAboveMed absHehGoalHamzaAboveMed 
+	absYehHamzaAboveIni absHehYehAboveIni absHehGoalHamzaAboveIni)
+		{ component {
+			base = box(0, bb.bottom, aw, bb.bottom + (bb.height*5)/8);
+			hamza = box(0, bb.bottom + (bb.height*5)/8, aw, bb.top) }};
+// slight adjustments to components:
+absWawHamzaAbove { component {
+	base.top = bb.bottom + (bb.height*3)/4;
+	hamza.bottom = bb.bottom + (bb.height*3)/4 }};
+absYehHamzaAbove { component.hamza.right = aw*3/4 };
+absYehHamzaAboveMed { component {
+	base.top = bb.bottom + bb.height/2;
+	hamza.bottom = bb.bottom + bb.height/2 }};
+absYehHamzaAboveFin { component.hamza.right = aw*3/4 };
+
+// Subtending marks
+
+cSignTakes4 = (absYearSign); // medium
+
+cSignTakes3Medium = (absYearSign absNumberSign absPageSign);
+cSignTakes3Small  = (absEndOfAyah absEndOfAyah__alt absEndOfAyah__altB);
+
+cSignTakes2 = (absYearSign absNumberSign absPageSign absEndOfAyah absEndOfAyah__alt absEndOfAyah__altB
+	absFootnoteSign); // medium
+
+cSignTakes1 = (absYearSign absNumberSign absPageSign absEndOfAyah absEndOfAyah__alt absEndOfAyah__altB
+	absFootnoteSign); // medium
+	
+cSign4 = (absYearSign__4);
+cSign3Medium = (absYearSign__3 absNumberSign__3 absPageSign__3);
+cSign3Small  = (absEndOfAyah__3 absEndOfAyah__alt__3 absEndOfAyah__altB__3);
+cSign3 = (cSign3Medium cSign3Small);
+cSign2 = (absYearSign__2 absNumberSign__2 absPageSign__2 absEndOfAyah__2 
+	absEndOfAyah__alt__2 absEndOfAyah__altB__2 absFootnoteSign);
+cSign1 = (absYearSign    absNumberSign    absPageSign    absEndOfAyah    
+	absEndOfAyah__alt    absEndOfAyah__altB    absFootnoteSign);
+
+
+cSignAll = (cSign1 cSign2 cSign3 cSign4);
+
+// The next three class must match for substitution:
+
+cDigitNormal = (absZero absOne absTwo absThree absFour absFive absSix absSeven absEight absNine
+	absEasternZero absEasternOne absEasternTwo absEasternThree absEasternFour absEasternFour__urdu
+	absEasternFive absEasternSix absEasternSix__urdu absEasternSeven absEasternSeven__urdu
+	absEasternEight absEasternNine);
+	
+cDigitMedium = (absZeroMedium absOneMedium absTwoMedium absThreeMedium absFourMedium 
+	absFiveMedium absSixMedium absSevenMedium absEightMedium absNineMedium
+	absEasternZeroMedium absEasternOneMedium absEasternTwoMedium absEasternThreeMedium 
+	absEasternFourMedium absEasternFourMedium__urdu	absEasternFiveMedium absEasternSixMedium 
+	absEasternSixMedium__urdu absEasternSevenMedium absEasternSevenMedium__urdu
+	absEasternEightMedium absEasternNineMedium);
+
+cDigitSmall = (absZeroSmall absOneSmall absTwoSmall absThreeSmall absFourSmall 
+	absFiveSmall absSixSmall absSevenSmall absEightSmall absNineSmall
+	absEasternZeroSmall absEasternOneSmall absEasternTwoSmall absEasternThreeSmall 
+	absEasternFourSmall absEasternFourSmall__urdu absEasternFiveSmall absEasternSixSmall 
+	absEasternSixSmall__urdu absEasternSevenSmall absEasternSevenSmall__urdu
+	absEasternEightSmall absEasternNineSmall);
+
+cSignDigit = (cDigitMedium cDigitSmall) { directionality = DIR_ARABICNUMBER };
+
+
+//------------------------------------------------------------------------------------------
+//
+//	Feature-related variants
+//
+
+cDownward = (absComma__downward absSemicolon__downward);
+cno_Downward = (absComma absSemicolon);
+
+cSixNine = (absDammatan__sixNine);
+cno_SixNine = (absDammatan);
+
+cDotHat = (absJeh__dotHat absJehFin__dotHat);
+cno_DotHat = (absJeh absJehFin);
+
+cno_Sukun = (absSukun);
+cSukunDownOpen = (absSukun__downOpen);
+cSukunLeftOpen = (absSukun__leftOpen);
+
+cno_OpenLeft = (absSmallHighDotlessHeadOfKhah);
+cOpenLeft = (absSukun__leftOpen);
+
+cLargeAlef = (absSuperscriptAlef__large);
+cno_LargeAlef = (absSuperscriptAlef);
+
+cNoDots = (absYeh__noDots absYehIni__noDots absYehMed__noDots absYehFin__noDots);
+cno_NoDots = (absYeh absYehIni absYehMed absYehFin);
+
+// The next three class must match for substitution:
+
+cEasternDigit = (
+	absEasternFour        absEasternSix        absEasternSeven
+	absEasternFourMedium  absEasternSixMedium  absEasternSevenMedium
+	absEasternFourSmall   absEasternSixSmall   absEasternSevenSmall
+	absFourDiaDigitAbove
+	absFourDiaDigitBelow
+);
+	
+cEasternDigitUrdu = (
+	absEasternFour__urdu        absEasternSix__urdu        absEasternSeven__urdu
+	absEasternFourMedium__urdu  absEasternSixMedium__urdu  absEasternSevenMedium__urdu
+	absEasternFourSmall__urdu   absEasternSixSmall__urdu   absEasternSevenSmall__urdu
+	absFourDiaDigitAbove__urdu
+	absFourDiaDigitBelow__urdu
+);
+
+cEasternDigitSindhi = (
+	absEasternFour        absEasternSix__urdu        absEasternSeven__urdu
+	absEasternFourMedium  absEasternSixMedium__urdu  absEasternSevenMedium__urdu
+	absEasternFourSmall   absEasternSixSmall__urdu   absEasternSevenSmall__urdu
+	absFourDiaDigitAbove
+	absFourDiaDigitBelow
+);
+	
+/****
+cKnotted = (absHeh__knotted);
+cno_Knotted = (absHeh);
+
+cHooked = (absHehIni__hooked absHehMed__hooked absHehFin__hooked);
+cno_Hooked = (absHehIni absHehMed absHehFin);
+
+cKnottedFlat = (absHehFin__knottedFlat);
+cno_KnottedFlat = (absHehFin);
+
+cKnottedHigh = (absHehMed__knottedHigh absHehFin__knottedHigh);
+cno_KnottedHigh = (absHehMed absHehFin);
+****/
+
+cno_Heh     = (absHeh           absHehIni          absHehMed               absHehFin);
+cHehKurdish = (absHeh__knotted  absHehIni          absHehMed               absHehFin__knottedHigh);
+cHehSindhi  = (absHeh__knotted  absHehIni          absHehMed__knottedHigh  absHehFin__knottedHigh);
+cHehUrdu    = (absHeh           absHehIni__hooked  absHehMed__hooked       absHehFin__hooked);
+
+cno_Meem    = (absMeem          absMeemIni  absMeemMed  absMeemFin);
+cMeemSindhi = (absMeem__sindhi  absMeemIni  absMeemMed  absMeemFin__sindhi);
+
+cShaddaKasraMarks = (absKasra absKasratan);
+cShaddaKasraLigatures = (absShaddaKasra absShaddaKasratan);
+
+cEndOfAyah		= (absEndOfAyah       absEndOfAyah__2       absEndOfAyah__3);
+cEndOfAyahCircle	= (absEndOfAyah__alt  absEndOfAyah__alt__2  absEndOfAyah__alt__3);
+cEndOfAyahSquare	= (absEndOfAyah__altB absEndOfAyah__altB__2 absEndOfAyah__altB__3);
+
+//zeroWidthJoiner = postscript("zerojoin");
+zeroWidthNonJoiner = postscript("zeronojoin");
+leftToRightMark = postscript("leftToRightMark") {dir = DIR_LEFT};
+rightToLeftMark = postscript("rightToLeftMark") {dir = DIR_RIGHT};
+leftToRightEmbedding = postscript("leftToRightEmbedding") {dir = DIR_LRE};
+rightToLeftEmbedding = postscript("rightToLeftEmbedding") {dir = DIR_RLE};
+popDirectionalFormatting = postscript("popDirectionalFormatting") {dir = DIR_PDF};
+leftToRightOverride = postscript("leftToRightOverride") {dir = DIR_LRO};
+rightToLeftOverride = postscript("rightToLeftOverride") {dir = DIR_RLO};
+
+cInvisible = (zeroWidthJoiner zeroWidthNonJoiner leftToRightMark rightToLeftMark leftToRightEmbedding
+	rightToLeftEmbedding popDirectionalFormatting leftToRightOverride rightToLeftOverride);
+
+zeroWidthSpace = postscript("zerospace");
+
+
+//------------------------------------------------------------------------------------------
+//
+//	Marks
+//
+
+// marks that can combine with vowel marks:
+cMark1Above = (absHamzaAbove absShadda);
+
+cMark1Below = (absHamzaBelow);
+
+// vowels
+cMark2Above = (absFathatan absDammatan absFatha absDamma absSukun 
+	absUltaPesh absNoonGhunnaMark absZwarakay absVowelSmallV absVowelInvSmallV absVowelDotBelow
+	absReversedDamma absFathaTwoDots absSuperscriptAlef absSuperscriptAlef__large
+	absSmallHighDotlessHeadOfKhah absShaddaFathatan absShaddaDammatan absShaddaKasratan
+	absShaddaFatha absShaddaDamma absShaddaKasra absHamzaFatha absHamzaDamma
+	absShaddaAlef absSukun__leftOpen absSukun__downOpen absDammatan__sixNine);
+
+cMark2Below = (absKasra absKasratan);
+
+// Maddah is different from hamza and shadda in that it goes above the vowels, but below the quranic
+// marks. However, Jonathan warns that this behavior may need to change someday.
+cMark3Above = (absMaddahAbove);
+
+// (no marks below that behave like maddah)
+
+// quranic marks
+cMark4Above = (absSmallHighSadLamAlefMaksura absSmallHighQafLamAlefMaksura 
+	absSmallHighMeemInitialForm  absSmallHighLamAlef  absSmallHighJeem absSmallHighThreeDots 
+	absSmallHighSeen absSmallHighRoundedZero absSmallHighUprightRectangularZero 
+	absSmallHighMeemIsolatedForm absSmallHighMadda absSmallHighYeh absSmallHighNoon 
+	absEmptyCentreHighStop absRoundedHighStopFilledCentre absSmallHighSadMark 
+	absSmallHighAinMark absSmallHighRehHahMark absSmallHighRehDadMark absNameMarker 
+	absSmallHighTah);
+
+cMark4Below = (absSmallLowSeen absEmptyCentreLowStop absSmallLowMeem);
+
+// For testing non-canonical ordering:
+r_comma = postscript("comma") { diaA_ = point(aw/2, bb.bottom) };
+cMark4Above += (r_comma);
+
+cMark1 = (cMark1Above cMark1Below);
+cMark2 = (cMark2Above cMark2Below);
+cMark3 = (cMark3Above);
+cMark4 = (cMark4Above cMark4Below);
+
+cAnyMarks = (cMark1 cMark2 cMark3 cMark4);
+cAnyMarksAbove = (cMark1Above cMark2Above cMark3Above cMark4Above);
+cAnyMarksBelow = (cMark1Below cMark2Below cMark4Below);
+
+cMark234 = (cMark2 cMark3 cMark4);
+cMark34  = (cMark3 cMark4);
+
+
+// Not used by Graphite:
+/***
+
+// OT mark classes:
+cOtMark1Above = (absFathatan absDammatan absFatha absDamma absShadda absSukun absMaddahAbove
+	absHamzaAbove absUltaPesh absNoonGhunnaMark absZwarakay absVowelSmallV absVowelInvSmallV
+	absReversedDamma absFathaTwoDots absSuperscriptAlef absSuperscriptAlef__large
+	absSmallHighDotlessHeadOfKhah absShaddaFathatan absShaddaDammatan absShaddaKasratan
+	absShaddaFatha absShaddaDamma absShaddaKasra absHamzaFatha absHamzaDamma
+	absShaddaAlef absSukun__leftOpen absSukun__downOpen absDammatan__sixNine);
+	
+cOtMark1Below = (absKasratan absKasra absHamzaBelow absSubscriptAlef absVowelDotBelow);
+
+cOtMark2Above = (absSmallHighSadLamAlefMaksura absSmallHighQafLamAlefMaksura 
+	absSmallHighMeemInitialForm  absSmallHighLamAlef  absSmallHighJeem absSmallHighThreeDots 
+	absSmallHighSeen absSmallHighRoundedZero absSmallHighUprightRectangularZero 
+	absSmallHighMeemIsolatedForm absSmallHighMadda absSmallHighYeh absSmallHighNoon 
+	absEmptyCentreHighStop absRoundedHighStopFilledCentre absSmallHighSadMark 
+	absSmallHighAinMark absSmallHighRehHahMark absSmallHighRehDadMark absNameMarker 
+	absSmallHighTah);
+
+cOtMark2Below = (absSmallLowSeen absEmptyCentreLowStop absSmallLowMeem);
+
+// TODO: define the components for these ligatures
+cShaddaMarks = (absFathatan absDammatan absFatha 
+	absDamma absSuperscriptAlef);
+cShaddaLigatures = (absShaddaFathatan absShaddaDammatan absShaddaFatha  
+	absShaddaDamma absShaddaAlef);
+
+cHamzaMarks = (absDamma absFatha);
+cHamzaLigatures = (absHamzaDamma absHamzaFatha);
+***/
+
+endtable; // glyph
+
+endenvironment;

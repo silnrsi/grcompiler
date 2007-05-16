@@ -1,0 +1,477 @@
+////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	File: Scheherazade.gdl
+//
+//	Main Graphite code file for Scheherazade, including all rules.
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+Change history:
+SJC 2007-May	Based on Scheherazade Graphite Alpha
+*/
+
+// Do the experimental stuff:
+#define EXPER_UNICODE5x 1
+
+
+#include "stddef.gdh"
+
+ScriptDirection = HORIZONTAL_RIGHT_TO_LEFT;
+Bidi = true;
+
+environment {MUnits=2048};
+
+#if 0   // DESIGN NOTES
+
+One of the complex issues is mark attachment. Problems stem from the following issues:
+
+1) Do we require marks to be in a particular order?
+	The typical sequence of marks is shadda or hamza, followed by vowel, followed by quranic mark.
+	Windows Arabic uses this order, but a canonical Unicode string will not always be in this order.
+	Further, non-canonical Unicode strings can have the marks in any order.
+	Decision: We need to support any order.
+
+2) Do we visually identify illogical mark sequences?
+	While the order of the marks on a given base is variable, certain marks should not occur
+	simultaneously. For example, no more than one vowel mark should occur. If two vowels occur on 
+	the same base, we can visually identify this error by inserting a dotted circle between them
+	which will then act as a base for the second vowel.
+	But detecting this if we allow any order vowels (see 1) is a bit tricky. 
+	Decision: We want to provide this valuable feedback. 
+
+3) Exactly what marks are mutually exclusive? Seems clear that the vowels (kasra, fatha, damma,
+	kasratan, fathatan, dammatan, and sukoon) are mutually exclusive with each other. For Arabic
+	shadda, hamza above, hamza below, and maddah are also mutually exclusive, but I don't know about
+	other languages. I also don't know about the remaining (i.e., quranic) marks.
+	Decision: assume shadda, hamza a/b and maddah are mutually exclusive, and the quranic
+	marks are mutually exclusive.
+	
+4) However, Jonathan says that (for now anyway) maddah works differently from shadda and hamza
+	in that it is placed above the vowel rather than below. He's not sure this is right, but it's
+	the way the OT code is working.
+
+To accomplish all this, the design we use is to reorder the marks to a logical
+order based on 4 classes:
+	cMark1 class contains shadda and hamza
+	cMark2 class contains the vowels
+	cMark3 class contains maddah
+	cMark4 class contains quranic marks
+	
+Only cMark2 and cMark4 can have duplicates. Except right now there are no outer attachment points for the
+quranic marks, so multiples don't work right.
+
+
+#endif
+
+// Glyph definitions
+#include "SchGlyphs.gdh"
+#include "SchAPClasses.gdh"
+
+// Features
+#include "SchFeatures.gdh"
+
+
+#define alefAttached user1
+
+
+// Now add additional classes we need:
+
+table(glyph)
+
+	cMirrorOpen  = (gparenleft  gless    gbracketleft  gbraceleft );
+	cMirrorClose = (gparenright ggreater gbracketright gbraceright);
+
+// Not needed, since we aren't using these ligatures:
+/***
+	absLamAlef {
+		component.lam = box(7 * advancewidth / 10, bb.bottom,          advancewidth, bb.top);
+		component.alef= box(                    0, bb.bottom, 7 * advancewidth / 10, bb.top)
+	};
+
+	absLamAlefFin {
+		component.lam = box(6 * advancewidth / 10, bb.bottom,          advancewidth, bb.top);
+		component.alef= box(                    0, bb.bottom, 6 * advancewidth / 10, bb.top)
+	};
+***/
+
+	cShaddaKasraLigatures {
+		component.shadda = box(bb.left, bb.bottom, bb.right, bb.bottom + bb.height/2);
+		component.kasra  = box(bb.left, bb.bottom + bb.height/2, bb.right, bb.top)
+	};
+ 
+endtable; // glyph
+
+// Allow a sequence of up to 4 marks.
+#define MARKS [ cAnyMarks [ cAnyMarks [ cAnyMarks cAnyMarks? ]? ]? ]?
+
+#define MARKSBELOW [ cAnyMarksBelow [ cAnyMarksBelow cAnyMarksBelow? ]? ]?
+
+#define MARKSABOVE [ cAnyMarksAbove [ cAnyMarksAbove cAnyMarksAbove? ]? ]?
+
+
+table(substitution)
+
+pass(1)	// Encoding, decomposition, mirroring
+
+#if EXPER_UNICODE5x
+	// Handle unencoded glyphs:
+	cUnencodedChar  >  cUnencodedGlyph;
+	
+	// Constructed Unicode 5.X characters:
+	cUnencodedChar2Parts  _  >  cUnencodedGlyphPart1  cUnencodedGlyphPart2$1:1;
+#endif
+	
+	// QUESTION: are there more things that need to be decomposed?
+	_  cAlefPlusMark  >  absAlef:2  cAlefMark ;
+		
+	(cMirrorOpen cMirrorClose)  >  (cMirrorClose cMirrorOpen);
+
+endpass; // 1
+
+
+pass(2)	// Reorder marks to "logical" order (this allows for canonical order input,
+	// as Unicode got the canonical order wrong!)	
+				
+	// NB: Only cMark2 (vowel marks) and cMark4 (quranic marks) can have multiples.
+	// The rules below allow for up to 3 vowel marks and up to 3 quranic marks,
+	// with a total of 4 marks.
+	
+	// We don't swap the glyphs, because that would mess up the original order,
+	// rather we delete and insert.
+	
+	_  cMark234  cMark1  >  @5:5  @2  _  / _  _  ^  [ cMark234 cMark234? ]?  _;
+	_  cMark34   cMark2  >  @5:5  @2  _  / _  _  ^  [ cMark34  cMark34?  ]?  _;
+	_  cMark4    cMark3  >  @5:5  @2  _  / _  _  ^  [ cMark4   cMark4?   ]?  _;
+	
+	// Note: Jonathan says inserting circles is a bad idea for minority language support.
+
+endpass; // 2
+
+
+
+pass(3)	// ligature diacritics
+
+	if (shaddaKasra == std)
+	    if (selectDiac)
+		absShadda  cShaddaKasraMarks  > 
+		_  cShaddaKasraLigatures:(1 2) { comp.shadda.ref = @1; comp.kasra.ref = @2 };
+	    else
+		absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLigatures:(1 2);
+	    endif;
+	endif;
+	
+	// QUESTION: do we really need these if we're doing the reordering above?
+	// TODO: if we use them, make them into real ligatures
+	//absShadda     cShaddaMarks >  _  cShaddaLigatures:(1 2);
+	//absHamzaAbove cHamzaMarks  >   _ cHamzaLigatures:(1 2);
+
+endpass; // 3
+
+
+pass(4)	// Contextual forms, lam-alef ligature, subtending marks
+
+	// Lam-alef
+	
+	// Here is JK's elegant solution to contextual forms using a ligature glyph...
+//	(absLam absLamFin)=L  absAlef=A  > 
+//		(absLamAlef absLamAlefFin):(L A) {component {lam.ref = @L; alef.ref=@A } } gAlefPlaceholder
+//		/ _  MARKS  _  MARKS ^;
+	// ...but we're using two separate glyphs, because of all the combinations.
+
+	cLamIso cAlefIso  >  cLamIniPreAlef {alefAttached = false}  cAlefFinPostLamIni  / _ MARKS ^ _ ;
+	cLamFin cAlefIso  >  cLamMedPreAlef {alefAttached = false}  cAlefFinPostLamMed  / _ MARKS ^ _ ;
+
+
+	// All other contextual forms
+	
+	(cDualLinkIso cDualLinkFin absTatweel) (cDualLinkIso cRightLinkIso absTatweel) > 
+		(cDualLinkIni cDualLinkMed absTatweel) (cDualLinkFin cRightLinkFin absTatweel)
+		/ _  cDiaDigit?  MARKS ^ _ ;	// Unicode 5.X
+
+
+	// Subtending marks
+	
+	cSignTakes4 cDigitNormal cDigitNormal cDigitNormal cDigitNormal  >
+		cSign4 cDigitMedium cDigitMedium cDigitMedium cDigitMedium;
+
+	cSignTakes3Medium cDigitNormal cDigitNormal cDigitNormal  >
+		cSign3Medium cDigitMedium cDigitMedium cDigitMedium;
+		
+	cSignTakes3Small cDigitNormal cDigitNormal cDigitNormal  >
+		cSign3Small cDigitSmall cDigitSmall cDigitSmall;
+		
+	cSignTakes2 cDigitNormal cDigitNormal  >
+		cSign2 cDigitMedium cDigitMedium;
+
+	cSignTakes1 cDigitNormal  >  cSign1  cDigitMedium;
+
+endpass; // 4
+
+
+pass(5)	// Features, special behaviors
+
+	absSuperscriptAlef  >  absSuperscriptAlef__large  /  cNeedsLargeDaggerAlef  _;
+	
+	if (selectDiac)
+		cNeedsLoweredHamza  absHamzaAbove  >
+			cWithLoweredHamza:(1 2) { component { base.ref = @1; hamza.ref = @2 }}  _;
+	else
+		cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(1 2)  _;
+	endif;
+	
+	// Features
+	
+	if (meemAlt == sindhi)
+		cno_Meem  >  cMeemSindhi;
+	endif;
+	
+	if (hehAlt == kurdish)
+		cno_Heh  >  cHehKurdish;
+	endif;
+	if (hehAlt == sindhi)
+		cno_Heh  >  cHehSindhi;
+	endif;
+	if (hehAlt == urdu)
+		cno_Heh  >  cHehUrdu;
+	endif;
+	
+	if (easternDigits == sindhi)
+		cEasternDigit  >  cEasternDigitSindhi;
+	endif;
+	if (easternDigits == urdu)
+		cEasternDigit  >  cEasternDigitUrdu;
+	endif;
+	
+	if (sukunAlt == jasmDown)
+		cno_Sukun  >  cSukunDownOpen;
+	endif;
+	if (sukunAlt == jasmLeft)
+		cno_Sukun  >  cSukunLeftOpen;
+	endif;
+	
+	if (headOfKhahAlt == openLeft)
+		cno_OpenLeft  >  cOpenLeft;
+	endif;
+	
+	if (commaAlt)
+		cno_Downward  >  cDownward;
+	endif;
+	
+	if (dammatanAlt)
+		cno_SixNine  >  cSixNine;
+	endif;
+
+	if (endOfAyah == circle)
+		cEndOfAyah  >  cEndOfAyahCircle;
+	endif;
+	if (endOfAyah == square)
+		cEndOfAyah  >  cEndOfAyahSquare;
+	endif;
+	
+	if (!invis)
+		// Note that substitution changes the directionality to the defaults for the
+		// substituted glyph. :-( So be sure to fix it:
+		cInvisible > zeroWidthSpace {directionality = @1.directionality};
+	endif; 
+	
+endpass; // 5
+
+endtable; // sub
+
+
+table (positioning)
+
+// Must allow for at least cMark1Below and/or cMark2Below to intervene between base and marks above.
+// The code below is more general.
+
+pass(1)
+
+	// Lam-alef components:
+	cHasExit=L {alefAttached = true}  cHasEntry=A {attach {to=@L; at=exit; with=entry}; insert=true}
+		/ ^ _ {alefAttached == false}  MARKS  _;
+	
+	// Marks above
+
+	// QUESTION: the superscript-alef has both the alef and diaA att pts; the ordering of these
+	// rules assumes the alef AP should be used if there are no intervening marks.
+	cHasAlef=B  cMatchesAlef {attach {to=@B; at=alef; with=alef_}; insert = true}  / _ ^ _ ;
+	
+	// Special case: cozy up these diacritics a little, so they look more like the built-in ligatures:
+	absShadda=S
+		(absFatha absDamma absFathatan absDammatan)
+			{attach {to=@S; at=point(diaA.x,diaA.y-80m); with=diaA_}; insert = selectDiac}
+		/ _ ^ MARKSBELOW  _;
+
+	absHamzaAbove=H
+		(absFatha absDamma absFathatan absDammatan)
+			{attach {to=@H; at=point(diaA.x+40m,diaA.y-80m); with=diaA_}; insert = selectDiac}
+		/ _ ^ MARKSBELOW  _;
+		
+#if EXPER_UNICODE5x
+
+	// Constructed Unicode 5.X characters:
+	cTakesDiaDigitA=B  cDiaDigitAbove {attach {to=@B; at=diaDigitA; with=diaDigitA_}}
+		/ _ ^ _;
+#endif
+
+	// Normal case:
+	cHasDiaA=B  cMatchesDiaA {attach {to=@B; at=diaA; with=diaA_}; insert = selectDiac}
+		/ _ ^ MARKSBELOW  _;
+
+
+	// Subtending marks; NB: at this point digits are in visual order, right to left,
+	// so we attach the left-most (logically first) to the sign, and proceed to the right.
+	
+	cSign4=S
+		cSignDigit=D4 { attach {to=@D3; at=digit; with=digit_ }; insert = true}
+		cSignDigit=D3 { attach {to=@D2; at=digit; with=digit_ }; insert = true}
+		cSignDigit=D2 { attach {to=@D1; at=digit; with=digit_ }; insert = true}
+		cSignDigit=D1 { attach {to=@S;  at=digit; with=digit_ }; insert = true};
+
+	cSign3=S
+		cSignDigit=D3 { attach {to=@D2; at=digit; with=digit_ }; insert = true}
+		cSignDigit=D2 { attach {to=@D1; at=digit; with=digit_ }; insert = true}
+		cSignDigit=D1 { attach {to=@S;  at=digit; with=digit_ }; insert = true};
+
+	cSign2=S
+		cSignDigit=D2 { attach {to=@D1; at=digit; with=digit_ }; insert = true}
+		cSignDigit=D1 { attach {to=@S;  at=digit; with=digit_ }; insert = true};
+
+	cSign1=S  cSignDigit { attach {to=@S;  at=digit; with=digit_ }; insert = true};
+
+endpass; // 1
+
+pass(2)
+
+	// Marks below
+
+	// Special attachment points for lam-alef ligatures, to avoid collisions:
+	cHasDia2B=B  cMatchesDia2B {attach {to=@B; at=dia2B; with=dia2B_}; insert = selectDiac}
+		/ _ ^ _ ;
+	
+#if EXPER_UNICODE5x
+
+	// Constructed Unicode 5.X characters:
+	cTakesDiaDigitB=B  cDiaDigitBelow {attach {to=@B; at=diaDigitB; with=diaDigitB_}}
+		/ _ ^ _;
+#endif
+
+	// Normal case:
+	cHasDiaB=B  cMatchesDiaB {attach {to=@B; at=diaB; with=diaB_};  insert = selectDiac}
+		/ _ ^ MARKSABOVE  _;
+
+endpass; // 2
+
+table(glyph)	// classes for collision handling
+cNoonGhunna = (absNoonGhunna absNoonGhunnaIni absNoonGhunnaMed absNoonGhunnaFin);
+
+cKafLikeIniMed = (absKafIni absKafMed absKehehIni absKehehMed);
+
+cBehLikeIniMed = (absBehIni absBehMed); // one dot below
+cTehLikeIniMed = // no dots below
+		(absTehIni absThehIni absTtehIni absTtehehIni absTehRingIni 
+		absTehThreeDotsAboveDownwardsIni absTehehIni 
+		absTehMed absThehMed absTtehMed absTtehehMed absTehRingMed 
+		absTehThreeDotsAboveDownwardsMed absTehehMed);
+cPehLikeIniMed = // multiple dots below
+		(absPehIni absBehehIni absBeehIni absPehMed absBehehMed absBeehMed); 
+cTchehLikeFin = (absTchehFin absHahFin absJeemFin absKafFin absHahHamzaAboveFin
+		absHahTwoDotsVerticalAboveFin absNyehFin absDyehFin absHahThreeDotsAboveFin
+		absTchehFin absTchehehFin absTchehDotAboveFin absTchehRetro1Fin 
+		absTchehRetro2Fin absJeemRetro1Fin absJeemRetro2Fin absJeemRetro3Fin 
+		absHahTwoDotsAboveFin absHahThreeDotsUpwardBelowFin);
+		
+cKehehLikeFin = (absKehehFin absKafRingFin absGafFin absGafRingFin absNgoehFin
+		absGafTwoDotsBelowFin absGuehFin absGafThreeDotsAboveFin absKehehDotAboveFin
+		absKehehThreeDotsAboveFin absKehehThreeDotsUpwardBelowFin);
+		
+absAutoKashida {dbgAw = aw; dbgBbW = bb.width};
+		
+endtable; // glyph
+
+table(subs)
+
+pass(6) // insert kashidas to handle collisions; however, the kashida we're inserting is
+	// 250m, wider than we really need, so below we kern out some of the extra space
+
+	cKafLikeIniMed  _  >  @1 absAutoKashida:R / _ MARKS _ absRnoonMed=R;
+	absFarsiYehIni  _  >  @1 absAutoKashida:Y / _ MARKS _ (absYehFin absYehHamzaAboveFin)=Y;
+	(absKehehIni absTchehIni absTchehMed absGafIni absNoonMed absAlef) _
+		>  @1  absAutoKashida:R
+		/ _  MARKS  _  absRrehFin=R ;
+	
+endpass; // 6
+
+endtable; // sub
+
+pass(3)	// Collisions and adjustments
+
+// NOTE: If we add "constructed" characters (eg, those with digit-diacritics) we may need to
+// extend some of these rules to include optional cDiaDigit items.
+
+	// Kashidas
+	
+	// kaf-rnoon
+	cKafLikeIniMed  MARKS  absAutoKashida {kern.x = -30m}  absRnoonMed {kern.x = -30m};
+		
+	// farsiYeh-yeh
+	absFarsiYehIni MARKS absAutoKashida {kern.x = -30m} (absYehFin absYehHamzaAboveFin) {kern.x = -30m};
+	
+	// keheh-rreh
+	(absKehehIni absTchehIni absTchehMed absGafIni absNoonMed absAlef) MARKS
+		absAutoKashida {kern.x = -40m} absRrehFin {kern.x = -40m };
+	
+	// Simple adjustments
+		
+	// alef-rreh
+	absAlef MARKS absRreh {kern.x = 70m} ;
+
+	// alef-nameMarker
+	(absAlef absAlefFin) MARKS (absHeh absHehGoal absHehGoalIni)
+		absNameMarker {shift.y = 220m}; // or: {shift.x = 250m};
+		
+#if EXPER_UNICODE5x
+	// alefDigit-heh-nameMarker
+	(absAlef absAlefFin) cDiaDigitAbove MARKS (absHeh absHehGoal absHehGoalIni)
+		absNameMarker {shift.x = 275m};
+#endif
+
+	// noonGhunna-vowelInvSmallV
+	cNoonGhunna (absNoonGhunnaMark absVowelInvSmallV) {shift.y = -75m}
+		/ (absKafIni absKafMed absKehehIni absKehehMed) _ _;
+	cNoonGhunna (absNoonGhunnaMark absVowelInvSmallV) {shift.y = -150m};
+
+	// beh-kasra-tcheh
+	if (kasraTcheh == raise)
+		cBehLikeIniMed absKasra {shift.x = -60m; shift.y = 125m} cTchehLikeFin;
+		cBehLikeIniMed absKasratan {shift.x = -100m; shift.y = 30m} cTchehLikeFin;
+	endif;
+	if (kasraTcheh == lower)
+		cBehLikeIniMed absKasra {shift.x = -40m; shift.y = -200m} cTchehLikeFin;
+		cBehLikeIniMed absKasratan {shift.x = -60m; shift.y = -130m} cTchehLikeFin;
+	endif;
+	cPehLikeIniMed absKasra {shift.y = -50m} cTchehLikeFin;
+	cPehLikeIniMed absKasratan {shift.x = -50m} cTchehLikeFin;
+	cTehLikeIniMed absKasratan {shift.x = -80m} cTchehLikeFin;
+	
+	// alef-maddah-gaf
+	absAlef absMaddahAbove {shift.x = -130m} absGaf {kern.x = 30m};
+	absAlef absMaddahAbove {shift.x = -120m} absGafIni {kern.x = 70m};
+
+	// beh-rehBar
+	cBehLikeIniMed MARKS absRehBarFin {kern.x = 50m};
+	cPehLikeIniMed MARKS absRehBarFin {kern.x = 70m};
+
+	// beh-fatha-jehRetro
+	(cBehLikeIniMed cPehLikeIniMed cTehLikeIniMed) MARKS cMark2Above MARKS absJehRetro1Fin {kern.x = 65m};
+
+	// kehehDots-keheh
+	(absKehehThreeDotsAboveIni absKehehThreeDotsAboveMed) MARKS cKehehLikeFin {kern.x = 70m};
+	
+	
+endpass;
+
+endtable; // pos
+
+endenvironment;
