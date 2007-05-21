@@ -161,7 +161,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 			itoa(ipass, rgch, 10);
 			g_errorList.AddWarning(3503, this,
 				"Pass ",
-				StrAnsi(rgch),
+				rgch,
 				" of ",
 				m_psymName->FullName(),
 				" table contains no rules");

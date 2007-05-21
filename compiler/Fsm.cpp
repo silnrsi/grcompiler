@@ -1050,7 +1050,7 @@ void GdlRenderer::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 {
-	strmOut << "\nTABLE: " << m_psymName->FullName().Chars() << "\n";
+	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
 	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
 	{
 		m_vppass[ippass]->DebugFsm(pcman, strmOut);

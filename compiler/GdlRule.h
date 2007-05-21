@@ -191,11 +191,11 @@ public:
 	}
 
 	//	Alpha version of original item number (1-based), for error messages
-	StrAnsi PosString()
+	std::string PosString()
 	{
 		char rgchItem[20];
 		itoa(m_iritContextPosOrig + 1, rgchItem, 10);
-		return StrAnsi(rgchItem);
+		return rgchItem;
 	}
 
 	//	Increment the context position by the given number

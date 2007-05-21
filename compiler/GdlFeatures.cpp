@@ -36,7 +36,7 @@ DEFINE_THIS_FILE
 /*----------------------------------------------------------------------------------------------
 	Return the feature setting with the given name; create it if necessary.
 ----------------------------------------------------------------------------------------------*/
-GdlFeatureSetting * GdlFeatureDefn::FindOrAddSetting(StrAnsi sta, GrpLineAndFile & lnf)
+GdlFeatureSetting * GdlFeatureDefn::FindOrAddSetting(std::string sta, GrpLineAndFile & lnf)
 {
 	GdlFeatureSetting * pfset = FindSetting(sta);
 	if (pfset)
@@ -52,7 +52,7 @@ GdlFeatureSetting * GdlFeatureDefn::FindOrAddSetting(StrAnsi sta, GrpLineAndFile
 /*----------------------------------------------------------------------------------------------
 	Return the feature setting with the given name, or NULL if none.
 ----------------------------------------------------------------------------------------------*/
-GdlFeatureSetting * GdlFeatureDefn::FindSetting(StrAnsi sta)
+GdlFeatureSetting * GdlFeatureDefn::FindSetting(std::string sta)
 {
 	for (int i = 0; i < m_vpfset.Size(); ++i)
 	{
@@ -152,7 +152,7 @@ void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 		pfsetFalse->CopyLineAndFile(*this);
 		pfsetFalse->m_nValue = 0;
 		pfsetFalse->m_fHasValue = true;
-		pfsetFalse->m_staName = StrAnsi("false");
+		pfsetFalse->m_staName = "false";
 		pfsetFalse->m_vextname.Push(GdlExtName(StrUni("False"), LG_USENG));
 		m_vpfset.Push(pfsetFalse);
 
@@ -160,7 +160,7 @@ void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 		pfsetTrue->CopyLineAndFile(*this);
 		pfsetTrue->m_nValue = 1;
 		pfsetTrue->m_fHasValue = true;
-		pfsetTrue->m_staName = StrAnsi("true");
+		pfsetTrue->m_staName = "true";
 		pfsetTrue->m_vextname.Push(GdlExtName(StrUni("True"), LG_USENG));
 		m_vpfset.Push(pfsetTrue);
 

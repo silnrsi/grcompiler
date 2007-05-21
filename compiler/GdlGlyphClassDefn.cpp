@@ -164,7 +164,7 @@ void GdlGlyphClassDefn::AddComponent(Symbol psym, GdlAssignment * pasgn)
 	AddGlyphAttr(psym, pasgn);
 
 //	Add this component to the list.
-//	StrAnsi staCompName = psym->FieldAt(2);
+//	std::string staCompName = psym->FieldAt(2);
 //	m_vstaComponentNames.Push(staCompName);
 
 //	GdlGlyphAttrSetting * pglfa = new RldGlyphAttrSetting(psym, pasgn);

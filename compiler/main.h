@@ -30,6 +30,7 @@ Description:
 #ifdef GR_FW
 #include "Common.h"
 #include <algorithm>
+#include <string>
 using std::max;
 using std::min;
 #include "GrPlatform.h"
@@ -129,7 +130,7 @@ void GenerateOutputFontFileName(char * pchFontFile, char * ppchOutputFont);
 void GenerateOutputControlFileName(char * pchFontFile, char * pchOutputFont);
 void GenerateOutputControlFontFamily(utf16 * pchFontFile, utf16 * pchOutputFont);
 bool LooksLikeFontFamily(char * pchFile);
-StrAnsi VersionString(int fxdVersion);
+std::string VersionString(int fxdVersion);
 
 /*************************************************************************************
 	Test Harness defines.

@@ -137,13 +137,13 @@ GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableN
 
 	//	Create a new one, if permissible.
 
-	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(staTableName);
+	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(std::string(staTableName.Chars()));
 	Assert(psymTableName);
 	if (!psymTableName || !psymTableName->FitsSymbolType(ksymtTableRule))
 	{
 		g_errorList.AddError(2162, NULL,
 			"The ",
-			staTableName,
+			std::string(staTableName.Chars()),
 			" table cannot hold rules",
 			lnf);
 		return NULL;
@@ -162,7 +162,7 @@ GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableN
 ----------------------------------------------------------------------------------------------*/
 GdlRuleTable * GdlRenderer::FindRuleTable(StrAnsi staTableName)
 {
-	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(staTableName);
+	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(std::string(staTableName.Chars()));
 	if (!psymTableName)
 		return NULL;
 

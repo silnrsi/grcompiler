@@ -158,9 +158,9 @@ Symbol GrcSymbolTable::AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndF
 	{
 		if (psymGeneric->m_symt == ksymtGlyphMetric && !fMetric)
 		{
-			StrAnsi staMsg("Cannot set the value of a glyph metric: ");
-			StrAnsi staName = psymGeneric->FullName();
-			staMsg.Append(staName.Chars());
+			std::string staMsg("Cannot set the value of a glyph metric: ");
+			std::string staName = psymGeneric->FullName();
+			staMsg.append(staName);
 			g_errorList.AddItem(true, 1184, NULL, &lnf, staMsg); // fatal error
 			return NULL;
 		}
@@ -271,7 +271,7 @@ Symbol GrcSymbolTable::AddAnonymousClassSymbol(GrpLineAndFile const& lnf)
 	itoa(m_csymAnonClass, rgch, 10);
 	m_csymAnonClass++;
 
-	StrAnsi sta = "*GC";
+	std::string sta = "*GC";
 	sta += rgch;
 	sta += "*";
 	Assert(!FindField(sta));
@@ -302,7 +302,7 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 
 	for (int i = 0; i < xns.NumFields(); ++i)
 	{
-		StrAnsi staField = xns.FieldAt(i);
+		std::string staField = xns.FieldAt(i);
 
 		if (psymtbl == NULL)	// never true first time through
 		{
@@ -313,12 +313,11 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 		psym = psymtbl->FindField(staField);
 		if (psym == NULL)
 		{
-			psym = new GrcSymbolTableEntry(staField,
+			psym = new GrcSymbolTableEntry(StrAnsi(staField.c_str()),
 				((i == xns.NumFields() - 1) ? symtLeaf : symtOther),
 				psymtbl);
 			SymbolTablePair hmpair;
-			std::string staFieldStl(staField.Chars());
-			hmpair.first = staFieldStl;
+			hmpair.first = staField;
 			hmpair.second = psym;
 			psymtbl->m_hmstasymEntries.insert(hmpair);
 			//psymtbl->m_hmstasymEntries.Insert(staField, psym);
@@ -409,10 +408,9 @@ bool GrcSymbolTableEntry::FitsSymbolType(SymbolType symt)
     Return a pointer to the symbol indicated by the field, or NULL if it is not present in
 	the table.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcSymbolTable::FindField(StrAnsi staField)
+Symbol GrcSymbolTable::FindField(std::string staField)
 {
-	std::string staFieldStl(staField.Chars());
-	SymbolTableMap::iterator hmit = m_hmstasymEntries.find(staFieldStl);
+	SymbolTableMap::iterator hmit = m_hmstasymEntries.find(staField);
 	if (hmit == m_hmstasymEntries.end())
 		return NULL;
 	else
@@ -447,7 +445,7 @@ Symbol GrcSymbolTable::FindSymbol(const GrcStructName & xns)
 }
 
 //	one-field version:
-Symbol GrcSymbolTable::FindSymbol(const StrAnsi staName)
+Symbol GrcSymbolTable::FindSymbol(const std::string staName)
 {
 	return FindField(staName);
 }
@@ -479,7 +477,7 @@ Symbol GrcSymbolTable::FindSlotAttr(const GrcStructName & xns, GrpLineAndFile co
 /*----------------------------------------------------------------------------------------------
     Answer true if the field at the given index is the given string.
 ----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTableEntry::FieldIs(int i, StrAnsi staField)
+bool GrcSymbolTableEntry::FieldIs(int i, std::string staField)
 {
 	Assert(i >= 0);
 
@@ -489,37 +487,37 @@ bool GrcSymbolTableEntry::FieldIs(int i, StrAnsi staField)
 	Symbol psymCurr = this;
 	while (psymCurr->Level() > i)
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
-	return (psymCurr->m_staFieldName == staField);
+	return (std::string(psymCurr->m_staFieldName.Chars()) == staField);
 }
 
 /*----------------------------------------------------------------------------------------------
     Answer the field at the given index, or an empty string if there are not
 	that many fields.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcSymbolTableEntry::FieldAt(int i)
+std::string GrcSymbolTableEntry::FieldAt(int i)
 {
 	Assert(i >= 0);
 
 	if (i > Level())
-		return StrAnsi("");
+		return "";
 
 	Symbol psymCurr = this;
 	while (psymCurr->Level() > i)
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
-	return psymCurr->m_staFieldName;
+	return std::string(psymCurr->m_staFieldName.Chars());
 }
 
 /*----------------------------------------------------------------------------------------------
     Answer the index  of the (first) field containing the given string, or -1 if it is not
 	present.
 ----------------------------------------------------------------------------------------------*/
-int GrcSymbolTableEntry::FieldIndex(StrAnsi sta)
+int GrcSymbolTableEntry::FieldIndex(std::string sta)
 {
 	int cRet = -1;
 	Symbol psymCurr = this;
 	while (psymCurr)
 	{
-		if (psymCurr->m_staFieldName == sta)
+		if (std::string(psymCurr->m_staFieldName.Chars()) == sta)
 			cRet = psymCurr->Level();
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
 	}
@@ -571,7 +569,7 @@ bool GrcSymbolTableEntry::IsBogusSlotAttr()
 	if (m_staFieldName == "gpoint" || m_staFieldName == "gpath" ||
 		m_staFieldName == "xoffset" || m_staFieldName == "yoffset")
 	{
-		StrAnsi sta = FieldAt(0);
+		std::string sta = FieldAt(0);
 		if (sta == "shift" || sta == "advance" || sta == "kern")
 			return true;
 	}
@@ -637,7 +635,7 @@ bool GrcSymbolTableEntry::IsIndexedGlyphAttr()
 /*----------------------------------------------------------------------------------------------
     Return the full dotted name of the symbol.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcSymbolTableEntry::FullName()
+std::string GrcSymbolTableEntry::FullName()
 {
 	StrAnsi staRet = m_staFieldName;
 	GrcSymbolTableEntry * psymCurr = m_psymtbl->m_psymParent;
@@ -649,20 +647,20 @@ StrAnsi GrcSymbolTableEntry::FullName()
 		staRet = staTmp;
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
 	}
-	return staRet;
+	return std::string(staRet.Chars());
 }
 
 
 /*----------------------------------------------------------------------------------------------
     Return the full dotted name of the symbol, using abbreviations.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcSymbolTableEntry::FullAbbrev()
+std::string GrcSymbolTableEntry::FullAbbrev()
 {
-	StrAnsi staRet = Abbreviation(m_staFieldName);
+	std::string staRet = Abbreviation(m_staFieldName);
 	GrcSymbolTableEntry * psymCurr = m_psymtbl->m_psymParent;
 	while (psymCurr)
 	{
-		StrAnsi staTmp = Abbreviation(psymCurr->m_staFieldName);
+		std::string staTmp = Abbreviation(psymCurr->m_staFieldName);
 		staTmp += ".";
 		staTmp += staRet;
 		staRet = staTmp;
@@ -675,7 +673,7 @@ StrAnsi GrcSymbolTableEntry::FullAbbrev()
 /*----------------------------------------------------------------------------------------------
     Return the standard abbreviation for the keyword.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcSymbolTableEntry::Abbreviation(StrAnsi staFieldName)
+std::string GrcSymbolTableEntry::Abbreviation(StrAnsi staFieldName)
 {
 	if (staFieldName == "reference")
 		return "ref";
@@ -696,7 +694,7 @@ StrAnsi GrcSymbolTableEntry::Abbreviation(StrAnsi staFieldName)
 	else if (staFieldName == "breakweight")
 		return "break";
 	else
-		return staFieldName;
+		return std::string(staFieldName.Chars());
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -707,7 +705,7 @@ void GrcSymbolTableEntry::GetStructuredName(GrcStructName * pxns)
 	GrcSymbolTableEntry * psymCurr = this;
 	while (psymCurr)
 	{
-		pxns->InsertField(0, psymCurr->m_staFieldName);
+		pxns->InsertField(0, std::string(psymCurr->m_staFieldName.Chars()));
 		psymCurr = psymCurr->ParentSymbol();
 	}
 }
@@ -811,7 +809,7 @@ Symbol GrcSymbolTableEntry::PointSisterField(StrAnsi staField)
 
 	Symbol psymBase = BasePoint();
 	Assert(psymBase);
-	Symbol psymRet = psymBase->m_psymtblSubTable->FindField(staField);
+	Symbol psymRet = psymBase->m_psymtblSubTable->FindField(std::string(staField.Chars()));
 	return psymRet;
 }
 
@@ -982,7 +980,7 @@ Symbol GrcSymbolTableEntry::SubField(StrAnsi sta)
 	Assert(FitsSymbolType(ksymtSlotAttrPt) || FitsSymbolType(ksymtGlyphAttr) ||
 		FitsSymbolType(ksymtInvalidGlyphAttr)) ;
 	Assert(m_psymtblSubTable);
-	return m_psymtblSubTable->FindField(sta);
+	return m_psymtblSubTable->FindField(std::string(sta.Chars()));
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1030,7 +1028,7 @@ int GrcSymbolTableEntry::JustificationLevel()
 	if (!DoesJustification())
 		return -2;
 
-	StrAnsi sta;
+	std::string sta;
 	int nLevel = 0;
 	do {
 		sta = FieldAt(nLevel);
@@ -1086,9 +1084,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 {
 	Assert(FitsSymbolType(ksymtSlotAttr)) ;
 
-	StrAnsi staField0 = FieldAt(0);
-	StrAnsi staField1 = FieldAt(1);
-	StrAnsi staField2 = FieldAt(2);
+	std::string staField0 = FieldAt(0);
+	std::string staField1 = FieldAt(1);
+	std::string staField2 = FieldAt(2);
 
 	if (staField0 == "advance")
 	{
@@ -1231,9 +1229,9 @@ int GrcSymbolTableEntry::GlyphMetricEngineCodeOp()
 
 	Assert(FitsSymbolType(ksymtGlyphMetric)) ;
 
-	StrAnsi staField0 = FieldAt(0);
-	StrAnsi staField1 = FieldAt(1);
-	StrAnsi staField2 = FieldAt(2);
+	std::string staField0 = FieldAt(0);
+	std::string staField1 = FieldAt(1);
+	std::string staField2 = FieldAt(2);
 
 	if (staField0 == "leftsidebearing")
 	{

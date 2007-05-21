@@ -77,7 +77,7 @@ GrcErrorList g_errorList;
 	Add an error or warning to the list.
 ----------------------------------------------------------------------------------------------*/
 void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpLineAndFile * plnf,
-	StrAnsi staMsg)
+	std::string staMsg)
 {
 	GrpLineAndFile lnf(0, 0, "");
 	if (plnf == NULL)
@@ -96,10 +96,10 @@ void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpL
 }
 
 void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpLineAndFile * plnf,
-	StrAnsi * psta1, StrAnsi * psta2, StrAnsi * psta3, StrAnsi * psta4,
-	StrAnsi * psta5, StrAnsi * psta6, StrAnsi * psta7, StrAnsi * psta8)
+	std::string * psta1, std::string * psta2, std::string * psta3, std::string * psta4,
+	std::string * psta5, std::string * psta6, std::string * psta7, std::string * psta8)
 {
-	StrAnsi staMsg;
+	std::string staMsg;
 	if (psta1)
 		staMsg += *psta1;
 	if (psta2)
@@ -136,17 +136,17 @@ void GrcErrorList::SortErrors()
 		{
 			GrpLineAndFile * plnfNext = &(m_vperr[iperrNext]->m_lnf);
 			///int nLineNext = m_vperr[iperrNext]->m_nLineNumber;
-			StrAnsi staNext = m_vperr[iperrNext]->m_staMsg;
+			std::string staNext = m_vperr[iperrNext]->m_staMsg;
 
 			GrpLineAndFile * plnfT = &(m_vperr[iperrT]->m_lnf);
 			///int nLineT = m_vperr[iperrT]->m_nLineNumber;
-			StrAnsi staT = m_vperr[iperrT]->m_staMsg;
+			std::string staT = m_vperr[iperrT]->m_staMsg;
 
 			if (*plnfT < *plnfNext)
 				iperrNext = iperrT;
 			//	NB: The main purpose in sorting errors alphabetically is to get identical
 			//	errors next to each other, so duplicates can be deleted.
-			else if (*plnfT == *plnfNext && strcmp(staT, staNext) < 0)
+			else if (*plnfT == *plnfNext && strcmp(staT.c_str(), staNext.c_str()) < 0)
 				iperrNext = iperrT;
 		}
 
@@ -203,18 +203,18 @@ int GrcErrorList::ErrorsAtLine(int nLine, int * piperrFirst)
 /*----------------------------------------------------------------------------------------------
 	Write the errors to a text file.
 ----------------------------------------------------------------------------------------------*/
-void GrcErrorList::WriteErrorsToFile(StrAnsi staFileName,
-	StrAnsi staGdlFile, StrAnsi staInputFontFile,
-	StrAnsi staOutputFile, StrAnsi staOutputFamily, StrAnsi staVersion,
+void GrcErrorList::WriteErrorsToFile(std::string staFileName,
+	std::string staGdlFile, std::string staInputFontFile,
+	std::string staOutputFile, std::string staOutputFamily, std::string staVersion,
 	bool fSepCtrlFile)
 {
 	std::ofstream strmOut;
-	strmOut.open(staFileName.Chars());
+	strmOut.open(staFileName.c_str());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(106, NULL,
 			"Error in writing to file ",
-			staFileName);
+			std::string(staFileName));
 		return;
 	}
 
@@ -227,15 +227,15 @@ void GrcErrorList::WriteErrorsToFile(StrAnsi staFileName,
 	Write the errors to an output stream.
 ----------------------------------------------------------------------------------------------*/
 void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
-	StrAnsi staGdlFile, StrAnsi staInputFontFile,
-	StrAnsi staOutputFile, StrAnsi staOutputFamily, StrAnsi staVersion, bool fSepCtrlFile)
+	std::string staGdlFile, std::string staInputFontFile,
+	std::string staOutputFile, std::string staOutputFamily, std::string staVersion, bool fSepCtrlFile)
 {
 	strmOut << "Graphite Compilation Results\n\n";
-	strmOut << "GDL file: " << staGdlFile.Chars() << "\n";
-	strmOut << "Input font file: " << staInputFontFile.Chars() << "\n";
-	strmOut << "Output font file: " << staOutputFile.Chars() << "\n";
-	strmOut << "Output font family: " << staOutputFamily.Chars() << "\n";
-	strmOut << "Silf table version: " << staVersion.Chars() << "\n";
+	strmOut << "GDL file: " << staGdlFile << "\n";
+	strmOut << "Input font file: " << staInputFontFile << "\n";
+	strmOut << "Output font file: " << staOutputFile << "\n";
+	strmOut << "Output font family: " << staOutputFamily << "\n";
+	strmOut << "Silf table version: " << staVersion << "\n";
 	strmOut << "Create separate control file: " << (fSepCtrlFile ? "yes" : "no") << "\n";
 	strmOut << "\n*******************************************************\n\n";
 
@@ -265,7 +265,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 		}
 		(perr->m_fFatal) ? cError++ : cWarning++;
 
-		strmOut << perr->m_staMsg.Chars() << "\n";
+		strmOut << perr->m_staMsg.data() << "\n";
 	}
 
 	if (m_vperr.Size() > 0)

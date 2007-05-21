@@ -68,7 +68,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 
 	if (irit == m_vprit.Size())
 	{
-		Symbol psymClass = g_cman.SymbolTable()->FindSymbol(staInput);
+		Symbol psymClass = g_cman.SymbolTable()->FindSymbol(std::string(staInput.Chars()));
 		GdlRuleItem * prit;
 		if (psymClass && psymClass->FitsSymbolType(ksymtSpecialLb))
 			prit = new GdlLineBreakItem(psymClass);
@@ -83,7 +83,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 			{
 				g_errorList.AddError(3134, this,
 					"Undefined class name: ",
-					staInput,
+					std::string(staInput.Chars()),
 					lnf);
 				psymClass = g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
 			}
@@ -149,7 +149,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 	bool fContext = false;
 	int critRhs = 0;
 
-	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(staInput);
+	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(std::string(staInput.Chars()));
 
 	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
 	{
@@ -168,7 +168,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 				{
 					g_errorList.AddError(3137, this,
 						"Undefined class name: ",
-						staInput,
+						std::string(staInput.Chars()),
 						lnf);
 					psymClassOrPlaceHolder =
 						g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
@@ -220,7 +220,7 @@ LLbError:
 	if (staInput == "#")
 	{
 		g_errorList.AddError(3138, this,
-			StrAnsi("Line break indicator # cannot appear in the right-hand-side"));
+			"Line break indicator # cannot appear in the right-hand-side");
 		return NULL;
 	}
 
@@ -231,7 +231,7 @@ LLbError:
 	{
 		g_errorList.AddError(3139, this,
 			"Undefined class name: ",
-			staInput,
+			std::string(staInput.Chars()),
 			lnf);
 		psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
 	}
@@ -241,7 +241,7 @@ LLbError:
 	if (fContext)
 	{
 		g_errorList.AddError(3140, this,
-			StrAnsi("Context does not account for all items in the right-hand-side"));
+			"Context does not account for all items in the right-hand-side");
 	}
 
 	GdlRuleItem * pritNew;
@@ -324,7 +324,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 	bool fContext = false;
 	int critLhs = 0;
 
-	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(staInput);
+	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(std::string(staInput.Chars()));
 
 	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
 	{
@@ -342,7 +342,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 				{
 					g_errorList.AddError(3141, this,
 						"Undefined class name: ",
-						staInput,
+						std::string(staInput.Chars()),
 						lnf);
 					psymClassOrPlaceHolder =
 						g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
@@ -388,7 +388,7 @@ LLbError:
 	if (staInput == "#")
 	{
 		g_errorList.AddError(3142, this,
-			StrAnsi("Line break indicator # cannot appear in the left-hand-side"));
+			"Line break indicator # cannot appear in the left-hand-side");
 		return NULL;
 	}
 
@@ -398,17 +398,17 @@ LLbError:
 	{
 		g_errorList.AddError(3143, this,
 			"Undefined class name: ",
-			staInput,
+			std::string(staInput.Chars()),
 			lnf);
 		psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
 	}
 
 	if (fContext)
 		g_errorList.AddError(3144, this,
-			StrAnsi("Context does not account for all items in the left-hand-side"));
+			"Context does not account for all items in the left-hand-side");
 	else
 		g_errorList.AddError(3145, this,
-			StrAnsi("Number of items in left- and right-hand-sides do not match"));
+			"Number of items in left- and right-hand-sides do not match");
 
 	//	Pretend it is a deletion.
 

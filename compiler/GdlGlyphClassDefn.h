@@ -134,17 +134,17 @@ public:
 	void DeleteGlyphDefns();
 
 	//	Getters:
-	StrAnsi Name()		{ return m_staName; }
+	std::string Name()		{ return m_staName; }
 
 	//	Setters:
-	void SetName(StrAnsi sta)		{ m_staName = sta; }
+	void SetName(std::string sta)		{ m_staName = sta; }
 
 	void AddMember(GdlGlyphClassMember * pglfd);
 
 	void AddGlyphAttr(Symbol, GdlAssignment * pasgn);
 	void AddComponent(Symbol, GdlAssignment * pasgn);
 
-	static StrAnsi Undefined()
+	static std::string Undefined()
 	{
 		return "*GCUndefined*";
 	}
@@ -245,7 +245,7 @@ public:
 
 protected:
 	//	Instance variables:
-	StrAnsi							m_staName;
+	std::string						m_staName;
 	Vector<GdlGlyphClassMember*>	m_vpglfdMembers;
 
 	Vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;

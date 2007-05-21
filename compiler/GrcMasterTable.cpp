@@ -124,7 +124,7 @@ void GrcMasterValueList::AddItem(Symbol psym, GdlExpression * pexpValue,
 	{
 		pasgn = hmit->second;
 		g_errorList.AddWarning(2524, pexpValue,
-			"Duplicate ", staDescription);
+			"Duplicate ", std::string(staDescription.Chars()));
 		
 		if ((lnf.PreProcessedLine() > pasgn->PreProcessedLine() && fOverride) ||
 			(lnf.PreProcessedLine() < pasgn->PreProcessedLine() && !pasgn->Override()))
@@ -181,7 +181,7 @@ void GrcMasterTable::SetupFeatures()
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 {
-	StrAnsi fName = pfeat->Name();
+	StrAnsi fName = StrAnsi(pfeat->Name().data());
 
 	GdlExpression * pexpDefault = NULL;
 
@@ -234,7 +234,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 		else if (psym->FieldIs(1, "settings"))
 		{
 			//	feature.settings....
-			GdlFeatureSetting * pfset = pfeat->FindOrAddSetting(psym->FieldAt(2),
+			GdlFeatureSetting * pfset = pfeat->FindOrAddSetting(std::string(psym->FieldAt(2)),
 				psym->LineAndFile());
 
 			if (psym->FieldIs(3, "name"))
@@ -248,13 +248,13 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 				}
 				else
 				{
-					StrAnsi strLang = psym->FieldAt(4);
+					std::string strLang = psym->FieldAt(4);
 					if (strLang[0] == '0' && strLang[1] == 'x')
-						nLangID = strtoul(strLang.Chars() + 2, NULL, 16);	// 0x0409
+						nLangID = strtoul(strLang.data() + 2, NULL, 16);	// 0x0409
 					else if (strLang[0] == 'x')
-						nLangID = strtoul(strLang.Chars() + 1, NULL, 16);	// x0409
+						nLangID = strtoul(strLang.data() + 1, NULL, 16);	// x0409
 					else
-						nLangID = atoi(strLang);							// 1033
+						nLangID = atoi(strLang.data());							// 1033
 					if (nLangID == 0 && psym->FieldAt(4) != "0")
 					{
 						g_errorList.AddWarning(2526, pexp,
@@ -303,13 +303,13 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			}
 			else
 			{
-				StrAnsi strLang = psym->FieldAt(2);
+				std::string strLang = psym->FieldAt(2);
 				if (strLang[0] == '0' && strLang[1] == 'x')
-					nLangID = strtoul(strLang.Chars() + 2, NULL, 16);	// 0x0409
+					nLangID = strtoul(strLang.data() + 2, NULL, 16);	// eg, 0x0409
 				else if (strLang[0] == 'x')
-					nLangID = strtoul(strLang.Chars() + 1, NULL, 16);	// x0409
+					nLangID = strtoul(strLang.data() + 1, NULL, 16);	// eg, x0409
 				else
-					nLangID = atoi(strLang);							// 1033
+					nLangID = atoi(strLang.data());						// eg, 1033
 				if (nLangID == 0 && psym->FieldAt(2) != "0")
 				{
 					g_errorList.AddWarning(2530, pexp,
@@ -368,11 +368,11 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			else
 			{
 				GdlFeatureSetting * pfsetDefault =
-					pfeat->FindSetting(pexpsr->Alias());
+					pfeat->FindSetting(std::string(pexpsr->Alias()));
 				if (!pfsetDefault)
 					g_errorList.AddError(2155, pexpDefault,
 						"Default feature setting is undefined: ",
-						pexpsr->Alias());
+						std::string(pexpsr->Alias().Chars()));
 				else
 					pfeat->SetDefault(pfsetDefault->Value());
 			}
@@ -513,16 +513,16 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 
 		else
 		{
-			StrAnsi staNameID = psym->FieldAt(0);
-			StrAnsi staLangID = psym->FieldAt(1);
+			std::string staNameID = psym->FieldAt(0);
+			std::string staLangID = psym->FieldAt(1);
 
-			int nNameID = atoi(staNameID.Chars());
+			int nNameID = atoi(staNameID.data());
 			if (nNameID == 0 && staNameID != "0")
 				g_errorList.AddWarning(2534, pexp,
 					"Invalid name ID: ",
 					staNameID,
 					"--should be an integer");
-			int nLangID = atoi(staLangID.Chars());
+			int nLangID = atoi(staLangID.data());
 			if (nLangID == 0 && staLangID != "0")
 				g_errorList.AddWarning(2535, pexp,
 					"Invalid language ID: ",
