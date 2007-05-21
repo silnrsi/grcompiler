@@ -136,7 +136,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 
 		GdlFeatureDefn * pfeat = psymFeat->FeatureDefnData();
 		Assert(pfeat);
-		StrAnsi staValue = m_vstaVal[ifasgn];
+		std::string staValue = m_vstaVal[ifasgn];
 		GdlExpression * pexpVal = m_vpexpVal[ifasgn];
 		int nVal;
 		GdlFeatureSetting * pfset;

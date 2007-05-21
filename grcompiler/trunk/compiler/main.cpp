@@ -137,7 +137,7 @@ int main(int argc, char * argv[])
 			GenerateOutputFontFileName(pchFontFile, rgchOutputFile);   // ttf
 	}
 
-	StrAnsi staVersion = VersionString(g_cman.FontTableVersion());
+	std::string staVersion = VersionString(g_cman.FontTableVersion());
 
 	GrcFont * pfont = new GrcFont(pchFontFile);
 	int nFontError = pfont->Init(&g_cman);
@@ -177,7 +177,7 @@ int main(int argc, char * argv[])
 			<< "Output TT file: " << rgchOutputFile << "\n"
 			<< "Output font name: " << staFamily.Chars() << "\n"
 			<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
-					<< ": " << staVersion.Chars() << "\n\n";
+					<< ": " << staVersion << "\n\n";
 	}
 	// simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
 	byte bFirst, bSecond, bThird;
@@ -220,7 +220,7 @@ int main(int argc, char * argv[])
 					{
 						g_errorList.AddError(133, NULL,
 							"Invalid font table version: ",
-							VersionString(g_cman.FontTableVersion()).Chars());
+							VersionString(g_cman.FontTableVersion()));
 					}
 					if (g_cman.NameTableStart() != -1
 						&& (g_cman.NameTableStart() < g_cman.NameTableStartMin()
@@ -308,8 +308,8 @@ int main(int argc, char * argv[])
 	}
 
 	g_errorList.SortErrors();
-	g_errorList.WriteErrorsToFile(StrAnsi(pchGdlFile), StrAnsi(pchFontFile),
-		StrAnsi(rgchOutputFile), staFamily,
+	g_errorList.WriteErrorsToFile(pchGdlFile, pchFontFile,
+		rgchOutputFile, std::string(staFamily.Chars()),
 		VersionString(g_cman.FontTableVersion()), g_cman.SeparateControlFile());
 
 	int cerrFatal = g_errorList.NumberOfErrors();
@@ -502,9 +502,9 @@ bool LooksLikeFontFamily(char * pch)
 /*----------------------------------------------------------------------------------------------
     Generate a string containing the version number.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi VersionString(int fxdVersion)
+std::string VersionString(int fxdVersion)
 {
-	StrAnsi sta = "";
+	std::string sta = "";
 	char rgch[20];
 	itoa(fxdVersion >> 16, rgch, 10);
 	sta += rgch;

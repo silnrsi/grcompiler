@@ -59,7 +59,7 @@ bool GrcManager::Parse(StrAnsi staFileName)
 	{
 		g_errorList.AddError(1105, NULL,
 			"File ",
-			staFileName,
+			std::string(staFileName.Chars()),
 			" does not exist--compilation aborted");
 		return false;
 	}
@@ -135,7 +135,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 			"Could not create process to run pre-processor gdlpp.exe (error = ",
 			rgchErrorCode,
 			"); compiling ",
-			staFileName);
+			std::string(staFileName.Chars()));
 		*pstaFilePreProc = staFileName;
 		return true;
 	}
@@ -306,12 +306,12 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 		if (fFatal)
 			g_errorList.AddError(1114, NULL,
 				"Gdlpp.exe ",
-				StrAnsi(pchMsgMin, pchMsgLim - pchMsgMin),
+				std::string(pchMsgMin, pchMsgLim - pchMsgMin),
 				lnf);
 		else
 			g_errorList.AddWarning(1503, NULL,
 				"Gdlpp.exe ",
-				StrAnsi(pchMsgMin, pchMsgLim - pchMsgMin),
+				std::string(pchMsgMin, pchMsgLim - pchMsgMin),
 				lnf);
 		g_errorList.SetLastMsgIncludesFatality(true);
 
@@ -476,7 +476,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 
 	RefAST astName = ast->getFirstChild();
 	Assert(astName);
-	StrAnsi staName = astName->getText().c_str();
+	std::string staName = astName->getText();
 
 	Symbol psym = SymbolTable()->FindSymbol(staName);
 	if (!psym || !psym->FitsSymbolType(ksymtGlobal))
@@ -765,7 +765,7 @@ void GrcManager::WalkDirectivesTree(RefAST ast)
 	RefAST astDirective = ast->getFirstChild();
 	while (astDirective)
 	{
-		StrAnsi staName = astDirective->getFirstChild()->getText().c_str();
+		std::string staName = astDirective->getFirstChild()->getText();
 		//	For now, all directives have numeric or boolean values.
 		RefAST astValue = astDirective->getFirstChild()->getNextSibling();
 		Assert(astValue);
@@ -964,7 +964,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 
 	Vector<StrAnsi> vsta;
 	GdlGlyphClassDefn * pglfc;
-	StrAnsi staClassName = ast->getFirstChild()->getText().c_str();
+	std::string staClassName = ast->getFirstChild()->getText();
 	Symbol psymClass = SymbolTable()->FindSymbol(staClassName);
 	if (!psymClass)
 	{
@@ -1012,7 +1012,7 @@ void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc)
 		if (astContents->getType() == Zattrs)
 		{
 			//	Attributes.
-			Vector<StrAnsi> vsta;
+			Vector<std::string> vsta;
 			vsta.Push(pglfc->Name());
 			RefAST astT = astContents->getFirstChild();
 			while (astT)
@@ -1034,13 +1034,13 @@ void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc)
 	Traverse the glyph attribute assignment tree, adding the assignments to the symbol table
 	and master glyph attribute table.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<StrAnsi> & vsta)
+void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<std::string> & vsta)
 {
 	if (!ast)
 		return;
 
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText().c_str());
+	vsta.Push(astNextID->getText());
 
 	int nodetyp = ast->getType();
 
@@ -1078,7 +1078,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<StrAnsi> & vsta)
 	else if (nodetyp == OP_PLUSEQUAL || nodetyp == OP_MINUSEQUAL ||
 		nodetyp == OP_MULTEQUAL || nodetyp == OP_DIVEQUAL)
 	{
-		StrAnsi staOp = ast->getText().c_str();
+		std::string staOp = ast->getText();
 		g_errorList.AddError(1139, NULL,
 			"Cannot assign a glyph attribute with ",
 			staOp,
@@ -1105,14 +1105,14 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<StrAnsi> & vsta)
 		fSlotAttr			- true if this is a slot attribute, false if it is a glyph attr
 		prit, psymOp		- only used for slot attributes
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ProcessFunction(RefAST ast, Vector<StrAnsi> & vsta,
+void GrcManager::ProcessFunction(RefAST ast, Vector<std::string> & vsta,
 	bool fSlotAttr, GdlRuleItem * prit, Symbol psymOp)
 {
 	Assert(ast->getType() == Zfunction);
 	Assert(!fSlotAttr || (prit && psymOp));
 
 	RefAST astName = ast->getFirstChild();
-	StrAnsi staName = astName->getText().c_str();
+	std::string staName = astName->getText();
 
 	int nPR = PointRadius();
 	int mPRUnits = PointRadiusUnits();
@@ -1129,10 +1129,10 @@ void GrcManager::ProcessFunction(RefAST ast, Vector<StrAnsi> & vsta,
 	GdlExpression * pexp3 = NULL;
 	GdlExpression * pexp4 = NULL;
 
-	StrAnsi sta1;
-	StrAnsi sta2;
-	StrAnsi sta3;
-	StrAnsi sta4;
+	std::string sta1;
+	std::string sta2;
+	std::string sta3;
+	std::string sta4;
 
 	ExpressionType expt1, expt2, expt3, expt4;
 
@@ -1337,8 +1337,8 @@ void GrcManager::ProcessFunctionArg(bool fSlotAttr, GrcStructName const& xns,
 /*----------------------------------------------------------------------------------------------
 	Record an error indicating that a function has the wrong number of arguments.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::BadFunctionError(GrpLineAndFile & lnf, StrAnsi staFunction,
-	StrAnsi staArgsExpected)
+void GrcManager::BadFunctionError(GrpLineAndFile & lnf, std::string staFunction,
+	std::string staArgsExpected)
 {
 	g_errorList.AddError(1142, NULL,
 		"Invalid number of arguments for '",
@@ -1367,7 +1367,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 	int nCodePage;
 	int nPseudoInput;
 	GlyphType glft;
-	StrAnsi staSubClassName;
+	std::string staSubClassName;
 	Symbol psymSubClass;
 
 	GdlGlyphDefn * pglfT;
@@ -1471,7 +1471,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 	case IDENT:
 		Assert(!ast->getFirstChild());
 		Assert(pglfc && !ppglfRet);	// can't put a subclass identifer inside a pseudo
-		staSubClassName = ast->getText().c_str();
+		staSubClassName = ast->getText();
 		psymSubClass = SymbolTable()->FindSymbol(staSubClassName);
 		if (!psymSubClass)
 		{
@@ -1611,8 +1611,8 @@ void GrcManager::WalkFeatureTableTree(RefAST ast)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::WalkFeatureTableElement(RefAST ast)
 {
-	Vector<StrAnsi> vsta;
-	StrAnsi staFeatureName = ast->getFirstChild()->getText().c_str();
+	Vector<std::string> vsta;
+	std::string staFeatureName = ast->getFirstChild()->getText();
 	Symbol psymFeat = SymbolTable()->FindSymbol(staFeatureName);
 	if (!psymFeat)
 	{
@@ -1627,7 +1627,7 @@ void GrcManager::WalkFeatureTableElement(RefAST ast)
 			LineAndFile(ast));
 		GdlFeatureDefn * pfeat = psymFeat->FeatureDefnData();
 		Assert(pfeat);
-		pfeat->SetName(staFeatureName);
+		pfeat->SetName(std::string(staFeatureName));
 		m_prndr->AddFeature(pfeat);
 	}
 	else if (!psymFeat->FitsSymbolType(ksymtFeature))
@@ -1648,10 +1648,10 @@ void GrcManager::WalkFeatureTableElement(RefAST ast)
 	Traverse the features identifier tree, adding the assignments to the symbol table
 	and master features table.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<StrAnsi> & vsta)
+void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<std::string> & vsta)
 {
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText().c_str());
+	vsta.Push(astNextID->getText());
 
 	if (ast->getType() == OP_EQ)
 	{
@@ -1734,16 +1734,16 @@ void GrcManager::WalkLanguageTableTree(RefAST ast)
 void GrcManager::WalkLanguageTableElement(RefAST ast)
 {
 	RefAST astLabel = ast->getFirstChild();
-	StrAnsi staLabel = astLabel->getText().c_str();
+	std::string staLabel(astLabel->getText().c_str());
 
 	RefAST astItem = astLabel->getNextSibling();
 
 	// Find or create the language class with that name:
 	GdlLangClass * plcls;
-  int ilcls;
+	int ilcls;
 	for (ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
 	{
-		if (m_vplcls[ilcls]->m_staLabel == staLabel)
+		if (strcmp(m_vplcls[ilcls]->m_staLabel.c_str(), staLabel.c_str()) == 0)
 		{
 			plcls = m_vplcls[ilcls];
 			break;
@@ -1789,7 +1789,7 @@ void GrcManager::WalkLanguageItem(RefAST ast, GdlLangClass * plcls)
 			GdlExpression * pexpVal = NULL;
 			if (astValue->getType() != IDENT)
 				pexpVal = WalkExpressionTree(astValue);
-			plcls->AddFeatureValue(staLhs, staValue, pexpVal, LineAndFile(astValue));
+			plcls->AddFeatureValue(std::string(staLhs.Chars()), std::string(staValue.Chars()), pexpVal, LineAndFile(astValue));
 		}
 
 		astItem = astItem->getNextSibling();
@@ -1804,8 +1804,8 @@ void GrcManager::WalkLanguageCodeList(RefAST astList, GdlLangClass * plcls)
 	RefAST astNext = astList;
 	while (astNext && astNext->getType() == LIT_STRING)
 	{
-		StrAnsi staLang = astNext->getText().c_str();
-		if (staLang.Length() > 4)
+		std::string staLang = astNext->getText();
+		if (staLang.length() > 4)
 		{
 			g_errorList.AddError(1151, NULL,
 				"Language codes may contain a maximum of 4 characters",
@@ -1817,7 +1817,7 @@ void GrcManager::WalkLanguageCodeList(RefAST astList, GdlLangClass * plcls)
 		Symbol psymLang = SymbolTable()->AddLanguageSymbol(xns, lnf);
 		GdlLanguageDefn * plang = psymLang->LanguageDefnData();
 		Assert(plang);
-		plang->SetCode(staLang);
+		plang->SetCode(std::string(staLang));
 		m_prndr->AddLanguage(plang);
 		plcls->AddLanguage(plang);
 
@@ -1859,7 +1859,7 @@ void GrcManager::WalkNameTableTree(RefAST ast)
 void GrcManager::WalkNameTableElement(RefAST ast)
 {
 	//	Nothing special to do.
-	Vector<StrAnsi> vsta;
+	Vector<std::string> vsta;
 	WalkNameIDTree(ast, vsta);
 	Assert(vsta.Size() == 0);
 }
@@ -1867,10 +1867,10 @@ void GrcManager::WalkNameTableElement(RefAST ast)
 /*----------------------------------------------------------------------------------------------
 	Process a name assignment.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkNameIDTree(RefAST ast, Vector<StrAnsi> & vsta)
+void GrcManager::WalkNameIDTree(RefAST ast, Vector<std::string> & vsta)
 {
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText().c_str());
+	vsta.Push(astNextID->getText());
 
 	if (ast->getType() == OP_EQ || ast->getType() == OP_PLUSEQUAL)
 	{
@@ -2429,7 +2429,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 				//	attributes
 				Assert(lrc == 1);
 				Assert(astNext->getType() == Zattrs);
-				Vector<StrAnsi> vsta;
+				Vector<std::string> vsta;
 				RefAST astAttr = astNext->getFirstChild();
 				while (astAttr)
 				{
@@ -2466,7 +2466,7 @@ StrAnsi GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
 
 	Symbol psymClass = SymbolTable()->AddAnonymousClassSymbol(LineAndFile(ast));
 
-	StrAnsi staClassName = psymClass->FullName();
+	std::string staClassName = psymClass->FullName();
 	GdlGlyphClassDefn * pglfc = psymClass->GlyphClassDefnData();
 	Assert(pglfc);
 	pglfc->SetName(staClassName);
@@ -2485,7 +2485,7 @@ StrAnsi GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
 	}
 	*pastNext = astGlyph;
 
-	return staClassName;
+	return StrAnsi(staClassName.c_str());
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2495,7 +2495,7 @@ StrAnsi GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
 {
 	Symbol psymClass = SymbolTable()->AddAnonymousClassSymbol(LineAndFile(ast));
 
-	StrAnsi staClassName = psymClass->FullName();
+	std::string staClassName = psymClass->FullName();
 	GdlGlyphClassDefn * pglfc = psymClass->GlyphClassDefnData();
 	Assert(pglfc);
 	pglfc->SetName(staClassName);
@@ -2514,7 +2514,7 @@ StrAnsi GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
 	}
 	*pastNext = astGlyph;
 
-	return staClassName;
+	return StrAnsi(staClassName.c_str());
 }
 
 
@@ -2592,7 +2592,7 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 /*----------------------------------------------------------------------------------------------
 	Traverse the slot attribute assignment tree, adding the assignments to the rule item.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, Vector<StrAnsi> & vsta)
+void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, Vector<std::string> & vsta)
 {
 	if (!ast)
 		return;
@@ -2671,7 +2671,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 	int nValue;
 	int nCluster;
 	bool fM;
-	Vector<StrAnsi> vsta;
+	Vector<std::string> vsta;
 
 	int nodetyp = ast->getType();
 	switch (nodetyp)
@@ -3000,7 +3000,7 @@ int GrcManager::NumericValue(RefAST ast)
 /*----------------------------------------------------------------------------------------------
 	Return the symbol corresponding to the dotted identifier.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcManager::IdentifierSymbol(RefAST ast, Vector<StrAnsi> & vsta)
+Symbol GrcManager::IdentifierSymbol(RefAST ast, Vector<std::string> & vsta)
 {
 	if (ast->getType() == OP_DOT)
 	{
@@ -3032,15 +3032,15 @@ Symbol GrcManager::IdentifierSymbol(RefAST ast, Vector<StrAnsi> & vsta)
 	Return true if the given array of symbol names is of the form
 	<class>.<predefined-glyph-attr>.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::ClassPredefGlyphAttr(Vector<StrAnsi> & vsta,
+bool GrcManager::ClassPredefGlyphAttr(Vector<std::string> & vsta,
 	ExpressionType * pexpt, SymbolType * psymt)
 {
-	StrAnsi sta1 = vsta[0];
+	std::string sta1 = vsta[0];
 	Symbol psymClass = SymbolTable()->FindSymbol(sta1);
 	if (!psymClass || !psymClass->FitsSymbolType(ksymtClass))
 		return false;
 	
-	Vector<StrAnsi> vstaMinusClass;
+	Vector<std::string> vstaMinusClass;
 	int ista;
 	for (ista = 1; ista < vsta.Size(); ista++)
 		vstaMinusClass.Push(vsta[ista]);

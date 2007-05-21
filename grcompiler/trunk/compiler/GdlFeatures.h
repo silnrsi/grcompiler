@@ -73,11 +73,11 @@ public:
 
 	//	Getters:
 	int Value()				{ return m_nValue; }
-	StrAnsi Name()			{ return m_staName; }
+	std::string Name()		{ return m_staName; }
 	utf16 NameTblId()		{ return m_wNameTblId; }
 
 	//	Setters:
-	void SetName(StrAnsi sta)		{ m_staName = sta; }
+	void SetName(std::string sta)	{ m_staName = sta; }
 	void SetValue(int n)			{ m_nValue = n; m_fHasValue = true; }
 	void AddExtName(utf16 wLangID, StrUni stu)
 	{
@@ -96,7 +96,7 @@ public:
 
 protected:
 	//	Instance variables:
-	StrAnsi				m_staName;
+	std::string			m_staName;
 	Vector<GdlExtName>	m_vextname;
 	int					m_nValue;
 	utf16				m_wNameTblId;
@@ -150,9 +150,9 @@ public:
 	}
 
 	//	Setters:
-	void SetName(StrAnsi sta)	{ m_staName = sta; }
-	void SetID(unsigned int n)	{ m_nID = n; m_fIDSet = true; }
-	void SetDefault(int n)		{ m_nDefault = n; m_fDefaultSet = true; }
+	void SetName(std::string sta)	{ m_staName = sta; }
+	void SetID(unsigned int n)		{ m_nID = n; m_fIDSet = true; }
+	void SetDefault(int n)			{ m_nDefault = n; m_fDefaultSet = true; }
 	void AddExtName(utf16 wLangID, StrUni stu)
 	{
 		m_vextname.Push(GdlExtName(stu, wLangID));
@@ -173,7 +173,7 @@ public:
 	utf16 SetNameTblIds(utf16 wFirst); // return next id to use
 
 	//	Getters:
-	StrAnsi Name()
+	std::string Name()
 	{
 		return m_staName;
 	}
@@ -194,8 +194,8 @@ public:
 		Vector<utf16> * pvwNameTblIds);
 
 
-	GdlFeatureSetting * FindSetting(StrAnsi sta);
-	GdlFeatureSetting * FindOrAddSetting(StrAnsi, GrpLineAndFile & lnf);
+	GdlFeatureSetting * FindSetting(std::string sta);
+	GdlFeatureSetting * FindOrAddSetting(std::string, GrpLineAndFile & lnf);
 	GdlFeatureSetting * FindSettingWithValue(int n);
 
 public:
@@ -221,7 +221,7 @@ public:
 
 protected:
 	//	Instance variables:
-	StrAnsi						m_staName;
+	std::string					m_staName;
 	unsigned int				m_nID;
 	Vector<GdlExtName>			m_vextname;
 	Vector<GdlFeatureSetting *>	m_vpfset;
@@ -263,12 +263,12 @@ public:
 		return nCode;
 	}
 
-	void SetCode(StrAnsi staCode)
+	void SetCode(std::string staCode)
 	{
-		Assert(staCode.Length() <= 4);
-		staCode = staCode.Left(4);
+		Assert(staCode.sength() <= 4);
+		staCode = staCode.substr(0, 4);
 		memset(m_rgchID, 0, sizeof(m_rgchID));
-		memcpy(m_rgchID, staCode.Chars(), staCode.Length() * sizeof(char));
+		memcpy(m_rgchID, staCode.data(), staCode.size() * sizeof(char));
 	}
 
 	int NumberOfSettings()
@@ -301,7 +301,7 @@ class GdlLangClass
 {
 	friend class GrcManager;
 
-	GdlLangClass(StrAnsi sta)
+	GdlLangClass(std::string sta)
 	{
 		m_staLabel = sta;
 	}
@@ -322,7 +322,8 @@ class GdlLangClass
 		m_vplang.Push(plang);
 	}
 
-	void AddFeatureValue(StrAnsi staFeat, StrAnsi staVal, GdlExpression * pexpVal, GrpLineAndFile lnf)
+	void AddFeatureValue(std::string staFeat, std::string staVal,
+		GdlExpression * pexpVal, GrpLineAndFile lnf)
 	{
 		m_vstaFeat.Push(staFeat);
 		m_vstaVal.Push(staVal);
@@ -337,11 +338,11 @@ class GdlLangClass
 
 protected:
 	GrpLineAndFile m_lnf;
-	StrAnsi m_staLabel;
+	std::string m_staLabel;
 	Vector<GdlLanguageDefn *> m_vplang;
 	// These four are parallel vectors, each item corresponding to a feature assignment:
-	Vector<StrAnsi> m_vstaFeat;			// name of feature
-	Vector<StrAnsi> m_vstaVal;			// text of value
+	Vector<std::string> m_vstaFeat;		// name of feature
+	Vector<std::string> m_vstaVal;		// text of value
 	Vector<GdlExpression*> m_vpexpVal;	// expression, if not an identifer
 	Vector<GrpLineAndFile> m_vlnf;
 };

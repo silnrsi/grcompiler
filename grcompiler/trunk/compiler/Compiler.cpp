@@ -474,7 +474,7 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 	ExpressionType expt = m_psymName->ExpType();
 	Assert(expt == kexptSlotRef || expt == kexptNumber ||
 		expt == kexptMeas || expt == kexptBoolean);
-	StrAnsi staOp = m_psymOperator->FullName();
+	std::string staOp = m_psymOperator->FullName();
 	int slat = m_psymName->SlotAttrEngineCodeOp();
 
 	if (m_psymName->IsIndexedSlotAttr())	// eg, component.XXX.ref, user1
@@ -773,7 +773,7 @@ void GdlRenderer::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 {
-	strmOut << "\nTABLE: " << m_psymName->FullName().Chars() << "\n";
+	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
 	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
 	{
 		m_vppass[ippass]->DebugRulePrecedence(pcman, strmOut);
@@ -883,7 +883,7 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
-	strmOut << "\nTABLE: " << m_psymName->FullName().Chars() << "\n";
+	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
 	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
 	{
 		m_vppass[ippass]->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
@@ -1345,7 +1345,7 @@ void GrcManager::DebugGlyphAttributes()
 		for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.Size(); nAttrID++)
 		{
 			strmOut << nAttrID << ": "
-				<< m_vpsymGlyphAttrs[nAttrID]->FullName().Chars() << "\n";
+				<< m_vpsymGlyphAttrs[nAttrID]->FullName() << "\n";
 		}
 		strmOut << "\n\n\nGLYPH ATTRIBUTE VALUES\n\n";
 
@@ -1377,7 +1377,7 @@ void GrcManager::DebugGlyphAttributes()
 
 				fAnyNonZero = true;
 
-				strmOut << "   " << m_vpsymGlyphAttrs[nAttrID]->FullName().Chars()
+				strmOut << "   " << m_vpsymGlyphAttrs[nAttrID]->FullName()
 					<< " = ";
 				if (m_vpsymGlyphAttrs[nAttrID]->LastFieldIs("gpoint") &&
 					nValue == kGpointZero)
@@ -1388,7 +1388,7 @@ void GrcManager::DebugGlyphAttributes()
 				{
 					strmOut  << nValue;
 					if (nValue > 9 || nValue < 0)
-						strmOut << " (0x" << GdlGlyphDefn::GlyphIDString(nValue).Chars() << ")";
+						strmOut << " (0x" << GdlGlyphDefn::GlyphIDString(nValue) << ")";
 					strmOut << "\n";
 				}
 
@@ -1500,7 +1500,7 @@ void GdlRuleItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
-	strmOut << m_psymInput->FullAbbrev().Chars();
+	strmOut << m_psymInput->FullAbbrev();
 	ConstraintPrettyPrint(pcman, prule, irit, strmOut);
 	strmOut << "  ";
 }
@@ -1527,14 +1527,14 @@ void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, GdlRule * prule, int
 void GdlSetAttrItem::LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
-	strmOut << m_psymInput->FullAbbrev().Chars();
+	strmOut << m_psymInput->FullAbbrev();
 	strmOut << "  ";
 }
 
 void GdlSetAttrItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
-	strmOut << m_psymInput->FullAbbrev().Chars();
+	strmOut << m_psymInput->FullAbbrev();
 	AttrSetterPrettyPrint(pcman, prule, irit, strmOut);
 	strmOut << "  ";
 }
@@ -1550,14 +1550,14 @@ void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int
 void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
-	strmOut << m_psymInput->FullAbbrev().Chars();
+	strmOut << m_psymInput->FullAbbrev();
 	strmOut << "  ";
 }
 
 void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
-	strmOut << m_psymOutput->FullAbbrev().Chars();
+	strmOut << m_psymOutput->FullAbbrev();
 
 	if (m_pexpSelector)
 	{
@@ -1629,9 +1629,9 @@ void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut,
 		return;
 	}
 	else
-		strmOut << m_psymName->FullAbbrev().Chars();
+		strmOut << m_psymName->FullAbbrev();
 	
-	strmOut << m_psymOperator->FullAbbrev().Chars();
+	strmOut << m_psymOperator->FullAbbrev();
 	m_pexpValue->PrettyPrint(pcman, strmOut);
 	strmOut << "; ";
 }
@@ -1679,7 +1679,7 @@ void GdlRenderer::DebugClasses(std::ostream & strmOut,
 
 		strmOut << "\n\n";
 		strmOut << "Class #" << ipglfc << ": ";
-		strmOut << pglfc->Name().Chars();
+		strmOut << pglfc->Name();
 
 		Vector<utf16> vwGlyphs;
 		pglfc->GenerateOutputGlyphList(vwGlyphs);
@@ -1710,7 +1710,7 @@ void GdlRenderer::DebugClasses(std::ostream & strmOut,
 
 		strmOut << "\n\n";
 		strmOut << "Class #" << ipglfc << ": ";
-		strmOut << pglfc->Name().Chars();
+		strmOut << pglfc->Name();
 
 		Vector<utf16> vwGlyphs;
 		Vector<int> vnIndices;

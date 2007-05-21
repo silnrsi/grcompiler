@@ -33,6 +33,16 @@ public:
 			m_nID(nID),
 			m_fMsgIncludesFatality(false),
 			m_lnf(lnf),
+			m_staMsg(std::string(staMsg.Chars())),
+			m_pgdlObject(pgdlObj)
+	{
+	}
+
+	GrcErrorItem(bool fFatal, int nID, GrpLineAndFile & lnf, std::string staMsg, GdlObject * pgdlObj)
+		:	m_fFatal(fFatal),
+			m_nID(nID),
+			m_fMsgIncludesFatality(false),
+			m_lnf(lnf),
 			m_staMsg(staMsg),
 			m_pgdlObject(pgdlObj)
 	{
@@ -56,7 +66,7 @@ protected:
 	//	instance variables:
 	int				m_nID;
 	GdlObject *		m_pgdlObject;
-	StrAnsi			m_staMsg;
+	std::string		m_staMsg;
 	bool			m_fFatal;
 	bool			m_fMsgIncludesFatality;		// don't add label "warning" or "error--the
 												// message itself includes the information
@@ -86,6 +96,7 @@ public:
 			delete m_vperr[i];
 	}
 
+/************
 	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, GrpLineAndFile const& lnf)
 	{
 		AddItem(true, nID, pgdlobj, &lnf, staMsg);
@@ -257,6 +268,178 @@ public:
 		StrAnsi * psta1, StrAnsi * psta2, StrAnsi * psta3, StrAnsi * psta4,
 		StrAnsi * psta5, StrAnsi * psta6, StrAnsi * psta7, StrAnsi * psta8);
 
+------------------*/
+
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, staMsg);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5, std::string sta6,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5, std::string sta6, std::string sta7,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5, std::string sta6, std::string sta7, std::string sta8,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
+	}
+
+
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg)
+	{
+		AddItem(true, nID, pgdlobj, NULL, staMsg);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5, std::string sta6)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5, std::string sta6, std::string sta7)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
+	}
+	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3, std::string sta4,
+		std::string sta5, std::string sta6, std::string sta7, std::string sta8)
+	{
+		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
+	}
+
+
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, GrpLineAndFile const& lnf)
+	{
+		AddItem(false,nID,  pgdlobj, &lnf, staMsg);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5, std::string sta6,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5, std::string sta6, std::string sta7,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5, std::string sta6, std::string sta7, std::string sta8,
+		GrpLineAndFile const& lnf)
+	{
+		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
+	}
+
+
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg)
+	{
+		AddItem(false, nID, pgdlobj, NULL, staMsg);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5, std::string sta6)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5, std::string sta6, std::string sta7)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
+	}
+	void AddWarning(int nID, GdlObject * pgdlobj, std::string staMsg, std::string sta2, std::string sta3,
+		std::string sta4, std::string sta5, std::string sta6, std::string sta7, std::string sta8)
+	{
+		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
+	}
+
+	void AddItem(bool fFatal, int nID, GdlObject * pgdlobj, const GrpLineAndFile *, std::string staMsg);
+	void AddItem(bool fFatal, int nID, GdlObject * pgdlobj, const GrpLineAndFile *,
+		std::string * psta1, std::string * psta2, std::string * psta3, std::string * psta4,
+		std::string * psta5, std::string * psta6, std::string * psta7, std::string * psta8);
+
 	void SortErrors();
 	int NumberOfErrors()
 	{
@@ -286,18 +469,18 @@ public:
 		(*m_vperr.Top())->m_fMsgIncludesFatality = f;
 	}
 
-	void WriteErrorsToFile(StrAnsi staGdlFile, StrAnsi staInputFontFile,
-		StrAnsi staOutputFile, StrAnsi staOutputFamily, StrAnsi staVersion, int fSepCtrlFile)
+	void WriteErrorsToFile(std::string staGdlFile, std::string staInputFontFile,
+		std::string staOutputFile, std::string staOutputFamily, std::string staVersion, int fSepCtrlFile)
 	{
 		WriteErrorsToFile("gdlerr.txt", staGdlFile, staInputFontFile, staOutputFile, staOutputFamily,
 			staVersion, fSepCtrlFile);
 	}
-	void WriteErrorsToFile(StrAnsi staErrFile, StrAnsi staGdlFile, StrAnsi staInputFontFile,
-		StrAnsi staOutputFile, StrAnsi staOutputFamily,
-		StrAnsi staVersion, bool fSepCtrlFile);
-	void WriteErrorsToStream(std::ostream&, StrAnsi staGdlFile, StrAnsi staInputFontFile,
-		StrAnsi staOutputFile, StrAnsi staOutputFamily,
-		StrAnsi staVersion, bool fSepCtrlFile);
+	void WriteErrorsToFile(std::string staErrFile, std::string staGdlFile, std::string staInputFontFile,
+		std::string staOutputFile, std::string staOutputFamily,
+		std::string staVersion, bool fSepCtrlFile);
+	void WriteErrorsToStream(std::ostream&, std::string staGdlFile, std::string staInputFontFile,
+		std::string staOutputFile, std::string staOutputFamily,
+		std::string staVersion, bool fSepCtrlFile);
 
 protected:
 	//	instance variables:
@@ -309,7 +492,12 @@ protected:
 
 public:
 	//	For test procedures:
-	bool test_ErrorIs(int iperr, StrAnsi staMsg)
+	bool test_ErrorIs(int iperr, StrAnsi staMsg)	// DELETE
+	{
+		test_ErrorIs(iperr, std::string(staMsg.Chars()));
+	}
+
+	bool test_ErrorIs(int iperr, std::string staMsg)
 	{
 		return (m_vperr[iperr]->m_staMsg == staMsg);
 	}

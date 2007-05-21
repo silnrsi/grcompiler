@@ -80,13 +80,13 @@ public:
 public:
 	//	General:
 	bool FitsSymbolType(SymbolType symt);
-	StrAnsi FieldAt(int);
+	std::string FieldAt(int);
 	int	FieldCount();
-	int FieldIndex(StrAnsi);
-	bool FieldIs(int, StrAnsi);
-	StrAnsi FullName();
-	StrAnsi FullAbbrev();
-	static StrAnsi Abbreviation(StrAnsi staFieldName);
+	int FieldIndex(std::string);
+	bool FieldIs(int, std::string);
+	std::string FullName();
+	std::string FullAbbrev();
+	static std::string Abbreviation(StrAnsi staFieldName);
 	void GetStructuredName(GrcStructName * pxns);
 	bool MatchesOp(StrAnsi);
 	bool IsComparativeOp();
@@ -109,7 +109,7 @@ public:
 	Symbol BaseDefnForNonGeneric();
 	Symbol BaseClassDefn();
 
-	StrAnsi TypeDescriptorString()	// for error messages
+	std::string TypeDescriptorString()	// for error messages
 	{
 		switch (m_symt)
 		{
@@ -316,9 +316,9 @@ public:
 	//Symbol AddComponentField(const GrcStructName & xns, GrpLineAndFile &);
 	Symbol AddAnonymousClassSymbol(GrpLineAndFile const&);
 
-	Symbol FindField(StrAnsi staField);
+	Symbol FindField(std::string staField);
 	Symbol FindSymbol(const GrcStructName & xns);
-	Symbol FindSymbol(const StrAnsi staName);
+	Symbol FindSymbol(const std::string staName);
 
 	Symbol FindSlotAttr(const GrcStructName & xns, GrpLineAndFile const&);
 
@@ -385,29 +385,29 @@ public:
 	{
 	}
 
-	GrcStructName(StrAnsi staName)
+	GrcStructName(std::string staName)
 	{
 		m_vstaFields.Push(staName);
 	}
-	GrcStructName(StrAnsi sta1, StrAnsi sta2)
+	GrcStructName(std::string sta1, std::string sta2)
 	{
 		m_vstaFields.Push(sta1);
 		m_vstaFields.Push(sta2);
 	}
-	GrcStructName(StrAnsi sta1, StrAnsi sta2, StrAnsi sta3)
+	GrcStructName(std::string sta1, std::string sta2, std::string sta3)
 	{
 		m_vstaFields.Push(sta1);
 		m_vstaFields.Push(sta2);
 		m_vstaFields.Push(sta3);
 	}
-	GrcStructName(StrAnsi sta1, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4)
+	GrcStructName(std::string sta1, std::string sta2, std::string sta3, std::string sta4)
 	{
 		m_vstaFields.Push(sta1);
 		m_vstaFields.Push(sta2);
 		m_vstaFields.Push(sta3);
 		m_vstaFields.Push(sta4);
 	}
-	GrcStructName(StrAnsi sta1, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4, StrAnsi sta5)
+	GrcStructName(std::string sta1, std::string sta2, std::string sta3, std::string sta4, std::string sta5)
 	{
 		m_vstaFields.Push(sta1);
 		m_vstaFields.Push(sta2);
@@ -415,7 +415,7 @@ public:
 		m_vstaFields.Push(sta4);
 		m_vstaFields.Push(sta5);
 	}
-	GrcStructName(Vector<StrAnsi> & vsta)
+	GrcStructName(Vector<std::string> & vsta)
 	{
 		vsta.CopyTo(m_vstaFields);
 	}
@@ -431,29 +431,29 @@ public:
 	{
 		return m_vstaFields.Size();
 	}
-	StrAnsi FieldAt(int i) const
+	std::string FieldAt(int i) const
 	{
 		return m_vstaFields[i];
 	}
-	bool FieldEquals(int i, StrAnsi sta) const
+	bool FieldEquals(int i, std::string sta) const
 	{
 		return m_vstaFields[i] == sta;
 	}
 
-	void InsertField(int i, StrAnsi sta)
+	void InsertField(int i, std::string sta)
 	{
-		Assert(i <= m_vstaFields.Size());
+		Assert(i <= m_vstaFields.size());
 		m_vstaFields.Insert(i, sta);
 	}
 	void DeleteField(int i)
 	{
-		Assert(i < m_vstaFields.Size());
+		Assert(i < m_vstaFields.size());
 		m_vstaFields.Delete(i);
 	}
 
-	StrAnsi FullString() const
+	std::string FullString() const
 	{
-		StrAnsi staRet = m_vstaFields[0];
+		std::string staRet = m_vstaFields[0];
 		for (int i = 1; i < m_vstaFields.Size(); i++)
 		{
 			staRet += ".";
@@ -472,7 +472,7 @@ public:
 
 protected:
 	//	Instance variables:
-	mutable Vector<StrAnsi>	m_vstaFields;	// mutable because the Vector methods are not const
+	mutable Vector<std::string>	m_vstaFields;	// mutable because the Vector methods are not const
 };
 
 

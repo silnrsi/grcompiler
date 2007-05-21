@@ -140,12 +140,12 @@ int GrcManager::NumJustLevels()
 ----------------------------------------------------------------------------------------------*/
 GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, StrAnsi staTableName)
 {
-	Symbol psymTable = SymbolTable()->FindSymbol(staTableName);
+	Symbol psymTable = SymbolTable()->FindSymbol(std::string(staTableName.Chars()));
 	if (!psymTable || !psymTable->FitsSymbolType(ksymtTable))
 	{
 		g_errorList.AddError(1181, NULL,
 			"Invalid table name: ",
-			staTableName,
+			std::string(staTableName.Chars()),
 			lnf);
 		return PushGeneralEnv(lnf);	// just push a copy of current env
 	}
@@ -239,9 +239,9 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
 	{
 		g_errorList.AddError(1183, NULL,
 			"End",
-			staStmt,
+			std::string(staStmt.Chars()),
 			" encountered without balancing ",
-			staStmt,
+			std::string(staStmt.Chars()),
 			" statement",
 			lnf);
 		return m_venv.Top();
@@ -269,12 +269,12 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
 ----------------------------------------------------------------------------------------------*/
 GdlGlyphClassDefn * GrcManager::AddGlyphClass(GrpLineAndFile const& lnf, StrAnsi staClassName)
 {
-	GrcStructName xns(staClassName);
+	GrcStructName xns(std::string(staClassName.Chars()));
 	Symbol psymClass = m_psymtbl->AddClassSymbol(xns, lnf);
 	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn*>(psymClass->Data());
 	Assert(pglfc);
 	m_prndr->AddGlyphClass(pglfc);
-	pglfc->SetName(staClassName);
+	pglfc->SetName(std::string(staClassName.Chars()));
 	return pglfc;
 }
 
@@ -287,7 +287,7 @@ GdlGlyphClassDefn * GrcManager::AddAnonymousClass(GrpLineAndFile const& lnf)
 	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn*>(psymClass->Data());
 	Assert(pglfc);
 	m_prndr->AddGlyphClass(pglfc);
-	pglfc->SetName(psymClass->FieldAt(0));
+	pglfc->SetName(std::string(psymClass->FieldAt(0)));
 	return pglfc;
 }
 

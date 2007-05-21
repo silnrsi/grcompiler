@@ -208,7 +208,7 @@ bool GdlSlotRefExpression::ReplaceAliases(GdlRule * prule)
 		{
 			g_errorList.AddError(1101, this,
 				"Undefined slot alias: ",
-				m_staName);
+				std::string(m_staName.Chars()));
 			m_srNumber = 0;
 			return false;
 		}
@@ -294,7 +294,7 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 		{
 			g_errorList.AddError(1102, this,
 				"Undefined slot alias: ",
-				m_staName);
+				std::string(m_staName.Chars()));
 			return false;
 		}
 	}
@@ -312,7 +312,7 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 		else
 			g_errorList.AddError(1103, this,
 				"Optional item referenced: ",
-				m_staName);
+				std::string(m_staName.Chars()));
 		return false;
 	}
 
@@ -941,7 +941,7 @@ void GdlNumericExpression::GlyphAttrCheck()
 void GdlSlotRefExpression::GlyphAttrCheck()
 {
 	g_errorList.AddError(2112, this,
-		StrAnsi("Slot references are not permitted in glyph attribute values"));
+		"Slot references are not permitted in glyph attribute values");
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1144,7 +1144,7 @@ GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 		return this;
 	}
 
-	GdlFeatureSetting * pfset = pfeat->FindSetting(m_psymName->LastField());
+	GdlFeatureSetting * pfset = pfeat->FindSetting(std::string(m_psymName->LastField()));
 	if (!pfset)
 	{
 		g_errorList.AddError(2114, this,
@@ -1216,7 +1216,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	{
 		g_errorList.AddError(2116, this,
 			"Inappropriate value of feature setting: ",
-			m_staValue);
+			std::string(m_staValue.Chars()));
 	}
 	return this;
 }
@@ -2296,7 +2296,7 @@ bool GdlStringExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 	//	have been converted to integers.
 	g_errorList.AddError(2146, this,
 		"Illegal expression: ",
-		m_staValue);
+		std::string(m_staValue.Chars()));
 
 	return false;
 }
@@ -2650,11 +2650,11 @@ void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & v
 	m_pexpOperand->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, pnValue);
 
-	StrAnsi staOp = m_psymOperator->FullName();
+	std::string staOp = m_psymOperator->FullName();
 
-	if (staOp == "!")
+	if (strcmp(staOp.c_str(), "!") == 0)
 		vbOutput.Push(kopNot);
-	else if (staOp == "-")
+	else if (strcmp(staOp.c_str(), "-") == 0)
 		vbOutput.Push(kopNeg);
 	// eventually, perhaps add kopTrunc8 and kopTrunc16
 	else
@@ -2674,7 +2674,7 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 		iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, &nBogus);
 
-	StrAnsi staOp = m_psymOperator->FullName();
+	std::string staOp = m_psymOperator->FullName();
 
 	if (staOp == "+")
 		vbOutput.Push(kopAdd);

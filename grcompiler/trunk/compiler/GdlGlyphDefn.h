@@ -179,10 +179,10 @@ public:
 		Assert(m_glft == kglftPostscript);
 		return m_sta;
 	}
-	StrAnsi CodepointString()
+	std::string CodepointString()
 	{
 		Assert(m_glft == kglftCodepoint);
-		return m_sta;
+		return std::string(m_sta.Chars());
 	}
 	utf16 AssignedPseudo()
 	{
@@ -236,27 +236,27 @@ public:
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		Vector<GdlExpression *> & vpexpExtra);
 
-	static StrAnsi GlyphIDString(utf16 wGlyphID)
+	static std::string GlyphIDString(utf16 wGlyphID)
 	{
 		char rgch[20];
 		itoa(int(wGlyphID), rgch, 16);
-		StrAnsi sta(rgch);
-		StrAnsi staRet;
-		for (int ich = sta.Length(); ich < 4; ich++)
-			staRet += StrAnsi("0");
-		staRet += sta;
+		std::string staNum(rgch);
+		std::string staRet;
+		for (int ich = staNum.size(); ich < 4; ich++)
+			staRet += "0";
+		staRet += staNum;
 		return staRet;
 	}
 
-	static StrAnsi CodepointIDString(int n)
+	static std::string CodepointIDString(int n)
 	{
 		char rgch[20];
 		itoa(int(n), rgch, 16);
-		StrAnsi sta(rgch);
-		StrAnsi staRet;
-		for (int ich = sta.Length(); ich < 4; ich++)
-			staRet += StrAnsi("0");
-		staRet += sta;
+		std::string staNum(rgch);
+		std::string staRet;
+		for (int ich = staNum.size(); ich < 4; ich++)
+			staRet += "0";
+		staRet += staNum;
 		return staRet;
 	}
 

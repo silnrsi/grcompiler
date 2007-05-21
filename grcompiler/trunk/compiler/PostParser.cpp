@@ -116,7 +116,7 @@ void GdlRule::ReplaceAliases()
 					itoa(m_vpalias[ipalias]->m_srIndex, rgch, 10);
 					g_errorList.AddWarning(1510, this,
 						"Item ",
-						StrAnsi(rgch),
+						rgch,
 						" was assigned more than one slot alias");
 				}
 			}
@@ -125,7 +125,7 @@ void GdlRule::ReplaceAliases()
 			{
 				g_errorList.AddError(1173, this,
 					"Slot alias '",
-					m_vpalias[ipalias]->m_staName,
+					std::string(m_vpalias[ipalias]->m_staName.Chars()),
 					"' was assigned to more than one item");
 			}
 		}

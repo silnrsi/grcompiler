@@ -143,8 +143,8 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 		else if (setnUnicode.IsMember(nUnicode))
 		{
 			//	Duplicate pseudo mapping.
-			g_errorList.AddError(4103, pglfPseudo,
-				StrAnsi("Duplicate Unicode input -> pseudo assignment."));
+			g_errorList.AddError(4103, pglfPseudo, pglfPseudo->CodepointString(),
+				"Duplicate Unicode input -> pseudo assignment.");
 		}
 		else
 		{
@@ -478,13 +478,13 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 			{
 				g_errorList.AddWarning(4502, this,
 					"Invalid postscript name: ",
-					m_sta, "; definition will be ignored");
+					std::string(m_sta.Chars()), "; definition will be ignored");
 				m_vwGlyphIDs.Push(kBadGlyph);
 			}
 			else
 				g_errorList.AddError(4110, this,
 					"Invalid postscript name: ",
-					m_sta);
+					std::string(m_sta.Chars()));
 		}
 		else
 			m_vwGlyphIDs.Push(wGlyphID);
@@ -520,7 +520,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 								" (ie, codepoint '",
 								rgchCdPt,
 								"' in codepage ",
-								rgchCdPg,
+								std::string(rgchCdPg),
 								") not present in cmap; definition will be ignored");
 							m_vwGlyphIDs.Push(kBadGlyph);
 						}
@@ -531,7 +531,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 								" (ie, codepoint '",
 								rgchCdPt,
 								"' in codepage ",
-								rgchCdPg,
+								std::string(rgchCdPg),
 								") not present in cmap");
 					}
 					else
@@ -543,7 +543,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 		{
 			if (m_nFirst > m_nLast)
 				g_errorList.AddError(4113, this,
-					StrAnsi("Invalid codepoint range"));
+					"Invalid codepoint range");
 
 			utf16 wFirst = (utf16)m_nFirst;
 			utf16 wLast = (utf16)m_nLast;
@@ -905,7 +905,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				char rgchLev[20];
 				itoa(nLevel, rgchLev, 10);
 				//GrcStructName xnsJAttr("justify", rgchLev, vstaJAttr[istaJAttr]);
-				GrcStructName xnsJAttr("justify", vstaJAttr[istaJAttr]);
+				GrcStructName xnsJAttr("justify", std::string(vstaJAttr[istaJAttr].Chars()));
 
 				Symbol psymJAttr = FindSymbol(xnsJAttr);
 				int id = AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymJAttr);
@@ -996,7 +996,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				psym->SetInternalID(psymGeneric->InternalID());
 
 				//	Is this an attribute that might need to be converted to gpoint?
-				int iv = psym->FieldIndex(StrAnsi("gpath"));
+				int iv = psym->FieldIndex("gpath");
 				iv = (iv == -1) ? psym->FieldIndex("x") : iv;
 				iv = (iv == -1) ? psym->FieldIndex("y") : iv;
 				if (iv > -1)
@@ -1010,7 +1010,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 					GrcStructName xns;
 					psym->GetStructuredName(&xns);
 					xns.DeleteField(iv);
-					xns.InsertField(iv, StrAnsi("gpoint"));
+					xns.InsertField(iv, "gpoint");
 					Symbol psymGPoint =
 						psymtblMain->AddGlyphAttrSymbol(xns, psym->LineAndFile(), kexptNumber);
 					
@@ -1019,14 +1019,14 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 					AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGPointGeneric);
 					psymGPoint->SetInternalID(psymGPointGeneric->InternalID());
 				}
-				iv = psym->FieldIndex(StrAnsi("gpoint"));
+				iv = psym->FieldIndex("gpoint");
 				if (iv > -1)
 				{
 					//	We might need to convert gpoint to x/y.
 					GrcStructName xns;
 					psym->GetStructuredName(&xns);
 					xns.DeleteField(iv);
-					xns.InsertField(iv, StrAnsi("x"));
+					xns.InsertField(iv, "x");
 					Symbol psymX =
 						psymtblMain->AddGlyphAttrSymbol(xns, psym->LineAndFile(), kexptMeas);
 					
@@ -1036,7 +1036,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 					psymX->SetInternalID(psymXGeneric->InternalID());
 
 					xns.DeleteField(iv);
-					xns.InsertField(iv, StrAnsi("y"));
+					xns.InsertField(iv, "y");
 					Symbol psymY =
 						psymtblMain->AddGlyphAttrSymbol(xns, psym->LineAndFile(), kexptMeas);
 					
@@ -1242,7 +1242,7 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 			}
 
 			//	If this glyph is a ligature, add the given component to its list.
-			int ivComponent = psym->FieldIndex(StrAnsi("component"));
+			int ivComponent = psym->FieldIndex("component");
 			if (ivComponent > -1)
 			{
 				plclist->AddComponentFor(m_vwGlyphIDs[iwGlyphID],
@@ -1264,6 +1264,9 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 {
 	bool fIcuAvailable = false;
 	try {
+		int charType = u_charType(0x0020);
+		int charCat = UCharCategory(u_charType(0x0020));
+		int charDir = u_charDirection(0x0020);
 		if (UCharCategory(u_charType(0x0020)) == U_SPACE_SEPARATOR
 			&& u_charDirection(0x0020) == U_WHITE_SPACE_NEUTRAL)
 		{
@@ -1466,7 +1469,7 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 	{
 		g_errorList.AddWarning(4510, NULL,
 			"Default Unicode bidi char type for 0x",
-			GdlGlyphDefn::GlyphIDString(wUnicode), " = ", staCode,
+			GdlGlyphDefn::GlyphIDString(wUnicode), " = ", std::string(staCode.Chars()),
 			", which is not handled; char will be treated as neutral (ON)");
 	}
 	// otherwise the issue is irrelevant; don't bother with the warning
@@ -1817,7 +1820,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 		if (psymInput &&
 			(psymInput->FitsSymbolType(ksymtClass) ||
 				psymInput->FitsSymbolType(ksymtSpecialLb)) &&
-			!psymInput->LastFieldIs(GdlGlyphClassDefn::Undefined()))
+				!psymInput->LastFieldIs(StrAnsi(GdlGlyphClassDefn::Undefined().c_str())))
 		{
 			GdlGlyphClassDefn * pglfc = psymInput->GlyphClassDefnData();
 			Assert(pglfc);
@@ -2335,9 +2338,9 @@ void GdlGlyphDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 			(!fGpoint && !pgax->Defined(wGlyphID, nGlyphAttrID)))
 		{
 			g_errorList.AddError(4138, pgdlAvsOrExp,
-				StrAnsi("Glyph attribute '"),
+				"Glyph attribute '",
 				psymGlyphAttr->FullName(),
-				StrAnsi("' is not defined for glyph 0x"),
+				"' is not defined for glyph 0x",
 				GlyphIDString(wGlyphID));
 		}
 	}
