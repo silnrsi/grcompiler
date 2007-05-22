@@ -59,7 +59,7 @@ public:
 	//	Getters and setters:
 	int PreProcessedLine() const	{ return m_nLinePre; };
 	int OriginalLine() const		{ return m_nLineOrig; }
-	StrAnsi File() const			{ return m_staFile; }
+	std::string File() const		{ return m_staFile; }
 
 	void SetOriginalLine(int n)		{ m_nLineOrig = n; }
 	void SetPreProcessedLine(int n)	{ m_nLinePre = n; }
@@ -95,20 +95,20 @@ public:
 
 	void WriteToStream(std::ostream & strmOut, bool fNoPath)
 	{
-		int ich = m_staFile.Length();
+		int ich = m_staFile.length();
 		// Strip off the file path.
 		while (fNoPath && ich > 0 && m_staFile[ich - 1] != '\\')
 			ich--;
 
-		StrAnsi staStripped = m_staFile.Right(m_staFile.Length() - ich);
-		strmOut << staStripped.Chars() << "(" << m_nLineOrig << ")";
+		std::string staStripped = m_staFile.substr(ich, m_staFile.length() - ich);
+		strmOut << staStripped << "(" << m_nLineOrig << ")";
 	}
 
 protected:
 	//	instance variables:
 	int m_nLinePre;			// line in pre-processed file
 	int	m_nLineOrig;		// actual line in original file
-	StrAnsi m_staFile;		// original file name
+	std::string m_staFile;		// original file name
 
 public:
 	//	for test procedures:
