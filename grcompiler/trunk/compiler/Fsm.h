@@ -76,7 +76,7 @@ protected:
 	SourceClassSet m_scs;	// source-class-set corresponding to this machine-class
 	Vector<utf16> m_wGlyphs;
 	int m_ifsmcColumn;	// column this machine class is assigned to
-	StrAnsi staDebug;
+	std::string staDebug;
 
 };
 

@@ -47,7 +47,7 @@ public:
 	void GetGlyphsFromCmap(utf16 * rgchwUniToGlyphID);
 	unsigned int UnicodeFromCodePage(utf16 wCodePage, utf16 wCodePoint, GdlObject * pgdlobj);
 	utf16 GlyphFromCmap(unsigned int nUnicode, GdlObject * pgdlobj);
-	utf16 GlyphFromPostscript(StrAnsi staPostscriptName, GdlObject * pgdlobj, bool fError);
+	utf16 GlyphFromPostscript(std::string staPostscriptName, GdlObject * pgdlobj, bool fError);
 
 	int ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * pgdlobj);
 

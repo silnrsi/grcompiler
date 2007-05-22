@@ -478,13 +478,13 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 			{
 				g_errorList.AddWarning(4502, this,
 					"Invalid postscript name: ",
-					std::string(m_sta.Chars()), "; definition will be ignored");
+					m_sta, "; definition will be ignored");
 				m_vwGlyphIDs.Push(kBadGlyph);
 			}
 			else
 				g_errorList.AddError(4110, this,
 					"Invalid postscript name: ",
-					std::string(m_sta.Chars()));
+					m_sta);
 		}
 		else
 			m_vwGlyphIDs.Push(wGlyphID);
@@ -495,10 +495,10 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 		itoa(m_wCodePage, rgchCdPg, 10);
 		if (m_nFirst == 0 && m_nLast == 0)
 		{
-			for (int ich = 0; ich < m_sta.Length(); ich++)
+			for (size_t ich = 0; ich < m_sta.length(); ich++)
 			{
 				char rgchCdPt[2] = {0,0};
-				rgchCdPt[0] = m_sta.GetAt(ich);
+				rgchCdPt[0] = m_sta[ich];
 				nUnicode = pfont->UnicodeFromCodePage(m_wCodePage, m_sta[ich], this);
 				if (nUnicode == 0)
 					g_errorList.AddError(4111, this,
