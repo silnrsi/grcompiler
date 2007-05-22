@@ -510,7 +510,7 @@ class GdlStringExpression : public GdlSimpleExpression
 
 public:
 	//	Constructors & destructors:
-	GdlStringExpression(StrAnsi sta, int nCodepage)
+	GdlStringExpression(std::string sta, int nCodepage)
 		:	GdlSimpleExpression(),
 			m_staValue(sta),
 			m_nCodepage(nCodepage)
@@ -576,8 +576,8 @@ public:
 
 protected:
 	//	Instance variables:
-	StrAnsi	m_staValue;
-	int		m_nCodepage;
+	std::string m_staValue;
+	int m_nCodepage;
 };
 
 /*----------------------------------------------------------------------------------------------
@@ -924,13 +924,13 @@ public:
 			m_pexpSelector = NULL;
 	}
 
-	GdlLookupExpression(Symbol psymName, StrAnsi staSel, int nClus)
+	GdlLookupExpression(Symbol psymName, std::string staSel, int nClus)
 		:	GdlExpression(),
 			m_psymName(psymName),
 			m_nClusterLevel(nClus),
 			m_pexpSimplified(NULL)
 	{
-		m_pexpSelector = new GdlSlotRefExpression(std::string(staSel.Chars()));
+		m_pexpSelector = new GdlSlotRefExpression(staSel);
 		m_pexpSelector->PropagateLineAndFile(m_lnf);
 	}
 
@@ -953,13 +953,13 @@ public:
 		m_pexpSelector->PropagateLineAndFile(m_lnf);
 	}
 
-	GdlLookupExpression(Symbol psymName, StrAnsi staSel)
+	GdlLookupExpression(Symbol psymName, std::string staSel)
 		:	GdlExpression(),
 			m_psymName(psymName),
 			m_nClusterLevel(0),
 			m_pexpSimplified(NULL)
 	{
-		m_pexpSelector = new GdlSlotRefExpression(std::string(staSel.Chars()));
+		m_pexpSelector = new GdlSlotRefExpression(staSel);
 		m_pexpSelector->PropagateLineAndFile(m_lnf);
 	}
 

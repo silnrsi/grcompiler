@@ -112,7 +112,7 @@ public:
 
 	GdlRuleTable * RuleTable(GrpLineAndFile & lnf)
 	{
-		return m_prndr->GetRuleTable(lnf, StrAnsi(Table()->FieldAt(0).c_str()));
+		return m_prndr->GetRuleTable(lnf, Table()->FieldAt(0));
 	}
 
 	bool OutputDebugFiles()				{ return m_fOutputDebugFiles; }
@@ -176,8 +176,8 @@ protected:
 		GdlRule * prule, int * pirit, int lrc, bool fHasLhs);
 	void ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass * ppass,
 		GdlRule * prule, int * pirit, int lrc, bool fHasLhs);
-	StrAnsi ProcessClassList(RefAST ast, RefAST * pastNext);
-	StrAnsi ProcessAnonymousClass(RefAST ast, RefAST * pastNext);
+	std::string ProcessClassList(RefAST ast, RefAST * pastNext);
+	std::string ProcessAnonymousClass(RefAST ast, RefAST * pastNext);
 	void ProcessSlotIndicator(RefAST ast, GdlAlias * palias);
 	void ProcessAssociations(RefAST ast, GdlRuleTable * prultbl, GdlRuleItem * prit, int lrc);
 
@@ -187,14 +187,14 @@ protected:
 	Symbol IdentifierSymbol(RefAST ast, Vector<std::string> & vsta);
 	bool ClassPredefGlyphAttr(Vector<std::string> & vsta, ExpressionType * pexpt, SymbolType * psymt);
 public:	// so they can be called by the test procedures
-	GrcEnv * PushTableEnv(GrpLineAndFile &, StrAnsi staTableName);
+	GrcEnv * PushTableEnv(GrpLineAndFile &, std::string staTableName);
 	GrcEnv * PushPassEnv(GrpLineAndFile &, int nPass);
 	GrcEnv * PushGeneralEnv(GrpLineAndFile &);
-	GrcEnv * PopEnv(GrpLineAndFile &, StrAnsi staStmt);
+	GrcEnv * PopEnv(GrpLineAndFile &, std::string staStmt);
 protected:
 	GrcEnv * PushEnvAux();
 public:	// so they can be called by the test procedures
-	GdlGlyphClassDefn * AddGlyphClass(GrpLineAndFile const&, StrAnsi staClassName);
+	GdlGlyphClassDefn * AddGlyphClass(GrpLineAndFile const&, std::string staClassName);
 	GdlGlyphClassDefn * AddAnonymousClass(GrpLineAndFile const&);
 protected:
 	void AddGlyphToClass(GdlGlyphClassDefn * pglfc, GdlGlyphClassMember * pglfd);

@@ -252,7 +252,7 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 	schar * pchMsgLim;
 
 	int nLineNo;
-	StrAnsi staMsg;
+	//std::string staMsg;
 	GrpLineAndFile lnf;
 	lnf.SetPreProcessedLine(0);
 
@@ -684,8 +684,8 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 				return;
 			}
 			
-			StrAnsi sta = astValue->getText().c_str();
-			int cb = sta.Length();
+			std::string sta = astValue->getText();
+			int cb = sta.length();
 			if (cb > 4)
 			{
 				g_errorList.AddError(1131, NULL,
@@ -973,7 +973,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 {
 	Assert(ast->getType() == OP_EQ || ast->getType() == OP_PLUSEQUAL);
 
-	Vector<StrAnsi> vsta;
+	Vector<std::string> vsta;
 	GdlGlyphClassDefn * pglfc;
 	std::string staClassName = ast->getFirstChild()->getText();
 	Symbol psymClass = SymbolTable()->FindSymbol(staClassName);
@@ -1523,7 +1523,7 @@ GdlGlyphDefn * GrcManager::ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCo
 
 	int n1, n2;
 	utf16 w1;
-	StrAnsi sta;
+	std::string sta;
 	utf16 wCodePage = (utf16)nCodePage;
 
 	GdlGlyphDefn * pglfRet;
@@ -1574,7 +1574,7 @@ GdlGlyphDefn * GrcManager::ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCo
 		break;
 
 	case LIT_STRING:
-		sta = astGlyph->getText().c_str();
+		sta = astGlyph->getText();
 		pglfRet = (nCodePage == -1) ?
 			new GdlGlyphDefn(glft, sta) :
 			new GdlGlyphDefn(glft, sta, wCodePage);
@@ -1780,7 +1780,7 @@ void GrcManager::WalkLanguageItem(RefAST ast, GdlLangClass * plcls)
 		Assert(astItem->getType() == OP_EQ);
 
 		RefAST astLhs = astItem->getFirstChild();
-		StrAnsi staLhs = astLhs->getText().c_str();
+		std::string staLhs = astLhs->getText();
 		if (staLhs == "language" || staLhs == "languages")
 		{
 			if (plcls->m_vplang.Size() > 0)
@@ -1796,11 +1796,11 @@ void GrcManager::WalkLanguageItem(RefAST ast, GdlLangClass * plcls)
 		else // feature setting
 		{
 			RefAST astValue = astLhs->getNextSibling();
-			StrAnsi staValue = astValue->getText().c_str();
+			std::string staValue = astValue->getText();
 			GdlExpression * pexpVal = NULL;
 			if (astValue->getType() != IDENT)
 				pexpVal = WalkExpressionTree(astValue);
-			plcls->AddFeatureValue(std::string(staLhs.Chars()), std::string(staValue.Chars()), pexpVal, LineAndFile(astValue));
+			plcls->AddFeatureValue(staLhs, staValue, pexpVal, LineAndFile(astValue));
 		}
 
 		astItem = astItem->getNextSibling();
@@ -2285,7 +2285,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 	bool fAssocs = false;
 	GdlAlias aliasSel;
 	std::string staAlias;
-	StrAnsi staClass;
+	std::string staClass;
 	GdlRuleItem * prit;
 
 	if (astNext->getType() == OP_AT)
@@ -2333,7 +2333,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 			astClass->getType() == OP_HASH ||
 			astClass->getType() == OP_UNDER)
 		{
-			staClass = astClass->getText().c_str();
+			staClass = astClass->getText();
 			astNext = astClass->getNextSibling();
 		}
 		else
@@ -2377,33 +2377,33 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 		if (fSel)
 		{
 			prit = (aliasSel.Index() == -1) ?
-				prule->ContextSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Name(), staAlias) :
-				prule->ContextSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Index(), staAlias);
+				prule->ContextSelectorItemAt(lnf, *pirit, staClass, aliasSel.Name(), staAlias) :
+				prule->ContextSelectorItemAt(lnf, *pirit, staClass, aliasSel.Index(), staAlias);
 		}
 		else
-			prit = prule->ContextItemAt(lnf, *pirit, std::string(staClass.Chars()), staAlias);
+			prit = prule->ContextItemAt(lnf, *pirit, staClass, staAlias);
 		break;
 
 	case 1:	// rhs
 		if (fSel)
 		{
 			prit = (aliasSel.Index() == -1) ?
-				prule->RhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Name(), staAlias) :
-				prule->RhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Index(), staAlias);
+				prule->RhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Name(), staAlias) :
+				prule->RhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Index(), staAlias);
 		}
 		else
-			prit = prule->RhsItemAt(lnf, *pirit, std::string(staClass.Chars()), staAlias, fMakeSubItems);
+			prit = prule->RhsItemAt(lnf, *pirit, staClass, staAlias, fMakeSubItems);
 		break;
 
 	case 2:	// lhs
 		if (fSel)
 		{
 			prit = (aliasSel.Index() == -1) ?
-				prule->LhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Name(), staAlias) :
-				prule->LhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Index(), staAlias);
+				prule->LhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Name(), staAlias) :
+				prule->LhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Index(), staAlias);
 		}
 		else
-			prit = prule->LhsItemAt(lnf, *pirit, std::string(staClass.Chars()), staAlias);
+			prit = prule->LhsItemAt(lnf, *pirit, staClass, staAlias);
 		break;
 
 	default:
@@ -2458,14 +2458,14 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 /*----------------------------------------------------------------------------------------------
 	Create a new class corresponding to an anonymous class in a rule. Return its name.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
+std::string GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
 {
 	if (ast->getType() == IDENT)
 	{
 		*pastNext = ast->getNextSibling();
 		//	If only one class in the list, just return its name.
 		if (!*pastNext)
-			return ast->getText().c_str();
+			return ast->getText();
 		int nextNodeTyp = ast->getNextSibling()->getType();
 		if (nextNodeTyp != IDENT && nextNodeTyp != LITERAL_glyphid &&
 			nextNodeTyp != LITERAL_unicode && nextNodeTyp != LITERAL_codepoint &&
@@ -2496,13 +2496,13 @@ StrAnsi GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
 	}
 	*pastNext = astGlyph;
 
-	return StrAnsi(staClassName.c_str());
+	return staClassName;
 }
 
 /*----------------------------------------------------------------------------------------------
 	Create a new class corresponding to an anonymous class in a rule. Return its name.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
+std::string GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
 {
 	Symbol psymClass = SymbolTable()->AddAnonymousClassSymbol(LineAndFile(ast));
 
@@ -2525,7 +2525,7 @@ StrAnsi GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
 	}
 	*pastNext = astGlyph;
 
-	return StrAnsi(staClassName.c_str());
+	return staClassName;
 }
 
 
@@ -2586,7 +2586,7 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 				GdlAlias aliasAssoc;
 				ProcessSlotIndicator(astAssoc, &aliasAssoc);
 				(aliasAssoc.Index() == -1)?
-					pritsub->AddAssociation(lnf, StrAnsi(aliasAssoc.Name().c_str())) :
+					pritsub->AddAssociation(lnf, aliasAssoc.Name()) :
 					pritsub->AddAssociation(lnf, aliasAssoc.Index());
 				astAssoc = astAssoc->getNextSibling();
 			}

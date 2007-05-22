@@ -157,9 +157,9 @@ public:
 	GdlGlyphClassMember * AddGlyphToClass(GrpLineAndFile const& lnf,
 		GlyphType glft, int nFirst, int nLast, utf16 wCodePage);
 	GdlGlyphClassMember * AddGlyphToClass(GrpLineAndFile const& lnf,
-		GlyphType glft, StrAnsi staPostscript);
+		GlyphType glft, std::string staPostscript);
 	GdlGlyphClassMember * AddGlyphToClass(GrpLineAndFile const& lnf,
-		GlyphType glft, StrAnsi staCodepoints, utf16 wCodePage);
+		GlyphType glft, std::string staCodepoints, utf16 wCodePage);
 	GdlGlyphClassMember * AddGlyphToClass(GrpLineAndFile const& lnf,
 		GlyphType glft, GdlGlyphDefn * pglfOutput, utf16 nPseudoInput);
 	GdlGlyphClassMember * AddGlyphToClass(GrpLineAndFile const& lnf,

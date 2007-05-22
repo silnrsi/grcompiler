@@ -76,7 +76,7 @@ public:
 	}
 
 	//	postscript("Ccedilla")
-	GdlGlyphDefn(GlyphType glft, StrAnsi sta)
+	GdlGlyphDefn(GlyphType glft, std::string sta)
 		:	m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
@@ -90,7 +90,7 @@ public:
 	}
 
 	//	codepoint("abc", 0x04e4)
-	GdlGlyphDefn(GlyphType glft, StrAnsi sta, utf16 wCodePage)
+	GdlGlyphDefn(GlyphType glft, std::string sta, utf16 wCodePage)
 		:	m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),

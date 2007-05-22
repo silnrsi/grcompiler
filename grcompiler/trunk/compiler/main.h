@@ -102,7 +102,7 @@ extern GrcManager g_cman;
 #include "GdlObject.h"
 #include "GrcErrorList.h"
 #include "GrcBinaryStream.h"
-#include "StrAnsiHash.h"
+////#include "StrAnsiHash.h"
 #include "GrcSymTable.h"
 #include "TtfUtil.h" //must occur before GrcFont.h
 #include "Tt.h"

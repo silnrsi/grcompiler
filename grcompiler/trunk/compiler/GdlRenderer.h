@@ -103,8 +103,8 @@ public:
 	}
 
 	//	Parser:
-	GdlRuleTable * GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableName);
-	GdlRuleTable * FindRuleTable(StrAnsi staTableName);
+	GdlRuleTable * GetRuleTable(GrpLineAndFile & lnf, std::string staTableName);
+	GdlRuleTable * FindRuleTable(std::string staTableName);
 	GdlRuleTable * FindRuleTable(Symbol psymTableName);
 
 	//	Post-parser:
@@ -236,10 +236,10 @@ class GdlStdStyle : public GdlObject
 {
 protected:
 	//	instance variables:
-	int		m_stvSetting;	// feature setting value (which also is this item's index
-							// in the m_rgsty array)
-	int		m_nInternalID;	// the index into the array of glyph attr values
-	StrAnsi	m_staFontName;	// name of the font
+	int m_stvSetting;	// feature setting value (which also is this item's index
+						// in the m_rgsty array)
+	int	m_nInternalID;	// the index into the array of glyph attr values
+	std::string	m_staFontName;	// name of the font
 };
 
 
