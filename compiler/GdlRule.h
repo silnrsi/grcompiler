@@ -213,7 +213,7 @@ public:
 
 	//	Parser:
 	virtual void AddAssociation(GrpLineAndFile &, int n);
-	virtual void AddAssociation(GrpLineAndFile &, StrAnsi sta);
+	virtual void AddAssociation(GrpLineAndFile &, std::string sta);
 	virtual void AddAttrValueSpec(GdlAttrValueSpec * pavs)
 	{
 		Assert(false);	// should have been converted to an GdlSetAttrItem
@@ -226,7 +226,7 @@ public:
 		pexp->PropagateLineAndFile(LineAndFile());
 	}
 
-	void SetSlotName(StrAnsi sta)
+	void SetSlotName(std::string sta)
 	{
 		m_staAlias = sta;
 	}
@@ -303,7 +303,7 @@ protected:
 	GdlExpression * m_pexpConstraint;
 
 	//	for parser use:
-	StrAnsi m_staAlias;
+	std::string m_staAlias;
 	int m_iritContextPosOrig;	// original--not adjusted for optional items (0-based) or
 								// inserted ANY's--for error messages
 
@@ -566,7 +566,7 @@ protected:
 	//	Parser:
 public:
 	virtual void AddAssociation(GrpLineAndFile &, int n);
-	virtual void AddAssociation(GrpLineAndFile &, StrAnsi sta);
+	virtual void AddAssociation(GrpLineAndFile &, std::string sta);
 
 	//	Post-parser:
 protected:

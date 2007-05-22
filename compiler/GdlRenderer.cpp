@@ -128,7 +128,7 @@ bool GdlRenderer::AddLanguage(GdlLanguageDefn * plang)
 	Return the rule table with the given name; create it if it does not exist. Assumes that
 	the name is a valid one for tables, but not necessarily for rule tables.
 ----------------------------------------------------------------------------------------------*/
-GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableName)
+GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, std::string staTableName)
 {
 	GdlRuleTable * prultbl = FindRuleTable(staTableName);
 
@@ -137,13 +137,13 @@ GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableN
 
 	//	Create a new one, if permissible.
 
-	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(std::string(staTableName.Chars()));
+	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(staTableName);
 	Assert(psymTableName);
 	if (!psymTableName || !psymTableName->FitsSymbolType(ksymtTableRule))
 	{
 		g_errorList.AddError(2162, NULL,
 			"The ",
-			std::string(staTableName.Chars()),
+			staTableName,
 			" table cannot hold rules",
 			lnf);
 		return NULL;
@@ -160,9 +160,9 @@ GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, StrAnsi staTableN
 /*----------------------------------------------------------------------------------------------
 	Return the table with the given name, or NULL if it does not exist.
 ----------------------------------------------------------------------------------------------*/
-GdlRuleTable * GdlRenderer::FindRuleTable(StrAnsi staTableName)
+GdlRuleTable * GdlRenderer::FindRuleTable(std::string staTableName)
 {
-	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(std::string(staTableName.Chars()));
+	Symbol psymTableName = g_cman.SymbolTable()->FindSymbol(staTableName);
 	if (!psymTableName)
 		return NULL;
 

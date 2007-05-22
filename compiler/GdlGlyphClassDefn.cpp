@@ -89,7 +89,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 }
 
 GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& lnf,
-	GlyphType glft, StrAnsi staPostscript)
+	GlyphType glft, std::string staPostscript)
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, staPostscript);
 	pglf->SetLineAndFile(lnf);
@@ -98,7 +98,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 }
 
 GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& lnf,
-	GlyphType glft, StrAnsi staCodepoints, utf16 wCodePage)
+	GlyphType glft, std::string staCodepoints, utf16 wCodePage)
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, staCodepoints, wCodePage);
 	pglf->SetLineAndFile(lnf);

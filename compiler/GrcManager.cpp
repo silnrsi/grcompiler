@@ -138,14 +138,14 @@ int GrcManager::NumJustLevels()
 	Push a new environment corresponding to a table statement. Records an error if the
 	string is not a valid table name.
 ----------------------------------------------------------------------------------------------*/
-GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, StrAnsi staTableName)
+GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, std::string staTableName)
 {
-	Symbol psymTable = SymbolTable()->FindSymbol(std::string(staTableName.Chars()));
+	Symbol psymTable = SymbolTable()->FindSymbol(staTableName);
 	if (!psymTable || !psymTable->FitsSymbolType(ksymtTable))
 	{
 		g_errorList.AddError(1181, NULL,
 			"Invalid table name: ",
-			std::string(staTableName.Chars()),
+			staTableName,
 			lnf);
 		return PushGeneralEnv(lnf);	// just push a copy of current env
 	}
@@ -231,7 +231,7 @@ GrcEnv * GrcManager::PushEnvAux()
 		nLine			- line number
 		staStmt			- for error message: "table", "pass", "environment"
 ----------------------------------------------------------------------------------------------*/
-GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
+GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, std::string staStmt)
 {
 	//	There should never be less than one environment on the stack, since the recipient
 	//	is initialized with one.
@@ -239,9 +239,9 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
 	{
 		g_errorList.AddError(1183, NULL,
 			"End",
-			std::string(staStmt.Chars()),
+			staStmt,
 			" encountered without balancing ",
-			std::string(staStmt.Chars()),
+			staStmt,
 			" statement",
 			lnf);
 		return m_venv.Top();
@@ -267,14 +267,14 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, StrAnsi staStmt)
 /*----------------------------------------------------------------------------------------------
 	Add a class with the given name.
 ----------------------------------------------------------------------------------------------*/
-GdlGlyphClassDefn * GrcManager::AddGlyphClass(GrpLineAndFile const& lnf, StrAnsi staClassName)
+GdlGlyphClassDefn * GrcManager::AddGlyphClass(GrpLineAndFile const& lnf, std::string staClassName)
 {
-	GrcStructName xns(std::string(staClassName.Chars()));
+	GrcStructName xns(staClassName);
 	Symbol psymClass = m_psymtbl->AddClassSymbol(xns, lnf);
 	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn*>(psymClass->Data());
 	Assert(pglfc);
 	m_prndr->AddGlyphClass(pglfc);
-	pglfc->SetName(std::string(staClassName.Chars()));
+	pglfc->SetName(staClassName);
 	return pglfc;
 }
 

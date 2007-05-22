@@ -467,7 +467,7 @@ bool GdlExpression::ResolveToFeatureID(unsigned int * pnRet)
 /*--------------------------------------------------------------------------------------------*/
 bool GdlStringExpression::ResolveToFeatureID(unsigned int * pnRet)
 {
-	if (m_staValue.Length() > 4)
+	if (m_staValue.length() > 4)
 		return false;
 
 	union {
@@ -476,8 +476,8 @@ bool GdlStringExpression::ResolveToFeatureID(unsigned int * pnRet)
 	} featid;
 	// The way we do the assignments ensures the characters are left-aligned
 	// in the 4-byte integer (ie, occupying the most significant bytes).
-	for (int ich = 0; ich < 4; ich++)
-		featid.rgch[3-ich] = (ich < m_staValue.Length()) ? m_staValue[ich] : 0;
+	for (size_t ich = 0; ich < 4; ich++)
+		featid.rgch[3-ich] = (ich < m_staValue.length()) ? m_staValue[ich] : 0;
 	*pnRet = featid.n;
 	return true;
 }
@@ -1190,13 +1190,13 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	if (pfeat->IsLanguageFeature())
 	{
 		int nValue = 0;
-		int cb = m_staValue.Length();
-		if (m_staValue.Length() > 4)
+		int cb = m_staValue.length();
+		if (m_staValue.length() > 4)
 		{
 			g_errorList.AddError(2115, this,
 				"Invalid language ID--must be a 4-byte string");
 		}
-		else if (m_staValue.Length() < 4)
+		else if (m_staValue.length() < 4)
 		{
 			g_errorList.AddWarning(2520, this,
 				"Possibly invalid language ID--4-byte string expected");
@@ -1216,7 +1216,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	{
 		g_errorList.AddError(2116, this,
 			"Inappropriate value of feature setting: ",
-			std::string(m_staValue.Chars()));
+			m_staValue);
 	}
 	return this;
 }
@@ -2296,7 +2296,7 @@ bool GdlStringExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 	//	have been converted to integers.
 	g_errorList.AddError(2146, this,
 		"Illegal expression: ",
-		std::string(m_staValue.Chars()));
+		m_staValue);
 
 	return false;
 }
@@ -2420,8 +2420,8 @@ void GdlStringExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * p
 ----------------------------------------------------------------------------------------------*/
 StrUni GdlStringExpression::ConvertToUnicode()
 {
-	int cch = m_staValue.Length();
-	const schar * pchs = m_staValue.Chars();
+	int cch = m_staValue.length();
+	const schar * pchs = m_staValue.data();
 	utf16 * pchw = new utf16[cch];
 	Platform_8bitToUnicode(m_nCodepage, pchs, cch, pchw, cch);
 #ifdef GR_FW
@@ -3000,5 +3000,5 @@ void GdlSlotRefExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOu
 /*--------------------------------------------------------------------------------------------*/
 void GdlStringExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 {
-	strmOut << m_staValue.Chars();
+	strmOut << m_staValue;
 }

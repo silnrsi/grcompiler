@@ -487,7 +487,7 @@ void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, int n)
 		lnf);
 }
 
-void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, StrAnsi sta)
+void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, std::string sta)
 {
 	g_errorList.AddError(3149, NULL,
 		"Associations are only permitted in the rhs of a substitution rule",
@@ -501,9 +501,9 @@ void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, int n)
 	m_vpexpAssocs.Push(pexp);
 }
 
-void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, StrAnsi sta)
+void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, std::string sta)
 {
-	GdlSlotRefExpression * pexp = new GdlSlotRefExpression(std::string(sta.Chars()));
+	GdlSlotRefExpression * pexp = new GdlSlotRefExpression(sta);
 	pexp->SetLineAndFile(lnf);
 	m_vpexpAssocs.Push(pexp);
 }

@@ -28,16 +28,6 @@ class GrcErrorItem
 	friend class GrcErrorList;
 
 public:
-	GrcErrorItem(bool fFatal, int nID, GrpLineAndFile & lnf, StrAnsi staMsg, GdlObject * pgdlObj)
-		:	m_fFatal(fFatal),
-			m_nID(nID),
-			m_fMsgIncludesFatality(false),
-			m_lnf(lnf),
-			m_staMsg(std::string(staMsg.Chars())),
-			m_pgdlObject(pgdlObj)
-	{
-	}
-
 	GrcErrorItem(bool fFatal, int nID, GrpLineAndFile & lnf, std::string staMsg, GdlObject * pgdlObj)
 		:	m_fFatal(fFatal),
 			m_nID(nID),
@@ -95,180 +85,6 @@ public:
 		for (int i = 0; i < m_vperr.Size(); ++i)
 			delete m_vperr[i];
 	}
-
-/************
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, staMsg);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5, StrAnsi sta6,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5, StrAnsi sta6, StrAnsi sta7,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5, StrAnsi sta6, StrAnsi sta7, StrAnsi sta8,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(true, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
-	}
-
-
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg)
-	{
-		AddItem(true, nID, pgdlobj, NULL, staMsg);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5, StrAnsi sta6)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5, StrAnsi sta6, StrAnsi sta7)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
-	}
-	void AddError(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3, StrAnsi sta4,
-		StrAnsi sta5, StrAnsi sta6, StrAnsi sta7, StrAnsi sta8)
-	{
-		AddItem(true, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
-	}
-
-
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, GrpLineAndFile const& lnf)
-	{
-		AddItem(false,nID,  pgdlobj, &lnf, staMsg);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5, StrAnsi sta6,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5, StrAnsi sta6, StrAnsi sta7,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5, StrAnsi sta6, StrAnsi sta7, StrAnsi sta8,
-		GrpLineAndFile const& lnf)
-	{
-		AddItem(false, nID, pgdlobj, &lnf, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
-	}
-
-
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg)
-	{
-		AddItem(false, nID, pgdlobj, NULL, staMsg);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, NULL, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, NULL, NULL, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, NULL, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, NULL, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5, StrAnsi sta6)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, NULL, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5, StrAnsi sta6, StrAnsi sta7)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, NULL);
-	}
-	void AddWarning(int nID, GdlObject * pgdlobj, StrAnsi staMsg, StrAnsi sta2, StrAnsi sta3,
-		StrAnsi sta4, StrAnsi sta5, StrAnsi sta6, StrAnsi sta7, StrAnsi sta8)
-	{
-		AddItem(false, nID, pgdlobj, NULL, &staMsg, &sta2, &sta3, &sta4, &sta5, &sta6, &sta7, &sta8);
-	}
-
-
-	void AddItem(bool fFatal, int nID, GdlObject * pgdlobj, const GrpLineAndFile *, StrAnsi staMsg);
-	void AddItem(bool fFatal, int nID, GdlObject * pgdlobj, const GrpLineAndFile *,
-		StrAnsi * psta1, StrAnsi * psta2, StrAnsi * psta3, StrAnsi * psta4,
-		StrAnsi * psta5, StrAnsi * psta6, StrAnsi * psta7, StrAnsi * psta8);
-
-------------------*/
 
 	void AddError(int nID, GdlObject * pgdlobj, std::string staMsg, GrpLineAndFile const& lnf)
 	{
@@ -492,11 +308,6 @@ protected:
 
 public:
 	//	For test procedures:
-	bool test_ErrorIs(int iperr, StrAnsi staMsg)	// DELETE
-	{
-		test_ErrorIs(iperr, std::string(staMsg.Chars()));
-	}
-
 	bool test_ErrorIs(int iperr, std::string staMsg)
 	{
 		return (m_vperr[iperr]->m_staMsg == staMsg);
