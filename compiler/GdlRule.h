@@ -841,10 +841,10 @@ public:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	static void DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
 	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut);
-	static StrAnsi SlotAttributeDebugString(int slat);
-	static StrAnsi GlyphMetricDebugString(int gmet);
-	static StrAnsi EngineCodeDebugString(int op);
-	static StrAnsi ProcessStateDebugString(int pstat);
+	static std::string SlotAttributeDebugString(int slat);
+	static std::string GlyphMetricDebugString(int gmet);
+	static std::string EngineCodeDebugString(int op);
+	static std::string ProcessStateDebugString(int pstat);
 
 protected:
 	//	Instance variables:

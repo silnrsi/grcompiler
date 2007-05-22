@@ -890,7 +890,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 		//		etc.
 		//	(Actually, there is a series of "high-word" stretch values that come immediately
 		//	after stretch, which are used to hold bits 16-32 of any very large stretch values.)
-		Vector<StrAnsi> vstaJAttr;
+		Vector<std::string> vstaJAttr;
 		vstaJAttr.Push("stretch");
 		vstaJAttr.Push("stretchHW");	// high word, for large stretch values
 		vstaJAttr.Push("shrink");
@@ -904,8 +904,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			{
 				char rgchLev[20];
 				itoa(nLevel, rgchLev, 10);
-				//GrcStructName xnsJAttr("justify", rgchLev, vstaJAttr[istaJAttr]);
-				GrcStructName xnsJAttr("justify", std::string(vstaJAttr[istaJAttr].Chars()));
+				GrcStructName xnsJAttr("justify", rgchLev, vstaJAttr[istaJAttr]);
 
 				Symbol psymJAttr = FindSymbol(xnsJAttr);
 				int id = AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymJAttr);
@@ -1434,7 +1433,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 ----------------------------------------------------------------------------------------------*/
 DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 {
-	StrAnsi staCode;
+	std::string staCode;
 
 	switch (diricu)
 	{
@@ -1469,7 +1468,7 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 	{
 		g_errorList.AddWarning(4510, NULL,
 			"Default Unicode bidi char type for 0x",
-			GdlGlyphDefn::GlyphIDString(wUnicode), " = ", std::string(staCode.Chars()),
+			GdlGlyphDefn::GlyphIDString(wUnicode), " = ", staCode,
 			", which is not handled; char will be treated as neutral (ON)");
 	}
 	// otherwise the issue is irrelevant; don't bother with the warning

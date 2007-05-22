@@ -251,7 +251,7 @@ protected:
 	Vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;
 
 //	Vector<GdlGlyphAttrSetting*>	m_vpglfaComponents;
-//	Vector<StrAnsi>					m_vstaComponentNames;	// redundant with what is in components
+//	Vector<std::string>				m_vstaComponentNames;	// redundant with what is in components
 															// list, but more accessible
 //	GdlExpression *		m_pexpDirection;
 //	int					m_nDirStmtNo;

@@ -46,7 +46,7 @@ DEFINE_THIS_FILE
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterTable::AddItem(Symbol psym, GdlExpression * pexpValue,
 	int nPR, int munitPR, bool fOverride, GrpLineAndFile const& lnf,
-	StrAnsi staDescription)
+	std::string staDescription)
 {
 	Symbol psymBase = psym->BaseDefnForNonGeneric();
 
@@ -79,9 +79,9 @@ void GrcMasterTable::AddItem(Symbol psym, GdlExpression * pexpValue,
 //	}
 //	else
 //	{
-//		StrAnsi staT = (psym->FitsSymbolType(ksymtGlyphAttr)) ?
-//			StrAnsi("glyph attribute assignment") :
-//			StrAnsi("feature setting");
+//		std::string staT = (psym->FitsSymbolType(ksymtGlyphAttr)) ?
+//			"glyph attribute assignment" :
+//			"feature setting";
 //		g_errorList.AddWarning(2523, pexpValue,
 //			"Duplicate ", staT);
 //		
@@ -105,7 +105,7 @@ void GrcMasterTable::AddItem(Symbol psym, GdlExpression * pexpValue,
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterValueList::AddItem(Symbol psym, GdlExpression * pexpValue,
 	int nPR, int munitPR, bool fOverride, GrpLineAndFile const& lnf,
-	StrAnsi staDescription)
+	std::string staDescription)
 {
 	GdlAssignment * pasgn;
 	
@@ -124,7 +124,7 @@ void GrcMasterValueList::AddItem(Symbol psym, GdlExpression * pexpValue,
 	{
 		pasgn = hmit->second;
 		g_errorList.AddWarning(2524, pexpValue,
-			"Duplicate ", std::string(staDescription.Chars()));
+			"Duplicate ", staDescription);
 		
 		if ((lnf.PreProcessedLine() > pasgn->PreProcessedLine() && fOverride) ||
 			(lnf.PreProcessedLine() < pasgn->PreProcessedLine() && !pasgn->Override()))
@@ -181,7 +181,7 @@ void GrcMasterTable::SetupFeatures()
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 {
-	StrAnsi fName = StrAnsi(pfeat->Name().data());
+	std::string fName = pfeat->Name();
 
 	GdlExpression * pexpDefault = NULL;
 
