@@ -368,11 +368,11 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 			else
 			{
 				GdlFeatureSetting * pfsetDefault =
-					pfeat->FindSetting(std::string(pexpsr->Alias()));
+					pfeat->FindSetting(pexpsr->Alias());
 				if (!pfsetDefault)
 					g_errorList.AddError(2155, pexpDefault,
 						"Default feature setting is undefined: ",
-						std::string(pexpsr->Alias().Chars()));
+						pexpsr->Alias());
 				else
 					pfeat->SetDefault(pfsetDefault->Value());
 			}

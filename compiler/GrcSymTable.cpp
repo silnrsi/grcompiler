@@ -313,7 +313,7 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 		psym = psymtbl->FindField(staField);
 		if (psym == NULL)
 		{
-			psym = new GrcSymbolTableEntry(StrAnsi(staField.c_str()),
+			psym = new GrcSymbolTableEntry(staField,
 				((i == xns.NumFields() - 1) ? symtLeaf : symtOther),
 				psymtbl);
 			SymbolTablePair hmpair;
@@ -487,7 +487,7 @@ bool GrcSymbolTableEntry::FieldIs(int i, std::string staField)
 	Symbol psymCurr = this;
 	while (psymCurr->Level() > i)
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
-	return (std::string(psymCurr->m_staFieldName.Chars()) == staField);
+	return (psymCurr->m_staFieldName == staField);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -504,7 +504,7 @@ std::string GrcSymbolTableEntry::FieldAt(int i)
 	Symbol psymCurr = this;
 	while (psymCurr->Level() > i)
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
-	return std::string(psymCurr->m_staFieldName.Chars());
+	return psymCurr->m_staFieldName;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -517,7 +517,7 @@ int GrcSymbolTableEntry::FieldIndex(std::string sta)
 	Symbol psymCurr = this;
 	while (psymCurr)
 	{
-		if (std::string(psymCurr->m_staFieldName.Chars()) == sta)
+		if (psymCurr->m_staFieldName == sta)
 			cRet = psymCurr->Level();
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
 	}
@@ -536,7 +536,7 @@ int	GrcSymbolTableEntry::FieldCount()
 /*----------------------------------------------------------------------------------------------
     Answer true if the symbol is the given operator.
 ----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTableEntry::MatchesOp(StrAnsi sta)
+bool GrcSymbolTableEntry::MatchesOp(std::string sta)
 {
 	if (!FitsSymbolType(ksymtOperator))
 		return false;
@@ -637,17 +637,17 @@ bool GrcSymbolTableEntry::IsIndexedGlyphAttr()
 ----------------------------------------------------------------------------------------------*/
 std::string GrcSymbolTableEntry::FullName()
 {
-	StrAnsi staRet = m_staFieldName;
+	std::string staRet = m_staFieldName;
 	GrcSymbolTableEntry * psymCurr = m_psymtbl->m_psymParent;
 	while (psymCurr)
 	{
-		StrAnsi staTmp = psymCurr->m_staFieldName;
+		std::string staTmp = psymCurr->m_staFieldName;
 		staTmp += ".";
 		staTmp += staRet;
 		staRet = staTmp;
 		psymCurr = psymCurr->m_psymtbl->m_psymParent;
 	}
-	return std::string(staRet.Chars());
+	return staRet;
 }
 
 
@@ -673,7 +673,7 @@ std::string GrcSymbolTableEntry::FullAbbrev()
 /*----------------------------------------------------------------------------------------------
     Return the standard abbreviation for the keyword.
 ----------------------------------------------------------------------------------------------*/
-std::string GrcSymbolTableEntry::Abbreviation(StrAnsi staFieldName)
+std::string GrcSymbolTableEntry::Abbreviation(std::string staFieldName)
 {
 	if (staFieldName == "reference")
 		return "ref";
@@ -694,7 +694,7 @@ std::string GrcSymbolTableEntry::Abbreviation(StrAnsi staFieldName)
 	else if (staFieldName == "breakweight")
 		return "break";
 	else
-		return std::string(staFieldName.Chars());
+		return staFieldName;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -705,7 +705,7 @@ void GrcSymbolTableEntry::GetStructuredName(GrcStructName * pxns)
 	GrcSymbolTableEntry * psymCurr = this;
 	while (psymCurr)
 	{
-		pxns->InsertField(0, std::string(psymCurr->m_staFieldName.Chars()));
+		pxns->InsertField(0, psymCurr->m_staFieldName);
 		psymCurr = psymCurr->ParentSymbol();
 	}
 }
@@ -759,7 +759,7 @@ Symbol GrcSymbolTableEntry::BaseFeatSetting()
 
 	Symbol psymParent = ParentSymbol();
 	Assert(psymParent);
-	if (psymParent->m_staFieldName == StrAnsi("setting"))
+	if (psymParent->m_staFieldName == "setting")
 		return this;
 	else
 		return psymParent->BaseFeatSetting();
@@ -777,7 +777,7 @@ Symbol GrcSymbolTableEntry::BaseLigComponent()
 
 	Symbol psymParent = ParentSymbol();
 	Assert(psymParent);
-	if (psymParent->m_staFieldName == StrAnsi("component"))
+	if (psymParent->m_staFieldName == "component")
 		return this;
 	else
 		return psymParent->BaseLigComponent();
@@ -958,7 +958,7 @@ int GrcSymbolTableEntry::UserDefinableSlotAttrIndex()
 {
 	Assert(IsUserDefinableSlotAttr());
 	int nRet = 0;
-	for (int ich = 4; ich < m_staFieldName.Length(); ich++)
+	for (size_t ich = 4; ich < m_staFieldName.length(); ich++)
 	{
 		char ch = m_staFieldName[ich];
 		if (ch < '0')

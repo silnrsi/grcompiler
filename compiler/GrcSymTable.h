@@ -48,7 +48,7 @@ public:
 
 public:
 	//	Constructor & destructor:
-	GrcSymbolTableEntry(StrAnsi sta, SymbolType symt, GrcSymbolTable* psymtbl)
+	GrcSymbolTableEntry(std::string sta, SymbolType symt, GrcSymbolTable* psymtbl)
 	:	m_staFieldName(sta),
 		m_symt(symt),
 		m_symt2(ksymtNone),
@@ -86,9 +86,9 @@ public:
 	bool FieldIs(int, std::string);
 	std::string FullName();
 	std::string FullAbbrev();
-	static std::string Abbreviation(StrAnsi staFieldName);
+	static std::string Abbreviation(std::string staFieldName);
 	void GetStructuredName(GrcStructName * pxns);
-	bool MatchesOp(StrAnsi);
+	bool MatchesOp(std::string);
 	bool IsComparativeOp();
 	bool IsBogusSlotAttr();
 	bool IsReadOnlySlotAttr();
@@ -96,11 +96,11 @@ public:
 	bool IsIndexedSlotAttr();
 	bool IsIndexedGlyphAttr();
 	int Level();
-	StrAnsi LastField()
+	std::string LastField()
 	{
 		return m_staFieldName;
 	}
-	bool LastFieldIs(StrAnsi sta)
+	bool LastFieldIs(std::string sta)
 	{
 		return m_staFieldName == sta;
 	}
@@ -171,7 +171,7 @@ public:
 
 protected:	
 	//	Instance variables:
-	StrAnsi				m_staFieldName;
+	std::string			m_staFieldName;
 
 	GrcSymbolTable *	m_psymtblSubTable;
 	GrcSymbolTable *	m_psymtbl;

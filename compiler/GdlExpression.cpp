@@ -203,12 +203,12 @@ bool GdlSlotRefExpression::ReplaceAliases(GdlRule * prule)
 {
 	if (m_srNumber == -1)
 	{
-		m_srNumber = prule->LookupAliasIndex(std::string(m_staName.Chars()));
+		m_srNumber = prule->LookupAliasIndex(m_staName);
 		if (m_srNumber < 1)
 		{
 			g_errorList.AddError(1101, this,
 				"Undefined slot alias: ",
-				std::string(m_staName.Chars()));
+				m_staName);
 			m_srNumber = 0;
 			return false;
 		}
@@ -289,12 +289,12 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 	int sr = m_srNumber;
 	if (m_srNumber == -1)
 	{
-		sr = prule->LookupAliasIndex(std::string(m_staName.Chars()));
+		sr = prule->LookupAliasIndex(m_staName);
 		if (sr < 1)
 		{
 			g_errorList.AddError(1102, this,
 				"Undefined slot alias: ",
-				std::string(m_staName.Chars()));
+				m_staName);
 			return false;
 		}
 	}
@@ -312,7 +312,7 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 		else
 			g_errorList.AddError(1103, this,
 				"Optional item referenced: ",
-				std::string(m_staName.Chars()));
+				m_staName);
 		return false;
 	}
 

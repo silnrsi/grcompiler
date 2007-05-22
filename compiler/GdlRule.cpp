@@ -300,7 +300,7 @@ GdlRuleItem * GdlRule::RhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 		pritsub->m_pexpSelector = NULL;
 	else
 	{
-		pritsub->m_pexpSelector = new GdlSlotRefExpression(StrAnsi(staSel.c_str()));
+		pritsub->m_pexpSelector = new GdlSlotRefExpression(staSel);
 		pritsub->m_pexpSelector->SetLineAndFile(lnf);
 	}
 	return pritsub;
@@ -503,7 +503,7 @@ void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, int n)
 
 void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, StrAnsi sta)
 {
-	GdlSlotRefExpression * pexp = new GdlSlotRefExpression(sta);
+	GdlSlotRefExpression * pexp = new GdlSlotRefExpression(std::string(sta.Chars()));
 	pexp->SetLineAndFile(lnf);
 	m_vpexpAssocs.Push(pexp);
 }

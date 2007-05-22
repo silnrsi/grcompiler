@@ -403,7 +403,7 @@ public:
 	{
 		SetType(kexptSlotRef);
 	}
-	GdlSlotRefExpression(StrAnsi sta)
+	GdlSlotRefExpression(std::string sta)
 		:	GdlSimpleExpression(),
 			m_srNumber(-1),
 			m_staName(sta)
@@ -435,7 +435,7 @@ public:
 	{
 		return m_srNumber;
 	}
-	StrAnsi Alias()
+	std::string Alias()
 	{
 		return m_staName;
 	}
@@ -486,8 +486,8 @@ public:
 protected:
 	//	Instance variables:
 	//	either the number or the name is used, not both
-	int		m_srNumber;	// 1-based
-	StrAnsi	m_staName;
+	int m_srNumber;	// 1-based
+	std::string	m_staName;
 
 	//	for compiler use:
 	int m_nIOIndex;		// adjusted input index or output index (which ever is relevant
@@ -930,7 +930,7 @@ public:
 			m_nClusterLevel(nClus),
 			m_pexpSimplified(NULL)
 	{
-		m_pexpSelector = new GdlSlotRefExpression(staSel);
+		m_pexpSelector = new GdlSlotRefExpression(std::string(staSel.Chars()));
 		m_pexpSelector->PropagateLineAndFile(m_lnf);
 	}
 
@@ -959,7 +959,7 @@ public:
 			m_nClusterLevel(0),
 			m_pexpSimplified(NULL)
 	{
-		m_pexpSelector = new GdlSlotRefExpression(staSel);
+		m_pexpSelector = new GdlSlotRefExpression(std::string(staSel.Chars()));
 		m_pexpSelector->PropagateLineAndFile(m_lnf);
 	}
 
