@@ -256,7 +256,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 			(perr->m_lnf.OriginalLine() != 0 &&
 				perr->m_lnf.OriginalLine() != kMaxFileLineNumber))
 		{
-			strmOut << perr->m_lnf.File().Chars() << "(" << perr->m_lnf.OriginalLine() << ") : ";
+			strmOut << perr->m_lnf.File() << "(" << perr->m_lnf.OriginalLine() << ") : ";
 		}
 
 		if (!perr->m_fMsgIncludesFatality)

@@ -367,7 +367,7 @@ protected:
 	//	classes:
 	int	m_csymAnonClass;
 
-	//StrAnsi m_staLabelDbg; // debug
+	//std::string m_staLabelDbg; // debug
 };
 
 
