@@ -29,7 +29,7 @@ public:
 	{
 	}
 
-	GrpLineAndFile(int nPre, int nOrig, StrAnsi sta)
+	GrpLineAndFile(int nPre, int nOrig, std::string sta)
 		:	m_nLinePre(nPre),
 			m_nLineOrig(nOrig),
 			m_staFile(sta)
@@ -63,7 +63,7 @@ public:
 
 	void SetOriginalLine(int n)		{ m_nLineOrig = n; }
 	void SetPreProcessedLine(int n)	{ m_nLinePre = n; }
-	void SetFile(StrAnsi sta)		{ m_staFile = sta; }
+	void SetFile(std::string sta)	{ m_staFile = sta; }
 
 	void CopyLineAndFile(GrpLineAndFile & lnf)
 	{

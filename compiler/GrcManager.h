@@ -126,12 +126,12 @@ public:
 
 public:
 	//	Parser:
-	bool Parse(StrAnsi staFileName);
+	bool Parse(std::string staFileName);
 protected:
-	bool RunPreProcessor(StrAnsi staFileName, StrAnsi * staFilePreProc);
+	bool RunPreProcessor(std::string staFileName, std::string * staFilePreProc);
 	void RecordPreProcessorErrors(FILE * pFilePreProcErr);
-	StrAnsi PreProcName(StrAnsi sta);
-	bool ParseFile(std::ifstream & strmIn, StrAnsi staFileName);
+	std::string PreProcName(std::string sta);
+	bool ParseFile(std::ifstream & strmIn, std::string staFileName);
 	void InitPreDefined();
 	void WalkParseTree(RefAST ast);
 	void WalkTopTree(RefAST ast);

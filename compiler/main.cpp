@@ -118,7 +118,7 @@ int main(int argc, char * argv[])
 		//	// output file and no font family; but if the string looks more like a font name, switch
 		//	if (LooksLikeFontFamily(rgchOutputFile))
 		//	{
-		//		//StrAnsi sta(pch);
+		//		//std::string sta(pch);
 		//		//StrUni stu = sta;
 		//		//wcscpy(rgchwOutputFontFamily, stu.Chars());
 		//		::MultiByteToWideChar(CP_ACP, 0, rgchOutputFile, -1,
@@ -161,7 +161,7 @@ int main(int argc, char * argv[])
 		utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
 	}
 
-	//StrAnsi staFamily((char*)rgchwOutputFontFamily);
+	//std::string staFamily((char*)rgchwOutputFontFamily);
 	char rgchFamily[128];
 	memset(rgchFamily, 0, sizeof(char) * 128);
 	int cchw = 0;
@@ -169,13 +169,13 @@ int main(int argc, char * argv[])
 	while (*pchw++)
 		cchw++;
 	Platform_UnicodeToANSI(rgchwOutputFontFamily, cchw, rgchFamily, 128);
-	StrAnsi staFamily(rgchFamily);
+	std::string staFamily(rgchFamily);
 	if (g_cman.IsVerbose())
 	{
 		std::cout << "GDL file: " << pchGdlFile << "\n"
 			<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
 			<< "Output TT file: " << rgchOutputFile << "\n"
-			<< "Output font name: " << staFamily.Chars() << "\n"
+			<< "Output font name: " << staFamily << "\n"
 			<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
 					<< ": " << staVersion << "\n\n";
 	}
@@ -309,7 +309,7 @@ int main(int argc, char * argv[])
 
 	g_errorList.SortErrors();
 	g_errorList.WriteErrorsToFile(pchGdlFile, pchFontFile,
-		rgchOutputFile, std::string(staFamily.Chars()),
+		rgchOutputFile, staFamily,
 		VersionString(g_cman.FontTableVersion()), g_cman.SeparateControlFile());
 
 	int cerrFatal = g_errorList.NumberOfErrors();

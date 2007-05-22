@@ -103,21 +103,21 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	// do the same for the minimal control file
 	char * rgchEnvVarName = "GDLPP_PREFS";
 	char * rgchMinPath = getenv(rgchEnvVarName);
-	StrAnsi staMinFile(rgchMinPath);
-	if (staMinFile.Length() > 2)
+	std::string staMinFile(rgchMinPath);
+	if (staMinFile.length() > 2)
 	{
-		if (staMinFile.Length() > 0 && staMinFile[0] == '-' && staMinFile[1] == 'I')
-			staMinFile = staMinFile.Right(staMinFile.Length() - 2);
-		if (staMinFile[staMinFile.Length() - 1] != '\\')
-			staMinFile.Append("\\", 1);
-		staMinFile.Append("mingr.ttf");
+		if (staMinFile.length() > 0 && staMinFile[0] == '-' && staMinFile[1] == 'I')
+			staMinFile = staMinFile.substr(2, staMinFile.length() - 2);
+		if (staMinFile[staMinFile.length() - 1] != '\\')
+			staMinFile.append("\\", 1);
+		staMinFile.append("mingr.ttf");
 	}
 	else
 	{
 		// Can't find the minimal font; creating the stream will fail.
 		staMinFile = "_bogus_.ttf";
 	}
-	std::ifstream strmMin(staMinFile.Chars(), std::ios::binary);
+	std::ifstream strmMin(staMinFile.c_str(), std::ios::binary);
 	if (SeparateControlFile())
 	{
 		strmMin.read((char *)&OffsetTableMin, OFFSETTABLESIZE);
