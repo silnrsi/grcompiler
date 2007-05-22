@@ -32,7 +32,7 @@ MJPH 04-Nov-2002  original
     settings { \
         ffalse { \
             value = 0; \
-            name.1033 = string("False"); \
+            name.0x0409 = string("False"); \
         } \
         ftrue { \
             value = 1; \
@@ -86,7 +86,7 @@ pitch9 {
 		}
 		tramlines {
 			value = 1;
-			name.1033 = string("Show tramlines");
+			name.x409 = string("Show tramlines");
 		}
 		nonLigated {
 			value = 2;
@@ -101,7 +101,7 @@ pitch9 {
 
 viet {
 	id = 1029;
-	name.1033 = string("Vietnamese-style diacritics");
+	name.x409 = string("Vietnamese-style diacritics");
 	bool
 }
 
