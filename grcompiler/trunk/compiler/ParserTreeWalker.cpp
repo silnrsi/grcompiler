@@ -1676,7 +1676,7 @@ void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<std::string> & vsta)
 			//	A kludge, because this isn't a slot-ref expression, but that is the
 			//	most convenient thing to hold a simple identifier until we can process it
 			//	further (see the master table function that processes the features).
-			pexpValue = new GdlSlotRefExpression(astValue->getText().c_str());
+			pexpValue = new GdlSlotRefExpression(astValue->getText());
 			pexpValue->SetLineAndFile(LineAndFile(ast));
 		}
 		else

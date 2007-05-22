@@ -968,7 +968,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			if (nPass == 2 && psym->IsComponentBoxField())
 			{
 				int ipsymOffset;
-				StrAnsi sta = psym->LastField();
+				std::string sta = psym->LastField();
 				if (sta == "top")
 					ipsymOffset = 0;
 				else if (sta == "bottom")
@@ -1820,7 +1820,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 		if (psymInput &&
 			(psymInput->FitsSymbolType(ksymtClass) ||
 				psymInput->FitsSymbolType(ksymtSpecialLb)) &&
-				!psymInput->LastFieldIs(StrAnsi(GdlGlyphClassDefn::Undefined().c_str())))
+				!psymInput->LastFieldIs(GdlGlyphClassDefn::Undefined()))
 		{
 			GdlGlyphClassDefn * pglfc = psymInput->GlyphClassDefnData();
 			Assert(pglfc);
@@ -1913,7 +1913,7 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 
 		if (psym->IsAttachAtField())
 		{
-			StrAnsi staT = psym->LastField();
+			std::string staT = psym->LastField();
 			fAttachAtX = fAttachAtX || staT == "x" || staT == "gpoint" || staT == "gpath";
 			fAttachAtY = fAttachAtY || staT == "y" || staT == "gpoint" || staT == "gpath";
 
@@ -1974,7 +1974,7 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 
 		else if (psym->IsAttachWithField())
 		{
-			StrAnsi staT = psym->LastField();
+			std::string staT = psym->LastField();
 			fAttachWithX = fAttachWithX || staT == "x" || staT == "gpoint" || staT == "gpath";
 			fAttachWithY = fAttachWithY || staT == "y" || staT == "gpoint" || staT == "gpath";
 
