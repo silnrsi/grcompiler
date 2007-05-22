@@ -948,7 +948,7 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostrea
 	while (ib < vb.Size())
 	{
 		int op = vb[ib++];
-		strmOut << EngineCodeDebugString(op).Chars();
+		strmOut << EngineCodeDebugString(op);
 
 		int cbArgs = 0;
 		int slat;
@@ -1071,7 +1071,7 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostrea
 		case kopAttrSub:
 		case kopAttrSetSlot:
 			slat = vb[ib++];
-			strmOut << " " << SlotAttributeDebugString(slat).Chars();
+			strmOut << " " << SlotAttributeDebugString(slat);
 			cbArgs = 0;
 			break;
 		case kopIAttrSet:
@@ -1079,17 +1079,17 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostrea
 		case kopIAttrSub:
 		case kopIAttrSetSlot:
 			slat = vb[ib++];
-			strmOut << " " << SlotAttributeDebugString(slat).Chars();
+			strmOut << " " << SlotAttributeDebugString(slat);
 			cbArgs = 1;
 			break;
 		case kopPushSlotAttr:
 			slat = vb[ib++];
-			strmOut << " " << SlotAttributeDebugString(slat).Chars();
+			strmOut << " " << SlotAttributeDebugString(slat);
 			cbArgs = 1;	// selector
 			break;
 		case kopPushISlotAttr:
 			slat = vb[ib++];
-			strmOut << " " << SlotAttributeDebugString(slat).Chars();
+			strmOut << " " << SlotAttributeDebugString(slat);
 			cbArgs = 2;	// selector, index
 			break;
 		case kopPushGlyphAttr:
@@ -1109,14 +1109,14 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostrea
 		case kopPushGlyphMetric:
 		case kopPushAttToGlyphMetric:
 			gmet = vb[ib++];
-			strmOut << " " << GlyphMetricDebugString(gmet).Chars();
+			strmOut << " " << GlyphMetricDebugString(gmet);
 			cbArgs = 2;	// selector, cluster
 			break;
 		case kopPushFeat:			cbArgs = 2;		break;	// feature, selector
 		//case kopPushIGlyphAttr:	cbArgs = 2;		break;	// glyph attr, index
 		case kopPushProcState:
 			pstat = vb[ib++];
-			strmOut << " " << ProcessStateDebugString(pstat).Chars();
+			strmOut << " " << ProcessStateDebugString(pstat);
 			cbArgs = 0;
 			break;
 		case kopPushVersion:		cbArgs = 0;		break;
@@ -1142,9 +1142,9 @@ void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostrea
 /*----------------------------------------------------------------------------------------------
 	Return the text equivalent of the given slot attribute.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GdlRule::SlotAttributeDebugString(int slat)
+std::string GdlRule::SlotAttributeDebugString(int slat)
 {
-	StrAnsi sta("bad-slot-attr-");
+	std::string sta("bad-slot-attr-");
 	switch (slat)
 	{
 	case kslatAdvX:				return "advance_x";
@@ -1191,9 +1191,9 @@ StrAnsi GdlRule::SlotAttributeDebugString(int slat)
 /*----------------------------------------------------------------------------------------------
 	Return the text equivalent of the given glyph metric.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GdlRule::GlyphMetricDebugString(int gmet)
+std::string GdlRule::GlyphMetricDebugString(int gmet)
 {
-	StrAnsi sta("bad-glyph-metric-");
+	std::string sta("bad-glyph-metric-");
 	switch (gmet)
 	{
 	case kgmetLsb:				return "lsb";
@@ -1221,9 +1221,9 @@ StrAnsi GdlRule::GlyphMetricDebugString(int gmet)
 /*----------------------------------------------------------------------------------------------
 	Return the text equivalent of the given engine code operator.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GdlRule::EngineCodeDebugString(int op)
+std::string GdlRule::EngineCodeDebugString(int op)
 {
-	StrAnsi sta("bad-engine-op-");
+	std::string sta("bad-engine-op-");
 	switch (op)
 	{
 	case kopNop:					return "Nop";
@@ -1300,9 +1300,9 @@ StrAnsi GdlRule::EngineCodeDebugString(int op)
 /*----------------------------------------------------------------------------------------------
 	Return the text equivalent of the given process-state.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GdlRule::ProcessStateDebugString(int pstat)
+std::string GdlRule::ProcessStateDebugString(int pstat)
 {
-	StrAnsi sta("bad-process-state-");
+	std::string sta("bad-process-state-");
 	switch (pstat)
 	{
 	case kpstatJustifyMode:		return "JustifyMode";

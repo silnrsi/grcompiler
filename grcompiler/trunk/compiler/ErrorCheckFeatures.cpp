@@ -53,14 +53,15 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 			char rgch[20];
 			if (nID > 0x00FFFFFF)
 			{
+				// What in the world is this code trying to do? Fix it...
 				char rgchID[5];
 				memcpy(rgch, &nID, 4);
 				rgchID[0] = rgch[3]; rgchID[1] = rgch[2]; rgchID[2] = rgch[1]; rgchID[3] = rgch[0];
 				rgchID[4] = 0;
-				StrAnsi staTmp = "'";
-				staTmp.Append(rgchID);
-				staTmp.Append("'");
-				memcpy(rgch, staTmp.Chars(), staTmp.Length() + 1);
+				std::string staTmp("'");
+				staTmp.append(rgchID);
+				staTmp.append("'");
+				memcpy(rgch, staTmp.data(), staTmp.length() + 1);
 			}
 			else
 				itoa(nID, rgch, 10);

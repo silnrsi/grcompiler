@@ -97,7 +97,7 @@ public:
 
 	void AddItem(Symbol psym, GdlExpression * pexpValue,
 		int nPR, int munitPR, bool fOverride, GrpLineAndFile const& lnf,
-		StrAnsi staDescription);
+		std::string staDescription);
 
 	//	Iterators:
 	ValueMap::iterator EntriesBegin()
@@ -158,7 +158,7 @@ public:
 
 	void AddItem(Symbol psym, GdlExpression * pexpValue,
 		int nPR, int munitPR, bool fOverride, GrpLineAndFile const& lnf,
-		StrAnsi staDescription);
+		std::string staDescription);
 
 	GrcMasterValueList * ValueListFor(Symbol psym);
 	GdlExpression * ItemValue(GrcStructName* psymClassOrFeat, GrcStructName* psymField);
