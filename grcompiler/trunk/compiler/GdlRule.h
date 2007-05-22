@@ -639,7 +639,7 @@ public:
 	{
 	}
 
-	GdlAlias(StrAnsi sta, int sr)
+	GdlAlias(std::string sta, int sr)
 		:	m_staName(sta),
 			m_srIndex(sr)
 	{
@@ -653,14 +653,14 @@ public:
 
 public:
 	//	Parser:
-	int Index()		{ return m_srIndex; }
-	StrAnsi Name()	{ return m_staName; }
+	int Index()			{ return m_srIndex; }
+	std::string Name()	{ return m_staName; }
 
 	void SetIndex(int sr)
 	{
 		m_srIndex = sr;
 	}
-	void SetName(StrAnsi sta)
+	void SetName(std::string sta)
 	{
 		m_staName = sta;
 	}
@@ -682,7 +682,7 @@ public:
 	}
 
 protected:
-	StrAnsi		m_staName;
+	std::string	m_staName;
 	int			m_srIndex;	// 1-based
 
 };	//	end of GdlAlias
@@ -724,7 +724,7 @@ public:
 		Assert((unsigned int)irit < (unsigned int)m_vprit.Size());
 		return m_vprit[irit];
 	}
-	int LookupAliasIndex(StrAnsi sta);
+	int LookupAliasIndex(std::string sta);
 
 	int NumberOfSlots()
 	{
@@ -741,26 +741,26 @@ public:
 public:
 	//	Parser:
 	GdlRuleItem * ContextItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staInput, StrAnsi staAlias = "");
+		std::string staInput, std::string staAlias = "");
 	GdlRuleItem * RhsItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staOutput, StrAnsi staAlias = "", bool fSubItem = false);
+		std::string staOutput, std::string staAlias = "", bool fSubItem = false);
 	GdlRuleItem * LhsItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staInput, StrAnsi staAlias = "");
+		std::string staInput, std::string staAlias = "");
 
 	GdlRuleItem * ContextSelectorItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staClassOrAt, int nSel, StrAnsi staAlias = "");
+		std::string staClassOrAt, int nSel, std::string staAlias = "");
 	GdlRuleItem * ContextSelectorItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias = "");
+		std::string staClassOrAt, std::string staSel, std::string staAlias = "");
 
 	GdlRuleItem * RhsSelectorItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staClassOrAt,  int nSel,StrAnsi staAlias = "");
+		std::string staClassOrAt,  int nSel,std::string staAlias = "");
 	GdlRuleItem * RhsSelectorItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias = "");
+		std::string staClassOrAt, std::string staSel, std::string staAlias = "");
 
 	GdlRuleItem * LhsSelectorItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staClassOrAt,  int nSel, StrAnsi staAlias = "");
+		std::string staClassOrAt,  int nSel, std::string staAlias = "");
 	GdlRuleItem * LhsSelectorItemAt(GrpLineAndFile &, int irit,
-		StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias = "");
+		std::string staClassOrAt, std::string staSel, std::string staAlias = "");
 
 	void AddOptionalRange(int iritStart, int crit, bool fContext);
 	int ScanAdvance()

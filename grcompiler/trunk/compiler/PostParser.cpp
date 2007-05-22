@@ -125,7 +125,7 @@ void GdlRule::ReplaceAliases()
 			{
 				g_errorList.AddError(1173, this,
 					"Slot alias '",
-					std::string(m_vpalias[ipalias]->m_staName.Chars()),
+					m_vpalias[ipalias]->m_staName,
 					"' was assigned to more than one item");
 			}
 		}

@@ -37,7 +37,7 @@ DEFINE_THIS_FILE
 	Given a slot alias, find the corresponding index in the rule's list. Return -1 if the
 	name could not be found.
 ----------------------------------------------------------------------------------------------*/
-int GdlRule::LookupAliasIndex(StrAnsi sta)
+int GdlRule::LookupAliasIndex(std::string sta)
 {
 	for (int i = 0; i < m_vpalias.Size(); ++i)
 	{
@@ -62,13 +62,13 @@ int GdlRule::LookupAliasIndex(StrAnsi sta)
 ----------------------------------------------------------------------------------------------*/
 
 GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staInput, StrAnsi staAlias)
+	std::string staInput, std::string staAlias)
 {
 	Assert(irit <= m_vprit.Size());
 
 	if (irit == m_vprit.Size())
 	{
-		Symbol psymClass = g_cman.SymbolTable()->FindSymbol(std::string(staInput.Chars()));
+		Symbol psymClass = g_cman.SymbolTable()->FindSymbol(staInput);
 		GdlRuleItem * prit;
 		if (psymClass && psymClass->FitsSymbolType(ksymtSpecialLb))
 			prit = new GdlLineBreakItem(psymClass);
@@ -83,7 +83,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 			{
 				g_errorList.AddError(3134, this,
 					"Undefined class name: ",
-					std::string(staInput.Chars()),
+					staInput,
 					lnf);
 				psymClass = g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
 			}
@@ -108,24 +108,24 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 	staSel == "" indicates a bare '@'.
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staClassOrAt, int nSel, StrAnsi staAlias)
+	std::string staClassOrAt, int nSel, std::string staAlias)
 {
 	g_errorList.AddError(3135, this,
 		"Cannot specify a selector in the context");
 
-	if (staClassOrAt = "@")
+	if (staClassOrAt == "@")
 		return ContextItemAt(lnf, irit, "_", staAlias);
 	else
 		return ContextItemAt(lnf, irit, staClassOrAt, staAlias);
 }
 
 GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias)
+	std::string staClassOrAt, std::string staSel, std::string staAlias)
 {
 	g_errorList.AddError(3136, this,
 		"Cannot specify a selector in the context");
 
-	if (staClassOrAt = "@")
+	if (staClassOrAt == "@")
 		return ContextItemAt(lnf, irit, "_", staAlias);
 	else
 		return ContextItemAt(lnf, irit, staClassOrAt, staAlias);
@@ -144,12 +144,12 @@ GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
 		fSubItem			- true if we know right off the bat we need a substitition item
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staInput, StrAnsi staAlias, bool fSubItem)
+	std::string staInput, std::string staAlias, bool fSubItem)
 {
 	bool fContext = false;
 	int critRhs = 0;
 
-	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(std::string(staInput.Chars()));
+	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(staInput);
 
 	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
 	{
@@ -168,7 +168,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 				{
 					g_errorList.AddError(3137, this,
 						"Undefined class name: ",
-						std::string(staInput.Chars()),
+						staInput,
 						lnf);
 					psymClassOrPlaceHolder =
 						g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
@@ -231,7 +231,7 @@ LLbError:
 	{
 		g_errorList.AddError(3139, this,
 			"Undefined class name: ",
-			std::string(staInput.Chars()),
+			staInput,
 			lnf);
 		psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
 	}
@@ -270,7 +270,7 @@ LLbError:
 	integer or a string as the selector. nSel == 0 or staSel == "" indicates a bare '@'.
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::RhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staClassOrAt, int nSel, StrAnsi staAlias)
+	std::string staClassOrAt, int nSel, std::string staAlias)
 {
 	GdlSubstitutionItem * pritsub = dynamic_cast<GdlSubstitutionItem *>(RhsItemAt(lnf, irit,
 		staClassOrAt, staAlias, true));
@@ -289,7 +289,7 @@ GdlRuleItem * GdlRule::RhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 
 
 GdlRuleItem * GdlRule::RhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias)
+	std::string staClassOrAt, std::string staSel, std::string staAlias)
 {
 	GdlSubstitutionItem * pritsub = dynamic_cast<GdlSubstitutionItem *>(RhsItemAt(lnf, irit,
 		staClassOrAt, staAlias, true));
@@ -300,7 +300,7 @@ GdlRuleItem * GdlRule::RhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 		pritsub->m_pexpSelector = NULL;
 	else
 	{
-		pritsub->m_pexpSelector = new GdlSlotRefExpression(staSel);
+		pritsub->m_pexpSelector = new GdlSlotRefExpression(StrAnsi(staSel.c_str()));
 		pritsub->m_pexpSelector->SetLineAndFile(lnf);
 	}
 	return pritsub;
@@ -319,12 +319,12 @@ GdlRuleItem * GdlRule::RhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 		staInput			- input class name, "_", or "#"
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staInput, StrAnsi staAlias)
+	std::string staInput, std::string staAlias)
 {
 	bool fContext = false;
 	int critLhs = 0;
 
-	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(std::string(staInput.Chars()));
+	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(staInput);
 
 	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
 	{
@@ -342,7 +342,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 				{
 					g_errorList.AddError(3141, this,
 						"Undefined class name: ",
-						std::string(staInput.Chars()),
+						staInput,
 						lnf);
 					psymClassOrPlaceHolder =
 						g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
@@ -398,7 +398,7 @@ LLbError:
 	{
 		g_errorList.AddError(3143, this,
 			"Undefined class name: ",
-			std::string(staInput.Chars()),
+			staInput,
 			lnf);
 		psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(GdlGlyphClassDefn::Undefined());
 	}
@@ -434,24 +434,24 @@ LLbError:
 	staSel == "" indicates a bare '@'.
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staClassOrAt, int nSel, StrAnsi staAlias)
+	std::string staClassOrAt, int nSel, std::string staAlias)
 {
 	g_errorList.AddError(3146, this,
 		"Cannot specify a selector in the lhs");
 
-	if (staClassOrAt = "@")
+	if (staClassOrAt == "@")
 		return LhsItemAt(lnf, irit, "_", staAlias);
 	else
 		return LhsItemAt(lnf, irit, staClassOrAt, staAlias);
 }
 
 GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	StrAnsi staClassOrAt, StrAnsi staSel, StrAnsi staAlias)
+	std::string staClassOrAt, std::string staSel, std::string staAlias)
 {
 	g_errorList.AddError(3147, this,
 		"Cannot specify a selector in the lhs");
 
-	if (staClassOrAt = "@")
+	if (staClassOrAt == "@")
 		return LhsItemAt(lnf, irit, "_", staAlias);
 	else
 		return LhsItemAt(lnf, irit, staClassOrAt, staAlias);
