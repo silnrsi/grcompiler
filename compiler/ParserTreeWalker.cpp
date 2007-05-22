@@ -2273,7 +2273,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 	bool fSel = false;
 	bool fAssocs = false;
 	GdlAlias aliasSel;
-	StrAnsi staAlias;
+	std::string staAlias;
 	StrAnsi staClass;
 	GdlRuleItem * prit;
 
@@ -2353,7 +2353,7 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 
 	if (astNext && astNext->getType() == Zalias)
 	{
-		staAlias = astNext->getFirstChild()->getText().c_str();
+		staAlias = astNext->getFirstChild()->getText();
 		astNext = astNext->getNextSibling();
 	}
 
@@ -2366,33 +2366,33 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 		if (fSel)
 		{
 			prit = (aliasSel.Index() == -1) ?
-				prule->ContextSelectorItemAt(lnf, *pirit, staClass, aliasSel.Name(), staAlias) :
-				prule->ContextSelectorItemAt(lnf, *pirit, staClass, aliasSel.Index(), staAlias);
+				prule->ContextSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Name(), staAlias) :
+				prule->ContextSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Index(), staAlias);
 		}
 		else
-			prit = prule->ContextItemAt(lnf, *pirit, staClass, staAlias);
+			prit = prule->ContextItemAt(lnf, *pirit, std::string(staClass.Chars()), staAlias);
 		break;
 
 	case 1:	// rhs
 		if (fSel)
 		{
 			prit = (aliasSel.Index() == -1) ?
-				prule->RhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Name(), staAlias) :
-				prule->RhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Index(), staAlias);
+				prule->RhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Name(), staAlias) :
+				prule->RhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Index(), staAlias);
 		}
 		else
-			prit = prule->RhsItemAt(lnf, *pirit, staClass, staAlias, fMakeSubItems);
+			prit = prule->RhsItemAt(lnf, *pirit, std::string(staClass.Chars()), staAlias, fMakeSubItems);
 		break;
 
 	case 2:	// lhs
 		if (fSel)
 		{
 			prit = (aliasSel.Index() == -1) ?
-				prule->LhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Name(), staAlias) :
-				prule->LhsSelectorItemAt(lnf, *pirit, staClass, aliasSel.Index(), staAlias);
+				prule->LhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Name(), staAlias) :
+				prule->LhsSelectorItemAt(lnf, *pirit, std::string(staClass.Chars()), aliasSel.Index(), staAlias);
 		}
 		else
-			prit = prule->LhsItemAt(lnf, *pirit, staClass, staAlias);
+			prit = prule->LhsItemAt(lnf, *pirit, std::string(staClass.Chars()), staAlias);
 		break;
 
 	default:
@@ -2575,7 +2575,7 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 				GdlAlias aliasAssoc;
 				ProcessSlotIndicator(astAssoc, &aliasAssoc);
 				(aliasAssoc.Index() == -1)?
-					pritsub->AddAssociation(lnf, aliasAssoc.Name()) :
+					pritsub->AddAssociation(lnf, StrAnsi(aliasAssoc.Name().c_str())) :
 					pritsub->AddAssociation(lnf, aliasAssoc.Index());
 				astAssoc = astAssoc->getNextSibling();
 			}
