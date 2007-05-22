@@ -419,13 +419,13 @@ utf16 GrcFont::GlyphFromCmap(unsigned int nUnicode, GdlObject * pgdlobj)
 	Convert the given postscript name to a glyph ID. 
 	Return 0 if the postscript name is invalid.
 ----------------------------------------------------------------------------------------------*/
-utf16 GrcFont::GlyphFromPostscript(StrAnsi staPostscriptName, GdlObject * pgdlobj, bool fError)
+utf16 GrcFont::GlyphFromPostscript(std::string staPostscriptName, GdlObject * pgdlobj, bool fError)
 {
 	Assert(m_pFile);
 	Assert(m_pPost);
 	Assert(m_pMaxp);
 
-	int nGlyphId = TtfUtil::PostLookup(m_pPost, m_cPost, m_pMaxp, staPostscriptName);
+	int nGlyphId = TtfUtil::PostLookup(m_pPost, m_cPost, m_pMaxp, staPostscriptName.c_str());
 	if (nGlyphId >= 0)
 		return nGlyphId;
 

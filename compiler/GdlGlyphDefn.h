@@ -174,7 +174,7 @@ public:
 		Assert(m_glft == kglftPseudo);
 		return m_pglfOutput;
 	}
-	StrAnsi PostscriptName()
+	std::string PostscriptName()
 	{
 		Assert(m_glft == kglftPostscript);
 		return m_sta;
@@ -182,7 +182,7 @@ public:
 	std::string CodepointString()
 	{
 		Assert(m_glft == kglftCodepoint);
-		return std::string(m_sta.Chars());
+		return m_sta;
 	}
 	utf16 AssignedPseudo()
 	{
@@ -309,7 +309,7 @@ protected:
 	utf16 m_wCodePage;
 	unsigned int m_nUnicodeInput;		// input for pseudo-glyph
 	GdlGlyphDefn * m_pglfOutput;	// pseudo-glyph output
-	StrAnsi	m_sta;					// postscript name or codepoint string
+	std::string	m_sta;					// postscript name or codepoint string
 
 	//	for compiler use:
 	Vector<utf16> m_vwGlyphIDs;	// equivalent glyph IDs
