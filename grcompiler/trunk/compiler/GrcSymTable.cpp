@@ -221,16 +221,16 @@ Symbol GrcSymbolTable::AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndF
 Symbol GrcSymbolTable::AddComponentField(const GrcStructName & xns, GrpLineAndFile const& lnf)
 {
 	Assert(m_cLevel == 0);
-	Assert(xns.FieldEquals(1, StrAnsi("component")));
+	Assert(xns.FieldEquals(1, "component"));
 
 	SymbolType symt;
-	if (xns.FieldEquals(3, StrAnsi("top")) ||
-			xns.FieldEquals(3, StrAnsi("bottom")) ||
-			xns.FieldEquals(3, StrAnsi("left")) ||
-			xns.FieldEquals(3, StrAnsi("right")))
+	if (xns.FieldEquals(3, "top") ||
+			xns.FieldEquals(3, "bottom") ||
+			xns.FieldEquals(3, "left") ||
+			xns.FieldEquals(3, "right"))
 		symt = ksymtGlyphAttr;	// valid component glyph attribute
 
-	else if (xns.FieldEquals(3, StrAnsi("reference")))
+	else if (xns.FieldEquals(3, "reference"))
 		symt = ksymtSlotAttr;	// valid component slot attribute
 	else
 
@@ -801,7 +801,7 @@ Symbol GrcSymbolTableEntry::BasePoint()
     This symbol is something like clsABC.somePoint.x. Return the symbol corresponding to a
 	sister field, ie, clsABC.somePoint.y. If such a symbol has not been defined, return NULL.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcSymbolTableEntry::PointSisterField(StrAnsi staField)
+Symbol GrcSymbolTableEntry::PointSisterField(std::string staField)
 {
 	Assert(m_staFieldName == "x" || m_staFieldName == "y" ||
 		m_staFieldName == "gpoint" || m_staFieldName == "gpath" ||
@@ -809,7 +809,7 @@ Symbol GrcSymbolTableEntry::PointSisterField(StrAnsi staField)
 
 	Symbol psymBase = BasePoint();
 	Assert(psymBase);
-	Symbol psymRet = psymBase->m_psymtblSubTable->FindField(std::string(staField.Chars()));
+	Symbol psymRet = psymBase->m_psymtblSubTable->FindField(staField);
 	return psymRet;
 }
 
@@ -975,12 +975,12 @@ int GrcSymbolTableEntry::UserDefinableSlotAttrIndex()
 	that define a point (eg, udap) return the sub-symbol that appends the given point field,
 	or NULL if such a field does not exist.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcSymbolTableEntry::SubField(StrAnsi sta)
+Symbol GrcSymbolTableEntry::SubField(std::string sta)
 {
 	Assert(FitsSymbolType(ksymtSlotAttrPt) || FitsSymbolType(ksymtGlyphAttr) ||
 		FitsSymbolType(ksymtInvalidGlyphAttr)) ;
 	Assert(m_psymtblSubTable);
-	return m_psymtblSubTable->FindField(std::string(sta.Chars()));
+	return m_psymtblSubTable->FindField(sta);
 }
 
 /*----------------------------------------------------------------------------------------------

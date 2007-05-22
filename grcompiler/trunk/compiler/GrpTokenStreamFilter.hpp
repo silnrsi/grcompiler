@@ -29,7 +29,7 @@ public:
 		m_tokPeek = RefToken(NULL);
 	}
 
-	void init(StrAnsi sta)
+	void init(std::string sta)
 	{
 		m_staFile = sta;
 		m_nLineOffset = 0;
@@ -45,7 +45,7 @@ protected:
 	GrpLexer * m_lexer;
 	/////TokenStream * m_lexer;
 
-	StrAnsi m_staFile;
+	std::string m_staFile;
 	int m_nLineOffset;
 
 	//	For error messages. The current approach assumes that a syntax error does not span
@@ -53,7 +53,7 @@ protected:
 	//	is less than the previous marker, we use the previous line-offset-and-file information;
 	//	otherwise we use the current line-offset-and-file.
 	int m_nLastLineMarker;
-	StrAnsi m_staPrevFile;
+	std::string m_staPrevFile;
 	int m_nPrevLineOffset;
 
 	RefToken m_tokPeek;	// to peek for -if- following -else-

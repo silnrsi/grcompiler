@@ -48,7 +48,7 @@ public:
 		return m_lnf;
 	}
 
-	void SetOrigLineAndFile(int nOrig, StrAnsi sta)
+	void SetOrigLineAndFile(int nOrig, std::string sta)
 	{
 		m_lnf.SetOriginalLine(nOrig);
 		m_lnf.SetFile(sta);

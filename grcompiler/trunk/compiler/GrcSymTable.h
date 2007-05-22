@@ -136,7 +136,7 @@ public:
 	Symbol BasePoint();
 	Symbol BaseFeatSetting();
 
-	Symbol PointSisterField(StrAnsi staFieldName);
+	Symbol PointSisterField(std::string staFieldName);
 
 	bool IsComponentRef();
 	bool IsComponentBoxField();
@@ -151,7 +151,7 @@ public:
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
 
-	Symbol SubField(StrAnsi);
+	Symbol SubField(std::string);
 	bool HasSubFields()
 	{
 		return m_psymtblSubTable;

@@ -47,19 +47,19 @@ using std::endl;
 	Run the parser over the file with the given name. Record an error if the file does not
 	exist.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::Parse(StrAnsi staFileName)
+bool GrcManager::Parse(std::string staFileName)
 {
-	StrAnsi staFilePreProc;
+	std::string staFilePreProc;
 	if (!RunPreProcessor(staFileName, &staFilePreProc))
 		return false;
 
 	std::ifstream strmIn;
-	strmIn.open(staFilePreProc.Chars());
+	strmIn.open(staFilePreProc.c_str());
 	if (strmIn.fail())
 	{
 		g_errorList.AddError(1105, NULL,
 			"File ",
-			std::string(staFileName.Chars()),
+			staFileName,
 			" does not exist--compilation aborted");
 		return false;
 	}
@@ -70,7 +70,7 @@ bool GrcManager::Parse(StrAnsi staFileName)
 /*----------------------------------------------------------------------------------------------
 	Run the C pre-processor over the GDL file. Return the name of the resulting file.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
+bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc)
 {
 #ifdef _WIN32 
 	STARTUPINFO sui = {isizeof(sui)};
@@ -110,16 +110,27 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 
 	achar rgchErrorCode[20];
 
-	StrApp strCommandLine = _T("gdlpp ");
+#ifdef UNICODE
+	// Note: this bit of code has not been tested:
+	wchar_t rgchrFileName[200];
+	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200)
+	std::wstring strCommandLine(L"gdlpp ");
+	if (m_verbose)
+		strCommandLine = L"gdlpp -V ";
+	strCommandLine += rgchrFileName;
+#else
+	std::string strCommandLine = "gdlpp";
 	if (m_verbose)
 		 strCommandLine = _T("gdlpp -V ");
 	strCommandLine += staFileName;
+#endif
+
 	strCommandLine += _T(" $_temp.gdl");	// output file
 
 	// needs to be changed to achar but we then need to make sure that this works with 
 	// memset and memcpy. This has the possibility of creating a very nasty bug 
 	achar rgchCommandLine[200];
-	_tcscpy(rgchCommandLine, strCommandLine.Chars());
+	_tcscpy(rgchCommandLine, strCommandLine.data());
 	//memset(rgchCommandLine, 0, 200);
 	//memcpy(rgchCommandLine, staCommandLine.Chars(), staCommandLine.Length());
 
@@ -135,7 +146,7 @@ bool GrcManager::RunPreProcessor(StrAnsi staFileName, StrAnsi * pstaFilePreProc)
 			"Could not create process to run pre-processor gdlpp.exe (error = ",
 			rgchErrorCode,
 			"); compiling ",
-			std::string(staFileName.Chars()));
+			staFileName);
 		*pstaFilePreProc = staFileName;
 		return true;
 	}
@@ -301,7 +312,7 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 
 		// Record error message.
 		nLineNo = atoi((const char *)pchLineNoMin);
-		lnf.SetFile(StrAnsi(pchFileMin, pchFileLim - pchFileMin));
+		lnf.SetFile(std::string(pchFileMin, pchFileLim - pchFileMin));
 		lnf.SetOriginalLine(nLineNo);
 		if (fFatal)
 			g_errorList.AddError(1114, NULL,
@@ -330,30 +341,30 @@ LNextLine:
 	'abc.gdl', the name of outfile file will be 'abc.i'.
 	OBSOLETE now that we are not using CL.EXE.
 ----------------------------------------------------------------------------------------------*/
-StrAnsi GrcManager::PreProcName(StrAnsi sta)
+std::string GrcManager::PreProcName(std::string sta)
 {
 	int ichMin;
-	int ichLim = sta.Length();
+	int ichLim = sta.length();
 	
-	for ( ; ichLim >= 0 && sta.GetAt(ichLim) != '\\' && sta.GetAt(ichLim) != '.'; ichLim--)
+	for ( ; ichLim >= 0 && sta[ichLim] != '\\' && sta[ichLim] != '.'; ichLim--)
 		;
 
-	if (sta.GetAt(ichLim) == '.')
+	if (sta[ichLim] == '.')
 	{
-		for (ichMin = ichLim; ichMin >= 0 && sta.GetAt(ichMin) != '\\'; ichMin--)
+		for (ichMin = ichLim; ichMin >= 0 && sta[ichMin] != '\\'; ichMin--)
 			;
 		ichMin++;
 	}
 	else
 	{
 		ichMin = ichLim;
-		ichLim = sta.Length();
+		ichLim = sta.length();
 	}
 
 	char rgch[100];
 	memset(rgch, 0, 100);
-	memcpy(rgch, sta.Chars() + ichMin, (ichLim - ichMin));
-	StrAnsi staRet = rgch;
+	memcpy(rgch, sta.data() + ichMin, (ichLim - ichMin));
+	std::string staRet(rgch);
 	staRet += ".i";
 	return staRet;
 }
@@ -364,7 +375,7 @@ StrAnsi GrcManager::PreProcName(StrAnsi sta)
 	extract the associated data.
 	Assumes the input file exists and has been successfully opened.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::ParseFile(std::ifstream & strmIn, StrAnsi staFileName)
+bool GrcManager::ParseFile(std::ifstream & strmIn, std::string staFileName)
 {
 	try
 	{
