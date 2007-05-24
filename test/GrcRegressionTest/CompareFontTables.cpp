@@ -1011,7 +1011,7 @@ void ComparePasses(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream &
 			ib++, pbB++, pbT++)
 		{
 			if (*pbB != *pbT)
-				OutputError(ec, ptcase, "ERROR: pass", iPass, ", constraint byte", ib);
+				OutputError(ec, ptcase, "ERROR: pass", iPass, ", action byte", ib);
 		}
 		delete[] prgbActionBlockB;
 		delete[] prgbActionBlockT;
