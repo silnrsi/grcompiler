@@ -44,7 +44,23 @@ using version 3.6. You will need to download the ICU source code from the
 following web site:
 
     http://www.icu-project.org/download/
+    
+There is a VisualStudio file in the source\allinone directory that can be
+used to build the binaries. The "common" project is the one to build.
 
-The only module that is needed at this time is icuuc.lib (icuucd.lib
-for the debug version). Quite a number of the source header files are
-needed as well.
+The only modules that are needed at this time are icuuc.lib and icuuc36.dll
+(icuucd.lib and icuuc36d.dll for the debug version). The .lib files
+are apparently stubs that call the DLLs. The following source header
+files are needed as well:
+
+- uchar.h (#included in main.h)
+- pwin32.h
+- uconfig.h
+- umachine.h
+- urename.h
+- utf8.h
+- utf16.h
+- utf.h
+- utf_old.h
+- utypes.h
+- uversion.h
