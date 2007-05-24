@@ -80,13 +80,8 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-#ifdef GR_FW
-		std::cout << "Graphite Compiler Version 2.4\n"
-			<< COPYRIGHTRESERVED << "\n";
-#else
 		std::cout << "Graphite Compiler Version 2.4\n"
 			<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
-#endif // GR_FW
 	}
 
 	if (argc < 3 + cargExtra)
