@@ -1,0 +1,56 @@
+#line 1 "PigLatin.gdl"
+#line 12
+Bidi = false;
+#line 18
+table(glyph)
+
+clsVowelUC = codepoint("AEIOU");
+clsVowelLC = codepoint("aeiou");
+clsVowel = (clsVowelUC clsVowelLC);
+
+clsConsUC = codepoint("BCDFGHJKLMNPQRSTVWXYZ");
+clsConsLC = codepoint("bcdfghjklmnpqrstvwxyz");
+clsCons = (clsConsUC, clsConsLC);
+
+
+clsWfUC = (clsVowelUC clsConsUC);
+clsWfLC = (clsVowelLC clsConsLC);
+clsWf = (clsWfUC clsWfLC);
+
+
+g_aIns = codepoint("a");
+g_yIns = codepoint("y");
+
+endtable;
+
+table(substitution)
+#line 46
+clsConsUC clsCons clsCons clsWfLC
+> clsWfUC$4:4 clsConsLC$1:1 {user1 = true} @2 {user1 = true} @3 {user1 = true}
+/ _ {user1 == false} ^ _ {user1 == @1.user1} _ {user1 == @1.user1} _;
+clsConsUC clsCons clsWfLC
+> clsWfUC$3:3 clsConsLC$1:1 {user1 = true} @2 {user1 = true}
+/ _ {user1 == false} ^ _ {user1 == @1.user1} _;
+clsConsUC clsWfLC
+> clsWfUC$2:2 clsConsLC$1:1 {user1 = true}
+/ _ {user1 == false} ^ _;
+
+
+
+clsCons clsCons clsCons clsWf
+> @4 @1 {user1 = true} @2 {user1 = true} @3 {user1 = true}
+/ _ ^ _ {user1 == @1.user1} _ {user1 == @1.user1} _ {user1 == false};
+clsCons clsCons clsWf
+> @3 @1 { user1 = true } @2 {user1 = true}
+/ _ ^ _ {user1 == @1.user1} _ {user1 == false};
+clsCons clsWf > @2 @1 { user1 = true } / _ ^ _ {user1 == false};
+
+
+
+clsCons clsCons clsCons _ _ > @1 @2 @3 g_aIns:3 g_yIns:3
+/ _ {user1 == true} _ {user1 == true} _ {user1 == true} _ _;
+clsCons clsCons _ _ > @1 @2 g_aIns:2 g_yIns:2
+/ _ {user1 == true} _ {user1 == true} _ _;
+clsCons _ _ > @1 g_aIns:1 g_yIns:1 / _ {user1 == true} _ _;
+
+endtable;
