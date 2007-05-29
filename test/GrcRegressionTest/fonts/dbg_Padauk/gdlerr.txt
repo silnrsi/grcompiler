@@ -1,0 +1,67 @@
+Graphite Compilation Results
+
+GDL file: PadaukMain.gdl
+Input font file: PadaukInput.ttf
+Output font file: PadaukBenchmark.ttf
+Output font family: Padauk
+Silf table version: 2.0
+Create separate control file: no
+
+*******************************************************
+
+PadaukMain.gdl(706) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 3 and 5; attachment may be needed
+PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
+PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
+PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+PadaukMain.gdl(712) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 2 and 4; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 2 and 5; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 3 and 5; attachment may be needed
+PadaukMain.gdl(714) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+PadaukMain.gdl(716) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(716) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+PadaukMain.gdl(718) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(727) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(727) : warning(3521): Vertical overlap between glyphs in items 1 and 3; attachment may be needed
+PadaukMain.gdl(727) : warning(3521): Vertical overlap between glyphs in items 1 and 4; attachment may be needed
+PadaukMain.gdl(727) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(727) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(737) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(737) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(739) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(739) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(741) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(741) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(743) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(743) : warning(3521): Vertical overlap between glyphs in items 1 and 3; attachment may be needed
+PadaukMain.gdl(743) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(743) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(766) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(766) : warning(3521): Vertical overlap between glyphs in items 1 and 3; attachment may be needed
+PadaukMain.gdl(766) : warning(3521): Vertical overlap between glyphs in items 1 and 4; attachment may be needed
+PadaukMain.gdl(766) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(766) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(766) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+PadaukMain.gdl(773) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+PadaukMain.gdl(773) : warning(3521): Vertical overlap between glyphs in items 2 and 4; attachment may be needed
+PadaukMain.gdl(773) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(793) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(794) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(794) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(795) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(796) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(797) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+PadaukMain.gdl(798) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 52 warnings
