@@ -74,8 +74,8 @@ int main(int argc, char* argv[])
 	WriteToLog("Graphite Compiler Regression Test\n\n");
 
 	// *** TEST CASES ***
-	const int numberOfTests = 4;
-	TestCase rgtcaseList[4];
+	const int numberOfTests = 5;
+	TestCase rgtcaseList[5];
 
 	rgtcaseList[0].m_testName.assign("Scheherazade");
 	rgtcaseList[0].m_fontFileBmark.assign("SchBenchmark.ttf");
@@ -100,6 +100,12 @@ int main(int argc, char* argv[])
 	rgtcaseList[3].m_fontFileTest.assign("PigLatinTest_v3.ttf");
 	rgtcaseList[3].m_debug = false;
 	rgtcaseList[3].m_skip = false;
+
+	rgtcaseList[4].m_testName.assign("Padauk");
+	rgtcaseList[4].m_fontFileBmark.assign("PadaukBenchmark.ttf");
+	rgtcaseList[4].m_fontFileTest.assign("PadaukTest.ttf");
+	rgtcaseList[4].m_debug = false;
+	rgtcaseList[4].m_skip = false;
 
 	// *** Add tests here, and increment numberOfTests. ***
 

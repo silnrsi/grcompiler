@@ -1,0 +1,173 @@
+LINEAR (OUTPUT) CLASSES
+
+Class #0: g1004_med
+0:   0x0076
+
+Class #1: cNgaUVowel
+0:   0x0078   0x0077   0x0079
+
+Class #2: cMed
+0:   0x006c   0x0070   0x0072   0x0074   0x007b   0x007d   0x007f   0x0081   0x008c   0x008e
+10:   0x0093   0x0097   0x009a   0x009c   0x009e   0x00a1   0x00a5   0x00a7   0x00a9   0x00ab
+20:   0x00ad   0x00c3   0x00c9   0x00d3   0x0100   0x0102   0x0104
+
+Class #3: g1010_103d_med
+0:   0x0098
+
+Class #4: g100b_100b
+0:   0x0089
+
+Class #5: g100b_100c
+0:   0x008a
+
+Class #6: g100d_100d
+0:   0x008f
+
+Class #7: g100d_100e
+0:   0x0090
+
+Class #8: g100f_100b
+0:   0x0094
+
+Class #9: g100f_100d
+0:   0x0095
+
+Class #10: g1014_1010_103c
+0:   0x00a3
+
+Class #11: g101e_1010_103c
+0:   0x00ca
+
+Class #12: g103b_103d_103e
+0:   0x00b1
+
+Class #13: g103b_103e
+0:   0x00b2
+
+Class #14: g103d_103e
+0:   0x00c6
+
+Class #15: g103c_103d_narr
+0:   0x00ba
+
+Class #16: g103d_103e_small
+0:   0x00c7
+
+Class #17: g103b_103d
+0:   0x00b0
+
+Class #18: g103c_102f_narr
+0:   0x00be
+
+Class #19: g103e_102f
+0:   0x00cf
+
+Class #20: g103e_1030
+0:   0x00d0
+
+Class #21: g_circledash
+0:   0x006a
+
+Class #22: g1014_alt
+0:   0x00a0
+
+Class #23: c103c_wide
+0:   0x00b9   0x00bb   0x00bf
+
+Class #24: c103c_naralt
+0:   0x00b7   0x00bc   0x00c0
+
+Class #25: c103c_widalt
+0:   0x00b8   0x00bd   0x00c1
+
+Class #26: g101b_alt
+0:   0x00b4
+
+Class #27: g101b_long
+0:   0x00b5
+
+Class #28: cLVowelM
+0:   0x00e3   0x00e5
+
+Class #29: g100a_alt
+0:   0x0085
+
+Class #30: cUWithMa
+0:   0x00e0   0x0079
+
+Class #31: g1025
+0:   0x00d6
+
+Class #32: g103e_alt
+0:   0x00ce
+
+Class #33: g102b_103a
+0:   0x00de
+
+Class #34: g1039
+0:   0x00ee
+
+Class #35: g100b
+0:   0x0086
+
+Class #36: g100d
+0:   0x008d
+
+Class #37: g100e
+0:   0x0091
+
+Class #38: g100f
+0:   0x0092
+
+Class #39: g1014
+0:   0x009f
+
+Class #40: g101e
+0:   0x00c8
+
+Class #41: g103b
+0:   0x00af
+
+Class #42: g103d
+0:   0x00c5
+
+Class #43: g103c
+0:   0x00b6
+
+Class #44: g103e
+0:   0x00cd
+
+Class #45: g101b
+0:   0x00b3
+
+Class #46: g100a
+0:   0x0084
+
+Class #47: g1009
+0:   0x0082
+
+Class #48: g102b
+0:   0x00dd
+
+
+INDEXED (INPUT) CLASSES
+
+Class #49: cUVowelNga
+0x00df :   1    0x00e1 :   0    0x00ea :   2    
+
+Class #50: cMedBase
+0x006b :   0    0x006f :   1    0x0071 :   2    0x0073 :   3    0x007a :   4    
+0x007c :   5    0x007e :   6    0x0080 :   7    0x008b :   8    0x008d :   9    
+0x0092 :  10    0x0096 :  11    0x0099 :  12    0x009b :  13    0x009d :  14    
+0x009f :  15    0x00a4 :  16    0x00a6 :  17    0x00a8 :  18    0x00aa :  19    
+0x00ac :  20    0x00c2 :  21    0x00c8 :  22    0x00d2 :  23    0x00ff :  24    
+0x0101 :  25    0x0103 :  26    
+
+Class #51: c103c_nar
+0x00b6 :   0    0x00ba :   1    0x00be :   2    
+
+Class #52: cLVowel
+0x00e2 :   0    0x00e4 :   1    
+
+Class #53: cUTakesMa
+0x0076 :   1    0x00df :   0    
