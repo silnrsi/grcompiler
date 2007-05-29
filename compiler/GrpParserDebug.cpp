@@ -25,29 +25,34 @@ static char intString[20];
 ----------------------------------------------------------------------------------------------*/
 void AST::Trace(std::ostream & strmOut, const char * s, int level)
 {
-	for (int i = 0; i < level * 3; i++)
-		strmOut << " ";
+	// Note: we iterate through the siblings instead of recursing, to avoid stack overflows.
 
-	if (s != 0)
-		strmOut << s;
+	AST * pAST = this;
+	while (pAST)
+	{
+		for (int i = 0; i < level * 3; i++)
+			strmOut << " ";
 
-	GrpASTNode * wrNode = dynamic_cast<GrpASTNode *>(getNode());
-	Assert(wrNode);
+		if (s != 0)
+			strmOut << s;
 
-	strmOut << debugString() << "(" << getType() << ")";
-	if (getText() != "")
-		strmOut << ": '" << getText().c_str() << "'";
-	int line = wrNode->LineAndFile().PreProcessedLine();
-	if (line > 0)
-		strmOut << "  [line #" << line << "]";
-	strmOut << "\n";
+		GrpASTNode * grNode = dynamic_cast<GrpASTNode *>(getNode());
+		Assert(grNode);
 
-	AST * pAST = getFirstChild();
-	if (pAST)
-		pAST->Trace(strmOut, 0, level + 1);
-	pAST = getNextSibling();
-	if (pAST)
-		pAST->Trace(strmOut, 0, level);
+		strmOut << debugString() << "(" << getType() << ")";
+		if (getText() != "")
+			strmOut << ": '" << getText().c_str() << "'";
+		int line = grNode->LineAndFile().PreProcessedLine();
+		if (line > 0)
+			strmOut << "  [line #" << line << "]";
+		strmOut << "\n";
+
+		AST * pASTChild = getFirstChild();
+		if (pASTChild)
+			pASTChild->Trace(strmOut, 0, level + 1);
+
+		pAST = pAST->getNextSibling();
+	}
 }
 
 
