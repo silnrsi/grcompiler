@@ -153,7 +153,7 @@ void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 		pfsetFalse->m_nValue = 0;
 		pfsetFalse->m_fHasValue = true;
 		pfsetFalse->m_staName = "false";
-		pfsetFalse->m_vextname.Push(GdlExtName(StrUni("False"), LG_USENG));
+		pfsetFalse->m_vextname.Push(GdlExtName(L"False", LG_USENG));
 		m_vpfset.Push(pfsetFalse);
 
 		GdlFeatureSetting * pfsetTrue = new GdlFeatureSetting();
@@ -161,7 +161,7 @@ void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 		pfsetTrue->m_nValue = 1;
 		pfsetTrue->m_fHasValue = true;
 		pfsetTrue->m_staName = "true";
-		pfsetTrue->m_vextname.Push(GdlExtName(StrUni("True"), LG_USENG));
+		pfsetTrue->m_vextname.Push(GdlExtName(L"True", LG_USENG));
 		m_vpfset.Push(pfsetTrue);
 
 		if (!m_fDefaultSet)
@@ -276,13 +276,14 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst)
 	return wNameTblId;
 }
 
-StrUni GdlExtName::s_stuNoName("NoName"); // static
+std::wstring GdlExtName::s_stuNoName(L"NoName"); // static
+
 /*----------------------------------------------------------------------------------------------
 	Push onto the argument vectors information for the feature itself and all its settings.
 	The three arrays must remain parallel. Retrieve all the external names and their 
 	corresponding language ids and the name table ids (assigned in SetNameTblIds().
 ----------------------------------------------------------------------------------------------*/
-bool GdlFeatureDefn::NameTblInfo(Vector<StrUni> * pvstuExtNames, Vector<utf16> * pvwLangIds, 
+bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> * pvstuExtNames, Vector<utf16> * pvwLangIds, 
 		Vector<utf16> * pvwNameTblIds)
 {
 	// store data for the feature itself

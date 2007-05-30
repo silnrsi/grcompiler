@@ -464,7 +464,7 @@ bool GrcManager::AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint
 	}
 	nNameTblId = max(nNameTblId, m_nNameTblStart);
 
-	Vector<StrUni> vstuExtNames;
+	Vector<std::wstring> vstuExtNames;
 	Vector<uint16> vsuLangIds;
 	Vector<uint16> vsuNameTblIds;
 
@@ -486,7 +486,8 @@ bool GrcManager::AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint
 	cbNewTbl += cNewRecords * sizeof(sfnt_NameRecord); // directory entries
 	for (int iExtNms = 0; iExtNms < cNewRecords; iExtNms++)
 	{ 
-		cbNewTbl += vstuExtNames[iExtNms].Length() * sizeof(utf16); // string storage
+		// Note the strings use wchar_t, but when output they will be sure to use 16-bit chars.
+		cbNewTbl += vstuExtNames[iExtNms].length() * sizeof(utf16); // string storage
 	}
 
 	if (pchFamilyName)
@@ -680,7 +681,7 @@ bool GrcManager::BuildFontNames(uint16 * pchFamilyName, uint8 * pSubFamily, uint
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AddFeatsModFamilyAux(uint8 * pNameTbl, uint32 cbNameTbl, 
 	uint8 * pNewTbl, uint32 cbNewTbl, 
-	Vector<StrUni> * pvstuExtNames, Vector<uint16> * pvsuLangIds, Vector<uint16> * pvsuNameTblIds, 
+	Vector<std::wstring> * pvstuExtNames, Vector<uint16> * pvsuLangIds, Vector<uint16> * pvsuNameTblIds, 
 	int iFamilyRecord, int iFullRecord, int iPlatEncMin, int iPlatEncLim, bool f31Name, 
 	uint16 * pchwFamilyName, uint16 cchwFamilyName, 
 	uint16 * pchwFullName, uint16 cchwFullName)
@@ -757,7 +758,8 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pNameTbl, uint32 cbNameTbl,
 		p->suNameId = swapw(pRecord[iRecord].nameID);
 		p->cbStr = swapw(pRecord[iRecord].length);
 
-		if (!(p->pbStr = new uint8[p->cbStr])) return false;
+		if (!(p->pbStr = new uint8[p->cbStr]))
+			return false;
 		pStr = (uint8 *)pTbl + ibStrOffset + swapw(pRecord[iRecord].offset);
 		memcpy(p->pbStr, pStr, p->cbStr);
 	}
@@ -768,26 +770,35 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pNameTbl, uint32 cbNameTbl,
 		p = pEntry + (iFamilyRecord - iPlatEncMin);
 		delete [] p->pbStr;
 		p->cbStr = cchwFamilyName * sizeof(utf16);
-		if (!(p->pbStr = new uint8[p->cbStr])) return false;
+		if (!(p->pbStr = new uint8[p->cbStr]))
+			return false;
 		memcpy(p->pbStr, pchwFamilyName, p->cbStr);
 
 		p = pEntry + (iFullRecord - iPlatEncMin);
 		delete [] p->pbStr;
 		p->cbStr = cchwFullName * sizeof(utf16);
-		if (!(p->pbStr = new uint8[p->cbStr])) return false;
+		if (!(p->pbStr = new uint8[p->cbStr]))
+			return false;
 		memcpy(p->pbStr, pchwFullName, p->cbStr);
 	}
 
 	// add feature string data to list of entries
 	for (iRecord = 0; iRecord < cNewRecords; iRecord++)
 	{
+		// Convert from wchar_t to 16-bit chars.
+		std::wstring stuWchar = (*pvstuExtNames)[iRecord];
+		int cchw = stuWchar.length();
+		utf16 * prgchw = new utf16[cchw];
+		std::copy(stuWchar.data(), stuWchar.data() + cchw, prgchw);
+
 		p = pEntry + (iRecord + iPlatEncLim - iPlatEncMin);
 		p->suLangId = (*pvsuLangIds)[iRecord];
 		p->suNameId = (*pvsuNameTblIds)[iRecord];
-		p->cbStr = (*pvstuExtNames)[iRecord].Length() * sizeof(utf16);
+		p->cbStr = cchw * sizeof(utf16);
 
-		if (!(p->pbStr = new uint8[p->cbStr])) return false;
-		memcpy(p->pbStr, (*pvstuExtNames)[iRecord], p->cbStr);
+		if (!(p->pbStr = new uint8[p->cbStr]))
+			return false;
+		memcpy(p->pbStr, prgchw, p->cbStr);
 		TtfUtil::SwapWString(p->pbStr, p->cbStr / sizeof(utf16)); // make big endian
 	}
 
@@ -2607,7 +2618,7 @@ void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 /*----------------------------------------------------------------------------------------------
 	Convenient wrapper to call the same method in GdlRenderer.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<StrUni> * pvstuExtNames, 
+bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
 		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds)
 {
 	return m_prndr->AssignFeatTableNameIds(wFirstNameId, pvstuExtNames, pvwLangIds, 
@@ -2623,7 +2634,7 @@ bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<StrUni> * pvs
 	The vectors are parallel. Elements numbered n  contains the name string, lang id, and 
 	name table id for a given feature or setting.
 ----------------------------------------------------------------------------------------------*/
-bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<StrUni> * pvstuExtNames, 
+bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
 		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds)
 {
 	if (wFirstNameId > 32767) return false; // max allowed value

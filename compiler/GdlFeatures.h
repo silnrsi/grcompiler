@@ -34,22 +34,22 @@ public:
 	{
 	}
 
-	GdlExtName(StrUni stu, utf16 wLangID)
+	GdlExtName(std::wstring stu, utf16 wLangID)
 		:	m_stuName(stu),
 			m_wLanguageID(wLangID)
 	{
 	}
 
 	//	Getters:
-	StrUni Name()		{ return m_stuName; }
-	utf16 LanguageID()	{ return m_wLanguageID; }
+	std::wstring Name()		{ return m_stuName; }
+	utf16 LanguageID()		{ return m_wLanguageID; }
 
-	static StrUni s_stuNoName;
+	static std::wstring s_stuNoName;
 
 protected:
 	//	Instance variables:
-	StrUni		m_stuName;
-	utf16		m_wLanguageID;
+	std::wstring	m_stuName;
+	utf16			m_wLanguageID;
 };
 
 /*----------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ public:
 	//	Setters:
 	void SetName(std::string sta)	{ m_staName = sta; }
 	void SetValue(int n)			{ m_nValue = n; m_fHasValue = true; }
-	void AddExtName(utf16 wLangID, StrUni stu)
+	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
 		m_vextname.Push(GdlExtName(stu, wLangID));
 	}
@@ -88,8 +88,7 @@ public:
 		GdlStringExpression * pexpString = dynamic_cast<GdlStringExpression*>(pexp);
 		Assert(pexpString);
 
-		StrUni stu;
-		stu = pexpString->ConvertToUnicode();
+		std::wstring stu = pexpString->ConvertToUnicode();
 		m_vextname.Push(GdlExtName(stu, wLangID));
 	}
 	void SetNameTblId(utf16 w)		{ m_wNameTblId = w; }
@@ -153,7 +152,7 @@ public:
 	void SetName(std::string sta)	{ m_staName = sta; }
 	void SetID(unsigned int n)		{ m_nID = n; m_fIDSet = true; }
 	void SetDefault(int n)			{ m_nDefault = n; m_fDefaultSet = true; }
-	void AddExtName(utf16 wLangID, StrUni stu)
+	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
 		m_vextname.Push(GdlExtName(stu, wLangID));
 	}
@@ -162,7 +161,7 @@ public:
 		GdlStringExpression * pexpString = dynamic_cast<GdlStringExpression*>(pexp);
 		Assert(pexpString);
 
-		StrUni stu = pexpString->ConvertToUnicode();
+		std::wstring stu = pexpString->ConvertToUnicode();
 		m_vextname.Push(GdlExtName(stu, wLangID));
 	}
 	void MarkAsLanguageFeature()
@@ -190,7 +189,7 @@ public:
 		return m_fStdLang;
 	}
 	utf16 NameTblId()	{ return m_wNameTblId; }
-	bool NameTblInfo(Vector<StrUni> * pvstuExtNames, Vector<utf16> * pvwLangIds, 
+	bool NameTblInfo(Vector<std::wstring> * pvstuExtNames, Vector<utf16> * pvwLangIds, 
 		Vector<utf16> * pvwNameTblIds);
 
 
