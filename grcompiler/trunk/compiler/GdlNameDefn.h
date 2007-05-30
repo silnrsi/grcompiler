@@ -33,7 +33,7 @@ public:
 		return &m_vextname[i];
 	}
 
-	void AddExtName(utf16 wLangID, StrUni stu)
+	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
 		m_vextname.Push(GdlExtName(stu, wLangID));
 	}
@@ -42,7 +42,7 @@ public:
 		GdlStringExpression * pexpString = dynamic_cast<GdlStringExpression*>(pexp);
 		Assert(pexpString);
 
-		StrUni stu = pexpString->ConvertToUnicode();
+		std::wstring stu = pexpString->ConvertToUnicode();
 		m_vextname.Push(GdlExtName(stu, wLangID));
 	}
 

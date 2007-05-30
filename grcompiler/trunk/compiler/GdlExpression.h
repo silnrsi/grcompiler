@@ -539,7 +539,7 @@ public:
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 	virtual bool ResolveToFeatureID(unsigned int *pnRet);
 
-	StrUni ConvertToUnicode();
+	std::wstring ConvertToUnicode();
 
 public:
 	//	Pre-compiler:

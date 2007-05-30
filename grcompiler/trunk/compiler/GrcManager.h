@@ -262,7 +262,7 @@ public:
 	void CalculateContextOffsets();
 
 	//	Output:
-	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<StrUni> * pvstuExtNames, 
+	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
 		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds);
 	int OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		utf16 * pchDstFontFamily, utf16 * pchSrcFontFamily);
@@ -279,7 +279,7 @@ protected:
 		uint16 ** ppchwFamilyName, uint16 * pcchwFamilyName, 
 		uint16 ** ppchwFullName, uint16 * pcchwFullName);
 	bool AddFeatsModFamilyAux(uint8 * pTbl, uint32 cbTbl, uint8 * pNewTbl, uint32 cbNewTbl, 
-		Vector<StrUni> * pvstuExtNames, Vector<uint16> * pvsuLangIds, Vector<uint16> * pvsuNameTblIds, 
+		Vector<std::wstring> * pvstuExtNames, Vector<uint16> * pvsuLangIds, Vector<uint16> * pvsuNameTblIds, 
 		int iFamilyRecord, int iFullRecord, int iPlatEncMin, int iPlatEncLim, bool f31Name, 
 		uint16 * pchwFamilyName, uint16 cchwFamilyName, 
 		uint16 * pchwFullName, uint16 cchwFullName);

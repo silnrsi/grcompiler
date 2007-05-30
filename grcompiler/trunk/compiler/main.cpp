@@ -152,9 +152,11 @@ int main(int argc, char * argv[])
 	}
 	else
 	{
-		StrUni stu("unknown");
-		utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
+		std::wstring stu(L"unknown");
+		//utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
+		std::copy(stu.data(), stu.data() + stu.length() + 1, rgchwOutputFontFamily);
 	}
+
 
 	//std::string staFamily((char*)rgchwOutputFontFamily);
 	char rgchFamily[128];
@@ -469,11 +471,13 @@ void GenerateOutputControlFileName(char * pchFontFile, char * pchOutputFont)
 ----------------------------------------------------------------------------------------------*/
 void GenerateOutputControlFontFamily(utf16 * pchFontName, utf16 * pchOutputName)
 {
-	StrUni stu((wchar*)pchFontName);
-	stu.Append(" Graphite");
-
-	utf16cpy(pchOutputName, (const utf16*)stu.Chars());
-	pchOutputName[stu.Length() + 1] = 0;
+	wchar_t rgchw[120];
+	std::copy(pchFontName, pchFontName + 120, rgchw);
+	std::wstring stu(rgchw);
+	stu.append(L" Graphite");
+	std::copy(stu.data(), stu.data() + stu.length() + 1, pchOutputName);
+	//utf16cpy(pchOutputName, (const utf16*)stu.Chars());
+	//pchOutputName[stu.Length() + 1] = 0;
 }
 
 /*----------------------------------------------------------------------------------------------

@@ -2416,20 +2416,26 @@ void GdlStringExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * p
 
 
 /*----------------------------------------------------------------------------------------------
-	Convert a string-plus-codepage into a Unicode string.
+	Convert a string-plus-codepage into a Unicode string (UTF-16 is what is required for the
+	TT name table).
 ----------------------------------------------------------------------------------------------*/
-StrUni GdlStringExpression::ConvertToUnicode()
+std::wstring GdlStringExpression::ConvertToUnicode()
 {
 	int cch = m_staValue.length();
 	const schar * pchs = m_staValue.data();
-	utf16 * pchw = new utf16[cch];
+	utf16 * pchw = new utf16[cch + 1];
 	Platform_8bitToUnicode(m_nCodepage, pchs, cch, pchw, cch);
-#ifdef GR_FW
-	StrUni stuRet((wchar_t*)pchw, cch); // something about the new VS compiler needs this :-(
-#else
-	StrUni stuRet(pchw, cch);
-#endif // GR_FW
+	pchw[cch] = 0;
+	wchar_t * pchw_wchar = new wchar_t[cch + 1];
+	std::copy(pchw, pchw + cch + 1, pchw_wchar);
+	std::wstring stuRet(pchw_wchar);
+//#ifdef GR_FW
+//	StrUni stuRet((wchar_t*)pchw, cch); // something about the new VS compiler needs this :-(
+//#else
+//	StrUni stuRet(pchw, cch);
+//#endif // GR_FW
 	delete[] pchw;
+	delete[] pchw_wchar;
 	return stuRet;
 }
 
