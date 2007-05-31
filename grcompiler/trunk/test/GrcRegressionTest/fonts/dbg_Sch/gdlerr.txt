@@ -2,7 +2,7 @@ Graphite Compilation Results
 
 GDL file: SchMain.gdl
 Input font file: SchInput.ttf
-Output font file: SchTest.ttf
+Output font file: SchBenchmark.ttf
 Output font family: Scheherazade
 Silf table version: 2.0
 Create separate control file: no

@@ -70,7 +70,7 @@ public:
 	};
 
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf) = 0;
+	virtual void ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf) = 0;
 	virtual int ActualForPseudo(utf16 wPseudo) = 0;
 	virtual int GlyphIDCount() = 0;
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne) = 0;
@@ -168,7 +168,7 @@ public:
 		GdlGlyphClassDefn * pglfcMember);
 
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
+	virtual void ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
 	virtual int ActualForPseudo(utf16 wPseudo);
 	void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		stdext::hash_map<utf16, utf16> & hmActualForPseudos);

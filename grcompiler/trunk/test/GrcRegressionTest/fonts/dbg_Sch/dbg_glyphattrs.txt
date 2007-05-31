@@ -10342,32 +10342,32 @@ GLYPH ATTRIBUTE VALUES
 
 0x04ae  (1198)
    breakweight = 30 (0x001e)
-   *actualForPseudo* = 352 (0x0160)
+   *actualForPseudo* = 35 (0x0023)
 
 
 0x04af  (1199)
    breakweight = 30 (0x001e)
-   *actualForPseudo* = 351 (0x015f)
+   *actualForPseudo* = 352 (0x0160)
 
 
 0x04b0  (1200)
    breakweight = 30 (0x001e)
-   *actualForPseudo* = 364 (0x016c)
+   *actualForPseudo* = 351 (0x015f)
 
 
 0x04b1  (1201)
    breakweight = 30 (0x001e)
-   *actualForPseudo* = 303 (0x012f)
+   *actualForPseudo* = 364 (0x016c)
 
 
 0x04b2  (1202)
    breakweight = 30 (0x001e)
-   *actualForPseudo* = 354 (0x0162)
+   *actualForPseudo* = 303 (0x012f)
 
 
 0x04b3  (1203)
    breakweight = 30 (0x001e)
-   *actualForPseudo* = 35 (0x0023)
+   *actualForPseudo* = 354 (0x0162)
 
 
 0x04b4  (1204)

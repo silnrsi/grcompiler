@@ -83,7 +83,7 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 {
-	Set<GdlGlyphDefn*> setpglfExplicitPseudos;
+	std::set<GdlGlyphDefn*> setpglfExplicitPseudos;
 	int cExplicitPseudos = m_prndr->ExplicitPseudos(setpglfExplicitPseudos);
 
 	Vector<unsigned int> vnAutoUnicode;
@@ -130,8 +130,8 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	utf16 wFirstPseudo = wFirstFree;
 	m_nMaxPseudoUnicode = 0;
 	Set<unsigned int> setnUnicode; // to recognize duplicates
-	for (Set<GdlGlyphDefn*>::iterator itset = setpglfExplicitPseudos.Begin();
-		itset != setpglfExplicitPseudos.End();
+	for (std::set<GdlGlyphDefn*>::iterator itset = setpglfExplicitPseudos.begin();
+		itset != setpglfExplicitPseudos.end();
 		++itset)
 	{
 		GdlGlyphDefn * pglfPseudo = *itset;
@@ -192,28 +192,28 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	number found. Record an error if the pseudo has an invalid output function (ie, more
 	than one glyph specified).
 ----------------------------------------------------------------------------------------------*/
-int GdlRenderer::ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf)
+int GdlRenderer::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
 {
 	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
 		m_vpglfc[iglfc]->ExplicitPseudos(setpglf);
-	return setpglf.Size();
+	return setpglf.size();
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf)
+void GdlGlyphClassDefn::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 		m_vpglfdMembers[iglfd]->ExplicitPseudos(setpglf);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphDefn::ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf)
+void GdlGlyphDefn::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
 {
 	if (m_glft == kglftPseudo)
 	{
 		Assert(m_pglfOutput);
 		GdlGlyphDefn * p = this;	// kludge until Set can handle const args.
-		setpglf.Insert(p);
+		setpglf.insert(p);
 	}
 }
 
