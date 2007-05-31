@@ -16,14 +16,15 @@ Glyph ID => Column:
   0x005f         => 0
   0x0061         => 0
   0x00fe..0x0100 => 1
-  0x04ae..0x04b2 => 2
-  0x04b3..0x04bd => 3
+  0x04ae         => 2
+  0x04af..0x04b3 => 3
+  0x04b4..0x04bd => 2
 
 
 Final Table:                 0     1     2     3
                           - - - - - - - - - - - - 
 0: 0
-                             4     3     1     2
+                             4     3     2     1
    Matched=none
    Success=none
 

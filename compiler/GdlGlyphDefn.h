@@ -203,7 +203,7 @@ public:
 
 public:
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
+	virtual void ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
 	virtual int ActualForPseudo(utf16 wPseudo);
 	//	Answer true if there is exactly one glyph represented by the object.
 //	bool SingleGlyph()

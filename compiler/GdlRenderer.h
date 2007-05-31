@@ -115,7 +115,7 @@ public:
 	//	Pre-compiler:
 	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
-	int ExplicitPseudos(Set<GdlGlyphDefn *> & setpglf);
+	int ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		stdext::hash_map<utf16, utf16> & hmActualForPseudos);

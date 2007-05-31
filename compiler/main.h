@@ -80,6 +80,7 @@ using namespace gr;
 #include "UtilInt.h"
 #endif
 #include <hash_map>
+#include <set>
 
 class GrcErrorList;
 class GrcManager;
