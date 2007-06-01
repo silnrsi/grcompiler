@@ -182,7 +182,7 @@ void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 {
 	SourceClassSet * pscsThisGlyph = m_rgscsInclusions + wGlyphID;
-	if (pscsThisGlyph->Size() == 0)
+	if (pscsThisGlyph->size() == 0)
 		//	This glyph does not need to be included in the FSM, because no source classes of
 		//	interest included it.
 		return -1;
@@ -262,8 +262,8 @@ int GdlPass::MachineClassKey(utf16 wGlyphID, int nPassID)
 {
 	SourceClassSet * pscs = m_rgscsInclusions + wGlyphID;
 	int nKey = 0;
-	for (SourceClassSet::iterator itscs = pscs->Begin();
-		itscs != pscs->End();
+	for (SourceClassSet::iterator itscs = pscs->begin();
+		itscs != pscs->end();
 		++itscs)
 	{
 		Assert((*itscs)->FsmID(nPassID) > -1);
@@ -276,8 +276,8 @@ int GdlPass::MachineClassKey(utf16 wGlyphID, int nPassID)
 int FsmMachineClass::Key(int ipass)
 {
 	int nKey = 0;
-	for (SourceClassSet::iterator itscs = m_scs.Begin();
-		itscs != m_scs.End();
+	for (SourceClassSet::iterator itscs = m_scs.begin();
+		itscs != m_scs.end();
 		++itscs)
 	{
 		Assert((*itscs)->FsmID(ipass) > -1);
@@ -355,13 +355,13 @@ FsmMachineClass * GdlPass::MachineClassMatching(Vector<FsmMachineClass *> & vpfs
 ----------------------------------------------------------------------------------------------*/
 bool FsmMachineClass::MatchesSources(SourceClassSet * pscs)
 {
-	if (m_scs.Size() != pscs->Size())
+	if (m_scs.size() != pscs->size())
 		return false;
-	for (SourceClassSet::iterator itscs = m_scs.Begin();
-		itscs != m_scs.End();
+	for (SourceClassSet::iterator itscs = m_scs.begin();
+		itscs != m_scs.end();
 		++itscs)
 	{
-		if (!pscs->IsMember(*itscs))
+		if (pscs->find(*itscs) == pscs->end()) // not a member
 			return false;
 	}
 	return true;
@@ -373,9 +373,9 @@ bool FsmMachineClass::MatchesSources(SourceClassSet * pscs)
 ----------------------------------------------------------------------------------------------*/
 bool FsmMachineClass::MatchesOneSource(GdlGlyphClassDefn * pglfc)
 {
-	if (m_scs.Size() != 1)
+	if (m_scs.size() != 1)
 		return false;
-	return (*(m_scs.Begin()) == pglfc);
+	return (*(m_scs.begin()) == pglfc);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -385,7 +385,8 @@ void GdlPass::InitializeFsmArrays()
 {
 	for (int w = 0; w < kMaxTotalGlyphs; w++)
 	{
-		m_rgscsInclusions[w].Clear();
+int x = m_rgscsInclusions[w].size();
+		m_rgscsInclusions[w].clear();
 		m_rgpfsmcAssignments[w] = NULL;
 	}
 }
@@ -435,8 +436,8 @@ void GdlGlyphDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * p
 void GdlPass::RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc)
 {
 	SourceClassSet * pscs = m_rgscsInclusions + wGlyphID;
-	if (!pscs->IsMember(pglfc))
-		pscs->Insert(pglfc);
+	if (pscs->find(pglfc) == pscs->end()) // not a member
+		pscs->insert(pglfc);
 }
 
 
