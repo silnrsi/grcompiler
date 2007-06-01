@@ -325,7 +325,7 @@ void GdlAttrValueSpec::AdjustSlotRefsForPreAnys(int critPrependedAnys, GdlRuleIt
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignClassInternalIDs()
 {
-	Set<GdlGlyphClassDefn *> setpglfc;
+	std::set<GdlGlyphClassDefn *> setpglfc;
 	m_prndr->MarkReplacementClasses(this, setpglfc);
 
 	//	Now that we've given warnings about invalid glyphs, delete them from the classes.
@@ -336,9 +336,9 @@ bool GrcManager::AssignClassInternalIDs()
 	//	batch to input classes. Note that some classes may have both an input
 	//	and an output ID.
 	int nSubID = 0;
-	Set<GdlGlyphClassDefn *>::iterator itset;
-	for (itset = setpglfc.Begin();
-		itset != setpglfc.End();
+	std::set<GdlGlyphClassDefn *>::iterator itset;
+	for (itset = setpglfc.begin();
+		itset != setpglfc.end();
 		++itset)
 	{
 		if ((*itset)->ReplcmtOutputClass())
@@ -350,8 +350,8 @@ bool GrcManager::AssignClassInternalIDs()
 	}
 
 	//	Next do the input classes that have only one glyph; they can also be in linear format.
-	for (itset = setpglfc.Begin();
-		itset != setpglfc.End();
+	for (itset = setpglfc.begin();
+		itset != setpglfc.end();
 		++itset)
 	{
 		GdlGlyphClassDefn * pglfc = *itset;
@@ -375,8 +375,8 @@ bool GrcManager::AssignClassInternalIDs()
 	//	cannot be in linear format; they must be in indexed format (glyph ID / index pair,
 	//	ordered by glyph ID).
 
-	for (itset = setpglfc.Begin();
-		itset != setpglfc.End();
+	for (itset = setpglfc.begin();
+		itset != setpglfc.end();
 		++itset)
 	{
 		GdlGlyphClassDefn * pglfc = *itset;
@@ -411,7 +411,7 @@ bool GrcManager::AssignClassInternalIDs()
 	for use in the FSMs.
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::MarkReplacementClasses(GrcManager * pcman,
-	Set<GdlGlyphClassDefn *> & setpglfc)
+	std::set<GdlGlyphClassDefn *> & setpglfc)
 {
 	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
 	{
@@ -421,7 +421,7 @@ void GdlRenderer::MarkReplacementClasses(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::MarkReplacementClasses(GrcManager * pcman,
-	Set<GdlGlyphClassDefn *> & setpglfc)
+	std::set<GdlGlyphClassDefn *> & setpglfc)
 {
 	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
 	{
@@ -431,7 +431,7 @@ void GdlRuleTable::MarkReplacementClasses(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::MarkReplacementClasses(GrcManager * pcman,
-	Set<GdlGlyphClassDefn *> & setpglfc)
+	std::set<GdlGlyphClassDefn *> & setpglfc)
 {
 	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
 	{
@@ -441,7 +441,7 @@ void GdlPass::MarkReplacementClasses(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::MarkReplacementClasses(GrcManager * pcman, int nPassID,
-	Set<GdlGlyphClassDefn *> & setpglfcReplace)
+	std::set<GdlGlyphClassDefn *> & setpglfcReplace)
 {
 	//	Make lists of flags indicating whether each slot serves as an input replacement slot
 	//	and/or an output replacement slot.
@@ -557,7 +557,7 @@ void GdlSubstitutionItem::FindSubstitutionSlots(int irit,
 	Mark this item's class as a replacement class, and add it to the list.
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
-	Set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput)
+	std::set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput)
 {
 	GdlDefn * pdefn;
 	if (fInput)
@@ -615,7 +615,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 		}
 	}
 
-	setpglfcReplace.Insert(pglfc);
+	setpglfcReplace.insert(pglfc);
 }
 
 
@@ -943,7 +943,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 	//	If there are any component.X.ref settings, give a warning if they are not equal
 	//	to the associations.
-	Set<int> setsrCompRef;
+	std::set<int> setsrCompRef;
 	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
 	{
 		if (m_vpavs[ipavs]->m_psymName->IsComponentRef())
@@ -953,23 +953,23 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 			if (pexpsr)
 			{
 				int sr = pexpsr->SlotNumber();
-				setsrCompRef.Insert(sr);
+				setsrCompRef.insert(sr);
 			}
 		}
 	}
-	if (setsrCompRef.Size() > 0)
+	if (setsrCompRef.size() > 0)
 	{
-		Set<int> setsrAssocs;
+		std::set<int> setsrAssocs;
 		for (int ipexp = 0; ipexp < m_vpexpAssocs.Size() && fOkay; ipexp++)
 		{
 			int sr = m_vpexpAssocs[ipexp]->SlotNumber();
-			setsrAssocs.Insert(sr);
+			setsrAssocs.insert(sr);
 		}
 
-		bool fOkay = (setsrCompRef.Size() == setsrAssocs.Size());
-		for (Set<int>::iterator it = setsrCompRef.Begin(); fOkay && it != setsrCompRef.End(); ++it)
+		bool fOkay = (setsrCompRef.size() == setsrAssocs.size());
+		for (std::set<int>::iterator it = setsrCompRef.begin(); fOkay && it != setsrCompRef.end(); ++it)
 		{
-			if (!setsrAssocs.IsMember(*it))
+			if (setsrAssocs.find(*it) == setsrAssocs.end()) // not a member
 				fOkay = false;
 		}
 

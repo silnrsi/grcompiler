@@ -42,13 +42,13 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 
 	int nInternalID = 0;
 
-	Set<unsigned int> setID;
+	std::set<unsigned int> setID;
 
 	for (int ipfeat = 0; ipfeat < m_vpfeat.Size(); ipfeat++)
 	{
 		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
 		unsigned int nID = pfeat->ID();
-		if (setID.IsMember(nID))
+		if (setID.find(nID) != setID.end()) // is a member
 		{
 			char rgch[20];
 			if (nID > 0x00FFFFFF)
@@ -68,7 +68,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 			g_errorList.AddError(3152, pfeat, "Duplicate feature ID: ", rgch);
 		}
 		else
-			setID.Insert(nID);
+			setID.insert(nID);
 
 		if (pfeat->ErrorCheck())
 		{

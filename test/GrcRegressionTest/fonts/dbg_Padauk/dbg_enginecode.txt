@@ -381,7 +381,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -10 -9 -8
 Next
 PushByte -9
@@ -406,7 +406,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -9 -8 -7
 Next
 PushByte -8
@@ -431,7 +431,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -9 -8 -7
 Next
 PushByte -8
@@ -455,7 +455,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -8 -7 -6
 Next
 PushByte -7
@@ -479,7 +479,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -8 -7 -6
 Next
 PushByte -7
@@ -502,7 +502,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -7 -6 -5
 Next
 PushByte -6
@@ -525,7 +525,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -7 -6 -5
 Next
 PushByte -6
@@ -547,7 +547,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -6 -5 -4
 Next
 PushByte -5
@@ -569,7 +569,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -6 -5 -4
 Next
 PushByte -5
@@ -590,7 +590,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -5 -4 -3
 Next
 PushByte -4
@@ -614,7 +614,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -8 -7 -6
 Next
 PushByte -7
@@ -637,7 +637,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -7 -6 -5
 Next
 PushByte -6
@@ -660,7 +660,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -7 -6 -5
 Next
 PushByte -6
@@ -682,7 +682,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -6 -5 -4
 Next
 PushByte -5
@@ -704,7 +704,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -6 -5 -4
 Next
 PushByte -5
@@ -725,7 +725,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -5 -4 -3
 Next
 PushByte -4
@@ -746,7 +746,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -5 -4 -3
 Next
 PushByte -4
@@ -766,7 +766,7 @@ Next
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -4 -3 -2
 Next
 PushByte -3
@@ -786,7 +786,7 @@ Next
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -4 -3 -2
 Next
 PushByte -3
@@ -805,7 +805,7 @@ Delete
 Next
 CopyNext
 Insert
-PutGlyph(V1&2) 0
+PutGlyph 1
 Assoc 3 -3 -2 -1
 Next
 PushByte -2
@@ -830,7 +830,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -11 -10 -9 -8
 Next
 PushByte -9
@@ -854,7 +854,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -10 -9 -8 -7
 Next
 PushByte -8
@@ -878,7 +878,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -10 -9 -8 -7
 Next
 PushByte -8
@@ -901,7 +901,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -9 -8 -7 -6
 Next
 PushByte -7
@@ -924,7 +924,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -9 -8 -7 -6
 Next
 PushByte -7
@@ -946,7 +946,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -8 -7 -6 -5
 Next
 PushByte -6
@@ -968,7 +968,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -8 -7 -6 -5
 Next
 PushByte -6
@@ -989,7 +989,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -7 -6 -5 -4
 Next
 PushByte -5
@@ -1010,7 +1010,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -7 -6 -5 -4
 Next
 PushByte -5
@@ -1030,7 +1030,7 @@ Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -6 -5 -4 -3
 Next
 PushByte -4
@@ -1053,7 +1053,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -9 -8 -7 -6
 Next
 PushByte -7
@@ -1075,7 +1075,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -8 -7 -6 -5
 Next
 PushByte -6
@@ -1097,7 +1097,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -8 -7 -6 -5
 Next
 PushByte -6
@@ -1118,7 +1118,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -7 -6 -5 -4
 Next
 PushByte -5
@@ -1139,7 +1139,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -7 -6 -5 -4
 Next
 PushByte -5
@@ -1159,7 +1159,7 @@ Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -6 -5 -4 -3
 Next
 PushByte -4
@@ -1179,7 +1179,7 @@ Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -6 -5 -4 -3
 Next
 PushByte -4
@@ -1198,7 +1198,7 @@ Delete
 Next
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -5 -4 -3 -2
 Next
 PushByte -3
@@ -1217,7 +1217,7 @@ Delete
 Next
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -5 -4 -3 -2
 Next
 PushByte -3
@@ -1235,7 +1235,7 @@ Next
 Delete
 Next
 CopyNext
-PutSubs(V1&2) 0 49 1
+PutSubs 0 51 29
 Assoc 4 -4 -3 -2 -1
 Next
 PushByte -2
@@ -1248,7 +1248,7 @@ RULE 2.40, PadaukMain.gdl(466):  g1039  cMedBase  >  _  cMed   /  ANY  _  _  ;
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 50 2
+PutSubs 0 49 27
 Next
 RetZero
 
@@ -1257,7 +1257,7 @@ CONSTRAINTS: none
 RULE 2.41, PadaukMain.gdl(470):  g1039  g1010  g103d  >  g1010_103d_med:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 3
+PutGlyph 9
 Assoc 3 0 1 2
 Next
 Delete
@@ -1271,7 +1271,7 @@ CONSTRAINTS: none
 RULE 2.42, PadaukMain.gdl(471):  g100b  g1039  g100b  >  g100b_100b:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 4
+PutGlyph 3
 Assoc 3 0 1 2
 Next
 Delete
@@ -1285,7 +1285,7 @@ CONSTRAINTS: none
 RULE 2.43, PadaukMain.gdl(472):  g100b  g1039  g100c  >  g100b_100c:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 5
+PutGlyph 4
 Assoc 3 0 1 2
 Next
 Delete
@@ -1299,7 +1299,7 @@ CONSTRAINTS: none
 RULE 2.44, PadaukMain.gdl(473):  g100d  g1039  g100d  >  g100d_100d:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 6
+PutGlyph 5
 Assoc 3 0 1 2
 Next
 Delete
@@ -1313,7 +1313,7 @@ CONSTRAINTS: none
 RULE 2.45, PadaukMain.gdl(474):  g100e  g1039  g100d  >  g100d_100e:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 7
+PutGlyph 6
 Assoc 3 0 1 2
 Next
 Delete
@@ -1327,7 +1327,7 @@ CONSTRAINTS: none
 RULE 2.46, PadaukMain.gdl(475):  g100f  g1039  g100b  >  g100f_100b:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 8
+PutGlyph 7
 Assoc 3 0 1 2
 Next
 Delete
@@ -1341,7 +1341,7 @@ CONSTRAINTS: none
 RULE 2.47, PadaukMain.gdl(476):  g100f  g1039  g100d  >  g100f_100d:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 9
+PutGlyph 8
 Assoc 3 0 1 2
 Next
 Delete
@@ -1355,7 +1355,7 @@ CONSTRAINTS: none
 RULE 2.48, PadaukMain.gdl(477):  g1014  g1039  g1010  g103c  >  g1014_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 10
+PutGlyph 11
 Assoc 4 0 1 2 3
 Next
 Delete
@@ -1371,7 +1371,7 @@ CONSTRAINTS: none
 RULE 2.49, PadaukMain.gdl(478):  g1014  g1039  g1010  g103c  >  g1014_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 10
+PutGlyph 11
 Assoc 4 0 1 2 3
 Next
 Delete
@@ -1387,7 +1387,7 @@ CONSTRAINTS: none
 RULE 2.50, PadaukMain.gdl(479):  g101e  g1039  g1010  g103c  >  g101e_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 11
+PutGlyph 21
 Assoc 4 0 1 2 3
 Next
 Delete
@@ -1403,7 +1403,7 @@ CONSTRAINTS: none
 RULE 2.51, PadaukMain.gdl(480):  g103b  g103d  g103e  >  g103b_103d_103e:(2 3 4)  _  _   /  ANY  _  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 12
+PutGlyph 13
 Assoc 3 0 1 2
 Next
 Delete
@@ -1417,7 +1417,7 @@ CONSTRAINTS: none
 RULE 2.52, PadaukMain.gdl(481):  g103b  g103e  >  g103b_103e:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 13
+PutGlyph 14
 Assoc 2 0 1
 Next
 Delete
@@ -1431,7 +1431,7 @@ RULE 2.53, PadaukMain.gdl(482):  g103c  g103d  g103e  >  @2  g103d_103e  _   /  
 ACTIONS:
 PutCopy 0
 Next
-PutGlyph(V1&2) 14
+PutGlyph 19
 Next
 Delete
 Next
@@ -1442,7 +1442,7 @@ CONSTRAINTS: none
 RULE 2.54, PadaukMain.gdl(483):  g103c  g103d  >  g103c_103d_narr:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 15
+PutGlyph 17
 Assoc 2 0 1
 Next
 Delete
@@ -1454,7 +1454,7 @@ CONSTRAINTS: none
 RULE 2.55, PadaukMain.gdl(484):  g103d  g103e  >  g103d_103e_small:(2 3)  _   /  g103c  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 16
+PutGlyph 20
 Assoc 2 0 1
 Next
 Delete
@@ -1466,7 +1466,7 @@ CONSTRAINTS: none
 RULE 2.56, PadaukMain.gdl(485):  g103d  g103e  >  g103d_103e:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 14
+PutGlyph 19
 Assoc 2 0 1
 Next
 Delete
@@ -1478,7 +1478,7 @@ CONSTRAINTS: none
 RULE 2.57, PadaukMain.gdl(486):  g103b  g103d  >  g103b_103d:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 17
+PutGlyph 12
 Assoc 2 0 1
 Next
 Delete
@@ -1492,7 +1492,7 @@ RULE 2.58, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 50 2
+PutSubs 0 49 27
 Next
 PutCopy 0
 Next
@@ -1509,7 +1509,7 @@ RULE 2.59, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 50 2
+PutSubs 0 49 27
 Next
 PutCopy 0
 Next
@@ -1525,7 +1525,7 @@ RULE 2.60, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 50 2
+PutSubs 0 49 27
 Next
 PutCopy 0
 Next
@@ -1541,7 +1541,7 @@ RULE 2.61, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 50 2
+PutSubs 0 49 27
 Next
 PutCopy 0
 Next
@@ -1666,7 +1666,7 @@ CONSTRAINTS: none
 RULE 2.70, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 5)  _   /  ANY  _  g1031  cUVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph 18
 Assoc 2 0 3
 Next
 CopyNext
@@ -1680,7 +1680,7 @@ CONSTRAINTS: none
 RULE 2.71, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 4)  _   /  ANY  _  g1031  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph 18
 Assoc 2 0 2
 Next
 CopyNext
@@ -1693,7 +1693,7 @@ CONSTRAINTS: none
 RULE 2.72, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 4)  _   /  ANY  _  cUVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph 18
 Assoc 2 0 2
 Next
 CopyNext
@@ -1706,7 +1706,7 @@ CONSTRAINTS: none
 RULE 2.73, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph 18
 Assoc 2 0 1
 Next
 Delete
@@ -1718,7 +1718,7 @@ CONSTRAINTS: none
 RULE 2.74, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 5)  _   /  ANY  _  g1031  cUVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 19
+PutGlyph 23
 Assoc 2 0 3
 Next
 CopyNext
@@ -1732,7 +1732,7 @@ CONSTRAINTS: none
 RULE 2.75, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 4)  _   /  ANY  _  g1031  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 19
+PutGlyph 23
 Assoc 2 0 2
 Next
 CopyNext
@@ -1745,7 +1745,7 @@ CONSTRAINTS: none
 RULE 2.76, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 4)  _   /  ANY  _  cUVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 19
+PutGlyph 23
 Assoc 2 0 2
 Next
 CopyNext
@@ -1758,7 +1758,7 @@ CONSTRAINTS: none
 RULE 2.77, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 19
+PutGlyph 23
 Assoc 2 0 1
 Next
 Delete
@@ -1770,7 +1770,7 @@ CONSTRAINTS: none
 RULE 2.78, PadaukMain.gdl(492):  g103e  g1030  >  g103e_1030:(2 4)  _   /  ANY  _  g1031  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 20
+PutGlyph 24
 Assoc 2 0 2
 Next
 CopyNext
@@ -1783,7 +1783,7 @@ CONSTRAINTS: none
 RULE 2.79, PadaukMain.gdl(492):  g103e  g1030  >  g103e_1030:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 20
+PutGlyph 24
 Assoc 2 0 1
 Next
 Delete
@@ -1832,8 +1832,8 @@ PushByte -1
 PopRet
 
 CONSTRAINTS:
-CntxtItem 0 6
-PushGlyphAttr(V1&2) 0 0
+CntxtItem 0 7
+PushGlyphAttr 0 0
 PushByte 1
 Gtr
 PopRet
@@ -1842,19 +1842,19 @@ RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  A
 
 ACTIONS:
 Insert
-PutGlyph(V1&2) 21
+PutGlyph 0
 Assoc 1 0
 Next
 PushByte 0
 PopRet
 
 CONSTRAINTS:
-CntxtItem 0 14
-PushGlyphAttr(V1&2) 0 0
+CntxtItem 0 17
+PushGlyphAttr 0 0
 PushByte 1
 Gtr
-PushGlyphAttr(V1&2) 0 0
-PushGlyphAttr(V1&2) 0 -1
+PushGlyphAttr 0 0
+PushGlyphAttr 0 -1
 LessEq
 And
 PopRet
@@ -1863,19 +1863,19 @@ RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph {...}  _
 
 ACTIONS:
 Insert
-PutGlyph(V1&2) 21
+PutGlyph 0
 Assoc 1 0
 Next
 PushByte 0
 PopRet
 
 CONSTRAINTS:
-CntxtItem -1 6
-PushGlyphAttr(V1&2) 0 0
+CntxtItem -1 7
+PushGlyphAttr 0 0
 PushByte 0
 Equal
-CntxtItem 0 6
-PushGlyphAttr(V1&2) 0 0
+CntxtItem 0 7
+PushGlyphAttr 0 0
 PushByte 1
 Gtr
 And
@@ -1888,7 +1888,7 @@ PASS CONSTRAINTS: none
 RULE 4.0, PadaukMain.gdl(560):  g1014  >  g1014_alt   /  ANY  ANY  *GC2*  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 22
+PutGlyph 10
 Next
 RetZero
 
@@ -2258,7 +2258,7 @@ RULE 4.21, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 4 51 23
+PutSubs 4 53 32
 Assoc 1 4
 Next
 CopyNext
@@ -2275,7 +2275,7 @@ RULE 4.22, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 23
+PutSubs 3 53 32
 Assoc 1 3
 Next
 CopyNext
@@ -2291,7 +2291,7 @@ RULE 4.23, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 23
+PutSubs 3 53 32
 Assoc 1 3
 Next
 CopyNext
@@ -2307,7 +2307,7 @@ RULE 4.24, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 23
+PutSubs 2 53 32
 Assoc 1 2
 Next
 CopyNext
@@ -2322,7 +2322,7 @@ RULE 4.25, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 24
+PutSubs 3 53 31
 Assoc 1 3
 Next
 CopyNext
@@ -2338,7 +2338,7 @@ RULE 4.26, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 24
+PutSubs 3 53 31
 Assoc 1 3
 Next
 CopyNext
@@ -2354,7 +2354,7 @@ RULE 4.27, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 24
+PutSubs 3 53 31
 Assoc 1 3
 Next
 CopyNext
@@ -2370,7 +2370,7 @@ RULE 4.28, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 24
+PutSubs 3 53 31
 Assoc 1 3
 Next
 CopyNext
@@ -2386,7 +2386,7 @@ RULE 4.29, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 24
+PutSubs 2 53 31
 Assoc 1 2
 Next
 CopyNext
@@ -2401,7 +2401,7 @@ RULE 4.30, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 24
+PutSubs 2 53 31
 Assoc 1 2
 Next
 CopyNext
@@ -2416,7 +2416,7 @@ RULE 4.31, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 24
+PutSubs 2 53 31
 Assoc 1 2
 Next
 CopyNext
@@ -2431,7 +2431,7 @@ RULE 4.32, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 24
+PutSubs 2 53 31
 Assoc 1 2
 Next
 CopyNext
@@ -2446,7 +2446,7 @@ RULE 4.33, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 25
+PutSubs 3 53 33
 Assoc 1 3
 Next
 CopyNext
@@ -2462,7 +2462,7 @@ RULE 4.34, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 25
+PutSubs 3 53 33
 Assoc 1 3
 Next
 CopyNext
@@ -2478,7 +2478,7 @@ RULE 4.35, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 25
+PutSubs 3 53 33
 Assoc 1 3
 Next
 CopyNext
@@ -2494,7 +2494,7 @@ RULE 4.36, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 25
+PutSubs 3 53 33
 Assoc 1 3
 Next
 CopyNext
@@ -2510,7 +2510,7 @@ RULE 4.37, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 25
+PutSubs 2 53 33
 Assoc 1 2
 Next
 CopyNext
@@ -2525,7 +2525,7 @@ RULE 4.38, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 25
+PutSubs 2 53 33
 Assoc 1 2
 Next
 CopyNext
@@ -2540,7 +2540,7 @@ RULE 4.39, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 25
+PutSubs 2 53 33
 Assoc 1 2
 Next
 CopyNext
@@ -2555,7 +2555,7 @@ RULE 4.40, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 25
+PutSubs 2 53 33
 Assoc 1 2
 Next
 CopyNext
@@ -2570,7 +2570,7 @@ RULE 4.41, PadaukMain.gdl(581):  _  c103c_nar  >  c103c_naralt$8:8  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 4 51 24
+PutSubs 4 53 31
 Assoc 1 4
 Next
 CopyNext
@@ -2587,7 +2587,7 @@ RULE 4.42, PadaukMain.gdl(581):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 24
+PutSubs 3 53 31
 Assoc 1 3
 Next
 CopyNext
@@ -2603,7 +2603,7 @@ RULE 4.43, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_widalt$8:8  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 4 51 25
+PutSubs 4 53 33
 Assoc 1 4
 Next
 CopyNext
@@ -2620,7 +2620,7 @@ RULE 4.44, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 25
+PutSubs 3 53 33
 Assoc 1 3
 Next
 CopyNext
@@ -2700,7 +2700,7 @@ RULE 4.49, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 4 51 23
+PutSubs 4 53 32
 Assoc 1 4
 Next
 CopyNext
@@ -2717,7 +2717,7 @@ RULE 4.50, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 23
+PutSubs 3 53 32
 Assoc 1 3
 Next
 CopyNext
@@ -2733,7 +2733,7 @@ RULE 4.51, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 3 51 23
+PutSubs 3 53 32
 Assoc 1 3
 Next
 CopyNext
@@ -2749,7 +2749,7 @@ RULE 4.52, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  AN
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 2 51 23
+PutSubs 2 53 32
 Assoc 1 2
 Next
 CopyNext
@@ -2763,7 +2763,7 @@ CONSTRAINTS: none
 RULE 4.53, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cLVowelAll  ;
 
 ACTIONS:
-PutGlyph(V1&2) 26
+PutGlyph 15
 Next
 PushByte -1
 PopRet
@@ -2773,7 +2773,7 @@ CONSTRAINTS: none
 RULE 4.54, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cLVowelAll  ;
 
 ACTIONS:
-PutGlyph(V1&2) 26
+PutGlyph 15
 Next
 PushByte -1
 PopRet
@@ -2783,7 +2783,7 @@ CONSTRAINTS: none
 RULE 4.55, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cUVowel  cLVowelAll  ;
 
 ACTIONS:
-PutGlyph(V1&2) 26
+PutGlyph 15
 Next
 PushByte -1
 PopRet
@@ -2793,7 +2793,7 @@ CONSTRAINTS: none
 RULE 4.56, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cLVowelAll  ;
 
 ACTIONS:
-PutGlyph(V1&2) 26
+PutGlyph 15
 Next
 PushByte -1
 PopRet
@@ -2803,7 +2803,7 @@ CONSTRAINTS: none
 RULE 4.57, PadaukMain.gdl(592):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103d  ;
 
 ACTIONS:
-PutGlyph(V1&2) 26
+PutGlyph 15
 Next
 PushByte -1
 PopRet
@@ -2813,7 +2813,7 @@ CONSTRAINTS: none
 RULE 4.58, PadaukMain.gdl(593):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103b  ;
 
 ACTIONS:
-PutGlyph(V1&2) 26
+PutGlyph 15
 Next
 PushByte -1
 PopRet
@@ -2823,7 +2823,7 @@ CONSTRAINTS: none
 RULE 4.59, PadaukMain.gdl(594):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  g103e  ;
 
 ACTIONS:
-PutGlyph(V1&2) 27
+PutGlyph 16
 Next
 PushByte -1
 PopRet
@@ -2833,7 +2833,7 @@ CONSTRAINTS: none
 RULE 4.60, PadaukMain.gdl(595):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cUVowel  cLVowel  ;
 
 ACTIONS:
-PutGlyph(V1&2) 27
+PutGlyph 16
 Next
 PushByte -1
 PopRet
@@ -2843,7 +2843,7 @@ CONSTRAINTS: none
 RULE 4.61, PadaukMain.gdl(595):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cLVowel  ;
 
 ACTIONS:
-PutGlyph(V1&2) 27
+PutGlyph 16
 Next
 PushByte -1
 PopRet
@@ -2873,7 +2873,7 @@ CONSTRAINTS: none
 RULE 4.64, PadaukMain.gdl(605):  cLVowel  >  cLVowelM   /  ANY  ^  cConsSVowel  cUVowel  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 52 28
+PutSubs 0 50 28
 Next
 PushByte -3
 PopRet
@@ -2883,7 +2883,7 @@ CONSTRAINTS: none
 RULE 4.65, PadaukMain.gdl(605):  cLVowel  >  cLVowelM   /  ANY  ANY  ^  cConsSVowel  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 52 28
+PutSubs 0 50 28
 Next
 PushByte -2
 PopRet
@@ -2893,11 +2893,11 @@ CONSTRAINTS: none
 RULE 4.66, PadaukMain.gdl(606):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 22
+PutGlyph 10
 Assoc 1 0
 Next
 CopyNext
-PutSubs(V1&2) 0 52 28
+PutSubs 0 50 28
 Assoc 1 0
 Next
 PushByte -3
@@ -2908,10 +2908,10 @@ CONSTRAINTS: none
 RULE 4.67, PadaukMain.gdl(606):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 22
+PutGlyph 10
 Assoc 1 0
 Next
-PutSubs(V1&2) 0 52 28
+PutSubs 0 50 28
 Assoc 1 0
 Next
 PushByte -2
@@ -2922,11 +2922,11 @@ CONSTRAINTS: none
 RULE 4.68, PadaukMain.gdl(607):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 29
+PutGlyph 2
 Assoc 1 0
 Next
 CopyNext
-PutSubs(V1&2) 0 52 28
+PutSubs 0 50 28
 Assoc 1 0
 Next
 PushByte -3
@@ -2937,10 +2937,10 @@ CONSTRAINTS: none
 RULE 4.69, PadaukMain.gdl(607):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 29
+PutGlyph 2
 Assoc 1 0
 Next
-PutSubs(V1&2) 0 52 28
+PutSubs 0 50 28
 Assoc 1 0
 Next
 PushByte -2
@@ -2951,7 +2951,7 @@ CONSTRAINTS: none
 RULE 4.70, PadaukMain.gdl(608):  g103d_103e  >  g103d_103e_small   /  ANY  c103c  cCons  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 16
+PutGlyph 20
 Next
 RetZero
 
@@ -2960,7 +2960,7 @@ CONSTRAINTS: none
 RULE 4.71, PadaukMain.gdl(609):  cUTakesMa  g1036  >  cUWithMa:(4 6)  _   /  ANY  ANY  ANY  _  cLVowel  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 53 30
+PutSubs 0 52 30
 Assoc 2 0 2
 Next
 CopyNext
@@ -2973,7 +2973,7 @@ CONSTRAINTS: none
 RULE 4.72, PadaukMain.gdl(609):  cUTakesMa  g1036  >  cUWithMa:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 53 30
+PutSubs 0 52 30
 Assoc 2 0 1
 Next
 Delete
@@ -2985,7 +2985,7 @@ CONSTRAINTS: none
 RULE 4.73, PadaukMain.gdl(615):  g1014  >  g1014_alt   /  ANY  ANY  ANY  ^  _  t1014  ;
 
 ACTIONS:
-PutGlyph(V1&2) 22
+PutGlyph 10
 Next
 PushByte -1
 PopRet
@@ -2995,7 +2995,7 @@ CONSTRAINTS: none
 RULE 4.74, PadaukMain.gdl(616):  g100a  >  g100a_alt   /  ANY  ANY  ANY  ^  _  t100a  ;
 
 ACTIONS:
-PutGlyph(V1&2) 29
+PutGlyph 2
 Next
 PushByte -1
 PopRet
@@ -3005,7 +3005,7 @@ CONSTRAINTS: none
 RULE 4.75, PadaukMain.gdl(617):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g103a  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3015,7 +3015,7 @@ CONSTRAINTS: none
 RULE 4.76, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cUVowel  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3025,7 +3025,7 @@ CONSTRAINTS: none
 RULE 4.77, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3035,7 +3035,7 @@ CONSTRAINTS: none
 RULE 4.78, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3045,7 +3045,7 @@ CONSTRAINTS: none
 RULE 4.79, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3055,7 +3055,7 @@ CONSTRAINTS: none
 RULE 4.80, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cUVowel  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3065,7 +3065,7 @@ CONSTRAINTS: none
 RULE 4.81, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3075,7 +3075,7 @@ CONSTRAINTS: none
 RULE 4.82, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cUVowel  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3085,7 +3085,7 @@ CONSTRAINTS: none
 RULE 4.83, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cCons  ;
 
 ACTIONS:
-PutGlyph(V1&2) 31
+PutGlyph 25
 Next
 PushByte -1
 PopRet
@@ -3095,7 +3095,7 @@ CONSTRAINTS: none
 RULE 4.84, PadaukMain.gdl(624):  g103e  >  g103e_alt   /  ANY  ^  c103c  cConsSVowel  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 32
+PutGlyph 22
 Next
 PushByte -3
 PopRet
@@ -3105,7 +3105,7 @@ CONSTRAINTS: none
 RULE 4.85, PadaukMain.gdl(625):  g103e  >  g103e_alt   /  ANY  ANY  cConsSlantH  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 32
+PutGlyph 22
 Next
 RetZero
 
@@ -3114,7 +3114,7 @@ CONSTRAINTS: none
 RULE 4.86, PadaukMain.gdl(631):  g102b  g103a  >  g102b_103a:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 33
+PutGlyph 26
 Assoc 2 0 1
 Next
 Delete
@@ -3137,7 +3137,7 @@ RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x=...; user2=1;  }   /  ANY  ^  
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr(V1&2) 48 0
+PushGlyphAttr 48 0
 AttrSet advance_x
 PushByte 1
 IAttrSet user 1
@@ -3162,21 +3162,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3200,21 +3200,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3239,21 +3239,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3277,21 +3277,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3319,21 +3319,21 @@ PushByte -5
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3360,21 +3360,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3401,21 +3401,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3441,21 +3441,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3483,21 +3483,21 @@ PushByte -5
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3524,21 +3524,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3565,21 +3565,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3605,21 +3605,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3645,21 +3645,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3684,21 +3684,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3726,21 +3726,21 @@ PushByte -5
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3767,21 +3767,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3808,21 +3808,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3848,21 +3848,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3889,21 +3889,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3929,21 +3929,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3969,21 +3969,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4008,21 +4008,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4049,21 +4049,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4089,21 +4089,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4129,21 +4129,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4168,21 +4168,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4207,21 +4207,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 2 0
+PushAttToGlyphAttr 2 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 5 0
+PushAttToGlyphAttr 5 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 4 0
+PushAttToGlyphAttr 4 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 6 0
+PushAttToGlyphAttr 6 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4245,21 +4245,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 2 0
+PushAttToGlyphAttr 2 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 5 0
+PushAttToGlyphAttr 5 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 4 0
+PushAttToGlyphAttr 4 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 6 0
+PushAttToGlyphAttr 6 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4283,21 +4283,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 2 0
+PushAttToGlyphAttr 2 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 5 0
+PushAttToGlyphAttr 5 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 4 0
+PushAttToGlyphAttr 4 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 6 0
+PushAttToGlyphAttr 6 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4321,21 +4321,21 @@ CopyNext
 PutCopy 0
 PushByte 1
 AttrSetSlot attach_to
-PushAttToGlyphAttr(V1&2) 32 0
+PushAttToGlyphAttr 32 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 35 0
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 34 0
+PushAttToGlyphAttr 34 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 36 0
+PushAttToGlyphAttr 36 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 22 0
+PushGlyphAttr 22 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 25 0
+PushGlyphAttr 25 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 24 0
+PushGlyphAttr 24 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 26 0
+PushGlyphAttr 26 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4362,21 +4362,21 @@ CopyNext
 PutCopy 0
 PushByte 1
 AttrSetSlot attach_to
-PushAttToGlyphAttr(V1&2) 32 0
+PushAttToGlyphAttr 32 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 35 0
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 34 0
+PushAttToGlyphAttr 34 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 36 0
+PushAttToGlyphAttr 36 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 22 0
+PushGlyphAttr 22 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 25 0
+PushGlyphAttr 25 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 24 0
+PushGlyphAttr 24 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 26 0
+PushGlyphAttr 26 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4402,21 +4402,21 @@ CopyNext
 PutCopy 0
 PushByte 1
 AttrSetSlot attach_to
-PushAttToGlyphAttr(V1&2) 32 0
+PushAttToGlyphAttr 32 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 35 0
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 34 0
+PushAttToGlyphAttr 34 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 36 0
+PushAttToGlyphAttr 36 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 22 0
+PushGlyphAttr 22 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 25 0
+PushGlyphAttr 25 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 24 0
+PushGlyphAttr 24 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 26 0
+PushGlyphAttr 26 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4445,21 +4445,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 17 0
+PushAttToGlyphAttr 17 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 20 0
+PushAttToGlyphAttr 20 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 19 0
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 21 0
+PushAttToGlyphAttr 21 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 12 0
+PushGlyphAttr 12 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 15 0
+PushGlyphAttr 15 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 14 0
+PushGlyphAttr 14 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 16 0
+PushGlyphAttr 16 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4483,21 +4483,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 17 0
+PushAttToGlyphAttr 17 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 20 0
+PushAttToGlyphAttr 20 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 19 0
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 21 0
+PushAttToGlyphAttr 21 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 12 0
+PushGlyphAttr 12 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 15 0
+PushGlyphAttr 15 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 14 0
+PushGlyphAttr 14 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 16 0
+PushGlyphAttr 16 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4522,21 +4522,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 37 0
+PushAttToGlyphAttr 37 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 40 0
+PushAttToGlyphAttr 40 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 39 0
+PushAttToGlyphAttr 39 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 41 0
+PushAttToGlyphAttr 41 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 55 0
+PushGlyphAttr 55 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 58 0
+PushGlyphAttr 58 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 57 0
+PushGlyphAttr 57 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 59 0
+PushGlyphAttr 59 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4560,21 +4560,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 37 0
+PushAttToGlyphAttr 37 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 40 0
+PushAttToGlyphAttr 40 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 39 0
+PushAttToGlyphAttr 39 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 41 0
+PushAttToGlyphAttr 41 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 55 0
+PushGlyphAttr 55 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 58 0
+PushGlyphAttr 58 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 57 0
+PushGlyphAttr 57 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 59 0
+PushGlyphAttr 59 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4599,21 +4599,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 17 0
+PushAttToGlyphAttr 17 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 20 0
+PushAttToGlyphAttr 20 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 19 0
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 21 0
+PushAttToGlyphAttr 21 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 55 0
+PushGlyphAttr 55 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 58 0
+PushGlyphAttr 58 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 57 0
+PushGlyphAttr 57 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 59 0
+PushGlyphAttr 59 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4637,21 +4637,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 17 0
+PushAttToGlyphAttr 17 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 20 0
+PushAttToGlyphAttr 20 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 19 0
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 21 0
+PushAttToGlyphAttr 21 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 55 0
+PushGlyphAttr 55 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 58 0
+PushGlyphAttr 58 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 57 0
+PushGlyphAttr 57 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 59 0
+PushGlyphAttr 59 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4677,23 +4677,23 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 32 0
+PushAttToGlyphAttr 32 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 35 0
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 33 0
+PushAttToGlyphAttr 33 0
 AttrSet attach_at_gpoint
-PushAttToGlyphAttr(V1&2) 34 0
+PushAttToGlyphAttr 34 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 36 0
+PushAttToGlyphAttr 36 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 22 0
+PushGlyphAttr 22 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 25 0
+PushGlyphAttr 25 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 24 0
+PushGlyphAttr 24 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 26 0
+PushGlyphAttr 26 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4718,23 +4718,23 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 32 0
+PushAttToGlyphAttr 32 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 35 0
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 33 0
+PushAttToGlyphAttr 33 0
 AttrSet attach_at_gpoint
-PushAttToGlyphAttr(V1&2) 34 0
+PushAttToGlyphAttr 34 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 36 0
+PushAttToGlyphAttr 36 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 22 0
+PushGlyphAttr 22 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 25 0
+PushGlyphAttr 25 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 24 0
+PushGlyphAttr 24 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 26 0
+PushGlyphAttr 26 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4758,23 +4758,23 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 32 0
+PushAttToGlyphAttr 32 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 35 0
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 33 0
+PushAttToGlyphAttr 33 0
 AttrSet attach_at_gpoint
-PushAttToGlyphAttr(V1&2) 34 0
+PushAttToGlyphAttr 34 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 36 0
+PushAttToGlyphAttr 36 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 22 0
+PushGlyphAttr 22 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 25 0
+PushGlyphAttr 25 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 24 0
+PushGlyphAttr 24 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 26 0
+PushGlyphAttr 26 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4798,21 +4798,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 60 0
+PushAttToGlyphAttr 60 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 63 0
+PushAttToGlyphAttr 63 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 62 0
+PushAttToGlyphAttr 62 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 64 0
+PushAttToGlyphAttr 64 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 27 0
+PushGlyphAttr 27 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 30 0
+PushGlyphAttr 30 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 29 0
+PushGlyphAttr 29 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 31 0
+PushGlyphAttr 31 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4841,21 +4841,21 @@ PushByte -4
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4881,21 +4881,21 @@ PushByte -3
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4920,21 +4920,21 @@ PushByte -2
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4958,21 +4958,21 @@ PushByte -1
 AttrSetSlot attach_to
 PushByte 0
 AttrSetSlot insert
-PushAttToGlyphAttr(V1&2) 7 0
+PushAttToGlyphAttr 7 0
 AttrSet attach_at_x
-PushAttToGlyphAttr(V1&2) 10 0
+PushAttToGlyphAttr 10 0
 AttrSet attach_at_y
-PushAttToGlyphAttr(V1&2) 9 0
+PushAttToGlyphAttr 9 0
 AttrSet attach_at_xoffset
-PushAttToGlyphAttr(V1&2) 11 0
+PushAttToGlyphAttr 11 0
 AttrSet attach_at_yoffset
-PushGlyphAttr(V1&2) 42 0
+PushGlyphAttr 42 0
 AttrSet attach_with_x
-PushGlyphAttr(V1&2) 45 0
+PushGlyphAttr 45 0
 AttrSet attach_with_y
-PushGlyphAttr(V1&2) 44 0
+PushGlyphAttr 44 0
 AttrSet attach_with_xoffset
-PushGlyphAttr(V1&2) 46 0
+PushGlyphAttr 46 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -5087,19 +5087,19 @@ RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x=...; advance.x=...;  }  cHas
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr(V1&2) 54 1
+PushGlyphAttr 54 1
 PushByte 10
 Add
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr(V1&2) 54 1
+PushGlyphAttr 54 1
 PushByte 10
 Add
 Add
 AttrSet advance_x
 Next
 PutCopy 0
-PushGlyphAttr(V1&2) 54 0
+PushGlyphAttr 54 0
 Neg
 AttrSet shift_x
 Next
@@ -5111,12 +5111,12 @@ RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x=...; advance.x=...;  }   /  cUDi
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr(V1&2) 47 0
+PushGlyphAttr 47 0
 PushByte 2
 Div
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr(V1&2) 47 0
+PushGlyphAttr 47 0
 PushByte 2
 Div
 Add
@@ -5146,11 +5146,11 @@ RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x=...; advance.x=...;  }   /  g102
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr(V1&2) 47 -1
+PushGlyphAttr 47 -1
 Neg
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr(V1&2) 47 -1
+PushGlyphAttr 47 -1
 Neg
 Add
 AttrSet advance_x
@@ -5163,11 +5163,11 @@ RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x=...; advance.x=...;  }   /  g102
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr(V1&2) 47 -1
+PushGlyphAttr 47 -1
 Neg
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr(V1&2) 47 -1
+PushGlyphAttr 47 -1
 Neg
 Add
 AttrSet advance_x
