@@ -134,7 +134,7 @@ public:
 	bool FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
 	bool CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid);
 	void MarkReplacementClasses(GrcManager * pcman,
-		Set<GdlGlyphClassDefn *> & setpglfc);
+		std::set<GdlGlyphClassDefn *> & setpglfc);
 	void GdlRenderer::DeleteAllBadGlyphs();
 	bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont);
 	bool CheckLBsInRules();

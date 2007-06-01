@@ -14,7 +14,7 @@ PASS CONSTRAINTS: none
 RULE 1.0, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 26
 Assoc 2 0 7
 Next
 CopyNext
@@ -33,7 +33,7 @@ CONSTRAINTS: none
 RULE 1.1, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 9)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 26
 Assoc 2 0 6
 Next
 CopyNext
@@ -51,7 +51,7 @@ CONSTRAINTS: none
 RULE 1.2, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 8)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 26
 Assoc 2 0 5
 Next
 CopyNext
@@ -68,7 +68,7 @@ CONSTRAINTS: none
 RULE 1.3, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 7)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 26
 Assoc 2 0 4
 Next
 CopyNext
@@ -84,7 +84,7 @@ CONSTRAINTS: none
 RULE 1.4, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 6)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 26
 Assoc 2 0 3
 Next
 CopyNext
@@ -99,7 +99,7 @@ CONSTRAINTS: none
 RULE 1.5, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 5)  _   /  ANY  ANY  ^  _  cTakesUDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 26
 Assoc 2 0 2
 Next
 CopyNext
@@ -113,7 +113,7 @@ CONSTRAINTS: none
 RULE 1.6, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 27
 Assoc 2 0 7
 Next
 CopyNext
@@ -132,7 +132,7 @@ CONSTRAINTS: none
 RULE 1.7, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 9)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 27
 Assoc 2 0 6
 Next
 CopyNext
@@ -150,7 +150,7 @@ CONSTRAINTS: none
 RULE 1.8, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 8)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 27
 Assoc 2 0 5
 Next
 CopyNext
@@ -167,7 +167,7 @@ CONSTRAINTS: none
 RULE 1.9, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 7)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 27
 Assoc 2 0 4
 Next
 CopyNext
@@ -183,7 +183,7 @@ CONSTRAINTS: none
 RULE 1.10, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 6)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 27
 Assoc 2 0 3
 Next
 CopyNext
@@ -198,7 +198,7 @@ CONSTRAINTS: none
 RULE 1.11, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 5)  _   /  ANY  ANY  ^  _  cTakesUDia  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 27
 Assoc 2 0 2
 Next
 CopyNext
@@ -212,7 +212,7 @@ CONSTRAINTS: none
 RULE 1.12, CharisRules.gdh(269):  cno_ChinantecTn  >  cChinantecTn   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 126 3
+PutSubs(V1&2) 0 131 38
 Next
 RetZero
 
@@ -225,7 +225,7 @@ PopRet
 RULE 1.13, CharisRules.gdh(271):  cChinantecTn  >  cno_ChinantecTn   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 127 2
+PutSubs(V1&2) 0 130 39
 Next
 RetZero
 
@@ -239,7 +239,7 @@ PopRet
 RULE 1.14, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 8)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 128 4
+PutSubs(V1&2) 0 157 79
 Assoc 2 0 5
 Next
 CopyNext
@@ -256,7 +256,7 @@ CONSTRAINTS: none
 RULE 1.15, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 7)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  cnHDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 128 4
+PutSubs(V1&2) 0 157 79
 Assoc 2 0 4
 Next
 CopyNext
@@ -272,7 +272,7 @@ CONSTRAINTS: none
 RULE 1.16, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 6)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 128 4
+PutSubs(V1&2) 0 157 79
 Assoc 2 0 3
 Next
 CopyNext
@@ -287,7 +287,7 @@ CONSTRAINTS: none
 RULE 1.17, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 5)  _   /  ANY  ANY  ^  _  cnHDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 128 4
+PutSubs(V1&2) 0 157 79
 Assoc 2 0 2
 Next
 CopyNext
@@ -301,7 +301,7 @@ CONSTRAINTS: none
 RULE 1.18, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 4)  _   /  ANY  ANY  ^  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 128 4
+PutSubs(V1&2) 0 157 79
 Assoc 2 0 1
 Next
 Delete
@@ -314,7 +314,7 @@ CONSTRAINTS: none
 RULE 1.19, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 8)  _   /  ANY  ANY  ^  _  cnODia  cnODia  cnODia  cnODia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 129 5
+PutSubs(V1&2) 0 158 80
 Assoc 2 0 5
 Next
 CopyNext
@@ -331,7 +331,7 @@ CONSTRAINTS: none
 RULE 1.20, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 7)  _   /  ANY  ANY  ^  _  cnODia  cnODia  cnODia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 129 5
+PutSubs(V1&2) 0 158 80
 Assoc 2 0 4
 Next
 CopyNext
@@ -347,7 +347,7 @@ CONSTRAINTS: none
 RULE 1.21, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 6)  _   /  ANY  ANY  ^  _  cnODia  cnODia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 129 5
+PutSubs(V1&2) 0 158 80
 Assoc 2 0 3
 Next
 CopyNext
@@ -362,7 +362,7 @@ CONSTRAINTS: none
 RULE 1.22, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 5)  _   /  ANY  ANY  ^  _  cnODia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 129 5
+PutSubs(V1&2) 0 158 80
 Assoc 2 0 2
 Next
 CopyNext
@@ -376,7 +376,7 @@ CONSTRAINTS: none
 RULE 1.23, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 4)  _   /  ANY  ANY  ^  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 129 5
+PutSubs(V1&2) 0 158 80
 Assoc 2 0 1
 Next
 Delete
@@ -389,7 +389,7 @@ CONSTRAINTS: none
 RULE 1.24, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 8)  _   /  ANY  ANY  _  cnRDia  cnRDia  cnRDia  cnRDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 130 6
+PutSubs(V1&2) 0 159 81
 Assoc 2 0 5
 Next
 CopyNext
@@ -405,7 +405,7 @@ CONSTRAINTS: none
 RULE 1.25, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 7)  _   /  ANY  ANY  _  cnRDia  cnRDia  cnRDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 130 6
+PutSubs(V1&2) 0 159 81
 Assoc 2 0 4
 Next
 CopyNext
@@ -420,7 +420,7 @@ CONSTRAINTS: none
 RULE 1.26, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 6)  _   /  ANY  ANY  _  cnRDia  cnRDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 130 6
+PutSubs(V1&2) 0 159 81
 Assoc 2 0 3
 Next
 CopyNext
@@ -434,7 +434,7 @@ CONSTRAINTS: none
 RULE 1.27, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 5)  _   /  ANY  ANY  _  cnRDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 130 6
+PutSubs(V1&2) 0 159 81
 Assoc 2 0 2
 Next
 CopyNext
@@ -447,7 +447,7 @@ CONSTRAINTS: none
 RULE 1.28, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 4)  _   /  ANY  ANY  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 130 6
+PutSubs(V1&2) 0 159 81
 Assoc 2 0 1
 Next
 Delete
@@ -460,10 +460,10 @@ RULE 1.29, CharisRules.gdh(292):  _  c_aStack_noLit  >  g_a_sng_story:4  c_diacC
 
 ACTIONS:
 Insert
-PutGlyph(V1&2) 7
+PutGlyph(V1&2) 0
 Assoc 1 1
 Next
-PutSubs(V1&2) 0 131 8
+PutSubs(V1&2) 0 161 84
 Next
 RetZero
 
@@ -481,7 +481,7 @@ PopRet
 RULE 1.30, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 5 132 9
+PutSubs(V1&2) 5 160 82
 Assoc 2 0 5
 Next
 CopyNext
@@ -501,7 +501,7 @@ PopRet
 RULE 1.31, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 4 132 9
+PutSubs(V1&2) 4 160 82
 Assoc 2 0 4
 Next
 CopyNext
@@ -520,7 +520,7 @@ PopRet
 RULE 1.32, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 3 132 9
+PutSubs(V1&2) 3 160 82
 Assoc 2 0 3
 Next
 CopyNext
@@ -538,7 +538,7 @@ PopRet
 RULE 1.33, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 2 132 9
+PutSubs(V1&2) 2 160 82
 Assoc 2 0 2
 Next
 CopyNext
@@ -555,7 +555,7 @@ PopRet
 RULE 1.34, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 132 9
+PutSubs(V1&2) 1 160 82
 Assoc 2 0 1
 Next
 Delete
@@ -571,7 +571,7 @@ PopRet
 RULE 1.35, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 5 132 10
+PutSubs(V1&2) 5 160 83
 Assoc 2 0 5
 Next
 CopyNext
@@ -591,7 +591,7 @@ PopRet
 RULE 1.36, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 4 132 10
+PutSubs(V1&2) 4 160 83
 Assoc 2 0 4
 Next
 CopyNext
@@ -610,7 +610,7 @@ PopRet
 RULE 1.37, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 3 132 10
+PutSubs(V1&2) 3 160 83
 Assoc 2 0 3
 Next
 CopyNext
@@ -628,7 +628,7 @@ PopRet
 RULE 1.38, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 2 132 10
+PutSubs(V1&2) 2 160 83
 Assoc 2 0 2
 Next
 CopyNext
@@ -645,7 +645,7 @@ PopRet
 RULE 1.39, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 132 10
+PutSubs(V1&2) 1 160 83
 Assoc 2 0 1
 Next
 Delete
@@ -661,7 +661,7 @@ PopRet
 RULE 1.40, CharisRules.gdh(296):  cno_VN  >  cVN   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 133 12
+PutSubs(V1&2) 0 153 68
 Next
 RetZero
 
@@ -674,7 +674,7 @@ PopRet
 RULE 1.41, CharisRules.gdh(298):  cVN  >  cno_VN   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 134 11
+PutSubs(V1&2) 0 152 69
 Next
 RetZero
 
@@ -688,7 +688,7 @@ PopRet
 RULE 1.42, CharisRules.gdh(304):  g0308  >  g0308_uU   /  g__l  g035F  _  g035F  g__l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 13
+PutGlyph(V1&2) 28
 Next
 RetZero
 
@@ -699,7 +699,7 @@ PopRet
 RULE 1.43, CharisRules.gdh(304):  g0308  >  g0308_uU   /  g__l  g035F  _  g__l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 13
+PutGlyph(V1&2) 28
 Next
 RetZero
 
@@ -710,7 +710,7 @@ PopRet
 RULE 1.44, CharisRules.gdh(304):  g0308  >  g0308_uU   /  ANY  g__l  _  g035F  g__l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 13
+PutGlyph(V1&2) 28
 Next
 RetZero
 
@@ -721,7 +721,7 @@ PopRet
 RULE 1.45, CharisRules.gdh(304):  g0308  >  g0308_uU   /  ANY  g__l  _  g__l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 13
+PutGlyph(V1&2) 28
 Next
 RetZero
 
@@ -732,7 +732,7 @@ PopRet
 RULE 1.46, CharisRules.gdh(305):  g0308  >  g0308_uL   /  g__l  g035F  _  g035F  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 14
+PutGlyph(V1&2) 30
 Next
 RetZero
 
@@ -743,7 +743,7 @@ PopRet
 RULE 1.47, CharisRules.gdh(305):  g0308  >  g0308_uL   /  g__l  g035F  _  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 14
+PutGlyph(V1&2) 30
 Next
 RetZero
 
@@ -754,7 +754,7 @@ PopRet
 RULE 1.48, CharisRules.gdh(305):  g0308  >  g0308_uL   /  ANY  g__l  _  g035F  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 14
+PutGlyph(V1&2) 30
 Next
 RetZero
 
@@ -765,7 +765,7 @@ PopRet
 RULE 1.49, CharisRules.gdh(305):  g0308  >  g0308_uL   /  ANY  g__l  _  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 14
+PutGlyph(V1&2) 30
 Next
 RetZero
 
@@ -776,7 +776,7 @@ PopRet
 RULE 1.50, CharisRules.gdh(306):  g0308  >  g0308_lL   /  g_l  g035F  _  g035F  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 15
+PutGlyph(V1&2) 29
 Next
 RetZero
 
@@ -787,7 +787,7 @@ PopRet
 RULE 1.51, CharisRules.gdh(306):  g0308  >  g0308_lL   /  g_l  g035F  _  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 15
+PutGlyph(V1&2) 29
 Next
 RetZero
 
@@ -798,7 +798,7 @@ PopRet
 RULE 1.52, CharisRules.gdh(306):  g0308  >  g0308_lL   /  ANY  g_l  _  g035F  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 15
+PutGlyph(V1&2) 29
 Next
 RetZero
 
@@ -809,7 +809,7 @@ PopRet
 RULE 1.53, CharisRules.gdh(306):  g0308  >  g0308_lL   /  ANY  g_l  _  g_l  ;
 
 ACTIONS:
-PutGlyph(V1&2) 15
+PutGlyph(V1&2) 29
 Next
 RetZero
 
@@ -820,7 +820,7 @@ PopRet
 RULE 1.54, CharisRules.gdh(309):  g0311  >  g0311_uU   /  g__o  g035F  _  g035F  g__u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 16
+PutGlyph(V1&2) 23
 Next
 RetZero
 
@@ -831,7 +831,7 @@ PopRet
 RULE 1.55, CharisRules.gdh(309):  g0311  >  g0311_uU   /  g__o  g035F  _  g__u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 16
+PutGlyph(V1&2) 23
 Next
 RetZero
 
@@ -842,7 +842,7 @@ PopRet
 RULE 1.56, CharisRules.gdh(309):  g0311  >  g0311_uU   /  ANY  g__o  _  g035F  g__u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 16
+PutGlyph(V1&2) 23
 Next
 RetZero
 
@@ -853,7 +853,7 @@ PopRet
 RULE 1.57, CharisRules.gdh(309):  g0311  >  g0311_uU   /  ANY  g__o  _  g__u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 16
+PutGlyph(V1&2) 23
 Next
 RetZero
 
@@ -864,7 +864,7 @@ PopRet
 RULE 1.58, CharisRules.gdh(310):  g0311  >  g0311_uL   /  g__o  g035F  _  g035F  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 17
+PutGlyph(V1&2) 24
 Next
 RetZero
 
@@ -875,7 +875,7 @@ PopRet
 RULE 1.59, CharisRules.gdh(310):  g0311  >  g0311_uL   /  g__o  g035F  _  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 17
+PutGlyph(V1&2) 24
 Next
 RetZero
 
@@ -886,7 +886,7 @@ PopRet
 RULE 1.60, CharisRules.gdh(310):  g0311  >  g0311_uL   /  ANY  g__o  _  g035F  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 17
+PutGlyph(V1&2) 24
 Next
 RetZero
 
@@ -897,7 +897,7 @@ PopRet
 RULE 1.61, CharisRules.gdh(310):  g0311  >  g0311_uL   /  ANY  g__o  _  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 17
+PutGlyph(V1&2) 24
 Next
 RetZero
 
@@ -908,7 +908,7 @@ PopRet
 RULE 1.62, CharisRules.gdh(311):  g0311  >  g0311_lL   /  g_o  g035F  _  g035F  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph(V1&2) 25
 Next
 RetZero
 
@@ -919,7 +919,7 @@ PopRet
 RULE 1.63, CharisRules.gdh(311):  g0311  >  g0311_lL   /  g_o  g035F  _  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph(V1&2) 25
 Next
 RetZero
 
@@ -930,7 +930,7 @@ PopRet
 RULE 1.64, CharisRules.gdh(311):  g0311  >  g0311_lL   /  ANY  g_o  _  g035F  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph(V1&2) 25
 Next
 RetZero
 
@@ -941,7 +941,7 @@ PopRet
 RULE 1.65, CharisRules.gdh(311):  g0311  >  g0311_lL   /  ANY  g_o  _  g_u  ;
 
 ACTIONS:
-PutGlyph(V1&2) 18
+PutGlyph(V1&2) 25
 Next
 RetZero
 
@@ -952,7 +952,7 @@ PopRet
 RULE 1.66, CharisRules.gdh(350):  *GC0*  >  g__eng   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 19
+PutGlyph(V1&2) 9
 Next
 RetZero
 
@@ -965,7 +965,7 @@ PopRet
 RULE 1.67, CharisRules.gdh(354):  *GC1*  >  cBaselineHook   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 20
+PutGlyph(V1&2) 35
 Next
 RetZero
 
@@ -978,7 +978,7 @@ PopRet
 RULE 1.68, CharisRules.gdh(358):  *GC2*  >  g__eng_u_c_style   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 21
+PutGlyph(V1&2) 7
 Next
 RetZero
 
@@ -991,7 +991,7 @@ PopRet
 RULE 1.69, CharisRules.gdh(362):  *GC3*  >  cKom   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 22
+PutGlyph(V1&2) 45
 Next
 RetZero
 
@@ -1004,7 +1004,7 @@ PopRet
 RULE 1.70, CharisRules.gdh(368):  *GC4*  >  g0264   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 23
+PutGlyph(V1&2) 15
 Next
 RetZero
 
@@ -1017,7 +1017,7 @@ PopRet
 RULE 1.71, CharisRules.gdh(372):  *GC5*  >  g0264_lrgBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 24
+PutGlyph(V1&2) 14
 Next
 RetZero
 
@@ -1030,7 +1030,7 @@ PopRet
 RULE 1.72, CharisRules.gdh(376):  *GC6*  >  g0264_gammaStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 25
+PutGlyph(V1&2) 16
 Next
 RetZero
 
@@ -1043,7 +1043,7 @@ PopRet
 RULE 1.73, CharisRules.gdh(382):  cno_MongolStyle  >  cMongolStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 142 27
+PutSubs(V1&2) 0 138 48
 Next
 RetZero
 
@@ -1056,7 +1056,7 @@ PopRet
 RULE 1.74, CharisRules.gdh(384):  cMongolStyle  >  cno_MongolStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 143 26
+PutSubs(V1&2) 0 137 49
 Next
 RetZero
 
@@ -1070,7 +1070,7 @@ PopRet
 RULE 1.75, CharisRules.gdh(398):  cno_CyShortMrkAlt  >  cCyShortMrkAlt   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 29
+PutGlyph(V1&2) 42
 Next
 RetZero
 
@@ -1083,7 +1083,7 @@ PopRet
 RULE 1.76, CharisRules.gdh(400):  cCyShortMrkAlt  >  cno_CyShortMrkAlt   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 28
+PutGlyph(V1&2) 43
 Next
 RetZero
 
@@ -1097,7 +1097,7 @@ PopRet
 RULE 1.77, CharisRules.gdh(406):  cno_ShowInv  >  cShowInv   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 144 30
+PutSubs(V1&2) 0 145 56
 Next
 RetZero
 
@@ -1110,7 +1110,7 @@ PopRet
 RULE 1.78, CharisRules.gdh(420):  cno_SngBowl  >  cSngBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 145 32
+PutSubs(V1&2) 0 149 61
 Next
 RetZero
 
@@ -1123,7 +1123,7 @@ PopRet
 RULE 1.79, CharisRules.gdh(421):  cno_SngStory  >  cSngStory   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 147 34
+PutSubs(V1&2) 0 151 63
 Next
 RetZero
 
@@ -1136,7 +1136,7 @@ PopRet
 RULE 1.80, CharisRules.gdh(422):  g01E5  >  g01E5_barBowl_sngBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 35
+PutGlyph(V1&2) 2
 Next
 RetZero
 
@@ -1149,7 +1149,7 @@ PopRet
 RULE 1.81, CharisRules.gdh(424):  cSngBowl  >  cno_SngBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 146 31
+PutSubs(V1&2) 0 148 62
 Next
 RetZero
 
@@ -1163,7 +1163,7 @@ PopRet
 RULE 1.82, CharisRules.gdh(425):  cSngStory  >  cno_SngStory   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 148 33
+PutSubs(V1&2) 0 150 64
 Next
 RetZero
 
@@ -1177,9 +1177,9 @@ PopRet
 RULE 1.83, CharisRules.gdh(433):  g_f  cfLigC2  >  g_f_slant_italic  cfLigC2_slantItalic   /  ANY  ANY  _  _  cDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 36
+PutGlyph(V1&2) 1
 Next
-PutSubs(V1&2) 0 149 37
+PutSubs(V1&2) 0 154 74
 Next
 RetZero
 
@@ -1194,7 +1194,7 @@ RULE 1.84, CharisRules.gdh(434):  g_f  cfLigC2  >  _  cfLig_slantItalic:(3 4) { 
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 149 38
+PutSubs(V1&2) 0 154 75
 Assoc 2 -1 0
 PushByte -1
 IAttrSetSlot comp_ref 2
@@ -1212,11 +1212,11 @@ PopRet
 RULE 1.85, CharisRules.gdh(436):  g_f  g_f  cffLigC3  >  g_f_slant_italic  g_f_slant_italic  cffLigC3_slantItalic   /  ANY  ANY  _  _  _  cDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 36
+PutGlyph(V1&2) 1
 Next
-PutGlyph(V1&2) 36
+PutGlyph(V1&2) 1
 Next
-PutSubs(V1&2) 0 150 39
+PutSubs(V1&2) 0 155 76
 Next
 RetZero
 
@@ -1233,7 +1233,7 @@ Delete
 Next
 Delete
 Next
-PutSubs(V1&2) 0 150 40
+PutSubs(V1&2) 0 155 77
 Assoc 3 -2 -1 0
 PushByte -2
 IAttrSetSlot comp_ref 2
@@ -1253,7 +1253,7 @@ PopRet
 RULE 1.87, CharisRules.gdh(439):  cno_SlantItalic  >  cSlantItalic   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 151 42
+PutSubs(V1&2) 0 147 57
 Next
 RetZero
 
@@ -1266,7 +1266,7 @@ PopRet
 RULE 1.88, CharisRules.gdh(440):  cno_2StorySlantItalic  >  c2StorySlantItalic   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 153 44
+PutSubs(V1&2) 0 127 31
 Next
 RetZero
 
@@ -1297,7 +1297,7 @@ RULE 1.90, CharisRules.gdh(445):  g_f  cfLigC2  >  _  cfLig:(3 4) { comp.f1.ref=
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 149 45
+PutSubs(V1&2) 0 154 72
 Assoc 2 -1 0
 PushByte -1
 IAttrSetSlot comp_ref 2
@@ -1338,7 +1338,7 @@ Delete
 Next
 Delete
 Next
-PutSubs(V1&2) 0 150 46
+PutSubs(V1&2) 0 155 73
 Assoc 3 -2 -1 0
 PushByte -2
 IAttrSetSlot comp_ref 2
@@ -1359,7 +1359,7 @@ PopRet
 RULE 1.93, CharisRules.gdh(451):  cSlantItalic  >  cno_SlantItalic   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 152 41
+PutSubs(V1&2) 0 146 58
 Next
 RetZero
 
@@ -1373,7 +1373,7 @@ PopRet
 RULE 1.94, CharisRules.gdh(452):  c2StorySlantItalic  >  cno_2StorySlantItalic   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 154 43
+PutSubs(V1&2) 0 126 32
 Next
 RetZero
 
@@ -1387,7 +1387,7 @@ PopRet
 RULE 1.95, CharisRules.gdh(459):  cno_BarBowl  >  cBarBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 155 48
+PutSubs(V1&2) 0 129 33
 Next
 RetZero
 
@@ -1400,7 +1400,7 @@ PopRet
 RULE 1.96, CharisRules.gdh(463):  cBarBowl  >  cno_BarBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 156 47
+PutSubs(V1&2) 0 128 34
 Next
 RetZero
 
@@ -1414,7 +1414,7 @@ PopRet
 RULE 1.97, CharisRules.gdh(468):  cno_TopSerifJStroke  >  cTopSerifJStroke   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 50
+PutGlyph(V1&2) 87
 Next
 RetZero
 
@@ -1427,7 +1427,7 @@ PopRet
 RULE 1.98, CharisRules.gdh(470):  cTopSerifJStroke  >  cno_TopSerifJStroke   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 49
+PutGlyph(V1&2) 88
 Next
 RetZero
 
@@ -1441,7 +1441,7 @@ PopRet
 RULE 1.99, CharisRules.gdh(474):  cno_TopSerifOpenO  >  cTopSerifOpenO   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 157 52
+PutSubs(V1&2) 0 163 85
 Next
 RetZero
 
@@ -1454,7 +1454,7 @@ PopRet
 RULE 1.100, CharisRules.gdh(476):  cTopSerifOpenO  >  cno_TopSerifOpenO   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 158 51
+PutSubs(V1&2) 0 162 86
 Next
 RetZero
 
@@ -1468,7 +1468,7 @@ PopRet
 RULE 1.101, CharisRules.gdh(480):  cno_StraightLft  >  cStraightLft   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 54
+PutGlyph(V1&2) 65
 Next
 RetZero
 
@@ -1481,7 +1481,7 @@ PopRet
 RULE 1.102, CharisRules.gdh(482):  cStraightLft  >  cno_StraightLft   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 53
+PutGlyph(V1&2) 66
 Next
 RetZero
 
@@ -1495,7 +1495,7 @@ PopRet
 RULE 1.103, CharisRules.gdh(486):  g01B3  >  g01B3_rtHook   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 56
+PutGlyph(V1&2) 18
 Next
 RetZero
 
@@ -1508,7 +1508,7 @@ PopRet
 RULE 1.104, CharisRules.gdh(488):  g01B3_rtHook  >  g01B3   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 55
+PutGlyph(V1&2) 17
 Next
 RetZero
 
@@ -1522,7 +1522,7 @@ PopRet
 RULE 1.105, CharisRules.gdh(492):  g019D  >  g019D_lCStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 58
+PutGlyph(V1&2) 8
 Next
 RetZero
 
@@ -1535,7 +1535,7 @@ PopRet
 RULE 1.106, CharisRules.gdh(494):  g019D_lCStyle  >  g019D   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 57
+PutGlyph(V1&2) 6
 Next
 RetZero
 
@@ -1549,7 +1549,7 @@ PopRet
 RULE 1.107, CharisRules.gdh(498):  g0293  >  g0293_lrgBowl   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 60
+PutGlyph(V1&2) 20
 Next
 RetZero
 
@@ -1562,7 +1562,7 @@ PopRet
 RULE 1.108, CharisRules.gdh(500):  g0293_lrgBowl  >  g0293   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 59
+PutGlyph(V1&2) 19
 Next
 RetZero
 
@@ -1576,7 +1576,7 @@ PopRet
 RULE 1.109, CharisRules.gdh(504):  g01AC  >  g01AC_rtHook   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 62
+PutGlyph(V1&2) 13
 Next
 RetZero
 
@@ -1589,7 +1589,7 @@ PopRet
 RULE 1.110, CharisRules.gdh(506):  g01AC_rtHook  >  g01AC   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 61
+PutGlyph(V1&2) 12
 Next
 RetZero
 
@@ -1603,7 +1603,7 @@ PopRet
 RULE 1.111, CharisRules.gdh(510):  cno_VertStrk  >  cVertStrk   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 64
+PutGlyph(V1&2) 70
 Next
 RetZero
 
@@ -1616,7 +1616,7 @@ PopRet
 RULE 1.112, CharisRules.gdh(512):  cVertStrk  >  cno_VertStrk   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 63
+PutGlyph(V1&2) 71
 Next
 RetZero
 
@@ -1630,7 +1630,7 @@ PopRet
 RULE 1.113, CharisRules.gdh(516):  g2C64  >  g2C64_lCStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 66
+PutGlyph(V1&2) 11
 Next
 RetZero
 
@@ -1643,7 +1643,7 @@ PopRet
 RULE 1.114, CharisRules.gdh(518):  g2C64_lCStyle  >  g2C64   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 65
+PutGlyph(V1&2) 10
 Next
 RetZero
 
@@ -1657,7 +1657,7 @@ PopRet
 RULE 1.115, CharisRules.gdh(522):  cno_BowlHook  >  cBowlHook   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 68
+PutGlyph(V1&2) 36
 Next
 RetZero
 
@@ -1670,7 +1670,7 @@ PopRet
 RULE 1.116, CharisRules.gdh(524):  cBowlHook  >  cno_BowlHook   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 67
+PutGlyph(V1&2) 37
 Next
 RetZero
 
@@ -1684,7 +1684,7 @@ PopRet
 RULE 1.117, CharisRules.gdh(528):  cno_CommaStyle  >  cCommaStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 159 70
+PutSubs(V1&2) 0 133 40
 Next
 RetZero
 
@@ -1697,7 +1697,7 @@ PopRet
 RULE 1.118, CharisRules.gdh(530):  cCommaStyle  >  cno_CommaStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 160 69
+PutSubs(V1&2) 0 132 41
 Next
 RetZero
 
@@ -1711,7 +1711,7 @@ PopRet
 RULE 1.119, CharisRules.gdh(534):  cno_RevSigmaStyle  >  cRevSigmaStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 161 72
+PutSubs(V1&2) 0 144 54
 Next
 RetZero
 
@@ -1724,7 +1724,7 @@ PopRet
 RULE 1.120, CharisRules.gdh(536):  cRevSigmaStyle  >  cno_RevSigmaStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 162 71
+PutSubs(V1&2) 0 143 55
 Next
 RetZero
 
@@ -1738,7 +1738,7 @@ PopRet
 RULE 1.121, CharisRules.gdh(542):  cno_Lrg  >  cLrg   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 163 74
+PutSubs(V1&2) 0 136 46
 Next
 RetZero
 
@@ -1751,7 +1751,7 @@ PopRet
 RULE 1.122, CharisRules.gdh(544):  cLrg  >  cno_Lrg   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 164 73
+PutSubs(V1&2) 0 135 47
 Next
 RetZero
 
@@ -1765,7 +1765,7 @@ PopRet
 RULE 1.123, CharisRules.gdh(548):  cno_OpenTop  >  cOpenTop   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 165 76
+PutSubs(V1&2) 0 140 50
 Next
 RetZero
 
@@ -1778,7 +1778,7 @@ PopRet
 RULE 1.124, CharisRules.gdh(550):  cOpenTop  >  cno_OpenTop   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 166 75
+PutSubs(V1&2) 0 139 51
 Next
 RetZero
 
@@ -1792,7 +1792,7 @@ PopRet
 RULE 1.125, CharisRules.gdh(554):  cno_SlashZero  >  cSlashZero   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 78
+PutGlyph(V1&2) 59
 Next
 RetZero
 
@@ -1805,7 +1805,7 @@ PopRet
 RULE 1.126, CharisRules.gdh(556):  cSlashZero  >  cno_SlashZero   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 77
+PutGlyph(V1&2) 60
 Next
 RetZero
 
@@ -1819,7 +1819,7 @@ PopRet
 RULE 1.127, CharisRules.gdh(560):  gF1E9  >  gF1E9_wide   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 80
+PutGlyph(V1&2) 22
 Next
 RetZero
 
@@ -1832,7 +1832,7 @@ PopRet
 RULE 1.128, CharisRules.gdh(562):  gF1E9_wide  >  gF1E9   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 79
+PutGlyph(V1&2) 21
 Next
 RetZero
 
@@ -1846,7 +1846,7 @@ PopRet
 RULE 1.129, CharisRules.gdh(575):  g04BB  >  g04BB_uCStyle   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 82
+PutGlyph(V1&2) 4
 Next
 RetZero
 
@@ -1859,7 +1859,7 @@ PopRet
 RULE 1.130, CharisRules.gdh(577):  g04BB_uCStyle  >  g04BB   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 81
+PutGlyph(V1&2) 3
 Next
 RetZero
 
@@ -1873,7 +1873,7 @@ PopRet
 RULE 1.131, CharisPitches.gdh(219):  cRightTone  >  cSupNum   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 167 83
+PutSubs(V1&2) 0 171 89
 Next
 RetZero
 
@@ -1884,7 +1884,7 @@ PopRet
 RULE 1.132, CharisPitches.gdh(220):  cLeftTone  >  cSupNum   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 168 83
+PutSubs(V1&2) 0 174 89
 Next
 RetZero
 
@@ -1895,9 +1895,9 @@ PopRet
 RULE 1.133, CharisPitches.gdh(237):  cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 84
+PutSubs(V1&2) 1 171 92
 Next
-PutSubs(V1&2) 0 167 85
+PutSubs(V1&2) 0 171 91
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -1923,9 +1923,9 @@ PopRet
 RULE 1.134, CharisPitches.gdh(238):  cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 86
+PutSubs(V1&2) 1 171 93
 Next
-PutSubs(V1&2) 0 167 85
+PutSubs(V1&2) 0 171 91
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -1951,9 +1951,9 @@ PopRet
 RULE 1.135, CharisPitches.gdh(239):  cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 87
+PutSubs(V1&2) 1 171 94
 Next
-PutSubs(V1&2) 0 167 85
+PutSubs(V1&2) 0 171 91
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -1979,9 +1979,9 @@ PopRet
 RULE 1.136, CharisPitches.gdh(240):  cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 88
+PutSubs(V1&2) 1 171 95
 Next
-PutSubs(V1&2) 0 167 85
+PutSubs(V1&2) 0 171 91
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2007,9 +2007,9 @@ PopRet
 RULE 1.137, CharisPitches.gdh(241):  cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 89
+PutSubs(V1&2) 1 171 96
 Next
-PutSubs(V1&2) 0 167 85
+PutSubs(V1&2) 0 171 91
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2035,9 +2035,9 @@ PopRet
 RULE 1.138, CharisPitches.gdh(245):  cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 84
+PutSubs(V1&2) 1 171 92
 Next
-PutSubs(V1&2) 0 167 90
+PutSubs(V1&2) 0 171 90
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2064,9 +2064,9 @@ PopRet
 RULE 1.139, CharisPitches.gdh(246):  cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 86
+PutSubs(V1&2) 1 171 93
 Next
-PutSubs(V1&2) 0 167 90
+PutSubs(V1&2) 0 171 90
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2093,9 +2093,9 @@ PopRet
 RULE 1.140, CharisPitches.gdh(247):  cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 87
+PutSubs(V1&2) 1 171 94
 Next
-PutSubs(V1&2) 0 167 90
+PutSubs(V1&2) 0 171 90
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2122,9 +2122,9 @@ PopRet
 RULE 1.141, CharisPitches.gdh(248):  cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 88
+PutSubs(V1&2) 1 171 95
 Next
-PutSubs(V1&2) 0 167 90
+PutSubs(V1&2) 0 171 90
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2151,9 +2151,9 @@ PopRet
 RULE 1.142, CharisPitches.gdh(249):  cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 1 167 89
+PutSubs(V1&2) 1 171 96
 Next
-PutSubs(V1&2) 0 167 90
+PutSubs(V1&2) 0 171 90
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2180,7 +2180,7 @@ PopRet
 RULE 1.143, CharisPitches.gdh(255):  cLeftTone  >  cLeftStaff_no$3   /  ANY  ANY  ^  _  cLeftTone  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 168 91
+PutSubs(V1&2) 0 174 99
 Next
 PushByte -1
 PopRet
@@ -2195,7 +2195,7 @@ PopRet
 RULE 1.144, CharisPitches.gdh(258):  cLeftTone  >  cLeftStaff$3   /  ANY  ANY  ^  _  cLeftTone  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 168 92
+PutSubs(V1&2) 0 174 98
 Next
 PushByte -1
 PopRet
@@ -2213,7 +2213,7 @@ RULE 1.145, CharisPitches.gdh(263):  cLeftContourOrStaff1  cLeftTone  >  @3  cLe
 ACTIONS:
 PutCopy 0
 Next
-PutSubs(V1&2) 0 168 93
+PutSubs(V1&2) 0 174 100
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2236,7 +2236,7 @@ RULE 1.146, CharisPitches.gdh(264):  cLeftContourOrStaff2  cLeftTone  >  @3  cLe
 ACTIONS:
 PutCopy 0
 Next
-PutSubs(V1&2) 0 168 94
+PutSubs(V1&2) 0 174 101
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2259,7 +2259,7 @@ RULE 1.147, CharisPitches.gdh(265):  cLeftContourOrStaff3  cLeftTone  >  @3  cLe
 ACTIONS:
 PutCopy 0
 Next
-PutSubs(V1&2) 0 168 95
+PutSubs(V1&2) 0 174 102
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2282,7 +2282,7 @@ RULE 1.148, CharisPitches.gdh(266):  cLeftContourOrStaff4  cLeftTone  >  @3  cLe
 ACTIONS:
 PutCopy 0
 Next
-PutSubs(V1&2) 0 168 96
+PutSubs(V1&2) 0 174 103
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2305,7 +2305,7 @@ RULE 1.149, CharisPitches.gdh(267):  cLeftContourOrStaff5  cLeftTone  >  @3  cLe
 ACTIONS:
 PutCopy 0
 Next
-PutSubs(V1&2) 0 168 97
+PutSubs(V1&2) 0 174 104
 PushGlyphAttr(V1&2) 75 -1
 PushGlyphAttr(V1&2) 75 0
 Equal
@@ -2326,7 +2326,7 @@ CONSTRAINTS: none
 RULE 1.150, CharisPitches.gdh(602):  g_space  >  g_pitchSpace   /  ANY  *GC8*  _  *GC9*  ;
 
 ACTIONS:
-PutGlyph(V1&2) 98
+PutGlyph(V1&2) 115
 Next
 RetZero
 
@@ -2352,7 +2352,7 @@ PopRet
 RULE 1.152, CharisPitches.gdh(607):  *GC10*  >  g_noPitchSpace   /  ANY  ^  g_pitchSpace  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 99
+PutGlyph(V1&2) 116
 Next
 PushByte -2
 PopRet
@@ -2366,7 +2366,7 @@ PopRet
 RULE 1.153, CharisPitches.gdh(609):  g_pitchSpace  >  g_noPitchSpace   /  ANY  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 99
+PutGlyph(V1&2) 116
 Next
 RetZero
 
@@ -2383,7 +2383,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 100
+PutSubs(V1&2) 0 177 106
 Next
 PushByte -1
 PopRet
@@ -2401,7 +2401,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 101
+PutSubs(V1&2) 0 177 107
 Next
 PushByte -1
 PopRet
@@ -2419,7 +2419,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 102
+PutSubs(V1&2) 0 177 108
 Next
 PushByte -1
 PopRet
@@ -2437,7 +2437,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 103
+PutSubs(V1&2) 0 177 109
 Next
 PushByte -1
 PopRet
@@ -2455,7 +2455,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 104
+PutSubs(V1&2) 0 177 110
 Next
 PushByte -1
 PopRet
@@ -2473,7 +2473,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 105
+PutSubs(V1&2) 0 177 111
 Next
 PushByte -1
 PopRet
@@ -2491,7 +2491,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 106
+PutSubs(V1&2) 0 177 112
 Next
 PushByte -1
 PopRet
@@ -2509,7 +2509,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 107
+PutSubs(V1&2) 0 177 113
 Next
 PushByte -1
 PopRet
@@ -2527,7 +2527,7 @@ PutCopy 0
 PushByte 1
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 174 108
+PutSubs(V1&2) 0 177 114
 Next
 PushByte -1
 PopRet
@@ -2545,7 +2545,7 @@ PASS CONSTRAINTS: none
 RULE 2.0, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 175 109
+PutSubs(V1&2) 0 134 44
 Next
 RetZero
 
@@ -2554,7 +2554,7 @@ CONSTRAINTS: none
 RULE 2.1, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cUDia  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 175 109
+PutSubs(V1&2) 0 134 44
 Next
 RetZero
 
@@ -2563,7 +2563,7 @@ CONSTRAINTS: none
 RULE 2.2, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cUDia  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 175 109
+PutSubs(V1&2) 0 134 44
 Next
 RetZero
 
@@ -2572,7 +2572,7 @@ CONSTRAINTS: none
 RULE 2.3, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cUDia  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 175 109
+PutSubs(V1&2) 0 134 44
 Next
 RetZero
 
@@ -2581,7 +2581,7 @@ CONSTRAINTS: none
 RULE 2.4, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cUDia  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 175 109
+PutSubs(V1&2) 0 134 44
 Next
 RetZero
 
@@ -2590,10 +2590,10 @@ CONSTRAINTS: none
 RULE 2.5, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 110
+PutGlyph(V1&2) 5
 Next
 Insert
-PutSubs(V1&2) 0 176 111
+PutSubs(V1&2) 0 156 78
 Assoc 1 0
 Next
 RetZero
@@ -2603,10 +2603,10 @@ CONSTRAINTS: none
 RULE 2.6, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cnUDia  cUDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 110
+PutGlyph(V1&2) 5
 Next
 Insert
-PutSubs(V1&2) 0 176 111
+PutSubs(V1&2) 0 156 78
 Assoc 1 0
 Next
 RetZero
@@ -2616,10 +2616,10 @@ CONSTRAINTS: none
 RULE 2.7, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cUDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 110
+PutGlyph(V1&2) 5
 Next
 Insert
-PutSubs(V1&2) 0 176 111
+PutSubs(V1&2) 0 156 78
 Assoc 1 0
 Next
 RetZero
@@ -2629,10 +2629,10 @@ CONSTRAINTS: none
 RULE 2.8, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cUDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 110
+PutGlyph(V1&2) 5
 Next
 Insert
-PutSubs(V1&2) 0 176 111
+PutSubs(V1&2) 0 156 78
 Assoc 1 0
 Next
 RetZero
@@ -2642,10 +2642,10 @@ CONSTRAINTS: none
 RULE 2.9, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cUDia  ;
 
 ACTIONS:
-PutGlyph(V1&2) 110
+PutGlyph(V1&2) 5
 Next
 Insert
-PutSubs(V1&2) 0 176 111
+PutSubs(V1&2) 0 156 78
 Assoc 1 0
 Next
 RetZero
@@ -2655,7 +2655,7 @@ CONSTRAINTS: none
 RULE 2.10, CharisRules.gdh(595):  cno_RetroHookStyle  >  cRetroHookStyle   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 177 113
+PutSubs(V1&2) 0 142 52
 Next
 RetZero
 
@@ -2668,7 +2668,7 @@ PopRet
 RULE 2.11, CharisRules.gdh(597):  cRetroHookStyle  >  cno_RetroHookStyle   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 178 112
+PutSubs(V1&2) 0 141 53
 Next
 RetZero
 
@@ -2682,7 +2682,7 @@ PopRet
 RULE 2.12, CharisRules.gdh(618):  cno_Sup  >  cSup   /  *GC7*  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 114
+PutGlyph(V1&2) 67
 Next
 RetZero
 
@@ -2692,7 +2692,7 @@ RULE 2.13, CharisPitches.gdh(276):  _  cRightStaff  >  cRightToneHoriz$3:3  @3  
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 1 170 115
+PutSubs(V1&2) 1 172 97
 Assoc 1 1
 Next
 PutCopy 0
@@ -2710,7 +2710,7 @@ RULE 2.14, CharisPitches.gdh(277):  _  cRightStaff_no  >  cRightToneHoriz$3:3  @
 
 ACTIONS:
 Insert
-PutSubs(V1&2) 1 169 115
+PutSubs(V1&2) 1 173 97
 Assoc 1 1
 Next
 PutCopy 0
@@ -2773,7 +2773,7 @@ ACTIONS:
 PutCopy 0
 Next
 Insert
-PutSubs(V1&2) 0 172 116
+PutSubs(V1&2) 0 175 105
 Assoc 1 0
 Next
 RetZero
@@ -2795,7 +2795,7 @@ ACTIONS:
 PutCopy 0
 Next
 Insert
-PutSubs(V1&2) 0 171 116
+PutSubs(V1&2) 0 176 105
 Assoc 1 0
 Next
 RetZero
@@ -3801,7 +3801,7 @@ PopRet
 RULE 2.57, CharisPitches.gdh(662):  cno_LinesXXX  >  cLinesXXX   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 179 117
+PutSubs(V1&2) 0 178 117
 Next
 RetZero
 

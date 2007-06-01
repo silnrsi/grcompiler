@@ -103,11 +103,11 @@ bool GdlFeatureDefn::ErrorCheck()
 	}
 
 	//	Duplicate IDs in feature settings: fatal error
-	Set<int> setnIDs;
+	std::set<int> setnIDs;
 	for (int ifset = 0; ifset < m_vpfset.Size(); ++ifset)
 	{
 		int nValue = m_vpfset[ifset]->m_nValue;
-		if (setnIDs.IsMember(nValue))
+		if (setnIDs.find(nValue) != setnIDs.end()) // is a member
 		{
 			g_errorList.AddError(3159, m_vpfset[ifset],
 				"Duplicate feature setting values in ",
@@ -115,7 +115,7 @@ bool GdlFeatureDefn::ErrorCheck()
 			m_fFatalError = true;
 			return false;
 		}
-		setnIDs.Insert(nValue);
+		setnIDs.insert(nValue);
 	}
 
 	//	Feature with only one setting: warning
@@ -196,7 +196,7 @@ void GdlFeatureDefn::ErrorCheckContd()
 		return;
 	}
 
-	Set<int> setnValues;
+	//std::set<int> setnValues;
 	for (int ifset = 0; ifset < m_vpfset.Size(); ++ifset)
 	{
 		//	Feature setting with no value set: warning

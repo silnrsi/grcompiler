@@ -129,7 +129,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	//	Handle explicit pseudos.
 	utf16 wFirstPseudo = wFirstFree;
 	m_nMaxPseudoUnicode = 0;
-	Set<unsigned int> setnUnicode; // to recognize duplicates
+	std::set<unsigned int> setnUnicode; // to recognize duplicates
 	for (std::set<GdlGlyphDefn*>::iterator itset = setpglfExplicitPseudos.begin();
 		itset != setpglfExplicitPseudos.end();
 		++itset)
@@ -140,7 +140,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 		unsigned int nUnicode = pglfPseudo->UnicodeInput();
 		if (nUnicode == 0)
 			;	// no Unicode input specified
-		else if (setnUnicode.IsMember(nUnicode))
+		else if (setnUnicode.find(nUnicode) != setnUnicode.end()) // is a member
 		{
 			//	Duplicate pseudo mapping.
 			g_errorList.AddError(4103, pglfPseudo, pglfPseudo->CodepointString(),
@@ -150,7 +150,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 		{
 			m_vnUnicodeForPseudo.Push(nUnicode);
 			m_vwPseudoForUnicode.Push(pglfPseudo->AssignedPseudo());
-			setnUnicode.Insert(nUnicode);
+			setnUnicode.insert(nUnicode);
 			m_nMaxPseudoUnicode = max(m_nMaxPseudoUnicode, nUnicode);
 		}
 	}
