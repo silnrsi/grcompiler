@@ -2550,8 +2550,8 @@ void GdlPass::GenerateRuleMaps(Vector<int> & vnOffsets, Vector<int> & vnRuleList
 			//	Make a sorted list of all the rule indices (this allows the rules to be
 			//	tried in the order that they appeared in the source file).
 			Vector<int> virule;
-			for (Set<int>::iterator itset = pfstate->m_setiruleSuccess.Begin();
-				itset != pfstate->m_setiruleSuccess.End();
+			for (std::set<int>::iterator itset = pfstate->m_setiruleSuccess.begin();
+				itset != pfstate->m_setiruleSuccess.end();
 				++itset)
 			{
 				for (int iirule = 0; iirule <= virule.Size(); iirule++)

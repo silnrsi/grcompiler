@@ -653,17 +653,17 @@ bool FsmState::StatesMatch(FsmState * pfstate)
 	if (NumberOfRulesSucceeded() != pfstate->NumberOfRulesSucceeded())
 		return false;
 
-	Set<int>::iterator it;
-	for (it = m_setiruleMatched.Begin();
-		it != m_setiruleMatched.End();
+	std::set<int>::iterator it;
+	for (it = m_setiruleMatched.begin();
+		it != m_setiruleMatched.end();
 		++it)
 	{
 		if (!pfstate->RuleMatched(*it))
 			return false;
 	}
 
-	for (it = m_setiruleSuccess.Begin();
-		it != m_setiruleSuccess.End();
+	for (it = m_setiruleSuccess.begin();
+		it != m_setiruleSuccess.end();
 		++it)
 	{
 		if (!pfstate->RuleSucceeded(*it))
@@ -1208,24 +1208,24 @@ void GdlPass::DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWo
 void FsmState::DebugFsmState(std::ostream & strmOut, int ifs)
 {
 	strmOut << "\n   Matched=";
-	Set<int>::iterator it;
-	for (it = m_setiruleMatched.Begin();
-		it != m_setiruleMatched.End();
+	std::set<int>::iterator it;
+	for (it = m_setiruleMatched.begin();
+		it != m_setiruleMatched.end();
 		++it)
 	{
 		strmOut << *it << ",";
 	}
-	if (m_setiruleMatched.Size() == 0)
+	if (m_setiruleMatched.size() == 0)
 		strmOut << "none";
 
 	strmOut << "\n   Success=";
-	for (it = m_setiruleSuccess.Begin();
-		it != m_setiruleSuccess.End();
+	for (it = m_setiruleSuccess.begin();
+		it != m_setiruleSuccess.end();
 		++it)
 	{
 		strmOut << *it << ",";
 	}
-	if (m_setiruleSuccess.Size() == 0)
+	if (m_setiruleSuccess.size() == 0)
 		strmOut << "none";
 	strmOut << "\n";
 }
