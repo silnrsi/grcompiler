@@ -146,34 +146,34 @@ public:
 
 	int NumberOfRulesMatched()
 	{
-		return m_setiruleMatched.Size();
+		return m_setiruleMatched.size();
 	}
 
 	bool RuleMatched(int irule)
 	{
-		return m_setiruleMatched.IsMember(irule);
+		return (m_setiruleMatched.find(irule) != m_setiruleMatched.end()); // is a member
 	}
 
 	void AddRuleToMatchedList(int irule)
 	{
-		if (!m_setiruleMatched.IsMember(irule))
-			m_setiruleMatched.Insert(irule);
+		if (m_setiruleMatched.find(irule) == m_setiruleMatched.end()) // not a member
+			m_setiruleMatched.insert(irule);
 	}
 
 	int NumberOfRulesSucceeded()
 	{
-		return m_setiruleSuccess.Size();
+		return m_setiruleSuccess.size();
 	}
 
 	bool RuleSucceeded(int irule)
 	{
-		return m_setiruleSuccess.IsMember(irule);
+		return (m_setiruleSuccess.find(irule) != m_setiruleSuccess.end()); // is a member
 	}
 
 	void AddRuleToSuccessList(int irule)
 	{
-		if (!m_setiruleSuccess.IsMember(irule))
-			m_setiruleSuccess.Insert(irule);
+		if (m_setiruleSuccess.find(irule) == m_setiruleSuccess.end())  // not a member
+			m_setiruleSuccess.insert(irule);
 	}
 
 	bool StatesMatch(FsmState * pfState);
@@ -216,8 +216,8 @@ protected:
 	int m_ifsFinalIndex;	// adjusted index for final output form of FSM (-1 for merged
 							// states)
 
-	Set<int> m_setiruleMatched;	// indices of rules matched by this state
-	Set<int> m_setiruleSuccess;	// indices of rules for which this is a success state
+	std::set<int> m_setiruleMatched;	// indices of rules matched by this state
+	std::set<int> m_setiruleSuccess;	// indices of rules for which this is a success state
 
 	int * m_prgiCells;	// the cells of the state, holding the index of the state
 						// to transition to
