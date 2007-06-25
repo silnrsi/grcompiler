@@ -1,7 +1,7 @@
 AM_CPPFLAGS = -I@srcdir@/Generic -I@srcdir@/Grammar
 
 SUBDIRS = Generic Grammar
-LIBS = @LIBICONV@ -LGeneric -LGrammar -lgeneric -lparser
+LIBS = @LIBS@ @LIBICONV@ -LGeneric -LGrammar -lgeneric -lparser
 EXTRA_DIST = resource.h GrCompiler.rc GrpParser.g GrpParser_readme.txt GrpParserTokenTypes.txt stddef.gdh
 
 bin_PROGRAMS = grcompiler

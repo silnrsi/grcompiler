@@ -36,6 +36,8 @@ AC_PROG_RANLIB
 
 # Checks for libraries.
 
+AC_CHECK_LIB(sicuuc, u_charType_3_6)
+
 # Checks for header files.
 
 # Checks for typedefs, structures, and compiler characteristics.

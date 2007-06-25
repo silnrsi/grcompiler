@@ -164,7 +164,7 @@ GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, std::string staTableName
 
 		penvNew->SetTable(psymTable);
 		int nPass = 0;
-		stdext::hash_map<Symbol, int>::iterator hmit = m_hmpsymnCurrPass.find(psymTable);
+		std::map<Symbol, int>::iterator hmit = m_hmpsymnCurrPass.find(psymTable);
 		if (hmit != m_hmpsymnCurrPass.end())
 			nPass = hmit->second;
 		//m_hmpsymnCurrPass.Retrieve(psymTable, &nPass);

@@ -118,7 +118,7 @@ public:
 	int ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
-		stdext::hash_map<utf16, utf16> & hmActualForPseudos);
+		std::map<utf16, utf16> & hmActualForPseudos);
 	void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GrcLigComponentList * plclist);
 	void AssignGlyphAttrDefaultValues(GrcFont * pfont,
@@ -135,7 +135,7 @@ public:
 	bool CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid);
 	void MarkReplacementClasses(GrcManager * pcman,
 		std::set<GdlGlyphClassDefn *> & setpglfc);
-	void GdlRenderer::DeleteAllBadGlyphs();
+	void DeleteAllBadGlyphs();
 	bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont);
 	bool CheckLBsInRules();
 	void ReplaceKern(GrcManager * pcman);

@@ -75,7 +75,7 @@ public:
 	virtual int GlyphIDCount() = 0;
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne) = 0;
 	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
-		stdext::hash_map<utf16, utf16> & hmActualForPseudo,
+		std::map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true) = 0;
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,
@@ -171,9 +171,9 @@ public:
 	virtual void ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
 	virtual int ActualForPseudo(utf16 wPseudo);
 	void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
-		stdext::hash_map<utf16, utf16> & hmActualForPseudos);
+		std::map<utf16, utf16> & hmActualForPseudos);
 	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
-		stdext::hash_map<utf16, utf16> & hmActualForPseudo,
+		std::map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true);
 	virtual int GlyphIDCount();
 	void MaxJustificationLevel(int * pnJLevel);

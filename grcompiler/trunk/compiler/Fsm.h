@@ -230,7 +230,7 @@ protected:
 
 public:
 	//	Debuggers:
-	void FsmState::DebugFsmState(std::ostream & strmOut, int ifs);
+	void DebugFsmState(std::ostream & strmOut, int ifs);
 };
 
 

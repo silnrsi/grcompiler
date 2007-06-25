@@ -113,7 +113,7 @@ public:
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint) = 0;
-	virtual bool GdlExpression::PointFieldEquivalents(GrcManager * pcman,
+	virtual bool PointFieldEquivalents(GrcManager * pcman,
 		GdlExpression ** ppexpX, GdlExpression ** ppexpY,
 		GdlExpression ** ppexpGpoint,
 		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset);

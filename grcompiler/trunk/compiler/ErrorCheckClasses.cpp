@@ -256,7 +256,7 @@ int GrcManager::PseudoForUnicode(int nUnicode)
 int GrcManager::ActualForPseudo(utf16 wPseudo)
 {
 	utf16 wActual = 0;
-	stdext::hash_map<utf16, utf16>::iterator hmit = m_hmActualForPseudo.find(wPseudo);
+	std::map<utf16, utf16>::iterator hmit = m_hmActualForPseudo.find(wPseudo);
 	if (hmit == m_hmActualForPseudo.end()) // no value
 		return 0;
 	else
@@ -339,7 +339,7 @@ void GrcManager::SortPseudoMappings()
 	the pseudo-glyphs and defined the phantom glyph, because they must be included too.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
-	stdext::hash_map<utf16, utf16> & hmActualForPseudo)
+	std::map<utf16, utf16> & hmActualForPseudo)
 {
 	Symbol psym = m_psymtbl->FindSymbol("ANY");
 	GdlGlyphClassDefn * pglfcAny = psym->GlyphClassDefnData();
@@ -361,7 +361,7 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 	codepoints, postscript to glyph ID.
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-	stdext::hash_map<utf16, utf16> & hmActualForPseudo)
+	std::map<utf16, utf16> & hmActualForPseudo)
 {
 	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
 		m_vpglfc[iglfc]->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
@@ -371,7 +371,7 @@ bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-	stdext::hash_map<utf16, utf16> & hmActualForPseudo)
+	std::map<utf16, utf16> & hmActualForPseudo)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 	{
@@ -385,14 +385,14 @@ void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 	of a class. Only do this for simple glyphs; classes are handled separately.
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
-	stdext::hash_map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
+	std::map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
 {
 	//	Do nothing; this class will be handled separately at the top level.
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
-	stdext::hash_map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
+	std::map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
 {
 	Assert(m_vwGlyphIDs.Size() == 0);
 
