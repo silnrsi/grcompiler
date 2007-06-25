@@ -109,7 +109,7 @@ GdlPass::~GdlPass()
 void GdlPass::ClearFsmWorkSpace()
 {
 	//	Delete all the machine-class lists in the hash map.
-	for (stdext::hash_map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.begin();
+	for (std::map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.begin();
 		hmit != m_hmMachineClassMap.end();
 		++hmit)
 	{

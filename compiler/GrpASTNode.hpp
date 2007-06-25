@@ -43,6 +43,7 @@ public:
 		return m_lnf;
 	}
 
+#if 0
 	int debug(int level)
 	{
 		int nLine = m_lnf.PreProcessedLine();
@@ -54,6 +55,7 @@ public:
 		OutputDebugString("\n");
 		return nLine;
 	}
+#endif
 
 	//	Debugger:
 	const char * debugString();

@@ -212,7 +212,7 @@ class GrcSymbolTable
 	typedef GrcSymbolTableEntry::OpPrec OpPrec;
 
 	typedef std::pair<std::string, Symbol> SymbolTablePair;
-	typedef stdext::hash_map<std::string, Symbol> SymbolTableMap;
+	typedef std::map<std::string, Symbol> SymbolTableMap;
 	//typedef HashMap<StrAnsi, Symbol, HashStrAnsi, EqlStrAnsi> SymbolTableMap;
 
 public:

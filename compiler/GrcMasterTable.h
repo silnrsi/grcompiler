@@ -74,7 +74,7 @@ class GrcMasterValueList	// hungarian: mvl
 	friend class GrcMasterTable;
 
 	typedef std::pair<Symbol, GdlAssignment*> ValuePair;
-	typedef stdext::hash_map<Symbol, GdlAssignment*> ValueMap; // hungarian: valmap
+	typedef std::map<Symbol, GdlAssignment*> ValueMap; // hungarian: valmap
 
 public:
 	//	Constructor
@@ -114,7 +114,7 @@ protected:
 	void SetupFeatures(GdlFeatureDefn * pfeat);
 	void SetupGlyphAttrs(GdlGlyphClassDefn * pglfc);
 public:
-	void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap);
+	void SetupNameDefns(NameDefnMap & hmNameMap);
 
 protected:
 	//	instance variables:
@@ -141,7 +141,7 @@ class GrcMasterTable
 	friend class GrcMasterValueList;
 
 	typedef std::pair<Symbol, GrcMasterValueList*> ValueListPair;
-	typedef stdext::hash_map<Symbol, GrcMasterValueList*> ValueListMap;	// hungarian: vlistmap
+	typedef std::map<Symbol, GrcMasterValueList*> ValueListMap;	// hungarian: vlistmap
 
 public:
 	//	Destructor:

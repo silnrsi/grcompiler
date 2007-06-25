@@ -62,7 +62,7 @@ protected:
 };
 
 
-typedef stdext::hash_map<int, GdlNameDefn *> NameDefnMap;
+typedef std::map<int, GdlNameDefn *> NameDefnMap;
 
 
 

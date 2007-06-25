@@ -193,7 +193,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 
 	Vector<FsmMachineClass *> * pvpfsmc;
 	FsmMachineClass * pfsmc;
-	stdext::hash_map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.find(nKey);
+	std::map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.find(nKey);
 	if (hmit == m_hmMachineClassMap.end())
 	{
 		//	Create a new machine class corresponding to the combination of source classes.
@@ -955,7 +955,7 @@ void GdlPass::GenerateStartStates(GrcManager * pcman)
 {
 	utf16 wPhantomGlyph = pcman->PhantomGlyph();
 	int ifsmcPhantom;
-	stdext::hash_map<utf16, int>::iterator hmit = m_hmGlyphToColumn.find(wPhantomGlyph);
+	std::map<utf16, int>::iterator hmit = m_hmGlyphToColumn.find(wPhantomGlyph);
 	if (hmit == m_hmGlyphToColumn.end()) // no value
 	//if (!m_hmGlyphToColumn.Retrieve(wPhantomGlyph, &ifsmcPhantom))
 		ifsmcPhantom = -1;
@@ -1086,7 +1086,7 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 		else
 		{
 			//if (!m_hmGlyphToColumn.Retrieve(wTmp, &ifsmcColumn))
-			stdext::hash_map<utf16, int>::iterator hmit = m_hmGlyphToColumn.find(wTmp);
+			std::map<utf16, int>::iterator hmit = m_hmGlyphToColumn.find(wTmp);
 			if (hmit == m_hmGlyphToColumn.end()) // no value
 				ifsmcColumn = -1;
 			else

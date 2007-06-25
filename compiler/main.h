@@ -54,7 +54,7 @@ using namespace gr;
 // ICU:
 //#include <unicode\uclean.h> // u_init
 //#include <unicode\putil.h> // u_getDataDirectory
-#include <unicode\uchar.h>	// 
+#include <unicode/uchar.h>	// 
 #endif
 
 
@@ -79,7 +79,7 @@ using namespace gr;
 #include "UtilSet.h"
 #include "UtilInt.h"
 #endif
-#include <hash_map>
+#include <map>
 #include <set>
 
 class GrcErrorList;
