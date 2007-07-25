@@ -52,8 +52,8 @@ using namespace gr;
 #else
 #include "LgCharPropsStub.h"
 // ICU:
-//#include <unicode\uclean.h> // u_init
-//#include <unicode\putil.h> // u_getDataDirectory
+//#include <unicode/uclean.h> // u_init
+//#include <unicode/putil.h> // u_getDataDirectory
 #include <unicode/uchar.h>	// 
 #endif
 
@@ -113,8 +113,8 @@ extern GrcManager g_cman;
 #include "GdlNameDefn.h"
 #include "GrcGlyphAttrMatrix.h"
 #include "GrcMasterTable.h"
-#include "GdlRule.h"
 #include "Fsm.h"
+#include "GdlRule.h"
 #include "GdlTablePass.h"
 #include "GdlGlyphClassDefn.h"
 #include "GdlGlyphDefn.h"

@@ -83,7 +83,7 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 {
-	std::set<GdlGlyphDefn*> setpglfExplicitPseudos;
+	PseudoSet setpglfExplicitPseudos;
 	int cExplicitPseudos = m_prndr->ExplicitPseudos(setpglfExplicitPseudos);
 
 	Vector<unsigned int> vnAutoUnicode;
@@ -130,7 +130,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	utf16 wFirstPseudo = wFirstFree;
 	m_nMaxPseudoUnicode = 0;
 	std::set<unsigned int> setnUnicode; // to recognize duplicates
-	for (std::set<GdlGlyphDefn*>::iterator itset = setpglfExplicitPseudos.begin();
+	for (PseudoSet::iterator itset = setpglfExplicitPseudos.begin();
 		itset != setpglfExplicitPseudos.end();
 		++itset)
 	{
@@ -192,7 +192,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	number found. Record an error if the pseudo has an invalid output function (ie, more
 	than one glyph specified).
 ----------------------------------------------------------------------------------------------*/
-int GdlRenderer::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
+int GdlRenderer::ExplicitPseudos(PseudoSet & setpglf)
 {
 	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
 		m_vpglfc[iglfc]->ExplicitPseudos(setpglf);
@@ -200,14 +200,14 @@ int GdlRenderer::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
+void GdlGlyphClassDefn::ExplicitPseudos(PseudoSet & setpglf)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 		m_vpglfdMembers[iglfd]->ExplicitPseudos(setpglf);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphDefn::ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf)
+void GdlGlyphDefn::ExplicitPseudos(PseudoSet & setpglf)
 {
 	if (m_glft == kglftPseudo)
 	{
@@ -1425,6 +1425,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 //	}
 
 }
+
 
 
 /*----------------------------------------------------------------------------------------------
@@ -2649,7 +2650,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 		{
 			for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
 			{
-				Set<Symbol> setpsym;
+				SymbolSet setpsym;
 				GdlExpression * pexp;
 				GdlExpression * pexpNew;
 				int nPR;

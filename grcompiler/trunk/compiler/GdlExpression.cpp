@@ -1346,7 +1346,7 @@ void GdlStringExpression::LookupExpCheck(bool fInIf)
 							unmodified.
 ----------------------------------------------------------------------------------------------*/
 GdlExpression * GdlUnaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	bool fCanSubOperand;
@@ -1384,7 +1384,7 @@ GdlExpression * GdlUnaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlBinaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	bool fCanSubOperand1, fCanSubOperand2;
@@ -1435,7 +1435,7 @@ GdlExpression * GdlBinaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlCondExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	bool fCanSubTest, fCanSubTrue, fCanSubFalse;
@@ -1499,7 +1499,7 @@ GdlExpression * GdlCondExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	int nAttrID;
@@ -1559,7 +1559,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 		GdlExpression * pexpRet;
 		if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
 		{
-			setpsym.Insert(m_psymName);
+			setpsym.insert(m_psymName);
 			GdlExpression * pexp;
 			pexp = pgax->GetExpression(nGlyphIDFirst, nAttrID);
 			if (pexp)
@@ -1570,9 +1570,11 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 					pexpRet = pexpRet->Clone();
 			}
 			else
+			{
 				//	Predefined attribute with no explicit value.
 				pexpRet = new GdlNumericExpression(0);
-			setpsym.Delete(m_psymName);	// in case we look up this attribute again in the
+			}
+			setpsym.erase(m_psymName);	// in case we look up this attribute again in the
 										// same outer expression
 		}
 		else if (m_psymName->FitsSymbolType(ksymtGlyphMetric))
@@ -1667,7 +1669,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 				GdlGlyphDefn::GlyphIDString(wGlyphID));
 			return NULL;
 		}
-		else if (setpsym.IsMember(m_psymName))
+		else if (setpsym.find(m_psymName) != setpsym.end()) // is a member
 		{
 			g_errorList.AddError(2130, this,
 				"Circular definition of glyph attribute ",
@@ -1678,7 +1680,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 		}
 		else
 		{
-			setpsym.Insert(m_psymName);
+			setpsym.insert(m_psymName);
 			GdlExpression * pexp;
 			GdlExpression * pexpRet;
 			pexp = pgax->GetExpression(wGlyphID, nAttrID);
@@ -1686,7 +1688,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 				fGAttrDefChk, pfCanSub);
 			if (pexpRet)
 				pexpRet = pexpRet->Clone();
-			setpsym.Delete(m_psymName);	// in case we look up this attribute again in the
+			setpsym.erase(m_psymName);	// in case we look up this attribute again in the
 										// same outer expression
 			*pfCanSub = false;
 			return pexpRet;
@@ -1699,7 +1701,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlNumericExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	m_nValue = pfont->ScaledToAbsolute(m_nValue, m_munits);
@@ -1710,7 +1712,7 @@ GdlExpression * GdlNumericExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pg
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlSlotRefExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	*pfCanSub = true;
@@ -1719,7 +1721,7 @@ GdlExpression * GdlSlotRefExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pg
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlStringExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	*pfCanSub = true;

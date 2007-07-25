@@ -32,6 +32,7 @@ class FsmMachineClass
 {
 	friend class FsmTable;
 	friend class GdlPass;
+	friend class FsmcLess;
 
 public:
 	FsmMachineClass(int nPass)
@@ -78,7 +79,36 @@ protected:
 	int m_ifsmcColumn;	// column this machine class is assigned to
 	std::string staDebug;
 
+	// Comparison function for set manipulation:
+	bool operator<(const FsmMachineClass & fsmc) const
+	{
+		if (this == &fsmc)
+			return false; // equal, not less than
+		if (this->m_wGlyphs.Size() != fsmc.m_wGlyphs.Size())
+			return (this->m_wGlyphs.Size() < fsmc.m_wGlyphs.Size());
+		for (int iw = 0; iw < m_wGlyphs.Size(); iw++)
+		{
+			if (this->m_wGlyphs[iw] != fsmc.m_wGlyphs[iw])
+				return (this->m_wGlyphs[iw] < fsmc.m_wGlyphs[iw]);
+		}
+		return false; // equal, not less than
+	}
 };
+
+
+// Functor class for set manipulation
+class FsmcLess
+{
+	friend class FsmMachineClass;
+public:
+	operator()(const FsmMachineClass * pfsmc1, const FsmMachineClass * pfsmc2) const
+	{
+		return (*pfsmc1 < *pfsmc2);
+	}
+};
+
+typedef std::set<FsmMachineClass *, FsmcLess> FsmMachineClassSet;
+//typedef std::set<FsmMachineClass *> FsmMachineClassSet;
 
 /*----------------------------------------------------------------------------------------------
 Class: FsmState
