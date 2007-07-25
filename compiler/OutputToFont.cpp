@@ -17,6 +17,8 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#include <time.h>
+
 #pragma hdrstop
 #undef THIS_FILE
 DEFINE_THIS_FILE
@@ -28,10 +30,6 @@ static DWORD PadLong(DWORD ul); //
 static unsigned long CalcCheckSum(const void  * pluTable, size_t cluSize);
 static int CompareDirEntries(const void *,  const void *); // compare fn for qsort()
 
-
-/***********************************************************************************************
-	Local Constants and static variables
-***********************************************************************************************/
 
 /***********************************************************************************************
 	Methods
@@ -49,7 +47,7 @@ static int CompareDirEntries(const void *,  const void *); // compare fn for qso
 	TODO AlanW: Output Sild table (table with debug strings).
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
-	utf16 * pchDstFontFamily, utf16 * pchSrcFontFamily)
+	utf16 * pchDstFontFamily, bool fModFontName, utf16 * pchSrcFontFamily)
 {
 	const int kcExtraTables = 5; // count of tables to add to font
 	std::ifstream strmSrc(pchSrcFileName, std::ios::binary);
@@ -77,7 +75,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	unsigned int rgnCreateTime[2];
 	unsigned int rgnModifyTime[2];
 
-	// read offset table and directory entries
+	// Read offset table and directory entries.
 	strmSrc.read((char *)&OffsetTableSrc, OFFSETTABLESIZE);
 	if (swapl(OffsetTableSrc.version) != ONEFIX)
 		return 1;
@@ -100,7 +98,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	Assert(iTableOS2Src >= 0);
 	Assert(iTableHeadSrc >= 0);
 
-	// do the same for the minimal control file
+	// Do the same for the minimal control file.
 	char * rgchEnvVarName = "GDLPP_PREFS";
 	char * rgchMinPath = getenv(rgchEnvVarName);
 	std::string staMinFile(rgchMinPath);
@@ -167,7 +165,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		return 6;
 	memcpy(pDirEntryOut, pDirEntryCopy, cTableSrc * sizeof(sfnt_DirectoryEntry));
 
-	// offset table: adjust for extra tables and output
+	// Offset table: adjust for extra tables and output.
 	int nP2, nLog;
 	uint16 suTmp;
 	BinarySearchConstants(cTableOut, &nP2, &nLog);
@@ -181,7 +179,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	// write offset table (version & search constants)
 	bstrmDst.Write((char *)pOffsetTableOut, OFFSETTABLESIZE);
 	
-	// copy tables from input stream to output stream
+	// Copy tables from input stream to output stream.
 	long ibTableOffset, ibHeadOffset, cbHeadSize;
 	int iNameTbl;
 	int iCmapTbl = -1;
@@ -243,7 +241,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			if (tag_NamingTable == SFNT_SWAPTAG(pDirEntryCopy[i].tag))
 			{
 				iNameTbl = i;
-				if (!AddFeatsModFamily(&pbTable, &cbSize, pchDstFontFamily))
+				if (!AddFeatsModFamily((fModFontName ? pchDstFontFamily : NULL), &pbTable, &cbSize))
 					return 11;
 				pDirEntryOut[i].length = swapl(cbSize);
 			}
@@ -393,68 +391,40 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	another). This produces a simpler algorithm since one string can be copied for each 
 	record. This issue was discovered close to release so large changes were rejected.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint16 * pchFamilyName)
+bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
+	uint8 ** ppNameTbl, uint32 * pcbNameTbl)
 {
-	// interpret name table header
-	sfnt_NamingTable * pTbl = (sfnt_NamingTable *)(*ppNameTbl);
-	uint16 cRecords = swapw(pTbl->count);
-	uint16 ibStrOffset = swapw(pTbl->stringOffset);
-	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pTbl + 1);
+	uint32 cbTblOld = *pcbNameTbl;
+
+	size_t cchwFamilyName = (pchwFamilyNameNew) ? utf16len(pchwFamilyNameNew) : 0;
+
+	// Interpret name table header:
+	sfnt_NamingTable * pTblOld = (sfnt_NamingTable *)(*ppNameTbl);
+	uint16 cRecords = swapw(pTblOld->count);
+	uint16 ibStrOffset = swapw(pTblOld->stringOffset);
+	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pTblOld + 1);
 	
-	int iFamilyRecord, iSubFamilyRecord, iFullRecord;
-	// indexes for location in name table where strings will be added
-	// and for where largest name table id is stored (in relevant range)
-	int iPlatEncMin, iPlatEncLim, iMaxNameId;
-	int cbNames; // count of bytes needed to hold all name strings
+	int irecFamilyName, irecSubFamily, irecFullName, irecVendor, irecPSName, irecUniqueName;
 
 	uint16 ibSubFamilyOffset, cbSubFamily;
-	bool f31NameFound = false;
+	uint16 ibVendorOffset, cbVendor;
 
-	// find name table entries for family name and full font name
-	// first look for Microsoft Unicode table 
-	//   platform id = 3, encoding id = 1 below I call this the 3 1 table
-	// even if pchFamilyName is null we need to set f31NameFound and iMaxNameId
-	if (FindNameTblEntries(pRecord, cRecords, plat_MS, 1, LG_USENG,
-		&iFamilyRecord, &iSubFamilyRecord, &iFullRecord, 
-		&iPlatEncMin, &iPlatEncLim, &iMaxNameId, &cbNames))
+	int cbOldTblRecords = sizeof(sfnt_NamingTable) + (cRecords * sizeof(sfnt_NameRecord));
+	// Calculate bytes needed to hold all strings.
+	size_t cbOldStringData = 0;
+	int nMaxNameId = 0;
+	for (int iRecord = 0; iRecord < cRecords; iRecord++)
 	{
-		f31NameFound = true;
+		cbOldStringData += swapw(pRecord[iRecord].length);
+		nMaxNameId = max(nMaxNameId, int(swapw(pRecord[iRecord].nameID)));
 	}
-	else
-	{ // next look for Microsoft symbol font table (3 0 table)
-		// Using this subtable could cause problems if strings' lead bytes are supposed to be 
-		// 0xF0 since the name table entries we are adding use the lead byte from 
-		// MultiByteToWideChar() which are probably 0x00, but this is unlikely to be a problem.
-		if (!FindNameTblEntries(pRecord, cRecords, plat_MS, 0, LG_USENG,
-			&iFamilyRecord, &iSubFamilyRecord, &iFullRecord, 
-			&iPlatEncMin, &iPlatEncLim, &iMaxNameId, &cbNames))
-		{
-			return false;
-		}
-	}
-	ibSubFamilyOffset = swapw(pRecord[iSubFamilyRecord].offset) + ibStrOffset;
-	cbSubFamily = swapw(pRecord[iSubFamilyRecord].length);
+	size_t cbNewStringData = cbOldStringData;
 
-	// convert the family name and full name to wide char
-	// these counts do NOT include null terminator
-	uint16 cchwFamilyName = 0;
-	uint16 cchwFullName = 0; 
-	uint16 * pchwFamilyName = NULL;
-	uint16 * pchwFullName = NULL;
-
-	// the current method must release the space allocated in this call for
-	// pchwFamilyName and pchwFullName. these two pointers could point to the same string.
-	// if pchFamilyName is null, no space is allocated.
-	if (!BuildFontNames(pchFamilyName, (uint8 *)pTbl + ibSubFamilyOffset, cbSubFamily,
-		&pchwFamilyName, &cchwFamilyName, &pchwFullName, &cchwFullName))
-		return  false;
-
-	// assign name table ids to the features and settings
-	// and get vectors containing the external names, language ids, and name table ids
-	//   for all features and settings
-	// 256 - 32767 are allowable 
-	int nNameTblId = swapw(pRecord[iMaxNameId].nameID) + 1; 
-	nNameTblId = max(nNameTblId, 256);
+	// Do this once for all platforms:
+	// Assign name table ids to the features and settings and get
+	// vectors containing the external names, language ids, and name table ids
+	// for all features and settings. 256 - 32767 are allowable.
+	int nNameTblId = max(nMaxNameId + 1, 256);
 	if (m_nNameTblStart != -1 && nNameTblId > m_nNameTblStart)
 	{
 		char rgch[20];
@@ -465,163 +435,273 @@ bool GrcManager::AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint
 	nNameTblId = max(nNameTblId, m_nNameTblStart);
 
 	Vector<std::wstring> vstuExtNames;
-	Vector<uint16> vsuLangIds;
-	Vector<uint16> vsuNameTblIds;
+	Vector<uint16> vnLangIds;
+	Vector<uint16> vnNameTblIds;
 
-	if (!AssignFeatTableNameIds(nNameTblId, &vstuExtNames, &vsuLangIds, &vsuNameTblIds))
+	size_t cchwFeatStringData = 0;
+	if (!AssignFeatTableNameIds(nNameTblId, vstuExtNames, vnLangIds, vnNameTblIds, cchwFeatStringData))
 	{
 		g_errorList.AddError(5101, NULL,
 			"Insufficient space available for feature strings in name table.");
 		return false; // checks for legal values
 	}
+	int cbFeatStringData16 = cchwFeatStringData * sizeof(utf16);
+	int cbFeatStringData8 = cchwFeatStringData;
+	bool f8bitFeatures = false;
+	bool f16bitFeatures = false;
 
-	// determine size increases for new strings to add
-	unsigned int cbNewTbl;
-	int cNewRecords;
-	uint8 *pNewTbl;
+	Assert(vstuExtNames.Size() == vnLangIds.Size());
+	Assert(vnLangIds.Size() == vnNameTblIds.Size());
 
-	cbNewTbl = sizeof(sfnt_NamingTable) + cRecords * sizeof(sfnt_NameRecord) + cbNames;
-	Assert(cbNewTbl >= *pcbNameTbl);
-	cNewRecords = vstuExtNames.Size();
-	cbNewTbl += cNewRecords * sizeof(sfnt_NameRecord); // directory entries
-	for (int iExtNms = 0; iExtNms < cNewRecords; iExtNms++)
-	{ 
-		// Note the strings use wchar_t, but when output they will be sure to use 16-bit chars.
-		cbNewTbl += vstuExtNames[iExtNms].length() * sizeof(utf16); // string storage
-	}
+	// For each platform of interest, determine it if is present in the font and what encoding
+	// is being used. If it is present, we need to fix up the font names and store the feature strings.
 
-	if (pchFamilyName)
+	Vector<PlatEncChange> vpec;
+	for (int platformID = plat_Unicode; platformID <= plat_MS; platformID++)
 	{
-		// determine size adjustments for font name changes
-		// subtract old names
-		cbNewTbl -= swapw(pRecord[iFamilyRecord].length);
-		cbNewTbl -= swapw(pRecord[iFullRecord].length);
-		// add new names
-		cbNewTbl += cchwFamilyName * sizeof(utf16);
-		cbNewTbl += cchwFullName * sizeof(utf16);
+		uint16 rgEncodingIDs[5];
+		int cEncodings;
+		int engID;
+		bool f8bit;
+		switch (platformID)
+		{
+		case plat_Macintosh:
+			rgEncodingIDs[0] = 0;	// 1-0
+			cEncodings = 1;
+			engID = langMac_English;	// assume that new font names are English
+			f8bit = true;
+			break;
+		case plat_MS:
+			rgEncodingIDs[0] = 1;	// 3-1: Unicode BMP
+			rgEncodingIDs[1] = 0;	// 3-0: Symbol
+			cEncodings = 2;
+			engID = LG_USENG;		// assume that new font names are English
+			f8bit = false;
+			break;
+		case plat_Unicode:	// not supported
+		case plat_ISO:		// not supported
+		default:
+			cEncodings = 0;
+		}
+
+		int iEncodingFound = -1;
+        for (int iEncoding = 0; iEncoding < cEncodings; iEncoding++)
+		{
+			// See if there are (English) font names present for this platform and encoding.
+			irecFamilyName = irecSubFamily = irecFullName = irecVendor
+				= irecPSName = irecUniqueName = -1;
+			if (!FindNameTblEntries(pRecord, cRecords,
+				platformID, rgEncodingIDs[iEncoding], engID,
+				&irecFamilyName, &irecSubFamily, &irecFullName, &irecVendor, &irecPSName, &irecUniqueName))
+			{
+				continue;
+			}
+
+			PlatEncChange pec;
+			pec.cbBytesPerChar = (f8bit) ? 1 : sizeof(utf16);
+			pec.platformID = platformID;
+			pec.encodingID = rgEncodingIDs[iEncoding];
+			pec.engLangID = engID;
+
+			if (f8bit)
+				f8bitFeatures = true;	// we need to output 8-bit feature strings
+			else
+				f16bitFeatures = true;	// we need to output 16-bit feature strings
+
+			if (pchwFamilyNameNew)
+			{
+				// Generate the new full-font name, the postscript name, and the unique name.
+
+				std::wstring stuFullName, stuPostscriptName, stuUniqueName;
+
+				ibSubFamilyOffset = swapw(pRecord[irecSubFamily].offset) + ibStrOffset;
+				cbSubFamily = swapw(pRecord[irecSubFamily].length);
+				ibVendorOffset = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].offset) + ibStrOffset;
+				cbVendor = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].length);
+
+				uint16 cchwFamilyNameTemp = 0;	// not including zero-terminator
+				uint16 cchwFullName = 0; 
+				uint16 cchwUniqueName = 0;
+				uint16 cchwPostscriptName = 0;
+				uint16 * pchwFamilyName = NULL;
+				uint16 * pchwFullName = NULL;
+				uint16 * pchwUniqueName = NULL;
+				uint16 * pchwPostscriptName = NULL;
+
+				// NB: Call below may allocate space which must be deleted at the end of this method.
+
+				if (!BuildFontNames(f8bit, pchwFamilyNameNew,
+					(uint8*)pTblOld + ibSubFamilyOffset, cbSubFamily,
+					(uint8*)pTblOld + ibVendorOffset, cbVendor,
+					&pchwFamilyName, &cchwFamilyNameTemp,
+					&pchwFullName, &cchwFullName,
+					&pchwUniqueName, &cchwUniqueName,
+					&pchwPostscriptName, &cchwPostscriptName))
+				{
+					return false;
+				}
+
+				pec.pchwFullName = pchwFullName;
+				pec.pchwUniqueName = pchwUniqueName;
+				pec.pchwPostscriptName = pchwPostscriptName;
+				pec.cchwFullName = cchwFullName;
+				pec.cchwUniqueName = cchwUniqueName;
+				pec.cchwPostscriptName = cchwPostscriptName;
+
+				// Determine size adjustments for font name changes: subtract old names and add new ones.
+				int dbStringDiff = 0;
+				dbStringDiff -= swapw(pRecord[irecFamilyName].length);
+				dbStringDiff += cchwFamilyName * pec.cbBytesPerChar;
+				dbStringDiff -= swapw(pRecord[irecFullName].length);
+				dbStringDiff += cchwFullName * pec.cbBytesPerChar;
+				if (irecUniqueName)
+				{
+					dbStringDiff -= swapw(pRecord[irecUniqueName].length);
+					dbStringDiff += cchwUniqueName * pec.cbBytesPerChar;
+				}
+				if (irecPSName)
+				{
+					dbStringDiff -= swapw(pRecord[irecPSName].length);
+					dbStringDiff += cchwPostscriptName * pec.cbBytesPerChar;
+				}
+
+				cbNewStringData += dbStringDiff;
+			}
+			else
+			{
+				// Font name is not changing, but we do have to output feature strings.
+				pec.pchwFullName = NULL;
+				pec.pchwUniqueName = NULL;
+				pec.pchwPostscriptName = NULL;
+				pec.cchwFullName = 0;
+				pec.cchwUniqueName = 0;
+				pec.cchwPostscriptName = 0;
+			}
+			vpec.Push(pec);
+		}
 	}
 
-	// create the new name table
-	pNewTbl = new uint8[cbNewTbl];
+	// Create the new name table.
+	size_t cbTblNew = cbOldTblRecords
+		+ cbNewStringData		// adjusted for font name changes
+		+ (vstuExtNames.Size() * sizeof(sfnt_NameRecord) * vpec.Size());
+								// 1 record for each feature string for each platform+encoding of interest
+
+	// We need at most one version of the 8-bit feature strings and one version of the 16-bit strings.
+	if (f8bitFeatures)
+		cbTblNew += cbFeatStringData8;
+	if (f16bitFeatures)
+		cbTblNew += cbFeatStringData16;
+
+	uint8 * pTblNew = new uint8[cbTblNew];
 
 	// copy directory entries and strings from source to destination
 	// modify font name and add feature names
-	if (!AddFeatsModFamilyAux((uint8 *)pTbl, *pcbNameTbl, pNewTbl, cbNewTbl, 
-		&vstuExtNames, &vsuLangIds, &vsuNameTblIds, 
-		iFamilyRecord, iFullRecord, iPlatEncMin, iPlatEncLim, f31NameFound, 
-		pchwFamilyName, cchwFamilyName, pchwFullName, cchwFullName))
+	if (!AddFeatsModFamilyAux((uint8 *)pTblOld, cbTblOld, pTblNew, cbTblNew, 
+		vstuExtNames, vnLangIds, vnNameTblIds, 
+		pchwFamilyNameNew, cchwFamilyName, vpec))
+	{
 		return false;
+	}
 
-	// set the output args & clean up
-	*pcbNameTbl = cbNewTbl;
-	delete [] *ppNameTbl;
-	*ppNameTbl = pNewTbl;
+	// Set the output args & clean up.
+	*pcbNameTbl = cbTblNew;
+	delete [] *ppNameTbl;	// old table
+	*ppNameTbl = pTblNew;
 
-	if (pchwFamilyName)
-		delete [] pchwFamilyName;
-	if (pchwFullName != NULL && pchwFullName != pchwFamilyName)
-		delete [] pchwFullName;
+	for (int ipec = 0; ipec < vpec.Size(); ipec++)
+	{
+		delete vpec[ipec].pchwFullName;
+		delete vpec[ipec].pchwUniqueName;
+		delete vpec[ipec].pchwPostscriptName;
+	}
 
 	return true;
 }
 
 /*----------------------------------------------------------------------------------------------
-	Find the indexes for the name table directory entries for the family name, subfamily name, 
-	and full font name in the range indicated by suPlatformId, suEncodingId, and suLangId. 
-	Also find the beginning and limiting index for the Platform and Writing system range 
-	and find the index for the largest name id in that range (regardless of Lang).
-	Find how many bytes are needed to hold all name strings.
+	Return true if there are any name table entries for this platform-encoding combination.
+
+	If so, return the record indices for the various variations of the font name and other
+	relevant fields for the given language (which should be English, because we assume the
+	font name is in English). Even if there are no English strings, we still return true
+	indicating that the feature strings need to be output for this platform+encoding.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords, 
 	uint16 suPlatformId, uint16 suEncodingId, uint16 suLangId, 
-	int * piFamily, int * piSubFamily, int * piFullName, 
-	int * piPlatEncMin, int * piPlatEncLim, int * piMaxNameId, int * pcbNames)
+	int * piFamily, int * piSubFamily, int * piFullName,
+	int * piVendor, int * piPSName, int * piUniqueName)
 {
-	int iPlatEncMin = -1;
-	int iPlatEncMax = -1;
-	int iMaxNameId = -1;
-	int nMaxNameId = -1;
-	int cbNames = 0;
 	bool fNamesFound = false;
-	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pNameTblRecord);
-	
-	for (int i = 0; i < cNameTblRecords; i++)
-	{
-		cbNames += swapw(pRecord->length);
 
+	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pNameTblRecord);
+	for (int i = 0; i < cNameTblRecords; i++, pRecord++)
+	{
 		if (swapw(pRecord->platformID) == suPlatformId && 
 			swapw(pRecord->specificID) == suEncodingId)
 		{
-			if (iPlatEncMin == -1)
-			{
-				iPlatEncMin = i;
-			}
-			iPlatEncMax = i;
-			if (nMaxNameId < swapw(pRecord->nameID))
-			{
-				nMaxNameId = swapw(pRecord->nameID);
-				iMaxNameId = i;
-			}
+			fNamesFound = true;
 			if (swapw(pRecord->languageID) == suLangId)
 			{
-				fNamesFound = true;
-				if (swapw(pRecord->nameID) == name_Family)
+				uint16 nameID = swapw(pRecord->nameID);
+				switch (nameID)
 				{
-					*piFamily = i;
-				}
-				if (swapw(pRecord->nameID) == name_Subfamily)
-				{
-					*piSubFamily = i;
-				}
-				if (swapw(pRecord->nameID) == name_FullName)
-				{
-					*piFullName = i;
+				case name_Family:		*piFamily = i; break;
+				case name_Subfamily:	*piSubFamily = i; break;
+				case name_FullName:		*piFullName = i; break;
+				case name_Vendor:		*piVendor = i; break;
+				case name_Postscript:	*piPSName = i; break;
+				case name_UniqueName:	*piUniqueName = i; break;
+				default:
+					break;
 				}
 			}
 		}
-		pRecord++;
 	}
 	
-	if (fNamesFound)
-	{
-		*piPlatEncMin = iPlatEncMin;
-		*piPlatEncLim = iPlatEncMax + 1;
-		*piMaxNameId = iMaxNameId;
-	}
-	
-	*pcbNames = cbNames;
-
 	return fNamesFound;
 }
 
 /*----------------------------------------------------------------------------------------------
-	Convert pchFamilyName into the form required for the name table (Unicode Big Endian).
-	Also create the full font name based on the family and subfamily names. If the subfamily
-	is 'regular' then the full name is the same as the font name, otherwise the subfamily
-	name must be appended to the family name.
-	pchFamilyName can be null. ppchwFamilyName and ppchwFullName can point to same string if
-	the names are the same.
-	This method allocates space for the string(s) using new[]. The caller must free this space
-	using delete[].
-	The counts in pcchwFamilyName and pcchwFullName should NOT include the a trailing null.
-	pSubFamily points to the string as stored in the name table (Unicode big endian).
-----------------------------------------------------------------------------------------------*/
-bool GrcManager::BuildFontNames(uint16 * pchFamilyName, uint8 * pSubFamily, uint16 cbSubFamily,
-			   uint16 ** ppchwFamilyName, uint16 * pcchwFamilyName, 
-			   uint16 ** ppchwFullName, uint16 * pcchwFullName)
-{
-	// convert the family name to wide char
-	uint16 cchwFamilyName, cchwFullName;
-	uint16 * pchwFamilyName, * pchwFullName;
+	Generate the font names to store in the font's name table. The following are needed:
 
-	if (!pchFamilyName)
-	{
-		return true;
-	}
+	* Family name (eg, "Doulos SIL", "Charis Literacy (A)", "Guttman David")
+	* Full name (eg, "Doulos SIL", "Charis Literacy (A) BoldItalic", "Guttman David Light")
+	* Unique name = Vendor name + colon + fullname + colon + day + hyphen + month + hyphen + year
+		(eg, "SIL International:Charis Literacy (A) BoldItalic:20-July-2007")
+	* Postscript name = strip spaces, brackets, percent, and slash from Family name, then
+		append hyphen + subfammily (eg, "DoulosSIL", "CharisLiteracyA-Bold", "GuttmanDavid-Light")
+	
+	Also the strings must be put into Unicode Big Endian order as is required for
+	the TTF name table. FOR NOW WE ARE RETURNING THEM FROM THIS METHOD AS IS.
+----------------------------------------------------------------------------------------------*/
+
+bool GrcManager::BuildFontNames(bool f8bitTable, uint16 * pchFamilyName,
+	uint8 * pSubFamily, uint16 cbSubFamily,
+	uint8 * pVendor, uint16 cbVendor,
+	uint16 ** ppchwFamilyName, uint16 * pcchwFamilyName, 
+	uint16 ** ppchwFullName, uint16 * pcchwFullName,
+	uint16 ** ppchwUniqueName, uint16 * pcchwUniqueName,
+	uint16 ** ppchwPSName, uint16 * pcchwPSName)
+{
+	// Get the current date, which will be used to create the unique name.
+	// TODO: use a utf16 string
+	__time64_t ltime;
+	_time64( &ltime );
+	std::wstring strTimeWchar(_wctime64(&ltime));
+	int cchwTimeLen = wcslen(strTimeWchar.c_str());
+	utf16 stuTime[512];
+	std::copy(strTimeWchar.data(), strTimeWchar.data() + cchwTimeLen, stuTime);
+	
+	uint16 cchwFamilyName, cchwFullName, cchwUniqueName, cchwPSName;
+	uint16 * pchwFamilyName, * pchwFullName, * pchwUniqueName, * pchwPSName;
 
 	Assert(*ppchwFamilyName == NULL);
 	Assert(*ppchwFullName == NULL);
+	Assert(*ppchwUniqueName == NULL);
+	Assert(*ppchwPostscriptName == NULL);
 
+	// Convert the family name to wide characters.
 	//cchwFamilyName = ::MultiByteToWideChar(CP_ACP, 0, pchFamilyName, -1, NULL, 0);
 	//pchwFamilyName = new uint16[cchwFamilyName]; // cchwFamily includes null terminator
 	//if (!pchwFamilyName)
@@ -630,46 +710,116 @@ bool GrcManager::BuildFontNames(uint16 * pchFamilyName, uint8 * pSubFamily, uint
 	//cchwFamilyName--; // eliminate null terminator from count
 	//if (!TtfUtil::SwapWString(pchwFamilyName, cchwFamilyName)) // convert to big endian chars
 	//	return false;
-
+	
 	cchwFamilyName = utf16len(pchFamilyName);
 	pchwFamilyName = new uint16[cchwFamilyName + 1];
 	if (!pchwFamilyName)
 		return false;
 	utf16cpy(pchwFamilyName, pchFamilyName);
 	pchwFamilyName[cchwFamilyName] = 0;
-	if (!TtfUtil::SwapWString(pchwFamilyName, cchwFamilyName)) // convert to big endian chars
-		return false;
+	//if (!TtfUtil::SwapWString(pchwFamilyName, cchwFamilyName)) // convert to big endian chars
+	//	return false;
 
-	// check for Regular subfamily
-	uint16 rgchwReg[7]; // 7 - number of chars in "Regular"
-	utf16ncpy(rgchwReg, "Regular", 7);
-	TtfUtil::SwapWString(rgchwReg, 7);
-	// can't use case insensitive compare since Unicode values are big endian now
-	bool fRegular = utf16ncmp((utf16 *)(pSubFamily), rgchwReg, 7) == 0;
+	// TODO: properly handle the Macintosh encoding, which is not really ANSI.
 
-	// build the full font name
+	// Check for "Regular" or "Standard" subfamily
+	utf16 rgchwSubFamily[128];
+	if (f8bitTable)
+		Platform_AnsiToUnicode((char *)pSubFamily, cbSubFamily, rgchwSubFamily, cbSubFamily);
+	else
+	{
+		utf16ncpy(rgchwSubFamily, (utf16 *)pSubFamily, cbSubFamily);
+		TtfUtil::SwapWString(rgchwSubFamily, cbSubFamily);
+	}
+	int cchwSubFamily = (f8bitTable) ? cbSubFamily : cbSubFamily / sizeof(utf16);
+	rgchwSubFamily[cchwSubFamily] = 0;
+	bool fRegular = utf16ncmp(rgchwSubFamily, L"Regular", 7) || utf16ncmp(rgchwSubFamily, L"Standard", 8);
+
+	// Get vendor name, if any.
+	utf16 * rgchwVendor;
+	if (cbVendor == 0)
+	{
+		rgchwVendor = new utf16[15];
+		utf16ncpy(rgchwVendor, L"Unknown Vendor", 14);
+		cbVendor = (f8bitTable) ? 14 : 14 * sizeof(utf16); // pretend
+	}
+	else
+	{
+		rgchwVendor = new utf16[cbVendor + 1];
+		if (f8bitTable)
+			Platform_AnsiToUnicode((char *)pVendor, cbVendor, rgchwVendor, cbVendor);
+		else
+		{
+			utf16ncpy(rgchwVendor, (utf16 *)pVendor, cbVendor);
+			TtfUtil::SwapWString(rgchwVendor, cbVendor);
+		}
+	}
+	int cchwVendor = (f8bitTable) ? cbVendor : cbVendor / sizeof(utf16);
+	rgchwVendor[cchwVendor] = 0;
+
+	// Build the full font name: familyname+subfamily
+	// or (if subfamily = Regular/Standard) familyname
 	if (fRegular)
-	{ // regular does not include the subfamily in the full font name
-		pchwFullName = pchwFamilyName;
+	{	// Regular does not include the subfamily in the full font name.
+		pchwFullName = new uint16[cchwFamilyName + 1];
+		utf16cpy(pchwFullName, pchwFamilyName);
 		cchwFullName = cchwFamilyName;
 	}
 	else
-	{ // other styles do include subfamily in the full font name
+	{	// Other styles do include subfamily in the full font name.
 		cchwFullName = cchwFamilyName + cbSubFamily / sizeof(utf16) + 1; // 1 - room for space
 		pchwFullName = new uint16[cchwFullName + 1];
 		if (!pchwFullName)
 			return false;
 		utf16ncpy(pchwFullName, pchwFamilyName, cchwFamilyName);
-		pchwFullName[cchwFamilyName] = swapw(0x0020); // big endian Unicode space
-		utf16ncpy(pchwFullName + cchwFamilyName + 1, (utf16 *)(pSubFamily), 
-			cbSubFamily / sizeof(utf16));
+		pchwFullName[cchwFamilyName] = 0x0020; // space
+		utf16ncpy(pchwFullName + cchwFamilyName + 1, rgchwSubFamily, cchwSubFamily);
 		pchwFullName[cchwFullName] = 0;
 	}
-
+	
+	// Build the Postscript name: familyname-subfamily, with certain chars stripped out.
+	cchwPSName = cchwFamilyName + cchwSubFamily + 1; // 1 = hyphen
+	pchwPSName = new uint16[cchwPSName + 1];
+	if (!pchwPSName)
+		return false;
+	utf16ncpy(pchwPSName, pchwFamilyName, cchwFamilyName);
+	pchwPSName[cchwFamilyName] = 0x002D; // hyphen
+	utf16ncpy(pchwPSName + cchwFamilyName + 1, rgchwSubFamily, cchwSubFamily);
+	pchwPSName[cchwPSName] = 0;
+	// Allow only chars 33 - 126, minus the following: / % ( ) < > [ ] { }
+	int cchMove = 1;
+	for (utf16 * pch = pchwPSName + cchwPSName - 1; pch >= pchwPSName; pch--, cchMove++)
+	{
+		if (*pch < 33 || *pch > 126 || *pch == '/' || *pch == '%' || *pch == '('
+			|| *pch == ')' || *pch == '<' || *pch == '>' || *pch == '[' || *pch == ']'
+			|| *pch == '{' || *pch == '}')
+		{
+			utf16ncpy(pch, pch + 1, cchMove);
+			cchwPSName--;
+		}
+	}
+	
+	// Build the unique name: vendor: fullname: date
+	cchwUniqueName = cchwVendor + cchwFullName + cchwTimeLen + 4;
+	pchwUniqueName = new utf16[cchwUniqueName + 1];
+	utf16ncpy(pchwUniqueName, rgchwVendor, cchwVendor);
+	utf16ncpy(pchwUniqueName + cchwVendor, ": ", 2);
+	utf16ncpy(pchwUniqueName + cchwVendor + 2, pchwFullName, cchwFullName);
+	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName, ": ", 2);
+	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName + 2, stuTime, cchwTimeLen);
+	pchwUniqueName[cchwUniqueName] = 0;
+	
 	*ppchwFamilyName = pchwFamilyName;
 	*pcchwFamilyName = cchwFamilyName;
 	*ppchwFullName = pchwFullName;
 	*pcchwFullName = cchwFullName;
+	*ppchwUniqueName = pchwUniqueName;
+	*pcchwUniqueName = cchwUniqueName;
+	*ppchwPSName = pchwPSName;
+	*pcchwPSName = cchwPSName;
+
+	delete[] rgchwVendor;
+	
 	return true;
 }
 
@@ -679,175 +829,222 @@ bool GrcManager::BuildFontNames(uint16 * pchFamilyName, uint8 * pSubFamily, uint
 	The method also copies names from pNameTbl into pNewTbl. The feature data is in the three
 	vectors passed in which must parallel each other. The don't need to be sorted. 
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AddFeatsModFamilyAux(uint8 * pNameTbl, uint32 cbNameTbl, 
-	uint8 * pNewTbl, uint32 cbNewTbl, 
-	Vector<std::wstring> * pvstuExtNames, Vector<uint16> * pvsuLangIds, Vector<uint16> * pvsuNameTblIds, 
-	int iFamilyRecord, int iFullRecord, int iPlatEncMin, int iPlatEncLim, bool f31Name, 
-	uint16 * pchwFamilyName, uint16 cchwFamilyName, 
-	uint16 * pchwFullName, uint16 cchwFullName)
+bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, 
+	uint8 * pTblNew, uint32 cbTblNew,
+	Vector<std::wstring> & vstuExtNames, Vector<uint16> & vnLangIds, Vector<uint16> & vnNameTblIds, 
+	uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec)
 {
-	// struct used to store data from directory entries that need to be sorted
+	// Struct used to store data from directory entries that need to be sorted.
+	// Must match the NameRecord struct exactly.
 	struct NameTblEntry
 	{
-		uint16 suLangId;
-		uint16 suNameId;
-		uint16 cbStr;
-		uint8 * pbStr;
+		uint16 nPlatId;
+		uint16 nEncId;
+		uint16 nLangId;
+		uint16 nNameId;
+		uint16 cLength;
+		uint16 ibOffset;
 		static int Compare(const void * ptr1, const void * ptr2)
 		{
 			NameTblEntry * p1 = (NameTblEntry *) ptr1;
 			NameTblEntry * p2 = (NameTblEntry *) ptr2;
 
-			if (p1->suLangId != p2->suLangId)
-				return p1->suLangId - p2->suLangId;
+			if (p1->nPlatId != p2->nPlatId)
+				return swapw(p1->nPlatId) - swapw(p2->nPlatId);
+			else if (p1->nEncId != p2->nEncId)
+				return swapw(p1->nEncId) - swapw(p2->nEncId);
+			else if (p1->nLangId != p2->nLangId)
+				return swapw(p1->nLangId) - swapw(p2->nLangId);
 			else
-				return p1->suNameId - p2->suNameId; 
+				return swapw(p1->nNameId) - swapw(p2->nNameId);
 		}
 	};
 
-	sfnt_NamingTable * pTbl = (sfnt_NamingTable *)(pNameTbl);
-	uint16 cRecords = swapw(pTbl->count);
-	uint16 ibStrOffset = swapw(pTbl->stringOffset);
-	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pTbl + 1);
+	sfnt_NamingTable * pTbl = (sfnt_NamingTable *)(pTblOld);
+	uint16 crecOld = swapw(pTbl->count);
+	uint16 ibStrOffsetOld = swapw(pTbl->stringOffset);
+	sfnt_NameRecord * pOldRecord = (sfnt_NameRecord *)(pTbl + 1);
 
-	int cNewRecords = pvstuExtNames->Size();
+	int crecNew = crecOld + (vstuExtNames.Size() * vpec.Size());
 
-	int ibNewStrOffset, ibNewStr, cbStr;
 	sfnt_NameRecord * pNewRecord;
-	uint8 * pStr, * pNewStr;
 
 	// name table header
-	((sfnt_NamingTable *)pNewTbl)->format = pTbl->format;
-	((sfnt_NamingTable *)pNewTbl)->count = swapw(cRecords + cNewRecords);
-	ibNewStrOffset = sizeof(sfnt_NamingTable) + 
-		(cRecords + cNewRecords) * sizeof(sfnt_NameRecord);
-	((sfnt_NamingTable *)pNewTbl)->stringOffset = swapw(ibNewStrOffset);
-	
-	pNewRecord = (sfnt_NameRecord *)(pNewTbl + sizeof(sfnt_NamingTable));
-	ibNewStr = 0;
+	((sfnt_NamingTable *)pTblNew)->format = pTbl->format;
+	((sfnt_NamingTable *)pTblNew)->count = swapw(crecNew);
+	int ibStrOffsetNew = sizeof(sfnt_NamingTable) + (crecNew * sizeof(sfnt_NameRecord));
+	((sfnt_NamingTable *)pTblNew)->stringOffset = swapw(ibStrOffsetNew);
 
-	// copy directory entries and strings prior to 3 1 (or 3 0) section
-	int iRecord;
-	for (iRecord = 0; iRecord < iPlatEncMin; iRecord++)
+	pNewRecord = (sfnt_NameRecord *)(pTblNew + sizeof(sfnt_NamingTable)); // where records start
+
+	uint8 * pbNextString = pTblNew + ibStrOffsetNew;
+	size_t dibNew = 0; // delta offset
+
+	utf16 rgch16[512];	// buffer for converting between wchar_t and utf16;
+
+	// First copy the old records, changing any font names as needed.
+
+	int ipec;
+	// vpec items should be in sorted order by platform and encoding, except that 3-1 comes before 3-0.
+	// Just force them into the right order.
+	for (ipec = 0; ipec < vpec.Size() - 1; ipec++)
 	{
-		pNewRecord[iRecord].platformID = pRecord[iRecord].platformID;
-		pNewRecord[iRecord].specificID = pRecord[iRecord].specificID;
-		pNewRecord[iRecord].languageID = pRecord[iRecord].languageID;
-		pNewRecord[iRecord].nameID = pRecord[iRecord].nameID;
-		pNewRecord[iRecord].length = pRecord[iRecord].length;
-
-		cbStr = swapw(pRecord[iRecord].length);
-		pStr = (uint8 *)pTbl + ibStrOffset + swapw(pRecord[iRecord].offset);
-		pNewStr = pNewTbl + ibNewStrOffset + ibNewStr;
-		pNewRecord[iRecord].offset = swapw(ibNewStr);
-		memcpy(pNewStr, pStr, cbStr);
-		ibNewStr += cbStr;
+		for (int ipec2 = ipec + 1; ipec2 < vpec.Size(); ipec2++)
+		{
+			if ((vpec[ipec].platformID > vpec[ipec2].platformID)
+				|| (vpec[ipec].platformID == vpec[ipec2].platformID
+					&& vpec[ipec].encodingID > vpec[ipec2].encodingID))
+			{
+				PlatEncChange pecTmp = vpec[ipec];
+				vpec[ipec] = vpec[ipec2];
+				vpec[ipec2] = pecTmp;
+			}
+		}
 	}
 
-	// copy 3 1 (or 3 0) part of name table into list of entries
-	int cEntries = iPlatEncLim - iPlatEncMin + cNewRecords; // also room for feat names
-	NameTblEntry * pEntry = new NameTblEntry[cEntries];
-	if (!pEntry)
-		return false;
-	NameTblEntry * p;
-	for (iRecord = iPlatEncMin; iRecord < iPlatEncLim; iRecord++)
+	ipec = 0;
+	int irec = 0; // scope of this variable is larger than for-loop below.
+	for ( ; irec < crecOld; irec++)
 	{
-		p = pEntry + (iRecord - iPlatEncMin);
-		// byte swap these for comparison with features
-		p->suLangId = swapw(pRecord[iRecord].languageID);
-		p->suNameId = swapw(pRecord[iRecord].nameID);
-		p->cbStr = swapw(pRecord[iRecord].length);
+		PlatEncChange * ppec = &(vpec[ipec]);
+		while(ipec < vpec.Size()
+			&& (ppec->platformID < swapw(pOldRecord[irec].platformID)
+				|| (ppec->platformID == swapw(pOldRecord[irec].platformID)
+					&& ppec->encodingID < swapw(pOldRecord[irec].specificID))))
+		{
+			ipec++;
+			ppec = &(vpec[ipec]);
+		}
 
-		if (!(p->pbStr = new uint8[p->cbStr]))
-			return false;
-		pStr = (uint8 *)pTbl + ibStrOffset + swapw(pRecord[iRecord].offset);
-		memcpy(p->pbStr, pStr, p->cbStr);
+		pNewRecord[irec].platformID = pOldRecord[irec].platformID;
+		pNewRecord[irec].specificID = pOldRecord[irec].specificID;
+		pNewRecord[irec].languageID = pOldRecord[irec].languageID;
+		pNewRecord[irec].nameID = pOldRecord[irec].nameID;
+		pNewRecord[irec].length = pOldRecord[irec].length;
+		//pNewRecord[irec].offset = ibStrOffsetNew + dibNew;
+
+		// Ideally we should change the family name for any platform+encoding, not just our special
+		// list. But the calling method didn't calculate the string lengths correctly for that to happen.
+
+		size_t cchwStr, cbStr;
+		uint8 * pbStr = NULL;
+		if (ipec < vpec.Size()
+			&& ppec->pchwFullName // this is a platform+encoding where we need to change the font
+			&& ppec->platformID == swapw(pOldRecord[irec].platformID)
+			&& ppec->encodingID == swapw(pOldRecord[irec].specificID)
+			&& ppec->engLangID == swapw(pOldRecord[irec].languageID))
+		{
+			uint16 nameID = swapw(pOldRecord[irec].nameID);
+			switch (nameID)
+			{
+			case name_Family:
+			case name_PreferredFamily:
+				pbStr = (uint8 *)pchwFamilyName;
+				cchwStr = cchwFamilyName;
+				break;
+			case name_FullName:
+			case name_CompatibleFull:
+				pbStr = (uint8 *)vpec[ipec].pchwFullName;
+				cchwStr = vpec[ipec].cchwFullName;
+				break;
+			case name_UniqueName:
+				pbStr = (uint8 *)vpec[ipec].pchwUniqueName;
+				cchwStr = vpec[ipec].cchwUniqueName;
+				break;
+			case name_Postscript:
+				pbStr = (uint8 *)vpec[ipec].pchwPostscriptName;
+				cchwStr = vpec[ipec].cchwPostscriptName;
+				break;
+			default:
+				break;
+			}
+		}
+		if (pbStr)
+		{
+			// Copy in the new string.
+			cbStr = cchwStr * vpec[ipec].cbBytesPerChar;
+			pNewRecord[irec].length = swapw(cbStr);
+			if (ppec->cbBytesPerChar == sizeof(utf16))
+			{
+				memcpy(pbNextString, pbStr, cbStr);
+				TtfUtil::SwapWString(pbNextString, cbStr / sizeof(utf16)); // make big endian
+			}
+			else
+			{
+				// TODO: properly handle Macintosh encoding
+				Platform_UnicodeToANSI((utf16 *)pbStr, cchwStr, (char *)pbNextString, cchwStr);
+			}
+		}
+		else
+		{
+			// Copy the old string.
+			cbStr = swapw(pOldRecord[irec].length);
+			pbStr = pTblOld + ibStrOffsetOld + swapw(pOldRecord[irec].offset);
+			memcpy(pbNextString, pbStr, cbStr);
+		}
+		pNewRecord[irec].offset = swapw(dibNew);
+		dibNew += cbStr;
+		pbNextString += cbStr;
 	}
 
-	// modify family and full font names if needed
-	if (pchwFamilyName)
-	{
-		p = pEntry + (iFamilyRecord - iPlatEncMin);
-		delete [] p->pbStr;
-		p->cbStr = cchwFamilyName * sizeof(utf16);
-		if (!(p->pbStr = new uint8[p->cbStr]))
-			return false;
-		memcpy(p->pbStr, pchwFamilyName, p->cbStr);
+	// Then add the feature strings. Do this for all platform-encodings of interest.
+	// The first time through, store the string data in the buffer and record the offsets.
+	// For any subsequent platforms and encodings, just use the same offsets.
 
-		p = pEntry + (iFullRecord - iPlatEncMin);
-		delete [] p->pbStr;
-		p->cbStr = cchwFullName * sizeof(utf16);
-		if (!(p->pbStr = new uint8[p->cbStr]))
-			return false;
-		memcpy(p->pbStr, pchwFullName, p->cbStr);
+	Vector<uint16> vdibOffsets8, vdibOffsets16;
+	bool fStringsStored8 = false;
+	bool fStringsStored16 = false;
+	for (ipec = 0; ipec < vpec.Size(); ipec++)
+	{
+		PlatEncChange * ppec = &(vpec[ipec]);
+		bool f8bit = (ppec->cbBytesPerChar != sizeof(utf16));
+		for (int istring = 0; istring < vstuExtNames.Size(); istring++)
+		{
+			pNewRecord[irec].platformID = swapw(ppec->platformID);
+			pNewRecord[irec].specificID = swapw(ppec->encodingID);
+			pNewRecord[irec].languageID = swapw(vnLangIds[istring]);
+			pNewRecord[irec].nameID = swapw(vnNameTblIds[istring]);
+			int cbStr = vstuExtNames[istring].length() * ppec->cbBytesPerChar;
+
+			// Convert from wchar_t to 16-bit chars.
+			std::wstring stuWchar = vstuExtNames[istring];
+			int cchw = stuWchar.length();
+			std::copy(stuWchar.data(), stuWchar.data() + cchw, rgch16);
+
+			if (f8bit && !fStringsStored8)
+			{
+				vdibOffsets8.Push(dibNew);
+				// TODO: properly handle Macintosh encoding
+				Platform_UnicodeToANSI(rgch16, cbStr, (char *)pbNextString, cbStr);
+				dibNew += cbStr;
+				pbNextString += cbStr;
+			}
+			else if (!f8bit && !fStringsStored16)
+			{
+				vdibOffsets16.Push(dibNew);
+				memcpy(pbNextString, rgch16, cbStr);
+				TtfUtil::SwapWString(pbNextString, cbStr / sizeof(utf16)); // make big endian
+				dibNew += cbStr;
+				pbNextString += cbStr;
+			}
+			// else the string has already been stored, and we've saved the offset.
+
+			pNewRecord[irec].length = swapw(cbStr);
+			pNewRecord[irec].offset = (f8bit) ?
+				swapw(vdibOffsets8[istring]):
+				swapw(vdibOffsets16[istring]);
+			irec++;
+		}
+		Assert(vstuExtNames.Size() == vdibOffsets.Size());
+		(f8bit) ?
+			fStringsStored8 = true:
+			fStringsStored16 = true;
 	}
 
-	// add feature string data to list of entries
-	for (iRecord = 0; iRecord < cNewRecords; iRecord++)
-	{
-		// Convert from wchar_t to 16-bit chars.
-		std::wstring stuWchar = (*pvstuExtNames)[iRecord];
-		int cchw = stuWchar.length();
-		utf16 * prgchw = new utf16[cchw];
-		std::copy(stuWchar.data(), stuWchar.data() + cchw, prgchw);
+	Assert(irec == crecNew);
 
-		p = pEntry + (iRecord + iPlatEncLim - iPlatEncMin);
-		p->suLangId = (*pvsuLangIds)[iRecord];
-		p->suNameId = (*pvsuNameTblIds)[iRecord];
-		p->cbStr = cchw * sizeof(utf16);
-
-		if (!(p->pbStr = new uint8[p->cbStr]))
-			return false;
-		memcpy(p->pbStr, prgchw, p->cbStr);
-		TtfUtil::SwapWString(p->pbStr, p->cbStr / sizeof(utf16)); // make big endian
-	}
-
-	// sort list of entries
-	::qsort(pEntry, cEntries, sizeof(NameTblEntry), NameTblEntry::Compare);
-
-	// output list of entries to new name table
-	for (iRecord = 0; iRecord < cEntries; iRecord++)
-	{
-		pNewRecord[iPlatEncMin + iRecord].platformID = swapw(plat_MS);
-		pNewRecord[iPlatEncMin + iRecord].specificID = swapw(f31Name ? 1 : 0);
-		pNewRecord[iPlatEncMin + iRecord].languageID = swapw(pEntry[iRecord].suLangId);
-		pNewRecord[iPlatEncMin + iRecord].nameID = swapw(pEntry[iRecord].suNameId);
-		pNewRecord[iPlatEncMin + iRecord].length = swapw(pEntry[iRecord].cbStr);
-
-		cbStr = pEntry[iRecord].cbStr;
-		pStr = pEntry[iRecord].pbStr;
-		pNewStr = pNewTbl + ibNewStrOffset + ibNewStr;
-		pNewRecord[iPlatEncMin + iRecord].offset = swapw(ibNewStr);
-		memcpy(pNewStr, pStr, cbStr);
-		ibNewStr += cbStr;
-	}
-
-	// copy remaining name table entries after 3 1 (or 3 0) section
-	for (iRecord = iPlatEncLim; iRecord < cRecords; iRecord++)
-	{
-		int iNewRecord = iPlatEncMin + cEntries - iPlatEncLim;
-		pNewRecord[iNewRecord + iRecord].platformID = pRecord[iRecord].platformID;
-		pNewRecord[iNewRecord + iRecord].specificID = pRecord[iRecord].specificID;
-		pNewRecord[iNewRecord + iRecord].languageID = pRecord[iRecord].languageID;
-		pNewRecord[iNewRecord + iRecord].nameID = pRecord[iRecord].nameID;
-		pNewRecord[iNewRecord + iRecord].length = pRecord[iRecord].length;
-
-		cbStr = swapw(pRecord[iRecord].length);
-		pStr = (uint8 *)pTbl + ibStrOffset + swapw(pRecord[iRecord].offset);
-		pNewStr = pNewTbl + ibNewStrOffset + ibNewStr;
-		pNewRecord[iNewRecord + iRecord].offset = swapw(ibNewStr);
-		memcpy(pNewStr, pStr, cbStr);
-		ibNewStr += cbStr;
-	}
-
-	Assert(pNewTbl + cbNewTbl == pNewStr + cbStr);
-
-	// clean up 
-	for (iRecord = 0; iRecord < cEntries; iRecord++)
-	{
-		delete [] pEntry[iRecord].pbStr;
-	}
-	delete [] pEntry;
+	// Sort list of entries.
+	::qsort(reinterpret_cast<NameTblEntry *>(pNewRecord), crecNew, sizeof(NameTblEntry), NameTblEntry::Compare);
 
 	return true;
 }
@@ -2618,24 +2815,27 @@ void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 /*----------------------------------------------------------------------------------------------
 	Convenient wrapper to call the same method in GdlRenderer.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
-		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds)
+bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId,
+	Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, Vector<utf16> & vwNameTblIds,
+	size_t & cchwStringData)
 {
-	return m_prndr->AssignFeatTableNameIds(wFirstNameId, pvstuExtNames, pvwLangIds, 
-		pvwNameTblIds);
+	return m_prndr->AssignFeatTableNameIds(wFirstNameId, vstuExtNames, vwLangIds, 
+		vwNameTblIds, cchwStringData);
 }
 
 /*----------------------------------------------------------------------------------------------
-	Assign name table ids to each feature and all settings. The ids will be assigned 
-	sequentially beginning at wFirstNameId. Note that each string does NOT get its own id.
+	Assign name table IDs to each feature and all settings. The IDs will be assigned 
+	sequentially beginning at wFirstNameId. Note that each string does NOT get its own ID.
 	A given feature can have several strings (names) each with a differnt lang id 
-	but all get the same name id.
+	but all get the same name ID.
+
 	Return three vectors which each contain one element for each feature and setting.
-	The vectors are parallel. Elements numbered n  contains the name string, lang id, and 
-	name table id for a given feature or setting.
+	The vectors are parallel. Elements numbered n contains the name string, lang ID, and 
+	name table ID for a given feature or setting.
 ----------------------------------------------------------------------------------------------*/
-bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
-		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds)
+bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId,
+	Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, Vector<utf16> &vwNameTblIds,
+	size_t & cchwStringData)
 {
 	if (wFirstNameId > 32767) return false; // max allowed value
 	utf16 wNameTblId = wFirstNameId;
@@ -2644,7 +2844,7 @@ bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring
 		wNameTblId = m_vpfeat[ifeat]->SetNameTblIds(wNameTblId);
 		if (wNameTblId > 32767)
 			return false;
-		m_vpfeat[ifeat]->NameTblInfo(pvstuExtNames, pvwLangIds, pvwNameTblIds);
+		m_vpfeat[ifeat]->NameTblInfo(vstuExtNames, vwLangIds, vwNameTblIds, cchwStringData);
 	}
 	return true;	
 }

@@ -37,7 +37,7 @@ DEFINE_THIS_FILE
 ***********************************************************************************************/
 
 /***********************************************************************************************
-	Methods: Post-parser
+	Methods and functions
 ***********************************************************************************************/
 
 /*----------------------------------------------------------------------------------------------
@@ -61,6 +61,7 @@ int main(int argc, char * argv[])
 	memset(rgchwOutputFontFamily, 0, isizeof(utf16) * 128);
 
 	int cargExtra = 0;
+	bool fModFontName = false;
 
 	g_cman.SetOutputDebugFiles(false);
 	g_cman.SetFontTableVersion(g_cman.DefaultFontVersion(), false);
@@ -114,6 +115,7 @@ int main(int argc, char * argv[])
 		{
 			pch = argv[4 + cargExtra];
 			Platform_AnsiToUnicode(pch, strlen(pch), rgchwOutputFontFamily, strlen(pch));
+			fModFontName = true;
 
 			// Give a warning if the font name has something bigger than 7-bit data.
 			// The font-output routines can't handle that.
@@ -161,9 +163,11 @@ int main(int argc, char * argv[])
 	utf16 rgchwInputFontFamily[128];
 	if (utf16len(rgchwOutputFontFamily) > 0)
 	{
+		Assert(!fModFontName);
 	}
 	else if (nFontError == 0)
 	{
+		Assert(fModFontname);
 		pfont->GetFontFamilyName(rgchwInputFontFamily, 128);
 		if (g_cman.SeparateControlFile())
 			GenerateOutputControlFontFamily(rgchwInputFontFamily, rgchwOutputFontFamily);
@@ -191,7 +195,7 @@ int main(int argc, char * argv[])
 		std::cout << "GDL file: " << pchGdlFile << "\n"
 			<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
 			<< "Output TT file: " << rgchOutputFile << "\n"
-			<< "Output font name: " << staFamily << "\n"
+			<< "Output font name: " << staFamily << ((fModFontName) ? "" : " (unchanged)") << "\n"
 			<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
 					<< ": " << staVersion << "\n\n";
 	}
@@ -264,8 +268,8 @@ int main(int argc, char * argv[])
 							if (g_cman.IsVerbose())
 								std::cout << "Debug files generated.\n";
 						}
-						int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile, rgchwOutputFontFamily,
-							rgchwInputFontFamily);
+						int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile,
+							rgchwOutputFontFamily, fModFontName, rgchwInputFontFamily);
 						if (nRet == 0)
 						{
 							if (g_cman.IsVerbose())

@@ -21,6 +21,24 @@ class GdlFeatureDefn;
 class GdlGlyphClassDefn;
 class GdlNameDefn;
 
+
+/*----------------------------------------------------------------------------------------------
+Used for outputting name table.
+----------------------------------------------------------------------------------------------*/
+struct PlatEncChange
+{
+	size_t cbBytesPerChar;	// 1 = 8-bit, 2 = 16-bit
+	uint16 platformID;
+	uint16 encodingID;
+	uint16 engLangID;
+	utf16 * pchwFullName;
+	utf16 * pchwUniqueName;
+	utf16 * pchwPostscriptName;
+	size_t cchwFullName;
+	size_t cchwUniqueName;
+	size_t cchwPostscriptName;
+};
+
 /*----------------------------------------------------------------------------------------------
 Class: GrcManager
 Description: The object that manages the complication process. There is one global instance.
@@ -262,27 +280,30 @@ public:
 	void CalculateContextOffsets();
 
 	//	Output:
-	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
-		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds);
+	bool AssignFeatTableNameIds(utf16 wFirstNameId,
+		Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, Vector<utf16> & vwNameTblIds,
+		size_t & cchwStringData);
 	int OutputToFont(char * pchSrcFileName, char * pchDstFileName,
-		utf16 * pchDstFontFamily, utf16 * pchSrcFontFamily);
+		utf16 * pchDstFontFamily, bool fModFontName, utf16 * pchSrcFontFamily);
 	int FinalAttrValue(utf16 wGlyphID, int nAttrID);
 	void ConvertBwForVersion(int wGlyphId, int nAttrIdBw);
 	void SplitLargeStretchValue(int wGlyphId, int nAttrIdJStr);
 protected:
-	bool AddFeatsModFamily(uint8 ** ppNameTbl, uint32 * pcbNameTbl, uint16 * pchFamilyName);
-	bool FindNameTblEntries(void * pNameTblRecord, int cnNameTblRecords, 
+	bool AddFeatsModFamily(uint16 * pchFamilyName, uint8 ** ppNameTbl, uint32 * pcbNameTbl);
+	bool FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords, 
 		uint16 suPlatformId, uint16 suEncodingId, uint16 suLangId, 
-		int * piFamily, int * piSubFamily, int * piFullName, 
-		int * piPlatEncMin, int * piPlatEncLim, int * piMaxNameId, int * pcbNames);
-	bool BuildFontNames(uint16 * pchFamilyName, uint8 * pSubFamily, uint16 cbSubFamily,
+		int * piFamily, int * piSubFamily, int * piFullName,
+		int * piVendor, int * piPSName, int * piUniqueName);
+	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName,
+		uint8 * pSubFamily, uint16 cbSubFamily,
+		uint8 * pVendor, uint16 cbVendor,
 		uint16 ** ppchwFamilyName, uint16 * pcchwFamilyName, 
-		uint16 ** ppchwFullName, uint16 * pcchwFullName);
-	bool AddFeatsModFamilyAux(uint8 * pTbl, uint32 cbTbl, uint8 * pNewTbl, uint32 cbNewTbl, 
-		Vector<std::wstring> * pvstuExtNames, Vector<uint16> * pvsuLangIds, Vector<uint16> * pvsuNameTblIds, 
-		int iFamilyRecord, int iFullRecord, int iPlatEncMin, int iPlatEncLim, bool f31Name, 
-		uint16 * pchwFamilyName, uint16 cchwFamilyName, 
-		uint16 * pchwFullName, uint16 cchwFullName);
+		uint16 ** ppchwFullName, uint16 * pcchwFullName,
+		uint16 ** ppchwUniqueName, uint16 * pcchwUniqueName,
+		uint16 ** ppchwPSName, uint16 * pcchwPSName);
+	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
+		Vector<std::wstring> & vstuExtNames, Vector<uint16> & vnLangIds, Vector<uint16> & vnNameTblIds, 
+		uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec);
 	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
 	bool OutputCmapTable(uint8 * pCmapTblSrc, uint32 cbCmapTblSrc,

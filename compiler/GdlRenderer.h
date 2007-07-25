@@ -115,7 +115,7 @@ public:
 	//	Pre-compiler:
 	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
-	int ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
+	int ExplicitPseudos(PseudoSet & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
@@ -190,8 +190,8 @@ public:
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);
 	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
 		Vector<int> & vnOffsets);
-	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> * pvstuExtNames, 
-		Vector<utf16> * pvwLangIds, Vector<utf16> * pvwNameTblIds);
+	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> & vstuExtNames, 
+		Vector<utf16> & vwLangIds, Vector<utf16> & vwNameTblIds, size_t & cchwStringData);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart, int fxdVersion);
 	void OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart);
 
