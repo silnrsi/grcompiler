@@ -9,6 +9,7 @@ Create separate control file: no
 
 *******************************************************
 
+warning(4509): Unable to initialize breakweight glyph attribute from Unicode char props database
 PadaukMain.gdl(706) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 3 and 5; attachment may be needed
@@ -64,4 +65,4 @@ PadaukMain.gdl(798) : warning(3521): Vertical overlap between glyphs in items 1 
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 52 warnings
+Compilation succeeded - 0 errors, 53 warnings

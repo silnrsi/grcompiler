@@ -2,13 +2,14 @@ Graphite Compilation Results
 
 GDL file: CharisMain.gdl
 Input font file: CharisInput.ttf
-Output font file: CharisBenchmark.ttf
+Output font file: CharisTest.ttf
 Output font family: Charis SIL
 Silf table version: 2.0
 Create separate control file: no
 
 *******************************************************
 
+warning(4509): Unable to initialize breakweight glyph attribute from Unicode char props database
 CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (300, -100) in glyph 0x0003
 CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (300, 0) in glyph 0x0003
 CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (300, 1500) in glyph 0x0003
@@ -221,4 +222,4 @@ CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 6
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 209 warnings
+Compilation succeeded - 0 errors, 210 warnings

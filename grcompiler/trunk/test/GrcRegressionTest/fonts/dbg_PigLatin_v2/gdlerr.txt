@@ -2,11 +2,15 @@ Graphite Compilation Results
 
 GDL file: PigLatin.gdl
 Input font file: PigLatinInput.ttf
-Output font file: PigLatinBenchmark_v2.ttf
+Output font file: PigLatinTest_v2.ttf
 Output font family: Std SILDoulos
 Silf table version: 2.0
 Create separate control file: no
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 0 warnings
+warning(4509): Unable to initialize breakweight glyph attribute from Unicode char props database
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 1 warning
