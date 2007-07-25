@@ -16,6 +16,7 @@ Description:
 	Include files
 ***********************************************************************************************/
 #include "main.h"
+
 // Version: bldinc.h holds the current copyright number and it is created by executing
 // bin\mkverrsc.exe from within the bin\mkcle.bat file. The major and minor version
 // numbers are hard-coded in mkcle.bat.
@@ -80,7 +81,13 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 2.4\n"
+		std::cout << "Graphite Compiler Version 2.4";
+		#ifdef _DEBUG
+			std::cout << "  [debug build]";
+		#else
+			std::cout << "  [release build]";
+		#endif
+		std::cout << "\n"
 			<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
 	}
 
@@ -107,6 +114,17 @@ int main(int argc, char * argv[])
 		{
 			pch = argv[4 + cargExtra];
 			Platform_AnsiToUnicode(pch, strlen(pch), rgchwOutputFontFamily, strlen(pch));
+
+			// Give a warning if the font name has something bigger than 7-bit data.
+			// The font-output routines can't handle that.
+			for (char * pchLp = pch; pchLp - pch < signed(strlen(pch)); pchLp++)
+			{
+				if ((unsigned char)(*pchLp) > 0x7F)
+				{
+					g_errorList.AddWarning(511, NULL, "Non-ASCII font names are not supported");
+					break;
+				}
+			}
 		}
 		//else // nice idea, but don't do this for now
 		//{
@@ -134,9 +152,11 @@ int main(int argc, char * argv[])
 
 	std::string staVersion = VersionString(g_cman.FontTableVersion());
 
+	std::cout << "Reading input font...\n\n";
+
 	GrcFont * pfont = new GrcFont(pchFontFile);
 	int nFontError = pfont->Init(&g_cman);
-	
+
 	// Calculate output font-family name.
 	utf16 rgchwInputFontFamily[128];
 	if (utf16len(rgchwOutputFontFamily) > 0)
@@ -156,7 +176,6 @@ int main(int argc, char * argv[])
 		//utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
 		std::copy(stu.data(), stu.data() + stu.length() + 1, rgchwOutputFontFamily);
 	}
-
 
 	//std::string staFamily((char*)rgchwOutputFontFamily);
 	char rgchFamily[128];
