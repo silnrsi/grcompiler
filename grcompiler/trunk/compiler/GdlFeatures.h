@@ -189,9 +189,8 @@ public:
 		return m_fStdLang;
 	}
 	utf16 NameTblId()	{ return m_wNameTblId; }
-	bool NameTblInfo(Vector<std::wstring> * pvstuExtNames, Vector<utf16> * pvwLangIds, 
-		Vector<utf16> * pvwNameTblIds);
-
+	bool NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, 
+		Vector<utf16> & vwNameTblIds, size_t & cchwStringData);
 
 	GdlFeatureSetting * FindSetting(std::string sta);
 	GdlFeatureSetting * FindOrAddSetting(std::string, GrpLineAndFile & lnf);

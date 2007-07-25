@@ -59,39 +59,54 @@ typedef enum {
 #endif
 
 typedef enum {
-    lang_English,
-    lang_French,
-    lang_German,
-    lang_Italian,
-    lang_Dutch,
-    lang_Swedish,
-    lang_Spanish,
-    lang_Danish,
-    lang_Portuguese,
-    lang_Norwegian,
-    lang_Hebrew,
-    lang_Japanese,
-    lang_Arabic,
-    lang_Finnish,
-    lang_Greek,
-    lang_Icelandic,
-    lang_Maltese,
-    lang_Turkish,
-    lang_Yugoslavian,
-    lang_Chinese,
-    lang_Urdu,
-    lang_Hindi,
-    lang_Thai
+    langMac_English,
+    langMac_French,
+    langMac_German,
+    langMac_Italian,
+    langMac_Dutch,
+    langMac_Swedish,
+    langMac_Spanish,
+    langMac_Danish,
+    langMac_Portuguese,
+    langMac_Norwegian,
+    langMac_Hebrew,
+    langMac_Japanese,
+    langMac_Arabic,
+    langMac_Finnish,
+    langMac_Greek,
+    langMac_Icelandic,
+    langMac_Maltese,
+    langMac_Turkish,
+    langMac_Yugoslavian,
+    langMac_Chinese,
+    langMac_Urdu,
+    langMac_Hindi,
+    langMac_Thai,
+	langMac_Korean
+	// to do: add more
 } sfnt_LanguageEnum;
 
 typedef enum {
-    name_Copyright,
+    name_Copyright, // 0
     name_Family,
     name_Subfamily,
     name_UniqueName,
     name_FullName,
     name_Version,
-    name_Postscript
+    name_Postscript,
+	name_Trademark,
+	name_Vendor,
+	name_Designer,
+	name_Description,
+	name_VendorUrl,
+	name_DesignerUrl,
+	name_License,
+	name_LicenseUrl,
+	name_PreferredFamily,
+	name_PreferredSubfamily,
+	name_CompatibleFull,
+	name_SampleText,
+	name_PsCid
 } sfnt_NameIndex;
 
 typedef gr::fontTableId32 sfnt_TableTag;
