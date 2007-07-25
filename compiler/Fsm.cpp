@@ -88,7 +88,7 @@ void GdlPass::GenerateFsm(GrcManager * pcman)
  *	For each glyph we figure out what set of source-classes it is a member of; we record
 	the source-class-set (SCS) in a big array indexed by glyph.
 
-	Note that each SCS defines a machine-class--group of glyphs that are considered
+	Note that each SCS defines a machine-class -- a group of glyphs that are considered
 	equivalent for the purposes of matching input.
 
  *	So for each SCS, we create a machine class, which knows that SCS and also which glyphs
@@ -385,7 +385,6 @@ void GdlPass::InitializeFsmArrays()
 {
 	for (int w = 0; w < kMaxTotalGlyphs; w++)
 	{
-int x = m_rgscsInclusions[w].size();
 		m_rgscsInclusions[w].clear();
 		m_rgpfsmcAssignments[w] = NULL;
 	}
@@ -528,7 +527,6 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 			for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
 			{
 				GdlRule * prule = m_vprule[iprule];
-
 				if (ifsCurrent == 0	||	// for state #0, all rules are consider matched
 					pfstateCurr->RuleMatched(iprule))
 				{
@@ -538,11 +536,11 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 					}
 					else
 					{
-						Set<FsmMachineClass *> setpfsmc;
+						FsmMachineClassSet setpfsmc;
 						GetMachineClassesForRuleItem(prule, critSlotsMatched, setpfsmc);
 
-						for (Set<FsmMachineClass *>::iterator it = setpfsmc.Begin();
-							it != setpfsmc.End();
+						for (FsmMachineClassSet::iterator it = setpfsmc.begin();
+							it != setpfsmc.end();
 							++it)
 						{
 							FsmMachineClass * pfsmc = *it;
@@ -559,7 +557,6 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 							//	Store this rule as one matched for this state.
 							m_pfsm->RawStateAt(ifsNextState)->AddRuleToMatchedList(iprule);
 						}
-
 					}
 				}
 			}
@@ -679,7 +676,7 @@ bool FsmState::StatesMatch(FsmState * pfstate)
 	irit'th input item in the given rule.
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::GetMachineClassesForRuleItem(GdlRule  * prule, int irit,
-	Set<FsmMachineClass *> & setpfsmc)
+	FsmMachineClassSet & setpfsmc)
 {
 	GdlRuleItem * prit = prule->InputItem(irit);
 	Assert(prit);
@@ -688,7 +685,7 @@ void GdlPass::GetMachineClassesForRuleItem(GdlRule  * prule, int irit,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
-	Set<FsmMachineClass *> & setpfsmc)
+	FsmMachineClassSet & setpfsmc)
 {
 	GdlGlyphClassDefn * pglfc = m_psymInput->GlyphClassDefnData();
 	if (!pglfc)
@@ -699,7 +696,7 @@ void GdlRuleItem::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
-	Set<FsmMachineClass *> & setpfsmc)
+	FsmMachineClassSet & setpfsmc)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 		m_vpglfdMembers[iglfd]->GetMachineClasses(ppfsmcAssignments, setpfsmc);
@@ -707,14 +704,16 @@ void GdlGlyphClassDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
-	Set<FsmMachineClass *> & setpfsmc)
+	FsmMachineClassSet & setpfsmc)
 {
 	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
 	{
 		utf16 wGlyphID = m_vwGlyphIDs[iw];
 		FsmMachineClass * pfsmc = ppfsmcAssignments[wGlyphID];
-		if (!setpfsmc.IsMember(pfsmc))
-			setpfsmc.Insert(pfsmc);
+		if (setpfsmc.find(pfsmc) == setpfsmc.end()) // not a member
+		{
+			setpfsmc.insert(pfsmc);
+		}
 	}
 }
 

@@ -131,7 +131,7 @@ public:
 	void MergeIdenticalStates(int ifsFixMin, int ifsCheckMin, int ifsCheckLim);
 	int NumberOfFsmMachineClasses();
 	void GetMachineClassesForRuleItem(GdlRule  * prule, int irit,
-		Set<FsmMachineClass *> & setpfsmc);
+		FsmMachineClassSet & setpfsmc);
 	int FindIdenticalState(int ifsToMatch, int ifsMin);
 	void ReorderFsmStates();
 	int NumStates();

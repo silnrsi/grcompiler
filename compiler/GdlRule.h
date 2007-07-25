@@ -22,7 +22,6 @@ Class: GdlAttrValueSpec
 Description: The action setting the value for a single attribute.
 Hungarian: avs
 ----------------------------------------------------------------------------------------------*/
-
 class GdlAttrValueSpec : public GdlObject
 {
 	friend class GdlRule;
@@ -280,7 +279,7 @@ public:
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 	static void GenerateInsertEqualsFalse(Vector<byte> & vbOutput);
 	void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
-		Set<FsmMachineClass *> & setpfsmc);
+		FsmMachineClassSet & setpfsmc);
 
 private:
 	void operator=(GdlRuleItem);	// don't call the assignment operator--compile error

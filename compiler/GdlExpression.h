@@ -97,11 +97,11 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat) = 0;
 	virtual void LookupExpCheck(bool fInIf) = 0;
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub) = 0;
 	virtual GdlExpression * SimplifyAndUnscale(utf16 wGlyphID, GrcFont * pfont)
 	{
-		Set<Symbol> setpsym;
+		SymbolSet setpsym;
 		bool fCanSub;
 		return SimplifyAndUnscale(NULL, wGlyphID, setpsym, pfont, true, &fCanSub);
 	}
@@ -214,7 +214,7 @@ public:
 	virtual void LookupExpCheck(bool fInIf) { }
 
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub)
 	{
 		return this;
@@ -349,7 +349,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void SetSpecialZero();
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
@@ -459,7 +459,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -550,7 +550,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -644,7 +644,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -745,7 +745,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -854,7 +854,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -1035,7 +1035,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, Set<Symbol> & setpsym, GrcFont * pfont,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);

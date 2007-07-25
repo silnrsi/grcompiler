@@ -32,6 +32,7 @@ Hungarian: sym
 class GrcSymbolTableEntry
 {
 	friend class GrcSymbolTable;
+	friend class SymbolLess;
 
 public:
 	//	Operator precedences
@@ -195,7 +196,27 @@ protected:
 	bool m_fUserDefined;	// for generic glyph attributes
 	bool m_fUsed;			// for glyph metrics (currently not used)
 	int	m_nInternalID;		// internal IDs for glyph attrs (currently only used for them)
+
+	// Comparison function for set manipulation:
+	bool operator<(const GrcSymbolTableEntry & sym) const
+	{
+		return (strcmp(m_staFieldName.data(), sym.m_staFieldName.data()) < 0);
+	}
+
 };
+
+// Functor class for set manipulation
+class SymbolLess
+{
+	friend class GrcSymbolTableEntry;
+public:
+	operator()(const Symbol psym1, const Symbol psym2) const
+	{
+		return (*psym1 < *psym2);
+	}
+};
+
+typedef std::set<Symbol, SymbolLess> SymbolSet;
 
 
 /*----------------------------------------------------------------------------------------------

@@ -18,6 +18,9 @@ Description:
 #define CLASSES_INCLUDED
 
 class GdlGlyphDefn;
+//class PseudoLess;
+//typedef std::set<GdlGlyphDefn *, PseudoLess> PseudoSet; // PseudoLess isn't implemented adquately yet
+typedef std::set<GdlGlyphDefn *> PseudoSet;
 
 /*----------------------------------------------------------------------------------------------
 Class: GdlGlyphAttrSetting
@@ -70,7 +73,7 @@ public:
 	};
 
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf) = 0;
+	virtual void ExplicitPseudos(PseudoSet & setpglf) = 0;
 	virtual int ActualForPseudo(utf16 wPseudo) = 0;
 	virtual int GlyphIDCount() = 0;
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne) = 0;
@@ -98,7 +101,7 @@ public:
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc) = 0;
 	virtual void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
-		Set<FsmMachineClass *> & setpfsmc) = 0;
+		FsmMachineClassSet & setpfsmc) = 0;
 
 	//	Output:
 	virtual void AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs) = 0;
@@ -168,7 +171,7 @@ public:
 		GdlGlyphClassDefn * pglfcMember);
 
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(std::set<GdlGlyphDefn *> & setpglf);
+	virtual void ExplicitPseudos(PseudoSet & setpglf);
 	virtual int ActualForPseudo(utf16 wPseudo);
 	void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
@@ -229,7 +232,7 @@ public:
 	void RecordInclusionInClass(GdlPass * ppass);
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);
 	virtual void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
-		Set<FsmMachineClass *> & setpfsmc);
+		FsmMachineClassSet & setpfsmc);
 
 	//	Output
 	void GenerateOutputGlyphList(Vector<utf16> & vwGlyphs);

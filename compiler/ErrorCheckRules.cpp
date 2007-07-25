@@ -813,7 +813,7 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 		if (fOkay)
 		{
 			bool fCanSub;
-			Set<Symbol> setBogus;
+			SymbolSet setBogus;
 			GdlExpression * pexpNew =
 				m_pexpConstraint->SimplifyAndUnscale(pgax, 0, setBogus, pfont, false, &fCanSub);
 			if (pexpNew && pexpNew != m_pexpConstraint)
@@ -1347,7 +1347,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		}
 
 		bool fCanSub;
-		Set<Symbol> setBogus;
+		SymbolSet setBogus;
 		GdlExpression * pexpNewValue =
 			m_pexpValue->SimplifyAndUnscale(pgax, 0, setBogus, pfont, false, &fCanSub);
 		if (pexpNewValue && pexpNewValue != m_pexpValue)
