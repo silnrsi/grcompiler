@@ -183,11 +183,11 @@ Class #41: cno_OpenLeft
 INDEXED (INPUT) CLASSES
 
 Class #42: cUnencodedChar
-0x04af :   0    0x04b0 :   1    0x04b1 :   2    0x04b2 :   3    0x04b3 :   4    
+0x04ae :   0    0x04af :   1    0x04b0 :   2    0x04b1 :   3    0x04b2 :   4    
 
 Class #43: cUnencodedChar2Parts
-0x04ae :   7    0x04b4 :   0    0x04b5 :   1    0x04b6 :   2    0x04b7 :   3    
-0x04b8 :   4    0x04b9 :   5    0x04ba :   6    0x04bb :   8    0x04bc :   9    
+0x04b3 :   0    0x04b4 :   1    0x04b5 :   2    0x04b6 :   3    0x04b7 :   4    
+0x04b8 :   5    0x04b9 :   6    0x04ba :   7    0x04bb :   8    0x04bc :   9    
 0x04bd :  10    
 
 Class #44: cLamIso
