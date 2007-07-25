@@ -1314,10 +1314,10 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                     }
                     else
                     {
-                        if (nUnicode == 0x0020 || nUnicode == 0x00A0 || nUnicode == 0x1680
-							|| nUnicode == 0x180E
-                            || (nUnicode >= 0x2000 && nUnicode <= 0x200A) || nUnicode == 0x202F
+                        if (nUnicode == 0x0020 || nUnicode == 0x1680 || nUnicode == 0x180E
+                            || (nUnicode >= 0x2000 && nUnicode <= 0x200B)
                             || nUnicode == 0x205F || nUnicode == 0x3000)
+							// Don't include non-breaking spaces: U+00A0, U+202F, U+FEFF
 						{
                             fIsSep = 1;
 						}
@@ -1331,31 +1331,30 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                 }
                 else if (psym->LastFieldIs("directionality"))
                 {
-//					g_errorList.AddWarning(4508, NULL, "Bidi = ", Bidi() ? "1" : "0");
-                    if (!Bidi())
-                    {
-                        // Don't really care about the failure, since there's no Bidi pass.
-                        nUnicodeStd = nDefaultValue;
-                    }
-                    else if (fIcuAvailable)
+					if (fIcuAvailable)
                     {
 						UCharDirection diricu = u_charDirection(nUnicode);
 						nUnicodeStd = ConvertBidiCode(diricu, nUnicode);
+						//if (!Bidi() && nUnicodeStd == kdircL)
+						//	nUnicodeStd = 0;	// don't bother storing this for non-bidi fonts
                     }
                     else
 					{
 						switch (nUnicode)
 						{
-						case kchwSpace:	nUnicodeStd = kdircWhiteSpace; break;
-						case kchwLRM:	nUnicodeStd = kdircL; break;
-						case kchwRLM:	nUnicodeStd = kdircR; break;
-						case kchwLRO:	nUnicodeStd = kdircLRO; break;
-						case kchwRLO:	nUnicodeStd = kdircRLO; break;
-						case kchwLRE:	nUnicodeStd = kdircLRE; break;
-						case kchwRLE:	nUnicodeStd = kdircRLE; break;
-						case kchwPDF:	nUnicodeStd = kdircPDF; break;
+						case kchwSpace:			nUnicodeStd = kdircWhiteSpace; break;
+						case kchwLRM:			nUnicodeStd = kdircL; break;
+						case kchwRLM:			nUnicodeStd = kdircR; break;
+						case kchwLRO:			nUnicodeStd = kdircLRO; break;
+						case kchwRLO:			nUnicodeStd = kdircRLO; break;
+						case kchwLRE:			nUnicodeStd = kdircLRE; break;
+						case kchwRLE:			nUnicodeStd = kdircRLE; break;
+						case kchwPDF:			nUnicodeStd = kdircPDF; break;
 						default:
-							fInitFailed = true;
+							if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
+								nUnicodeStd = kdircWhiteSpace;
+							else
+								fInitFailed = Bidi(); // we only care about the failure if this is a bidi font
 							break;
 						}
 					}
@@ -1425,7 +1424,6 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 //	}
 
 }
-
 
 
 /*----------------------------------------------------------------------------------------------
