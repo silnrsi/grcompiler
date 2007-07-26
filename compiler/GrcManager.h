@@ -290,17 +290,15 @@ public:
 	void SplitLargeStretchValue(int wGlyphId, int nAttrIdJStr);
 protected:
 	bool AddFeatsModFamily(uint16 * pchFamilyName, uint8 ** ppNameTbl, uint32 * pcbNameTbl);
+	void BuildDateString(utf16 * stuDate);
 	bool FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords, 
 		uint16 suPlatformId, uint16 suEncodingId, uint16 suLangId, 
 		int * piFamily, int * piSubFamily, int * piFullName,
 		int * piVendor, int * piPSName, int * piUniqueName);
-	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName,
+	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName, size_t cchwFamilyName, utf16 * stuDate,
 		uint8 * pSubFamily, uint16 cbSubFamily,
 		uint8 * pVendor, uint16 cbVendor,
-		uint16 ** ppchwFamilyName, uint16 * pcchwFamilyName, 
-		uint16 ** ppchwFullName, uint16 * pcchwFullName,
-		uint16 ** ppchwUniqueName, uint16 * pcchwUniqueName,
-		uint16 ** ppchwPSName, uint16 * pcchwPSName);
+		PlatEncChange *);
 	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
 		Vector<std::wstring> & vstuExtNames, Vector<uint16> & vnLangIds, Vector<uint16> & vnNameTblIds, 
 		uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec);
