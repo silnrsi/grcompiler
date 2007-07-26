@@ -394,6 +394,10 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	uint8 ** ppNameTbl, uint32 * pcbNameTbl)
 {
+	// Get the current date, which will be used to create the unique name.
+	utf16 stuDate[12];
+	BuildDateString(stuDate);
+	
 	uint32 cbTblOld = *pcbNameTbl;
 
 	size_t cchwFamilyName = (pchwFamilyNameNew) ? utf16len(pchwFamilyNameNew) : 0;
@@ -465,20 +469,30 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 		bool f8bit;
 		switch (platformID)
 		{
+		case plat_Unicode:
+			rgEncodingIDs[0] = 0;	// 0-0: Unicode 1.0
+			rgEncodingIDs[1] = 1;	// 0-1: Unicode 1.1
+			rgEncodingIDs[2] = 2;	// 0-2: ISO 10646
+			rgEncodingIDs[3] = 3;	// 0-3: Unicode 2.0+, BMP
+			rgEncodingIDs[4] = 4;	// 0-4: Unicode 2.0+, full repertoire
+			cEncodings = 5;
+			engID = 0;				// not used
+			f8bit = false;
+			break;
 		case plat_Macintosh:
 			rgEncodingIDs[0] = 0;	// 1-0
 			cEncodings = 1;
-			engID = langMac_English;	// assume that new font names are English
+			engID = langMac_English; // assume that new font names are English
 			f8bit = true;
 			break;
 		case plat_MS:
-			rgEncodingIDs[0] = 1;	// 3-1: Unicode BMP
-			rgEncodingIDs[1] = 0;	// 3-0: Symbol
-			cEncodings = 2;
+			rgEncodingIDs[0] = 0;	// 3-0: Symbol
+			rgEncodingIDs[1] = 1;	// 3-1: Unicode BMP
+			rgEncodingIDs[2] = 10;	// 3-10: Unicode full repertoire
+			cEncodings = 3;
 			engID = LG_USENG;		// assume that new font names are English
 			f8bit = false;
 			break;
-		case plat_Unicode:	// not supported
 		case plat_ISO:		// not supported
 		default:
 			cEncodings = 0;
@@ -513,56 +527,36 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 				// Generate the new full-font name, the postscript name, and the unique name.
 
 				std::wstring stuFullName, stuPostscriptName, stuUniqueName;
-
-				ibSubFamilyOffset = swapw(pRecord[irecSubFamily].offset) + ibStrOffset;
-				cbSubFamily = swapw(pRecord[irecSubFamily].length);
+				ibSubFamilyOffset = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].offset) + ibStrOffset;
+				cbSubFamily = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].length);
 				ibVendorOffset = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].offset) + ibStrOffset;
 				cbVendor = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].length);
 
-				uint16 cchwFamilyNameTemp = 0;	// not including zero-terminator
-				uint16 cchwFullName = 0; 
-				uint16 cchwUniqueName = 0;
-				uint16 cchwPostscriptName = 0;
-				uint16 * pchwFamilyName = NULL;
-				uint16 * pchwFullName = NULL;
-				uint16 * pchwUniqueName = NULL;
-				uint16 * pchwPostscriptName = NULL;
-
 				// NB: Call below may allocate space which must be deleted at the end of this method.
 
-				if (!BuildFontNames(f8bit, pchwFamilyNameNew,
+				if (!BuildFontNames(f8bit, pchwFamilyNameNew, cchwFamilyName, stuDate,
 					(uint8*)pTblOld + ibSubFamilyOffset, cbSubFamily,
 					(uint8*)pTblOld + ibVendorOffset, cbVendor,
-					&pchwFamilyName, &cchwFamilyNameTemp,
-					&pchwFullName, &cchwFullName,
-					&pchwUniqueName, &cchwUniqueName,
-					&pchwPostscriptName, &cchwPostscriptName))
+					&pec))
 				{
 					return false;
 				}
-
-				pec.pchwFullName = pchwFullName;
-				pec.pchwUniqueName = pchwUniqueName;
-				pec.pchwPostscriptName = pchwPostscriptName;
-				pec.cchwFullName = cchwFullName;
-				pec.cchwUniqueName = cchwUniqueName;
-				pec.cchwPostscriptName = cchwPostscriptName;
 
 				// Determine size adjustments for font name changes: subtract old names and add new ones.
 				int dbStringDiff = 0;
 				dbStringDiff -= swapw(pRecord[irecFamilyName].length);
 				dbStringDiff += cchwFamilyName * pec.cbBytesPerChar;
 				dbStringDiff -= swapw(pRecord[irecFullName].length);
-				dbStringDiff += cchwFullName * pec.cbBytesPerChar;
+				dbStringDiff += pec.cchwFullName * pec.cbBytesPerChar;
 				if (irecUniqueName)
 				{
 					dbStringDiff -= swapw(pRecord[irecUniqueName].length);
-					dbStringDiff += cchwUniqueName * pec.cbBytesPerChar;
+					dbStringDiff += pec.cchwUniqueName * pec.cbBytesPerChar;
 				}
 				if (irecPSName)
 				{
 					dbStringDiff -= swapw(pRecord[irecPSName].length);
-					dbStringDiff += cchwPostscriptName * pec.cbBytesPerChar;
+					dbStringDiff += pec.cchwPostscriptName * pec.cbBytesPerChar;
 				}
 
 				cbNewStringData += dbStringDiff;
@@ -617,6 +611,24 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	}
 
 	return true;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return a date string that can be used to generate the unique name. The format returned
+	is dd-Mmm-yyyy.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::BuildDateString(utf16 * stuDate)
+{
+	// Get the current date, which will be used to create the unique name.
+	__time64_t ltime;
+	_time64( &ltime );
+	std::wstring strTimeWchar(_wctime64(&ltime)); // format is Wed Jan 02 02:03:55 1980
+	std::copy(strTimeWchar.data() + 8, strTimeWchar.data() + 10, stuDate);		// day
+	stuDate[2] = '-';
+	std::copy(strTimeWchar.data() + 4, strTimeWchar.data() + 7, stuDate + 3);	// month
+	stuDate[6] = '-';
+	std::copy(strTimeWchar.data() + 20, strTimeWchar.data() + 24, stuDate + 7);	// year
+	stuDate[11] = 0;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -676,64 +688,44 @@ bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords,
 	the TTF name table. FOR NOW WE ARE RETURNING THEM FROM THIS METHOD AS IS.
 ----------------------------------------------------------------------------------------------*/
 
-bool GrcManager::BuildFontNames(bool f8bitTable, uint16 * pchFamilyName,
-	uint8 * pSubFamily, uint16 cbSubFamily,
-	uint8 * pVendor, uint16 cbVendor,
-	uint16 ** ppchwFamilyName, uint16 * pcchwFamilyName, 
-	uint16 ** ppchwFullName, uint16 * pcchwFullName,
-	uint16 ** ppchwUniqueName, uint16 * pcchwUniqueName,
-	uint16 ** ppchwPSName, uint16 * pcchwPSName)
+bool GrcManager::BuildFontNames(bool f8bitTable,
+	uint16 * pchwFamilyName, size_t cchwFamilyName,
+	utf16 * stuDate,
+	uint8 * pchSubFamily, uint16 cbSubFamily,
+	uint8 * pchVendor, uint16 cbVendor,
+	PlatEncChange * ppec)
 {
-	// Get the current date, which will be used to create the unique name.
-	// TODO: use a utf16 string
-	__time64_t ltime;
-	_time64( &ltime );
-	std::wstring strTimeWchar(_wctime64(&ltime));
-	int cchwTimeLen = wcslen(strTimeWchar.c_str());
-	utf16 stuTime[512];
-	std::copy(strTimeWchar.data(), strTimeWchar.data() + cchwTimeLen, stuTime);
-	
-	uint16 cchwFamilyName, cchwFullName, cchwUniqueName, cchwPSName;
-	uint16 * pchwFamilyName, * pchwFullName, * pchwUniqueName, * pchwPSName;
+	uint16 * pchwFullName, * pchwUniqueName, * pchwPSName;
+	uint16 cchwFullName, cchwUniqueName, cchwPSName;
 
-	Assert(*ppchwFamilyName == NULL);
-	Assert(*ppchwFullName == NULL);
-	Assert(*ppchwUniqueName == NULL);
-	Assert(*ppchwPostscriptName == NULL);
+	size_t cchwDate = utf16len(stuDate);
 
-	// Convert the family name to wide characters.
-	//cchwFamilyName = ::MultiByteToWideChar(CP_ACP, 0, pchFamilyName, -1, NULL, 0);
-	//pchwFamilyName = new uint16[cchwFamilyName]; // cchwFamily includes null terminator
-	//if (!pchwFamilyName)
-	//	return false;
-	//::MultiByteToWideChar(CP_ACP, 0, pchFamilyName, -1, pchwFamilyName, cchwFamilyName);
-	//cchwFamilyName--; // eliminate null terminator from count
-	//if (!TtfUtil::SwapWString(pchwFamilyName, cchwFamilyName)) // convert to big endian chars
-	//	return false;
-	
-	cchwFamilyName = utf16len(pchFamilyName);
-	pchwFamilyName = new uint16[cchwFamilyName + 1];
-	if (!pchwFamilyName)
-		return false;
-	utf16cpy(pchwFamilyName, pchFamilyName);
-	pchwFamilyName[cchwFamilyName] = 0;
-	//if (!TtfUtil::SwapWString(pchwFamilyName, cchwFamilyName)) // convert to big endian chars
-	//	return false;
+	Assert(pchwFamilyName);
 
 	// TODO: properly handle the Macintosh encoding, which is not really ANSI.
 
 	// Check for "Regular" or "Standard" subfamily
 	utf16 rgchwSubFamily[128];
-	if (f8bitTable)
-		Platform_AnsiToUnicode((char *)pSubFamily, cbSubFamily, rgchwSubFamily, cbSubFamily);
+	bool fRegular;
+	int cchwSubFamily;
+	if (cbSubFamily == 0)
+	{
+		fRegular = true;
+		cchwSubFamily = 0;
+	}
 	else
 	{
-		utf16ncpy(rgchwSubFamily, (utf16 *)pSubFamily, cbSubFamily);
-		TtfUtil::SwapWString(rgchwSubFamily, cbSubFamily);
+		if (f8bitTable)
+			Platform_AnsiToUnicode((char *)pchSubFamily, cbSubFamily, rgchwSubFamily, cbSubFamily);
+		else
+		{
+			utf16ncpy(rgchwSubFamily, (utf16 *)pchSubFamily, cbSubFamily);
+			TtfUtil::SwapWString(rgchwSubFamily, cbSubFamily);
+		}
+		cchwSubFamily = (f8bitTable) ? cbSubFamily : cbSubFamily / sizeof(utf16);
+		rgchwSubFamily[cchwSubFamily] = 0;
+		fRegular = utf16ncmp(rgchwSubFamily, L"Regular", 7) || utf16ncmp(rgchwSubFamily, L"Standard", 8);
 	}
-	int cchwSubFamily = (f8bitTable) ? cbSubFamily : cbSubFamily / sizeof(utf16);
-	rgchwSubFamily[cchwSubFamily] = 0;
-	bool fRegular = utf16ncmp(rgchwSubFamily, L"Regular", 7) || utf16ncmp(rgchwSubFamily, L"Standard", 8);
 
 	// Get vendor name, if any.
 	utf16 * rgchwVendor;
@@ -747,10 +739,10 @@ bool GrcManager::BuildFontNames(bool f8bitTable, uint16 * pchFamilyName,
 	{
 		rgchwVendor = new utf16[cbVendor + 1];
 		if (f8bitTable)
-			Platform_AnsiToUnicode((char *)pVendor, cbVendor, rgchwVendor, cbVendor);
+			Platform_AnsiToUnicode((char *)pchVendor, cbVendor, rgchwVendor, cbVendor);
 		else
 		{
-			utf16ncpy(rgchwVendor, (utf16 *)pVendor, cbVendor);
+			utf16ncpy(rgchwVendor, (utf16 *)pchVendor, cbVendor);
 			TtfUtil::SwapWString(rgchwVendor, cbVendor);
 		}
 	}
@@ -783,8 +775,13 @@ bool GrcManager::BuildFontNames(bool f8bitTable, uint16 * pchFamilyName,
 	if (!pchwPSName)
 		return false;
 	utf16ncpy(pchwPSName, pchwFamilyName, cchwFamilyName);
-	pchwPSName[cchwFamilyName] = 0x002D; // hyphen
-	utf16ncpy(pchwPSName + cchwFamilyName + 1, rgchwSubFamily, cchwSubFamily);
+	if (cbSubFamily == 0)
+		cchwPSName--; // no hyphen
+	else
+	{
+		pchwPSName[cchwFamilyName] = 0x002D; // hyphen
+		utf16ncpy(pchwPSName + cchwFamilyName + 1, rgchwSubFamily, cchwSubFamily);
+	}
 	pchwPSName[cchwPSName] = 0;
 	// Allow only chars 33 - 126, minus the following: / % ( ) < > [ ] { }
 	int cchMove = 1;
@@ -800,25 +797,22 @@ bool GrcManager::BuildFontNames(bool f8bitTable, uint16 * pchFamilyName,
 	}
 	
 	// Build the unique name: vendor: fullname: date
-	cchwUniqueName = cchwVendor + cchwFullName + cchwTimeLen + 4;
+	cchwUniqueName = cchwVendor + cchwFullName + cchwDate + 4;
 	pchwUniqueName = new utf16[cchwUniqueName + 1];
 	utf16ncpy(pchwUniqueName, rgchwVendor, cchwVendor);
 	utf16ncpy(pchwUniqueName + cchwVendor, ": ", 2);
 	utf16ncpy(pchwUniqueName + cchwVendor + 2, pchwFullName, cchwFullName);
 	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName, ": ", 2);
-	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName + 2, stuTime, cchwTimeLen);
+	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName + 2, stuDate, cchwDate);
 	pchwUniqueName[cchwUniqueName] = 0;
-	
-	*ppchwFamilyName = pchwFamilyName;
-	*pcchwFamilyName = cchwFamilyName;
-	*ppchwFullName = pchwFullName;
-	*pcchwFullName = cchwFullName;
-	*ppchwUniqueName = pchwUniqueName;
-	*pcchwUniqueName = cchwUniqueName;
-	*ppchwPSName = pchwPSName;
-	*pcchwPSName = cchwPSName;
-
 	delete[] rgchwVendor;
+	
+	ppec->pchwFullName = pchwFullName;
+	ppec->cchwFullName = cchwFullName;
+	ppec->pchwUniqueName = pchwUniqueName;
+	ppec->cchwUniqueName = cchwUniqueName;
+	ppec->pchwPostscriptName = pchwPSName;
+	ppec->cchwPostscriptName = cchwPSName;
 	
 	return true;
 }
