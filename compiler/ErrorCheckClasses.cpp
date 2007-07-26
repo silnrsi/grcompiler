@@ -1354,7 +1354,8 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 							if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
 								nUnicodeStd = kdircWhiteSpace;
 							else
-								fInitFailed = Bidi(); // we only care about the failure if this is a bidi font
+								nUnicodeStd = 0;		// don't know
+								fInitFailed = Bidi();	// we only care about the failure if this is a bidi font
 							break;
 						}
 					}
