@@ -9,8 +9,4 @@ Create separate control file: no
 
 *******************************************************
 
-warning(4509): Unable to initialize breakweight glyph attribute from Unicode char props database
-
-*******************************************************
-
-Compilation succeeded - 0 errors, 1 warning
+Compilation succeeded - 0 errors, 0 warnings

@@ -225,14 +225,17 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0007  (7)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0008  (8)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0009  (9)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
@@ -257,68 +260,84 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x000f  (15)
+   directionality = 5
    breakweight = 30 (0x001e)
 
 
 0x0010  (16)
    diaA_.x = 193 (0x00c1)
    diaA_.y = -258 (0xfefe)
+   directionality = 8
    breakweight = 30 (0x001e)
 
 
 0x0011  (17)
+   directionality = 5
    breakweight = 30 (0x001e)
 
 
 0x0012  (18)
+   directionality = 8
    breakweight = 30 (0x001e)
 
 
 0x0013  (19)
+   directionality = 8
    breakweight = 30 (0x001e)
 
 
 0x0014  (20)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x0015  (21)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x0016  (22)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x0017  (23)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x0018  (24)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x0019  (25)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x001a  (26)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x001b  (27)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x001c  (28)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x001d  (29)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x001e  (30)
+   directionality = 8
    breakweight = 30 (0x001e)
 
 
@@ -349,124 +368,150 @@ GLYPH ATTRIBUTE VALUES
 0x0025  (37)
    above.x = 555 (0x022b)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0026  (38)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0027  (39)
    below.x = 553 (0x0229)
    below.y = -72 (0xffb8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0028  (40)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0029  (41)
    above.x = 471 (0x01d7)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x002a  (42)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x002b  (43)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x002c  (44)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x002d  (45)
    above.x = 258 (0x0102)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x002e  (46)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x002f  (47)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0030  (48)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0031  (49)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0032  (50)
    above.x = 551 (0x0227)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0033  (51)
    above.x = 554 (0x022a)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0034  (52)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0035  (53)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0036  (54)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0037  (55)
    above.x = 437 (0x01b5)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0038  (56)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0039  (57)
    above.x = 561 (0x0231)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x003a  (58)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x003b  (59)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x003c  (60)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x003d  (61)
    above.x = 554 (0x022a)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x003e  (62)
    above.x = 511 (0x01ff)
    above.y = 1090 (0x0442)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -499,122 +544,148 @@ GLYPH ATTRIBUTE VALUES
 0x0045  (69)
    above.x = 336 (0x0150)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0046  (70)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0047  (71)
    below.x = 351 (0x015f)
    below.y = -65 (0xffbf)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0048  (72)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0049  (73)
    above.x = 375 (0x0177)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x004a  (74)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x004b  (75)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x004c  (76)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x004d  (77)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x004e  (78)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x004f  (79)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0050  (80)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0051  (81)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0052  (82)
    above.x = 389 (0x0185)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0053  (83)
    above.x = 385 (0x0181)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0054  (84)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0055  (85)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0056  (86)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0057  (87)
    above.x = 311 (0x0137)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0058  (88)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0059  (89)
    above.x = 387 (0x0183)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x005a  (90)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x005b  (91)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x005c  (92)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x005d  (93)
    above.x = 420 (0x01a4)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x005e  (94)
    above.x = 377 (0x0179)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -635,6 +706,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0063  (99)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
@@ -643,6 +715,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0065  (101)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -669,10 +742,12 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x006b  (107)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x006c  (108)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -685,10 +760,12 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x006f  (111)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x0070  (112)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -731,23 +808,28 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x007a  (122)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x007b  (123)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x007c  (124)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x007d  (125)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x007e  (126)
-   breakweight = 30 (0x001e)
+   directionality = 8
+   breakweight = 15 (0x000f)
 
 
 0x007f  (127)
@@ -755,18 +837,22 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0080  (128)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0081  (129)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0082  (130)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0083  (131)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
@@ -789,6 +875,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0088  (136)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -805,6 +892,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x008c  (140)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
@@ -821,18 +909,22 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0090  (144)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0091  (145)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x0092  (146)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x0093  (147)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
@@ -843,6 +935,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0095  (149)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -865,10 +958,12 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x009a  (154)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x009b  (155)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -889,94 +984,117 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x00a0  (160)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a1  (161)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a2  (162)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a3  (163)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a4  (164)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a5  (165)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a6  (166)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a7  (167)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a8  (168)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00a9  (169)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00aa  (170)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ab  (171)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ac  (172)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ad  (173)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ae  (174)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00af  (175)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b0  (176)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b1  (177)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b2  (178)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b3  (179)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b4  (180)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b5  (181)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b6  (182)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -985,126 +1103,157 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x00b8  (184)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00b9  (185)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ba  (186)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00bb  (187)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00bc  (188)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00bd  (189)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00be  (190)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00bf  (191)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c0  (192)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c1  (193)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c2  (194)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c3  (195)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c4  (196)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c5  (197)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c6  (198)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c7  (199)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c8  (200)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00c9  (201)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ca  (202)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00cb  (203)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00cc  (204)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00cd  (205)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00ce  (206)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00cf  (207)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d0  (208)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d1  (209)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d2  (210)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d3  (211)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d4  (212)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d5  (213)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d6  (214)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -1113,40 +1262,49 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x00d8  (216)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00d9  (217)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00da  (218)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00db  (219)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00dc  (220)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00dd  (221)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00de  (222)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00df  (223)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
 0x00e0  (224)
    above.x = 221 (0x00dd)
    above.y = 760 (0x02f8)
+   directionality = 1
    breakweight = 30 (0x001e)
 
 
@@ -1206,15 +1364,17 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x00ec  (236)
-   directionality = 9
-   breakweight = 15 (0x000f)
+   directionality = 10 (0x000a)
+   breakweight = 30 (0x001e)
 
 
 0x00ed  (237)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
 0x00ee  (238)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
@@ -1262,18 +1422,22 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x00f8  (248)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
 0x00f9  (249)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
 0x00fa  (250)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
 0x00fb  (251)
+   directionality = 5
    breakweight = 30 (0x001e)
 
 
@@ -1286,6 +1450,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x00fd  (253)
+   directionality = 10 (0x000a)
    breakweight = 30 (0x001e)
 
 
@@ -1294,6 +1459,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1395 (0x0573)
    diaB.x = 100 (0x0064)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1302,6 +1468,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1470 (0x05be)
    diaB.x = 100 (0x0064)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1310,6 +1477,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1100 (0x044c)
    diaB.x = 100 (0x0064)
    diaB.y = -495 (0xfe11)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1324,6 +1492,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    diaDigitA.x = 120 (0x0078)
    diaDigitA.y = 1100 (0x044c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1332,6 +1501,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1455 (0x05af)
    diaB.x = 100 (0x0064)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1340,6 +1510,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1100 (0x044c)
    diaB.x = 100 (0x0064)
    diaB.y = -500 (0xfe0c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1348,6 +1519,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1215 (0x04bf)
    diaB.x = 100 (0x0064)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1356,6 +1528,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1370 (0x055a)
    diaB.x = 100 (0x0064)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1374,6 +1547,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 141 (0x008d)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1392,6 +1566,7 @@ GLYPH ATTRIBUTE VALUES
    alef.y = 615 (0x0267)
    ring.x = 246 (0x00f6)
    ring.y = -67 (0xffbd)
+   directionality = 3
    center.x = 383 (0x017f)
    center.y = -129 (0xff7f)
    through.x = 383 (0x017f)
@@ -1406,6 +1581,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 133 (0x0085)
    alef.y = 615 (0x0267)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1416,6 +1592,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 101 (0x0065)
    alef.y = 953 (0x03b9)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1426,6 +1603,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 133 (0x0085)
    alef.y = 615 (0x0267)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1436,6 +1614,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 133 (0x0085)
    alef.y = 615 (0x0267)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1446,6 +1625,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 125 (0x007d)
    alef.y = 941 (0x03ad)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1456,6 +1636,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 125 (0x007d)
    alef.y = 865 (0x0361)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1466,6 +1647,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 137 (0x0089)
    alef.y = 756 (0x02f4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1476,6 +1658,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 129 (0x0081)
    alef.y = 796 (0x031c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1486,6 +1669,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 133 (0x0085)
    alef.y = 804 (0x0324)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1496,6 +1680,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 129 (0x0081)
    alef.y = 865 (0x0361)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1506,6 +1691,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    alef.x = 121 (0x0079)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1532,6 +1718,7 @@ GLYPH ATTRIBUTE VALUES
    alef.y = 800 (0x0320)
    ring.x = 336 (0x0150)
    ring.y = 59 (0x003b)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1542,6 +1729,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 113 (0x0071)
    alef.y = 961 (0x03c1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1552,6 +1740,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 88 (0x0058)
    alef.y = 977 (0x03d1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1562,6 +1751,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -400 (0xfe70)
    alef.x = 121 (0x0079)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1572,6 +1762,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -450 (0xfe3e)
    alef.x = 121 (0x0079)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1582,6 +1773,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -450 (0xfe3e)
    alef.x = 88 (0x0058)
    alef.y = 989 (0x03dd)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1592,6 +1784,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 121 (0x0079)
    alef.y = 1045 (0x0415)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1602,6 +1795,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -450 (0xfe3e)
    alef.x = 121 (0x0079)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1612,6 +1806,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 113 (0x0071)
    alef.y = 1082 (0x043a)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1622,6 +1817,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 117 (0x0075)
    alef.y = 1130 (0x046a)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1632,6 +1828,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 113 (0x0071)
    alef.y = 1130 (0x046a)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1642,6 +1839,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 109 (0x006d)
    alef.y = 1017 (0x03f9)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1652,6 +1850,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -564 (0xfdcc)
    alef.x = 101 (0x0065)
    alef.y = 989 (0x03dd)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1662,6 +1861,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -500 (0xfe0c)
    alef.x = 121 (0x0079)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1678,6 +1878,7 @@ GLYPH ATTRIBUTE VALUES
    alef.y = 684 (0x02ac)
    ring.x = 365 (0x016d)
    ring.y = -226 (0xff1e)
+   directionality = 3
    center.x = 176 (0x00b0)
    center.y = 64 (0x0040)
    through.x = 332 (0x014c)
@@ -1692,6 +1893,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 117 (0x0075)
    alef.y = 772 (0x0304)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1702,6 +1904,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 121 (0x0079)
    alef.y = 744 (0x02e8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1712,6 +1915,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 117 (0x0075)
    alef.y = 836 (0x0344)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1722,6 +1926,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -628 (0xfd8c)
    alef.x = 117 (0x0075)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1732,6 +1937,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -700 (0xfd44)
    alef.x = 117 (0x0075)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1742,6 +1948,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -837 (0xfcbb)
    alef.x = 117 (0x0075)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1752,6 +1959,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -700 (0xfd44)
    alef.x = 117 (0x0075)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1762,6 +1970,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 109 (0x006d)
    alef.y = 848 (0x0350)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1772,6 +1981,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 109 (0x006d)
    alef.y = 889 (0x0379)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1782,6 +1992,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 105 (0x0069)
    alef.y = 901 (0x0385)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1792,6 +2003,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 113 (0x0071)
    alef.y = 881 (0x0371)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1802,6 +2014,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 121 (0x0079)
    alef.y = 796 (0x031c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1842,6 +2055,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 109 (0x006d)
    alef.y = 796 (0x031c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1852,6 +2066,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -530 (0xfdee)
    alef.x = 117 (0x0075)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1866,6 +2081,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -400 (0xfe70)
    diaDigitA.x = 345 (0x0159)
    diaDigitA.y = 645 (0x0285)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1874,6 +2090,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 944 (0x03b0)
    diaB.x = 500 (0x01f4)
    diaB.y = -400 (0xfe70)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1890,6 +2107,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1008 (0x03f0)
    diaB.x = 450 (0x01c2)
    diaB.y = -400 (0xfe70)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1898,6 +2116,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 709 (0x02c5)
    diaB.x = 342 (0x0156)
    diaB.y = -620 (0xfd94)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1918,6 +2137,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 692 (0x02b4)
    diaB.x = 450 (0x01c2)
    diaB.y = -400 (0xfe70)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1928,6 +2148,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -400 (0xfe70)
    diaDigitA.x = 325 (0x0145)
    diaDigitA.y = 706 (0x02c2)
+   directionality = 3
    diaDigitB.x = 450 (0x01c2)
    diaDigitB.y = -400 (0xfe70)
    breakweight = 30 (0x001e)
@@ -1938,6 +2159,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1030 (0x0406)
    diaB.x = 450 (0x01c2)
    diaB.y = -400 (0xfe70)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1946,6 +2168,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 705 (0x02c1)
    diaB.x = 385 (0x0181)
    diaB.y = -731 (0xfd25)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1954,6 +2177,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 705 (0x02c1)
    diaB.x = 385 (0x0181)
    diaB.y = -782 (0xfcf2)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1962,6 +2186,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 739 (0x02e3)
    diaB.x = 400 (0x0190)
    diaB.y = -400 (0xfe70)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1970,6 +2195,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 675 (0x02a3)
    diaB.x = 400 (0x0190)
    diaB.y = -400 (0xfe70)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1986,6 +2212,7 @@ GLYPH ATTRIBUTE VALUES
    alef.y = 583 (0x0247)
    ring.x = 636 (0x027c)
    ring.y = 12 (0x000c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -1996,6 +2223,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -427 (0xfe55)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2006,6 +2234,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 298 (0x012a)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2016,6 +2245,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 298 (0x012a)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2026,6 +2256,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 294 (0x0126)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2036,6 +2267,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2046,6 +2278,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -598 (0xfdaa)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2056,6 +2289,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -436 (0xfe4c)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2066,6 +2300,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2076,6 +2311,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -628 (0xfd8c)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2086,6 +2322,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2096,6 +2333,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -645 (0xfd7b)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2106,6 +2344,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -474 (0xfe26)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2116,6 +2355,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -461 (0xfe33)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2126,6 +2366,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -628 (0xfd8c)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2136,6 +2377,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -624 (0xfd90)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2146,6 +2388,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -487 (0xfe19)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2156,6 +2399,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -521 (0xfdf7)
    alef.x = 298 (0x012a)
    alef.y = 583 (0x0247)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2166,6 +2410,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -310 (0xfeca)
    alef.x = 290 (0x0122)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2176,6 +2421,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -840 (0xfcb8)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2188,6 +2434,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    diaDigitB.x = 525 (0x020d)
    diaDigitB.y = -20 (0xffec)
    center.x = 526 (0x020e)
@@ -2202,6 +2449,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2212,6 +2460,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2222,6 +2471,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2232,6 +2482,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2242,6 +2493,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2252,6 +2504,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2262,6 +2515,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2272,6 +2526,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2282,6 +2537,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2342,6 +2598,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2352,6 +2609,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -825 (0xfcc7)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2366,6 +2624,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -600 (0xfda8)
    diaDigitA.x = 400 (0x0190)
    diaDigitA.y = 450 (0x01c2)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2374,6 +2633,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 555 (0x022b)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2382,6 +2642,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 450 (0x01c2)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2390,6 +2651,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 450 (0x01c2)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2398,6 +2660,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 551 (0x0227)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2406,6 +2669,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 551 (0x0227)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2430,6 +2694,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 611 (0x0263)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2438,6 +2703,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 632 (0x0278)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2450,6 +2716,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 496 (0x01f0)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2458,6 +2725,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 500 (0x01f4)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2466,6 +2734,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 500 (0x01f4)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2474,6 +2743,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 600 (0x0258)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2482,6 +2752,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 500 (0x01f4)
    diaB.x = 300 (0x012c)
    diaB.y = -600 (0xfda8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2496,6 +2767,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2506,6 +2778,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2516,6 +2789,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -180 (0xff4c)
    alef.x = 201 (0x00c9)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2528,6 +2802,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 900 (0x0384)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2536,6 +2811,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1100 (0x044c)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2544,6 +2820,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1282 (0x0502)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2552,6 +2829,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1107 (0x0453)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2560,6 +2838,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1115 (0x045b)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2568,6 +2847,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1273 (0x04f9)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2576,6 +2856,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1290 (0x050a)
    diaB.x = 300 (0x012c)
    diaB.y = -840 (0xfcb8)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2586,6 +2867,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2600,6 +2882,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2610,6 +2893,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2620,6 +2904,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -209 (0xff2f)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2630,6 +2915,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2640,6 +2926,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -329 (0xfeb7)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2650,6 +2937,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2660,6 +2948,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2670,6 +2959,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -252 (0xff04)
    alef.x = 342 (0x0156)
    alef.y = 740 (0x02e4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2682,6 +2972,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 795 (0x031b)
    diaB.x = 400 (0x0190)
    diaB.y = -300 (0xfed4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2690,6 +2981,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1020 (0x03fc)
    diaB.x = 400 (0x0190)
    diaB.y = -300 (0xfed4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2698,6 +2990,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1020 (0x03fc)
    diaB.x = 400 (0x0190)
    diaB.y = -300 (0xfed4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2706,6 +2999,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1020 (0x03fc)
    diaB.x = 400 (0x0190)
    diaB.y = -300 (0xfed4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2720,6 +3014,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 161 (0x00a1)
    alef.y = 961 (0x03c1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2730,6 +3025,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 161 (0x00a1)
    alef.y = 961 (0x03c1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2740,6 +3036,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 161 (0x00a1)
    alef.y = 961 (0x03c1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2750,6 +3047,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -513 (0xfdff)
    alef.x = 161 (0x00a1)
    alef.y = 961 (0x03c1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2766,6 +3064,7 @@ GLYPH ATTRIBUTE VALUES
    alef.y = 684 (0x02ac)
    ring.x = 1212 (0x04bc)
    ring.y = 752 (0x02f0)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2776,6 +3075,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2786,6 +3086,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2796,6 +3097,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2806,6 +3108,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2816,6 +3119,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -400 (0xfe70)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2826,6 +3130,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -400 (0xfe70)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2836,6 +3141,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2846,6 +3152,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2856,6 +3163,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -299 (0xfed5)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2866,6 +3174,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -406 (0xfe6a)
    alef.x = 241 (0x00f1)
    alef.y = 684 (0x02ac)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2874,6 +3183,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1000 (0x03e8)
    diaB.x = 600 (0x0258)
    diaB.y = -210 (0xff2e)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2888,6 +3198,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -330 (0xfeb6)
    alef.x = 460 (0x01cc)
    alef.y = 800 (0x0320)
+   directionality = 3
    through.x = 648 (0x0288)
    through.y = 691 (0x02b3)
    breakweight = 30 (0x001e)
@@ -2900,6 +3211,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -330 (0xfeb6)
    alef.x = 460 (0x01cc)
    alef.y = 700 (0x02bc)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2910,6 +3222,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -330 (0xfeb6)
    alef.x = 460 (0x01cc)
    alef.y = 650 (0x028a)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2920,6 +3233,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -330 (0xfeb6)
    alef.x = 460 (0x01cc)
    alef.y = 650 (0x028a)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2930,6 +3244,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -500 (0xfe0c)
    alef.x = 460 (0x01cc)
    alef.y = 800 (0x0320)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2950,6 +3265,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -330 (0xfeb6)
    alef.x = 460 (0x01cc)
    alef.y = 915 (0x0393)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2962,6 +3278,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 837 (0x0345)
    diaB.x = 165 (0x00a5)
    diaB.y = -660 (0xfd6c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2982,6 +3299,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1034 (0x040a)
    diaB.x = 165 (0x00a5)
    diaB.y = -660 (0xfd6c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2990,6 +3308,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 850 (0x0352)
    diaB.x = 165 (0x00a5)
    diaB.y = -660 (0xfd6c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -2998,6 +3317,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 999 (0x03e7)
    diaB.x = 400 (0x0190)
    diaB.y = -210 (0xff2e)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3006,6 +3326,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 999 (0x03e7)
    diaB.x = 406 (0x0196)
    diaB.y = -487 (0xfe19)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3020,6 +3341,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    ring.x = 437 (0x01b5)
    ring.y = -13 (0xfff3)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3030,6 +3352,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 161 (0x00a1)
    alef.y = 924 (0x039c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3038,6 +3361,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 999 (0x03e7)
    diaB.x = 397 (0x018d)
    diaB.y = -397 (0xfe73)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3046,6 +3370,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1245 (0x04dd)
    diaB.x = 400 (0x0190)
    diaB.y = -210 (0xff2e)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3054,6 +3379,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 999 (0x03e7)
    diaB.x = 400 (0x0190)
    diaB.y = -500 (0xfe0c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3064,6 +3390,7 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -210 (0xff2e)
    alef.x = 161 (0x00a1)
    alef.y = 1188 (0x04a4)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3072,6 +3399,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1275 (0x04fb)
    diaB.x = 350 (0x015e)
    diaB.y = -210 (0xff2e)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3084,6 +3412,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 855 (0x0357)
    diaB.x = 300 (0x012c)
    diaB.y = -195 (0xff3d)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3092,6 +3421,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1070 (0x042e)
    diaB.x = 340 (0x0154)
    diaB.y = -195 (0xff3d)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3100,6 +3430,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 769 (0x0301)
    diaB.x = 200 (0x00c8)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3120,6 +3451,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 769 (0x0301)
    diaB.x = 200 (0x00c8)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3128,6 +3460,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1000 (0x03e8)
    diaB.x = 200 (0x00c8)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3144,6 +3477,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1128 (0x0468)
    diaB.x = 200 (0x00c8)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3152,6 +3486,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 769 (0x0301)
    diaB.x = 200 (0x00c8)
    diaB.y = -195 (0xff3d)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3168,6 +3503,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1132 (0x046c)
    diaB.x = 200 (0x00c8)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3176,6 +3512,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1000 (0x03e8)
    diaB.x = 200 (0x00c8)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3188,6 +3525,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 540 (0x021c)
    diaB.x = 210 (0x00d2)
    diaB.y = -180 (0xff4c)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3196,6 +3534,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 540 (0x021c)
    diaB.x = 244 (0x00f4)
    diaB.y = -649 (0xfd77)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3204,6 +3543,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 700 (0x02bc)
    diaB.x = 512 (0x0200)
    diaB.y = -547 (0xfddd)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -3212,6 +3552,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 790 (0x0316)
    diaB.x = 111 (0x006f)
    diaB.y = -188 (0xff44)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8045,14 +8386,17 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1365 (0x0555)
    diaB.x = 150 (0x0096)
    diaB.y = 885 (0x0375)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
 0x0386  (902)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
 0x0387  (903)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8061,6 +8405,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1425 (0x0591)
    diaA_.x = 120 (0x0078)
    diaA_.y = 1020 (0x03fc)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8069,12 +8414,14 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1455 (0x05af)
    diaA_.x = 180 (0x00b4)
    diaA_.y = 1005 (0x03ed)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x038a  (906)
    diaB.x = 165 (0x00a5)
    diaB.y = -975 (0xfc31)
+   directionality = 16 (0x0010)
    diaB_.x = 141 (0x008d)
    diaB_.y = -560 (0xfdd0)
    breakweight = 30 (0x001e)
@@ -8085,6 +8432,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1290 (0x050a)
    diaA_.x = 120 (0x0078)
    diaA_.y = 1020 (0x03fc)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8093,12 +8441,14 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1515 (0x05eb)
    diaA_.x = 150 (0x0096)
    diaA_.y = 1020 (0x03fc)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x038d  (909)
    diaB.x = 165 (0x00a5)
    diaB.y = -810 (0xfcd6)
+   directionality = 16 (0x0010)
    diaB_.x = 145 (0x0091)
    diaB_.y = -560 (0xfdd0)
    breakweight = 30 (0x001e)
@@ -8109,6 +8459,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1365 (0x0555)
    diaA_.x = 195 (0x00c3)
    diaA_.y = 960 (0x03c0)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8117,6 +8468,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1425 (0x0591)
    diaA_.x = 120 (0x0078)
    diaA_.y = 930 (0x03a2)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8125,6 +8477,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1305 (0x0519)
    diaA_.x = 120 (0x0078)
    diaA_.y = 1110 (0x0456)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8133,12 +8486,14 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1410 (0x0582)
    diaA_.x = 120 (0x0078)
    diaA_.y = 1020 (0x03fc)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x0392  (914)
    diaB.x = 135 (0x0087)
    diaB.y = -450 (0xfe3e)
+   directionality = 16 (0x0010)
    dia2B_.x = 105 (0x0069)
    dia2B_.y = -120 (0xff88)
    diaB_.x = 105 (0x0069)
@@ -8149,6 +8504,7 @@ GLYPH ATTRIBUTE VALUES
 0x0393  (915)
    diaB.x = 92 (0x005c)
    diaB.y = -591 (0xfdb1)
+   directionality = 16 (0x0010)
    diaB_.x = 92 (0x005c)
    diaB_.y = -18 (0xffee)
    breakweight = 30 (0x001e)
@@ -8159,6 +8515,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1450 (0x05aa)
    diaA_.x = 120 (0x0078)
    diaA_.y = 930 (0x03a2)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8167,6 +8524,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1290 (0x050a)
    diaA_.x = 160 (0x00a0)
    diaA_.y = 900 (0x0384)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8175,6 +8533,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1290 (0x050a)
    diaA_.x = 207 (0x00cf)
    diaA_.y = 969 (0x03c9)
+   directionality = 16 (0x0010)
    above_.x = 110 (0x006e)
    above_.y = 1018 (0x03fa)
    breakweight = 30 (0x001e)
@@ -8185,6 +8544,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1275 (0x04fb)
    diaA_.x = 203 (0x00cb)
    diaA_.y = 941 (0x03ad)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8193,12 +8553,14 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1271 (0x04f7)
    diaA_.x = 207 (0x00cf)
    diaA_.y = 949 (0x03b5)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x0399  (921)
    diaB.x = 164 (0x00a4)
    diaB.y = -211 (0xff2d)
+   directionality = 16 (0x0010)
    diaB_.x = 164 (0x00a4)
    diaB_.y = 203 (0x00cb)
    breakweight = 30 (0x001e)
@@ -8209,6 +8571,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1516 (0x05ec)
    diaA_.x = 150 (0x0096)
    diaA_.y = 1020 (0x03fc)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8217,6 +8580,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1319 (0x0527)
    diaA_.x = 105 (0x0069)
    diaA_.y = 945 (0x03b1)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8225,6 +8589,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1230 (0x04ce)
    diaA_.x = 180 (0x00b4)
    diaA_.y = 660 (0x0294)
+   directionality = 16 (0x0010)
    alef_.x = 180 (0x00b4)
    alef_.y = 630 (0x0276)
    breakweight = 30 (0x001e)
@@ -8241,54 +8606,63 @@ GLYPH ATTRIBUTE VALUES
 0x039e  (926)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x039f  (927)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a0  (928)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a1  (929)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a2  (930)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a3  (931)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a4  (932)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a5  (933)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a6  (934)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8297,16 +8671,19 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1270 (0x04f6)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a8  (936)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 1020 (0x03fc)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03a9  (937)
+   directionality = 16 (0x0010)
    dia2B_.x = 100 (0x0064)
    dia2B_.y = -150 (0xff6a)
    diaB_.y = -150 (0xff6a)
@@ -8316,22 +8693,26 @@ GLYPH ATTRIBUTE VALUES
 0x03aa  (938)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03ab  (939)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03ac  (940)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03ad  (941)
+   directionality = 16 (0x0010)
    dia2B_.y = -150 (0xff6a)
    diaB_.y = -200 (0xff38)
    breakweight = 30 (0x001e)
@@ -8340,16 +8721,19 @@ GLYPH ATTRIBUTE VALUES
 0x03ae  (942)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03af  (943)
    diaA_.x = -15 (0xfff1)
    diaA_.y = 915 (0x0393)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03b0  (944)
+   directionality = 16 (0x0010)
    dia2B_.y = -150 (0xff6a)
    diaB_.y = -280 (0xfee8)
    breakweight = 30 (0x001e)
@@ -8385,6 +8769,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1120 (0x0460)
    diaB.x = 291 (0x0123)
    diaB.y = -150 (0xff6a)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8393,6 +8778,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 660 (0x0294)
    diaB.x = 270 (0x010e)
    diaB.y = -195 (0xff3d)
+   directionality = 8
    breakweight = 30 (0x001e)
 
 
@@ -8405,6 +8791,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03b8  (952)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8427,6 +8814,7 @@ GLYPH ATTRIBUTE VALUES
 0x03bb  (955)
    diaA_.x = 540 (0x021c)
    diaA_.y = 998 (0x03e6)
+   directionality = 16 (0x0010)
    above_.x = 540 (0x021c)
    above_.y = 998 (0x03e6)
    breakweight = 30 (0x001e)
@@ -8435,6 +8823,7 @@ GLYPH ATTRIBUTE VALUES
 0x03bc  (956)
    diaA_.x = 514 (0x0202)
    diaA_.y = 996 (0x03e4)
+   directionality = 16 (0x0010)
    above_.x = 514 (0x0202)
    above_.y = 996 (0x03e4)
    breakweight = 30 (0x001e)
@@ -8443,6 +8832,7 @@ GLYPH ATTRIBUTE VALUES
 0x03bd  (957)
    diaA_.x = 526 (0x020e)
    diaA_.y = 978 (0x03d2)
+   directionality = 16 (0x0010)
    above_.x = 526 (0x020e)
    above_.y = 978 (0x03d2)
    breakweight = 30 (0x001e)
@@ -8451,6 +8841,7 @@ GLYPH ATTRIBUTE VALUES
 0x03be  (958)
    diaA_.x = 508 (0x01fc)
    diaA_.y = 986 (0x03da)
+   directionality = 16 (0x0010)
    above_.x = 508 (0x01fc)
    above_.y = 986 (0x03da)
    breakweight = 30 (0x001e)
@@ -8459,12 +8850,14 @@ GLYPH ATTRIBUTE VALUES
 0x03bf  (959)
    diaA_.x = 270 (0x010e)
    diaA_.y = 1035 (0x040b)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
 0x03c0  (960)
    diaA_.x = 301 (0x012d)
    diaA_.y = 1035 (0x040b)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8473,6 +8866,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 930 (0x03a2)
    diaB.x = 270 (0x010e)
    diaB.y = -195 (0xff3d)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8485,6 +8879,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03c3  (963)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8493,18 +8888,22 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 1185 (0x04a1)
    diaB.x = 300 (0x012c)
    diaB.y = -195 (0xff3d)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
 0x03c5  (965)
+   directionality = 6
    breakweight = 30 (0x001e)
 
 
 0x03c6  (966)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03c7  (967)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
@@ -8513,6 +8912,7 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 990 (0x03de)
    diaB.x = 420 (0x01a4)
    diaB.y = -120 (0xff88)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8521,11 +8921,13 @@ GLYPH ATTRIBUTE VALUES
    diaA.y = 790 (0x0316)
    diaB.x = 250 (0x00fa)
    diaB.y = -120 (0xff88)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
 0x03ca  (970)
    digit.x = 465 (0x01d1)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
@@ -8540,6 +8942,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03cd  (973)
+   directionality = 16 (0x0010)
    breakweight = 30 (0x001e)
 
 
@@ -8560,70 +8963,87 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03d1  (977)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
 0x03d2  (978)
+   directionality = 3
    breakweight = 30 (0x001e)
 
 
 0x03d3  (979)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03d4  (980)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03d5  (981)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03d6  (982)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03d7  (983)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03d8  (984)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03d9  (985)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03da  (986)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03db  (987)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03dc  (988)
+   directionality = 7
    breakweight = 30 (0x001e)
 
 
 0x03dd  (989)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x03de  (990)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x03df  (991)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x03e0  (992)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x03e1  (993)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
@@ -8633,10 +9053,12 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03e3  (995)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x03e4  (996)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
@@ -8646,6 +9068,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03e6  (998)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
@@ -8655,10 +9078,12 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x03e8  (1000)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 
 0x03e9  (1001)
+   directionality = 4
    breakweight = 30 (0x001e)
 
 

@@ -92,520 +92,488 @@ GLYPH ATTRIBUTE VALUES
 
 0x0004  (4)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0005  (5)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0006  (6)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 6
 
 
 0x0007  (7)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 6
 
 
 0x0008  (8)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 6
 
 
 0x0009  (9)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x000a  (10)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x000b  (11)
    breakweight = -15 (0xfff1)
-   directionality = 9
 
 
 0x000c  (12)
    breakweight = 10 (0x000a)
-   directionality = 9
    order = 1
 
 
 0x000d  (13)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x000e  (14)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 5
 
 
 0x000f  (15)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 8
 
 
 0x0010  (16)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 5
 
 
 0x0011  (17)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 8
 
 
 0x0012  (18)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 8
 
 
 0x0013  (19)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x0014  (20)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x0015  (21)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x0016  (22)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x0017  (23)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x0018  (24)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x0019  (25)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x001a  (26)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x001b  (27)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x001c  (28)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 4
 
 
 0x001d  (29)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 8
 
 
 0x001e  (30)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x001f  (31)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0020  (32)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0021  (33)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0022  (34)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0023  (35)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0024  (36)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0025  (37)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0026  (38)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0027  (39)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0028  (40)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0029  (41)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x002a  (42)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x002b  (43)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x002c  (44)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x002d  (45)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x002e  (46)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x002f  (47)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0030  (48)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0031  (49)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0032  (50)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0033  (51)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0034  (52)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0035  (53)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0036  (54)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0037  (55)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0038  (56)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0039  (57)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x003a  (58)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x003b  (59)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x003c  (60)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x003d  (61)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x003e  (62)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x003f  (63)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0040  (64)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0041  (65)
    breakweight = -30 (0xffe2)
-   directionality = 9
    UM.x = 226 (0x00e2)
    UM.y = 495 (0x01ef)
 
 
 0x0042  (66)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0043  (67)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0044  (68)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0045  (69)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0046  (70)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0047  (71)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0048  (72)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0049  (73)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x004a  (74)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x004b  (75)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x004c  (76)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x004d  (77)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x004e  (78)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x004f  (79)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0050  (80)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0051  (81)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0052  (82)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0053  (83)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0054  (84)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0055  (85)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0056  (86)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0057  (87)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0058  (88)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x0059  (89)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x005a  (90)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x005b  (91)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x005c  (92)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x005d  (93)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x005e  (94)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x005f  (95)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0060  (96)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0061  (97)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0062  (98)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0063  (99)
    breakweight = -15 (0xfff1)
-   directionality = 9
 
 
 0x0064  (100)
    breakweight = 10 (0x000a)
-   directionality = 9
 
 
 0x0065  (101)
    breakweight = -15 (0xfff1)
-   directionality = 9
 
 
 0x0066  (102)
    breakweight = 10 (0x000a)
-   directionality = 9
 
 
 0x0067  (103)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0068  (104)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x0069  (105)
    breakweight = -30 (0xffe2)
-   directionality = 9
 
 
 0x006a  (106)
    breakweight = -15 (0xfff1)
-   directionality = 9
    BSS.x = 318 (0x013e)
    BSS.y = -53 (0xffcb)
    LS.x = 318 (0x013e)
@@ -618,7 +586,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x006b  (107)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 508 (0x01fc)
    BDS.y = -53 (0xffcb)
    BSS.x = 714 (0x02ca)
@@ -663,7 +631,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x006f  (111)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 283 (0x011b)
    BSS.y = -53 (0xffcb)
    LS.x = 283 (0x011b)
@@ -688,7 +656,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0071  (113)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -713,7 +681,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0073  (115)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 495 (0x01ef)
    BDS.y = -53 (0xffcb)
    BSS.x = 712 (0x02c8)
@@ -740,7 +708,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0075  (117)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -780,7 +748,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x007a  (122)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 288 (0x0120)
    BSS.y = -53 (0xffcb)
    LS.x = 288 (0x0120)
@@ -805,7 +773,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x007c  (124)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 495 (0x01ef)
    BDS.y = -53 (0xffcb)
    BSS.x = 702 (0x02be)
@@ -832,7 +800,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x007e  (126)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 286 (0x011e)
    BSS.y = -53 (0xffcb)
    LS.x = 286 (0x011e)
@@ -857,7 +825,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0080  (128)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 810 (0x032a)
    BSS.y = -53 (0xffcb)
    LS.x = 810 (0x032a)
@@ -882,7 +850,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0082  (130)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 450 (0x01c2)
    BSS.y = -53 (0xffcb)
    LS.x = 276 (0x0114)
@@ -907,7 +875,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0084  (132)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 1063 (0x0427)
    BSS.y = -53 (0xffcb)
    LS.x = 702 (0x02be)
@@ -932,7 +900,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0086  (134)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 657 (0x0291)
    BSS.y = -53 (0xffcb)
    LS.x = 657 (0x0291)
@@ -994,7 +962,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x008b  (139)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 657 (0x0291)
    BSS.y = -53 (0xffcb)
    LS.x = 657 (0x0291)
@@ -1019,7 +987,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x008d  (141)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 30 (0x001e)
    BDS.y = -173 (0xff53)
    BSS.x = 168 (0x00a8)
@@ -1072,7 +1040,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0091  (145)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 285 (0x011d)
    BSS.y = -53 (0xffcb)
    LS.x = 285 (0x011d)
@@ -1084,7 +1052,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0092  (146)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 516 (0x0204)
    BDS.y = -53 (0xffcb)
    BSS.x = 759 (0x02f7)
@@ -1137,7 +1105,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0096  (150)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 501 (0x01f5)
    BDS.y = -53 (0xffcb)
    BSS.x = 709 (0x02c5)
@@ -1177,7 +1145,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0099  (153)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 495 (0x01ef)
    BDS.y = -53 (0xffcb)
    BSS.x = 702 (0x02be)
@@ -1204,7 +1172,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x009b  (155)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 267 (0x010b)
    BSS.y = -53 (0xffcb)
    LS.x = 267 (0x010b)
@@ -1229,7 +1197,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x009d  (157)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 288 (0x0120)
    BSS.y = -53 (0xffcb)
    LS.x = 288 (0x0120)
@@ -1254,7 +1222,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x009f  (159)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 474 (0x01da)
    BSS.y = -53 (0xffcb)
    LS.x = 474 (0x01da)
@@ -1311,7 +1279,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00a4  (164)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -1336,7 +1304,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00a6  (166)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -1359,7 +1327,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00a8  (168)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -1384,7 +1352,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00aa  (170)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 492 (0x01ec)
    BDS.y = -53 (0xffcb)
    BSS.x = 699 (0x02bb)
@@ -1411,7 +1379,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00ac  (172)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 294 (0x0126)
    BSS.y = -53 (0xffcb)
    LS.x = 294 (0x0126)
@@ -1436,7 +1404,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00ae  (174)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 504 (0x01f8)
    BDS.y = -53 (0xffcb)
    BSS.x = 706 (0x02c2)
@@ -1450,7 +1418,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00af  (175)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 250 (0x00fa)
    BSS.y = -53 (0xffcb)
    LS.x = 250 (0x00fa)
@@ -1511,7 +1479,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00b3  (179)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 87 (0x0057)
    BDS.y = -53 (0xffcb)
    BSS.x = 247 (0x00f7)
@@ -1559,7 +1527,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00b6  (182)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 841 (0x0349)
    BSS.y = -53 (0xffcb)
    LS.x = 841 (0x0349)
@@ -1712,7 +1680,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00c2  (194)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 480 (0x01e0)
    BDS.y = -53 (0xffcb)
    BSS.x = 679 (0x02a7)
@@ -1739,7 +1707,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00c4  (196)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 286 (0x011e)
    BSS.y = -53 (0xffcb)
    LS.x = 286 (0x011e)
@@ -1751,7 +1719,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00c5  (197)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 144 (0x0090)
    BSS.y = -53 (0xffcb)
    LS.x = 144 (0x0090)
@@ -1785,7 +1753,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00c8  (200)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 492 (0x01ec)
    BDS.y = -53 (0xffcb)
    BSS.x = 702 (0x02be)
@@ -1821,7 +1789,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00cb  (203)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 702 (0x02be)
    BDS.y = -53 (0xffcb)
    BSS.x = 1123 (0x0463)
@@ -1835,7 +1803,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00cc  (204)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 504 (0x01f8)
    BDS.y = -53 (0xffcb)
    BSS.x = 714 (0x02ca)
@@ -1849,7 +1817,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00cd  (205)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 144 (0x0090)
    BSS.y = -53 (0xffcb)
    LS.x = 144 (0x0090)
@@ -1904,7 +1872,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d1  (209)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 654 (0x028e)
    BSS.y = -53 (0xffcb)
    LS.x = 654 (0x028e)
@@ -1916,7 +1884,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d2  (210)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 465 (0x01d1)
    BDS.y = -53 (0xffcb)
    BSS.x = 648 (0x0288)
@@ -1943,7 +1911,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d4  (212)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 993 (0x03e1)
    BSS.y = -53 (0xffcb)
    LS.x = 993 (0x03e1)
@@ -1956,12 +1924,12 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d5  (213)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x00d6  (214)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 276 (0x0114)
    LS.x = 276 (0x0114)
    LS.y = -53 (0xffcb)
@@ -1972,7 +1940,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d7  (215)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 276 (0x0114)
    LS.x = 276 (0x0114)
    LS.y = -53 (0xffcb)
@@ -1981,7 +1949,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d8  (216)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -1993,7 +1961,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00d9  (217)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -2005,7 +1973,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00da  (218)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BDS.x = 664 (0x0298)
    BDS.y = -53 (0xffcb)
    BSS.x = 874 (0x036a)
@@ -2022,12 +1990,12 @@ GLYPH ATTRIBUTE VALUES
 
 0x00db  (219)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
 
 
 0x00dc  (220)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 133 (0x0085)
    BSS.y = -53 (0xffcb)
    LS.x = 133 (0x0085)
@@ -2039,7 +2007,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00dd  (221)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 96 (0x0060)
    BSS.y = -53 (0xffcb)
    LS.x = 96 (0x0060)
@@ -2060,7 +2028,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00df  (223)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 16 (0x0010)
    order = 8
    UM.x = -179 (0xff4d)
    UM.y = 495 (0x01ef)
@@ -2075,7 +2043,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e1  (225)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 16 (0x0010)
    order = 8
    UM.x = -182 (0xff4a)
    UM.y = 495 (0x01ef)
@@ -2083,7 +2051,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e2  (226)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 16 (0x0010)
    BSS.x = 235 (0x00eb)
    BSS.y = -53 (0xffcb)
    LS.x = 235 (0x00eb)
@@ -2109,7 +2077,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e4  (228)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 16 (0x0010)
    BSS.x = 384 (0x0180)
    BSS.y = -53 (0xffcb)
    LS.x = 384 (0x0180)
@@ -2135,7 +2103,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e6  (230)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -2147,7 +2115,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e7  (231)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 16 (0x0010)
    order = 8
    UM.x = -192 (0xff40)
    UM.y = 504 (0x01f8)
@@ -2155,7 +2123,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e8  (232)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 1
    order = 8
    UM.x = -179 (0xff4d)
    UM.y = 495 (0x01ef)
@@ -2163,7 +2131,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00e9  (233)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 1
    order = 8
    UM.x = -138 (0xff76)
    UM.y = 532 (0x0214)
@@ -2171,7 +2139,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00ea  (234)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 16 (0x0010)
    order = 10 (0x000a)
    UM.x = -74 (0xffb6)
    UM.y = 495 (0x01ef)
@@ -2179,7 +2147,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00eb  (235)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 16 (0x0010)
    order = 13 (0x000d)
    LM.x = -74 (0xffb6)
    LM.y = -53 (0xffcb)
@@ -2187,13 +2155,13 @@ GLYPH ATTRIBUTE VALUES
 
 0x00ec  (236)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    order = 14 (0x000e)
 
 
 0x00ed  (237)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 1
    order = 12 (0x000c)
    UM.x = -231 (0xff19)
    UM.y = 477 (0x01dd)
@@ -2201,7 +2169,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00ee  (238)
    breakweight = -50 (0xffce)
-   directionality = 9
+   directionality = 16 (0x0010)
    BSS.x = 144 (0x0090)
    BSS.y = -53 (0xffcb)
    LS.x = 144 (0x0090)
@@ -2215,7 +2183,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00ef  (239)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -2227,7 +2195,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f0  (240)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 418 (0x01a2)
    BSS.y = -80 (0xffb0)
    LS.x = 418 (0x01a2)
@@ -2239,7 +2207,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f1  (241)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 252 (0x00fc)
    BSS.y = -53 (0xffcb)
    LS.x = 252 (0x00fc)
@@ -2251,7 +2219,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f2  (242)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 279 (0x0117)
    BSS.y = -53 (0xffcb)
    LS.x = 279 (0x0117)
@@ -2263,7 +2231,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f3  (243)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 297 (0x0129)
    BSS.y = -53 (0xffcb)
    LS.x = 297 (0x0129)
@@ -2275,7 +2243,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f4  (244)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 283 (0x011b)
    BSS.y = -53 (0xffcb)
    LS.x = 283 (0x011b)
@@ -2287,7 +2255,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f5  (245)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -2299,7 +2267,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f6  (246)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 286 (0x011e)
    BSS.y = -53 (0xffcb)
    LS.x = 286 (0x011e)
@@ -2311,13 +2279,13 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f7  (247)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    order = 1
 
 
 0x00f8  (248)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -2329,17 +2297,17 @@ GLYPH ATTRIBUTE VALUES
 
 0x00f9  (249)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 1
 
 
 0x00fa  (250)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 1
 
 
 0x00fb  (251)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 1
    BSS.x = 624 (0x0270)
    BSS.y = -53 (0xffcb)
    LS.x = 624 (0x0270)
@@ -2348,22 +2316,22 @@ GLYPH ATTRIBUTE VALUES
 
 0x00fc  (252)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 1
 
 
 0x00fd  (253)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 1
 
 
 0x00fe  (254)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 1
 
 
 0x00ff  (255)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 292 (0x0124)
    BSS.y = -53 (0xffcb)
    LS.x = 292 (0x0124)
@@ -2388,7 +2356,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0101  (257)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 286 (0x011e)
    BSS.y = -53 (0xffcb)
    LS.x = 286 (0x011e)
@@ -2415,7 +2383,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0103  (259)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 286 (0x011e)
    BSS.y = -53 (0xffcb)
    LS.x = 286 (0x011e)
@@ -2440,7 +2408,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0105  (261)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BSS.x = 294 (0x0126)
    BSS.y = -53 (0xffcb)
    LS.x = 294 (0x0126)
@@ -2452,7 +2420,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0106  (262)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 144 (0x0090)
    BSS.y = -53 (0xffcb)
    LS.x = 144 (0x0090)
@@ -2466,7 +2434,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0107  (263)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 144 (0x0090)
    BSS.y = -53 (0xffcb)
    LS.x = 144 (0x0090)
@@ -2480,7 +2448,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0108  (264)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    order = 2
    LM.x = -180 (0xff4c)
    LM.y = -63 (0xffc1)
@@ -2488,7 +2456,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x0109  (265)
    breakweight = -15 (0xfff1)
-   directionality = 9
+   directionality = 1
    BDS.x = 87 (0x0057)
    BDS.y = -53 (0xffcb)
    BSS.x = 247 (0x00f7)
@@ -2504,7 +2472,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x010a  (266)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 192 (0x00c0)
    BSS.y = -53 (0xffcb)
    LS.x = 192 (0x00c0)
@@ -2516,7 +2484,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x010b  (267)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 276 (0x0114)
    BSS.y = -53 (0xffcb)
    LS.x = 276 (0x0114)
@@ -2528,7 +2496,7 @@ GLYPH ATTRIBUTE VALUES
 
 0x010c  (268)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 1
    BSS.x = 192 (0x00c0)
    BSS.y = -53 (0xffcb)
    LS.x = 192 (0x00c0)
@@ -2540,22 +2508,22 @@ GLYPH ATTRIBUTE VALUES
 
 0x010d  (269)
    breakweight = 10 (0x000a)
-   directionality = 9
+   directionality = 10 (0x000a)
 
 
 0x010e  (270)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 10 (0x000a)
 
 
 0x010f  (271)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 10 (0x000a)
 
 
 0x0110  (272)
    breakweight = -30 (0xffe2)
-   directionality = 9
+   directionality = 10 (0x000a)
 
 
 0x0111  (273)

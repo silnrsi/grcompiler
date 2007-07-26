@@ -9,8 +9,7 @@ Create separate control file: no
 
 *******************************************************
 
-warning(4509): Unable to initialize breakweight glyph attribute from Unicode char props database
-warning(4509): Unable to initialize directionality glyph attribute from Unicode char props database
+warning(4510): Default Unicode bidi char type for 0x0009 = S, which is not handled; char will be treated as neutral (ON)
 SchMain.gdl(291) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(291) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(291) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
@@ -135,4 +134,4 @@ SchMain.gdl(470) : warning(3521): Vertical overlap between glyphs in items 5 and
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 123 warnings
+Compilation succeeded - 0 errors, 122 warnings
