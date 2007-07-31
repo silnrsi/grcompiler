@@ -239,7 +239,7 @@ public:
 	virtual void CheckCompBox(GdlObject * pritset,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymCompRef);
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-		Vector<GdlExpression *> & vpexpExtra);
+		std::vector<GdlExpression *> & vpexpExtra);
 
 	static std::string GlyphIDString(utf16 wGlyphID)
 	{

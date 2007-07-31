@@ -112,11 +112,11 @@ void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 
 	//	Get a list of all the glyph classes that need to be included in the FSM for this
 	//	pass.
-	Vector<GdlGlyphClassDefn *> * pvpglfcThisPass = pcman->FsmClassesForPass(m_nGlobalID);
+	std::vector<GdlGlyphClassDefn *> * pvpglfcThisPass = pcman->FsmClassesForPass(m_nGlobalID);
 
 	//	For all the glyphs in the classes, record the fact that the glyph is a member
 	//	of the class.
-	for (int i = 0; i < pvpglfcThisPass->Size(); i++)
+	for (size_t i = 0; i < pvpglfcThisPass->size(); i++)
 		(*pvpglfcThisPass)[i]->RecordInclusionInClass(this);
 
 //	SortFsmInclusions(); // not needed since we are working with sets
@@ -395,7 +395,7 @@ void GdlPass::InitializeFsmArrays()
 	Return a list of all the classes that need to be included in the FSM for
 	the given pass.
 ----------------------------------------------------------------------------------------------*/
-Vector<GdlGlyphClassDefn *> * GrcManager::FsmClassesForPass(int nPassID)
+std::vector<GdlGlyphClassDefn *> * GrcManager::FsmClassesForPass(int nPassID)
 {
 	return m_prgvpglfcFsmClasses + nPassID;
 }

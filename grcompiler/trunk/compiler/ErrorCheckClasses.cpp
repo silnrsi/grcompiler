@@ -148,8 +148,8 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 		}
 		else
 		{
-			m_vnUnicodeForPseudo.Push(nUnicode);
-			m_vwPseudoForUnicode.Push(pglfPseudo->AssignedPseudo());
+			m_vnUnicodeForPseudo.push_back(nUnicode);
+			m_vwPseudoForUnicode.push_back(pglfPseudo->AssignedPseudo());
 			setnUnicode.insert(nUnicode);
 			m_nMaxPseudoUnicode = max(m_nMaxPseudoUnicode, nUnicode);
 		}
@@ -233,8 +233,8 @@ void GrcManager::CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 
 	pglfc->AddMember(pglf);
 	m_prndr->AddGlyphClass(pglfc);
 	
-	m_vnUnicodeForPseudo.Push(nUnicode);
-	m_vwPseudoForUnicode.Push(wAssigned);
+	m_vnUnicodeForPseudo.push_back(nUnicode);
+	m_vwPseudoForUnicode.push_back(wAssigned);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -242,7 +242,7 @@ void GrcManager::CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::PseudoForUnicode(int nUnicode)
 {
-	for (int iw = 0; iw < m_vnUnicodeForPseudo.Size(); iw++)
+	for (size_t iw = 0; iw < m_vnUnicodeForPseudo.size(); iw++)
 	{
 		if (m_vnUnicodeForPseudo[iw] == nUnicode)
 			return m_vwPseudoForUnicode[iw];
@@ -308,13 +308,13 @@ int GdlGlyphDefn::ActualForPseudo(utf16 wPseudo)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::SortPseudoMappings()
 {
-	Assert(m_vnUnicodeForPseudo.Size() == m_vwPseudoForUnicode.Size());
+	Assert(m_vnUnicodeForPseudo.size() == m_vwPseudoForUnicode.size());
 
-	for (int i1 = 0; i1 < m_vnUnicodeForPseudo.Size() - 1; i1++)
+	for (int i1 = 0; i1 < signed(m_vnUnicodeForPseudo.size()) - 1; i1++)
 	{
 		unsigned int nTmp = m_vnUnicodeForPseudo[i1];
 
-		for (int i2 = i1 + 1; i2 < m_vnUnicodeForPseudo.Size(); i2++)
+		for (size_t i2 = i1 + 1; i2 < m_vnUnicodeForPseudo.size(); i2++)
 		{
 			if (m_vnUnicodeForPseudo[i2] < nTmp)
 			{
@@ -834,7 +834,7 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 {
 	//	Assign the first batch of IDs to component bases (ie, component.X).
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 1, -1, -1);
-	m_cpsymComponents = m_vpsymGlyphAttrs.Size();
+	m_cpsymComponents = m_vpsymGlyphAttrs.size();
 
 	//	Assign the next batch to component box fields. (ie, component.X.top/bottom/left/right).
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 2, m_cpsymComponents, -1);
@@ -845,11 +845,11 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 	//	Finally, assign IDs to everything else.
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 4, -1, -1);
 
-	if (m_vpsymGlyphAttrs.Size() >= kMaxGlyphAttrs)
+	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
 		char rgch1[20];
 		char rgch2[20];
-		itoa(m_vpsymGlyphAttrs.Size(), rgch1, 10);
+		itoa(m_vpsymGlyphAttrs.size(), rgch1, 10);
 		itoa(kMaxGlyphAttrs - 1, rgch2, 10);
 		g_errorList.AddError(4123, NULL,
 			"Number of glyph attributes (",
@@ -874,7 +874,7 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 		cJLevels			- only used on pass 3
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
-	Vector<Symbol> & vpsymGlyphAttrIDs, int nPass, int cComponents, int cJLevels)
+	std::vector<Symbol> & vpsymGlyphAttrIDs, int nPass, int cComponents, int cJLevels)
 {
 	if (nPass == 3)
 	{
@@ -1064,25 +1064,25 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 	Add the generic symbol into the map that indicates internal glyph attribute IDs, if
 	it is not already there. Return the internal ID.
 ----------------------------------------------------------------------------------------------*/
-int GrcSymbolTable::AddGlyphAttrSymbolInMap(Vector<Symbol> & vpsymGlyphAttrIDs,
+int GrcSymbolTable::AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttrIDs,
 	Symbol psymGeneric)
 {
-	for (int ipsym = 0; ipsym < vpsymGlyphAttrIDs.Size(); ipsym++)
+	for (size_t ipsym = 0; ipsym < vpsymGlyphAttrIDs.size(); ipsym++)
 	{
 		if (vpsymGlyphAttrIDs[ipsym] == psymGeneric)
 			return ipsym;
 	}
 	
-	psymGeneric->SetInternalID(vpsymGlyphAttrIDs.Size());
-	vpsymGlyphAttrIDs.Push(psymGeneric);
+	psymGeneric->SetInternalID(vpsymGlyphAttrIDs.size());
+	vpsymGlyphAttrIDs.push_back(psymGeneric);
 	return psymGeneric->InternalID();
 }
 
 
-int GrcSymbolTable::AddGlyphAttrSymbolInMap(Vector<Symbol> & vpsymGlyphAttrIDs,
+int GrcSymbolTable::AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttrIDs,
 	Symbol psymGeneric, int ipsymToAssign)
 {
-	if (vpsymGlyphAttrIDs.Size() > ipsymToAssign)
+	if (signed(vpsymGlyphAttrIDs.size()) > ipsymToAssign)
 	{
 		Assert(vpsymGlyphAttrIDs[ipsymToAssign] == NULL ||
 			vpsymGlyphAttrIDs[ipsymToAssign] == psymGeneric);
@@ -1093,12 +1093,12 @@ int GrcSymbolTable::AddGlyphAttrSymbolInMap(Vector<Symbol> & vpsymGlyphAttrIDs,
 	else
 	{
 		//	Add blank slots.
-		while (vpsymGlyphAttrIDs.Size() < ipsymToAssign)
-			vpsymGlyphAttrIDs.Push(NULL);
+		while (signed(vpsymGlyphAttrIDs.size()) < ipsymToAssign)
+			vpsymGlyphAttrIDs.push_back(NULL);
 
 		Assert(ipsymToAssign == vpsymGlyphAttrIDs.Size());
 		psymGeneric->SetInternalID(ipsymToAssign);
-		vpsymGlyphAttrIDs.Push(psymGeneric);
+		vpsymGlyphAttrIDs.push_back(psymGeneric);
 		return ipsymToAssign;
 	}
 }
@@ -1114,8 +1114,8 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 {
 	Assert(m_pgax == NULL);
 
-	int cGlyphAttrs = m_vpsymGlyphAttrs.Size();
-	int cStdStyles = max(m_vpsymStyles.Size(), 1);
+	size_t cGlyphAttrs = m_vpsymGlyphAttrs.size();
+	size_t cStdStyles = max(signed(m_vpsymStyles.Size()), 1);
 	Assert(cStdStyles == 1);	// for now
 	m_pgax = new GrcGlyphAttrMatrix(m_cwGlyphIDs, cGlyphAttrs, cStdStyles);
 
@@ -1258,8 +1258,8 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 	GrcGlyphAttrMatrix * pgax, int cwGlyphs,
 	Vector<Symbol> & vpsymSysDefined, Vector<int> & vnSysDefValues,
-	Vector<GdlExpression *> & vpexpExtra,
-	Vector<Symbol> & vpsymGlyphAttrs)
+	std::vector<GdlExpression *> & vpexpExtra,
+	std::vector<Symbol> & vpsymGlyphAttrs)
 {
 	bool fIcuAvailable = false;
 	try {
@@ -1379,7 +1379,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				else if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 				{
 					GdlExpression * pexpDefault = new GdlNumericExpression(nUnicodeStd);
-					vpexpExtra.Push(pexpDefault);
+					vpexpExtra.push_back(pexpDefault);
 					pgax->Set(wGlyphID, nGlyphAttrID,
 						pexpDefault, 0, 0, false, false, GrpLineAndFile());
 				}
@@ -1395,7 +1395,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 			if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 			{
 				GdlExpression * pexpDefault = new GdlNumericExpression(nDefaultValue);
-				vpexpExtra.Push(pexpDefault);
+				vpexpExtra.push_back(pexpDefault);
 				pgax->Set(wGlyphID, nGlyphAttrID,
 					pexpDefault, 0, 0, false, false, GrpLineAndFile());
 			}
@@ -1493,7 +1493,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 
 	for (utf16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
-		for (int iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.Size(); iAttrID++)
+		for (size_t iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
 		{
 			for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
 			{
@@ -1524,7 +1524,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 				Assert(pexpNew);
 				if (pexpNew && pexpNew != pexp)
 				{
-					m_vpexpModified.Push(pexpNew);	// so we can delete it later
+					m_vpexpModified.push_back(pexpNew);	// so we can delete it later
 					m_pgax->Set(wGlyphID, iAttrID,
 						pexpNew, nPR, munitPR, fOverride, false, lnf);
 				}
@@ -1576,7 +1576,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 						pexpNew = new GdlNumericExpression(nGPointValue);
 						pexpNew->CopyLineAndFile(*pexp);
 
-						m_vpexpModified.Push(pexpNew);	// so we can delete it later
+						m_vpexpModified.push_back(pexpNew);	// so we can delete it later
 						m_pgax->Set(wGlyphID, psymGPoint->InternalID(),
 							pexpNew, nPR, munitPR, fOverride, false, lnf);
 					}
@@ -1613,7 +1613,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 	if (wActual == 0)
 		wActual = wGlyphID;
 
-	for (int iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.Size(); iAttrID++)
+	for (size_t iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
 	{
 		for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
 		{
@@ -1673,7 +1673,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 					GdlExpression * pexpGpoint = new GdlNumericExpression(nGPointValue);
 					pexpGpoint->CopyLineAndFile(*pexpX);
 
-					m_vpexpModified.Push(pexpGpoint);	// so we can delete it later
+					m_vpexpModified.push_back(pexpGpoint);	// so we can delete it later
 					m_pgax->Set(wGlyphID, psymGPoint->InternalID(),
 						pexpGpoint, 0, munitPRx, fOverride, false, lnf);
 
@@ -1728,8 +1728,8 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 					GdlExpression * pexpY = new GdlNumericExpression(mY, kmunitUnscaled);
 					pexpY->CopyLineAndFile(*pexpGpoint);
 
-					m_vpexpModified.Push(pexpX);	// so we can delete them later
-					m_vpexpModified.Push(pexpY);
+					m_vpexpModified.push_back(pexpX);	// so we can delete them later
+					m_vpexpModified.push_back(pexpY);
 
 					if (m_pgax->Defined(wGlyphID, nIDX) && m_pgax->Defined(wGlyphID, nIDY))
 					{
@@ -2645,7 +2645,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 
 	for (utf16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
-		for (int iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.Size(); iAttrID++)
+		for (size_t iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
 		{
 			for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
 			{
@@ -2670,7 +2670,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 
 					if (pexpNew && pexpNew != pexp)
 					{
-						m_vpexpModified.Push(pexpNew);	// so we can delete it later
+						m_vpexpModified.push_back(pexpNew);	// so we can delete it later
 						m_pgax->Set(wGlyphID, iAttrID,
 							pexpNew, nPR, munitPR, fOverride, false, lnf);
 						pexp = pexpNew;
@@ -2786,7 +2786,7 @@ bool GrcManager::StorePseudoToActualAsGlyphAttr()
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRenderer::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-	Vector<GdlExpression *> & vpexpExtra)
+	std::vector<GdlExpression *> & vpexpExtra)
 {
 	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
 		m_vpglfc[iglfc]->StorePseudoToActualAsGlyphAttr(pgax, nAttrID, vpexpExtra);
@@ -2794,7 +2794,7 @@ void GdlRenderer::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int 
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-	Vector<GdlExpression *> & vpexpExtra)
+	std::vector<GdlExpression *> & vpexpExtra)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 		m_vpglfdMembers[iglfd]->StorePseudoToActualAsGlyphAttr(pgax, nAttrID,vpexpExtra);
@@ -2802,13 +2802,13 @@ void GdlGlyphClassDefn::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-	Vector<GdlExpression *> & vpexpExtra)
+	std::vector<GdlExpression *> & vpexpExtra)
 {
 	if (m_glft == kglftPseudo && m_pglfOutput && m_pglfOutput->m_vwGlyphIDs.Size() > 0)
 	{
 		utf16 wOutput = m_pglfOutput->m_vwGlyphIDs[0];
 		GdlExpression * pexp = new GdlNumericExpression(wOutput);
-		vpexpExtra.Push(pexp);
+		vpexpExtra.push_back(pexp);
 		pgax->Set(m_wPseudo, nAttrID, pexp, 0, 0, true, false, GrpLineAndFile(0, 0, ""));
 	}
 }

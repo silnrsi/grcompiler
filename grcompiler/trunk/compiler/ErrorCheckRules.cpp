@@ -42,7 +42,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 		return false;
 
 	//	In preparation for the next step, create the fsm class vectors for each pass.
-	m_prgvpglfcFsmClasses = new Vector<GdlGlyphClassDefn *>[cpassValid];
+	m_prgvpglfcFsmClasses = new std::vector<GdlGlyphClassDefn *>[cpassValid];
 
 	if (!AssignClassInternalIDs())
 		return false;
@@ -344,7 +344,7 @@ bool GrcManager::AssignClassInternalIDs()
 		if ((*itset)->ReplcmtOutputClass())
 		{
 			(*itset)->SetReplcmtOutputID(nSubID);
-			m_vpglfcReplcmtClasses.Push(*itset);
+			m_vpglfcReplcmtClasses.push_back(*itset);
 			nSubID++;
 		}
 	}
@@ -363,7 +363,7 @@ bool GrcManager::AssignClassInternalIDs()
 			else
 			{
 				pglfc->SetReplcmtInputID(nSubID);
-				m_vpglfcReplcmtClasses.Push(*itset);
+				m_vpglfcReplcmtClasses.push_back(*itset);
 				nSubID++;
 			}
 		}
@@ -383,7 +383,7 @@ bool GrcManager::AssignClassInternalIDs()
 		if (pglfc->ReplcmtInputClass() && pglfc->GlyphIDCount() > 1)
 		{
 			pglfc->SetReplcmtInputID(nSubID);
-			m_vpglfcReplcmtClasses.Push(*itset);
+			m_vpglfcReplcmtClasses.push_back(*itset);
 			nSubID++;
 		}
 	}
@@ -489,15 +489,15 @@ void GdlRuleItem::AssignFsmInternalID(GrcManager * pcman, int nPassID)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::AddToFsmClasses(GdlGlyphClassDefn * pglfc, int nPassID)
 {
-	Vector<GdlGlyphClassDefn *> * pvpglfcThisPass = m_prgvpglfcFsmClasses + nPassID;
+	std::vector<GdlGlyphClassDefn *> * pvpglfcThisPass = m_prgvpglfcFsmClasses + nPassID;
 	if (pglfc->IsFsmClass(nPassID))
 	{
 		//	Already assigned an ID for this pass.
 		Assert((*pvpglfcThisPass)[pglfc->FsmID(nPassID)] == pglfc);
 		return;
 	}
-	pglfc->MarkFsmClass(nPassID, pvpglfcThisPass->Size());
-	pvpglfcThisPass->Push(pglfc);
+	pglfc->MarkFsmClass(nPassID, pvpglfcThisPass->size());
+	pvpglfcThisPass->push_back(pglfc);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2099,7 +2099,7 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 		*pfxdNeeded = max(0x00020000, *pfxdNeeded);
 	}
 
-	if (m_vpglfcReplcmtClasses.Size() >= kMaxReplcmtClassesV1_2)
+	if (m_vpglfcReplcmtClasses.size() >= kMaxReplcmtClassesV1_2)
 	{
 		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
 	}

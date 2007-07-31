@@ -1635,12 +1635,12 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 		SplitLargeStretchValue(wGlyphID, nAttrIdJStr);
 		
 		int nAttrIDMin = 0;
-		while (nAttrIDMin < m_vpsymGlyphAttrs.Size())
+		while (nAttrIDMin < signed(m_vpsymGlyphAttrs.size()))
 		{
 			int nValue;
 
 			//	Skip undefined and zero-valued attributes.
-			while (nAttrIDMin < m_vpsymGlyphAttrs.Size() &&
+			while (nAttrIDMin < signed(m_vpsymGlyphAttrs.size()) &&
 				FinalAttrValue(wGlyphID, nAttrIDMin) == 0)
 			{
 				nAttrIDMin++;
@@ -1648,7 +1648,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 
 			int nAttrIDLim = nAttrIDMin;
 			Vector<int> vnValues;
-			while (nAttrIDLim < m_vpsymGlyphAttrs.Size() &&
+			while (nAttrIDLim < signed(m_vpsymGlyphAttrs.size()) &&
 				(nAttrIDLim - nAttrIDMin + 1) < 256 &&
 				((nValue = FinalAttrValue(wGlyphID, nAttrIDLim)) != 0))
 			{
@@ -1698,7 +1698,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	pbstrm->WriteShort(wFlags);
 
 	//	number of attributes
-	pbstrm->WriteShort(m_vpsymGlyphAttrs.Size());
+	pbstrm->WriteShort(m_vpsymGlyphAttrs.size());
 
 	//	offsets
 	for (wGlyphID = 0; wGlyphID <= m_cwGlyphIDs; wGlyphID++)
@@ -1798,7 +1798,7 @@ void GrcManager::ConvertBwForVersion(int wGlyphID, int nAttrIdBw)
 			&pexpOld, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
 
 		GdlExpression * pexpNew = new GdlNumericExpression(lbOut);
-		m_vpexpModified.Push(pexpNew);
+		m_vpexpModified.push_back(pexpNew);
 		pexpNew->CopyLineAndFile(*pexpOld);
 
 		m_pgax->Set(wGlyphID, nAttrIdBw,
@@ -1878,13 +1878,13 @@ void GrcManager::SplitLargeStretchValue(int wGlyphID, int nAttrIdJStr)
 				&pexpOld, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
 
 			GdlExpression * pexpNew = new GdlNumericExpression(nStretchLW);
-			m_vpexpModified.Push(pexpNew);
+			m_vpexpModified.push_back(pexpNew);
 			pexpNew->CopyLineAndFile(*pexpOld);
 			m_pgax->Set(wGlyphID, nAttrIdJStr,
 				pexpNew, nPR, munitPR, true, false, lnf);
 
 			pexpNew = new GdlNumericExpression(nStretchHW);
-			m_vpexpModified.Push(pexpNew);
+			m_vpexpModified.push_back(pexpNew);
 			pexpNew->CopyLineAndFile(*pexpOld);
 			m_pgax->Set(wGlyphID, nAttrIdJStrHW,
 				pexpNew, nPR, munitPR, true, false, lnf);
@@ -2084,7 +2084,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	//	number of pseudo mappings and search constants
 	long nPseudoOffset = pbstrm->Position() - lTableStartSub;
-	int n = m_vwPseudoForUnicode.Size();
+	int n = signed(m_vwPseudoForUnicode.size());
 	int nPowerOf2, nLog;
 	BinarySearchConstants(n, &nPowerOf2, &nLog);
 	pbstrm->WriteShort(n);
@@ -2093,7 +2093,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteShort(n - nPowerOf2);
 
 	//	array of unicode-to-pseudo mappings
-	for (i = 0; i < m_vwPseudoForUnicode.Size(); i++)
+	for (i = 0; i < signed(m_vwPseudoForUnicode.size()); i++)
 	{
 		if (fxdVersion < 0x00020000)
 			pbstrm->WriteShort(m_vnUnicodeForPseudo[i]);
@@ -2144,13 +2144,13 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		pbstrm			- output stream
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::OutputReplacementClasses(
-	Vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear,
+	std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear,
 	GrcBinaryStream * pbstrm)
 {
 	long lClassMapStart = pbstrm->Position();
 
 	//	number of classes
-	pbstrm->WriteShort(vpglfcReplcmt.Size());
+	pbstrm->WriteShort(vpglfcReplcmt.size());
 	//	number that can be in linear format
 	pbstrm->WriteShort(cpglfcLinear);
 
@@ -2158,7 +2158,7 @@ void GdlRenderer::OutputReplacementClasses(
 	Vector<int> vnClassOffsets;
 	long lOffsetPos = pbstrm->Position();
 	int ipglfc;
-	for (ipglfc = 0; ipglfc <= vpglfcReplcmt.Size(); ipglfc++)
+	for (ipglfc = 0; ipglfc <= signed(vpglfcReplcmt.size()); ipglfc++)
 		pbstrm->WriteShort(0);
 
 	//	linear classes (output)
@@ -2190,7 +2190,7 @@ void GdlRenderer::OutputReplacementClasses(
 	}
 
 	//	indexed classes (input)
-	for (ipglfc = cpglfcLinear; ipglfc < vpglfcReplcmt.Size(); ipglfc++)
+	for (ipglfc = cpglfcLinear; ipglfc < signed(vpglfcReplcmt.size()); ipglfc++)
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
