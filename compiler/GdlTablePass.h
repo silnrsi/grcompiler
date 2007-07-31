@@ -125,7 +125,7 @@ public:
 	int AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID);
 	int MachineClassKey(utf16 wGlyphID, int nPassID);
 	void RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc);
-	FsmMachineClass * MachineClassMatching(Vector<FsmMachineClass *> & vpfsmc,
+	FsmMachineClass * MachineClassMatching(std::vector<FsmMachineClass *> & vpfsmc,
 		utf16 wGlyphID);
 	void InitializeFsmArrays();
 	void MergeIdenticalStates(int ifsFixMin, int ifsCheckMin, int ifsCheckLim);

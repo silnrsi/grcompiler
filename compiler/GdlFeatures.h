@@ -81,7 +81,7 @@ public:
 	void SetValue(int n)			{ m_nValue = n; m_fHasValue = true; }
 	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
-		m_vextname.Push(GdlExtName(stu, wLangID));
+		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 	void AddExtName(utf16 wLangID, GdlExpression * pexp)
 	{
@@ -89,17 +89,17 @@ public:
 		Assert(pexpString);
 
 		std::wstring stu = pexpString->ConvertToUnicode();
-		m_vextname.Push(GdlExtName(stu, wLangID));
+		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 	void SetNameTblId(utf16 w)		{ m_wNameTblId = w; }
 
 protected:
 	//	Instance variables:
-	std::string			m_staName;
-	Vector<GdlExtName>	m_vextname;
-	int					m_nValue;
-	utf16				m_wNameTblId;
-	bool				m_fHasValue;
+	std::string				m_staName;
+	std::vector<GdlExtName>	m_vextname;
+	int						m_nValue;
+	utf16					m_wNameTblId;
+	bool					m_fHasValue;
 };
 
 
@@ -144,7 +144,7 @@ public:
 
 	~GdlFeatureDefn()
 	{
-		for (int i = 0; i < m_vpfset.Size(); ++i)
+		for (size_t i = 0; i < m_vpfset.size(); ++i)
 			delete m_vpfset[i];
 	}
 
@@ -154,7 +154,7 @@ public:
 	void SetDefault(int n)			{ m_nDefault = n; m_fDefaultSet = true; }
 	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
-		m_vextname.Push(GdlExtName(stu, wLangID));
+		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 	void AddExtName(utf16 wLangID, GdlExpression * pexp)
 	{
@@ -162,7 +162,7 @@ public:
 		Assert(pexpString);
 
 		std::wstring stu = pexpString->ConvertToUnicode();
-		m_vextname.Push(GdlExtName(stu, wLangID));
+		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 	void MarkAsLanguageFeature()
 	{
@@ -178,7 +178,7 @@ public:
 	}
 	int NumberOfSettings()
 	{
-		return m_vpfset.Size();
+		return m_vpfset.size();
 	}
 	unsigned int ID()
 	{
@@ -221,8 +221,8 @@ protected:
 	//	Instance variables:
 	std::string					m_staName;
 	unsigned int				m_nID;
-	Vector<GdlExtName>			m_vextname;
-	Vector<GdlFeatureSetting *>	m_vpfset;
+	std::vector<GdlExtName>		m_vextname;
+	std::vector<GdlFeatureSetting *>	m_vpfset;
 	int					 		m_nDefault;
 
 	bool m_fIDSet;

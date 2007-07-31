@@ -45,7 +45,7 @@ GdlFeatureSetting * GdlFeatureDefn::FindOrAddSetting(std::string sta, GrpLineAnd
 	pfset = new GdlFeatureSetting();
 	pfset->SetName(sta);
 	pfset->SetLineAndFile(lnf);
-	m_vpfset.Push(pfset);
+	m_vpfset.push_back(pfset);
 	return pfset;
 }
 
@@ -54,7 +54,7 @@ GdlFeatureSetting * GdlFeatureDefn::FindOrAddSetting(std::string sta, GrpLineAnd
 ----------------------------------------------------------------------------------------------*/
 GdlFeatureSetting * GdlFeatureDefn::FindSetting(std::string sta)
 {
-	for (int i = 0; i < m_vpfset.Size(); ++i)
+	for (size_t i = 0; i < m_vpfset.size(); ++i)
 	{
 		if (m_vpfset[i]->m_staName == sta)
 			return m_vpfset[i];
@@ -67,7 +67,7 @@ GdlFeatureSetting * GdlFeatureDefn::FindSetting(std::string sta)
 ----------------------------------------------------------------------------------------------*/
 GdlFeatureSetting * GdlFeatureDefn::FindSettingWithValue(int n)
 {
-	for (int i = 0; i < m_vpfset.Size(); i++)
+	for (size_t i = 0; i < m_vpfset.size(); i++)
 	{
 		if (m_vpfset[i]->m_nValue == n)
 			return m_vpfset[i];
@@ -87,7 +87,7 @@ bool GdlFeatureDefn::ErrorCheck()
 {
 	if (m_fStdLang)
 	{
-		Assert(m_vpfset.Size() == 0);
+		Assert(m_vpfset.size() == 0);
 		m_fIDSet = true;
 		return true;
 	}
@@ -104,7 +104,7 @@ bool GdlFeatureDefn::ErrorCheck()
 
 	//	Duplicate IDs in feature settings: fatal error
 	std::set<int> setnIDs;
-	for (int ifset = 0; ifset < m_vpfset.Size(); ++ifset)
+	for (size_t ifset = 0; ifset < m_vpfset.size(); ++ifset)
 	{
 		int nValue = m_vpfset[ifset]->m_nValue;
 		if (setnIDs.find(nValue) != setnIDs.end()) // is a member
@@ -119,7 +119,7 @@ bool GdlFeatureDefn::ErrorCheck()
 	}
 
 	//	Feature with only one setting: warning
-	if (m_vpfset.Size() == 1)
+	if (m_vpfset.size() == 1)
 		g_errorList.AddWarning(3525, this,
 			"Only one setting given for feature ",
 			m_staName);
@@ -146,23 +146,23 @@ void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 
 	bool fBoolean = false;
 
-	if (m_vpfset.Size() == 0)
+	if (m_vpfset.size() == 0)
 	{
 		GdlFeatureSetting * pfsetFalse = new GdlFeatureSetting();
 		pfsetFalse->CopyLineAndFile(*this);
 		pfsetFalse->m_nValue = 0;
 		pfsetFalse->m_fHasValue = true;
 		pfsetFalse->m_staName = "false";
-		pfsetFalse->m_vextname.Push(GdlExtName(L"False", LG_USENG));
-		m_vpfset.Push(pfsetFalse);
+		pfsetFalse->m_vextname.push_back(GdlExtName(L"False", LG_USENG));
+		m_vpfset.push_back(pfsetFalse);
 
 		GdlFeatureSetting * pfsetTrue = new GdlFeatureSetting();
 		pfsetTrue->CopyLineAndFile(*this);
 		pfsetTrue->m_nValue = 1;
 		pfsetTrue->m_fHasValue = true;
 		pfsetTrue->m_staName = "true";
-		pfsetTrue->m_vextname.Push(GdlExtName(L"True", LG_USENG));
-		m_vpfset.Push(pfsetTrue);
+		pfsetTrue->m_vextname.push_back(GdlExtName(L"True", LG_USENG));
+		m_vpfset.push_back(pfsetTrue);
 
 		if (!m_fDefaultSet)
 			m_nDefault = 0;
@@ -171,7 +171,7 @@ void GdlFeatureDefn::FillInBoolean(GrcSymbolTable * psymtbl)
 		fBoolean = true;
 
 	}
-	else if (m_vpfset.Size() == 2)
+	else if (m_vpfset.size() == 2)
 	{
 		fBoolean = ((m_vpfset[0]->m_nValue == 0 && m_vpfset[1]->m_nValue == 1)
 			|| (m_vpfset[0]->m_nValue == 1 && m_vpfset[1]->m_nValue == 0));
@@ -197,7 +197,7 @@ void GdlFeatureDefn::ErrorCheckContd()
 	}
 
 	//std::set<int> setnValues;
-	for (int ifset = 0; ifset < m_vpfset.Size(); ++ifset)
+	for (size_t ifset = 0; ifset < m_vpfset.size(); ++ifset)
 	{
 		//	Feature setting with no value set: warning
 		if (!m_vpfset[ifset]->m_fHasValue)
@@ -224,7 +224,7 @@ void GdlFeatureDefn::CalculateDefault()
 
 	if (m_fDefaultSet)
 	{
-		for (int ifset = 0; ifset < m_vpfset.Size(); ++ifset)
+		for (size_t ifset = 0; ifset < m_vpfset.size(); ++ifset)
 		{
 			if (m_vpfset[ifset]->m_nValue == m_nDefault)
 			{
@@ -235,18 +235,18 @@ void GdlFeatureDefn::CalculateDefault()
 		//	Default setting not found; make one (with no name).
 		GdlFeatureSetting * pfset = new GdlFeatureSetting();
 		pfset->SetValue(m_nDefault);
-		m_vpfset.Push(pfset);
+		m_vpfset.push_back(pfset);
 		m_pfsetDefault = pfset;
 		m_fDefaultSet = true;
 		return;
 	}
 
-	if (m_vpfset.Size() == 0)
+	if (m_vpfset.size() == 0)
 		return;
 
 	m_nDefault = m_vpfset[0]->m_nValue;
 	m_pfsetDefault = m_vpfset[0];
-	for (int ifset = 1; ifset < m_vpfset.Size(); ++ifset)
+	for (size_t ifset = 1; ifset < m_vpfset.size(); ++ifset)
 	{
 		if (m_vpfset[ifset]->m_nValue < m_nDefault)
 		{
@@ -267,8 +267,8 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst)
 	utf16 wNameTblId = wFirst;
 	m_wNameTblId = wNameTblId++;
 
-	int cnFeatSet = m_vpfset.Size();
-	for (int i = 0; i < cnFeatSet; i++)
+	size_t cnFeatSet = m_vpfset.size();
+	for (size_t i = 0; i < cnFeatSet; i++)
 	{
 		m_vpfset[i]->SetNameTblId(wNameTblId++);
 	}
@@ -288,7 +288,7 @@ bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf
 		Vector<utf16> & vwNameTblIds, size_t & cchwStringData)
 {
 	// store data for the feature itself
-	int cnExtNames = m_vextname.Size();
+	size_t cnExtNames = m_vextname.size();
 	if (cnExtNames <= 0)
 	{
 		vstuExtNames.Push(GdlExtName::s_stuNoName);
@@ -298,7 +298,7 @@ bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf
 	}
 	else
 	{
-		for (int i = 0; i < cnExtNames; i++)
+		for (size_t i = 0; i < cnExtNames; i++)
 		{
 			vstuExtNames.Push(m_vextname[i].Name());
 			cchwStringData += m_vextname[i].Name().length();
@@ -308,11 +308,11 @@ bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf
 	}
 
 	// store data for all settings
-	int cnSettings = m_vpfset.Size();
-	for (int i = 0; i < cnSettings; i++)
+	size_t cnSettings = m_vpfset.size();
+	for (size_t i = 0; i < cnSettings; i++)
 	{
 		GdlFeatureSetting * pFeatSet = m_vpfset[i];
-		cnExtNames = pFeatSet->m_vextname.Size();
+		cnExtNames = pFeatSet->m_vextname.size();
 		if (cnExtNames <= 0)
 		{
 			vstuExtNames.Push(GdlExtName::s_stuNoName);
@@ -322,7 +322,7 @@ bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf
 		}
 		else
 		{
-			for (int j = 0; j < cnExtNames; j++)
+			for (size_t j = 0; j < cnExtNames; j++)
 			{
 				vstuExtNames.Push(pFeatSet->m_vextname[j].Name());
 				cchwStringData += pFeatSet->m_vextname[j].Name().length();
