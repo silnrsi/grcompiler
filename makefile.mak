@@ -12,6 +12,7 @@ GRC_RES=.\compiler
 GRC_GEN_SRC=.\compiler\Generic
 GRC_LIB_SRC=.\compiler
 TTF_LIB_SRC=.\compiler
+ICU_BIN=.\icu\bin
 
 !IF "$(CFG)" == ""
 CFG=RELEASE
@@ -23,6 +24,7 @@ OUTDIR=.\release
 INTDIR=.\release_temp
 
 all : "$(OUTDIR)\$(TARGET).exe"
+	- copy $(ICU_BIN)\icuuc36.dll $(OUTDIR)\icuuc36.dll
 
 clean :
     @- rd /s/q $(INTDIR)
@@ -41,6 +43,7 @@ OUTDIR=.\debug
 INTDIR=.\debug_temp
 
 all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
+	- copy $(ICU_BIN)\icuuc36d.dll $(OUTDIR)\icuuc36d.dll
 
 clean :
     @- rd /s/q $(INTDIR)
