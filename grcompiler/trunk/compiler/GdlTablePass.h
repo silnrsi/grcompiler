@@ -287,7 +287,7 @@ public:
 	//	Output
 	int CountPasses();
 	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-		Vector<int> & vnOffsets);
+		std::vector<int> & vnOffsets);
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);

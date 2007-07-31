@@ -113,7 +113,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 
 bool GrcManager::PreCompileLanguages(GrcFont * pfont)
 {
-	for (int ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
+	for (size_t ilcls = 0; ilcls < m_vplcls.size(); ilcls++)
 		m_vplcls[ilcls]->PreCompile(this);
 
 	m_prndr->CheckLanguageFeatureSize();

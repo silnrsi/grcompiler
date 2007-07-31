@@ -1407,7 +1407,7 @@ void GrcManager::DebugGlyphAttributes()
 /*----------------------------------------------------------------------------------------------
 	Generate a list of glyph attributes (whose indices in the vector match their internal IDs).
 ----------------------------------------------------------------------------------------------*/
-void GrcSymbolTable::GlyphAttrList(Vector<Symbol> & vpsym)
+void GrcSymbolTable::GlyphAttrList(std::vector<Symbol> & vpsym)
 {
 	for (SymbolTableMap::iterator it = EntriesBegin();
 		it != EntriesEnd();
@@ -1423,8 +1423,8 @@ void GrcSymbolTable::GlyphAttrList(Vector<Symbol> & vpsym)
 		{
 			if (psym->InternalID() >= 0)
 			{
-				while (vpsym.Size() <= psym->InternalID())
-					vpsym.Push(NULL);
+				while (signed(vpsym.size()) <= psym->InternalID())
+					vpsym.push_back(NULL);
 
 				vpsym[psym->InternalID()] = psym;
 			}

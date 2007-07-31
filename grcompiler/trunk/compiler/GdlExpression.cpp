@@ -232,14 +232,14 @@ bool GdlStringExpression::ReplaceAliases(GdlRule * prule)
 		prule			- the rule that contains the list of slot-alias mappings, for
 							interpreting slot-ref expressions that use names
 ----------------------------------------------------------------------------------------------*/
-bool GdlUnaryExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlUnaryExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	return m_pexpOperand->AdjustSlotRefs(vfOmit, vnNewIndices, prule);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlBinaryExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlBinaryExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	if (!m_pexpOperand1->AdjustSlotRefs(vfOmit, vnNewIndices, prule))
@@ -249,7 +249,7 @@ bool GdlBinaryExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNe
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlCondExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlCondExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 
@@ -266,7 +266,7 @@ bool GdlCondExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewI
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLookupExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlLookupExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	if (m_pexpSelector)
@@ -276,14 +276,14 @@ bool GdlLookupExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNe
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlNumericExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlSlotRefExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	int sr = m_srNumber;
@@ -322,7 +322,7 @@ bool GdlSlotRefExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnN
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+bool GdlStringExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	return true;

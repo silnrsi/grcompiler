@@ -189,7 +189,7 @@ public:
 	void CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);
 	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-		Vector<int> & vnOffsets);
+		std::vector<int> & vnOffsets);
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, std::vector<std::wstring> & vstuExtNames, 
 		std::vector<utf16> & vwLangIds, std::vector<utf16> & vwNameTblIds, size_t & cchwStringData);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart, int fxdVersion);

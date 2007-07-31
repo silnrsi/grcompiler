@@ -374,7 +374,7 @@ public:
 	Symbol BaseLigComponent();
 
 	//	Debuggers:
-	void GlyphAttrList(Vector<Symbol> & vpsym);
+	void GlyphAttrList(std::vector<Symbol> & vpsym);
 
 protected:
 	//	Instance variables:
@@ -499,7 +499,7 @@ public:
 
 protected:
 	//	Instance variables:
-	mutable std::vector<std::string>	m_vstaFields;	// mutable because the Vector methods are not const
+	mutable std::vector<std::string>	m_vstaFields;
 };
 
 

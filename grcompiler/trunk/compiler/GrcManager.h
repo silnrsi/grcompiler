@@ -109,24 +109,24 @@ public:
 	int NumJustLevels();
 
 	//	environment getters & setters
-	Symbol Table()				{ return m_venv.Top()->Table(); }
-	int Pass()					{ return m_venv.Top()->Pass(); }
-	int MUnits()				{ return m_venv.Top()->MUnits(); }
-	int PointRadius()			{ return m_venv.Top()->PointRadius(); }
-	int PointRadiusUnits()		{ return m_venv.Top()->PointRadiusUnits(); }
-	int MaxRuleLoop()			{ return m_venv.Top()->MaxRuleLoop(); }
-	int MaxBackup()				{ return m_venv.Top()->MaxBackup(); }
-	bool AttrOverride()			{ return m_venv.Top()->AttrOverride(); }
-	utf16 CodePage()			{ return m_venv.Top()->CodePage(); }
+	Symbol Table()				{ return m_venv.back().Table(); }
+	int Pass()					{ return m_venv.back().Pass(); }
+	int MUnits()				{ return m_venv.back().MUnits(); }
+	int PointRadius()			{ return m_venv.back().PointRadius(); }
+	int PointRadiusUnits()		{ return m_venv.back().PointRadiusUnits(); }
+	int MaxRuleLoop()			{ return m_venv.back().MaxRuleLoop(); }
+	int MaxBackup()				{ return m_venv.back().MaxBackup(); }
+	bool AttrOverride()			{ return m_venv.back().AttrOverride(); }
+	utf16 CodePage()			{ return m_venv.back().CodePage(); }
 
-	void SetTable(Symbol psym)			{ m_venv.Top()->SetTable(psym); }
-	void SetPass(int n)					{ m_venv.Top()->SetPass(n); }
-	void SetMUnits(int m)				{ m_venv.Top()->SetMUnits(m); }
-	void SetPointRadius(int n, int m)	{ m_venv.Top()->SetPointRadius(n, m); }
-	void SetMaxRuleLoop(int n)			{ m_venv.Top()->SetMaxRuleLoop(n); }
-	void SetMaxBackup(int n)			{ m_venv.Top()->SetMaxBackup(n); }
-	void SetAttrOverride(bool f)		{ m_venv.Top()->SetAttrOverride(f); }
-	void SetCodePage(utf16 w)			{ m_venv.Top()->SetCodePage(w); }
+	void SetTable(Symbol psym)			{ m_venv.back().SetTable(psym); }
+	void SetPass(int n)					{ m_venv.back().SetPass(n); }
+	void SetMUnits(int m)				{ m_venv.back().SetMUnits(m); }
+	void SetPointRadius(int n, int m)	{ m_venv.back().SetPointRadius(n, m); }
+	void SetMaxRuleLoop(int n)			{ m_venv.back().SetMaxRuleLoop(n); }
+	void SetMaxBackup(int n)			{ m_venv.back().SetMaxBackup(n); }
+	void SetAttrOverride(bool f)		{ m_venv.back().SetAttrOverride(f); }
+	void SetCodePage(utf16 w)			{ m_venv.back().SetCodePage(w); }
 
 	GdlRuleTable * RuleTable(GrpLineAndFile & lnf)
 	{
@@ -303,7 +303,7 @@ protected:
 	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
 		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 		std::vector<uint16> & vnNameTblIds, 
-		uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec);
+		uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec);
 	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
 	bool OutputCmapTable(uint8 * pCmapTblSrc, uint32 cbCmapTblSrc,
@@ -371,16 +371,16 @@ protected:
 	GrcMasterTable *		m_mtbGlyphAttrs;
 	GrcMasterTable *		m_mtbFeatures;
 	GrcMasterValueList *	m_mvlNameStrings;
-	Vector<Symbol>			m_vpsymStyles;
+	std::vector<Symbol>		m_vpsymStyles;
 	// Also language classes:
-	Vector<GdlLangClass *>	m_vplcls;
+	std::vector<GdlLangClass *>	m_vplcls;
 
 	int m_fxdFeatVersion;	// version of feature table to generate
 
-	Vector<GrcEnv> m_venv;
+	std::vector<GrcEnv> m_venv;
 	std::map<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass
-	Vector<GdlExpression *> m_vpexpConditionals;
-	Vector<GdlExpression *> m_vpexpPassConstraints;
+	std::vector<GdlExpression *> m_vpexpConditionals;
+	std::vector<GdlExpression *> m_vpexpPassConstraints;
 
 	bool m_fOutputDebugFiles;
 

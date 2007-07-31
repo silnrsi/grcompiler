@@ -81,7 +81,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *) = 0;
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *) = 0;
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *) = 0;
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef) = 0;
 	virtual bool ResolveToFeatureID(unsigned int * pnRet);
 
@@ -183,7 +183,7 @@ public:
 	{
 		return true;
 	}
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *)
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *)
 	{
 		return true;
 	}
@@ -337,7 +337,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 public:
@@ -447,7 +447,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 public:
@@ -535,7 +535,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 	virtual bool ResolveToFeatureID(unsigned int *pnRet);
 
@@ -632,7 +632,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 public:
@@ -733,7 +733,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 public:
@@ -842,7 +842,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 public:
@@ -1023,7 +1023,7 @@ public:
 public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 public:
