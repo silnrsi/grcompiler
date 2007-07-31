@@ -191,7 +191,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 	//	source-classes in the SCS.
 	int nKey = MachineClassKey(wGlyphID, nPassID);
 
-	Vector<FsmMachineClass *> * pvpfsmc;
+	std::vector<FsmMachineClass *> * pvpfsmc;
 	FsmMachineClass * pfsmc;
 	std::map<int, MachineClassList>::iterator hmit = m_hmMachineClassMap.find(nKey);
 	if (hmit == m_hmMachineClassMap.end())
@@ -208,8 +208,8 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 
 		//	Put the new machine class in the map, so another glyph ID that is a member of the
 		//	same set of source classes can find it.
-		pvpfsmc = new Vector<FsmMachineClass *>;
-		pvpfsmc->Push(pfsmc);
+		pvpfsmc = new std::vector<FsmMachineClass *>;
+		pvpfsmc->push_back(pfsmc);
 		std::pair<int, MachineClassList> hmPair;
 		hmPair.first = nKey;
 		hmPair.second = pvpfsmc;
@@ -242,7 +242,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 			m_vpfsmc.Push(pfsmc);
 
 			//	Add the new machine class to the vector for this key, where it belongs.
-			pvpfsmc->Push(pfsmc);
+			pvpfsmc->push_back(pfsmc);
 		}
 	}
 
@@ -292,21 +292,21 @@ int FsmMachineClass::Key(int ipass)
 ----------------------------------------------------------------------------------------------*/
 void FsmMachineClass::AddGlyph(utf16 w)
 {
-	if (m_wGlyphs.Size() == 0)
+	if (m_wGlyphs.size() == 0)
 	{
-		m_wGlyphs.Push(w);
+		m_wGlyphs.push_back(w);
 		return;
 	}
 
 	//	Short-cut for common case:
-	if (w > *(m_wGlyphs.Top()))
+	if (w > m_wGlyphs.back())
 	{
-		m_wGlyphs.Push(w);
+		m_wGlyphs.push_back(w);
 		return;
 	}
 
 	int iLow = 0;
-	int iHigh = m_wGlyphs.Size();
+	int iHigh = m_wGlyphs.size();
 
 	while (iHigh - iLow > 1)
 	{
@@ -321,11 +321,11 @@ void FsmMachineClass::AddGlyph(utf16 w)
 	}
 
 	if (w < m_wGlyphs[iLow])
-		m_wGlyphs.Insert(iLow, w);
+		m_wGlyphs.insert(m_wGlyphs.begin() + iLow, w);
 	else if (w > m_wGlyphs[iLow])
 	{
-		Assert(iHigh == m_wGlyphs.Size() || w < m_wGlyphs[iHigh]);
-		m_wGlyphs.Insert(iLow + 1, w);
+		Assert(iHigh == m_wGlyphs.size() || w < m_wGlyphs[iHigh]);
+		m_wGlyphs.insert(m_wGlyphs.begin() + iLow + 1, w);
 	}
 }
 
@@ -334,12 +334,12 @@ void FsmMachineClass::AddGlyph(utf16 w)
 	If there is a machine class in the given vector whose source-class-set matches the
 	source-class-set for the given glyph, return it, otherwise return NULL.
 ----------------------------------------------------------------------------------------------*/
-FsmMachineClass * GdlPass::MachineClassMatching(Vector<FsmMachineClass *> & vpfsmc,
+FsmMachineClass * GdlPass::MachineClassMatching(std::vector<FsmMachineClass *> & vpfsmc,
 	utf16 wGlyphID)
 {
 	SourceClassSet * pscsForGlyph = m_rgscsInclusions + wGlyphID;
 
-	for (int ipfsmc = 0; ipfsmc < vpfsmc.Size(); ipfsmc++)
+	for (size_t ipfsmc = 0; ipfsmc < vpfsmc.size(); ipfsmc++)
 	{
 		FsmMachineClass * pfsmc = vpfsmc[ipfsmc];
 		if (pfsmc->MatchesSources(pscsForGlyph))
@@ -845,10 +845,10 @@ int GdlPass::TotalNumGlyphSubRanges()
 ----------------------------------------------------------------------------------------------*/
 int FsmMachineClass::NumberOfRanges()
 {
-	Assert(m_wGlyphs.Size() > 0);
+	Assert(m_wGlyphs.size() > 0);
 
 	int cRanges = 1;
-	for (int i = 1; i < m_wGlyphs.Size(); i++)
+	for (size_t i = 1; i < m_wGlyphs.size(); i++)
 	{
 		if (m_wGlyphs[i] > m_wGlyphs[i - 1] + 1)
 			cRanges++;

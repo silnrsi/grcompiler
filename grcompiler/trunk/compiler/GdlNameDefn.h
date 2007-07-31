@@ -35,7 +35,7 @@ public:
 
 	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
-		m_vextname.Push(GdlExtName(stu, wLangID));
+		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 	void AddExtName(utf16 wLangID, GdlExpression * pexp)
 	{
@@ -43,22 +43,22 @@ public:
 		Assert(pexpString);
 
 		std::wstring stu = pexpString->ConvertToUnicode();
-		m_vextname.Push(GdlExtName(stu, wLangID));
+		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 
 	void DeleteExtName(int i)
 	{
 		Assert(i < m_vextname.Size());
-		m_vextname.Delete(i);
+		m_vextname.erase(m_vextname.begin() + i);
 	}
 
 	int NameCount()
 	{
-		 return m_vextname.Size();
+		 return m_vextname.size();
 	}
 
 protected:
-	Vector<GdlExtName>	m_vextname;
+	std::vector<GdlExtName>	m_vextname;
 };
 
 

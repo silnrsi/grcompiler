@@ -19,7 +19,7 @@ Description:
 
 
 typedef std::set<GdlGlyphClassDefn *> SourceClassSet;	// hungarian: scs
-typedef Vector<FsmMachineClass *> * MachineClassList;	// hungarian: mcl
+typedef std::vector<FsmMachineClass *> * MachineClassList;	// hungarian: mcl
 
 void OutputNumber(std::ostream& strmOut, int nValue, int nSpaces);
 
@@ -75,7 +75,7 @@ protected:
 	int m_nPass;
 
 	SourceClassSet m_scs;	// source-class-set corresponding to this machine-class
-	Vector<utf16> m_wGlyphs;
+	std::vector<utf16> m_wGlyphs;
 	int m_ifsmcColumn;	// column this machine class is assigned to
 	std::string staDebug;
 
@@ -84,9 +84,9 @@ protected:
 	{
 		if (this == &fsmc)
 			return false; // equal, not less than
-		if (this->m_wGlyphs.Size() != fsmc.m_wGlyphs.Size())
-			return (this->m_wGlyphs.Size() < fsmc.m_wGlyphs.Size());
-		for (int iw = 0; iw < m_wGlyphs.Size(); iw++)
+		if (this->m_wGlyphs.size() != fsmc.m_wGlyphs.size())
+			return (this->m_wGlyphs.size() < fsmc.m_wGlyphs.size());
+		for (size_t iw = 0; iw < m_wGlyphs.size(); iw++)
 		{
 			if (this->m_wGlyphs[iw] != fsmc.m_wGlyphs[iw])
 				return (this->m_wGlyphs[iw] < fsmc.m_wGlyphs[iw]);
@@ -283,14 +283,14 @@ public:
 
 	~FsmTable()
 	{
-		for (int ipfstate = 0; ipfstate < m_vpfstate.Size(); ipfstate++)
+		for (size_t ipfstate = 0; ipfstate < m_vpfstate.size(); ipfstate++)
 			delete m_vpfstate[ipfstate];
 	}
 
 	void AddState(int critSlotsMatched)
 	{
-		FsmState * pfstateNew = new FsmState(m_cfsmc, critSlotsMatched, m_vpfstate.Size());
-		m_vpfstate.Push(pfstateNew);
+		FsmState * pfstateNew = new FsmState(m_cfsmc, critSlotsMatched, m_vpfstate.size());
+		m_vpfstate.push_back(pfstateNew);
 	}
 
 	FsmState * StateAt(int ifs)
@@ -309,7 +309,7 @@ public:
 
 	int RawNumberOfStates()
 	{
-		return m_vpfstate.Size();
+		return signed(m_vpfstate.size());
 	}
 
 	int NumberOfColumns()
@@ -320,7 +320,7 @@ public:
 protected:
 	int m_nPass;	// the pass this table pertains to
 	int m_cfsmc;	// the number of machine classes, ie columns, in the table
-	Vector<FsmState *> m_vpfstate;	// the rows
+	std::vector<FsmState *> m_vpfstate;	// the rows
 };
 
 

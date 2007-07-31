@@ -2684,14 +2684,14 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 ----------------------------------------------------------------------------------------------*/
 utf16 FsmMachineClass::OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm)
 {
-	for (int iMin = 0; iMin < m_wGlyphs.Size(); iMin++)
+	for (size_t iMin = 0; iMin < m_wGlyphs.size(); iMin++)
 	{
 		if (m_wGlyphs[iMin] == wGlyphID)
 		{
 			//	This machine class includes the glyph. Search for the end of the range of
 			//	contiguous glyphs.
 			int iLim = iMin + 1;
-			while (iLim < m_wGlyphs.Size() && m_wGlyphs[iLim] == m_wGlyphs[iLim - 1] + 1)
+			while (iLim < signed(m_wGlyphs.size()) && m_wGlyphs[iLim] == m_wGlyphs[iLim - 1] + 1)
 				iLim++;
 			//	Write to the stream;
 			pbstrm->WriteShort(m_wGlyphs[iMin]);
@@ -2934,14 +2934,14 @@ void GdlFeatureDefn::OutputSettings(GrcBinaryStream * pbstrm)
 		pbstrm->WriteShort(m_pfsetDefault->Value());
 		pbstrm->WriteShort(m_pfsetDefault->NameTblId());	// name index
 	}
-	else if (m_vpfset.Size() == 0)
+	else if (m_vpfset.size() == 0)
 	{
 		//	no settings (eg, 'lang' feature); write 0 as the default
 		pbstrm->WriteShort(0);
 		pbstrm->WriteShort(32767); // no name index - output largest legal value
 	}
 
-	for (int ifset = 0; ifset < m_vpfset.Size(); ifset++)
+	for (size_t ifset = 0; ifset < m_vpfset.size(); ifset++)
 	{
 		if (m_vpfset[ifset] != m_pfsetDefault)
 		{
