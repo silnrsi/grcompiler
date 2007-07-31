@@ -121,14 +121,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot) = 0;
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys) = 0;
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *) = 0;
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *) = 0;
 	virtual void MaxJustificationLevel(int * pnLevel) = 0;
 	virtual bool TestsJustification() = 0;
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded) = 0;
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue) = 0;
 
 	//	debuggers:
@@ -248,7 +248,7 @@ public:
 	{
 	}
 
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *)
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *)
 	{
 	}
 
@@ -267,8 +267,8 @@ public:
 	}
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue)
 	{
 	}
@@ -361,14 +361,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
@@ -470,14 +470,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
@@ -561,14 +561,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
@@ -655,14 +655,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
@@ -756,14 +756,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
@@ -865,14 +865,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
@@ -1050,14 +1050,14 @@ public:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & virit, GdlRuleItem *);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> * pviritInput, int nIIndex,
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:

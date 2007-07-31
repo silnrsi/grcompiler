@@ -76,11 +76,11 @@ bool GrcManager::Compile(GrcFont * pfont)
 	Generate the engine code for the constraints and actions of a rule.
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbActions, Vector<byte> & vbConstraints)
+	std::vector<byte> & vbActions, std::vector<byte> & vbConstraints)
 {
 	GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints);
 	//	Save the size of the rule constraints from the -if- statements.
-	int cbGenConstraint = vbConstraints.Size();
+	int cbGenConstraint = vbConstraints.size();
 
 	//	Count the number of unmodified items at the end of the rule; these do not need to
 	//	be processed as far as actions go, and the default scan advance position is just
@@ -125,23 +125,23 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 		fBackUpOneMore = true;
 	}
 
-	if (vbConstraints.Size() == 0)
+	if (vbConstraints.size() == 0)
 	{ }	// vbConstraints.Push(kopRetTrue); -- no, leave empty
 	else
-		vbConstraints.Push(kopPopRet);
+		vbConstraints.push_back(kopPopRet);
 
 	if (m_nOutputAdvance == -1)
 	{
 		if (fBackUpOneMore)
 		{
 			//	Return -1.
-			vbActions.Push(kopPushByte);
-			vbActions.Push(0xFF);
-			vbActions.Push(kopPopRet);
+			vbActions.push_back(kopPushByte);
+			vbActions.push_back(0xFF);
+			vbActions.push_back(kopPopRet);
 		}
 		else
 			//	Push return-zero, meaning don't adjust the scan position.
-			vbActions.Push(kopRetZero);
+			vbActions.push_back(kopRetZero);
 	}
 	else
 	{
@@ -156,9 +156,9 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 		if (fBackUpOneMore)
 			nAdvanceOffset--;
 
-		vbActions.Push(kopPushByte);
-		vbActions.Push((char)nAdvanceOffset);
-		vbActions.Push(kopPopRet);
+		vbActions.push_back(kopPushByte);
+		vbActions.push_back((char)nAdvanceOffset);
+		vbActions.push_back(kopPopRet);
 	}
 }
 
@@ -167,7 +167,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	minus the final pop-and-return command.
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput)
+	std::vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.Size() == 0)
 	{
@@ -182,7 +182,7 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion
 	{
 		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
 			-1, NULL, -1, false, -1, false);
-		vbOutput.Push(kopAnd);
+		vbOutput.push_back(kopAnd);
 	}
 }
 
@@ -196,15 +196,15 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion
 		irit				- index of item
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput,
-	int irit, Vector<int> & viritInput, int iritFirstModItem)
+	std::vector<byte> & vbOutput,
+	int irit, std::vector<int> & viritInput, int iritFirstModItem)
 {
 	if (!m_pexpConstraint)
 	{
 		return;
 	}
 
-	bool fNeedAnd = vbOutput.Size() > 0;	// need to 'and' rule item constraints with
+	bool fNeedAnd = (vbOutput.size() > 0);	// need to 'and' rule item constraints with
 											// -if- condition(s)
 
 	bool fInserting = (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore));
@@ -214,25 +214,26 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, int fxdRuleVe
 	Assert((int)iritByte == viritInput[irit]);	// no truncation error
 	Assert(viritInput[irit] >= 0);	// not an inserted item
 
-	vbOutput.Push(kopCntxtItem);
-	vbOutput.Push(iritByte - iritFirstModItem);
-	vbOutput.Push(0); // place holder
-	int ibSkipLoc = vbOutput.Size();
+	vbOutput.push_back(kopCntxtItem);
+	vbOutput.push_back(iritByte - iritFirstModItem);
+	vbOutput.push_back(0); // place holder
+	int ibSkipLoc = vbOutput.size();
 	m_pexpConstraint->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, &viritInput, irit,
 		fInserting, -1, false);
 
 	//	Go back and fill in number of bytes to skip if we are not at the 
 	//	appropriate context item.
-	vbOutput[ibSkipLoc - 1] = vbOutput.Size() - ibSkipLoc;
+	vbOutput[ibSkipLoc - 1] = vbOutput.size() - ibSkipLoc;
 
 	if (fNeedAnd)
-		vbOutput.Push(kopAnd);
+		vbOutput.push_back(kopAnd);
 }
 
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints of a pass.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion, Vector<byte> & vbOutput)
+void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
+	std::vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.Size() == 0)
 	{
@@ -247,56 +248,56 @@ void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion, Vector<
 	{
 		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
 			-1, NULL, -1, false, -1, false);
-		vbOutput.Push(kopAnd);
+		vbOutput.push_back(kopAnd);
 	}
-	vbOutput.Push(kopPopRet);
+	vbOutput.push_back(kopPopRet);
 }
 
 /*----------------------------------------------------------------------------------------------
 	Generate engine code to perform the actions for a given item.
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput,
+	std::vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	if (*pfSetInsertToFalse)
 	{
-		vbOutput.Push(kopPutCopy);
-		vbOutput.Push(0);
+		vbOutput.push_back(kopPutCopy);
+		vbOutput.push_back(0);
 		GenerateInsertEqualsFalse(vbOutput);
 		*pfSetInsertToFalse = false;
-		vbOutput.Push(kopNext);
+		vbOutput.push_back(kopNext);
 	}
 	else
 		//	Nothing special is happening; just pass the item through unchanged.
-		vbOutput.Push(kopCopyNext);
+		vbOutput.push_back(kopCopyNext);
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput,
+	std::vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	if (m_vpavs.Size() == 0 && !*pfSetInsertToFalse)
-		vbOutput.Push(kopCopyNext);
+		vbOutput.push_back(kopCopyNext);
 	else
 	{
 		int nIIndex = m_nInputIndex;
 		nIIndex = (nIIndex < 0) ? (nIIndex + 1) * -1 : nIIndex;
 
-		vbOutput.Push(kopPutCopy);
-		vbOutput.Push(0);
+		vbOutput.push_back(kopPutCopy);
+		vbOutput.push_back(0);
 		if (*pfSetInsertToFalse)
 			GenerateInsertEqualsFalse(vbOutput);
 		*pfSetInsertToFalse = GenerateAttrSettingCode(pcman, fxdRuleVersion, vbOutput,
 			irit, nIIndex);
-		vbOutput.Push(kopNext);
+		vbOutput.push_back(kopNext);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput,
+	std::vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	bool fInserting = (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore));
@@ -314,19 +315,19 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	if (fDeleting)
 		//	Note that it's kind of strange to be setting attributes or associations for 
 		//	deleted objects, but it's not an error and we've already given a warning.
-		vbOutput.Push(kopDelete);
+		vbOutput.push_back(kopDelete);
 	else
 	{
 		if (fInserting)
-			vbOutput.Push(kopInsert);
+			vbOutput.push_back(kopInsert);
 
 		if (m_psymOutput->FitsSymbolType(ksymtSpecialAt))
 		{
 			//	Direct copy.
 			int bOffset = (m_nSelector == -1) ? 0 : m_nSelector - nIIndex;
 			Assert((abs(bOffset) & 0xFFFFFF00) == 0);	// check for truncation error
-			vbOutput.Push(kopPutCopy);
-			vbOutput.Push((char)bOffset);
+			vbOutput.push_back(kopPutCopy);
+			vbOutput.push_back((char)bOffset);
 		}
 		else
 		{
@@ -367,7 +368,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 				default: break;
 				}
 			}
-			vbOutput.Push(op);
+			vbOutput.push_back(op);
 
 			int nOutputID = pglfcOutput->ReplcmtOutputID();
 			Assert(nOutputID >= 0);
@@ -375,11 +376,11 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 			switch (op)
 			{
 			case kopPutGlyph:
-				vbOutput.Push(nOutputID >> 8);
-				vbOutput.Push(nOutputID & 0x000000FF);
+				vbOutput.push_back(nOutputID >> 8);
+				vbOutput.push_back(nOutputID & 0x000000FF);
 				break;
 			case kopPutGlyphV1_2:
-				vbOutput.Push(nOutputID);
+				vbOutput.push_back(nOutputID);
 				break;
 			case kopPutSubs:
 			case kopPutSubsV1_2:
@@ -390,20 +391,20 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 
 					Assert(pglfcSel->ReplcmtInputID() >= 0);
 
-					vbOutput.Push((char)bSelOffset);
+					vbOutput.push_back((char)bSelOffset);
 
 					int nInputID = pglfcSel->ReplcmtInputID();
 					if (op == kopPutSubsV1_2)
 					{
-						vbOutput.Push(nInputID);
-						vbOutput.Push(nOutputID);
+						vbOutput.push_back(nInputID);
+						vbOutput.push_back(nOutputID);
 					}
 					else
 					{
-						vbOutput.Push(nInputID >> 8);
-						vbOutput.Push(nInputID & 0x000000FF);
-						vbOutput.Push(nOutputID >> 8);
-						vbOutput.Push(nOutputID & 0x000000FF);
+						vbOutput.push_back(nInputID >> 8);
+						vbOutput.push_back(nInputID & 0x000000FF);
+						vbOutput.push_back(nOutputID >> 8);
+						vbOutput.push_back(nOutputID & 0x000000FF);
 					}
 					break;
 				}
@@ -417,15 +418,15 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	//	Generate the code to set the associations.
 	if (m_vnAssocs.Size() > 0)
 	{
-		vbOutput.Push(kopAssoc);
-		vbOutput.Push(m_vnAssocs.Size());
+		vbOutput.push_back(kopAssoc);
+		vbOutput.push_back(m_vnAssocs.Size());
 		for (int in = 0; in < m_vnAssocs.Size(); in++)
 		{
 			Assert(m_vnAssocs[in] >= 0);	// can't associate with an inserted item
 			int bAssocOffset = m_vnAssocs[in] - nIIndex;
 			Assert((abs(bAssocOffset) & 0xFFFFFF00) == 0);	// check for truncation error
 
-			vbOutput.Push((char)bAssocOffset);
+			vbOutput.push_back((char)bAssocOffset);
 		}
 	}
 
@@ -436,7 +437,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	*pfSetInsertToFalse = GenerateAttrSettingCode(pcman, fxdRuleVersion, vbOutput, irit, nIIndex);
 
 	//	Go on to the next slot.
-	vbOutput.Push(kopNext);
+	vbOutput.push_back(kopNext);
 }
 
 
@@ -445,7 +446,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	insert = false on the following item (because this item makes a forward attachment).
 ----------------------------------------------------------------------------------------------*/
 bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput,
+	std::vector<byte> & vbOutput,
 	int irit, int nIIndex)
 {
 	bool fAttachForward = false;
@@ -462,7 +463,7 @@ bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVers
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
-	Vector<byte> & vbOutput,
+	std::vector<byte> & vbOutput,
 	int irit, int nIIndex, int iritAttachTo)
 {
 	bool fAttachForward = false;
@@ -485,21 +486,21 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 		if (m_psymName->IsComponentRef() || pcman->VersionForTable(ktiSilf) < 0x00020000)
 		{
 			Assert(staOp == "=");
-			vbOutput.Push(kopIAttrSetSlot);
+			vbOutput.push_back(kopIAttrSetSlot);
 		}
 		else if (m_psymName->IsUserDefinableSlotAttr())
 		{
 			if (staOp == "=")
-				vbOutput.Push(kopIAttrSet);
+				vbOutput.push_back(kopIAttrSet);
 			else if (staOp == "+=")
-				vbOutput.Push(kopIAttrAdd);
+				vbOutput.push_back(kopIAttrAdd);
 			else if (staOp == "-=")
-				vbOutput.Push(kopIAttrSub);
+				vbOutput.push_back(kopIAttrSub);
 			else
 				Assert(false);
 		}
-		vbOutput.Push(slat);
-		vbOutput.Push(pcman->SlotAttributeIndex(m_psymName));
+		vbOutput.push_back(slat);
+		vbOutput.push_back(pcman->SlotAttributeIndex(m_psymName));
 	}
 	else if (expt == kexptSlotRef)
 	{
@@ -514,8 +515,8 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 			m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
 				false, iritAttachTo, &nValue);
 
-			vbOutput.Push(kopAttrSetSlot);
-			vbOutput.Push(slat);
+			vbOutput.push_back(kopAttrSetSlot);
+			vbOutput.push_back(slat);
 
 			if (slat == kslatAttTo)
 			{
@@ -545,8 +546,8 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
 			fAttachAt, iritAttachTo, &nBogus);
 
-		vbOutput.Push(op);
-		vbOutput.Push(slat);
+		vbOutput.push_back(op);
+		vbOutput.push_back(slat);
 
 	}
 
@@ -556,12 +557,12 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 /*----------------------------------------------------------------------------------------------
 	Generate the extra "insert = false" for attachments.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateInsertEqualsFalse(Vector<byte> & vbOutput)
+void GdlRuleItem::GenerateInsertEqualsFalse(std::vector<byte> & vbOutput)
 {
-	vbOutput.Push(kopPushByte);
-	vbOutput.Push(0);	// false;
-	vbOutput.Push(kopAttrSetSlot);
-	vbOutput.Push(kslatInsert);
+	vbOutput.push_back(kopPushByte);
+	vbOutput.push_back(0);	// false;
+	vbOutput.push_back(kopAttrSetSlot);
+	vbOutput.push_back(kslatInsert);
 }
 
 
@@ -792,28 +793,28 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 
 	// Sort rules by their precedence: primarily by the number of items matched (largest first),
 	// and secondarily by their location in the file (rule number--smallest first).
-	Vector<int> viruleSorted;
-	Vector<int> vnKeys;
+	std::vector<int> viruleSorted;
+	std::vector<int> vnKeys;
 	for (int irule1 = 0; irule1 < m_vprule.Size(); irule1++)
 	{
 		int nSortKey1 = m_vprule[irule1]->SortKey();
-		int iirule2;
-		for (iirule2 = 0; iirule2 < viruleSorted.Size(); iirule2++)
+		size_t iirule2;
+		for (iirule2 = 0; iirule2 < viruleSorted.size(); iirule2++)
 		{
 			int nSortKey2 = vnKeys[iirule2];
 			if (nSortKey1 > nSortKey2 ||
 				(nSortKey1 == nSortKey2 && irule1 < viruleSorted[iirule2]))
 			{
 				// Insert it.
-				viruleSorted.Insert(iirule2, irule1);
-				vnKeys.Insert(iirule2, nSortKey1);
+				viruleSorted.insert(viruleSorted.begin() + iirule2, irule1);
+				vnKeys.insert(vnKeys.begin() + iirule2, nSortKey1);
 				break;
 			}
 		}
-		if (iirule2 >= viruleSorted.Size())
+		if (iirule2 >= viruleSorted.size())
 		{
-			viruleSorted.Push(irule1);
-			vnKeys.Push(nSortKey1);
+			viruleSorted.push_back(irule1);
+			vnKeys.push_back(nSortKey1);
 		}
 
 		Assert(viruleSorted.Size() == irule1 + 1);
@@ -896,9 +897,9 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 	int nPassNum = PassDebuggerNumber();
 	strmOut << "\nPASS: " << nPassNum << "\n";
 
-	Vector<byte> vbPassConstraints;
+	std::vector<byte> vbPassConstraints;
 	GenerateEngineCode(pcman, fxdRuleVersion, vbPassConstraints);
-	if (vbPassConstraints.Size() == 0)
+	if (vbPassConstraints.size() == 0)
 	{
 		strmOut << "\nPASS CONSTRAINTS: none\n";
 	}
@@ -923,15 +924,15 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
-	Vector<byte> vbActions;
-	Vector<byte> vbConstraints;
+	std::vector<byte> vbActions;
+	std::vector<byte> vbConstraints;
 
 	GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 
 	strmOut << "\nACTIONS:\n";
 	DebugEngineCode(vbActions, fxdRuleVersion, strmOut);
 
-	if (vbConstraints.Size() == 0)
+	if (vbConstraints.size() == 0)
 	{
 		strmOut << "\nCONSTRAINTS: none\n";
 	}
@@ -942,10 +943,10 @@ void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 	}
 }
 
-void GdlRule::DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(std::vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut)
 {
 	int ib = 0;
-	while (ib < vb.Size())
+	while (ib < signed(vb.size()))
 	{
 		int op = vb[ib++];
 		strmOut << EngineCodeDebugString(op);
@@ -1681,11 +1682,11 @@ void GdlRenderer::DebugClasses(std::ostream & strmOut,
 		strmOut << "Class #" << ipglfc << ": ";
 		strmOut << pglfc->Name();
 
-		Vector<utf16> vwGlyphs;
+		std::vector<utf16> vwGlyphs;
 		pglfc->GenerateOutputGlyphList(vwGlyphs);
 
 		//	glyph list
-		for (int iw = 0; iw < vwGlyphs.Size(); iw++)
+		for (size_t iw = 0; iw < vwGlyphs.size(); iw++)
 		{
 			if (iw % 10 == 0)
 			{
@@ -1712,11 +1713,11 @@ void GdlRenderer::DebugClasses(std::ostream & strmOut,
 		strmOut << "Class #" << ipglfc << ": ";
 		strmOut << pglfc->Name();
 
-		Vector<utf16> vwGlyphs;
-		Vector<int> vnIndices;
+		std::vector<utf16> vwGlyphs;
+		std::vector<int> vnIndices;
 		pglfc->GenerateInputGlyphList(vwGlyphs, vnIndices);
 		//	glyph list
-		for (int iw = 0; iw < vwGlyphs.Size(); iw++)
+		for (size_t iw = 0; iw < vwGlyphs.size(); iw++)
 		{
 			if (iw % 5 == 0)
 			{
@@ -1773,8 +1774,8 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 		pfont->GetGlyphsFromCmap(rgchwUniToGlyphID);
 		//m_prndr->DebugCmap(pfont, rgchwUniToGlyphID, rgnGlyphIDToUni);
 
-		Vector<unsigned int> vnXUniForPsd;
-		Vector<utf16> vwXPsdForUni;
+		std::vector<unsigned int> vnXUniForPsd;
+		std::vector<utf16> vwXPsdForUni;
 
 		// Generate the inverse cmap. Also overwrite the glyph IDs for any pseudos.
 		int iUni;
@@ -1791,8 +1792,8 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 			{
 				// Put any Unicode -> pseudo mappings where the Unicode is not in the cmap into 
 				// a separate list.
-				vnXUniForPsd.Push(m_vnUnicodeForPseudo[iUniPsd]);
-				vwXPsdForUni.Push(m_vwPseudoForUnicode[iUniPsd]);
+				vnXUniForPsd.push_back(m_vnUnicodeForPseudo[iUniPsd]);
+				vwXPsdForUni.push_back(m_vwPseudoForUnicode[iUniPsd]);
 				iUniPsd++;
 			}
 			if (iUniPsd < m_vnUnicodeForPseudo.Size() && m_vnUnicodeForPseudo[iUniPsd] == nUni)
@@ -1820,7 +1821,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 			wGlyphID = rgchwUniToGlyphID[iUni];
 			Assert(wGlyphID != 0);
 
-			while (iXPsd < vnXUniForPsd.Size() && vnXUniForPsd[iXPsd] < nUni)
+			while (iXPsd < signed(vnXUniForPsd.size()) && vnXUniForPsd[iXPsd] < nUni)
 			{
 				// insert extra pseudos that are not in the cmap
 				WriteCmapItem(strmOut, vnXUniForPsd[iXPsd], fSuppPlaneChars, vwXPsdForUni[iXPsd], 
@@ -1832,8 +1833,8 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 		}
 
 		// Sort the extra pseudos by glyph ID.
-		for (int i1 = 0; i1 < vwXPsdForUni.Size() - 1; i1++)
-			for (int i2 = i1 + 1; i2 < vwXPsdForUni.Size(); i2++)
+		for (size_t i1 = 0; i1 < vwXPsdForUni.size() - 1; i1++)
+			for (size_t i2 = i1 + 1; i2 < vwXPsdForUni.size(); i2++)
 				if (vwXPsdForUni[i1] > vwXPsdForUni[i2])
 				{
 					// Swap
@@ -1862,7 +1863,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 				if (fSuppPlaneChars) strmOut << "    ";
 				strmOut << "                 [phantom]\n";
 			}
-			else if (iXPsd < vwXPsdForUni.Size() && vwXPsdForUni[iXPsd] == wGlyphID)
+			else if (iXPsd < signed(vwXPsdForUni.size()) && vwXPsdForUni[iXPsd] == wGlyphID)
 			{
 				// Pseudo-glyph where the Unicode value is not in the cmap.
 				if (vnXUniForPsd[iXPsd] != 0)

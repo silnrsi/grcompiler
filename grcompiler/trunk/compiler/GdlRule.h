@@ -97,14 +97,14 @@ protected:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel);
 	void AdjustSlotRefsForPreAnys(int critPrependedAnys, GdlRuleItem * prit);
 	void AdjustToIOIndices(GdlRuleItem * prit,
-		Vector<int> & viritInput, Vector<int> & viritOutput);
+		std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	bool ReplaceKern(GrcManager * pcman,
 		GdlAttrValueSpec ** ppavsShift, GdlAttrValueSpec ** ppavsAdvance);
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
 		int irit, int nIIndex, int iritAttachTo);
 
 private:
@@ -254,8 +254,8 @@ public:
 	bool CheckForJustificationConstraint();
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
-		Vector<int> & viritInput, Vector<int> & viritOutput);
-	virtual void AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput);
+		std::vector<int> & viritInput, std::vector<int> & viritOutput);
+	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void SetAttachTo(int n)
 	{
 		Assert(false);	// only useful for GdlSetAttrItem
@@ -272,12 +272,12 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
 
 	//	Compiler:
-	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
-		int irit, Vector<int> & viritInput, int iritFirstModItem);
+	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> & viritInput, int iritFirstModItem);
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
-		Vector<byte> & vbOutput,
+		std::vector<byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
-	static void GenerateInsertEqualsFalse(Vector<byte> & vbOutput);
+	static void GenerateInsertEqualsFalse(std::vector<byte> & vbOutput);
 	void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 		FsmMachineClassSet & setpfsmc);
 
@@ -362,7 +362,7 @@ protected:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		Vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput);
+	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 
 public:
 	//	debuggers:
@@ -448,7 +448,7 @@ protected:
 		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
 		Vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
-	virtual void AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput);
+	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
@@ -468,9 +468,9 @@ protected:
 public:
 	//	Compiler:
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
-		Vector<byte> & vbOutput,
+		std::vector<byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
-	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
 		int irit, int nIIndex);
 
 	//	debuggers:
@@ -586,11 +586,11 @@ protected:
 		Vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
-		Vector<int> & viritInput, Vector<int> & viritOutput);
-	virtual void AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput);
+		std::vector<int> & viritInput, std::vector<int> & viritOutput);
+	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 
 	//	Compiler:
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput,
+	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 public:
 	//	debuggers:
@@ -827,8 +827,8 @@ public:
 
 	//	Compiler:
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
-		Vector<byte> & vbActions, Vector<byte> & vbConstraints);
-	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbOutput);
+		std::vector<byte> & vbActions, std::vector<byte> & vbConstraints);
+	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput);
 	GdlRuleItem * InputItem(int n);
 	int NumberOfInputItems();
 	int NumberOfPreModContextItems()
@@ -838,7 +838,7 @@ public:
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
-	static void DebugEngineCode(Vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
+	static void DebugEngineCode(std::vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
 	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut);
 	static std::string SlotAttributeDebugString(int slat);
 	static std::string GlyphMetricDebugString(int gmet);
@@ -859,8 +859,8 @@ protected:
 
 	//	for pre-compiler use:
 	//	input- and output indices for each item:
-	Vector<int> m_viritInput;
-	Vector<int> m_viritOutput;
+	std::vector<int> m_viritInput;
+	std::vector<int> m_viritOutput;
 
 	//	number of items in the context before the first modified item (original, before adding
 	//	ANY items)
