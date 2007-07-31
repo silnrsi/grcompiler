@@ -2172,7 +2172,7 @@ void GdlRenderer::OutputReplacementClasses(
 		Assert(pglfc->ReplcmtOutputClass() || pglfc->GlyphIDCount() <= 1);
 		//Assert(pglfc->ReplcmtOutputID() == cTmp);
 
-		Vector<utf16> vwGlyphs;
+		std::vector<utf16> vwGlyphs;
 		pglfc->GenerateOutputGlyphList(vwGlyphs);
 		//	number of items and search constants
 		//int n = vwGlyphs.Size();
@@ -2183,7 +2183,7 @@ void GdlRenderer::OutputReplacementClasses(
 		//pbstrm->WriteShort(nLog);
 		//pbstrm->WriteShort(n - nPowerOf2);
 		//	glyph list
-		for (int iw = 0; iw < vwGlyphs.Size(); iw++)
+		for (size_t iw = 0; iw < vwGlyphs.size(); iw++)
 			pbstrm->WriteShort(vwGlyphs[iw]);
 
 		cTmp++;
@@ -2199,11 +2199,11 @@ void GdlRenderer::OutputReplacementClasses(
 		Assert(pglfc->ReplcmtInputClass());
 		Assert(pglfc->ReplcmtInputID() == cTmp);
 
-		Vector<utf16> vwGlyphs;
-		Vector<int> vnIndices;
+		std::vector<utf16> vwGlyphs;
+		std::vector<int> vnIndices;
 		pglfc->GenerateInputGlyphList(vwGlyphs, vnIndices);
 		//	number of items and search constants
-		int n = vwGlyphs.Size();
+		int n = signed(vwGlyphs.size());
 		int nPowerOf2, nLog;
 		BinarySearchConstants(n, &nPowerOf2, &nLog);
 		pbstrm->WriteShort(n);
@@ -2211,7 +2211,7 @@ void GdlRenderer::OutputReplacementClasses(
 		pbstrm->WriteShort(nLog);
 		pbstrm->WriteShort(n - nPowerOf2);
 		//	glyph list
-		for (int iw = 0; iw < vwGlyphs.Size(); iw++)
+		for (size_t iw = 0; iw < vwGlyphs.size(); iw++)
 		{
 			pbstrm->WriteShort(vwGlyphs[iw]);
 			pbstrm->WriteShort(vnIndices[iw]);
@@ -2238,7 +2238,7 @@ void GdlRenderer::OutputReplacementClasses(
 	Generate a list of all the glyphs in the class, ordered by index (ie, ordered as listed
 	in the program).
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::GenerateOutputGlyphList(Vector<utf16> & vwGlyphs)
+void GdlGlyphClassDefn::GenerateOutputGlyphList(std::vector<utf16> & vwGlyphs)
 {
 	AddGlyphsToUnsortedList(vwGlyphs);
 }
@@ -2247,7 +2247,7 @@ void GdlGlyphClassDefn::GenerateOutputGlyphList(Vector<utf16> & vwGlyphs)
 /*----------------------------------------------------------------------------------------------
 	Add all the glyphs to the list in the order they were defined.
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs)
+void GdlGlyphClassDefn::AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 	{
@@ -2256,11 +2256,11 @@ void GdlGlyphClassDefn::AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphDefn::AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs)
+void GdlGlyphDefn::AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs)
 {
 	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
 	{
-		vwGlyphs.Push(m_vwGlyphIDs[iw]);
+		vwGlyphs.push_back(m_vwGlyphIDs[iw]);
 	}
 }
 
@@ -2269,7 +2269,7 @@ void GdlGlyphDefn::AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs)
 	Generate a list of all the glyphs in the class, ordered by glyph ID. These will be
 	output in linear format.
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::GenerateInputGlyphList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices)
+void GdlGlyphClassDefn::GenerateInputGlyphList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices)
 {
 	AddGlyphsToSortedList(vwGlyphs, vnIndices);
 }
@@ -2278,7 +2278,7 @@ void GdlGlyphClassDefn::GenerateInputGlyphList(Vector<utf16> & vwGlyphs, Vector<
 /*----------------------------------------------------------------------------------------------
 	Add all the glyphs to the list, keeping the list sorted.
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices)
+void GdlGlyphClassDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices)
 {
 	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
 	{
@@ -2287,25 +2287,25 @@ void GdlGlyphClassDefn::AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<i
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphDefn::AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices)
+void GdlGlyphDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices)
 {
 	Assert(vwGlyphs.Size() == vnIndices.Size());
 
 	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
 	{
-		int nNextIndex = vwGlyphs.Size();
+		int nNextIndex = signed(vwGlyphs.size());
 
 		utf16 w = m_vwGlyphIDs[iw];
-		if (vwGlyphs.Size() == 0 ||
-			w > *(vwGlyphs.Top()))	// common case
+		if (vwGlyphs.size() == 0 ||
+			w > vwGlyphs.back())	// common case
 		{
-			vwGlyphs.Push(w);
-			vnIndices.Push(nNextIndex);
+			vwGlyphs.push_back(w);
+			vnIndices.push_back(nNextIndex);
 		}
 		else
 		{
 			int iLow = 0;
-			int iHigh = vwGlyphs.Size();
+			int iHigh = signed(vwGlyphs.size());
 
 			while (iHigh - iLow > 1)
 			{
@@ -2323,14 +2323,14 @@ void GdlGlyphDefn::AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<int> &
 
 			if (w <= vwGlyphs[iLow])
 			{
-				vwGlyphs.Insert(iLow, w);
-				vnIndices.Insert(iLow, nNextIndex);
+				vwGlyphs.insert(vwGlyphs.begin() + iLow, w);
+				vnIndices.insert(vnIndices.begin() + iLow, nNextIndex);
 			}
 			else
 			{
-				Assert(iHigh == vwGlyphs.Size() || w < vwGlyphs[iHigh]);
-				vwGlyphs.Insert(iLow + 1, w);
-				vnIndices.Insert(iLow + 1, nNextIndex);
+				Assert(iHigh == vwGlyphs.size() || w < vwGlyphs[iHigh]);
+				vwGlyphs.insert(vwGlyphs.begin() + iLow + 1, w);
+				vnIndices.insert(vnIndices.begin() + iLow + 1, nNextIndex);
 			}
 		}
 	}
@@ -2521,13 +2521,13 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	}
 
 	//	rule list and offsets
-	Vector<int> vnOffsets;
-	Vector<int> vnRuleList;
+	std::vector<int> vnOffsets;
+	std::vector<int> vnRuleList;
 	GenerateRuleMaps(vnOffsets, vnRuleList);
 	int i;
-	for (i = 0; i < vnOffsets.Size(); i++)
+	for (i = 0; i < signed(vnOffsets.size()); i++)
 		pbstrm->WriteShort(vnOffsets[i]);
-	for (i = 0; i < vnRuleList.Size(); i++)
+	for (i = 0; i < signed(vnRuleList.size()); i++)
 		pbstrm->WriteShort(vnRuleList[i]);
 
 	//	minRulePreContext
@@ -2576,7 +2576,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	//	constraint and action code
 
-	int ib;
+	size_t ib;
 
 	int cbPassConstraint;
 	if (fxdSilfVersion >= 0x00020000)
@@ -2585,11 +2585,11 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 		pbstrm->WriteByte(0);
 
 		nOffsetToPConstraint = pbstrm->Position() - lTableStart;
-		Vector<byte> vbPassConstr;
+		std::vector<byte> vbPassConstr;
 		this->GenerateEngineCode(pcman, fxdRuleVersion, vbPassConstr);
-		for (ib = 0; ib < vbPassConstr.Size(); ib++)
+		for (ib = 0; ib < vbPassConstr.size(); ib++)
 			pbstrm->WriteByte(vbPassConstr[ib]);
-		cbPassConstraint = vbPassConstr.Size();
+		cbPassConstraint = vbPassConstr.size();
 	}
 	else
 	{
@@ -2606,19 +2606,19 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	because we are using zero as a indicator that there are no constraints.
 	pbstrm->WriteByte(0);
 
-	Vector<byte> vbConstraints;
-	Vector<byte> vbActions;
+	std::vector<byte> vbConstraints;
+	std::vector<byte> vbActions;
 	int irule;
 	for (irule = 0; irule < m_vprule.Size(); irule++)
 	{
-		vbConstraints.Clear();
+		vbConstraints.clear();
 		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
-		if (vbConstraints.Size() == 0)
+		if (vbConstraints.size() == 0)
 			vnConstraintOffsets.Push(0);
 		else
 		{
 			vnConstraintOffsets.Push(pbstrm->Position() - nOffsetToConstraint - lTableStart);
-			for (ib = 0; ib < vbConstraints.Size(); ib++)
+			for (ib = 0; ib < vbConstraints.size(); ib++)
 				pbstrm->WriteByte(vbConstraints[ib]);
 		}
 	}
@@ -2628,10 +2628,10 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	for (irule = 0; irule < m_vprule.Size(); irule++)
 	{
-		vbActions.Clear();
+		vbActions.clear();
 		vnActionOffsets.Push(pbstrm->Position() - nOffsetToAction - lTableStart);
 		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
-		for (int ib = 0; ib < vbActions.Size(); ib++)
+		for (size_t ib = 0; ib < vbActions.size(); ib++)
 			pbstrm->WriteByte(vbActions[ib]);
 	}
 	vnActionOffsets.Push(pbstrm->Position() - nOffsetToAction - lTableStart);
@@ -2726,7 +2726,7 @@ utf16 FsmMachineClass::OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm)
 									6
 	(States 0 - 2 are omitted from the lists; only success states are included.)
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateRuleMaps(Vector<int> & vnOffsets, Vector<int> & vnRuleList)
+void GdlPass::GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList)
 {
 	int ifsLim = m_vifsFinalToWork.Size();
 	for (int ifs = 0; ifs < ifsLim; ifs++)
@@ -2737,39 +2737,39 @@ void GdlPass::GenerateRuleMaps(Vector<int> & vnOffsets, Vector<int> & vnRuleList
 
 		if (pfstate->NumberOfRulesSucceeded() > 0)
 		{
-			vnOffsets.Push(vnRuleList.Size());
+			vnOffsets.push_back(vnRuleList.size());
 			//	Make a sorted list of all the rule indices (this allows the rules to be
 			//	tried in the order that they appeared in the source file).
-			Vector<int> virule;
+			std::vector<int> virule;
 			for (std::set<int>::iterator itset = pfstate->m_setiruleSuccess.begin();
 				itset != pfstate->m_setiruleSuccess.end();
 				++itset)
 			{
-				for (int iirule = 0; iirule <= virule.Size(); iirule++)
+				for (size_t iirule = 0; iirule <= virule.size(); iirule++)
 				{
-					if (iirule == virule.Size())
+					if (iirule == virule.size())
 					{
-						virule.Push(*itset);
+						virule.push_back(*itset);
 						break;
 					}
 					else if (*itset < virule[iirule])
 					{
-						virule.Insert(iirule, *itset);
+						virule.insert(virule.begin() + iirule, *itset);
 						break;
 					}
 				}
 			}
 			//	Now put them into the vector.
-			for (int iirule = 0; iirule < virule.Size(); iirule++)
-				vnRuleList.Push(virule[iirule]);
+			for (size_t iirule = 0; iirule < virule.size(); iirule++)
+				vnRuleList.push_back(virule[iirule]);
 		}
 		else
 			//	All non-success states should be together at the beginning of the table.
-			Assert(vnRuleList.Size() == 0);
+			Assert(vnRuleList.size() == 0);
 	}
 
 	//	Push a final offset, so that the last state can figure its length.
-	vnOffsets.Push(vnRuleList.Size());
+	vnOffsets.push_back(vnRuleList.size());
 }
 
 

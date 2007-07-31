@@ -1479,40 +1479,40 @@ void GdlRule::CalculateIOIndices()
 	Assign each rule item an input and an output index.
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::AssignIOIndices(int * pcritInput, int * pcritOutput,
-	Vector<int> & viritInput, Vector<int> & viritOutput)
+	std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	m_nInputIndex = (*pcritInput)++;
 	m_nOutputIndex = (*pcritOutput)++;
 
-	viritInput.Push(m_nInputIndex);
-	viritOutput.Push(m_nOutputIndex);
+	viritInput.push_back(m_nInputIndex);
+	viritOutput.push_back(m_nOutputIndex);
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSubstitutionItem::AssignIOIndices(int * pcritInput, int * pcritOutput,
-	Vector<int> & viritInput, Vector<int> & viritOutput)
+	std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	if (m_psymInput && m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	insertion
 		m_nInputIndex = (*pcritInput * -1) - 1;
-		viritInput.Push(m_nInputIndex);
+		viritInput.push_back(m_nInputIndex);
 	}
 	else
 	{
 		m_nInputIndex = (*pcritInput)++;
-		viritInput.Push(m_nInputIndex);
+		viritInput.push_back(m_nInputIndex);
 	}
 	if (m_psymOutput && m_psymOutput->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	deletion
 		m_nOutputIndex = (*pcritOutput * -1) - 1;
-		viritOutput.Push(m_nOutputIndex);
+		viritOutput.push_back(m_nOutputIndex);
 	}
 	else
 	{
 		m_nOutputIndex = (*pcritOutput)++;
-		viritOutput.Push(m_nOutputIndex);
+		viritOutput.push_back(m_nOutputIndex);
 	}
 }
 
@@ -1520,7 +1520,7 @@ void GdlSubstitutionItem::AssignIOIndices(int * pcritInput, int * pcritOutput,
 /*----------------------------------------------------------------------------------------------
 	Modify the rule items to use either input or output indices.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput)
+void GdlRuleItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	//	Constraints are read from the input stream.
 	if (m_pexpConstraint)
@@ -1528,13 +1528,13 @@ void GdlRuleItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viri
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLineBreakItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput)
+void GdlLineBreakItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	GdlRuleItem::AdjustToIOIndices(viritInput, viritOutput);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSetAttrItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput)
+void GdlSetAttrItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	GdlRuleItem::AdjustToIOIndices(viritInput, viritOutput);
 
@@ -1543,7 +1543,7 @@ void GdlSetAttrItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & v
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSubstitutionItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int> & viritOutput)
+void GdlSubstitutionItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	GdlSetAttrItem::AdjustToIOIndices(viritInput, viritOutput);
 
@@ -1568,7 +1568,7 @@ void GdlSubstitutionItem::AdjustToIOIndices(Vector<int> & viritInput, Vector<int
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlAttrValueSpec::AdjustToIOIndices(GdlRuleItem * prit,
-	Vector<int> & viritInput, Vector<int> & viritOutput)
+	std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
 	Assert(m_psymName->FitsSymbolType(ksymtSlotAttr));
 

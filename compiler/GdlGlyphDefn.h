@@ -297,8 +297,8 @@ public:
 		FsmMachineClassSet & setpfsmc);
 
 	//	Output:
-	void AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs);
-	void AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices);
+	void AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs);
+	void AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices);
 
 	//	debugger
 	virtual void DebugCmapForMember(GrcFont * pfont,

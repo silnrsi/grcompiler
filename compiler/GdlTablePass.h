@@ -118,7 +118,7 @@ public:
 	{
 		return m_nGlobalID + m_nPreBidiPass + 1;
 	}
-	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, Vector<byte> & vbConstraints);
+	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
 	void GenerateFsmMachineClasses(GrcManager * pcman);
 	void GenerateFsmTable(GrcManager * pcman);
@@ -144,7 +144,7 @@ public:
 	//	Output:
 	int TotalNumGlyphSubRanges();
 	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart);
-	void GenerateRuleMaps(Vector<int> & vnOffsets, Vector<int> & vnRuleList);
+	void GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList);
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
 
 	//	debuggers:

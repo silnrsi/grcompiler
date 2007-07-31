@@ -104,8 +104,8 @@ public:
 		FsmMachineClassSet & setpfsmc) = 0;
 
 	//	Output:
-	virtual void AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs) = 0;
-	virtual void AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices) = 0;
+	virtual void AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs) = 0;
+	virtual void AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices) = 0;
 
 	//	debuggers
 	virtual void DebugCmapForMember(GrcFont * pfont,
@@ -235,10 +235,10 @@ public:
 		FsmMachineClassSet & setpfsmc);
 
 	//	Output
-	void GenerateOutputGlyphList(Vector<utf16> & vwGlyphs);
-	void GenerateInputGlyphList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices);
-	void AddGlyphsToUnsortedList(Vector<utf16> & vwGlyphs);
-	void AddGlyphsToSortedList(Vector<utf16> & vwGlyphs, Vector<int> & vnIndices);
+	void GenerateOutputGlyphList(std::vector<utf16> & vwGlyphs);
+	void GenerateInputGlyphList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices);
+	void AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs);
+	void AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices);
 
 	//	debuggers
 	void DebugCmap(GrcFont * pfont,

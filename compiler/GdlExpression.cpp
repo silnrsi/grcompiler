@@ -2361,14 +2361,14 @@ void GdlStringExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 							we store the adjusted index of the target of the attachment in
 							the rule item for future reference.
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlUnaryExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	Assert(prit == NULL);
 	m_pexpOperand->AdjustToIOIndices(virit, prit);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlBinaryExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	Assert(prit == NULL);
 	m_pexpOperand1->AdjustToIOIndices(virit, prit);
@@ -2376,7 +2376,7 @@ void GdlBinaryExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * p
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlCondExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	Assert(prit == NULL);
 	m_pexpTest->AdjustToIOIndices(virit, prit);
@@ -2386,7 +2386,7 @@ void GdlCondExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * pri
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlLookupExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	Assert(prit == NULL);
 	if (m_pexpSelector)
@@ -2394,13 +2394,13 @@ void GdlLookupExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * p
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlNumericExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	Assert(prit == NULL);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlSlotRefExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	if (m_srNumber == 0)
 		m_nIOIndex = -1;
@@ -2411,7 +2411,7 @@ void GdlSlotRefExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::AdjustToIOIndices(Vector<int> & virit, GdlRuleItem * prit)
+void GdlStringExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
 {
 	Assert(prit == NULL);
 }
@@ -2651,8 +2651,8 @@ bool GdlStringExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded
 							needs to decide how to handle the accompanying insert = false;
 							only slot references need to worry about it
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	m_pexpOperand->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
@@ -2661,17 +2661,17 @@ void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & v
 	std::string staOp = m_psymOperator->FullName();
 
 	if (strcmp(staOp.c_str(), "!") == 0)
-		vbOutput.Push(kopNot);
+		vbOutput.push_back(kopNot);
 	else if (strcmp(staOp.c_str(), "-") == 0)
-		vbOutput.Push(kopNeg);
+		vbOutput.push_back(kopNeg);
 	// eventually, perhaps add kopTrunc8 and kopTrunc16
 	else
 		Assert(false);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	int nBogus;
@@ -2685,40 +2685,40 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 	std::string staOp = m_psymOperator->FullName();
 
 	if (staOp == "+")
-		vbOutput.Push(kopAdd);
+		vbOutput.push_back(kopAdd);
 	else if (staOp == "-")
-		vbOutput.Push(kopSub);
+		vbOutput.push_back(kopSub);
 	else if (staOp == "*")
-		vbOutput.Push(kopMul);
+		vbOutput.push_back(kopMul);
 	else if (staOp == "/")
-		vbOutput.Push(kopDiv);
+		vbOutput.push_back(kopDiv);
 	else if (staOp == "max")
-		vbOutput.Push(kopMax);
+		vbOutput.push_back(kopMax);
 	else if (staOp == "min")
-		vbOutput.Push(kopMin);
+		vbOutput.push_back(kopMin);
 	else if (staOp == "&&")
-		vbOutput.Push(kopAnd);
+		vbOutput.push_back(kopAnd);
 	else if (staOp == "||")
-		vbOutput.Push(kopOr);
+		vbOutput.push_back(kopOr);
 	else if (staOp == "==")
-		vbOutput.Push(kopEqual);
+		vbOutput.push_back(kopEqual);
 	else if (staOp == "!=")
-		vbOutput.Push(kopNotEq);
+		vbOutput.push_back(kopNotEq);
 	else if (staOp == "<")
-		vbOutput.Push(kopLess);
+		vbOutput.push_back(kopLess);
 	else if (staOp == ">")
-		vbOutput.Push(kopGtr);
+		vbOutput.push_back(kopGtr);
 	else if (staOp == "<=")
-		vbOutput.Push(kopLessEq);
+		vbOutput.push_back(kopLessEq);
 	else if (staOp == ">=")
-		vbOutput.Push(kopGtrEq);
+		vbOutput.push_back(kopGtrEq);
 	else
 		Assert(false);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	int nBogus;
@@ -2728,12 +2728,12 @@ void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vb
 		fAttachAt, iritAttachTo, pnValue);
 	m_pexpFalse->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
 		fAttachAt, iritAttachTo, pnValue);
-	vbOutput.Push(kopCond);
+	vbOutput.push_back(kopCond);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	if (m_pexpSimplified)
@@ -2783,10 +2783,10 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 		{
 			if (m_psymName->IsUserDefinableSlotAttr())
 			{
-				vbOutput.Push(kopPushISlotAttr);
-				vbOutput.Push(m_psymName->SlotAttrEngineCodeOp());
-				vbOutput.Push(nSelOffset);
-				vbOutput.Push(m_psymName->UserDefinableSlotAttrIndex());
+				vbOutput.push_back(kopPushISlotAttr);
+				vbOutput.push_back(m_psymName->SlotAttrEngineCodeOp());
+				vbOutput.push_back(nSelOffset);
+				vbOutput.push_back(m_psymName->UserDefinableSlotAttrIndex());
 			}
 			else
 				Assert(false);	// currently no way to look up the value of a
@@ -2794,9 +2794,9 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 		}
 		else
 		{
-			vbOutput.Push(kopPushSlotAttr);
-			vbOutput.Push(m_psymName->SlotAttrEngineCodeOp());
-			vbOutput.Push(nSelOffset);
+			vbOutput.push_back(kopPushSlotAttr);
+			vbOutput.push_back(m_psymName->SlotAttrEngineCodeOp());
+			vbOutput.push_back(nSelOffset);
 		}
 	}
 	else if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
@@ -2817,34 +2817,34 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 				if (fxdRuleVersion <= 0x00020000)
 				{
 					// Use old 8-bit version of this command.
-					vbOutput.Push(kopPushAttToGAttrV1_2);
-					vbOutput.Push(nID);
+					vbOutput.push_back(kopPushAttToGAttrV1_2);
+					vbOutput.push_back(nID);
 				}
 				else
 				{
-					vbOutput.Push(kopPushAttToGlyphAttr);
-					vbOutput.Push(nID >> 8);
-					vbOutput.Push(nID & 0x000000FF);
+					vbOutput.push_back(kopPushAttToGlyphAttr);
+					vbOutput.push_back(nID >> 8);
+					vbOutput.push_back(nID & 0x000000FF);
 				}
 
-				vbOutput.Push(nSel - iritAttachTo);	// relative to attach.to target
+				vbOutput.push_back(nSel - iritAttachTo);	// relative to attach.to target
 			}
 			else
 			{
 				if (fxdRuleVersion <= 0x00020000)
 				{
 					// Use old 8-bit version of this command.
-					vbOutput.Push(kopPushGlyphAttrV1_2);
-					vbOutput.Push(nID);
+					vbOutput.push_back(kopPushGlyphAttrV1_2);
+					vbOutput.push_back(nID);
 				}
 				else
 				{
-					vbOutput.Push(kopPushGlyphAttr);
-					vbOutput.Push(nID >> 8);
-					vbOutput.Push(nID & 0x000000FF);
+					vbOutput.push_back(kopPushGlyphAttr);
+					vbOutput.push_back(nID >> 8);
+					vbOutput.push_back(nID & 0x000000FF);
 				}
 
-				vbOutput.Push(nSelOffset);
+				vbOutput.push_back(nSelOffset);
 			}
 		}
 	}
@@ -2854,35 +2854,35 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 		{
 			Assert(iritAttachTo != -1);
 			int nSel = (m_pexpSelector) ? m_pexpSelector->m_nIOIndex : iritAttachTo;
-			vbOutput.Push(kopPushAttToGlyphMetric);
-			vbOutput.Push(m_psymName->GlyphMetricEngineCodeOp());
-			vbOutput.Push(nSel - iritAttachTo);	// relative to attach.to target
+			vbOutput.push_back(kopPushAttToGlyphMetric);
+			vbOutput.push_back(m_psymName->GlyphMetricEngineCodeOp());
+			vbOutput.push_back(nSel - iritAttachTo);	// relative to attach.to target
 		}
 		else
 		{
-			vbOutput.Push(kopPushGlyphMetric);
-			vbOutput.Push(m_psymName->GlyphMetricEngineCodeOp());
-			vbOutput.Push(nSelOffset);
+			vbOutput.push_back(kopPushGlyphMetric);
+			vbOutput.push_back(m_psymName->GlyphMetricEngineCodeOp());
+			vbOutput.push_back(nSelOffset);
 		}
-		vbOutput.Push(m_nClusterLevel);
+		vbOutput.push_back(m_nClusterLevel);
 	}
 	else if (m_psymName->FitsSymbolType(ksymtFeature))
 	{
 		Assert(!m_pexpSelector);
-		vbOutput.Push(kopPushFeat);
+		vbOutput.push_back(kopPushFeat);
 		GdlFeatureDefn * pfeat = m_psymName->FeatureDefnData();
 		Assert(pfeat);
-		vbOutput.Push(pfeat->InternalID());
-		vbOutput.Push(nSelOffset);
+		vbOutput.push_back(pfeat->InternalID());
+		vbOutput.push_back(nSelOffset);
 	}
 	else if (m_psymName->FitsSymbolType(ksymtProcState))
 	{
 		Assert(!m_pexpSelector);
-		vbOutput.Push(kopPushProcState);
+		vbOutput.push_back(kopPushProcState);
 		if (m_psymName->FullName() == "JustifyMode")
-			vbOutput.Push(kpstatJustifyMode);
+			vbOutput.push_back(kpstatJustifyMode);
 		else if (m_psymName->FullName() == "JustifyLevel")
-			vbOutput.Push(kpstatJustifyLevel);
+			vbOutput.push_back(kpstatJustifyLevel);
 		else
 			Assert(false);
 	}
@@ -2891,8 +2891,8 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	//	Output most-significant byte first.
@@ -2900,35 +2900,35 @@ void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> &
 	byte b4 = m_nValue & 0x000000FF;
 	if ((m_nValue & 0xFFFFFF80) == 0 || (m_nValue & 0xFFFFFF80) == 0xFFFFFF80)
 	{
-		vbOutput.Push(kopPushByte);
-		vbOutput.Push(b4);
+		vbOutput.push_back(kopPushByte);
+		vbOutput.push_back(b4);
 	}
 	else
 	{
 		byte b3 = (m_nValue & 0x0000FF00) >> 8;
 		if ((m_nValue & 0xFFFF8000) == 0 || (m_nValue & 0xFFFF8000) == 0xFFFF8000)
 		{
-			vbOutput.Push(kopPushShort);
-			vbOutput.Push(b3);
-			vbOutput.Push(b4);
+			vbOutput.push_back(kopPushShort);
+			vbOutput.push_back(b3);
+			vbOutput.push_back(b4);
 		}
 		else
 		{
 			byte b1 = (m_nValue & 0xFF000000) >> 24;
 			byte b2 = (m_nValue & 0x00FF0000) >> 16;
 
-			vbOutput.Push(kopPushLong);
-			vbOutput.Push(b1);
-			vbOutput.Push(b2);
-			vbOutput.Push(b3);
-			vbOutput.Push(b4);
+			vbOutput.push_back(kopPushLong);
+			vbOutput.push_back(b1);
+			vbOutput.push_back(b2);
+			vbOutput.push_back(b3);
+			vbOutput.push_back(b4);
 		}
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlSlotRefExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	int nOffset = m_nIOIndex - iritCurrent;
@@ -2944,13 +2944,13 @@ void GdlSlotRefExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> &
 	//	slot needs to have insert = false set.
 	*pnValue = nOffset;
 
-	vbOutput.Push(kopPushByte);
-	vbOutput.Push(bOffset);
+	vbOutput.push_back(kopPushByte);
+	vbOutput.push_back(bOffset);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, Vector<byte> & vbOutput,
-	int iritCurrent, Vector<int> * pviritInput, int nIIndex,
+void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
 	//	Should never have string expressions in engine code.
