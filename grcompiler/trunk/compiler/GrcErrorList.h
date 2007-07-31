@@ -82,7 +82,7 @@ public:
 
 	~GrcErrorList()
 	{
-		for (int i = 0; i < m_vperr.Size(); ++i)
+		for (size_t i = 0; i < m_vperr.size(); ++i)
 			delete m_vperr[i];
 	}
 
@@ -259,7 +259,7 @@ public:
 	void SortErrors();
 	int NumberOfErrors()
 	{
-		return m_vperr.Size();
+		return m_vperr.size();
 	}
 	int ErrorsAtLine(int nLine);
 	int ErrorsAtLine(int nLine, int * piperrFirst);
@@ -282,7 +282,7 @@ public:
 
 	void SetLastMsgIncludesFatality(bool f)
 	{
-		(*m_vperr.Top())->m_fMsgIncludesFatality = f;
+		m_vperr.back()->m_fMsgIncludesFatality = f;
 	}
 
 	void WriteErrorsToFile(std::string staGdlFile, std::string staInputFontFile,
@@ -302,9 +302,9 @@ protected:
 	//	instance variables:
 	bool m_fFatalError;
 
-	Vector<GrcErrorItem *> m_vperr;
+	std::vector<GrcErrorItem *> m_vperr;
 
-	Vector<int> m_vnIgnoreWarnings;
+	std::vector<int> m_vnIgnoreWarnings;
 
 public:
 	//	For test procedures:
@@ -315,11 +315,11 @@ public:
 
 	void test_Clear()
 	{
-		for (int i = 0; i < m_vperr.Size(); ++i)
+		for (size_t i = 0; i < m_vperr.size(); ++i)
 		{
 			delete m_vperr[i];
 		}
-		m_vperr.Clear();
+		m_vperr.clear();
 		m_fFatalError = false;
 	}
 };

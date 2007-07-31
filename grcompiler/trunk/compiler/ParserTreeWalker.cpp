@@ -973,7 +973,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 {
 	Assert(ast->getType() == OP_EQ || ast->getType() == OP_PLUSEQUAL);
 
-	Vector<std::string> vsta;
+	std::vector<std::string> vsta;
 	GdlGlyphClassDefn * pglfc;
 	std::string staClassName = ast->getFirstChild()->getText();
 	Symbol psymClass = SymbolTable()->FindSymbol(staClassName);
@@ -1023,13 +1023,13 @@ void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc)
 		if (astContents->getType() == Zattrs)
 		{
 			//	Attributes.
-			Vector<std::string> vsta;
-			vsta.Push(pglfc->Name());
+			std::vector<std::string> vsta;
+			vsta.push_back(pglfc->Name());
 			RefAST astT = astContents->getFirstChild();
 			while (astT)
 			{
 				WalkGlyphAttrTree(astT, vsta);
-				Assert(vsta.Size() == 1);
+				Assert(vsta.size() == 1);
 				astT = astT->getNextSibling();
 			}
 		}
@@ -1045,13 +1045,13 @@ void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc)
 	Traverse the glyph attribute assignment tree, adding the assignments to the symbol table
 	and master glyph attribute table.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<std::string> & vsta)
+void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 {
 	if (!ast)
 		return;
 
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText());
+	vsta.push_back(astNextID->getText());
 
 	int nodetyp = ast->getType();
 
@@ -1107,7 +1107,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<std::string> & vsta)
 		}
 	}
 
-	vsta.Pop();
+	vsta.pop_back();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1116,7 +1116,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, Vector<std::string> & vsta)
 		fSlotAttr			- true if this is a slot attribute, false if it is a glyph attr
 		prit, psymOp		- only used for slot attributes
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ProcessFunction(RefAST ast, Vector<std::string> & vsta,
+void GrcManager::ProcessFunction(RefAST ast, std::vector<std::string> & vsta,
 	bool fSlotAttr, GdlRuleItem * prit, Symbol psymOp)
 {
 	Assert(ast->getType() == Zfunction);
@@ -1281,35 +1281,35 @@ void GrcManager::ProcessFunction(RefAST ast, Vector<std::string> & vsta,
 
 	if (pexp1)
 	{
-		vsta.Push(sta1);
+		vsta.push_back(sta1);
 		ProcessFunctionArg(fSlotAttr, GrcStructName(vsta),
 			nPR, mPRUnits, fOverride, lnf,
 			expt1, prit, psymOp, pexp1);
-		vsta.Pop();
+		vsta.pop_back();
 	}
 	if (pexp2)
 	{
-		vsta.Push(sta2);
+		vsta.push_back(sta2);
 		ProcessFunctionArg(fSlotAttr, GrcStructName(vsta),
 			nPR, mPRUnits, fOverride, lnf,
 			expt2, prit, psymOp, pexp2);
-		vsta.Pop();
+		vsta.pop_back();
 	}
 	if (pexp3)
 	{
-		vsta.Push(sta3);
+		vsta.push_back(sta3);
 		ProcessFunctionArg(fSlotAttr, GrcStructName(vsta),
 			nPR, mPRUnits, fOverride, lnf,
 			expt3, prit, psymOp, pexp3);
-		vsta.Pop();
+		vsta.pop_back();
 	}
 	if (pexp4)
 	{
-		vsta.Push(sta4);
+		vsta.push_back(sta4);
 		ProcessFunctionArg(fSlotAttr, GrcStructName(vsta),
 			nPR, mPRUnits, fOverride, lnf,
 			expt4, prit, psymOp, pexp4);
-		vsta.Pop();
+		vsta.pop_back();
 	}
 }
 
@@ -1622,7 +1622,7 @@ void GrcManager::WalkFeatureTableTree(RefAST ast)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::WalkFeatureTableElement(RefAST ast)
 {
-	Vector<std::string> vsta;
+	std::vector<std::string> vsta;
 	std::string staFeatureName = ast->getFirstChild()->getText();
 	Symbol psymFeat = SymbolTable()->FindSymbol(staFeatureName);
 	if (!psymFeat)
@@ -1651,7 +1651,7 @@ void GrcManager::WalkFeatureTableElement(RefAST ast)
 		return;
 	}
 
-	vsta.Clear();
+	vsta.clear();
 	WalkFeatureSettingsTree(ast, vsta);
 }
 
@@ -1659,14 +1659,14 @@ void GrcManager::WalkFeatureTableElement(RefAST ast)
 	Traverse the features identifier tree, adding the assignments to the symbol table
 	and master features table.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<std::string> & vsta)
+void GrcManager::WalkFeatureSettingsTree(RefAST ast, std::vector<std::string> & vsta)
 {
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText());
+	vsta.push_back(astNextID->getText());
 
 	if (ast->getType() == OP_EQ)
 	{
-		if (vsta.Size() < 2)
+		if (vsta.size() < 2)
 		{
 			g_errorList.AddError(1149, NULL,
 				"Invalid feature statement",
@@ -1709,7 +1709,7 @@ void GrcManager::WalkFeatureSettingsTree(RefAST ast, Vector<std::string> & vsta)
 		}
 	}
 
-	vsta.Pop();
+	vsta.pop_back();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1870,18 +1870,18 @@ void GrcManager::WalkNameTableTree(RefAST ast)
 void GrcManager::WalkNameTableElement(RefAST ast)
 {
 	//	Nothing special to do.
-	Vector<std::string> vsta;
+	std::vector<std::string> vsta;
 	WalkNameIDTree(ast, vsta);
-	Assert(vsta.Size() == 0);
+	Assert(vsta.size() == 0);
 }
 
 /*----------------------------------------------------------------------------------------------
 	Process a name assignment.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkNameIDTree(RefAST ast, Vector<std::string> & vsta)
+void GrcManager::WalkNameIDTree(RefAST ast, std::vector<std::string> & vsta)
 {
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText());
+	vsta.push_back(astNextID->getText());
 
 	if (ast->getType() == OP_EQ || ast->getType() == OP_PLUSEQUAL)
 	{
@@ -1906,7 +1906,7 @@ void GrcManager::WalkNameIDTree(RefAST ast, Vector<std::string> & vsta)
 		}
 	}
 
-	vsta.Pop();
+	vsta.pop_back();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2004,10 +2004,10 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 
 	//	Only the most immediate pass constraints apply to the embedded passes, so
 	//	temporarily remove any that are hanging around at this point.
-	Vector<GdlExpression *> vpexpSavePassConstr;
+	std::vector<GdlExpression *> vpexpSavePassConstr;
 	int ipexp;
 	for (ipexp = 0; ipexp < m_vpexpPassConstraints.Size(); ipexp++)
-		vpexpSavePassConstr.Push(m_vpexpPassConstraints[ipexp]);
+		vpexpSavePassConstr.push_back(m_vpexpPassConstraints[ipexp]);
 	m_vpexpPassConstraints.Clear();
 
 	Symbol psymNot = SymbolTable()->FindSymbol("!");
@@ -2092,7 +2092,7 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 
 	//	Put the pass constraint list back the way it was.
 	Assert(m_vpexpPassConstraints.Size() == 0);
-	for (ipexp = 0; ipexp < vpexpSavePassConstr.Size(); ipexp++)
+	for (ipexp = 0; ipexp < signed(vpexpSavePassConstr.size()); ipexp++)
 		m_vpexpPassConstraints.Push(vpexpSavePassConstr[ipexp]);
 }
 
@@ -2440,12 +2440,12 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 				//	attributes
 				Assert(lrc == 1);
 				Assert(astNext->getType() == Zattrs);
-				Vector<std::string> vsta;
+				std::vector<std::string> vsta;
 				RefAST astAttr = astNext->getFirstChild();
 				while (astAttr)
 				{
 					WalkSlotAttrTree(astAttr, prit, vsta);
-					Assert(vsta.Size() == 0);
+					Assert(vsta.size() == 0);
 					astAttr = astAttr->getNextSibling();
 				}
 			}
@@ -2603,13 +2603,13 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 /*----------------------------------------------------------------------------------------------
 	Traverse the slot attribute assignment tree, adding the assignments to the rule item.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, Vector<std::string> & vsta)
+void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<std::string> & vsta)
 {
 	if (!ast)
 		return;
 
 	RefAST astNextID = ast->getFirstChild();
-	vsta.Push(astNextID->getText().c_str());
+	vsta.push_back(astNextID->getText().c_str());
 
 	int nodetyp = ast->getType();
 
@@ -2651,7 +2651,7 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, Vector<std::st
 		}
 	}
 
-	vsta.Pop();
+	vsta.pop_back();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2682,7 +2682,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 	int nValue;
 	int nCluster;
 	bool fM;
-	Vector<std::string> vsta;
+	std::vector<std::string> vsta;
 
 	int nodetyp = ast->getType();
 	switch (nodetyp)
@@ -2806,7 +2806,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 			Assert(pexpsrSel);
 		}
 		astName = astT;
-		vsta.Clear();
+		vsta.clear();
 		psymName = IdentifierSymbol(astName, vsta);
 		Assert(psymName);
 //		GdlLookupExpression::LookupType lookType;
@@ -3011,17 +3011,17 @@ int GrcManager::NumericValue(RefAST ast)
 /*----------------------------------------------------------------------------------------------
 	Return the symbol corresponding to the dotted identifier.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcManager::IdentifierSymbol(RefAST ast, Vector<std::string> & vsta)
+Symbol GrcManager::IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta)
 {
 	if (ast->getType() == OP_DOT)
 	{
 		RefAST ast1 = ast->getFirstChild();
-		vsta.Push(ast1->getText().c_str());
+		vsta.push_back(ast1->getText().c_str());
 		return IdentifierSymbol(ast1->getNextSibling(), vsta);
 	}
 
 	Assert(ast->getType() == IDENT);
-	vsta.Push(ast->getText().c_str());
+	vsta.push_back(ast->getText().c_str());
 	Symbol psymRet = SymbolTable()->FindSymbol(GrcStructName(vsta));
 	if (!psymRet)
 	{
@@ -3043,7 +3043,7 @@ Symbol GrcManager::IdentifierSymbol(RefAST ast, Vector<std::string> & vsta)
 	Return true if the given array of symbol names is of the form
 	<class>.<predefined-glyph-attr>.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::ClassPredefGlyphAttr(Vector<std::string> & vsta,
+bool GrcManager::ClassPredefGlyphAttr(std::vector<std::string> & vsta,
 	ExpressionType * pexpt, SymbolType * psymt)
 {
 	std::string sta1 = vsta[0];
@@ -3051,10 +3051,9 @@ bool GrcManager::ClassPredefGlyphAttr(Vector<std::string> & vsta,
 	if (!psymClass || !psymClass->FitsSymbolType(ksymtClass))
 		return false;
 	
-	Vector<std::string> vstaMinusClass;
-	int ista;
-	for (ista = 1; ista < vsta.Size(); ista++)
-		vstaMinusClass.Push(vsta[ista]);
+	std::vector<std::string> vstaMinusClass;
+	for (size_t ista = 1; ista < vsta.size(); ista++)
+		vstaMinusClass.push_back(vsta[ista]);
 	Symbol psymGlyphAttr = SymbolTable()->FindSymbol(GrcStructName(vstaMinusClass));
 	if (!psymGlyphAttr)
 		return false;
@@ -3151,14 +3150,14 @@ void GdlRule::ConvertLhsOptRangesToContext()
 		return;
 
 	//	Make a mapping from lhs/rhs items to corresponding indices in the context.
-	Vector<int> viritToContext;
+	std::vector<int> viritToContext;
 	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
 	{
 		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem*>(m_vprit[iritT]);
 		if (pritset)
 		{
 			//	Left-hand-side item.
-			viritToContext.Push(iritT);
+			viritToContext.push_back(iritT);
 		}
 	}
 
@@ -3173,7 +3172,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 			int iiritLhs = iirit;
 			int iritLhs1 = m_viritOptRangeStart[iiritLhs];
 			int iritLhs2 = m_viritOptRangeEnd[iiritLhs];
-			if (iritLhs1 < viritToContext.Size() && iritLhs2 < viritToContext.Size())
+			if (iritLhs1 < signed(viritToContext.size()) && iritLhs2 < signed(viritToContext.size()))
 			{
 				iritLhs1 = viritToContext[iritLhs1];
 				iritLhs2 = viritToContext[iritLhs2];
