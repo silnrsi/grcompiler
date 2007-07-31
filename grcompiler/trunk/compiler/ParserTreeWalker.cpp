@@ -1783,7 +1783,7 @@ void GrcManager::WalkLanguageItem(RefAST ast, GdlLangClass * plcls)
 		std::string staLhs = astLhs->getText();
 		if (staLhs == "language" || staLhs == "languages")
 		{
-			if (plcls->m_vplang.Size() > 0)
+			if (plcls->m_vplang.size() > 0)
 			{
 				g_errorList.AddError(1150, NULL,
 					"Redefining list of languages for language group '", plcls->m_staLabel, "'",

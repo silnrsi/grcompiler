@@ -438,9 +438,9 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	}
 	nNameTblId = max(nNameTblId, m_nNameTblStart);
 
-	Vector<std::wstring> vstuExtNames;
-	Vector<uint16> vnLangIds;
-	Vector<uint16> vnNameTblIds;
+	std::vector<std::wstring> vstuExtNames;
+	std::vector<uint16> vnLangIds;
+	std::vector<uint16> vnNameTblIds;
 
 	size_t cchwFeatStringData = 0;
 	if (!AssignFeatTableNameIds(nNameTblId, vstuExtNames, vnLangIds, vnNameTblIds, cchwFeatStringData))
@@ -578,7 +578,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	// Create the new name table.
 	size_t cbTblNew = cbOldTblRecords
 		+ cbNewStringData		// adjusted for font name changes
-		+ (vstuExtNames.Size() * sizeof(sfnt_NameRecord) * vpec.Size());
+		+ (vstuExtNames.size() * sizeof(sfnt_NameRecord) * vpec.Size());
 								// 1 record for each feature string for each platform+encoding of interest
 
 	// We need at most one version of the 8-bit feature strings and one version of the 16-bit strings.
@@ -825,7 +825,8 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, 
 	uint8 * pTblNew, uint32 cbTblNew,
-	Vector<std::wstring> & vstuExtNames, Vector<uint16> & vnLangIds, Vector<uint16> & vnNameTblIds, 
+	std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
+	std::vector<uint16> & vnNameTblIds, 
 	uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec)
 {
 	// Struct used to store data from directory entries that need to be sorted.
@@ -859,7 +860,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	uint16 ibStrOffsetOld = swapw(pTbl->stringOffset);
 	sfnt_NameRecord * pOldRecord = (sfnt_NameRecord *)(pTbl + 1);
 
-	int crecNew = crecOld + (vstuExtNames.Size() * vpec.Size());
+	int crecNew = crecOld + (vstuExtNames.size() * vpec.Size());
 
 	sfnt_NameRecord * pNewRecord;
 
@@ -992,7 +993,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	{
 		PlatEncChange * ppec = &(vpec[ipec]);
 		bool f8bit = (ppec->cbBytesPerChar != sizeof(utf16));
-		for (int istring = 0; istring < vstuExtNames.Size(); istring++)
+		for (size_t istring = 0; istring < vstuExtNames.size(); istring++)
 		{
 			pNewRecord[irec].platformID = swapw(ppec->platformID);
 			pNewRecord[irec].specificID = swapw(ppec->encodingID);
@@ -2258,7 +2259,7 @@ void GdlGlyphClassDefn::AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs)
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs)
 {
-	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
 		vwGlyphs.push_back(m_vwGlyphIDs[iw]);
 	}
@@ -2289,9 +2290,9 @@ void GdlGlyphClassDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices)
 {
-	Assert(vwGlyphs.Size() == vnIndices.Size());
+	Assert(vwGlyphs.size() == vnIndices.Size());
 
-	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
 		int nNextIndex = signed(vwGlyphs.size());
 
@@ -2810,7 +2811,8 @@ void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 	Convenient wrapper to call the same method in GdlRenderer.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId,
-	Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, Vector<utf16> & vwNameTblIds,
+	std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds,
+	std::vector<utf16> & vwNameTblIds,
 	size_t & cchwStringData)
 {
 	return m_prndr->AssignFeatTableNameIds(wFirstNameId, vstuExtNames, vwLangIds, 
@@ -2828,7 +2830,8 @@ bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId,
 	name table ID for a given feature or setting.
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId,
-	Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, Vector<utf16> &vwNameTblIds,
+	std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds,
+	std::vector<utf16> &vwNameTblIds,
 	size_t & cchwStringData)
 {
 	if (wFirstNameId > 32767) return false; // max allowed value
@@ -3037,8 +3040,8 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 
 void GdlLanguageDefn::OutputSettings(GrcBinaryStream * pbstrm)
 {
-	Assert(m_vpfeat.Size() == m_vnFset.Size());
-	for (int ifset = 0; ifset < m_vpfset.Size(); ifset++)
+	Assert(m_vpfeat.size() == m_vnFset.size());
+	for (size_t ifset = 0; ifset < m_vpfset.size(); ifset++)
 	{
 		pbstrm->WriteInt(m_vpfeat[ifset]->ID());	// feature ID
 		pbstrm->WriteShort(m_vnFset[ifset]);		// value

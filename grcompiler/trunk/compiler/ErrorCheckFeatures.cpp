@@ -126,7 +126,7 @@ bool GrcManager::PreCompileLanguages(GrcFont * pfont)
 bool GdlLangClass::PreCompile(GrcManager * pcman)
 {
 	// Each item in the vectors corresponds to a feature assignment.
-	for (int ifasgn = 0; ifasgn < m_vstaFeat.Size(); ifasgn++)
+	for (size_t ifasgn = 0; ifasgn < m_vstaFeat.size(); ifasgn++)
 	{
 		Symbol psymFeat = pcman->SymbolTable()->FindSymbol(m_vstaFeat[ifasgn]);
 		if (!psymFeat)
@@ -176,10 +176,10 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 		}
 
 		// Store the feature values in the language items.
-		for (int ilang = 0; ilang < m_vplang.Size(); ilang++)
+		for (size_t ilang = 0; ilang < m_vplang.size(); ilang++)
 			m_vplang[ilang]->AddFeatureValue(pfeat, pfset, nVal, m_vlnf[ifasgn]);
 
-		if (m_vplang.Size() == 0 && ifasgn == 0)
+		if (m_vplang.size() == 0 && ifasgn == 0)
 		{
 			g_errorList.AddWarning(3524, NULL, "No languages specified for language group '", m_staLabel,
 				"'; settings will have no effect",

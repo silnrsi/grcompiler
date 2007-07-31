@@ -267,7 +267,7 @@ public:
 
 	virtual bool IncludesGlyph(utf16 w)
 	{
-		for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+		for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 		{
 			if (m_vwGlyphIDs[iw] == w)
 				return true;
@@ -279,7 +279,7 @@ public:
 
 	virtual bool HasBadGlyph()
 	{
-		for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+		for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 		{
 			if (m_vwGlyphIDs[iw] == kBadGlyph)
 				return true;
@@ -317,7 +317,7 @@ protected:
 	std::string	m_sta;				// postscript name or codepoint string
 
 	//	for compiler use:
-	Vector<utf16> m_vwGlyphIDs;	// equivalent glyph IDs
+	std::vector<utf16> m_vwGlyphIDs;	// equivalent glyph IDs
 	utf16 m_wPseudo;			// glyph id assigned to pseudo-glyph
 
 	bool m_fGAResolved;			// temporary use: glyph attributes resolved

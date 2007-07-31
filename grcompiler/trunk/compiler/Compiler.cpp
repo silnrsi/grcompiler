@@ -1973,7 +1973,7 @@ void GdlGlyphClassDefn::DebugCmapForMember(GrcFont * pfont,
 void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 	utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni)
 {
-	Assert(m_vwGlyphIDs.Size() > 0);
+	Assert(m_vwGlyphIDs.size() > 0);
 
 	// TODO: check for kBadGlyph values
 
