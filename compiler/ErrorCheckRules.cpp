@@ -1705,13 +1705,13 @@ bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfo
 		}
 		else
 		{
-			for (int iw1 = 0; iw1 < this->m_vwGlyphIDs.Size(); iw1++)
+			for (size_t iw1 = 0; iw1 < this->m_vwGlyphIDs.size(); iw1++)
 			{
 				utf16 w1 = this->m_vwGlyphIDs[iw1];
 				if (w1 == kBadGlyph)
 					continue;
 				int nLsb = pfont->GetGlyphMetric(w1, kgmetLsb, this);
-				for (int iw2 = 0; iw2 < pglfLeft->m_vwGlyphIDs.Size(); iw2++)
+				for (size_t iw2 = 0; iw2 < pglfLeft->m_vwGlyphIDs.size(); iw2++)
 				{
 					utf16 w2 = pglfLeft->m_vwGlyphIDs[iw2];
 					if (w2 == kBadGlyph)
@@ -1763,11 +1763,11 @@ bool GdlGlyphClassDefn::DeleteBadGlyphs()
 bool GdlGlyphDefn::DeleteBadGlyphs()
 {
 	bool fRet = false;
-	for (int i = m_vwGlyphIDs.Size() - 1; i >=0; i--)
+	for (int i = signed(m_vwGlyphIDs.size()) - 1; i >=0; i--)
 	{
 		if (m_vwGlyphIDs[i] == kBadGlyph)
 		{
-			m_vwGlyphIDs.Delete(i);
+			m_vwGlyphIDs.erase(m_vwGlyphIDs.begin() + i);
 			fRet = true;
 		}
 	}
@@ -1797,7 +1797,7 @@ bool GdlGlyphDefn::WarnAboutBadGlyphs(bool fTop)
 {
 	Assert(!fTop);
 	bool fRet = false;
-	for (int i = m_vwGlyphIDs.Size() - 1; i >=0; i--)
+	for (int i = signed(m_vwGlyphIDs.size()) - 1; i >=0; i--)
 	{
 		fRet = (fRet || m_vwGlyphIDs[i] == kBadGlyph);
 	}

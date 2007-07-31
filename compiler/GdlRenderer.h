@@ -190,8 +190,8 @@ public:
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);
 	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
 		Vector<int> & vnOffsets);
-	bool AssignFeatTableNameIds(utf16 wFirstNameId, Vector<std::wstring> & vstuExtNames, 
-		Vector<utf16> & vwLangIds, Vector<utf16> & vwNameTblIds, size_t & cchwStringData);
+	bool AssignFeatTableNameIds(utf16 wFirstNameId, std::vector<std::wstring> & vstuExtNames, 
+		std::vector<utf16> & vwLangIds, std::vector<utf16> & vwNameTblIds, size_t & cchwStringData);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart, int fxdVersion);
 	void OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart);
 

@@ -284,26 +284,26 @@ std::wstring GdlExtName::s_stuNoName(L"NoName"); // static
 	corresponding language ids and the name table ids (assigned in SetNameTblIds().
 	While we're at it, keep a total of the length of the all the string data.
 ----------------------------------------------------------------------------------------------*/
-bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, 
-		Vector<utf16> & vwNameTblIds, size_t & cchwStringData)
+bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
+	std::vector<utf16> & vwLangIds, std::vector<utf16> & vwNameTblIds, size_t & cchwStringData)
 {
 	// store data for the feature itself
 	size_t cnExtNames = m_vextname.size();
 	if (cnExtNames <= 0)
 	{
-		vstuExtNames.Push(GdlExtName::s_stuNoName);
+		vstuExtNames.push_back(GdlExtName::s_stuNoName);
 		cchwStringData += GdlExtName::s_stuNoName.length();
-		vwLangIds.Push(LG_USENG);
-		vwNameTblIds.Push(m_wNameTblId);
+		vwLangIds.push_back(LG_USENG);
+		vwNameTblIds.push_back(m_wNameTblId);
 	}
 	else
 	{
 		for (size_t i = 0; i < cnExtNames; i++)
 		{
-			vstuExtNames.Push(m_vextname[i].Name());
+			vstuExtNames.push_back(m_vextname[i].Name());
 			cchwStringData += m_vextname[i].Name().length();
-			vwLangIds.Push(m_vextname[i].LanguageID());
-			vwNameTblIds.Push(m_wNameTblId);
+			vwLangIds.push_back(m_vextname[i].LanguageID());
+			vwNameTblIds.push_back(m_wNameTblId);
 		}
 	}
 
@@ -315,19 +315,19 @@ bool GdlFeatureDefn::NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf
 		cnExtNames = pFeatSet->m_vextname.size();
 		if (cnExtNames <= 0)
 		{
-			vstuExtNames.Push(GdlExtName::s_stuNoName);
+			vstuExtNames.push_back(GdlExtName::s_stuNoName);
 			cchwStringData += GdlExtName::s_stuNoName.length();
-			vwLangIds.Push(LG_USENG);
-			vwNameTblIds.Push(pFeatSet->NameTblId());
+			vwLangIds.push_back(LG_USENG);
+			vwNameTblIds.push_back(pFeatSet->NameTblId());
 		}
 		else
 		{
 			for (size_t j = 0; j < cnExtNames; j++)
 			{
-				vstuExtNames.Push(pFeatSet->m_vextname[j].Name());
+				vstuExtNames.push_back(pFeatSet->m_vextname[j].Name());
 				cchwStringData += pFeatSet->m_vextname[j].Name().length();
-				vwLangIds.Push(pFeatSet->m_vextname[j].LanguageID());
-				vwNameTblIds.Push(pFeatSet->NameTblId());
+				vwLangIds.push_back(pFeatSet->m_vextname[j].LanguageID());
+				vwNameTblIds.push_back(pFeatSet->NameTblId());
 			}
 		}
 	}
@@ -348,7 +348,7 @@ void GdlFeatureDefn::RecordDebugInfo()
 void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting * pfset,
 	int nFset, GrpLineAndFile & lnf)
 {
-	for (int ifeat = 0; ifeat < m_vpfeat.Size(); ifeat++)
+	for (size_t ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
 		if (m_vpfeat[ifeat] == pfeat)
 		{
@@ -361,9 +361,9 @@ void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting 
 			}
 		}
 	}
-	m_vpfeat.Push(pfeat);
-	m_vpfset.Push(pfset);
-	m_vnFset.Push(nFset);
-	Assert(m_vpfeat.Size() == m_vpfset.Size());
-	Assert(m_vpfeat.Size() == m_vnFset.Size());
+	m_vpfeat.push_back(pfeat);
+	m_vpfset.push_back(pfset);
+	m_vnFset.push_back(nFset);
+	Assert(m_vpfeat.size() == m_vpfset.size());
+	Assert(m_vpfeat.size() == m_vnFset.size());
 }

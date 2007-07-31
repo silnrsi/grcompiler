@@ -189,8 +189,8 @@ public:
 		return m_fStdLang;
 	}
 	utf16 NameTblId()	{ return m_wNameTblId; }
-	bool NameTblInfo(Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, 
-		Vector<utf16> & vwNameTblIds, size_t & cchwStringData);
+	bool NameTblInfo(std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
+		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData);
 
 	GdlFeatureSetting * FindSetting(std::string sta);
 	GdlFeatureSetting * FindOrAddSetting(std::string, GrpLineAndFile & lnf);
@@ -271,7 +271,7 @@ public:
 
 	int NumberOfSettings()
 	{
-		return m_vpfset.Size();
+		return m_vpfset.size();
 	}
 
 	// Pre-compiler:
@@ -284,9 +284,9 @@ public:
 protected:
 	//	Instance variables:
 	char m_rgchID[4];
-	Vector<GdlFeatureDefn*> m_vpfeat;
-	Vector<GdlFeatureSetting*> m_vpfset;
-	Vector<int> m_vnFset;
+	std::vector<GdlFeatureDefn*> m_vpfeat;
+	std::vector<GdlFeatureSetting*> m_vpfset;
+	std::vector<int> m_vnFset;
 };
 
 
@@ -306,30 +306,30 @@ class GdlLangClass
 
 	~GdlLangClass()
 	{
-		for (int i = 0; i < m_vpexpVal.Size(); i++)
+		for (size_t i = 0; i < m_vpexpVal.size(); i++)
 			delete m_vpexpVal[i];
 	}
 
 	void AddLanguage(GdlLanguageDefn * plang)
 	{
-		for (int i = 0; i < m_vplang.Size(); i++)
+		for (size_t i = 0; i < m_vplang.size(); i++)
 		{
 			if (m_vplang[i] == plang)
 				return;
 		}
-		m_vplang.Push(plang);
+		m_vplang.push_back(plang);
 	}
 
 	void AddFeatureValue(std::string staFeat, std::string staVal,
 		GdlExpression * pexpVal, GrpLineAndFile lnf)
 	{
-		m_vstaFeat.Push(staFeat);
-		m_vstaVal.Push(staVal);
-		m_vpexpVal.Push(pexpVal);
-		m_vlnf.Push(lnf);
-		Assert(m_vstaFeat.Size() == m_vstaVal.Size());
-		Assert(m_vstaFeat.Size() == m_vpexpVal.Size());
-		Assert(m_vstaFeat.Size() == m_vlnf.Size());
+		m_vstaFeat.push_back(staFeat);
+		m_vstaVal.push_back(staVal);
+		m_vpexpVal.push_back(pexpVal);
+		m_vlnf.push_back(lnf);
+		Assert(m_vstaFeat.size() == m_vstaVal.size());
+		Assert(m_vstaFeat.size() == m_vpexpVal.size());
+		Assert(m_vstaFeat.size() == m_vlnf.size());
 	}
 
 	bool PreCompile(GrcManager * pcman);
@@ -337,12 +337,12 @@ class GdlLangClass
 protected:
 	GrpLineAndFile m_lnf;
 	std::string m_staLabel;
-	Vector<GdlLanguageDefn *> m_vplang;
+	std::vector<GdlLanguageDefn *> m_vplang;
 	// These four are parallel vectors, each item corresponding to a feature assignment:
-	Vector<std::string> m_vstaFeat;		// name of feature
-	Vector<std::string> m_vstaVal;		// text of value
-	Vector<GdlExpression*> m_vpexpVal;	// expression, if not an identifer
-	Vector<GrpLineAndFile> m_vlnf;
+	std::vector<std::string> m_vstaFeat;		// name of feature
+	std::vector<std::string> m_vstaVal;		// text of value
+	std::vector<GdlExpression*> m_vpexpVal;	// expression, if not an identifer
+	std::vector<GrpLineAndFile> m_vlnf;
 };
 
 #endif // FEATURES_INCLUDED

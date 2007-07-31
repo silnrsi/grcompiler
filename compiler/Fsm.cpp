@@ -421,7 +421,7 @@ void GdlGlyphClassDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDef
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc)
 {
-	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
 		utf16 wGlyphID = m_vwGlyphIDs[iw];
 		ppass->RecordInclusionInClass(wGlyphID, pglfc);
@@ -451,8 +451,8 @@ void GdlPass::RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc)
 //{
 //	for (int w = 0; w < kMaxTotalGlyphs; w++)
 //	{
-//		Vector<GdlGlyphClassDefn *> vpglfcToSort = m_rgscsInclusions[w];
-//		Vector<GdlGlyphClassDefn *> vpglfcSorted;
+//		std::vector<GdlGlyphClassDefn *> vpglfcToSort = m_rgscsInclusions[w];
+//		std::vector<GdlGlyphClassDefn *> vpglfcSorted;
 //
 //		//	Sort the list by FSM ID.
 //		while (vpglfcToSort.Size())
@@ -706,7 +706,7 @@ void GdlGlyphClassDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 void GdlGlyphDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 	FsmMachineClassSet & setpfsmc)
 {
-	for (int iw = 0; iw < m_vwGlyphIDs.Size(); iw++)
+	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
 		utf16 wGlyphID = m_vwGlyphIDs[iw];
 		FsmMachineClass * pfsmc = ppfsmcAssignments[wGlyphID];

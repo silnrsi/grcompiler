@@ -281,7 +281,8 @@ public:
 
 	//	Output:
 	bool AssignFeatTableNameIds(utf16 wFirstNameId,
-		Vector<std::wstring> & vstuExtNames, Vector<utf16> & vwLangIds, Vector<utf16> & vwNameTblIds,
+		std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds,
+		std::vector<utf16> & vwNameTblIds,
 		size_t & cchwStringData);
 	int OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		utf16 * pchDstFontFamily, bool fModFontName, utf16 * pchSrcFontFamily);
@@ -300,7 +301,8 @@ protected:
 		uint8 * pVendor, uint16 cbVendor,
 		PlatEncChange *);
 	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
-		Vector<std::wstring> & vstuExtNames, Vector<uint16> & vnLangIds, Vector<uint16> & vnNameTblIds, 
+		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
+		std::vector<uint16> & vnNameTblIds, 
 		uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec);
 	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
