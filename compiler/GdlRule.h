@@ -78,7 +78,7 @@ protected:
 
 	//	Post-parser:
 	void ReplaceAliases(GdlRule *);
-	bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 
 	//	Pre-compiler:
 	void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -232,7 +232,7 @@ public:
 
 	//	Post-parser:
 	virtual void ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices,
+	virtual bool AdjustSlotRefs(std::vector<bool>& vfOmit, std::vector<int>& vnNewIndices,
 		GdlRule * prule);
 	virtual void CheckSelectors(GdlRule * prule, int irit, int crit);
 
@@ -351,7 +351,7 @@ protected:
 
 	//	Post-parser:
 	virtual void ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule*);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -433,7 +433,7 @@ protected:
 
 	//	Post-parser:
 	virtual void ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -570,7 +570,7 @@ public:
 	//	Post-parser:
 protected:
 	virtual void ReplaceAliases(GdlRule *);
-	virtual bool AdjustSlotRefs(Vector<bool>&, Vector<int>&, GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
 	virtual void CheckSelectors(GdlRule * prule, int irit, int crit);
 
 	//	Pre-compiler:
@@ -668,7 +668,7 @@ public:
 
 	//	Adjust all the slot references based on the slots that were omitted because
 	//	they were optional. Return false if there is a reference to an omitted slot.
-	bool AdjustSlotRefs(Vector<bool>& vfOmit, Vector<int>& vnNewIndices)
+	bool AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices)
 	{
 		//	Should no longer be necessary because we replace all the aliases
 		//	before we do this.
@@ -784,7 +784,7 @@ protected:
 public:
 	//	Post-parser:
 	void ReplaceAliases();
-	bool HandleOptionalItems(Vector<GdlRule*> & vpruleNewList);
+	bool HandleOptionalItems(std::vector<GdlRule*> & vpruleNewList);
 	void CheckSelectors();
 	bool HasNoItems()
 	{
@@ -793,12 +793,12 @@ public:
 protected:
 	bool AdjustOptRanges();
 	void GenerateOptRanges(
-			Vector<GdlRule*>&	vpruleNewList,
-			Vector<bool>	&	vfOmitRange,
-			int					irangeCurr);
+		std::vector<GdlRule*>&	vpruleNewList,
+		std::vector<bool>	&	vfOmitRange,
+		size_t					irangeCurr);
 	void GenerateOneRuleVersion(
-			Vector<GdlRule*>&	vpruleNewList,
-			Vector<bool>	&	vfOmitRange);
+		std::vector<GdlRule*>&	vpruleNewList,
+		std::vector<bool>	&	vfOmitRange);
 	int PrevRangeSubsumes(int irangeCurr);
 
 public:

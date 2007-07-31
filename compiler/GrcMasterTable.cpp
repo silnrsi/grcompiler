@@ -407,7 +407,7 @@ void GrcMasterTable::SetupGlyphAttrs()
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 {
-	Vector<Symbol> vpsymProcessed;
+	std::vector<Symbol> vpsymProcessed;
 
 	for (ValueMap::iterator itvalmap = EntriesBegin();
 		itvalmap != EntriesEnd();
@@ -428,7 +428,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 			if (psym->FieldCount() == 2)
 			{
 				pglfc->AddGlyphAttr(psym, pasgnValue);
-				vpsymProcessed.Push(psym);
+				vpsymProcessed.push_back(psym);
 			}
 			else
 				g_errorList.AddError(2156, pexp,
@@ -439,7 +439,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 			if (psym->FieldCount() == 2)
 			{
 				pglfc->AddGlyphAttr(psym, pasgnValue);
-				vpsymProcessed.Push(psym);
+				vpsymProcessed.push_back(psym);
 			}
 			else
 				g_errorList.AddError(2157, pexp,
@@ -454,7 +454,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 					psym->FieldIs(3, "top")))
 			{
 				pglfc->AddComponent(psym, pasgnValue);
-				vpsymProcessed.Push(psym);
+				vpsymProcessed.push_back(psym);
 			}
 			else
 				g_errorList.AddError(2158, pexp, "Invalid use of component attribute");
@@ -468,7 +468,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 			{
 				//	User-defined glyph attribute.
 				pglfc->AddGlyphAttr(psym, pasgnValue);
-				vpsymProcessed.Push(psym);
+				vpsymProcessed.push_back(psym);
 			}
 		}
 	}
@@ -476,7 +476,7 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 	//	Now delete all the assignments that have been successfully processed from the map,
 	//	since they are now "owned" by the class definition. (Otherwise we get double destruction.)
 
-	for (int ipsym = 0; ipsym < vpsymProcessed.Size(); ipsym++)
+	for (size_t ipsym = 0; ipsym < vpsymProcessed.size(); ipsym++)
 	{
 		m_valmapEntries.erase(vpsymProcessed[ipsym]);
 		//m_valmapEntries.Delete(vpsymProcessed[ipsym]);
@@ -489,8 +489,6 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 ----------------------------------------------------------------------------------------------*/
 void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 {
-//	Vector<Symbol> vpsymProcessed;
-
 	for (ValueMap::iterator itvalmap = EntriesBegin();
 		itvalmap != EntriesEnd();
 		++itvalmap)
@@ -566,7 +564,7 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 	//	Now delete all the assignments that have been successfully processed from the map,
 	//	since they are now "owned" by the name map. (Otherwise we get double destruction.)
 
-//	for (Vector<Symbol>::iterator it = vpsymProcessed.Begin();
+//	for (std::vector<Symbol>::iterator it = vpsymProcessed.Begin();
 //		it != vpsymProcessed.End();
 //		it++)
 //	{

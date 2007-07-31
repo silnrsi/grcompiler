@@ -460,7 +460,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	// For each platform of interest, determine it if is present in the font and what encoding
 	// is being used. If it is present, we need to fix up the font names and store the feature strings.
 
-	Vector<PlatEncChange> vpec;
+	std::vector<PlatEncChange> vpec;
 	for (int platformID = plat_Unicode; platformID <= plat_MS; platformID++)
 	{
 		uint16 rgEncodingIDs[5];
@@ -571,14 +571,14 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 				pec.cchwUniqueName = 0;
 				pec.cchwPostscriptName = 0;
 			}
-			vpec.Push(pec);
+			vpec.push_back(pec);
 		}
 	}
 
 	// Create the new name table.
 	size_t cbTblNew = cbOldTblRecords
 		+ cbNewStringData		// adjusted for font name changes
-		+ (vstuExtNames.size() * sizeof(sfnt_NameRecord) * vpec.Size());
+		+ (vstuExtNames.size() * sizeof(sfnt_NameRecord) * vpec.size());
 								// 1 record for each feature string for each platform+encoding of interest
 
 	// We need at most one version of the 8-bit feature strings and one version of the 16-bit strings.
@@ -603,7 +603,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	delete [] *ppNameTbl;	// old table
 	*ppNameTbl = pTblNew;
 
-	for (int ipec = 0; ipec < vpec.Size(); ipec++)
+	for (size_t ipec = 0; ipec < vpec.size(); ipec++)
 	{
 		delete vpec[ipec].pchwFullName;
 		delete vpec[ipec].pchwUniqueName;
@@ -827,7 +827,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	uint8 * pTblNew, uint32 cbTblNew,
 	std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 	std::vector<uint16> & vnNameTblIds, 
-	uint16 * pchwFamilyName, uint16 cchwFamilyName, Vector<PlatEncChange> & vpec)
+	uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec)
 {
 	// Struct used to store data from directory entries that need to be sorted.
 	// Must match the NameRecord struct exactly.
@@ -860,7 +860,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	uint16 ibStrOffsetOld = swapw(pTbl->stringOffset);
 	sfnt_NameRecord * pOldRecord = (sfnt_NameRecord *)(pTbl + 1);
 
-	int crecNew = crecOld + (vstuExtNames.size() * vpec.Size());
+	int crecNew = crecOld + (vstuExtNames.size() * vpec.size());
 
 	sfnt_NameRecord * pNewRecord;
 
@@ -882,9 +882,9 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	int ipec;
 	// vpec items should be in sorted order by platform and encoding, except that 3-1 comes before 3-0.
 	// Just force them into the right order.
-	for (ipec = 0; ipec < vpec.Size() - 1; ipec++)
+	for (ipec = 0; ipec < signed(vpec.size()) - 1; ipec++)
 	{
-		for (int ipec2 = ipec + 1; ipec2 < vpec.Size(); ipec2++)
+		for (int ipec2 = ipec + 1; ipec2 < signed(vpec.size()); ipec2++)
 		{
 			if ((vpec[ipec].platformID > vpec[ipec2].platformID)
 				|| (vpec[ipec].platformID == vpec[ipec2].platformID
@@ -902,7 +902,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	for ( ; irec < crecOld; irec++)
 	{
 		PlatEncChange * ppec = &(vpec[ipec]);
-		while(ipec < vpec.Size()
+		while(ipec < signed(vpec.size())
 			&& (ppec->platformID < swapw(pOldRecord[irec].platformID)
 				|| (ppec->platformID == swapw(pOldRecord[irec].platformID)
 					&& ppec->encodingID < swapw(pOldRecord[irec].specificID))))
@@ -923,7 +923,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 
 		size_t cchwStr, cbStr;
 		uint8 * pbStr = NULL;
-		if (ipec < vpec.Size()
+		if (ipec < signed(vpec.size())
 			&& ppec->pchwFullName // this is a platform+encoding where we need to change the font
 			&& ppec->platformID == swapw(pOldRecord[irec].platformID)
 			&& ppec->encodingID == swapw(pOldRecord[irec].specificID)
@@ -986,10 +986,10 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	// The first time through, store the string data in the buffer and record the offsets.
 	// For any subsequent platforms and encodings, just use the same offsets.
 
-	Vector<uint16> vdibOffsets8, vdibOffsets16;
+	std::vector<uint16> vdibOffsets8, vdibOffsets16;
 	bool fStringsStored8 = false;
 	bool fStringsStored16 = false;
-	for (ipec = 0; ipec < vpec.Size(); ipec++)
+	for (ipec = 0; ipec < signed(vpec.size()); ipec++)
 	{
 		PlatEncChange * ppec = &(vpec[ipec]);
 		bool f8bit = (ppec->cbBytesPerChar != sizeof(utf16));
@@ -1008,7 +1008,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 
 			if (f8bit && !fStringsStored8)
 			{
-				vdibOffsets8.Push(dibNew);
+				vdibOffsets8.push_back(dibNew);
 				// TODO: properly handle Macintosh encoding
 				Platform_UnicodeToANSI(rgch16, cbStr, (char *)pbNextString, cbStr);
 				dibNew += cbStr;
@@ -1016,7 +1016,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 			}
 			else if (!f8bit && !fStringsStored16)
 			{
-				vdibOffsets16.Push(dibNew);
+				vdibOffsets16.push_back(dibNew);
 				memcpy(pbNextString, rgch16, cbStr);
 				TtfUtil::SwapWString(pbNextString, cbStr / sizeof(utf16)); // make big endian
 				dibNew += cbStr;
@@ -1249,8 +1249,8 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	//	Generate the list of supported characters.
 
 	utf16 rgchChars[65535];
-	Vector<int> vichGroupStart;
-	//Vector<int> vcchGroupSize;
+	std::vector<int> vichGroupStart;
+	//std::vector<int> vcchGroupSize;
 	int cGroups = 0;
 	bool fTruncated = false;
 	int key = 0; // for optimizing next-codepoint lookup
@@ -1262,7 +1262,7 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 		rgchChars[cch] = ch;
 		if (cch == 0 || ch != rgchChars[cch - 1] + 1)
 		{
-			vichGroupStart.Push(cch);
+			vichGroupStart.push_back(cch);
 			cGroups++;
 		}
 
@@ -1280,7 +1280,7 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 		{
 			if (vichGroupStart[cGroups - 1] == cch - 1)
 			{
-				vichGroupStart.Pop();
+				vichGroupStart.pop_back();
 				cGroups--;
 			}
 			cch--;
@@ -1289,7 +1289,7 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 		}
 	}
 	rgchChars[cch] = 0xFFFF;  // this must always be last
-	vichGroupStart.Push(cch);
+	vichGroupStart.push_back(cch);
 	cGroups++;
 	cch++;
 
@@ -1648,14 +1648,14 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 			}
 
 			int nAttrIDLim = nAttrIDMin;
-			Vector<int> vnValues;
+			std::vector<int> vnValues;
 			while (nAttrIDLim < signed(m_vpsymGlyphAttrs.size()) &&
 				(nAttrIDLim - nAttrIDMin + 1) < 256 &&
 				((nValue = FinalAttrValue(wGlyphID, nAttrIDLim)) != 0))
 			{
 				nAttrIDLim++;
 				//	TODO SharonC: Test that the value fits in 16 bits.
-				vnValues.Push(nValue);
+				vnValues.push_back(nValue);
 			}
 
 			//	We've found a run of non-zero attributes. Output them.
@@ -1666,9 +1666,9 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 			{
 				pbstrm->WriteByte(nAttrIDMin);
 				pbstrm->WriteByte(nAttrIDLim - nAttrIDMin);
-				for (int i = 0; i < vnValues.Size(); i++)
+				for (size_t i = 0; i < vnValues.size(); i++)
 					pbstrm->WriteShort(vnValues[i]);
-				cbOutput += (vnValues.Size() * 2) + 2;
+				cbOutput += (vnValues.size() * 2) + 2;
 			}
 
 			nAttrIDMin = nAttrIDLim;
@@ -2107,7 +2107,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	m_prndr->OutputReplacementClasses(m_vpglfcReplcmtClasses, m_cpglfcLinear, pbstrm);
 
 	//	passes
-	Vector<int> vnPassOffsets;
+	std::vector<int> vnPassOffsets;
 	m_prndr->OutputPasses(this, pbstrm, lTableStartSub, vnPassOffsets);
 	Assert(vnPassOffsets.Size() == cpass + 1);
 
@@ -2123,7 +2123,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	}
 
 	pbstrm->SetPosition(lPassOffsetsPos);
-	for (i = 0; i < vnPassOffsets.Size(); i++)
+	for (i = 0; i < signed(vnPassOffsets.size()); i++)
 		pbstrm->WriteInt(vnPassOffsets[i]);
 
 	pbstrm->SetPosition(lSavePos);
@@ -2156,7 +2156,7 @@ void GdlRenderer::OutputReplacementClasses(
 	pbstrm->WriteShort(cpglfcLinear);
 
 	//	offsets to classes--fill in later; for now output (# classes + 1) place holders
-	Vector<int> vnClassOffsets;
+	std::vector<int> vnClassOffsets;
 	long lOffsetPos = pbstrm->Position();
 	int ipglfc;
 	for (ipglfc = 0; ipglfc <= signed(vpglfcReplcmt.size()); ipglfc++)
@@ -2168,7 +2168,7 @@ void GdlRenderer::OutputReplacementClasses(
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
-		vnClassOffsets.Push(pbstrm->Position() - lClassMapStart);
+		vnClassOffsets.push_back(pbstrm->Position() - lClassMapStart);
 
 		Assert(pglfc->ReplcmtOutputClass() || pglfc->GlyphIDCount() <= 1);
 		//Assert(pglfc->ReplcmtOutputID() == cTmp);
@@ -2195,7 +2195,7 @@ void GdlRenderer::OutputReplacementClasses(
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
-		vnClassOffsets.Push(pbstrm->Position() - lClassMapStart);
+		vnClassOffsets.push_back(pbstrm->Position() - lClassMapStart);
 
 		Assert(pglfc->ReplcmtInputClass());
 		Assert(pglfc->ReplcmtInputID() == cTmp);
@@ -2222,13 +2222,13 @@ void GdlRenderer::OutputReplacementClasses(
 	}
 
 	//	final offset giving length of block
-	vnClassOffsets.Push(pbstrm->Position() - lClassMapStart);
+	vnClassOffsets.push_back(pbstrm->Position() - lClassMapStart);
 
 	//	Now go back and fill in the offsets.
 	long lSavePos = pbstrm->Position();
 
 	pbstrm->SetPosition(lOffsetPos);
-	for (int i = 0; i < vnClassOffsets.Size(); i++)
+	for (size_t i = 0; i < vnClassOffsets.size(); i++)
 		pbstrm->WriteShort(vnClassOffsets[i]);
 
 	pbstrm->SetPosition(lSavePos);
@@ -2393,7 +2393,7 @@ int GdlRuleTable::CountPasses()
 	Output the passes to the stream.
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-	Vector<int> & vnOffsets)
+	std::vector<int> & vnOffsets)
 {
 	GdlRuleTable * prultbl;
 
@@ -2410,19 +2410,19 @@ void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lon
 		prultbl->OutputPasses(pcman, pbstrm, lTableStart, vnOffsets);
 
 	//	Push one more offset so the last pass can figure its length.
-	vnOffsets.Push(pbstrm->Position() - lTableStart);
+	vnOffsets.push_back(pbstrm->Position() - lTableStart);
 }
 
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-	Vector<int> & vnOffsets)
+	std::vector<int> & vnOffsets)
 {
 	for (int ipass = 0; ipass < m_vppass.Size(); ++ipass)
 	{
 		if (m_vppass[ipass]->HasRules())
 		{
-			vnOffsets.Push(pbstrm->Position() - lTableStart);
+			vnOffsets.push_back(pbstrm->Position() - lTableStart);
 			m_vppass[ipass]->OutputPass(pcman, pbstrm, lTableStart);
 		}
 	}
@@ -2555,8 +2555,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	//	action and constraint offsets--fill in later;
 	//	for now, write (# rules + 1) place holders
-	Vector<int> vnActionOffsets;
-	Vector<int> vnConstraintOffsets;
+	std::vector<int> vnActionOffsets;
+	std::vector<int> vnConstraintOffsets;
 	long lCodeOffsets = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
@@ -2615,27 +2615,27 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 		vbConstraints.clear();
 		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 		if (vbConstraints.size() == 0)
-			vnConstraintOffsets.Push(0);
+			vnConstraintOffsets.push_back(0);
 		else
 		{
-			vnConstraintOffsets.Push(pbstrm->Position() - nOffsetToConstraint - lTableStart);
+			vnConstraintOffsets.push_back(pbstrm->Position() - nOffsetToConstraint - lTableStart);
 			for (ib = 0; ib < vbConstraints.size(); ib++)
 				pbstrm->WriteByte(vbConstraints[ib]);
 		}
 	}
-	vnConstraintOffsets.Push(pbstrm->Position() - nOffsetToConstraint - lTableStart);
+	vnConstraintOffsets.push_back(pbstrm->Position() - nOffsetToConstraint - lTableStart);
 
 	nOffsetToAction = pbstrm->Position() - lTableStart;
 
 	for (irule = 0; irule < m_vprule.Size(); irule++)
 	{
 		vbActions.clear();
-		vnActionOffsets.Push(pbstrm->Position() - nOffsetToAction - lTableStart);
+		vnActionOffsets.push_back(pbstrm->Position() - nOffsetToAction - lTableStart);
 		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 		for (size_t ib = 0; ib < vbActions.size(); ib++)
 			pbstrm->WriteByte(vbActions[ib]);
 	}
-	vnActionOffsets.Push(pbstrm->Position() - nOffsetToAction - lTableStart);
+	vnActionOffsets.push_back(pbstrm->Position() - nOffsetToAction - lTableStart);
 
 	Assert(vnConstraintOffsets.Size() == m_vprule.Size() + 1);
 	Assert(vnActionOffsets.Size() == m_vprule.Size() + 1);
@@ -2662,9 +2662,9 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	pbstrm->SetPosition(lCodeOffsets);
 	if (fxdSilfVersion >= 0x00020000)
 		pbstrm->WriteShort(cbPassConstraint);
-	for (i = 0; i < vnConstraintOffsets.Size(); i++)
+	for (i = 0; i < signed(vnConstraintOffsets.size()); i++)
 		pbstrm->WriteShort(vnConstraintOffsets[i]);
-	for (i = 0; i < vnActionOffsets.Size(); i++)
+	for (i = 0; i < signed(vnActionOffsets.size()); i++)
 		pbstrm->WriteShort(vnActionOffsets[i]);
 
 	if (fxdSilfVersion >= 0x00030000)
@@ -2870,8 +2870,8 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 	int fxdVersion)
 {
-	Vector<int> vnOffsets;
-	Vector<long> vlOffsetPos;
+	std::vector<int> vnOffsets;
+	std::vector<long> vlOffsetPos;
 
 	//	number of features
 	pbstrm->WriteShort(m_vpfeat.size());
@@ -2896,7 +2896,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 			pbstrm->WriteShort(0); // pad bytes
 
 		//	offset to setting--fill in later
-		vlOffsetPos.Push(pbstrm->Position());
+		vlOffsetPos.push_back(pbstrm->Position());
 		pbstrm->WriteInt(0);
 
 		//	flags
@@ -2908,7 +2908,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 
 	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
-		vnOffsets.Push(pbstrm->Position() - lTableStart);
+		vnOffsets.push_back(pbstrm->Position() - lTableStart);
 		m_vpfeat[ifeat]->OutputSettings(pbstrm);
 	}
 
@@ -2918,7 +2918,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 
 	long lSavePos = pbstrm->Position();
 
-	for (ifeat = 0; signed(ifeat) < vnOffsets.Size(); ifeat++)
+	for (ifeat = 0; ifeat < vnOffsets.size(); ifeat++)
 	{
 		pbstrm->SetPosition(vlOffsetPos[ifeat]);
 		pbstrm->WriteInt(vnOffsets[ifeat]);
@@ -2980,8 +2980,8 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	// Note: if the format of the Sill table changes, the CheckLanguageFeatureSize method
 	// needs to be changed to match.
 
-	Vector<int> vnOffsets;
-	Vector<long> vlOffsetPos;
+	std::vector<int> vnOffsets;
+	std::vector<long> vlOffsetPos;
 
 	//	search constants
 	int n = m_vplang.size();
@@ -3005,21 +3005,21 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 		pbstrm->WriteShort(m_vplang[ilang]->NumberOfSettings());
 
 		//	offset to setting--fill in later
-		vlOffsetPos.Push(pbstrm->Position());
+		vlOffsetPos.push_back(pbstrm->Position());
 		pbstrm->WriteShort(0);
 	}
 	// Extra bogus entry to make it easy to find length of last.
 	pbstrm->WriteInt(0x80808080);
 	pbstrm->WriteShort(0);
-	vlOffsetPos.Push(pbstrm->Position());
+	vlOffsetPos.push_back(pbstrm->Position());
 	pbstrm->WriteShort(0);
 
 	for (ilang = 0; ilang < signed(m_vplang.size()); ilang++)
 	{
-		vnOffsets.Push(pbstrm->Position() - lTableStart);
+		vnOffsets.push_back(pbstrm->Position() - lTableStart);
 		m_vplang[ilang]->OutputSettings(pbstrm);
 	}
-	vnOffsets.Push(pbstrm->Position() - lTableStart); // offset of bogus entry gives length of last real one
+	vnOffsets.push_back(pbstrm->Position() - lTableStart); // offset of bogus entry gives length of last real one
 
 	Assert(vnOffsets.Size() == m_vplang.Size() + 1);
 
@@ -3027,7 +3027,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 
 	long lSavePos = pbstrm->Position();
 
-	for (ilang = 0; ilang < vnOffsets.Size(); ilang++)
+	for (ilang = 0; ilang < signed(vnOffsets.size()); ilang++)
 	{
 		pbstrm->SetPosition(vlOffsetPos[ilang]);
 		pbstrm->WriteShort(vnOffsets[ilang]);

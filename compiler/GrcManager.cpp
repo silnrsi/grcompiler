@@ -50,7 +50,7 @@ void GrcManager::Init()
 
 	m_psymtbl = new GrcSymbolTable(true);
 
-	m_venv.Resize(1);
+	m_venv.resize(1);
 
 	//	Temporary structures used during parsing:
 	m_mtbGlyphAttrs = new GrcMasterTable;
@@ -105,9 +105,9 @@ void GrcManager::Clear()
 	if (m_psymtbl)
 		delete m_psymtbl;
 
-	for (i = 0; signed(i) < this->m_vplcls.Size(); i++)
+	for (i = 0; signed(i) < this->m_vplcls.size(); i++)
 		delete m_vplcls[i];
-	m_vplcls.Clear();
+	m_vplcls.clear();
 }
 
 
@@ -151,7 +151,7 @@ GrcEnv * GrcManager::PushTableEnv(GrpLineAndFile & lnf, std::string staTableName
 	}
 	else
 	{
-		GrcEnv * penvPrev = &(m_venv[m_venv.Size() - 1]);
+		GrcEnv * penvPrev = &(m_venv[m_venv.size() - 1]);
 		Symbol psymPrevTable = penvPrev->Table();
 		int nPrevPass = penvPrev->Pass();
 		std::pair<Symbol, int> hmpair;
@@ -218,10 +218,10 @@ GrcEnv * GrcManager::PushGeneralEnv(GrpLineAndFile & lnf)
 ----------------------------------------------------------------------------------------------*/
 GrcEnv * GrcManager::PushEnvAux()
 {
-	GrcEnv envToCopy(*m_venv.Top()); // make a local copy, because the act of pushing can cause
-									// the vector to resize, losing the item to copy
-	m_venv.Push(envToCopy);
-	return m_venv.Top();
+	GrcEnv envToCopy(m_venv.back());	// make a local copy, because the act of pushing can cause
+										// the vector to resize, losing the item to copy
+	m_venv.push_back(envToCopy);
+	return &(m_venv.back());
 }
 
 
@@ -235,7 +235,7 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, std::string staStmt)
 {
 	//	There should never be less than one environment on the stack, since the recipient
 	//	is initialized with one.
-	if (m_venv.Size() <= 1)
+	if (m_venv.size() <= 1)
 	{
 		g_errorList.AddError(1183, NULL,
 			"End",
@@ -244,12 +244,12 @@ GrcEnv * GrcManager::PopEnv(GrpLineAndFile & lnf, std::string staStmt)
 			staStmt,
 			" statement",
 			lnf);
-		return m_venv.Top();
+		return &(m_venv.back());
 	}
 
-	m_venv.Pop();
+	m_venv.pop_back();
 
-	GrcEnv * penv = m_venv.Top();
+	GrcEnv * penv = &(m_venv.back());
 	Symbol psymTable = penv->Table();
 	int nPass = penv->Pass();
 

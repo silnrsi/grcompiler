@@ -1115,7 +1115,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	Assert(m_pgax == NULL);
 
 	size_t cGlyphAttrs = m_vpsymGlyphAttrs.size();
-	size_t cStdStyles = max(signed(m_vpsymStyles.Size()), 1);
+	size_t cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 	Assert(cStdStyles == 1);	// for now
 	m_pgax = new GrcGlyphAttrMatrix(m_cwGlyphIDs, cGlyphAttrs, cStdStyles);
 
@@ -1489,7 +1489,7 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 {
-	int cStdStyles = max(m_vpsymStyles.Size(), 1);
+	int cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 
 	for (utf16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
@@ -1608,7 +1608,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 {
-	int cStdStyles = max(m_vpsymStyles.Size(), 1);
+	int cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 	utf16 wActual = ActualForPseudo(wGlyphID);
 	if (wActual == 0)
 		wActual = wGlyphID;
@@ -2628,7 +2628,7 @@ void GdlAttrValueSpec::FixFeatureTestsInRules(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 {
-	int cStdStyles = max(m_vpsymStyles.Size(), 1);
+	int cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 
 	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
 	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));

@@ -214,7 +214,7 @@ void GdlRuleTable::HandleOptionalItems()
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::HandleOptionalItems()
 {
-	Vector<GdlRule*> vpruleNewList;
+	std::vector<GdlRule*> vpruleNewList;
 
 	for (int irule = 0; irule < m_vprule.Size(); ++irule)
 	{
@@ -230,7 +230,10 @@ void GdlPass::HandleOptionalItems()
 	}
 
 	m_vprule.Clear();
-	vpruleNewList.CopyTo(m_vprule);
+
+	for (irule = 0; irule < signed(vpruleNewList.size()); irule++)
+		m_vprule.Push(vpruleNewList[irule]);
+	////vpruleNewList.CopyTo(m_vprule);
 }
 
 
@@ -242,13 +245,13 @@ void GdlPass::HandleOptionalItems()
 	Argument:
         vpruleNewList	- new list of rules under construction
 ----------------------------------------------------------------------------------------------*/
-bool GdlRule::HandleOptionalItems(Vector<GdlRule*> & vpruleNewList)
+bool GdlRule::HandleOptionalItems(std::vector<GdlRule*> & vpruleNewList)
 {
 	Assert(m_viritOptRangeStart.Size() == m_viritOptRangeEnd.Size());
 
 	if (m_viritOptRangeStart.Size() == 0)
 	{
-		vpruleNewList.Push(this);
+		vpruleNewList.push_back(this);
 		return false;	// don't delete this rule
 	}
 
@@ -257,10 +260,10 @@ bool GdlRule::HandleOptionalItems(Vector<GdlRule*> & vpruleNewList)
 		return false;	// retain the rule as is for further processing
 	}
 
-	Vector<bool> vfOmit;
+	std::vector<bool> vfOmit;
 	for (int irange = 0; irange < m_viritOptRangeStart.Size(); ++irange)
-		vfOmit.Push(false);
-	Assert(vfOmit.Size() == m_viritOptRangeStart.Size());
+		vfOmit.push_back(false);
+	Assert(vfOmit.size() == m_viritOptRangeStart.Size());
 	
 	GenerateOptRanges(vpruleNewList, vfOmit, 0);
 
@@ -383,10 +386,10 @@ bool GdlRule::AdjustOptRanges()
 		vfOmitRange		- flags indicating which ranges should be omitted
 		irangeCurr		- current range in list being processed (toggled)
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateOptRanges(Vector<GdlRule*> & vpruleNewList, Vector<bool> & vfOmitRange,
-	int irangeCurr)
+void GdlRule::GenerateOptRanges(std::vector<GdlRule*> & vpruleNewList,
+	std::vector<bool> & vfOmitRange, size_t irangeCurr)
 {
-	if (irangeCurr >= vfOmitRange.Size())
+	if (irangeCurr >= vfOmitRange.size())
 		//	We've got a complete set of omit flags for each of the optional ranges--
 		//	generate the corresponding rule.
 		GenerateOneRuleVersion(vpruleNewList, vfOmitRange);
@@ -412,21 +415,21 @@ void GdlRule::GenerateOptRanges(Vector<GdlRule*> & vpruleNewList, Vector<bool> &
 	Generate a version of this rule for the given combination of optional items.
 	Add it to the new list of rules.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateOneRuleVersion(Vector<GdlRule*> & vpruleNewList,
-	Vector<bool> & vfOmitRange)
+void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
+	std::vector<bool> & vfOmitRange)
 {
 	//	Make a vector indicating items to omit, and a list of mappings of old->new
 	//	indices. For instance, if we have 5 items and we are omitting items 2 & 3, we'll
 	//	have vfOmit = [F T T F F] and viNewSlots [1 ? ? 2 3].
-	Vector<bool> vfOmit;
-	Vector<int> viNewSlots;
+	std::vector<bool> vfOmit;
+	std::vector<int> viNewSlots;
 	int irit;
 	for (irit = 0; irit < m_vprit.Size(); ++irit)
 	{
-		vfOmit.Push(false);
-		viNewSlots.Push(irit + 1);	// +1: currently slot refs are 1-based
+		vfOmit.push_back(false);
+		viNewSlots.push_back(irit + 1);	// +1: currently slot refs are 1-based
 	}
-	for (int irange = 0; irange < vfOmitRange.Size(); ++irange)
+	for (size_t irange = 0; irange < vfOmitRange.size(); ++irange)
 	{
 		if (vfOmitRange[irange])
 		{
@@ -449,9 +452,9 @@ void GdlRule::GenerateOneRuleVersion(Vector<GdlRule*> & vpruleNewList,
 	int nNewScan = m_nScanAdvance;
 	if (m_nScanAdvance > -1)
 	{
-		while (nNewScan < vfOmit.Size() && vfOmit[nNewScan])
+		while (nNewScan < signed(vfOmit.size()) && vfOmit[nNewScan])
 			nNewScan++;
-		if (nNewScan >= vfOmit.Size())
+		if (nNewScan >= signed(vfOmit.size()))
 			nNewScan = kMaxSlotsPerRule + 1; // put it after the last item
 		else
 			nNewScan = viNewSlots[nNewScan] - 1;	// 0-based
@@ -479,7 +482,7 @@ void GdlRule::GenerateOneRuleVersion(Vector<GdlRule*> & vpruleNewList,
 	GdlRule * pruleNew = new GdlRule();
 	pruleNew->CopyLineAndFile(*this);
 	int critNew = 0;
-	for (irit = 0; irit < m_vprit.Size(); ++irit)
+	for (irit = 0; irit < signed(m_vprit.Size()); ++irit)
 	{
 		if (!vfOmit[irit])
 		{
@@ -531,7 +534,7 @@ void GdlRule::GenerateOneRuleVersion(Vector<GdlRule*> & vpruleNewList,
 //			pruleNew->m_vpalias.Delete(ialias);
 //	}
 
-	vpruleNewList.Push(pruleNew);
+	vpruleNewList.push_back(pruleNew);
 }
 
 
@@ -563,7 +566,7 @@ int GdlRule::PrevRangeSubsumes(int irangeCurr)
 		vnNewIndices	- for the items that were not omitted, the adjusted index
 		prule			- the 'owning' rule
 ----------------------------------------------------------------------------------------------*/
-bool GdlRuleItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIndices,
+bool GdlRuleItem::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	if (m_pexpConstraint)
@@ -573,14 +576,14 @@ bool GdlRuleItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIndic
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLineBreakItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIndices,
+bool GdlLineBreakItem::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	return GdlRuleItem::AdjustSlotRefs(vfOmit, vnNewIndices, prule);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSetAttrItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIndices,
+bool GdlSetAttrItem::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	if (!GdlRuleItem::AdjustSlotRefs(vfOmit, vnNewIndices, prule))
@@ -595,7 +598,7 @@ bool GdlSetAttrItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIn
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSubstitutionItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIndices,
+bool GdlSubstitutionItem::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	if (!GdlSetAttrItem::AdjustSlotRefs(vfOmit, vnNewIndices, prule))
@@ -616,7 +619,7 @@ bool GdlSubstitutionItem::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vn
 	return true;
 }
 /*--------------------------------------------------------------------------------------------*/
-bool GdlAttrValueSpec::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNewIndices,
+bool GdlAttrValueSpec::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
 	if (m_pexpValue)

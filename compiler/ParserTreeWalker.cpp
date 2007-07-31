@@ -1751,8 +1751,8 @@ void GrcManager::WalkLanguageTableElement(RefAST ast)
 
 	// Find or create the language class with that name:
 	GdlLangClass * plcls;
-	int ilcls;
-	for (ilcls = 0; ilcls < m_vplcls.Size(); ilcls++)
+	size_t ilcls;
+	for (ilcls = 0; ilcls < m_vplcls.size(); ilcls++)
 	{
 		if (strcmp(m_vplcls[ilcls]->m_staLabel.c_str(), staLabel.c_str()) == 0)
 		{
@@ -1760,10 +1760,10 @@ void GrcManager::WalkLanguageTableElement(RefAST ast)
 			break;
 		}
 	}
-	if (ilcls >= m_vplcls.Size())
+	if (ilcls >= m_vplcls.size())
 	{
 		plcls = new GdlLangClass(staLabel);
-		m_vplcls.Push(plcls);
+		m_vplcls.push_back(plcls);
 	}
 
 	WalkLanguageItem(astItem, plcls);
@@ -1980,7 +1980,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppas
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
 	//	constraint.
-	for (int ipexp = 0; ipexp < m_vpexpPassConstraints.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpPassConstraints.size(); ipexp++)
 		ppass->AddConstraint(m_vpexpPassConstraints[ipexp]->Clone());
 
 	while (astContents)
@@ -2005,10 +2005,10 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 	//	Only the most immediate pass constraints apply to the embedded passes, so
 	//	temporarily remove any that are hanging around at this point.
 	std::vector<GdlExpression *> vpexpSavePassConstr;
-	int ipexp;
-	for (ipexp = 0; ipexp < m_vpexpPassConstraints.Size(); ipexp++)
+	size_t ipexp;
+	for (ipexp = 0; ipexp < m_vpexpPassConstraints.size(); ipexp++)
 		vpexpSavePassConstr.push_back(m_vpexpPassConstraints[ipexp]);
-	m_vpexpPassConstraints.Clear();
+	m_vpexpPassConstraints.clear();
 
 	Symbol psymNot = SymbolTable()->FindSymbol("!");
 	Assert(psymNot);
@@ -2025,13 +2025,13 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 			GdlExpression * pexpNot = new GdlUnaryExpression(psymNot, pexpCond);
 			if (fPassConstraint)
 			{
-				m_vpexpPassConstraints.Pop();
-				m_vpexpPassConstraints.Push(pexpNot);
+				m_vpexpPassConstraints.pop_back();
+				m_vpexpPassConstraints.push_back(pexpNot);
 			}
 			else
 			{
-				m_vpexpConditionals.Pop();
-				m_vpexpConditionals.Push(pexpNot);
+				m_vpexpConditionals.pop_back();
+				m_vpexpConditionals.push_back(pexpNot);
 			}
 		}
 
@@ -2059,9 +2059,9 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 			//	Push the current condition on the stack.
 			pexpCond = WalkExpressionTree(astCond);
 			if (fPassConstraint)
-				m_vpexpPassConstraints.Push(pexpCond);
+				m_vpexpPassConstraints.push_back(pexpCond);
 			else
-				m_vpexpConditionals.Push(pexpCond);
+				m_vpexpConditionals.push_back(pexpCond);
 			cConds++;
 		}
 
@@ -2080,20 +2080,20 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 	{
 		if (fPassConstraint)
 		{
-			delete *m_vpexpPassConstraints.Top();
-			m_vpexpPassConstraints.Pop();
+			delete m_vpexpPassConstraints.back();
+			m_vpexpPassConstraints.pop_back();
 		}
 		else
 		{
-			delete *m_vpexpConditionals.Top();
-			m_vpexpConditionals.Pop();
+			delete m_vpexpConditionals.back();
+			m_vpexpConditionals.pop_back();
 		}
 	}
 
 	//	Put the pass constraint list back the way it was.
 	Assert(m_vpexpPassConstraints.Size() == 0);
-	for (ipexp = 0; ipexp < signed(vpexpSavePassConstr.size()); ipexp++)
-		m_vpexpPassConstraints.Push(vpexpSavePassConstr[ipexp]);
+	for (ipexp = 0; ipexp < vpexpSavePassConstr.size(); ipexp++)
+		m_vpexpPassConstraints.push_back(vpexpSavePassConstr[ipexp]);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2219,7 +2219,7 @@ void GrcManager::WalkRuleTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppas
 	}
 
 	//	Copy the conditionals from the -if- statements currently in effect.
-	for (int ipexp = 0; ipexp < m_vpexpConditionals.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpConditionals.size(); ipexp++)
 	{
 		prule->AddConstraint(m_vpexpConditionals[ipexp]->Clone());
 	}
