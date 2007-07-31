@@ -46,7 +46,7 @@ void GrcManager::GenerateFsms()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRenderer::GenerateFsms(GrcManager * pcman)
 {
-	for(int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for(size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->GenerateFsms(pcman);
 	}

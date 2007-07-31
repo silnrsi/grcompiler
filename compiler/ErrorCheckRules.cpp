@@ -178,7 +178,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::FixRulePreContexts(Symbol psymAnyClass)
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->FixRulePreContexts(psymAnyClass);
 	}
@@ -413,7 +413,7 @@ bool GrcManager::AssignClassInternalIDs()
 void GdlRenderer::MarkReplacementClasses(GrcManager * pcman,
 	std::set<GdlGlyphClassDefn *> & setpglfc)
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->MarkReplacementClasses(pcman, setpglfc);
 	}
@@ -643,7 +643,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont)
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->CheckRulesForErrors(pgax, pfont, this);
 	}
@@ -1743,7 +1743,7 @@ bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfo
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::DeleteAllBadGlyphs()
 {
-	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
+	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->DeleteBadGlyphs();
 }
 
@@ -1813,7 +1813,7 @@ bool GdlGlyphDefn::WarnAboutBadGlyphs(bool fTop)
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::CheckLBsInRules()
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->CheckLBsInRules();
 	}
@@ -1964,7 +1964,7 @@ bool GdlRule::HasReprocessing()
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::ReplaceKern(GrcManager * pcman)
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->ReplaceKern(pcman);
 	}
@@ -2117,12 +2117,12 @@ bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 	bool fRet = true;
 
 	//	Glyph atrributes:
-	for (int ipglfc = 0; ipglfc < m_vpglfc.Size(); ipglfc++)
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		fRet = m_vpglfc[ipglfc]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
 	}
 	//	Rules:
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
 	}

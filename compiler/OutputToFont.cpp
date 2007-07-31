@@ -2836,7 +2836,7 @@ bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId,
 {
 	if (wFirstNameId > 32767) return false; // max allowed value
 	utf16 wNameTblId = wFirstNameId;
-	for (int ifeat = 0; ifeat < m_vpfeat.Size(); ifeat++)
+	for (size_t ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
 		wNameTblId = m_vpfeat[ifeat]->SetNameTblIds(wNameTblId);
 		if (wNameTblId > 32767)
@@ -2874,14 +2874,14 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 	Vector<long> vlOffsetPos;
 
 	//	number of features
-	pbstrm->WriteShort(m_vpfeat.Size());
+	pbstrm->WriteShort(m_vpfeat.size());
 
 	//	reserved
 	pbstrm->WriteShort(0);
 	pbstrm->WriteInt(0);
 
-	int ifeat;
-	for (ifeat = 0; ifeat < m_vpfeat.Size(); ifeat++)
+	size_t ifeat;
+	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
 		//	feature id
 		if (fxdVersion >= 0x00020000)
@@ -2906,7 +2906,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 		pbstrm->WriteShort(m_vpfeat[ifeat]->NameTblId());
 	}
 
-	for (ifeat = 0; ifeat < m_vpfeat.Size(); ifeat++)
+	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
 		vnOffsets.Push(pbstrm->Position() - lTableStart);
 		m_vpfeat[ifeat]->OutputSettings(pbstrm);
@@ -2918,7 +2918,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 
 	long lSavePos = pbstrm->Position();
 
-	for (ifeat = 0; ifeat < vnOffsets.Size(); ifeat++)
+	for (ifeat = 0; signed(ifeat) < vnOffsets.Size(); ifeat++)
 	{
 		pbstrm->SetPosition(vlOffsetPos[ifeat]);
 		pbstrm->WriteInt(vnOffsets[ifeat]);
@@ -2984,7 +2984,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	Vector<long> vlOffsetPos;
 
 	//	search constants
-	int n = m_vplang.Size();
+	int n = m_vplang.size();
 	int nPowerOf2, nLog;
 	BinarySearchConstants(n, &nPowerOf2, &nLog);
 	pbstrm->WriteShort(n); // number of languages
@@ -2993,7 +2993,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	pbstrm->WriteShort(n - nPowerOf2);
 
 	int ilang;
-	for (ilang = 0; ilang < m_vplang.Size(); ilang++)
+	for (ilang = 0; ilang < signed(m_vplang.size()); ilang++)
 	{
 		//	language ID
 		unsigned int nCode = m_vplang[ilang]->Code();
@@ -3014,7 +3014,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	vlOffsetPos.Push(pbstrm->Position());
 	pbstrm->WriteShort(0);
 
-	for (ilang = 0; ilang < m_vplang.Size(); ilang++)
+	for (ilang = 0; ilang < signed(m_vplang.size()); ilang++)
 	{
 		vnOffsets.Push(pbstrm->Position() - lTableStart);
 		m_vplang[ilang]->OutputSettings(pbstrm);

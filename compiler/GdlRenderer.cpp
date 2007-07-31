@@ -56,19 +56,19 @@ GdlRenderer::~GdlRenderer()
 {
 	//	Delete all the GdlGlyphDefns (simple glyphs) stored in the classes,
 	//	then delete all the classes at the top level.
-	int i;
-	for (i = 0; i < m_vpglfc.Size(); ++i)
+	size_t i;
+	for (i = 0; i < m_vpglfc.size(); ++i)
 		m_vpglfc[i]->DeleteGlyphDefns();
-	for (i = 0; i < m_vpglfc.Size(); ++i)
+	for (i = 0; i < m_vpglfc.size(); ++i)
 		delete m_vpglfc[i];
 
-	for (i = 0; i < m_vprultbl.Size(); ++i)
+	for (i = 0; i < m_vprultbl.size(); ++i)
 		delete m_vprultbl[i];
 
-	for (i = 0; i < m_vpfeat.Size(); ++i)
+	for (i = 0; i < m_vpfeat.size(); ++i)
 		delete m_vpfeat[i];
 
-	for (i = 0; i < m_vplang.Size(); ++i)
+	for (i = 0; i < m_vplang.size(); ++i)
 		delete m_vplang[i];
 
 	for (NameDefnMap::iterator itmap = m_hmNameDefns.begin();
@@ -91,13 +91,13 @@ GdlRenderer::~GdlRenderer()
 bool GdlRenderer::AddLanguage(GdlLanguageDefn * plang)
 {
 	int iplangLo = 0;
-	int iplangHi = m_vplang.Size();
+	int iplangHi = m_vplang.size();
 	while (true)
 	{
 		int iplangMid = (iplangLo + iplangHi) >> 1; // div by 2
-		if (iplangMid >= m_vplang.Size())
+		if (iplangMid >= signed(m_vplang.size()))
 		{
-			m_vplang.Push(plang);
+			m_vplang.push_back(plang);
 			return true;
 		}
 
@@ -109,7 +109,7 @@ bool GdlRenderer::AddLanguage(GdlLanguageDefn * plang)
 			return false; // already present
 		if (iplangHi - iplangLo == 1)
 		{
-			m_vplang.Insert(iplangLo + ((cmp<0) ? 0 : 1), plang);
+			m_vplang.insert(m_vplang.begin() + iplangLo + ((cmp<0) ? 0 : 1), plang);
 			return true;
 		}
 		if (cmp < 0)
@@ -151,7 +151,7 @@ GdlRuleTable * GdlRenderer::GetRuleTable(GrpLineAndFile & lnf, std::string staTa
 
 	prultbl = new GdlRuleTable(psymTableName);
 	prultbl->SetLineAndFile(lnf);
-	m_vprultbl.Push(prultbl);
+	m_vprultbl.push_back(prultbl);
 
 	return prultbl;
 }
@@ -171,7 +171,7 @@ GdlRuleTable * GdlRenderer::FindRuleTable(std::string staTableName)
 
 GdlRuleTable * GdlRenderer::FindRuleTable(Symbol psymTableName)
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		if (m_vprultbl[iprultbl]->NameSymbol() == psymTableName)
 			return m_vprultbl[iprultbl];

@@ -66,7 +66,7 @@ bool GrcManager::PostParse()
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::ReplaceAliases()
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->ReplaceAliases();
 	}
@@ -194,7 +194,7 @@ void GdlAttrValueSpec::ReplaceAliases(GdlRule * prule)
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::HandleOptionalItems()
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->HandleOptionalItems();
 	}
@@ -633,7 +633,7 @@ bool GdlAttrValueSpec::AdjustSlotRefs(Vector<bool> & vfOmit, Vector<int> & vnNew
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::CheckSelectors()
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->CheckSelectors();
 	}

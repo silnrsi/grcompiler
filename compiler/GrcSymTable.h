@@ -408,49 +408,55 @@ public:
 
 	GrcStructName(std::string staName)
 	{
-		m_vstaFields.Push(staName);
+		m_vstaFields.push_back(staName);
 	}
 	GrcStructName(std::string sta1, std::string sta2)
 	{
-		m_vstaFields.Push(sta1);
-		m_vstaFields.Push(sta2);
+		m_vstaFields.push_back(sta1);
+		m_vstaFields.push_back(sta2);
 	}
 	GrcStructName(std::string sta1, std::string sta2, std::string sta3)
 	{
-		m_vstaFields.Push(sta1);
-		m_vstaFields.Push(sta2);
-		m_vstaFields.Push(sta3);
+		m_vstaFields.push_back(sta1);
+		m_vstaFields.push_back(sta2);
+		m_vstaFields.push_back(sta3);
 	}
 	GrcStructName(std::string sta1, std::string sta2, std::string sta3, std::string sta4)
 	{
-		m_vstaFields.Push(sta1);
-		m_vstaFields.Push(sta2);
-		m_vstaFields.Push(sta3);
-		m_vstaFields.Push(sta4);
+		m_vstaFields.push_back(sta1);
+		m_vstaFields.push_back(sta2);
+		m_vstaFields.push_back(sta3);
+		m_vstaFields.push_back(sta4);
 	}
 	GrcStructName(std::string sta1, std::string sta2, std::string sta3, std::string sta4, std::string sta5)
 	{
-		m_vstaFields.Push(sta1);
-		m_vstaFields.Push(sta2);
-		m_vstaFields.Push(sta3);
-		m_vstaFields.Push(sta4);
-		m_vstaFields.Push(sta5);
+		m_vstaFields.push_back(sta1);
+		m_vstaFields.push_back(sta2);
+		m_vstaFields.push_back(sta3);
+		m_vstaFields.push_back(sta4);
+		m_vstaFields.push_back(sta5);
 	}
-	GrcStructName(Vector<std::string> & vsta)
+	GrcStructName(std::vector<std::string> & vsta)
 	{
-		vsta.CopyTo(m_vstaFields);
+		Assert(m_vstaFields.size() == 0);
+		for (size_t i = 0; i < vsta.size(); i++)
+			m_vstaFields.push_back(vsta[i]);
+		////vsta.CopyTo(m_vstaFields);
 	}
 
 	//	Copy constructor:
 	GrcStructName(const GrcStructName & xns)
 	{
-		xns.m_vstaFields.CopyTo(m_vstaFields);
+		Assert(m_vstaFields.size() == 0);
+		for (size_t i = 0; i < xns.m_vstaFields.size(); i++)
+			m_vstaFields.push_back(xns.m_vstaFields[i]);
+		////xns.m_vstaFields.CopyTo(m_vstaFields);
 	}
 
 	//	General:
 	int NumFields() const
 	{
-		return m_vstaFields.Size();
+		return m_vstaFields.size();
 	}
 	std::string FieldAt(int i) const
 	{
@@ -464,18 +470,18 @@ public:
 	void InsertField(int i, std::string sta)
 	{
 		Assert(i <= m_vstaFields.size());
-		m_vstaFields.Insert(i, sta);
+		m_vstaFields.insert(m_vstaFields.begin() + i, sta);
 	}
 	void DeleteField(int i)
 	{
 		Assert(i < m_vstaFields.size());
-		m_vstaFields.Delete(i);
+		m_vstaFields.erase(m_vstaFields.begin() + i);
 	}
 
 	std::string FullString() const
 	{
 		std::string staRet = m_vstaFields[0];
-		for (int i = 1; i < m_vstaFields.Size(); i++)
+		for (size_t i = 1; i < m_vstaFields.size(); i++)
 		{
 			staRet += ".";
 			staRet += m_vstaFields[i];
@@ -487,13 +493,13 @@ public:
 	//	classX.component.X.top, the argument becomes component.X.top.
 	void CopyMinusFirstField(GrcStructName & nwf) const
 	{
-		for (int i = 1; i < m_vstaFields.Size(); i++)
-			nwf.m_vstaFields.Push(m_vstaFields[i]);
+		for (size_t i = 1; i < m_vstaFields.size(); i++)
+			nwf.m_vstaFields.push_back(m_vstaFields[i]);
 	}
 
 protected:
 	//	Instance variables:
-	mutable Vector<std::string>	m_vstaFields;	// mutable because the Vector methods are not const
+	mutable std::vector<std::string>	m_vstaFields;	// mutable because the Vector methods are not const
 };
 
 

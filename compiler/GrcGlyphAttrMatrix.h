@@ -199,7 +199,7 @@ class GrcLigComponentList
 	{
 		//	Indices of component symbols in m_vpsymDefinedComponents that are defined
 		//	for a given glyph.
-		Vector<int> m_vinIDs;
+		std::vector<int> m_vinIDs;
 	};
 public:
 	GrcLigComponentList(int cvGlyphIDs);
@@ -222,7 +222,7 @@ protected:
 	//	the index serves as an internal ID.
 	//	OBSOLETE--this is now covered by the fact that the components are listed first
 	//	in the global glyph attribute list.
-//	Vector<Symbol> m_vpsymDefinedComponents;
+//	std::vector<Symbol> m_vpsymDefinedComponents;
 
 	//	List of defined items for each glyph ID.
 	int m_cvGlyphIDs;

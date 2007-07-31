@@ -1951,7 +1951,7 @@ void GrcManager::WriteCmapItem(std::ofstream & strmOut,
 
 void GdlRenderer::DebugCmap(GrcFont * pfont, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni)
 {
-	for (int ipglfc = 0; ipglfc < m_vpglfc.Size(); ipglfc++)
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 		m_vpglfc[ipglfc]->DebugCmap(pfont, rgchwUniToGlyphID, rgnGlyphIDToUni);
 }
 

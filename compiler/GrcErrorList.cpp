@@ -89,7 +89,7 @@ void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpL
 		lnf = *plnf;
 	
 	GrcErrorItem * perr = new GrcErrorItem(fFatal, nID, lnf, staMsg, pgdlObj);
-	m_vperr.Push(perr);
+	m_vperr.push_back(perr);
 
 	if (fFatal)
 		m_fFatalError = true;
@@ -125,14 +125,14 @@ void GrcErrorList::AddItem(bool fFatal, int nID, GdlObject * pgdlObj, const GrpL
 ----------------------------------------------------------------------------------------------*/
 void GrcErrorList::SortErrors()
 {
-	Vector<GrcErrorItem *> vperrSorted;
+	std::vector<GrcErrorItem *> vperrSorted;
 
 	GrcErrorItem * perrLast = NULL;
 
-	while (m_vperr.Size() > 0)
+	while (m_vperr.size() > 0)
 	{
 		int iperrNext = 0;
-		for (int iperrT = 1; iperrT < m_vperr.Size(); iperrT++)
+		for (size_t iperrT = 1; iperrT < m_vperr.size(); iperrT++)
 		{
 			GrpLineAndFile * plnfNext = &(m_vperr[iperrNext]->m_lnf);
 			///int nLineNext = m_vperr[iperrNext]->m_nLineNumber;
@@ -157,13 +157,16 @@ void GrcErrorList::SortErrors()
 		}
 		else
 		{
-			vperrSorted.Push(m_vperr[iperrNext]);
+			vperrSorted.push_back(m_vperr[iperrNext]);
 			perrLast = m_vperr[iperrNext];
 		}
-		m_vperr.Delete(iperrNext);
+		m_vperr.erase(m_vperr.begin() + iperrNext);
 	}
 
-	vperrSorted.CopyTo(m_vperr);
+	m_vperr.clear();
+	for (size_t i = 0; i < vperrSorted.size(); i++)
+		m_vperr.push_back(vperrSorted[i]);
+	////vperrSorted.CopyTo(m_vperr);
 }
 
 
@@ -180,17 +183,17 @@ int GrcErrorList::ErrorsAtLine(int nLine)
 int GrcErrorList::ErrorsAtLine(int nLine, int * piperrFirst)
 {
 	int iperrFirst = 0;
-	while (iperrFirst < m_vperr.Size() && m_vperr[iperrFirst]->PreProcessedLine() < nLine)
+	while (iperrFirst < signed(m_vperr.size()) && m_vperr[iperrFirst]->PreProcessedLine() < nLine)
 		iperrFirst++;
 
-	if (iperrFirst >= m_vperr.Size() || nLine < m_vperr[iperrFirst]->PreProcessedLine())
+	if (iperrFirst >= signed(m_vperr.size()) || nLine < m_vperr[iperrFirst]->PreProcessedLine())
 	{
 		*piperrFirst = -1;
 		return 0;
 	}
 
 	int cperr = 1;
-	while (iperrFirst + cperr < m_vperr.Size() &&
+	while (iperrFirst + cperr < signed(m_vperr.size()) &&
 		m_vperr[iperrFirst + cperr]->PreProcessedLine() == nLine)
 	{
 		cperr++;
@@ -242,7 +245,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 	int cError = 0;
 	int cWarning = 0;
 	int cWarningIgnored = 0;
-	for (int iperr = 0; iperr < m_vperr.Size(); iperr++)
+	for (size_t iperr = 0; iperr < m_vperr.size(); iperr++)
 	{
 		GrcErrorItem * perr = m_vperr[iperr];
 
@@ -268,7 +271,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 		strmOut << perr->m_staMsg.data() << "\n";
 	}
 
-	if (m_vperr.Size() > 0)
+	if (m_vperr.size() > 0)
 		strmOut << "\n*******************************************************\n\n";
 	if (AnyFatalErrors())
 		strmOut << "Compilation failed";
@@ -288,7 +291,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 int GrcErrorList::NumberOfWarnings()
 {
 	int cerrRet = 0;
-	for (int ierr = 0; ierr < m_vperr.Size(); ierr++)
+	for (size_t ierr = 0; ierr < m_vperr.size(); ierr++)
 	{
 		if (!IsFatal(ierr))
 			cerrRet++;
@@ -303,7 +306,7 @@ int GrcErrorList::NumberOfWarnings()
 int GrcErrorList::NumberOfWarningsGiven()
 {
 	int cerrRet = 0;
-	for (int ierr = 0; ierr < m_vperr.Size(); ierr++)
+	for (size_t ierr = 0; ierr < m_vperr.size(); ierr++)
 	{
 		if (!IsFatal(ierr) && !IgnoreWarning(m_vperr[ierr]->m_nID))
 			cerrRet++;
@@ -318,7 +321,7 @@ int GrcErrorList::NumberOfWarningsGiven()
 void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
 {
 	int iFound = -1;
-	for (int i = 0; i < m_vnIgnoreWarnings.Size(); i++)
+	for (size_t i = 0; i < m_vnIgnoreWarnings.size(); i++)
 	{
 		if (m_vnIgnoreWarnings[i] == nWarning)
 		{
@@ -329,12 +332,12 @@ void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
 	if (f)
 	{
 		if (iFound == -1)
-			m_vnIgnoreWarnings.Push(nWarning);
+			m_vnIgnoreWarnings.push_back(nWarning);
 	}
 	else
 	{
 		if (iFound > -1)
-			m_vnIgnoreWarnings.Delete(iFound);
+			m_vnIgnoreWarnings.erase(m_vnIgnoreWarnings.begin() + iFound);
 	}
 }
 
@@ -343,7 +346,7 @@ void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
 ----------------------------------------------------------------------------------------------*/
 bool GrcErrorList::IgnoreWarning(int nWarning)
 {
-	for (int i = 0; i < m_vnIgnoreWarnings.Size(); i++)
+	for (size_t i = 0; i < m_vnIgnoreWarnings.size(); i++)
 	{
 		if (m_vnIgnoreWarnings[i] == nWarning)
 			return true;

@@ -162,9 +162,9 @@ int GrcLigComponentList::AddComponentFor(utf16 wGlyphID, Symbol psymComponent,
 
 	//	Add the internal ID to the list of components for this glyph.
 	LigCompMap * plcmap = m_prgplcmap[wGlyphID];
-	plcmap->m_vinIDs.Push(nID);
+	plcmap->m_vinIDs.push_back(nID);
 
-	int cComp = plcmap->m_vinIDs.Size();
+	int cComp = signed(plcmap->m_vinIDs.size());
 	prndr->SetNumLigComponents(cComp);
 
 	return nID;
@@ -184,7 +184,7 @@ bool GrcLigComponentList::FindComponentFor(utf16 wGlyphID, int nID)
 		m_prgplcmap[wGlyphID] = plcmap;
 	}
 
-	for (int in = 0; in < plcmap->m_vinIDs.Size(); in++)
+	for (size_t in = 0; in < plcmap->m_vinIDs.size(); in++)
 	{
 		if (plcmap->m_vinIDs[in] == nID)
 			return true;

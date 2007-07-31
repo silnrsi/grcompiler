@@ -57,27 +57,27 @@ public:
 
 	void AddScriptTag(int n)
 	{
-		for (int i = 0; i < m_vnScriptTags.Size(); i++)
+		for (size_t i = 0; i < m_vnScriptTags.size(); i++)
 		{
 			if (m_vnScriptTags[i] == n)
 				return;
 		}
-		m_vnScriptTags.Push(n);
+		m_vnScriptTags.push_back(n);
 	}
 	bool ClearScriptTags()
 	{
-		bool fRet = m_vnScriptTags.Size() > 0;
-		m_vnScriptTags.Clear();
+		bool fRet = (m_vnScriptTags.size() > 0);
+		m_vnScriptTags.clear();
 		return fRet;
 	}
 
 	int NumScriptTags()
 	{
-		return m_vnScriptTags.Size();
+		return m_vnScriptTags.size();
 	}
 	int ScriptTag(int i)
 	{
-		Assert(i < m_vnScriptTags.Size());
+		Assert(i < m_vnScriptTags.size());
 		return m_vnScriptTags[i];
 	}
 
@@ -89,11 +89,11 @@ public:
 
 	void AddGlyphClass(GdlGlyphClassDefn * pglfc)
 	{
-		m_vpglfc.Push(pglfc);
+		m_vpglfc.push_back(pglfc);
 	}
 	void AddFeature(GdlFeatureDefn * pfeat)
 	{
-		m_vpfeat.Push(pfeat);
+		m_vpfeat.push_back(pfeat);
 	}
 	bool AddLanguage(GdlLanguageDefn * plang);
 
@@ -198,11 +198,11 @@ public:
 protected:
 	//	Instance variables:
 
-	Vector<GdlRuleTable *>			m_vprultbl;
+	std::vector<GdlRuleTable *>			m_vprultbl;
 
-	Vector<GdlGlyphClassDefn *>		m_vpglfc;
-	Vector<GdlFeatureDefn *>		m_vpfeat;
-	Vector<GdlLanguageDefn *>		m_vplang;
+	std::vector<GdlGlyphClassDefn *>	m_vpglfc;
+	std::vector<GdlFeatureDefn *>		m_vpfeat;
+	std::vector<GdlLanguageDefn *>		m_vplang;
 	NameDefnMap						m_hmNameDefns;
 //	GdlStdStyle						m_rgsty[FeatureDefn::kstvLim];
 
@@ -210,7 +210,7 @@ protected:
 	bool m_fBidi;
 	int m_iPassBidi;
 	int m_grfsdc;		// supported script directions
-	Vector<int>	m_vnScriptTags;
+	std::vector<int>	m_vnScriptTags;
 	GdlNumericExpression * m_pexpXAscent;
 	GdlNumericExpression * m_pexpXDescent;
 	//	true if any line-breaks are relevant to rendering:

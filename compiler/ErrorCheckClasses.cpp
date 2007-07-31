@@ -194,7 +194,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 int GdlRenderer::ExplicitPseudos(PseudoSet & setpglf)
 {
-	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
+	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->ExplicitPseudos(setpglf);
 	return setpglf.size();
 }
@@ -271,7 +271,7 @@ int GrcManager::ActualForPseudo(utf16 wPseudo)
 /*--------------------------------------------------------------------------------------------*/
 int GdlRenderer::ActualForPseudo(utf16 wPseudo)
 {
-	for (int ipglfc = 0; ipglfc < m_vpglfc.Size(); ipglfc++)
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		utf16 wActual = m_vpglfc[ipglfc]->ActualForPseudo(wPseudo);
 		if (wActual != 0)
@@ -363,7 +363,7 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo)
 {
-	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
+	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
 
 	return true;
@@ -698,12 +698,12 @@ bool GrcManager::MaxJustificationLevel(int * pnJLevel)
 void GdlRenderer::MaxJustificationLevel(int * pnJLevel)
 {
 	//	Glyph atrributes:
-	for (int ipglfc = 0; ipglfc < m_vpglfc.Size(); ipglfc++)
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		m_vpglfc[ipglfc]->MaxJustificationLevel(pnJLevel);
 	}
 	//	Rules:
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->MaxJustificationLevel(pnJLevel);
 		if (*pnJLevel >= 3)
@@ -1166,7 +1166,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 void GdlRenderer::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	GrcLigComponentList * plclist)
 {
-	for (int ipglfc = 0; ipglfc < m_vpglfc.Size(); ipglfc++)
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		m_vpglfc[ipglfc]->AssignGlyphAttrsToClassMembers(pgax, this, plclist);
 	}
@@ -1777,7 +1777,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 {
-	for (int iprultbl = 0; iprultbl < m_vprultbl.Size(); iprultbl++)
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->FixGlyphAttrsInRules(pcman, pfont);
 	}
@@ -2788,7 +2788,7 @@ bool GrcManager::StorePseudoToActualAsGlyphAttr()
 void GdlRenderer::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 	std::vector<GdlExpression *> & vpexpExtra)
 {
-	for (int iglfc = 0; iglfc < m_vpglfc.Size(); iglfc++)
+	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->StorePseudoToActualAsGlyphAttr(pgax, nAttrID, vpexpExtra);
 }
 

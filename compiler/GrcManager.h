@@ -160,30 +160,30 @@ protected:
 	void WalkGlyphTableTree(RefAST ast);
 	void WalkGlyphTableElement(RefAST ast);
 	void WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc);
-	void WalkGlyphAttrTree(RefAST ast, Vector<std::string> & vsta);
+	void WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta);
 	void WalkFeatureTableTree(RefAST ast);
 	void WalkFeatureTableElement(RefAST ast);
-	void WalkFeatureSettingsTree(RefAST ast, Vector<std::string> & vsta);
+	void WalkFeatureSettingsTree(RefAST ast, std::vector<std::string> & vsta);
 	void WalkLanguageTableTree(RefAST ast);
 	void WalkLanguageTableElement(RefAST ast);
 	void WalkLanguageItem(RefAST ast, GdlLangClass * plcls);
 	void WalkLanguageCodeList(RefAST astList, GdlLangClass * plcls);
 	void WalkNameTableTree(RefAST ast);
 	void WalkNameTableElement(RefAST ast);
-	void WalkNameIDTree(RefAST ast, Vector<std::string> & vsta);
+	void WalkNameIDTree(RefAST ast, std::vector<std::string> & vsta);
 	void WalkRuleTableTree(RefAST ast, int nodetyp);
 	void WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppassPrev);
 	void WalkIfTree(RefAST astContents, GdlRuleTable *, GdlPass *);
 	bool AllContentsArePasses(RefAST ast);
 	void WalkRuleTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass);
-	void WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, Vector<std::string> & vsta);
+	void WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<std::string> & vsta);
 	GdlExpression * WalkExpressionTree(RefAST ast);
 
 	void ProcessGlobalSetting(RefAST);
 	void ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		GdlGlyphDefn ** ppglfRet);
 	GdlGlyphDefn * ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCodePage = -1);
-	void ProcessFunction(RefAST ast, Vector<std::string> & vsta,
+	void ProcessFunction(RefAST ast, std::vector<std::string> & vsta,
 		bool fSlotAttr, GdlRuleItem * prit = NULL, Symbol psymOp = NULL);
 	void ProcessFunctionArg(bool fSlotAttr, GrcStructName const& xns,
 		int nPR, int mPRUnits, bool fOverride, GrpLineAndFile const& lnf,
@@ -202,8 +202,8 @@ protected:
 	GrpLineAndFile LineAndFile(RefAST);
 	int NumericValue(RefAST);
 	int NumericValue(RefAST, bool * pfM);
-	Symbol IdentifierSymbol(RefAST ast, Vector<std::string> & vsta);
-	bool ClassPredefGlyphAttr(Vector<std::string> & vsta, ExpressionType * pexpt, SymbolType * psymt);
+	Symbol IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta);
+	bool ClassPredefGlyphAttr(std::vector<std::string> & vsta, ExpressionType * pexpt, SymbolType * psymt);
 public:	// so they can be called by the test procedures
 	GrcEnv * PushTableEnv(GrpLineAndFile &, std::string staTableName);
 	GrcEnv * PushPassEnv(GrpLineAndFile &, int nPass);
