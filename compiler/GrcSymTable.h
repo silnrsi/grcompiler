@@ -344,9 +344,9 @@ public:
 	Symbol FindSlotAttr(const GrcStructName & xns, GrpLineAndFile const&);
 
 protected:
-	int AddGlyphAttrSymbolInMap(Vector<Symbol> & vpsymGlyphAttrIDs,
+	int AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttrIDs,
 		Symbol psymGeneric);
-	int AddGlyphAttrSymbolInMap(Vector<Symbol> & vpsymGlyphAttrIDs,
+	int AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttrIDs,
 		Symbol psymGeneric, int ipsymToAssign);
 
 public:
@@ -370,7 +370,7 @@ public:
 public:
 	//	Pre-compiler methods:
 	bool AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
-		Vector<Symbol> & vpsymGlyphAttrIDs, int nPass, int cComponents, int nMaxJLevel);
+		std::vector<Symbol> & vpsymGlyphAttrIDs, int nPass, int cComponents, int nMaxJLevel);
 	Symbol BaseLigComponent();
 
 	//	Debuggers:

@@ -1343,7 +1343,7 @@ void GrcManager::DebugGlyphAttributes()
 	else
 	{
 		strmOut << "GLYPH ATTRIBUTE IDS\n\n";
-		for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.Size(); nAttrID++)
+		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 		{
 			strmOut << nAttrID << ": "
 				<< m_vpsymGlyphAttrs[nAttrID]->FullName() << "\n";
@@ -1360,7 +1360,7 @@ void GrcManager::DebugGlyphAttributes()
 		
 			bool fAnyNonZero = false;
 
-			for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.Size(); nAttrID++)
+			for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 			{
 				int nValue = FinalAttrValue(wGlyphID, nAttrID);
 
@@ -1664,7 +1664,7 @@ void GrcManager::DebugClasses()
 }
 		
 void GdlRenderer::DebugClasses(std::ostream & strmOut,
-	Vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear)
+	std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear)
 {
 	strmOut << "LINEAR (OUTPUT) CLASSES";
 
@@ -1702,7 +1702,7 @@ void GdlRenderer::DebugClasses(std::ostream & strmOut,
 	strmOut << "\n\n\nINDEXED (INPUT) CLASSES";
 
 	//	indexed classes (input)
-	for (ipglfc = cpglfcLinear; ipglfc < vpglfcReplcmt.Size(); ipglfc++)
+	for (ipglfc = cpglfcLinear; ipglfc < signed(vpglfcReplcmt.size()); ipglfc++)
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
@@ -1755,7 +1755,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 	}
 
 	int nFirstPseudo = 0x10000;
-	for (int iw = 0; iw < m_vwPseudoForUnicode.Size(); iw++)
+	for (size_t iw = 0; iw < m_vwPseudoForUnicode.size(); iw++)
 		nFirstPseudo = min(nFirstPseudo, static_cast<int>(m_vwPseudoForUnicode[iw]));
 
 	if (g_errorList.AnyFatalErrors())
@@ -1788,7 +1788,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 			unsigned int nUni = *fit;
 
 			// Handle pseudos.
-			while (iUniPsd < m_vnUnicodeForPseudo.Size() && nUni > m_vnUnicodeForPseudo[iUniPsd])
+			while (iUniPsd < signed(m_vnUnicodeForPseudo.size()) && nUni > m_vnUnicodeForPseudo[iUniPsd])
 			{
 				// Put any Unicode -> pseudo mappings where the Unicode is not in the cmap into 
 				// a separate list.
@@ -1796,7 +1796,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 				vwXPsdForUni.push_back(m_vwPseudoForUnicode[iUniPsd]);
 				iUniPsd++;
 			}
-			if (iUniPsd < m_vnUnicodeForPseudo.Size() && m_vnUnicodeForPseudo[iUniPsd] == nUni)
+			if (iUniPsd < signed(m_vnUnicodeForPseudo.size()) && m_vnUnicodeForPseudo[iUniPsd] == nUni)
 			{
 				// Pseudo: overwrite glyph ID.
 				rgchwUniToGlyphID[iUni] = m_vwPseudoForUnicode[iUniPsd];
@@ -1833,7 +1833,7 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 		}
 
 		// Sort the extra pseudos by glyph ID.
-		for (size_t i1 = 0; i1 < vwXPsdForUni.size() - 1; i1++)
+		for (int i1 = 0; i1 < signed(vwXPsdForUni.size()) - 1; i1++)
 			for (size_t i2 = i1 + 1; i2 < vwXPsdForUni.size(); i2++)
 				if (vwXPsdForUni[i1] > vwXPsdForUni[i2])
 				{

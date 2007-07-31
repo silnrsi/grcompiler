@@ -91,7 +91,7 @@ public:
 	virtual void CheckCompBox(GdlObject * pritset,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymCompRef) = 0;
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-		Vector<GdlExpression *> & vpexpExtra) = 0;
+		std::vector<GdlExpression *> & vpexpExtra) = 0;
 	virtual bool IncludesGlyph(utf16) = 0;
 	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont) = 0;
 	virtual bool HasBadGlyph() = 0;
@@ -194,7 +194,7 @@ public:
 	virtual void CheckCompBox(GdlObject * pritset,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymCompRef);
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-		Vector<GdlExpression *> & vpexpExtra);
+		std::vector<GdlExpression *> & vpexpExtra);
 	void MarkFsmClass(int nPassID, int nClassID);
 
 	bool IsFsmClass(int ipass)

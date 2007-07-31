@@ -60,7 +60,7 @@ public:
 	//	General:
 	GdlRenderer * Renderer()				{ return m_prndr; }
 	GrcSymbolTable * SymbolTable()			{ return m_psymtbl; }
-	Vector<Symbol> * GlyphAttrVec()			{ return &m_vpsymGlyphAttrs; }
+	std::vector<Symbol> * GlyphAttrVec()	{ return &m_vpsymGlyphAttrs; }
 	GrcGlyphAttrMatrix * GlyphAttrMatrix()	{ return m_pgax; }
 	GrcLigComponentList * LigCompList()		{ return m_plclist; }
 	int NumGlyphs()							{ return m_cwGlyphIDs; }
@@ -276,7 +276,7 @@ public:
 	int SlotAttributeIndex(Symbol psym);
 	void GenerateFsms();
 	////void InitializeFsmArrays();
-	Vector<GdlGlyphClassDefn *> * FsmClassesForPass(int nPassID);
+	std::vector<GdlGlyphClassDefn *> * FsmClassesForPass(int nPassID);
 	void CalculateContextOffsets();
 
 	//	Output:
@@ -391,8 +391,8 @@ protected:
 
 	//	Pseudo-code mappings: the two vectors form pairs of underlying unicode values and 
 	//	coresponding pseudo-glyph IDs.
-	Vector<unsigned int> m_vnUnicodeForPseudo;
-	Vector<utf16> m_vwPseudoForUnicode;
+	std::vector<unsigned int> m_vnUnicodeForPseudo;
+	std::vector<utf16> m_vwPseudoForUnicode;
 	unsigned int m_nMaxPseudoUnicode;
 	utf16 m_wFirstAutoPseudo;
 
@@ -407,7 +407,7 @@ protected:
 
 	//	The following vector maps the internal glyph attr ID to the symbol in the symbol table
 	//	(which in turn has a record of the internal ID).
-	Vector<Symbol> m_vpsymGlyphAttrs;
+	std::vector<Symbol> m_vpsymGlyphAttrs;
 
 	//	The following matrix contains the glyph attribute assignments for
 	//	all of the glyphs in the system. Used by the parser and post-parser.
@@ -425,19 +425,19 @@ protected:
 	//	from the originals; pointers are stored here so that they can be properly deleted.
 	//	In a sense it is an extension to the master tables; it contains expressions that
 	//	would normally be owned there but aren't.
-	Vector<GdlExpression *> m_vpexpModified;
+	std::vector<GdlExpression *> m_vpexpModified;
 
 	//	The following vector maps the internal replacement-class IDs to the replacement-classes
 	//	themselves (which in turn have a record of the ID). (Replacement-classes are classes
 	//	that are used to do replacements in substitution rules;
 	//	eg, in "clsA > clsB / _ clsC" clsA and clsB are replacement classes.)
-	Vector<GdlGlyphClassDefn *> m_vpglfcReplcmtClasses;
+	std::vector<GdlGlyphClassDefn *> m_vpglfcReplcmtClasses;
 	int m_cpglfcLinear;	// number of linear classes
 
 	//	Each vector in the array maps the internal FSM-class IDs to the FSM-classes themselves
 	//	(which in turn have a record of the ID). (FSM-classes are classes that are used for
 	//	matching input.) There is one vector per pass.
-	Vector<GdlGlyphClassDefn *> * m_prgvpglfcFsmClasses;
+	std::vector<GdlGlyphClassDefn *> * m_prgvpglfcFsmClasses;
 
 	int cReplcmntClasses;
 

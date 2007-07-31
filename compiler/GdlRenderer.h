@@ -124,11 +124,11 @@ public:
 	void AssignGlyphAttrDefaultValues(GrcFont * pfont,
 		GrcGlyphAttrMatrix * pgax, int cwGlyphs,
 		Vector<Symbol> & vpsymSysDefined, Vector<int> & vnSysDefValues,
-		Vector<GdlExpression *> & vpexpExtra,
-		Vector<Symbol> & vpsymGlyphAttrs);
+		std::vector<GdlExpression *> & vpexpExtra,
+		std::vector<Symbol> & vpsymGlyphAttrs);
 	DirCode ConvertBidiCode(UCharDirection diricu, utf16 wUnicode);
 	void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
-		Vector<GdlExpression *> & vpexpExtra);
+		std::vector<GdlExpression *> & vpexpExtra);
 
 	bool FixRulePreContexts(Symbol psymAnyClass);
 	bool FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
@@ -181,10 +181,10 @@ public:
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugCmap(GrcFont * pfont, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	void DebugClasses(std::ostream & strmOut,
-		Vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear);
+		std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear);
 
 	//	Output:
-	void OutputReplacementClasses(Vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
+	void OutputReplacementClasses(std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
 		GrcBinaryStream * pbstrm);
 	void CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);
