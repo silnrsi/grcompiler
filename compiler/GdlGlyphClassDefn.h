@@ -199,7 +199,7 @@ public:
 
 	bool IsFsmClass(int ipass)
 	{
-		if (ipass >= m_vfFsm.Size())
+		if (ipass >= signed(m_vfFsm.size()))
 			return false;
 		return m_vfFsm[ipass];
 	}
@@ -253,17 +253,17 @@ protected:
 
 	Vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;
 
-//	Vector<GdlGlyphAttrSetting*>	m_vpglfaComponents;
-//	Vector<std::string>				m_vstaComponentNames;	// redundant with what is in components
-															// list, but more accessible
+//	std::vector<GdlGlyphAttrSetting*>	m_vpglfaComponents;
+//	std::vector<std::string>			m_vstaComponentNames;	// redundant with what is in components
+																// list, but more accessible
 //	GdlExpression *		m_pexpDirection;
 //	int					m_nDirStmtNo;
 //	GdlExpression *		m_pexpBreakweight;
 //	int					m_nBwStmtNo;
 
 	//	for compiler use:
-	Vector<bool>	m_vfFsm;		// needs to be matched by the FSM, one flag for each pass
-	Vector<int>		m_vnFsmID;		// FSM class ID, one for each pass
+	std::vector<bool>	m_vfFsm;		// needs to be matched by the FSM, one flag for each pass
+	std::vector<int>	m_vnFsmID;		// FSM class ID, one for each pass
 
 	bool	m_fReplcmtIn;		// serves as an input class for replacement
 	bool	m_fReplcmtOut;		// serves as an output class for replacement

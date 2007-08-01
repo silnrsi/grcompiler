@@ -160,7 +160,7 @@ void GdlLineBreakItem::ReplaceAliases(GdlRule * prule)
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::ReplaceAliases(GdlRule * prule)
 {
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		m_vpavs[ipavs]->ReplaceAliases(prule);
 	}
@@ -586,7 +586,7 @@ bool GdlSetAttrItem::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int>
 	if (!GdlRuleItem::AdjustSlotRefs(vfOmit, vnNewIndices, prule))
 		return false;
 
-	for (int i = 0; i < m_vpavs.Size(); ++i)
+	for (size_t i = 0; i < m_vpavs.size(); ++i)
 	{
 		if (!m_vpavs[i]->AdjustSlotRefs(vfOmit, vnNewIndices, prule))
 			return false;

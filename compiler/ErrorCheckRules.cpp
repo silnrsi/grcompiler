@@ -292,7 +292,7 @@ void GdlSetAttrItem::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 {
 	GdlRuleItem::AdjustSlotRefsForPreAnys(critPrependedAnys);
 
-	for (int i = 0; i < m_vpavs.Size(); i++)
+	for (size_t i = 0; i < m_vpavs.size(); i++)
 		m_vpavs[i]->AdjustSlotRefsForPreAnys(critPrependedAnys, this);
 }
 
@@ -505,8 +505,8 @@ void GrcManager::AddToFsmClasses(GdlGlyphClassDefn * pglfc, int nPassID)
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::MarkFsmClass(int nPassID, int nClassID)
 {
-	m_vfFsm.Resize(nPassID + 1, false);
-	m_vnFsmID.Resize(nPassID + 1, -1);
+	m_vfFsm.resize(nPassID + 1, false);
+	m_vnFsmID.resize(nPassID + 1, -1);
 
 	m_vfFsm[nPassID] = true;
 	m_vnFsmID[nPassID] = nClassID;
@@ -705,15 +705,15 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 
 	//	Create lists of flags indicating which items are line-break items, insertions,
 	//	or deletions. Also create a vector giving the size of classes in the left-hand-side.
-	Vector<bool> vfLb;
-	Vector<bool> vfInsertion;
-	Vector<bool> vfDeletion;
+	std::vector<bool> vfLb;
+	std::vector<bool> vfInsertion;
+	std::vector<bool> vfDeletion;
 	size_t crit = m_vprit.size();
-	vfLb.Resize(crit, false);
-	vfInsertion.Resize(crit, false);
-	vfDeletion.Resize(crit, false);
-	Vector<int> vcwClassSizes;
-	vcwClassSizes.Resize(crit, false);
+	vfLb.resize(crit, false);
+	vfInsertion.resize(crit, false);
+	vfDeletion.resize(crit, false);
+	std::vector<int> vcwClassSizes;
+	vcwClassSizes.resize(crit, false);
 	size_t irit;
 	for (irit = 0; irit < crit; irit++)
 	{
@@ -787,8 +787,8 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 /*--------------------------------------------------------------------------------------------*/
 bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-	Vector<int> & vcwClassSizes)
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	std::vector<int> & vcwClassSizes)
 {
 	bool fOkay = true;
 
@@ -835,8 +835,8 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 /*--------------------------------------------------------------------------------------------*/
 bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-	Vector<int> & vcwSizes)
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	std::vector<int> & vcwSizes)
 {
 	bool fOkay = true;
 
@@ -862,13 +862,13 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco,
-	int irit, Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-	Vector<int> & vcwSizes)
+	int irit, std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	std::vector<int> & vcwSizes)
 {
 	bool fOkay = GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit,
 			vfLb, vfIns, vfDel, vcwSizes);
 
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		if (!m_vpavs[ipavs]->CheckRulesForErrors(pgax, pfont, prndr, psymTable,
 			grfrco, this, irit, vfLb, vfIns, vfDel))
@@ -883,10 +883,10 @@ bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pf
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco,
-	int irit, Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-	Vector<int> & vcwClassSizes)
+	int irit, std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	std::vector<int> & vcwClassSizes)
 {
-	int crit = vfLb.Size();
+	int crit = signed(vfLb.size());
 
 	bool fOkay = true;
 	if ((grfrco & kfrcoSubst) == 0)
@@ -902,14 +902,14 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	if (OutputSymbol()->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	Deletion
-		if (m_vpavs.Size())
+		if (m_vpavs.size())
 		{
 			g_errorList.AddWarning(3505, this,
 				"Item ", PosString(),
 				": setting attributes of a deleted item");
-			for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+			for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 				delete m_vpavs[ipavs];
-			m_vpavs.Clear();
+			m_vpavs.clear();
 			fOkay = false;
 		}
 
@@ -944,7 +944,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	//	If there are any component.X.ref settings, give a warning if they are not equal
 	//	to the associations.
 	std::set<int> setsrCompRef;
-	for (size_t ipavs = 0; ipavs < unsigned(m_vpavs.Size()); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		if (m_vpavs[ipavs]->m_psymName->IsComponentRef())
 		{
@@ -1090,7 +1090,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco,
 	GdlRuleItem * prit, int irit,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel)
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel)
 {
 	if (!m_psymOperator->FitsSymbolType(ksymtOpAssign))
 		g_errorList.AddError(3116, this,
@@ -1536,7 +1536,7 @@ void GdlSetAttrItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vecto
 {
 	GdlRuleItem::AdjustToIOIndices(viritInput, viritOutput);
 
-	for (int i = 0; i < m_vpavs.Size(); i++)
+	for (size_t i = 0; i < m_vpavs.size(); i++)
 		m_vpavs[i]->AdjustToIOIndices(this, viritInput, viritOutput);
 }
 
@@ -1639,7 +1639,7 @@ int GdlRuleItem::AttachedToSlot()
 int GdlSetAttrItem::AttachedToSlot()
 {
 	Assert(m_nInputIndex == m_nOutputIndex); // because this is a positioning rule
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		if (m_vpavs[ipavs]->m_psymName->IsAttachTo())
 		{
@@ -2004,7 +2004,7 @@ void GdlRuleItem::ReplaceKern(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::ReplaceKern(GrcManager * pcman)
 {
-	for (size_t ipavs = 0; ipavs < unsigned(m_vpavs.Size()); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		GdlAttrValueSpec * pavsShift;
 		GdlAttrValueSpec * pavsAdvance;
@@ -2013,7 +2013,7 @@ void GdlSetAttrItem::ReplaceKern(GrcManager * pcman)
 		{
 			delete m_vpavs[ipavs];
 			m_vpavs[ipavs] = pavsShift;
-			m_vpavs.Insert(ipavs + 1, pavsAdvance);
+			m_vpavs.insert(m_vpavs.begin() + ipavs + 1, pavsAdvance);
 			ipavs++;
 		}
 	}
@@ -2193,7 +2193,7 @@ bool GdlSetAttrItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	bool fRet = GdlRuleItem::CompatibleWithVersion(fxdVersion, pfxdNeeded);
 
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		fRet = m_vpavs[ipavs]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
 	}

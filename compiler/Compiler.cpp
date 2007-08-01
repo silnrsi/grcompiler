@@ -278,7 +278,7 @@ void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVer
 	std::vector<byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
-	if (m_vpavs.Size() == 0 && !*pfSetInsertToFalse)
+	if (m_vpavs.size() == 0 && !*pfSetInsertToFalse)
 		vbOutput.push_back(kopCopyNext);
 	else
 	{
@@ -450,7 +450,7 @@ bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVers
 	int irit, int nIIndex)
 {
 	bool fAttachForward = false;
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		if (m_vpavs[ipavs]->GenerateAttrSettingCode(pcman, fxdRuleVersion, vbOutput,
 			irit, nIIndex, AttachTo()))
@@ -1587,15 +1587,15 @@ void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, in
 void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
-	if (m_vpavs.Size() > 0)
+	if (m_vpavs.size() > 0)
 	{
 		bool fAtt = false;
 		bool fAttAt = false;
 		bool fAttWith = false;
 		strmOut << " { ";
-		for (int iavs = 0; iavs < m_vpavs.Size(); iavs++)
+		for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 		{
-			m_vpavs[iavs]->PrettyPrint(pcman, strmOut, &fAtt, &fAttAt, &fAttWith, m_vpavs.Size());
+			m_vpavs[iavs]->PrettyPrint(pcman, strmOut, &fAtt, &fAttAt, &fAttWith, m_vpavs.size());
 		}
 		strmOut << " }";
 	}

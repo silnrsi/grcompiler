@@ -42,7 +42,7 @@ public:
 	void GetFontFamilyName(utf16 * rgchwName, int cchMax);
 
 	utf16 FirstFreeGlyph();
-	int AutoPseudos(Vector<unsigned int> & vnUnicode, Vector<utf16> & vwGlyphID);
+	int AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID);
 
 	void GetGlyphsFromCmap(utf16 * rgchwUniToGlyphID);
 	unsigned int UnicodeFromCodePage(utf16 wCodePage, utf16 wCodePoint, GdlObject * pgdlobj);

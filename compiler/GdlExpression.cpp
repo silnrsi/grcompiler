@@ -590,29 +590,29 @@ ExpressionType GdlStringExpression::ExpType()
 ----------------------------------------------------------------------------------------------*/
 bool GdlExpression::TypeCheck(ExpressionType exptExpected)
 {
-	Vector<ExpressionType> vnTmp;
-	vnTmp.Push(exptExpected);
+	std::vector<ExpressionType> vnTmp;
+	vnTmp.push_back(exptExpected);
 	return TypeCheck(vnTmp);
 }
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlExpression::TypeCheck(ExpressionType expt1, ExpressionType expt2, ExpressionType expt3)
 {
-	Vector<ExpressionType> vnTmp;
-	vnTmp.Push(expt1);
-	vnTmp.Push(expt2);
-	vnTmp.Push(expt3);
+	std::vector<ExpressionType> vnTmp;
+	vnTmp.push_back(expt1);
+	vnTmp.push_back(expt2);
+	vnTmp.push_back(expt3);
 	return TypeCheck(vnTmp);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlExpression::TypeCheck(Vector<ExpressionType>& vexptExpected)
+bool GdlExpression::TypeCheck(std::vector<ExpressionType>& vexptExpected)
 {
 	ExpressionType exptFound;
 	if (!CheckTypeAndUnits(&exptFound))
 		return false;
 
-	for (int i = 0; i < vexptExpected.Size(); ++i)
+	for (size_t i = 0; i < vexptExpected.size(); ++i)
 	{
 		ExpressionType exptOkay = vexptExpected[i];
 		if (exptOkay == exptFound)
@@ -1746,14 +1746,14 @@ void GdlNumericExpression::SetSpecialZero()
 	(all of the glyph IDs for the input class).
 ----------------------------------------------------------------------------------------------*/
 void GdlUnaryExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 	m_pexpOperand->CheckAndFixGlyphAttrsInRules(pcman, vpglfcInClasses, irit);
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlBinaryExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 	m_pexpOperand1->CheckAndFixGlyphAttrsInRules(pcman, vpglfcInClasses, irit);
 	m_pexpOperand2->CheckAndFixGlyphAttrsInRules(pcman, vpglfcInClasses, irit);
@@ -1761,7 +1761,7 @@ void GdlBinaryExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlCondExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 	m_pexpTest->CheckAndFixGlyphAttrsInRules(pcman, vpglfcInClasses, irit);
 	m_pexpTrue->CheckAndFixGlyphAttrsInRules(pcman, vpglfcInClasses, irit);
@@ -1770,7 +1770,7 @@ void GdlCondExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 	char rgchItem[20];
 	itoa(irit+1, rgchItem, 10);
@@ -1782,7 +1782,7 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 			nSel = m_pexpSelector->m_srNumber - 1;	// selectors are 1-based
 		else
 			nSel = irit;
-		if (nSel < 0 || nSel >= vpglfcInClasses.Size())
+		if (nSel < 0 || nSel >= signed(vpglfcInClasses.size()))
 		{
 			g_errorList.AddError(2131, this,
 				"Item ", rgchItem,
@@ -1824,19 +1824,19 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 
 /*------------------------------------------------------s--------------------------------------*/
 void GdlNumericExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSlotRefExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlStringExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
 }
 
@@ -1855,7 +1855,7 @@ void GdlStringExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 							note that both *pfXY and *pfGpoint could be true
 ----------------------------------------------------------------------------------------------*/
 void GdlUnaryExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 	m_pexpOperand->CheckCompleteAttachmentPoint(pcman, vpglfcInClasses, irit, pfXY, pfGpoint);
@@ -1863,7 +1863,7 @@ void GdlUnaryExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlBinaryExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 	m_pexpOperand1->CheckCompleteAttachmentPoint(pcman, vpglfcInClasses, irit, pfXY, pfGpoint);
@@ -1872,7 +1872,7 @@ void GdlBinaryExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlCondExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 	m_pexpTest->CheckCompleteAttachmentPoint(pcman, vpglfcInClasses, irit, pfXY, pfGpoint);
@@ -1882,7 +1882,7 @@ void GdlCondExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 	if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
@@ -1892,7 +1892,7 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 			nSel = m_pexpSelector->m_srNumber - 1;	// selectors are 1-based
 		else
 			nSel = irit;
-		if (nSel < 0 || nSel >= vpglfcInClasses.Size())
+		if (nSel < 0 || nSel >= signed(vpglfcInClasses.size()))
 		{
 			char rgch[20];
 			itoa(irit+1, rgch, 10);
@@ -1924,21 +1924,21 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSlotRefExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlStringExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 }
@@ -2098,7 +2098,7 @@ bool GdlLookupExpression::PointFieldEquivalents(GrcManager * pcman,
 							the opposite is true.
 ----------------------------------------------------------------------------------------------*/
 bool GdlUnaryExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	return m_pexpOperand->CheckRuleExpression(pfont, prndr, vfLb, vfIns, vfDel,
@@ -2107,7 +2107,7 @@ bool GdlUnaryExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prnd
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlBinaryExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	bool fOkay = m_pexpOperand1->CheckRuleExpression(pfont, prndr, vfLb, vfIns, vfDel,
@@ -2124,7 +2124,7 @@ bool GdlBinaryExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlCondExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	bool fOkay = m_pexpTest->CheckRuleExpression(pfont, prndr, vfLb, vfIns, vfDel,
@@ -2144,7 +2144,7 @@ bool GdlCondExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	Assert(m_psymName->FitsSymbolType(ksymtGlyph) ||
@@ -2197,7 +2197,7 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 	//	Ignore fValue and fValueIsInputSlot; because this is a lookup expression,
 	//	act as if fValue = false.
 
-	int crit = vfLb.Size();
+	int crit = signed(vfLb.size());
 
 	if (m_pexpSelector)
 	{
@@ -2234,7 +2234,7 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlNumericExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	m_nValue = pfont->ScaledToAbsolute(m_nValue, m_munits);
@@ -2244,13 +2244,13 @@ bool GdlNumericExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	char rgchSlotNumber[20];
 	itoa(m_srNumber, rgchSlotNumber, 10);
 
-	if (m_srNumber < 1 || m_srNumber > vfLb.Size())
+	if (m_srNumber < 1 || m_srNumber > signed(vfLb.size()))
 	{
 		g_errorList.AddError(2142, this,
 			"Slot reference out of range: @",
@@ -2291,7 +2291,7 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlStringExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
 	//	By this point any value string values (eg, values of the "lang" feature) should

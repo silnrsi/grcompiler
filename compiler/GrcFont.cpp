@@ -332,7 +332,7 @@ utf16 GrcFont::FirstFreeGlyph()
 	Fill in the arrays with the pairs of ambiguous unicode values and assigned glyph IDs.
 	Return the number found.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::AutoPseudos(Vector<unsigned int> & vnUnicode, Vector<utf16> & vwGlyphID)
+int GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID)
 {
 #ifdef _DEBUG
 	if (m_fDebug)
@@ -349,9 +349,9 @@ int GrcFont::AutoPseudos(Vector<unsigned int> & vnUnicode, Vector<utf16> & vwGly
 	for (size_t i = 0; i < nSize; i++)
 	{
 		unsigned int nUnicode = m_vnCollisions[i];
-		vnUnicode.Push(nUnicode);
+		vnUnicode.push_back(nUnicode);
 		utf16 wchGlyph = GlyphFromCmap(nUnicode, NULL);
-		vwGlyphID.Push(wchGlyph);
+		vwGlyphID.push_back(wchGlyph);
 	}
 	return nSize;
 }
