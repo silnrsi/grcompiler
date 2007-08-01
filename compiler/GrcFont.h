@@ -143,7 +143,7 @@ public:
 
 	bool AnySupplementaryPlaneChars()
 	{
-		return (m_vnLimUnicode[m_vnLimUnicode.Size() - 1] > 0xFFFF);
+		return (m_vnLimUnicode[m_vnLimUnicode.size() - 1] > 0xFFFF);
 	}
 
 protected:
@@ -155,9 +155,9 @@ protected:
 
 	bool IsGraphiteFont(void * pHdr, void * pTableDir);
 	int ScanGlyfIds(void);
-	int GetGlyfContours(utf16 wGlyphID, Vector<int> * pvnEndPt);
-	int GetGlyfPts(utf16 wGlyphID, Vector<int> * pvnEndPt, 
-						 Vector<int> * pvnX, Vector<int> * pvnY, Vector<bool> * pvfOnCurve);
+	int GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt);
+	int GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt, 
+		std::vector<int> * pvnX, std::vector<int> * pvnY, std::vector<bool> * pvfOnCurve);
 
 protected:
 	//	Member variables:
@@ -196,19 +196,19 @@ protected:
 	int m_nMaxGlyfId;
 
 	// ranges of unicode codepoints in the cmap
-	Vector<unsigned int> m_vnMinUnicode;
-	Vector<unsigned int> m_vnLimUnicode;
+	std::vector<unsigned int> m_vnMinUnicode;
+	std::vector<unsigned int> m_vnLimUnicode;
 	int m_cnUnicode;
 
-	Vector<unsigned int> m_vnCollisions; // Unicode ids with colliding glyph ids
+	std::vector<unsigned int> m_vnCollisions; // Unicode ids with colliding glyph ids
 
 	bool m_fDebug;
 
 	// for interator
 	int CBlocks()
 	{
-		Assert(m_vnMinUnicode.Size() == m_vnLimUnicode.Size());
-		return m_vnMinUnicode.Size();
+		Assert(m_vnMinUnicode.size() == m_vnLimUnicode.size());
+		return m_vnMinUnicode.size();
 	}
 };
 

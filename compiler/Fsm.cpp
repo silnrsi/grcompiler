@@ -455,19 +455,19 @@ void GdlPass::RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc)
 //		std::vector<GdlGlyphClassDefn *> vpglfcSorted;
 //
 //		//	Sort the list by FSM ID.
-//		while (vpglfcToSort.Size())
+//		while (vpglfcToSort.size())
 //		{
 //			int iFirst = 0;
-//			for (int i = 1; i < vpglfcToSort.Size(); i++)
+//			for (size_t i = 1; i < vpglfcToSort.size(); i++)
 //			{
 //				if (vpglfcToSort[i].FsmID(nPassID) < vpglfcToSort[iFirst].FsmID(nPassID))
 //					iFirst = i;
 //			}
-//			vpglfcSorted.Push(vpglfcToSort[iFirst]);
-//			vpglfcToSort.Delete(iFirst);
+//			vpglfcSorted.push_back(vpglfcToSort[iFirst]);
+//			vpglfcToSort.erase(vpglfcToSort.begin() + iFirst);
 //		}
-//		vpglfcToSort.Clear();
-//		vpglfcSorted.CopyTo(vpglfcToSort);
+//		vpglfcToSort.clear();
+//		vpglfcToSort.assign(vpglfcSorted);
 //	}
 //}
 
