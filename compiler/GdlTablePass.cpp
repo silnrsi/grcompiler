@@ -51,8 +51,8 @@ GdlPass* GdlRuleTable::GetPass(GrpLineAndFile & lnf, int ipassNumber,
 		return NULL;
 	}
 
-	while (ipassNumber >= m_vppass.Size())
-		m_vppass.Push(NULL);
+	while (ipassNumber >= signed(m_vppass.size()))
+		m_vppass.push_back(NULL);
 
 	if (m_vppass[ipassNumber] == NULL)
 	{
@@ -90,11 +90,11 @@ GdlPass* GdlRuleTable::GetPass(GrpLineAndFile & lnf, int ipassNumber,
 ----------------------------------------------------------------------------------------------*/
 GdlPass::~GdlPass()
 {
-	int i;
-	for (i = 0; i < m_vprule.Size(); ++i)
+	size_t i;
+	for (i = 0; i < m_vprule.size(); ++i)
 		delete m_vprule[i];
 
-	for (i = 0; i < m_vpexpConstraints.Size(); ++i)
+	for (i = 0; i < m_vpexpConstraints.size(); ++i)
 		delete m_vpexpConstraints[i];
 
 	if (m_pfsm)
@@ -121,9 +121,9 @@ void GdlPass::ClearFsmWorkSpace()
 	m_hmMachineClassMap.clear();
 
 	//	Delete all the FsmMachineClasses and clear the master list.
-	for (int i = 0; i < m_vpfsmc.Size(); i++)
+	for (size_t i = 0; i < m_vpfsmc.size(); i++)
 		delete m_vpfsmc[i];
-	m_vpfsmc.Clear();
+	m_vpfsmc.clear();
 }
 
 

@@ -39,7 +39,7 @@ DEFINE_THIS_FILE
 ----------------------------------------------------------------------------------------------*/
 int GdlRule::LookupAliasIndex(std::string sta)
 {
-	for (int i = 0; i < m_vpalias.Size(); ++i)
+	for (size_t i = 0; i < m_vpalias.size(); ++i)
 	{
 		if (m_vpalias[i]->m_staName == sta)
 			return m_vpalias[i]->m_srIndex;
@@ -64,9 +64,9 @@ int GdlRule::LookupAliasIndex(std::string sta)
 GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 	std::string staInput, std::string staAlias)
 {
-	Assert(irit <= m_vprit.Size());
+	Assert(irit <= m_vprit.size());
 
-	if (irit == m_vprit.Size())
+	if (irit == m_vprit.size())
 	{
 		Symbol psymClass = g_cman.SymbolTable()->FindSymbol(staInput);
 		GdlRuleItem * prit;
@@ -90,13 +90,13 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 			prit = new GdlRuleItem(psymClass);
 		}
 		prit->SetLineAndFile(lnf);
-		prit->m_iritContextPos = m_vprit.Size();
+		prit->m_iritContextPos = m_vprit.size();
 		prit->m_iritContextPosOrig = prit->m_iritContextPos;
-		m_vprit.Push(prit);
+		m_vprit.push_back(prit);
 
 		//	record the 1-based slot-alias value, if any
 		if (staAlias != "")
-			m_vpalias.Push(new GdlAlias(staAlias, prit->m_iritContextPos + 1));
+			m_vpalias.push_back(new GdlAlias(staAlias, prit->m_iritContextPos + 1));
 	}
 
 	return m_vprit[irit];
@@ -151,7 +151,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 
 	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(staInput);
 
-	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
+	for (size_t iritT = 0; iritT < m_vprit.size(); iritT++)
 	{
 		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem*>(m_vprit[iritT]);
 		if (!pritset)
@@ -187,7 +187,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 
 					//	record the 1-based slot-alias value, if any
 					if (staAlias != "")
-						m_vpalias.Push(
+						m_vpalias.push_back(
 							new GdlAlias(staAlias, m_vprit[iritT]->m_iritContextPos + 1));
 
 					delete pritset;
@@ -202,7 +202,7 @@ GdlRuleItem * GdlRule::RhsItemAt(GrpLineAndFile & lnf, int irit,
 
 					//	record the 1-based slot-alias value, if any
 					if (staAlias != "")
-						m_vpalias.Push(
+						m_vpalias.push_back(
 							new GdlAlias(staAlias, m_vprit[iritT]->m_iritContextPos + 1));
 
 					return m_vprit[iritT];
@@ -253,14 +253,14 @@ LLbError:
 		pritNew = new GdlSetAttrItem(psymClassOrPlaceHolder);
 
 	pritNew->SetLineAndFile(lnf);
-	pritNew->m_iritContextPos = m_vprit.Size();
+	pritNew->m_iritContextPos = m_vprit.size();
 	pritNew->m_iritContextPosOrig = pritNew->m_iritContextPos;
 
 	//	record the 1-based slot-alias value, if any
 	if (staAlias != "")
-		m_vpalias.Push(new GdlAlias(staAlias, pritNew->m_iritContextPos + 1));
+		m_vpalias.push_back(new GdlAlias(staAlias, pritNew->m_iritContextPos + 1));
 
-	m_vprit.Push(pritNew);
+	m_vprit.push_back(pritNew);
 	return pritNew;
 }
 
@@ -326,7 +326,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 
 	Symbol psymClassOrPlaceHolder = g_cman.SymbolTable()->FindSymbol(staInput);
 
-	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
+	for (size_t iritT = 0; iritT < m_vprit.size(); iritT++)
 	{
 		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem*>(m_vprit[iritT]);
 		if (!pritset)
@@ -365,7 +365,7 @@ GdlRuleItem * GdlRule::LhsItemAt(GrpLineAndFile & lnf, int irit,
 
 				//	Record the 1-based slot-alias value, if any
 				if (staAlias != "")
-					m_vpalias.Push(
+					m_vpalias.push_back(
 						new GdlAlias(staAlias, pritsub->m_iritContextPos + 1));
 
 				if (psymClassOrPlaceHolder &&
@@ -417,14 +417,14 @@ LLbError:
 			g_cman.SymbolTable()->FindSymbol("_"));
 
 	pritNew->SetLineAndFile(lnf);
-	pritNew->m_iritContextPos = m_vprit.Size();
+	pritNew->m_iritContextPos = m_vprit.size();
 	pritNew->m_iritContextPosOrig = pritNew->m_iritContextPos;
 
 	//	record the 1-based slot-alias value, if any
 	if (staAlias != "")
-		m_vpalias.Push(new GdlAlias(staAlias, pritNew->m_iritContextPos + 1));
+		m_vpalias.push_back(new GdlAlias(staAlias, pritNew->m_iritContextPos + 1));
 
-	m_vprit.Push(pritNew);
+	m_vprit.push_back(pritNew);
 	return pritNew;
 }
 
@@ -471,9 +471,9 @@ void GdlRule::AddOptionalRange(int iritStart, int crit, bool fContext)
 	if (crit == 0)
 		return;
 
-	m_viritOptRangeStart.Push(iritStart);
-	m_viritOptRangeEnd.Push(iritStart + crit - 1);
-	m_vfOptRangeContext.Push(fContext);
+	m_viritOptRangeStart.push_back(iritStart);
+	m_viritOptRangeEnd.push_back(iritStart + crit - 1);
+	m_vfOptRangeContext.push_back(fContext);
 }
 
 
@@ -498,14 +498,14 @@ void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, int n)
 {
 	GdlSlotRefExpression * pexp = new GdlSlotRefExpression(n);
 	pexp->SetLineAndFile(lnf);
-	m_vpexpAssocs.Push(pexp);
+	m_vpexpAssocs.push_back(pexp);
 }
 
 void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, std::string sta)
 {
 	GdlSlotRefExpression * pexp = new GdlSlotRefExpression(sta);
 	pexp->SetLineAndFile(lnf);
-	m_vpexpAssocs.Push(pexp);
+	m_vpexpAssocs.push_back(pexp);
 }
 
 /***********************************************************************************************
@@ -520,7 +520,7 @@ int GdlRule::SortKey()
 {
 	//	Count insertions.
 	int critIns = 0;
-	for (int irit = 0; irit < m_vprit.Size(); irit++)
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
 		GdlSubstitutionItem * pritSub = dynamic_cast<GdlSubstitutionItem *>(m_vprit[irit]);
 		if (pritSub)

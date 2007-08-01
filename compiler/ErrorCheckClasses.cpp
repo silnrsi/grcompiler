@@ -729,7 +729,7 @@ void GdlGlyphClassDefn::MaxJustificationLevel(int * pnJLevel)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::MaxJustificationLevel(int * pnJLevel)
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->MaxJustificationLevel(pnJLevel);
 	}
@@ -738,7 +738,7 @@ void GdlRuleTable::MaxJustificationLevel(int * pnJLevel)
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::MaxJustificationLevel(int * pnJLevel)
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->MaxJustificationLevel(pnJLevel);
 	}
@@ -749,7 +749,7 @@ void GdlRule::MaxJustificationLevel(int * pnJLevel)
 {
 	// Note: justify attributes are illegal in rule-level constraints.
 
-	for (int iprit = 0; iprit < m_vprit.Size(); iprit++)
+	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
 		m_vprit[iprit]->MaxJustificationLevel(pnJLevel);
 	}
@@ -1788,7 +1788,7 @@ bool GdlRenderer::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->FixGlyphAttrsInRules(pcman, pfont);
 	}
@@ -1797,7 +1797,7 @@ void GdlRuleTable::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->FixGlyphAttrsInRules(pcman, pfont);
 	}
@@ -1812,8 +1812,8 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 	//	Make a list of all the input-classes in the rule, for checking for the definition
 	//	of glyph attributes in constraints and attribute-setters.
 	Vector<GdlGlyphClassDefn *> vpglfcInClasses;
-	int iprit;
-	for (iprit = 0; iprit < m_vprit.Size();	iprit++)
+	size_t iprit;
+	for (iprit = 0; iprit < m_vprit.size();	iprit++)
 	{
 		Symbol psymInput = m_vprit[iprit]->m_psymInput;
 		if (psymInput &&
@@ -1835,7 +1835,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 	//	entire process before fixing glyph attrs, because there can be some interaction between
 	//	slots in a rule (eg, attach.to/at). So we can be sure at that point what state
 	//	things are in.
-	for (iprit = 0; iprit < m_vprit.Size(); iprit++)
+	for (iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
 		m_vprit[iprit]->FlattenPointSlotAttrs(pcman);
 	}
@@ -1845,7 +1845,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 	FixFeatureTestsInRules(pfont);
 
 	//	Now do the fixes, error checks, etc.
-	for (iprit = 0; iprit < m_vprit.Size(); iprit++)
+	for (iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
 		m_vprit[iprit]->FixGlyphAttrsInRules(pcman, vpglfcInClasses, this, iprit);
 	}
@@ -2573,13 +2573,13 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::FixFeatureTestsInRules(GrcFont * pfont)
 {
-	for (int ipexp = 0; ipexp < m_vpexpConstraints.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->FixFeatureTestsInRules(pfont);
 		m_vpexpConstraints[ipexp]->LookupExpCheck(true);
 	}
 
-	for (int irit = 0; irit < m_vprit.Size(); irit++)
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
 		m_vprit[irit]->FixFeatureTestsInRules(pfont);
 	}
@@ -2607,7 +2607,7 @@ void GdlSetAttrItem::FixFeatureTestsInRules(GrcFont * pfont)
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::FixFeatureTestsInPass(GrcFont * pfont)
 {
-	for (int ipexp = 0; ipexp < m_vpexpConstraints.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->FixFeatureTestsInRules(pfont);
 		m_vpexpConstraints[ipexp]->LookupExpCheck(true);

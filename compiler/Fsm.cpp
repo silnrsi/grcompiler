@@ -55,7 +55,7 @@ void GdlRenderer::GenerateFsms(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::GenerateFsms(GrcManager * pcman)
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->GenerateFsm(pcman);
 	}
@@ -149,7 +149,7 @@ void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 		GdlGlyphClassDefn * pglfc = psymAnyClass->GlyphClassDefnData();
 		Assert(pglfc);
 		bool fFound = false;
-		for (int ifsmc = 0; ifsmc < m_vpfsmc.Size(); ifsmc++)
+		for (size_t ifsmc = 0; ifsmc < m_vpfsmc.size(); ifsmc++)
 		{
 			if (m_vpfsmc[ifsmc]->MatchesOneSource(pglfc))
 			{
@@ -199,12 +199,12 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 		//	Create a new machine class corresponding to the combination of source classes.
 		//	Make this glyph ID be a member of that machine class.
 		pfsmc = new FsmMachineClass(nPassID);
-		pfsmc->SetColumn(m_vpfsmc.Size());
+		pfsmc->SetColumn(m_vpfsmc.size());
 		pfsmc->AddGlyph(wGlyphID);
 		pfsmc->SetSourceClasses(pscsThisGlyph);
 
 		//	Add the new machine class to the master list.
-		m_vpfsmc.Push(pfsmc);
+		m_vpfsmc.push_back(pfsmc);
 
 		//	Put the new machine class in the map, so another glyph ID that is a member of the
 		//	same set of source classes can find it.
@@ -234,12 +234,12 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 			//	Create a new machine class corresponding to the combination of source classes.
 			//	Make this glyph ID be a member of that machine class.
 			pfsmc = new FsmMachineClass(nPassID);
-			pfsmc->SetColumn(m_vpfsmc.Size());
+			pfsmc->SetColumn(m_vpfsmc.size());
 			pfsmc->AddGlyph(wGlyphID);
 			pfsmc->SetSourceClasses(pscsThisGlyph);
 
 			//	Add the new machine class to the master list.
-			m_vpfsmc.Push(pfsmc);
+			m_vpfsmc.push_back(pfsmc);
 
 			//	Add the new machine class to the vector for this key, where it belongs.
 			pvpfsmc->push_back(pfsmc);
@@ -524,7 +524,7 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 		int critSlotsMatched = pfstateCurr->SlotsMatched();
 		if (!pfstateCurr->HasBeenMerged())
 		{
-			for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+			for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 			{
 				GdlRule * prule = m_vprule[iprule];
 				if (ifsCurrent == 0	||	// for state #0, all rules are consider matched
@@ -722,7 +722,7 @@ void GdlGlyphDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::InputItem(int n)
 {
-	for (int i = 0; i < m_vprit.Size(); i++)
+	for (size_t i = 0; i < m_vprit.size(); i++)
 	{
 		if (m_vprit[i]->m_nInputIndex == n)
 			return m_vprit[i];
@@ -738,7 +738,7 @@ GdlRuleItem * GdlRule::InputItem(int n)
 int GdlRule::NumberOfInputItems()
 {
 	int cRet = 0;
-	for (int i = 0; i < m_vprit.Size(); i++)
+	for (size_t i = 0; i < m_vprit.size(); i++)
 	{
 		if (m_vprit[i]->m_nInputIndex >= 0)
 			cRet++;
@@ -758,7 +758,7 @@ int GdlRule::NumberOfInputItems()
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::ReorderFsmStates()
 {
-	m_vifsWorkToFinal.Resize(m_pfsm->RawNumberOfStates(), -1);
+	m_vifsWorkToFinal.resize(m_pfsm->RawNumberOfStates(), -1);
 	Assert(m_vifsFinalToWork.Size() == 0);
 
 	int ifsFinal = 0;
@@ -776,7 +776,7 @@ void GdlPass::ReorderFsmStates()
 				Assert(!pfstate->AllCellsEmpty());
 				m_vifsWorkToFinal[ifsWork] = ifsFinal;
 				pfstate->SetFinalIndex(ifsFinal);
-				m_vifsFinalToWork.Push(ifsWork);
+				m_vifsFinalToWork.push_back(ifsWork);
 				ifsFinal++;
 			}
 		}
@@ -792,7 +792,7 @@ void GdlPass::ReorderFsmStates()
 			{
 				m_vifsWorkToFinal[ifsWork] = ifsFinal;
 				pfstate->SetFinalIndex(ifsFinal);
-				m_vifsFinalToWork.Push(ifsWork);
+				m_vifsFinalToWork.push_back(ifsWork);
 				ifsFinal++;
 			}
 		}
@@ -808,7 +808,7 @@ void GdlPass::ReorderFsmStates()
 			{
 				m_vifsWorkToFinal[ifsWork] = ifsFinal;
 				pfstate->SetFinalIndex(ifsFinal);
-				m_vifsFinalToWork.Push(ifsWork);
+				m_vifsFinalToWork.push_back(ifsWork);
 				ifsFinal++;
 			}
 		}
@@ -821,7 +821,7 @@ void GdlPass::ReorderFsmStates()
 ----------------------------------------------------------------------------------------------*/
 int GdlPass::NumberOfFsmMachineClasses()
 {
-	return m_vpfsmc.Size();
+	return m_vpfsmc.size();
 }
 
 
@@ -832,7 +832,7 @@ int GdlPass::NumberOfFsmMachineClasses()
 int GdlPass::TotalNumGlyphSubRanges()
 {
 	int cRanges = 0;
-	for (int i = 0; i < m_vpfsmc.Size(); i++)
+	for (size_t i = 0; i < m_vpfsmc.size(); i++)
 		cRanges += m_vpfsmc[i]->NumberOfRanges();
 
 	return cRanges;
@@ -862,7 +862,7 @@ int FsmMachineClass::NumberOfRanges()
 ----------------------------------------------------------------------------------------------*/
 int GdlPass::NumStates()
 {
-	return m_vifsFinalToWork.Size();
+	return m_vifsFinalToWork.size();
 }
 
 
@@ -872,8 +872,8 @@ int GdlPass::NumStates()
 int GdlPass::NumAcceptingStates()
 {
 	int cRet = 0;
-	int ifsLim = m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -892,8 +892,8 @@ int GdlPass::NumAcceptingStates()
 int GdlPass::NumSuccessStates()
 {
 	int cRet = 0;
-	int ifsLim = m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -912,8 +912,8 @@ int GdlPass::NumSuccessStates()
 int GdlPass::NumTransitionalStates()
 {
 	int cRet = 0;
-	int ifsLim = m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -932,8 +932,8 @@ int GdlPass::NumTransitionalStates()
 int GdlPass::NumFinalStates()
 {
 	int cRet = 0;
-	int ifsLim = m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -966,10 +966,10 @@ void GdlPass::GenerateStartStates(GrcManager * pcman)
 	for (int i = 0; i < (m_critMaxPreContext - m_critMinPreContext + 1); i++)
 	{
 		if (ifsmcPhantom == -1)
-			m_vrowStartStates.Push(0);
+			m_vrowStartStates.push_back(0);
 		else
 		{
-			m_vrowStartStates.Push(row);
+			m_vrowStartStates.push_back(row);
 
 			FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[row]);
 			Assert(!pfstate->HasBeenMerged());
@@ -993,7 +993,7 @@ void GdlPass::GenerateStartStates(GrcManager * pcman)
 void GdlPass::WalkFsmMachineClasses()
 {
 	FsmMachineClass * pfsmc;
-	for (int i = 0; i < m_vpfsmc.Size(); i++)
+	for (size_t i = 0; i < m_vpfsmc.size(); i++)
 	{
 		pfsmc = m_vpfsmc[i];
 	}
@@ -1051,7 +1051,7 @@ void GdlRenderer::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 void GdlRuleTable::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->DebugFsm(pcman, strmOut);
 	}
@@ -1137,7 +1137,7 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 	DebugFsmTable(pcman, strmOut, false);
 
 	//	Output rules.
-	for (int irule = 0; irule < m_vprule.Size(); irule++)
+	for (size_t irule = 0; irule < m_vprule.size(); irule++)
 	{
 		strmOut << "RULE " << nPassNum << "." << irule << ", ";
 		m_vprule[irule]->LineAndFile().WriteToStream(strmOut, true);
@@ -1163,8 +1163,8 @@ void GdlPass::DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWo
 		strmOut << "- - - ";
 
 
-	int ifsLim = (fWorking)? m_pfsm->RawNumberOfStates() : m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = (fWorking)? m_pfsm->RawNumberOfStates() : m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = (fWorking) ?
 			m_pfsm->RawStateAt(ifs) :

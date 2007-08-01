@@ -2380,7 +2380,7 @@ int GdlRuleTable::CountPasses()
 {
 	int cRet = 0;
 
-	for (int ipass = 0; ipass < m_vppass.Size(); ++ipass)
+	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
 		if (m_vppass[ipass]->HasRules())
 			cRet++;
@@ -2418,7 +2418,7 @@ void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lon
 void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
 	std::vector<int> & vnOffsets)
 {
-	for (int ipass = 0; ipass < m_vppass.Size(); ++ipass)
+	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
 		if (m_vppass[ipass]->HasRules())
 		{
@@ -2460,7 +2460,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	MaxBackup
 	pbstrm->WriteByte(m_nMaxBackup);
 	//	number of rules
-	pbstrm->WriteShort(m_vprule.Size());
+	pbstrm->WriteShort(m_vprule.size());
 
 	long lFsmOffsetPos = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
@@ -2507,7 +2507,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	utf16 w = 0;
 	while (w < pcman->NumGlyphs())
 	{
-		for (int i = 0; i < m_vpfsmc.Size(); i++)
+		for (size_t i = 0; i < m_vpfsmc.size(); i++)
 		{
 			//	If this machine class includes this glyph, output the range on the stream
 			//	and return the last glyph in the range. Otherwise return 0xFFFF.
@@ -2538,17 +2538,17 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	start states
 	Assert(m_critMaxPreContext - m_critMinPreContext + 1 == m_vrowStartStates.Size());
 	Assert(m_vrowStartStates[0] == 0);
-	for (i = 0; i < m_vrowStartStates.Size(); i++)
+	for (i = 0; i < signed(m_vrowStartStates.size()); i++)
 		pbstrm->WriteShort(m_vrowStartStates[i]);
 
 	//	rule sort keys
-	for (i = 0; i < m_vprule.Size(); i++)
+	for (i = 0; i < signed(m_vprule.size()); i++)
 	{
 		pbstrm->WriteShort(m_vprule[i]->SortKey());
 	}
 
 	//	pre-context item counts
-	for (i = 0; i < m_vprule.Size(); i++)
+	for (i = 0; i < signed(m_vprule.size()); i++)
 	{
 		pbstrm->WriteByte(m_vprule[i]->NumberOfPreModContextItems());
 	}
@@ -2566,7 +2566,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 		// pass constraint byte count
 		pbstrm->WriteShort(0);
 	}
-	for (i = 0; i <= m_vprule.Size(); i++)
+	for (i = 0; i <= signed(m_vprule.size()); i++)
 	{
 		pbstrm->WriteShort(0);
 		pbstrm->WriteShort(0);
@@ -2610,7 +2610,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	std::vector<byte> vbConstraints;
 	std::vector<byte> vbActions;
 	int irule;
-	for (irule = 0; irule < m_vprule.Size(); irule++)
+	for (irule = 0; irule < signed(m_vprule.size()); irule++)
 	{
 		vbConstraints.clear();
 		m_vprule[irule]->GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
@@ -2627,7 +2627,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	nOffsetToAction = pbstrm->Position() - lTableStart;
 
-	for (irule = 0; irule < m_vprule.Size(); irule++)
+	for (irule = 0; irule < signed(m_vprule.size()); irule++)
 	{
 		vbActions.clear();
 		vnActionOffsets.push_back(pbstrm->Position() - nOffsetToAction - lTableStart);
@@ -2729,8 +2729,8 @@ utf16 FsmMachineClass::OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm)
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList)
 {
-	int ifsLim = m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -2780,8 +2780,8 @@ void GdlPass::GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & 
 void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 {
 	int cfsmc = m_pfsm->NumberOfColumns();
-	int ifsLim = m_vifsFinalToWork.Size();
-	for (int ifs = 0; ifs < ifsLim; ifs++)
+	size_t ifsLim = m_vifsFinalToWork.size();
+	for (size_t ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
