@@ -439,18 +439,14 @@ public:
 	GrcStructName(std::vector<std::string> & vsta)
 	{
 		Assert(m_vstaFields.size() == 0);
-		for (size_t i = 0; i < vsta.size(); i++)
-			m_vstaFields.push_back(vsta[i]);
-		////vsta.CopyTo(m_vstaFields);
+		m_vstaFields.assign(vsta.begin(), vsta.end());
 	}
 
 	//	Copy constructor:
 	GrcStructName(const GrcStructName & xns)
 	{
 		Assert(m_vstaFields.size() == 0);
-		for (size_t i = 0; i < xns.m_vstaFields.size(); i++)
-			m_vstaFields.push_back(xns.m_vstaFields[i]);
-		////xns.m_vstaFields.CopyTo(m_vstaFields);
+		m_vstaFields.assign(xns.m_vstaFields.begin(), xns.m_vstaFields.end());
 	}
 
 	//	General:

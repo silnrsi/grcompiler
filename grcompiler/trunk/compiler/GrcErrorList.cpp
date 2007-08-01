@@ -164,9 +164,7 @@ void GrcErrorList::SortErrors()
 	}
 
 	m_vperr.clear();
-	for (size_t i = 0; i < vperrSorted.size(); i++)
-		m_vperr.push_back(vperrSorted[i]);
-	////vperrSorted.CopyTo(m_vperr);
+	m_vperr.assign(vperrSorted.begin(), vperrSorted.end());
 }
 
 

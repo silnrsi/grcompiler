@@ -345,8 +345,8 @@ int GrcFont::AutoPseudos(Vector<unsigned int> & vnUnicode, Vector<utf16> & vwGly
 	
 	// Fill the vectors with Unicode values that have duplicate glyph IDs and with the
 	// glyph IDs that parallel the Unicode values.
-	int nSize = m_vnCollisions.Size();
-	for (int i = 0; i < nSize; i++)
+	size_t nSize = m_vnCollisions.size();
+	for (size_t i = 0; i < nSize; i++)
 	{
 		unsigned int nUnicode = m_vnCollisions[i];
 		vnUnicode.Push(nUnicode);
@@ -456,12 +456,12 @@ int GrcFont::ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * p
 		return nPathNumber;
 #endif
 
-	Vector<int> vnEndPt;
+	std::vector<int> vnEndPt;
 	int cContours, nEndPt;
 
 	if (GetGlyfContours(wGlyphID, &vnEndPt))
 	{
-		cContours = vnEndPt.Size();
+		cContours = signed(vnEndPt.size());
 		if (nPathNumber < cContours)
 		{
 			if (nPathNumber == 0)
@@ -592,8 +592,8 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	contour (or path), so they can easily be referenced by path number (GPath in GDL).
 	*/
 
-	Vector<int> vnEndPt, vnX, vnY;
-	Vector<bool> vfOnCurve;
+	std::vector<int> vnEndPt, vnX, vnY;
+	std::vector<bool> vfOnCurve;
 
 	int xMin = INT_MAX;
 	int yMin = INT_MAX;
@@ -604,7 +604,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	{
 		int nFirstPt = 0;
 		int nSecondPt = -1;	// so nFirstPt initialized to zero in loop below
-		int cEndPoints = vnEndPt.Size();
+		int cEndPoints = signed(vnEndPt.size());
 		int i, j;
 		for (i = 0; i < cEndPoints; i++)
 		{
@@ -655,12 +655,12 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj)
 {
 	// these must be declared before goto statements
-	Vector<int> vnEndPt;
+	std::vector<int> vnEndPt;
 	int i, cContours;
 
 	if (GetGlyfContours(wGlyphID, &vnEndPt))
 	{ // find point's contour
-		cContours = vnEndPt.Size();
+		cContours = signed(vnEndPt.size());
 		for (i = 0; i < cContours; i++)
 		{
 			if (vnEndPt[i] >= nPointNumber)
@@ -701,12 +701,12 @@ bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj
 int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY, 
 						  GdlObject * pgdlobj)
 {
- 	Vector<int> vnEndPt, vnX, vnY;
-	Vector<bool> vfOnCurve;
+	std::vector<int> vnEndPt, vnX, vnY;
+	std::vector<bool> vfOnCurve;
 
 	if (GetGlyfPts(wGlyphID, &vnEndPt, &vnX, &vnY, &vfOnCurve))
 	{
-		if (nPointNumber < vnX.Size())
+		if (nPointNumber < signed(vnX.size()))
 		{
 			*mX = vnX[nPointNumber];
    			*mY = vnY[nPointNumber];
@@ -730,8 +730,8 @@ int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY,
 ----------------------------------------------------------------------------------------------*/
 int GrcFont::GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj)
 {
- 	Vector<int> vnEndPt, vnX, vnY;
-	Vector<bool> vfOnCurve;
+	std::vector<int> vnEndPt, vnX, vnY;
+	std::vector<bool> vfOnCurve;
 
 	const int mRadiusSqr = mPointRadius * mPointRadius;
 	int dnX, dnY;
@@ -743,7 +743,7 @@ int GrcFont::GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlO
 	if (GetGlyfPts(wGlyphID, &vnEndPt, &vnX, &vnY, &vfOnCurve))
 	{
 		// search through points for the closest one that is within mPointRadius of mX and mY
-		cPoints = vnX.Size();
+		cPoints = signed(vnX.size());
 		for (i = 0; i < cPoints; i++)
 		{
 			dnX = vnX[i] - mX;
@@ -928,20 +928,20 @@ int GrcFont::ScanGlyfIds(void)
         if (gid != 0 && !fInUsedRange)
 		{
 			// Record the beginning of the range
-			m_vnMinUnicode.Push(nUni);
+			m_vnMinUnicode.push_back(nUni);
 			fInUsedRange = true;
 		}
 		else if (gid == 0 && fInUsedRange)
 		{
 			// Record the end of the range.
-			m_vnLimUnicode.Push(nUni);
+			m_vnLimUnicode.push_back(nUni);
 			fInUsedRange = false;
 		}
 		if (gid != 0)
 			m_cnUnicode++;
 	}
 	if (fInUsedRange)
-		m_vnLimUnicode.Push(nUni);
+		m_vnLimUnicode.push_back(nUni);
 	Assert(m_vnLimUnicode.Size() == m_vnMinUnicode.Size());
 
 	// create array indexed by glyf id containing unicode codepoints
@@ -986,12 +986,12 @@ int GrcFont::ScanGlyfIds(void)
 			if (nPrevUni != 0x0000FFFF) 
 			{
 				// first collision - need to store both Unicode ids in array and current id
-				m_vnCollisions.Push(nPrevUni);
+				m_vnCollisions.push_back(nPrevUni);
 				// indicate one collision occurred, don't want to store array id if another
 				// collision occurs; 0xFFFF is an illegal unicode value
 				prgnUsed[gid] = 0x0000FFFF; 
 			}
-			m_vnCollisions.Push(nUni); // store current unicode id always
+			m_vnCollisions.push_back(nUni); // store current unicode id always
 		}
 	}
 	delete [] prgnUsed;
@@ -1003,7 +1003,7 @@ int GrcFont::ScanGlyfIds(void)
 	pvnEndPt - indexes where contours (or paths) end
 	Return true is successful. False otherwise.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyfContours(utf16 wGlyphID, Vector<int> * pvnEndPt)
+int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
 {
 	Assert(m_pFile);
 	Assert(m_pGlyf);
@@ -1025,11 +1025,17 @@ int GrcFont::GetGlyfContours(utf16 wGlyphID, Vector<int> * pvnEndPt)
 	if (!TtfUtil::GlyfContourCount(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, cContours))
 		return false;
 
-	pvnEndPt->Resize(cContours);
+	int * rgnEndPt = new int[cContours];
 
 	if (!TtfUtil::GlyfContourEndPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, 
-					pvnEndPt->Begin(), cContours))
+		rgnEndPt, cContours))
+	{
+		delete[] rgnEndPt;
 		return false;
+	}
+
+	pvnEndPt->assign(rgnEndPt, rgnEndPt + cContours);
+	delete[] rgnEndPt;
 
 	return true;
 }
@@ -1041,8 +1047,8 @@ int GrcFont::GetGlyfContours(utf16 wGlyphID, Vector<int> * pvnEndPt)
 	pvfOnCurve - flag indicating if parallel coordinate is on curve or off
 	Return true is successful. False otherwise.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyfPts(utf16 wGlyphID, Vector<int> * pvnEndPt, 
-						 Vector<int> * pvnX, Vector<int> * pvnY, Vector<bool> * pvfOnCurve)
+int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt, 
+	std::vector<int> * pvnX, std::vector<int> * pvnY, std::vector<bool> * pvfOnCurve)
 {
 	Assert(m_pFile);
 	Assert(m_pGlyf);
@@ -1065,21 +1071,51 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, Vector<int> * pvnEndPt,
 	if (!TtfUtil::GlyfContourCount(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, cContours))
 		return false;
 
-	pvnEndPt->Resize(cContours);
+	const size_t CONTOUR_BUF_SIZE = 8;
+	const size_t POINT_BUF_SIZE = 64;
+	// Fixed-size buffers that will be used in most cases:
+	int rgnEndPtBuf[CONTOUR_BUF_SIZE];	
+	bool rgfOnCurveBuf[POINT_BUF_SIZE];
+	int rgnXBuf[POINT_BUF_SIZE];
+	int rgnYBuf[POINT_BUF_SIZE];
+
+	int * prgnEndPt = (cContours > CONTOUR_BUF_SIZE) ? new int[cContours] : rgnEndPtBuf;
+	int fRet = false;
 
 	if (!TtfUtil::GlyfContourEndPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, 
-					pvnEndPt->Begin(), cContours))
-		return false;
+		prgnEndPt, cContours))
+	{
+		goto LLeave;
+	}
+	pvnEndPt->assign(prgnEndPt, prgnEndPt + cContours);
 
-	cPoints = (*pvnEndPt)[cContours - 1] + 1;
-	pvnX->Resize(cPoints);
-	pvnY->Resize(cPoints);
-	pvfOnCurve->Resize(cPoints);
+	cPoints = prgnEndPt[cContours - 1] + 1;
+	bool * prgfOnCurve = (cPoints > POINT_BUF_SIZE) ? new bool[cPoints] : rgfOnCurveBuf;
+	int * prgnX = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnXBuf;
+	int * prgnY = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnYBuf;
 
-	if (!TtfUtil::GlyfPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, pvnEndPt->Begin(),
-		cContours, pvnX->Begin(), pvnY->Begin(), pvfOnCurve->Begin(), cPoints))
-		return false;
+	if (!TtfUtil::GlyfPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, prgnEndPt,
+		cContours, prgnX, prgnY, prgfOnCurve, cPoints))
+	{
+		goto LLeave;
+	}
 
-	return true;
+	pvnX->assign(prgnX, prgnX + cPoints);
+	pvnY->assign(prgnY, prgnY + cPoints);
+	pvfOnCurve->assign(prgfOnCurve, prgfOnCurve + cPoints);
+
+	fRet = true;
+
+LLeave:
+	if (cContours > CONTOUR_BUF_SIZE)
+		delete[] prgnEndPt;
+	if (cPoints > POINT_BUF_SIZE)
+	{
+		delete[] prgfOnCurve;
+		delete[] prgnX;
+		delete[] prgnY;
+	}
+
+	return fRet;
 }
 
