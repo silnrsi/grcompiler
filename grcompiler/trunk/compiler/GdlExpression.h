@@ -90,7 +90,7 @@ public:
 	virtual ExpressionType ExpType() = 0;
 	bool TypeCheck(ExpressionType nExpectedType);
 	bool TypeCheck(ExpressionType, ExpressionType, ExpressionType);
-	bool TypeCheck(Vector<ExpressionType>& vnExpectedTypes);
+	bool TypeCheck(std::vector<ExpressionType>& vnExpectedTypes);
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt) = 0;
 	virtual void GlyphAttrCheck() = 0;
 	virtual void FixFeatureTestsInRules(GrcFont *) = 0;
@@ -109,16 +109,16 @@ public:
 	{
 	}
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit) = 0;
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit) = 0;
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint) = 0;
 	virtual bool PointFieldEquivalents(GrcManager * pcman,
 		GdlExpression ** ppexpX, GdlExpression ** ppexpY,
 		GdlExpression ** ppexpGpoint,
 		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot) = 0;
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys) = 0;
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *) = 0;
@@ -221,11 +221,11 @@ public:
 	}
 
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 	{ }
 
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint)
 	{ }
 
@@ -238,7 +238,7 @@ public:
 	}
 
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot)
 	{
 		return true;
@@ -353,12 +353,12 @@ public:
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void SetSpecialZero();
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
@@ -462,12 +462,12 @@ public:
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
@@ -553,12 +553,12 @@ public:
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
@@ -647,12 +647,12 @@ public:
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
@@ -748,12 +748,12 @@ public:
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
@@ -857,12 +857,12 @@ public:
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
@@ -1038,16 +1038,16 @@ public:
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
 	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool * pfGpoint);
 	virtual bool PointFieldEquivalents(GrcManager * pcman,
 		GdlExpression ** ppexpX, GdlExpression ** ppexpY,
 		GdlExpression ** ppexpGpoint,
 		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset);
 	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		bool fValue, bool fValueIsInputSlot);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);

@@ -82,19 +82,19 @@ protected:
 
 	//	Pre-compiler:
 	void FixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit, Symbol psymOutClass);
-	void FlattenPointSlotAttrs(GrcManager * pcman, Vector<GdlAttrValueSpec *> & vpavsNew);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit, Symbol psymOutClass);
+	void FlattenPointSlotAttrs(GrcManager * pcman, std::vector<GdlAttrValueSpec *> & vpavsNew);
 	void CheckAttachAtPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool *pfGpoint);
 	void CheckAttachWithPoint(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 		bool * pfXY, bool *pfGpoint);
 	void FixFeatureTestsInRules(GrcFont * pfont);
 	bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax,  GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable, int rco,
 		GdlRuleItem * prit, int irit,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel);
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel);
 	void AdjustSlotRefsForPreAnys(int critPrependedAnys, GdlRuleItem * prit);
 	void AdjustToIOIndices(GdlRuleItem * prit,
 		std::vector<int> & viritInput, std::vector<int> & viritOutput);
@@ -238,7 +238,7 @@ public:
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual void FlattenPointSlotAttrs(GrcManager * pcman);
 	void AssignFsmInternalID(GrcManager * pcman, int nPassID);
 	virtual void FindSubstitutionSlots(int irit,
@@ -249,8 +249,8 @@ public:
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
 		int grfrco, int irit,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-		Vector<int> & vcwClassSizes);
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+		std::vector<int> & vcwClassSizes);
 	bool CheckForJustificationConstraint();
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
@@ -355,12 +355,12 @@ protected:
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
 		int grfrco, int irit,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-		Vector<int> & vcwClassSizes);
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 
@@ -407,14 +407,14 @@ public:
 		:	GdlRuleItem(rit)
 	{
 		m_nAttachTo = -1;
-		Assert(m_vpavs.Size() == 0);
-		for (int i = 0; i < rit.m_vpavs.Size(); ++i)
-			m_vpavs.Push(new GdlAttrValueSpec(*rit.m_vpavs[i]));
+		Assert(m_vpavs.size() == 0);
+		for (size_t i = 0; i < rit.m_vpavs.size(); ++i)
+			m_vpavs.push_back(new GdlAttrValueSpec(*rit.m_vpavs[i]));
 	}
 
 	virtual ~GdlSetAttrItem()
 	{
-		for (int i = 0; i < m_vpavs.Size(); ++i)
+		for (size_t i = 0; i < m_vpavs.size(); ++i)
 			delete m_vpavs[i];
 	}
 	
@@ -427,7 +427,7 @@ protected:
 	//	Parser:
 	virtual void AddAttrValueSpec(GdlAttrValueSpec * pavs)
 	{
-		m_vpavs.Push(pavs);
+		m_vpavs.push_back(pavs);
 		pavs->PropagateLineAndFile(LineAndFile());
 	}
 
@@ -437,7 +437,7 @@ protected:
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual void FlattenPointSlotAttrs(GrcManager * pcman);
 	virtual Symbol OutputClassSymbol();
 	void CheckCompBox(GrcManager * pcman, Symbol psymCompRef);
@@ -445,8 +445,8 @@ protected:
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
 		int grfrco, int irit,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-		Vector<int> & vcwClassSizes);
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void ReplaceKern(GrcManager * pcman);
@@ -485,7 +485,7 @@ public:
 
 protected:
 	//	Instance variables:
-	Vector<GdlAttrValueSpec *> m_vpavs;
+	std::vector<GdlAttrValueSpec *> m_vpavs;
 
 	int m_nAttachTo;	// index of attach.to slot attr (0-based); -1 if none
 
@@ -575,15 +575,15 @@ protected:
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
-		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual Symbol OutputClassSymbol();
 	virtual void FindSubstitutionSlots(int irit,
 		std::vector<bool> & vfInput, std::vector<bool> & vfOutput);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
 		int grfrco, int irit,
-		Vector<bool> & vfLb, Vector<bool> & vfIns, Vector<bool> & vfDel,
-		Vector<int> & vcwClassSizes);
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
 		std::vector<int> & viritInput, std::vector<int> & viritOutput);

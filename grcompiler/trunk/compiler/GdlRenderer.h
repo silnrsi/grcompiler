@@ -123,7 +123,7 @@ public:
 		GrcLigComponentList * plclist);
 	void AssignGlyphAttrDefaultValues(GrcFont * pfont,
 		GrcGlyphAttrMatrix * pgax, int cwGlyphs,
-		Vector<Symbol> & vpsymSysDefined, Vector<int> & vnSysDefValues,
+		std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 		std::vector<GdlExpression *> & vpexpExtra,
 		std::vector<Symbol> & vpsymGlyphAttrs);
 	DirCode ConvertBidiCode(UCharDirection diricu, utf16 wUnicode);

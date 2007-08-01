@@ -86,8 +86,8 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	PseudoSet setpglfExplicitPseudos;
 	int cExplicitPseudos = m_prndr->ExplicitPseudos(setpglfExplicitPseudos);
 
-	Vector<unsigned int> vnAutoUnicode;
-	Vector<utf16> vwAutoGlyphID;
+	std::vector<unsigned int> vnAutoUnicode;
+	std::vector<utf16> vwAutoGlyphID;
 	int cAutoPseudos = (m_prndr->AutoPseudo()) ?
 		pfont->AutoPseudos(vnAutoUnicode, vwAutoGlyphID) :
 		0;
@@ -157,7 +157,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	//	Handle auto-pseudos.
 	Assert(vnAutoUnicode.Size() == vwAutoGlyphID.Size());
 	m_wFirstAutoPseudo = wFirstFree;
-	for (int iw = 0; iw < vnAutoUnicode.Size(); iw++)
+	for (size_t iw = 0; iw < vnAutoUnicode.size(); iw++)
 	{
 		utf16 wAssigned = wFirstFree++;
 		CreateAutoPseudoGlyphDefn(wAssigned, vnAutoUnicode[iw], vwAutoGlyphID[iw]);
@@ -774,7 +774,7 @@ void GdlSetAttrItem::MaxJustificationLevel(int * pnJLevel)
 {
 	GdlRuleItem::MaxJustificationLevel(pnJLevel);
 
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		int n = -2;
 		m_vpavs[ipavs]->MaxJustificationLevel(&n);
@@ -890,14 +890,13 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 		//		etc.
 		//	(Actually, there is a series of "high-word" stretch values that come immediately
 		//	after stretch, which are used to hold bits 16-32 of any very large stretch values.)
-		Vector<std::string> vstaJAttr;
-		vstaJAttr.Push("stretch");
-		vstaJAttr.Push("stretchHW");	// high word, for large stretch values
-		vstaJAttr.Push("shrink");
-		vstaJAttr.Push("step");
-		vstaJAttr.Push("weight");
-		int istaJAttr;
-		for (istaJAttr = 0; istaJAttr < vstaJAttr.Size(); istaJAttr++)
+		std::vector<std::string> vstaJAttr;
+		vstaJAttr.push_back("stretch");
+		vstaJAttr.push_back("stretchHW");	// high word, for large stretch values
+		vstaJAttr.push_back("shrink");
+		vstaJAttr.push_back("step");
+		vstaJAttr.push_back("weight");
+		for (size_t istaJAttr = 0; istaJAttr < vstaJAttr.size(); istaJAttr++)
 		{
 			int nLevel;
 			for (nLevel = 0; nLevel < cJLevels; nLevel++)
@@ -917,17 +916,17 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 
 	// Make a separate list of symbols to process, because the iterators get confused when you are
 	// changing the hash-map underneath it the same time.
-	Vector<Symbol> vpsymToProcess;
+	std::vector<Symbol> vpsymToProcess;
 	for (SymbolTableMap::iterator it = EntriesBegin();
 		it != EntriesEnd();
 		++it)
 	{
 		Symbol psym = it->second; // GetValue();
 		//Symbol psym = it->GetValue();
-		vpsymToProcess.Push(psym);
+		vpsymToProcess.push_back(psym);
 	}
 
-	for (int ipsym = 0; ipsym < vpsymToProcess.Size(); ipsym++)
+	for (size_t ipsym = 0; ipsym < vpsymToProcess.size(); ipsym++)
 	{
 		Symbol psym = vpsymToProcess[ipsym];
 
@@ -1124,19 +1123,19 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 
 	//	List of system-defined glyph attributes:
 	//	directionality = 0
-	Vector<Symbol> vpsymSysDefined;
-	Vector<int> vnSysDefValues;
-	vpsymSysDefined.Push(SymbolTable()->FindSymbol("directionality"));
-	vnSysDefValues.Push(kdircNeutral);
+	std::vector<Symbol> vpsymSysDefined;
+	std::vector<int> vnSysDefValues;
+	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("directionality"));
+	vnSysDefValues.push_back(kdircNeutral);
 	//	breakweight = letter
-	vpsymSysDefined.Push(SymbolTable()->FindSymbol("breakweight"));
-	vnSysDefValues.Push(klbLetterBreak);
+	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("breakweight"));
+	vnSysDefValues.push_back(klbLetterBreak);
 	// justify.weight = 1
 	if (NumJustLevels() > 0)
 	{
 		GrcStructName xnsJWeight("justify", "weight");
-		vpsymSysDefined.Push(SymbolTable()->FindSymbol(xnsJWeight));
-		vnSysDefValues.Push(1);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(xnsJWeight));
+		vnSysDefValues.push_back(1);
 		// Other justify attrs have default of zero, and so do not need to be initialized.
 	}
 
@@ -1257,7 +1256,7 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 	GrcGlyphAttrMatrix * pgax, int cwGlyphs,
-	Vector<Symbol> & vpsymSysDefined, Vector<int> & vnSysDefValues,
+	std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 	std::vector<GdlExpression *> & vpexpExtra,
 	std::vector<Symbol> & vpsymGlyphAttrs)
 {
@@ -1278,7 +1277,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 
 	Assert(vpsymSysDefined.Size() == vnSysDefValues.Size());
 
-	for (int i = 0; i < vpsymSysDefined.Size(); i++) // loop over attributes
+	for (size_t i = 0; i < vpsymSysDefined.size(); i++) // loop over attributes
 	{
 		bool fErrorForAttr = false;
 		Symbol psym = vpsymSysDefined[i];
@@ -1811,7 +1810,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 {
 	//	Make a list of all the input-classes in the rule, for checking for the definition
 	//	of glyph attributes in constraints and attribute-setters.
-	Vector<GdlGlyphClassDefn *> vpglfcInClasses;
+	std::vector<GdlGlyphClassDefn *> vpglfcInClasses;
 	size_t iprit;
 	for (iprit = 0; iprit < m_vprit.size();	iprit++)
 	{
@@ -1823,13 +1822,13 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 		{
 			GdlGlyphClassDefn * pglfc = psymInput->GlyphClassDefnData();
 			Assert(pglfc);
-			vpglfcInClasses.Push(pglfc);
+			vpglfcInClasses.push_back(pglfc);
 		}
 		else
 			//	invalid input class
-			vpglfcInClasses.Push(NULL);
+			vpglfcInClasses.push_back(NULL);
 	}
-	Assert(m_vprit.Size() == vpglfcInClasses.Size());
+	Assert(m_vprit.Size() == vpglfcInClasses.size());
 
 	//	Flatten slot attributes that use points to use integers instead. Do this
 	//	entire process before fixing glyph attrs, because there can be some interaction between
@@ -1853,7 +1852,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::FixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
 {
 	if (!m_psymInput)
 		return;
@@ -1869,7 +1868,7 @@ void GdlRuleItem::FixGlyphAttrsInRules(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlLineBreakItem::FixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
 {
 	//	method on superclass: process constraints.
 	GdlRuleItem::FixGlyphAttrsInRules(pcman, vpglfcInClasses, prule, irit);
@@ -1877,7 +1876,7 @@ void GdlLineBreakItem::FixGlyphAttrsInRules(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
 {
 	//	method on superclass: process constraints.
 	GdlRuleItem::FixGlyphAttrsInRules(pcman, vpglfcInClasses, prule, irit);
@@ -1901,7 +1900,7 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 
 	//	Process attribute-setting statements.
 	int ipavs;
-	for (ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (ipavs = 0; ipavs < signed(m_vpavs.size()); ipavs++)
 	{
 		GdlAttrValueSpec * pavs = m_vpavs[ipavs];
 
@@ -2051,7 +2050,7 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 	//	but not needed); ie, either the x/y point fields or the gpath field. It's possible
 	//	that we need to keep both versions, if one set of glyphs uses one and another set
 	//	uses the other.
-	for (ipavs = m_vpavs.Size(); --ipavs >= 0; )
+	for (ipavs = signed(m_vpavs.size()); --ipavs >= 0; )
 	{
 		bool fDeleteThis = false;
 		Symbol psym = m_vpavs[ipavs]->m_psymName;
@@ -2077,21 +2076,21 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 		if (fDeleteThis)
 		{
 			delete m_vpavs[ipavs];
-			m_vpavs.Delete(ipavs);
+			m_vpavs.erase(m_vpavs.begin() + ipavs);
 		}
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSubstitutionItem::FixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
 {
 	GdlSetAttrItem::FixGlyphAttrsInRules(pcman, vpglfcInClasses, prule, irit);
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlAttrValueSpec::FixGlyphAttrsInRules(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit, Symbol psymOutClass)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit, Symbol psymOutClass)
 {
 	Assert(psymOutClass->FitsSymbolType(ksymtClass) ||
 		psymOutClass->FitsSymbolType(ksymtSpecialUnderscore) ||
@@ -2154,18 +2153,18 @@ void GdlRuleItem::FlattenPointSlotAttrs(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::FlattenPointSlotAttrs(GrcManager * pcman)
 {
-	Vector<GdlAttrValueSpec *> vpavsNew;
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	std::vector<GdlAttrValueSpec *> vpavsNew;
+	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		m_vpavs[ipavs]->FlattenPointSlotAttrs(pcman, vpavsNew);
 	}
-	m_vpavs.Clear();
-	vpavsNew.CopyTo(m_vpavs);
+	m_vpavs.clear();
+	m_vpavs.assign(vpavsNew.begin(), vpavsNew.end());
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
-	Vector<GdlAttrValueSpec *> & vpavsNew)
+	std::vector<GdlAttrValueSpec *> & vpavsNew)
 {
 	if (m_psymName->IsBogusSlotAttr())	// eg, shift.gpath
 	{
@@ -2185,7 +2184,7 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 		if (m_psymName->IsReadOnlySlotAttr())
 		{
 			//	Eventually will produce an error--for now, just pass through as is.
-			vpavsNew.Push(this);
+			vpavsNew.push_back(this);
 			return;
 		}
 
@@ -2247,14 +2246,14 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 			pavs = new GdlAttrValueSpec(psymX, m_psymOperator, pexpX);
 			pavs->CopyLineAndFile(*this);
 			pavs->SetFlattened(true);
-			vpavsNew.Push(pavs);
+			vpavsNew.push_back(pavs);
 		}
 		if (pexpY)
 		{
 			pavs = new GdlAttrValueSpec(psymY, m_psymOperator, pexpY);
 			pavs->CopyLineAndFile(*this);
 			pavs->SetFlattened(true);
-			vpavsNew.Push(pavs);
+			vpavsNew.push_back(pavs);
 		}
 		if (pexpGpoint)
 		{
@@ -2265,7 +2264,7 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 				pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
 				pavs->CopyLineAndFile(*this);
 				pavs->SetFlattened(true);
-				vpavsNew.Push(pavs);
+				vpavsNew.push_back(pavs);
 			}
 		}
 		if (pexpXoffset)
@@ -2277,7 +2276,7 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 				pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
 				pavs->CopyLineAndFile(*this);
 				pavs->SetFlattened(true);
-				vpavsNew.Push(pavs);
+				vpavsNew.push_back(pavs);
 			}
 		}
 		if (pexpYoffset)
@@ -2289,14 +2288,14 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 				pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
 				pavs->CopyLineAndFile(*this);
 				pavs->SetFlattened(true);
-				vpavsNew.Push(pavs);
+				vpavsNew.push_back(pavs);
 			}
 		}
 
 		delete this;	// replaced
 	}
 	else
-		vpavsNew.Push(this);
+		vpavsNew.push_back(this);
 }
 
 
@@ -2351,7 +2350,7 @@ void GdlGlyphDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 ----------------------------------------------------------------------------------------------*/
 int GdlSetAttrItem::AttachToSettingValue()
 {
-	for (int iavs = 0; iavs < m_vpavs.Size(); iavs++)
+	for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 	{
 		Symbol psym = m_vpavs[iavs]->m_psymName;
 		if (psym->IsAttachTo())
@@ -2373,7 +2372,7 @@ int GdlSetAttrItem::AttachToSettingValue()
 	pglfc, which is the slot being attached to.
 ----------------------------------------------------------------------------------------------*/
 void GdlAttrValueSpec::CheckAttachAtPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool *pfGpoint)
 {
 	Assert(!m_psymName->LastFieldIs("gpath"));	// caller checked for this
@@ -2388,7 +2387,7 @@ void GdlAttrValueSpec::CheckAttachAtPoint(GrcManager * pcman,
 	pglfc, which is the slot being attached.
 ----------------------------------------------------------------------------------------------*/
 void GdlAttrValueSpec::CheckAttachWithPoint(GrcManager * pcman,
-	Vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
 	bool * pfXY, bool * pfGpoint)
 {
 	Assert(!m_psymName->LastFieldIs("gpath"));	// caller checked for this
@@ -2600,7 +2599,7 @@ void GdlSetAttrItem::FixFeatureTestsInRules(GrcFont * pfont)
 {
 	GdlRuleItem::FixFeatureTestsInRules(pfont);
 
-	for (int iavs = 0; iavs < this->m_vpavs.Size(); iavs++)
+	for (size_t iavs = 0; iavs < this->m_vpavs.size(); iavs++)
 		m_vpavs[iavs]->FixFeatureTestsInRules(pfont);
 }
 
