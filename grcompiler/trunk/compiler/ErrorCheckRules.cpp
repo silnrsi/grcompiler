@@ -129,7 +129,7 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 {
-	if (m_vppass.Size() > 1 && m_vppass[0]->HasRules())
+	if (m_vppass.size() > 1 && m_vppass[0]->HasRules())
 	{
 		g_errorList.AddError(3102, this,
 			m_psymName->FullName(),
@@ -138,7 +138,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 		// but go ahead and treat it as the zeroth pass for now
 	}
 
-	for (int ipass = 0; ipass < m_vppass.Size(); ++ipass)
+	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
 		if (m_vppass[ipass]->HasRules())
 		{
@@ -188,7 +188,7 @@ bool GdlRenderer::FixRulePreContexts(Symbol psymAnyClass)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::FixRulePreContexts(Symbol psymAnyClass)
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->FixRulePreContexts(psymAnyClass);
 	}
@@ -202,8 +202,8 @@ void GdlPass::FixRulePreContexts(Symbol psymAnyClass)
 
 	//	First, calculate the maximum and minimum pre-contexts lengths for all the rules
 	//	in this pass. Also record the original rule length to use as a sort key.
-	int iprule;
-	for (iprule = 0; iprule < m_vprule.Size(); iprule++)
+	size_t iprule;
+	for (iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		int crit = m_vprule[iprule]->CountRulePreContexts();
 		m_critMinPreContext = min(m_critMinPreContext, crit);
@@ -212,7 +212,7 @@ void GdlPass::FixRulePreContexts(Symbol psymAnyClass)
 
 	//	Now add "ANY" class slots to the beginning of each rule to make every rule have
 	//	the same number of pre-context items.
-	for (iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->FixRulePreContexts(psymAnyClass, m_critMaxPreContext);
 	}
@@ -225,10 +225,10 @@ void GdlPass::FixRulePreContexts(Symbol psymAnyClass)
 ----------------------------------------------------------------------------------------------*/
 int GdlRule::CountRulePreContexts()
 {
-	m_critOriginal = m_vprit.Size();
+	m_critOriginal = m_vprit.size();
 
 	m_critPreModContext = 0;
-	for (int irit = 0; irit < m_vprit.Size(); irit++)
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
 		if (dynamic_cast<GdlSetAttrItem *>(m_vprit[irit]))
 			return m_critPreModContext;
@@ -255,12 +255,12 @@ void GdlRule::FixRulePreContexts(Symbol psymAnyClass, int critNeeded)
 		GdlRuleItem * prit = new GdlRuleItem(psymAnyClass);
 		prit->SetLineAndFile(LineAndFile());
 		prit->m_iritContextPos = iritToAdd;
-		m_vprit.Insert(iritToAdd, prit);
+		m_vprit.insert(m_vprit.begin() + iritToAdd, prit);
 	}
 
 	//	Increment the item positions following the inserted items, and adjust any slot
 	//	references.
-	for (int irit = m_critPrependedAnys; irit < m_vprit.Size(); irit++)
+	for (int irit = m_critPrependedAnys; irit < signed(m_vprit.size()); irit++)
 	{
 		m_vprit[irit]->IncContextPosition(m_critPrependedAnys);
 		m_vprit[irit]->AdjustSlotRefsForPreAnys(m_critPrependedAnys);
@@ -304,7 +304,7 @@ void GdlSubstitutionItem::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 	if (m_pexpSelector)
 		m_pexpSelector->AdjustSlotRefsForPreAnys(critPrependedAnys);
 
-	for (int ipexp = 0; ipexp < m_vpexpAssocs.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
 		m_vpexpAssocs[ipexp]->AdjustSlotRefsForPreAnys(critPrependedAnys);
 }
 
@@ -423,7 +423,7 @@ void GdlRenderer::MarkReplacementClasses(GrcManager * pcman,
 void GdlRuleTable::MarkReplacementClasses(GrcManager * pcman,
 	std::set<GdlGlyphClassDefn *> & setpglfc)
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->MarkReplacementClasses(pcman, setpglfc);
 	}
@@ -433,7 +433,7 @@ void GdlRuleTable::MarkReplacementClasses(GrcManager * pcman,
 void GdlPass::MarkReplacementClasses(GrcManager * pcman,
 	std::set<GdlGlyphClassDefn *> & setpglfc)
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->MarkReplacementClasses(pcman, m_nGlobalID, setpglfc);
 	}
@@ -445,19 +445,19 @@ void GdlRule::MarkReplacementClasses(GrcManager * pcman, int nPassID,
 {
 	//	Make lists of flags indicating whether each slot serves as an input replacement slot
 	//	and/or an output replacement slot.
-	Vector<bool> vfInput;
-	Vector<bool> vfOutput;
-	vfInput.Resize(m_vprit.Size(), false);
-	vfOutput.Resize(m_vprit.Size(), false);
-	int irit;
+	std::vector<bool> vfInput;
+	std::vector<bool> vfOutput;
+	vfInput.resize(m_vprit.size(), false);
+	vfOutput.resize(m_vprit.size(), false);
+	size_t irit;
 
-	for (irit = 0; irit < m_vprit.Size(); irit++)
+	for (irit = 0; irit < m_vprit.size(); irit++)
 	{
 		m_vprit[irit]->AssignFsmInternalID(pcman, nPassID);
 		m_vprit[irit]->FindSubstitutionSlots(irit, vfInput, vfOutput);
 	}
 
-	for (irit = 0; irit < m_vprit.Size(); irit++)
+	for (irit = 0; irit < m_vprit.size(); irit++)
 	{
 		if (vfInput[irit])
 			m_vprit[irit]->MarkClassAsReplacementClass(pcman, setpglfcReplace, true);
@@ -516,14 +516,14 @@ void GdlGlyphClassDefn::MarkFsmClass(int nPassID, int nClassID)
 	If this item is performing an substitution, set the flags for input and output slots.
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::FindSubstitutionSlots(int irit,
-	Vector<bool> & vfInput, Vector<bool> & vfOutput)
+	std::vector<bool> & vfInput, std::vector<bool> & vfOutput)
 {
 	//	Do nothing.
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSubstitutionItem::FindSubstitutionSlots(int irit,
-	Vector<bool> & vfInput, Vector<bool> & vfOutput)
+	std::vector<bool> & vfInput, std::vector<bool> & vfOutput)
 {
 	if (!m_psymOutput)
 	{
@@ -537,7 +537,7 @@ void GdlSubstitutionItem::FindSubstitutionSlots(int irit,
 		{
 			//	The selector indicates the input slot.
 			int nValue = m_pexpSelector->SlotNumber();
-			if (nValue >= 1 && nValue <= vfInput.Size())
+			if (nValue >= 1 && nValue <= signed(vfInput.size()))
 				vfInput[nValue - 1] = true;	// selectors are 1-based
 			else
 				//	error condition--already handled
@@ -670,7 +670,7 @@ void GdlRuleTable::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfon
 	else
 		Assert(false);
 
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->CheckRulesForErrors(pgax, pfont, prndr, m_psymName, grfrco);
 	}
@@ -680,7 +680,7 @@ void GdlRuleTable::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfon
 void GdlPass::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco)
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco);
 	}
@@ -690,12 +690,12 @@ void GdlPass::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, Symbol psymTable, int grfrco)
 {
-	if (m_vprit.Size() > kMaxSlotsPerRule)
+	if (m_vprit.size() > kMaxSlotsPerRule)
 	{
 		char rgchMax[20];
 		itoa(kMaxSlotsPerRule, rgchMax, 10);
 		char rgchCount[20];
-		itoa(m_vprit.Size(), rgchCount, 10);
+		itoa(m_vprit.size(), rgchCount, 10);
 		g_errorList.AddError(3106, this,
 			"Number of slots (",
 			rgchCount,
@@ -708,13 +708,13 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	Vector<bool> vfLb;
 	Vector<bool> vfInsertion;
 	Vector<bool> vfDeletion;
-	int crit = m_vprit.Size();
+	size_t crit = m_vprit.size();
 	vfLb.Resize(crit, false);
 	vfInsertion.Resize(crit, false);
 	vfDeletion.Resize(crit, false);
 	Vector<int> vcwClassSizes;
 	vcwClassSizes.Resize(crit, false);
-	int irit;
+	size_t irit;
 	for (irit = 0; irit < crit; irit++)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
@@ -913,21 +913,21 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 			fOkay = false;
 		}
 
-		if (m_vpexpAssocs.Size())
+		if (m_vpexpAssocs.size())
 		{
 			g_errorList.AddWarning(3506, this,
 				"Item ", PosString(),
 				": setting associations of a deleted item");
-			for (int ipexp = 0; ipexp < m_vpexpAssocs.Size(); ipexp++)
+			for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
 				delete m_vpexpAssocs[ipexp];
-			m_vpexpAssocs.Clear();
+			m_vpexpAssocs.clear();
 			fOkay = false;
 		}
 	}
 	if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	Insertion
-		if (m_vpexpAssocs.Size() == 0)
+		if (m_vpexpAssocs.size() == 0)
 		{
 			g_errorList.AddWarning(3507, this,
 				"Item ", PosString(),
@@ -944,7 +944,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	//	If there are any component.X.ref settings, give a warning if they are not equal
 	//	to the associations.
 	std::set<int> setsrCompRef;
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < unsigned(m_vpavs.Size()); ipavs++)
 	{
 		if (m_vpavs[ipavs]->m_psymName->IsComponentRef())
 		{
@@ -960,7 +960,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	if (setsrCompRef.size() > 0)
 	{
 		std::set<int> setsrAssocs;
-		for (int ipexp = 0; ipexp < m_vpexpAssocs.Size() && fOkay; ipexp++)
+		for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size() && fOkay; ipexp++)
 		{
 			int sr = m_vpexpAssocs[ipexp]->SlotNumber();
 			setsrAssocs.insert(sr);
@@ -1055,7 +1055,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		}
 	}
 
-	for (int ipexp = 0; ipexp < m_vpexpAssocs.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
 	{
 		int srAssoc = m_vpexpAssocs[ipexp]->SlotNumber(); // 1-based
 		if (srAssoc < 1 || srAssoc > crit)
@@ -1388,8 +1388,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 bool GdlRule::CheckForJustificationConstraint()
 {
 	bool fFound = false;
-	int ipexp;
-	for (ipexp = 0; ipexp < m_vpexpConstraints.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		GdlExpression * pexp = m_vpexpConstraints[ipexp];
 		if (pexp->TestsJustification())
@@ -1397,8 +1396,7 @@ bool GdlRule::CheckForJustificationConstraint()
 	}
 
 	//	No such constraint on the rule itself. Look at the items.
-	int irit;
-	for (irit = 0; irit < m_vprit.Size(); irit++)
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		if (prit->CheckForJustificationConstraint())
@@ -1441,12 +1439,12 @@ void GdlRule::CalculateIOIndices()
 	int critOutput = 0;
 
 	//	Assign the indices for each item. Generate a map of indices to use in later steps.
-	int irit;
-	for (irit = 0; irit < m_vprit.Size(); irit++)
+	size_t irit;
+	for (irit = 0; irit < m_vprit.size(); irit++)
 		m_vprit[irit]->AssignIOIndices(&critInput, &critOutput, m_viritInput, m_viritOutput);
 
 	//	Adjust the slot references to use the new indices.
-	for (irit = 0; irit < m_vprit.Size(); irit++)
+	for (irit = 0; irit < m_vprit.size(); irit++)
 		m_vprit[irit]->AdjustToIOIndices(m_viritInput, m_viritOutput);
 
 
@@ -1457,10 +1455,10 @@ void GdlRule::CalculateIOIndices()
 	}
 	else
 	{
-		if (m_nScanAdvance >= m_vprit.Size())
+		if (m_nScanAdvance >= signed(m_vprit.size()))
 		{
-			Assert(m_nScanAdvance == m_vprit.Size());
-			m_nOutputAdvance = m_viritOutput[m_vprit.Size() - 1];
+			Assert(m_nScanAdvance == m_vprit.size());
+			m_nOutputAdvance = m_viritOutput[m_vprit.size() - 1];
 			m_nOutputAdvance = (m_nOutputAdvance < 0) ?
 				m_nOutputAdvance * -1 :
 				m_nOutputAdvance + 1;
@@ -1558,11 +1556,11 @@ void GdlSubstitutionItem::AdjustToIOIndices(std::vector<int> & viritInput, std::
 		m_nSelector = -1; // default, same item
 
 	//	for associations: use input indices
-	for (int ipexp = 0; ipexp < m_vpexpAssocs.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
 	{
 		int srAssoc = m_vpexpAssocs[ipexp]->SlotNumber(); // 1-based
 		Assert(srAssoc >= 1 && srAssoc <= viritInput.Size());
-		m_vnAssocs.Push(viritInput[srAssoc - 1]);
+		m_vnAssocs.push_back(viritInput[srAssoc - 1]);
 	}
 }
 
@@ -1599,15 +1597,14 @@ void GdlAttrValueSpec::AdjustToIOIndices(GdlRuleItem * prit,
 
 void GdlRule::GiveOverlapWarnings(GrcFont * pfont, int grfsdc)
 {
-	int irit;
-	for (irit = 0; irit < m_vprit.Size() - 1; irit++)
+	for (int irit = 0; irit < signed(m_vprit.size()) - 1; irit++)
 	{
 		GdlRuleItem * prit1 = m_vprit[irit];
 		GdlRuleItem * prit2 = m_vprit[irit + 1];
 
-		if (prit1->m_iritContextPosOrig < 0 || prit1->m_iritContextPosOrig >= m_vprit.Size()) // eg, ANY
+		if (prit1->m_iritContextPosOrig < 0 || prit1->m_iritContextPosOrig >= signed(m_vprit.size())) // eg, ANY
 			continue;
-		if (prit2->m_iritContextPosOrig < 0 || prit2->m_iritContextPosOrig >= m_vprit.Size()) // eg, ANY
+		if (prit2->m_iritContextPosOrig < 0 || prit2->m_iritContextPosOrig >= signed(m_vprit.size())) // eg, ANY
 			continue;
 
 		// Figure out what these items are attached to. A value of zero means it is
@@ -1824,7 +1821,7 @@ bool GdlRenderer::CheckLBsInRules()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::CheckLBsInRules()
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->CheckLBsInRules(m_psymName);
 	}
@@ -1843,7 +1840,7 @@ void GdlPass::CheckLBsInRules(Symbol psymTable)
 	int critPostLB = 0;
 	bool fReproc = false;
 
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		if (m_vprule[iprule]->IsBadRule())
 			continue;	// don't process if we've discovered errors
@@ -1875,7 +1872,7 @@ bool GdlRule::CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPos
 	int critPreTmp = 0;
 	int critPostTmp = 0;
 	int critPost2Tmp = 0;
-	for (int iprit = 0; iprit < m_vprit.Size(); iprit++)
+	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
 		if (dynamic_cast<GdlSetAttrItem *>(m_vprit[iprit]) == NULL &&
 			m_vprit[iprit]->OutputSymbol()->LastFieldIs("#"))
@@ -1884,7 +1881,7 @@ bool GdlRule::CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPos
 		}
 		else
 		{
-			if (iprit < m_critPrependedAnys)
+			if (signed(iprit) < m_critPrependedAnys)
 			{
 				// prepended ANY doesn't count
 			}
@@ -1932,11 +1929,11 @@ bool GdlRule::HasReprocessing()
 
 	//	Count the number of unmodified items at the end of the rule; these do not need to
 	//	be processed, and the default scan advance position is just before these.
-	int iritLim = m_vprit.Size();
+	size_t iritLim = m_vprit.size();
 	while (iritLim > 0 && !dynamic_cast<GdlSetAttrItem *>(m_vprit[iritLim - 1]))
 		iritLim--;
 
-	if (iritLim < m_vprit.Size())
+	if (iritLim < m_vprit.size())
 	{
 		GdlRuleItem * pritLim = m_vprit[iritLim];
 		Assert(pritLim->m_nOutputIndex >= 0);
@@ -1944,8 +1941,8 @@ bool GdlRule::HasReprocessing()
 	}
 	else
 	{
-		Assert(iritLim == m_vprit.Size());
-		m_nDefaultAdvance = (*m_vprit.Top())->m_nOutputIndex;
+		Assert(iritLim == m_vprit.size());
+		m_nDefaultAdvance = m_vprit.back()->m_nOutputIndex;
 		m_nDefaultAdvance++;
 		if (m_nDefaultAdvance < 0)
 			// Note that when the last slot is a deletion, the ++ above in effect subtracted
@@ -1973,7 +1970,7 @@ void GdlRenderer::ReplaceKern(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::ReplaceKern(GrcManager * pcman)
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->ReplaceKern(pcman);
 	}
@@ -1982,7 +1979,7 @@ void GdlRuleTable::ReplaceKern(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::ReplaceKern(GrcManager * pcman)
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->ReplaceKern(pcman);
 	}
@@ -1991,7 +1988,7 @@ void GdlPass::ReplaceKern(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::ReplaceKern(GrcManager * pcman)
 {
-	for (int iprit = 0; iprit < m_vprit.Size(); iprit++)
+	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
 		m_vprit[iprit]->ReplaceKern(pcman);
 	}
@@ -2007,7 +2004,7 @@ void GdlRuleItem::ReplaceKern(GrcManager * pcman)
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::ReplaceKern(GrcManager * pcman)
 {
-	for (int ipavs = 0; ipavs < m_vpavs.Size(); ipavs++)
+	for (size_t ipavs = 0; ipavs < unsigned(m_vpavs.Size()); ipavs++)
 	{
 		GdlAttrValueSpec * pavsShift;
 		GdlAttrValueSpec * pavsAdvance;
@@ -2151,7 +2148,7 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	bool fRet = true;
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
 	}
@@ -2162,7 +2159,7 @@ bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	bool fRet = true;
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		fRet = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
 	}
@@ -2173,7 +2170,7 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 bool GdlRule::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	bool fRet = true;
-	for (int iprit = 0; iprit < m_vprit.Size(); iprit++)
+	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
 		fRet = m_vprit[iprit]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
 	}

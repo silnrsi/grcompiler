@@ -85,7 +85,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	//	Count the number of unmodified items at the end of the rule; these do not need to
 	//	be processed as far as actions go, and the default scan advance position is just
 	//	before these.
-	int iritLimMod = m_vprit.Size();
+	size_t iritLimMod = m_vprit.size();
 	while (iritLimMod > 0 && !dynamic_cast<GdlSetAttrItem *>(m_vprit[iritLimMod - 1]))
 		iritLimMod--;
 
@@ -100,9 +100,9 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	bool fBackUpOneMore = false;
 	int iritFirstModItem = m_critPrependedAnys + m_critPreModContext;
 	int irit;
-	for (irit = m_critPrependedAnys; irit < m_vprit.Size(); irit++)
+	for (irit = m_critPrependedAnys; irit < signed(m_vprit.size()); irit++)
 	{
-		if (iritFirstModItem <= irit && irit < iritLimMod)
+		if (iritFirstModItem <= irit && irit < signed(iritLimMod))
 		{
 			m_vprit[irit]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, irit,
 				&fSetInsertToFalse);
@@ -169,7 +169,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion,
 	std::vector<byte> & vbOutput)
 {
-	if (m_vpexpConstraints.Size() == 0)
+	if (m_vpexpConstraints.size() == 0)
 	{
 		return;
 	}
@@ -178,7 +178,7 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion
 	//	-if- or -elseif- statements.
 	m_vpexpConstraints[0]->GenerateEngineCode(fxdRuleVersion, vbOutput,
 		-1, NULL, -1, false, -1, false);
-	for (int ipexp = 1; ipexp < m_vpexpConstraints.Size(); ipexp++)
+	for (size_t ipexp = 1; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
 			-1, NULL, -1, false, -1, false);
@@ -235,7 +235,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, int fxdRuleVe
 void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	std::vector<byte> & vbOutput)
 {
-	if (m_vpexpConstraints.Size() == 0)
+	if (m_vpexpConstraints.size() == 0)
 	{
 		return;
 	}
@@ -244,7 +244,7 @@ void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	//	structure.
 	m_vpexpConstraints[0]->GenerateEngineCode(fxdRuleVersion, vbOutput,
 		-1, NULL, -1, false, -1, false);
-	for (int ipexp = 1; ipexp < m_vpexpConstraints.Size(); ipexp++)
+	for (size_t ipexp = 1; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
 			-1, NULL, -1, false, -1, false);
@@ -416,11 +416,11 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	}
 
 	//	Generate the code to set the associations.
-	if (m_vnAssocs.Size() > 0)
+	if (m_vnAssocs.size() > 0)
 	{
 		vbOutput.push_back(kopAssoc);
-		vbOutput.push_back(m_vnAssocs.Size());
-		for (int in = 0; in < m_vnAssocs.Size(); in++)
+		vbOutput.push_back(m_vnAssocs.size());
+		for (size_t in = 0; in < m_vnAssocs.size(); in++)
 		{
 			Assert(m_vnAssocs[in] >= 0);	// can't associate with an inserted item
 			int bAssocOffset = m_vnAssocs[in] - nIIndex;
@@ -642,7 +642,7 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 		return;
 	}
 
-	for (int ipass = 0; ipass < m_vppass.Size(); ipass++)
+	for (size_t ipass = 0; ipass < m_vppass.size(); ipass++)
 	{
 		GdlPass * ppass = m_vppass[ipass];
 
@@ -775,7 +775,7 @@ void GdlRenderer::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut
 void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->DebugRulePrecedence(pcman, strmOut);
 	}
@@ -784,7 +784,7 @@ void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOu
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 {
-	if (m_vprule.Size() == 0)
+	if (m_vprule.size() == 0)
 		return;
 
 	Assert(PassDebuggerNumber() != 0);
@@ -795,7 +795,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 	// and secondarily by their location in the file (rule number--smallest first).
 	std::vector<int> viruleSorted;
 	std::vector<int> vnKeys;
-	for (int irule1 = 0; irule1 < m_vprule.Size(); irule1++)
+	for (size_t irule1 = 0; irule1 < m_vprule.size(); irule1++)
 	{
 		int nSortKey1 = m_vprule[irule1]->SortKey();
 		size_t iirule2;
@@ -803,7 +803,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 		{
 			int nSortKey2 = vnKeys[iirule2];
 			if (nSortKey1 > nSortKey2 ||
-				(nSortKey1 == nSortKey2 && irule1 < viruleSorted[iirule2]))
+				(nSortKey1 == nSortKey2 && signed(irule1) < viruleSorted[iirule2]))
 			{
 				// Insert it.
 				viruleSorted.insert(viruleSorted.begin() + iirule2, irule1);
@@ -821,7 +821,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 	}
 
 	int nPassNum = PassDebuggerNumber();
-	for (int iirule = 0; iirule < m_vprule.Size(); iirule++)
+	for (size_t iirule = 0; iirule < m_vprule.size(); iirule++)
 	{
 		strmOut << "\n" << iirule << " - RULE " << nPassNum << "." << viruleSorted[iirule] << ", ";
 		m_vprule[viruleSorted[iirule]]->LineAndFile().WriteToStream(strmOut, true);
@@ -885,7 +885,7 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 void GdlRuleTable::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 	}
@@ -909,7 +909,7 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 		GdlRule::DebugEngineCode(vbPassConstraints, fxdRuleVersion, strmOut);
 	}
 
-	for (int iprul = 0; iprul < m_vprule.Size(); iprul++)
+	for (size_t iprul = 0; iprul < m_vprule.size(); iprul++)
 	{
 		strmOut << "\nRULE " << nPassNum << "." << iprul << ", ";
 		m_vprule[iprul]->LineAndFile().WriteToStream(strmOut, true);
@@ -1442,7 +1442,7 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 	bool fLhs = false;
 	bool fContext = (m_nScanAdvance != -1);
 	int irit;
-	for (irit = 0; irit < m_vprit.Size() ; irit++)
+	for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		GdlSubstitutionItem * pritsub = dynamic_cast<GdlSubstitutionItem *>(prit);
@@ -1458,14 +1458,14 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 
 	if (fLhs)
 	{
-		for (irit = 0; irit < m_vprit.Size() ; irit++)
+		for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
 		{
 			m_vprit[irit]->LhsPrettyPrint(pcman, this, irit, strmOut);
 		}
 		strmOut << ">  ";
 	}
 
-	for (irit = 0; irit < m_vprit.Size() ; irit++)
+	for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
 	{
 		m_vprit[irit]->RhsPrettyPrint(pcman, this, irit, strmOut);
 	}
@@ -1473,7 +1473,7 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 	if (fContext)
 	{
 		strmOut << " /  ";
-		for (irit = 0; irit < m_vprit.Size() ; irit++)
+		for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
 		{
 			if (m_nScanAdvance == irit)
 				strmOut << "^  ";
@@ -1567,16 +1567,16 @@ void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, in
 		strmOut << m_pexpSelector->SlotNumber();
 	}
 
-	if (m_vpexpAssocs.Size() > 0)
+	if (m_vpexpAssocs.size() > 0)
 	{
 		strmOut << ":";
-		if (m_vpexpAssocs.Size() > 1)
+		if (m_vpexpAssocs.size() > 1)
 			strmOut << "(";
 		int iexp;
-		for (iexp = 0; iexp < m_vpexpAssocs.Size() - 1; iexp++)
+		for (iexp = 0; iexp < signed(m_vpexpAssocs.size()) - 1; iexp++)
 			strmOut << m_vpexpAssocs[iexp]->SlotNumber() << " ";
 		strmOut << m_vpexpAssocs[iexp]->SlotNumber();
-		if (m_vpexpAssocs.Size() > 1)
+		if (m_vpexpAssocs.size() > 1)
 			strmOut << ")";
 	}
 	AttrSetterPrettyPrint(pcman, prule, irit, strmOut);

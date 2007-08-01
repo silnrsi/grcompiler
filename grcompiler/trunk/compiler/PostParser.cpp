@@ -77,14 +77,14 @@ bool GdlRenderer::ReplaceAliases()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::ReplaceAliases()
 {
-	int ippass;
-	for (ippass = 0; ippass < m_vppass.Size(); ippass++)
+	size_t ippass;
+	for (ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		if (m_vppass[ippass] == NULL)
 			m_vppass[ippass] = new GdlPass(ippass, 1, 0);	// bogus
 	}
 
-	for (ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->ReplaceAliases();
 	}
@@ -93,7 +93,7 @@ void GdlRuleTable::ReplaceAliases()
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::ReplaceAliases()
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->ReplaceAliases();
 	}
@@ -104,9 +104,9 @@ void GdlRule::ReplaceAliases()
 {
 	//	Look for slots with more than one name, or names assigned to more than one slot.
 	int ipalias;
-	for (ipalias = 0; ipalias < m_vpalias.Size() - 1; ipalias++)
+	for (ipalias = 0; ipalias < signed(m_vpalias.size()) - 1; ipalias++)
 	{
-		for (int ipalias2 = ipalias + 1; ipalias2 < m_vpalias.Size(); ipalias2++)
+		for (int ipalias2 = ipalias + 1; ipalias2 < signed(m_vpalias.size()); ipalias2++)
 		{
 			if (m_vpalias[ipalias]->m_srIndex == m_vpalias[ipalias2]->m_srIndex)
 			{
@@ -132,15 +132,15 @@ void GdlRule::ReplaceAliases()
 	}
 
 	//	Replace the aliases with the indices in any attribute-setters or constraints.
-	for (int irit = 0; irit < m_vprit.Size(); irit++)
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
 		m_vprit[irit]->ReplaceAliases(this);
 	}
 
-	for (ipalias = 0; ipalias < m_vpalias.Size(); ipalias++)
+	for (ipalias = 0; ipalias < signed(m_vpalias.size()); ipalias++)
 		delete m_vpalias[ipalias];
 
-	m_vpalias.Clear();
+	m_vpalias.clear();
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -174,7 +174,7 @@ void GdlSubstitutionItem::ReplaceAliases(GdlRule * prule)
 	if (m_pexpSelector)
 		m_pexpSelector->ReplaceAliases(prule);
 
-	for (int ipexp = 0; ipexp < m_vpexpAssocs.Size(); ipexp++)
+	for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
 	{
 		m_vpexpAssocs[ipexp]->ReplaceAliases(prule);
 	}
@@ -205,7 +205,7 @@ bool GdlRenderer::HandleOptionalItems()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::HandleOptionalItems()
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->HandleOptionalItems();
 	}
@@ -216,7 +216,7 @@ void GdlPass::HandleOptionalItems()
 {
 	std::vector<GdlRule*> vpruleNewList;
 
-	for (int irule = 0; irule < m_vprule.Size(); ++irule)
+	for (size_t irule = 0; irule < m_vprule.size(); ++irule)
 	{
 		GdlRule* prule = m_vprule[irule];
 		if (prule->HasNoItems())
@@ -229,11 +229,8 @@ void GdlPass::HandleOptionalItems()
 			delete prule;
 	}
 
-	m_vprule.Clear();
-
-	for (irule = 0; irule < signed(vpruleNewList.size()); irule++)
-		m_vprule.Push(vpruleNewList[irule]);
-	////vpruleNewList.CopyTo(m_vprule);
+	m_vprule.clear();
+	m_vprule.assign(vpruleNewList.begin(), vpruleNewList.end());
 }
 
 
@@ -247,9 +244,9 @@ void GdlPass::HandleOptionalItems()
 ----------------------------------------------------------------------------------------------*/
 bool GdlRule::HandleOptionalItems(std::vector<GdlRule*> & vpruleNewList)
 {
-	Assert(m_viritOptRangeStart.Size() == m_viritOptRangeEnd.Size());
+	Assert(m_viritOptRangeStart.size() == m_viritOptRangeEnd.size());
 
-	if (m_viritOptRangeStart.Size() == 0)
+	if (m_viritOptRangeStart.size() == 0)
 	{
 		vpruleNewList.push_back(this);
 		return false;	// don't delete this rule
@@ -261,7 +258,7 @@ bool GdlRule::HandleOptionalItems(std::vector<GdlRule*> & vpruleNewList)
 	}
 
 	std::vector<bool> vfOmit;
-	for (int irange = 0; irange < m_viritOptRangeStart.Size(); ++irange)
+	for (size_t irange = 0; irange < m_viritOptRangeStart.size(); ++irange)
 		vfOmit.push_back(false);
 	Assert(vfOmit.size() == m_viritOptRangeStart.Size());
 	
@@ -277,13 +274,13 @@ bool GdlRule::HandleOptionalItems(std::vector<GdlRule*> & vpruleNewList)
 ----------------------------------------------------------------------------------------------*/
 bool GdlRule::AdjustOptRanges()
 {
-	if (m_viritOptRangeStart.Size() > 1)
+	if (m_viritOptRangeStart.size() > 1)
 	{
 		//	Sort the ranges primarily by start of range, then with longest ranges first.
 		int i1;
-		for (i1 = 0 ; i1 < m_viritOptRangeStart.Size() - 1; ++i1)
+		for (i1 = 0 ; i1 < signed(m_viritOptRangeStart.size()) - 1; ++i1)
 		{
-			for (int i2 = i1 + 1; i2 < m_viritOptRangeStart.Size(); ++i2)
+			for (int i2 = i1 + 1; i2 < signed(m_viritOptRangeStart.size()); ++i2)
 			{
 				int start1 = m_viritOptRangeStart[i1];
 				int start2 = m_viritOptRangeStart[i2];
@@ -305,20 +302,20 @@ bool GdlRule::AdjustOptRanges()
 		}						
 
 		//	Remove duplicate ranges.
-		for (int i = 0; i < m_viritOptRangeStart.Size() - 1; ++i)
+		for (int i = 0; i < signed(m_viritOptRangeStart.size()) - 1; ++i)
 		{
 			if (m_viritOptRangeStart[i] == m_viritOptRangeStart[i + 1] &&
 					m_viritOptRangeEnd[i] == m_viritOptRangeEnd[i + 1])
 			{
-				m_viritOptRangeStart.Delete(i+1);
-				m_viritOptRangeEnd.Delete(i+1);
+				m_viritOptRangeStart.erase(m_viritOptRangeStart.begin() + i + 1);
+				m_viritOptRangeEnd.erase(m_viritOptRangeEnd.begin() + i + 1);
 			}
 		}
 
 		//	Check for overlapping ranges.
-		for (i1 = 0 ; i1 < m_viritOptRangeStart.Size() - 1; ++i1)
+		for (i1 = 0 ; i1 < signed(m_viritOptRangeStart.size()) - 1; ++i1)
 		{
-			for (int i2 = i1 + 1; i2 < m_viritOptRangeStart.Size(); ++i2)
+			for (int i2 = i1 + 1; i2 < signed(m_viritOptRangeStart.size()); ++i2)
 			{
 				if (m_viritOptRangeStart[i2] <= m_viritOptRangeEnd[i1] &&
 						m_viritOptRangeEnd[i2] > m_viritOptRangeEnd[i1])
@@ -333,7 +330,7 @@ bool GdlRule::AdjustOptRanges()
 	}
 
 	//	Check for an error of an optional range consisting only of inserted items.
-	for (int iirit = 0; iirit < m_viritOptRangeStart.Size(); ++iirit)
+	for (size_t iirit = 0; iirit < m_viritOptRangeStart.size(); ++iirit)
 	{
 		bool fFoundNonInsertion = false;
 		for (int irit = m_viritOptRangeStart[iirit]; irit <= m_viritOptRangeEnd[iirit]; irit++)
@@ -424,7 +421,7 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 	std::vector<bool> vfOmit;
 	std::vector<int> viNewSlots;
 	int irit;
-	for (irit = 0; irit < m_vprit.Size(); ++irit)
+	for (irit = 0; irit < signed(m_vprit.size()); ++irit)
 	{
 		vfOmit.push_back(false);
 		viNewSlots.push_back(irit + 1);	// +1: currently slot refs are 1-based
@@ -441,7 +438,7 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 				{
 					vfOmit[irit] = true;	// so we won't consider it again if there is
 											// another range that includes it
-					for (int irit2 = irit + 1; irit2 < m_vprit.Size(); ++irit2)
+					for (size_t irit2 = irit + 1; irit2 < m_vprit.size(); ++irit2)
 						viNewSlots[irit2] -= 1;
 				}
 			}
@@ -462,7 +459,7 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 
 	//	Check to make sure there is a least one item to be included.
 	bool fNonEmpty = false;
-	for (irit = 0; irit < m_vprit.Size(); ++irit)
+	for (irit = 0; irit < signed(m_vprit.size()); ++irit)
 	{
 		if (!vfOmit[irit])
 		{
@@ -482,13 +479,13 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 	GdlRule * pruleNew = new GdlRule();
 	pruleNew->CopyLineAndFile(*this);
 	int critNew = 0;
-	for (irit = 0; irit < signed(m_vprit.Size()); ++irit)
+	for (irit = 0; irit < signed(m_vprit.size()); ++irit)
 	{
 		if (!vfOmit[irit])
 		{
 			GdlRuleItem * pritNew = m_vprit[irit]->Clone();
 			pritNew->m_iritContextPos = critNew++;
-			pruleNew->m_vprit.Push(pritNew);
+			pruleNew->m_vprit.push_back(pritNew);
 		}
 	}
 	if (nNewScan > kMaxSlotsPerRule)
@@ -496,22 +493,22 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 	pruleNew->SetScanAdvance(nNewScan);
 
 	//	Copy all the constraints and the list of aliases.
-	int iexp;
-	for (iexp = 0; iexp < m_vpexpConstraints.Size(); ++iexp)
-		pruleNew->m_vpexpConstraints.Push(m_vpexpConstraints[iexp]->Clone());
-	for (int ialias = 0; ialias < m_vpalias.Size(); ++ialias)
-		pruleNew->m_vpalias.Push(new GdlAlias(*m_vpalias[ialias]));
+	size_t iexp;
+	for (iexp = 0; iexp < m_vpexpConstraints.size(); ++iexp)
+		pruleNew->m_vpexpConstraints.push_back(m_vpexpConstraints[iexp]->Clone());
+	for (size_t ialias = 0; ialias < m_vpalias.size(); ++ialias)
+		pruleNew->m_vpalias.push_back(new GdlAlias(*m_vpalias[ialias]));
 
 	bool fError = false;
 	//	Adjust all the slot references based on what slots were omitted.
-	for (irit = 0; irit < pruleNew->m_vprit.Size(); ++irit)
+	for (irit = 0; irit < signed(pruleNew->m_vprit.size()); ++irit)
 	{
 		if (!pruleNew->m_vprit[irit]->AdjustSlotRefs(vfOmit, viNewSlots, this))
 			// error (message was generated by AdjustSlotRefs)
 			fError = true;
 	}
 
-	for (iexp = 0; iexp < pruleNew->m_vpexpConstraints.Size(); ++iexp)
+	for (iexp = 0; iexp < pruleNew->m_vpexpConstraints.size(); ++iexp)
 	{
 		if (!pruleNew->m_vpexpConstraints[iexp]->AdjustSlotRefs(vfOmit, viNewSlots, this))
 			// error (message was generated by AdjustSlotRefs)
@@ -526,7 +523,7 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 
 	//	Delete any irrelevant slot-aliases from the mapping; shouln't be necessary because
 	//	we've gotten rid of the aliases by this point.
-	Assert(m_vpalias.Size() == 0);
+	Assert(m_vpalias.size() == 0);
 //	for (ialias = pruleNew->m_vpalias.Size() - 1; ialias >= 0; --ialias)
 //	{
 //		if (!pruleNew->m_vpalias[ialias]->AdjustSlotRefs(vfOmit, viNewSlots))
@@ -604,7 +601,7 @@ bool GdlSubstitutionItem::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector
 	if (!GdlSetAttrItem::AdjustSlotRefs(vfOmit, vnNewIndices, prule))
 		return false;
 
-	for (int i = 0; i < m_vpexpAssocs.Size(); ++i)
+	for (size_t i = 0; i < m_vpexpAssocs.size(); ++i)
 	{
 		if (!m_vpexpAssocs[i]->AdjustSlotRefs(vfOmit, vnNewIndices, prule))
 			return false;
@@ -647,7 +644,7 @@ bool GdlRenderer::CheckSelectors()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::CheckSelectors()
 {
-	for (int ippass = 0; ippass < m_vppass.Size(); ippass++)
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		m_vppass[ippass]->CheckSelectors();
 	}
@@ -656,7 +653,7 @@ void GdlRuleTable::CheckSelectors()
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::CheckSelectors()
 {
-	for (int iprule = 0; iprule < m_vprule.Size(); iprule++)
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		m_vprule[iprule]->CheckSelectors();
 	}
@@ -665,9 +662,9 @@ void GdlPass::CheckSelectors()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::CheckSelectors()
 {
-	for (int irit = 0; irit < m_vprit.Size(); irit++)
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
-		m_vprit[irit]->CheckSelectors(this, irit, m_vprit.Size());
+		m_vprit[irit]->CheckSelectors(this, irit, m_vprit.size());
 	}
 }
 

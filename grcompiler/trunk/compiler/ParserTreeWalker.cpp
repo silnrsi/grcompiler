@@ -3094,7 +3094,7 @@ void GdlRule::InitialChecks()
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::CheckInputClass()
 {
-	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
+	for (size_t iritT = 0; iritT < m_vprit.size(); iritT++)
 	{
 		Symbol psymInput = m_vprit[iritT]->m_psymInput;
 
@@ -3143,15 +3143,15 @@ void GdlRule::CheckInputClass()
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::ConvertLhsOptRangesToContext()
 {
-	Assert(m_viritOptRangeStart.Size() == m_viritOptRangeEnd.Size());
-	Assert(m_viritOptRangeStart.Size() == m_vfOptRangeContext.Size());
+	Assert(m_viritOptRangeStart.size() == m_viritOptRangeEnd.size());
+	Assert(m_viritOptRangeStart.size() == m_vfOptRangeContext.size());
 
-	if (m_viritOptRangeStart.Size() == 0)
+	if (m_viritOptRangeStart.size() == 0)
 		return;
 
 	//	Make a mapping from lhs/rhs items to corresponding indices in the context.
 	std::vector<int> viritToContext;
-	for (int iritT = 0; iritT < m_vprit.Size(); iritT++)
+	for (size_t iritT = 0; iritT < m_vprit.size(); iritT++)
 	{
 		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem*>(m_vprit[iritT]);
 		if (pritset)
@@ -3164,8 +3164,8 @@ void GdlRule::ConvertLhsOptRangesToContext()
 	//	Check that there is no overlap or interference between lhs ranges and
 	//	context ranges.
 
-	int iirit;
-	for (iirit = 0; iirit < m_viritOptRangeStart.Size(); iirit++)
+	size_t iirit;
+	for (iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
 	{
 		if (!m_vfOptRangeContext[iirit])
 		{
@@ -3177,7 +3177,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 				iritLhs1 = viritToContext[iritLhs1];
 				iritLhs2 = viritToContext[iritLhs2];
 
-				for (int iiritC = 0; iiritC < m_viritOptRangeStart.Size(); iiritC++)
+				for (size_t iiritC = 0; iiritC < m_viritOptRangeStart.size(); iiritC++)
 				{
 					if (m_vfOptRangeContext[iiritC])
 					{
@@ -3188,9 +3188,9 @@ void GdlRule::ConvertLhsOptRangesToContext()
 						{
 							g_errorList.AddError(1127, this,
 								"Conflict between optional ranges in lhs and context");
-							m_viritOptRangeStart.Clear();
-							m_viritOptRangeEnd.Clear();
-							m_vfOptRangeContext.Clear();
+							m_viritOptRangeStart.clear();
+							m_viritOptRangeEnd.clear();
+							m_vfOptRangeContext.clear();
 							return;
 						}
 					}
@@ -3199,9 +3199,9 @@ void GdlRule::ConvertLhsOptRangesToContext()
 			else
 			{
 				//	Error condition previous handled--ignore this optional range.
-				m_vfOptRangeContext.Delete(iirit);
-				m_viritOptRangeStart.Delete(iirit);
-				m_viritOptRangeEnd.Delete(iirit);
+				m_vfOptRangeContext.erase(m_vfOptRangeContext.begin() + iirit);
+				m_viritOptRangeStart.erase(m_viritOptRangeStart.begin() + iirit);
+				m_viritOptRangeEnd.erase(m_viritOptRangeEnd.begin() + iirit);
 				--iirit;
 			}
 		}
@@ -3209,7 +3209,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Now do the conversion.
 
-	for (iirit = 0; iirit < m_viritOptRangeStart.Size(); iirit++)
+	for (iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
 	{
 		if (!m_vfOptRangeContext[iirit])
 		{

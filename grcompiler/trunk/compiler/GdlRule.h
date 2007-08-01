@@ -242,7 +242,7 @@ public:
 	virtual void FlattenPointSlotAttrs(GrcManager * pcman);
 	void AssignFsmInternalID(GrcManager * pcman, int nPassID);
 	virtual void FindSubstitutionSlots(int irit,
-		Vector<bool> & vfInput, Vector<bool> & vfOutput);
+		std::vector<bool> & vfInput, std::vector<bool> & vfOutput);
 	void MarkClassAsReplacementClass(GrcManager * pcman,
 		std::set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput);
 	virtual void FixFeatureTestsInRules(GrcFont *);
@@ -530,9 +530,9 @@ public:
 			m_nInputSubsID(rit.m_nInputSubsID),
 			m_nOutputSubsID(rit.m_nOutputSubsID)
 	{
-		for (int i = 0; i < rit.m_vpexpAssocs.Size(); ++i)
+		for (size_t i = 0; i < rit.m_vpexpAssocs.size(); ++i)
 		{
-			m_vpexpAssocs.Push(
+			m_vpexpAssocs.push_back(
 				dynamic_cast<GdlSlotRefExpression*>(rit.m_vpexpAssocs[i]->Clone()));
 		}
 
@@ -549,7 +549,7 @@ public:
 
 	virtual ~GdlSubstitutionItem()
 	{
-		for (int i = 0; i < m_vpexpAssocs.Size(); ++i)
+		for (size_t i = 0; i < m_vpexpAssocs.size(); ++i)
 			delete m_vpexpAssocs[i];
 
 		if (m_pexpSelector)
@@ -578,7 +578,7 @@ protected:
 		Vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual Symbol OutputClassSymbol();
 	virtual void FindSubstitutionSlots(int irit,
-		Vector<bool> & vfInput, Vector<bool> & vfOutput);
+		std::vector<bool> & vfInput, std::vector<bool> & vfOutput);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
 		int grfrco, int irit,
@@ -601,16 +601,16 @@ public:
 
 protected:
 	//	Instance variables:
-	Symbol							m_psymOutput;	// possibly '_' or '@'
-	GdlSlotRefExpression*			m_pexpSelector;	// original, 1-based
-	Vector<GdlSlotRefExpression*>	m_vpexpAssocs;	// original, 1-based
+	Symbol								m_psymOutput;	// possibly '_' or '@'
+	GdlSlotRefExpression*				m_pexpSelector;	// original, 1-based
+	std::vector<GdlSlotRefExpression*>	m_vpexpAssocs;	// original, 1-based
 
 	GdlRuleItem * m_pritSelInput;	// slot indicated by selector
 
 	//	for pre-compiler use:
-	Vector<int> m_vnAssocs;		// m_vpexpAssocs converted to input indices
-	int			m_nSelector;	// m_pexpSelector converted to input index,
-								//     or -1 if default (same item)
+	std::vector<int> m_vnAssocs;	// m_vpexpAssocs converted to input indices
+	int m_nSelector;		// m_pexpSelector converted to input index,
+							//     or -1 if default (same item)
 
 	//	for compiler use: -- not yet implemented
 	int m_nOutputFsmID;
@@ -707,12 +707,12 @@ public:
 
 	~GdlRule()
 	{
-		int i;
-		for (i = 0; i < m_vprit.Size(); ++i)
+		size_t i;
+		for (i = 0; i < m_vprit.size(); ++i)
 			delete m_vprit[i];
-		for (i = 0; i < m_vpexpConstraints.Size(); ++i)
+		for (i = 0; i < m_vpexpConstraints.size(); ++i)
 			delete m_vpexpConstraints[i];
-		for (i = 0; i < m_vpalias.Size(); ++i)
+		for (i = 0; i < m_vpalias.size(); ++i)
 			delete m_vpalias[i];
 	}
 
@@ -727,7 +727,7 @@ public:
 
 	int NumberOfSlots()
 	{
-		return m_vprit.Size();
+		return m_vprit.size();
 	}
 
 	bool IsBadRule()
@@ -773,7 +773,7 @@ public:
 	}
 	void AddConstraint(GdlExpression * pexp)
 	{
-		m_vpexpConstraints.Push(pexp);
+		m_vpexpConstraints.push_back(pexp);
 	}
 
 	void InitialChecks();
@@ -788,7 +788,7 @@ public:
 	void CheckSelectors();
 	bool HasNoItems()
 	{
-		return m_vprit.Size() == 0;
+		return m_vprit.size() == 0;
 	}
 protected:
 	bool AdjustOptRanges();
@@ -848,14 +848,14 @@ public:
 protected:
 	//	Instance variables:
 	int m_nScanAdvance;	// 0-based; item before which the ^ is placed, or -1 if no ^
-	Vector<GdlRuleItem *>	m_vprit;
-	Vector<GdlExpression *>	m_vpexpConstraints;	// multiple constraints come from multiple -if-s
-	Vector<GdlAlias *>		m_vpalias;
+	std::vector<GdlRuleItem *>		m_vprit;
+	std::vector<GdlExpression *>	m_vpexpConstraints;	// multiple constraints come from multiple -if-s
+	std::vector<GdlAlias *>			m_vpalias;
 
 	//	for post-parser use:
-	Vector<bool>		m_vfOptRangeContext;  // are opt ranges below relative to context?
-	Vector<int>			m_viritOptRangeStart;
-	Vector<int>			m_viritOptRangeEnd;
+	std::vector<bool>		m_vfOptRangeContext;  // are opt ranges below relative to context?
+	std::vector<int>		m_viritOptRangeStart;
+	std::vector<int>		m_viritOptRangeEnd;
 
 	//	for pre-compiler use:
 	//	input- and output indices for each item:

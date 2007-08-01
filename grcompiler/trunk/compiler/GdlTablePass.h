@@ -56,7 +56,7 @@ public:
 
 	//	Setters:
 	void SetBidi(bool f)			{ m_fBidi = f; }
-	void AddRule(GdlRule* prule)	{ m_vprule.Push(prule); }
+	void AddRule(GdlRule* prule)	{ m_vprule.push_back(prule); }
 
 	void SetMaxRuleLoop(int n)		{ m_nMaxRuleLoop = n; }
 	void SetMaxBackup(int n)		{ m_nMaxBackup = n; }
@@ -67,13 +67,13 @@ public:
 	{
 		GdlRule * pruleNew = new GdlRule();
 		pruleNew->SetLineAndFile(lnf);
-		m_vprule.Push(pruleNew);
+		m_vprule.push_back(pruleNew);
 		return pruleNew;
 	}
 
 	void AddConstraint(GdlExpression * pexp)
 	{
-		m_vpexpConstraints.Push(pexp);
+		m_vpexpConstraints.push_back(pexp);
 	}
 
 	//	Post-parser:
@@ -100,7 +100,7 @@ public:
 	}
 	bool HasRules()
 	{
-		return (m_vprule.Size() > 0);
+		return (m_vprule.size() > 0);
 	}
 
 	void SetPreBidiPass(int n)
@@ -160,8 +160,8 @@ protected:
 	int m_nMaxRuleLoop;
 	int m_nMaxBackup;
 	bool m_fBidi;
-	Vector<GdlRule*> m_vprule;
-	Vector<GdlExpression *>	m_vpexpConstraints; // multiple constraints result from -else if-
+	std::vector<GdlRule*> m_vprule;
+	std::vector<GdlExpression *>	m_vpexpConstraints; // multiple constraints result from -else if-
 
 	int m_critMinPreContext;
 	int m_critMaxPreContext;
@@ -187,7 +187,7 @@ protected:
 	std::map<utf16, int> m_hmGlyphToColumn;
 
 	//	Master list of machine classes:
-	Vector<FsmMachineClass *> m_vpfsmc;
+	std::vector<FsmMachineClass *> m_vpfsmc;
 
 	//	For each glyph ID, its source-class-set (the set of source-classes it belongs to):
 	SourceClassSet m_rgscsInclusions[kMaxTotalGlyphs];
@@ -205,21 +205,21 @@ protected:
 	//	third containing SourceClass 8.
 	std::map<int, MachineClassList> m_hmMachineClassMap;
 
-	Vector<int> m_vifsWorkToFinal;	// final indices of states, causing them to be ordered
-									// as expected by the font/engine data structures:
-									//		transitional, non-success
-									//		transitional, success
-									//		non-transitional, success
-	Vector<int> m_vifsFinalToWork;	// inverse mapping from above vector, mapping the final
-									// state indices back to the working indices
+	std::vector<int> m_vifsWorkToFinal;	// final indices of states, causing them to be ordered
+										// as expected by the font/engine data structures:
+										//		transitional, non-success
+										//		transitional, success
+										//		non-transitional, success
+	std::vector<int> m_vifsFinalToWork;	// inverse mapping from above vector, mapping the final
+										// state indices back to the working indices
 
-	Vector<int> m_vrowStartStates;
+	std::vector<int> m_vrowStartStates;
 
 public:
 	//	For test procedures:
 	int test_NumberOfRules()
 	{
-		return m_vprule.Size();
+		return m_vprule.size();
 	}
 };
 
@@ -242,7 +242,7 @@ public:
 
 	~GdlRuleTable()
 	{
-		for (int i = 0; i < m_vppass.Size(); ++i)
+		for (size_t i = 0; i < m_vppass.size(); ++i)
 			delete m_vppass[i];
 	}
 
@@ -255,7 +255,7 @@ public:
 
 	int NumberOfPasses()
 	{
-		return m_vppass.Size();
+		return m_vppass.size();
 	}
 
 public:
@@ -300,7 +300,7 @@ protected:
 	Symbol				m_psymName;
 	bool				m_fSubstitution;	// are substitutions (& associations) allowed in
 											// this table?
-	Vector<GdlPass*>	m_vppass;
+	std::vector<GdlPass*>	m_vppass;
 };
 
 
