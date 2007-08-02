@@ -131,12 +131,6 @@ inline bool ValidWritePtrSize(void *pv, int cb)
 } // namespace gr
 
 
-// TODO Remove these as soon as they are no longer needed by GrCompiler:
-//#include "UtilMem.h"
-//#include "UtilRect.h"
-//#include "UtilString.h"
-//#include "UtilVector.h"
-
 #if defined(GR_NO_NAMESPACE)
 using namespace gr;
 #endif

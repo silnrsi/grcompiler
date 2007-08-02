@@ -202,7 +202,7 @@ int GdlRenderer::ExplicitPseudos(PseudoSet & setpglf)
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::ExplicitPseudos(PseudoSet & setpglf)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 		m_vpglfdMembers[iglfd]->ExplicitPseudos(setpglf);
 }
 
@@ -283,7 +283,7 @@ int GdlRenderer::ActualForPseudo(utf16 wPseudo)
 /*--------------------------------------------------------------------------------------------*/
 int GdlGlyphClassDefn::ActualForPseudo(utf16 wPseudo)
 {
-	for (int ipglfd = 0; ipglfd < m_vpglfdMembers.Size(); ipglfd++)
+	for (size_t ipglfd = 0; ipglfd < m_vpglfdMembers.size(); ipglfd++)
 	{
 		utf16 wActual = m_vpglfdMembers[ipglfd]->ActualForPseudo(wPseudo);
 		if (wActual != 0)
@@ -373,7 +373,7 @@ bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
 			hmActualForPseudo);
@@ -663,7 +663,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 int GdlGlyphClassDefn::GlyphIDCount()
 {
 	int c = 0;
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 		 c += m_vpglfdMembers[iglfd]->GlyphIDCount();
 	return c;
 }
@@ -715,7 +715,7 @@ void GdlRenderer::MaxJustificationLevel(int * pnJLevel)
 void GdlGlyphClassDefn::MaxJustificationLevel(int * pnJLevel)
 {
 	//	For each attribute assignment in the value list:
-	for (int ipglfa = 0; ipglfa < m_vpglfaAttrs.Size(); ipglfa++)
+	for (size_t ipglfa = 0; ipglfa < m_vpglfaAttrs.size(); ipglfa++)
 	{
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		int n = psym->JustificationLevel();
@@ -1183,9 +1183,9 @@ void GdlGlyphClassDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	GdlRenderer * prndr, GrcLigComponentList * plclist,
-	Vector<GdlGlyphAttrSetting *> & vpglfaAttrs)
+	std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->AssignGlyphAttrsToClassMembers(pgax, prndr, plclist,
 			vpglfaAttrs);
@@ -1195,10 +1195,10 @@ void GdlGlyphClassDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	GdlRenderer * prndr, GrcLigComponentList * plclist,
-	Vector<GdlGlyphAttrSetting *> & vpglfaAttrs)
+	std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs)
 {
 	//	For each attribute assignment in the value list:
-	for (int ipglfa = 0; ipglfa < vpglfaAttrs.Size(); ipglfa++)
+	for (size_t ipglfa = 0; ipglfa < vpglfaAttrs.size(); ipglfa++)
 	{
 		Symbol psym = vpglfaAttrs[ipglfa]->GlyphSymbol();
 		Assert(!psym->IsGeneric());
@@ -2312,7 +2312,7 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 void GdlGlyphClassDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 	GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->CheckExistenceOfGlyphAttr(pgdlAvsOrExp, psymtbl, pgax,
 			psymGlyphAttr);
@@ -2411,7 +2411,7 @@ void GdlGlyphClassDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 	GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr,
 	bool * pfXY, bool * pfGpoint)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->CheckCompleteAttachmentPoint(pgdlAvsOrExp, psymtbl, pgax,
 			psymGlyphAttr, pfXY, pfGpoint);
@@ -2506,7 +2506,7 @@ void GdlSetAttrItem::CheckCompBox(GrcManager * pcman, Symbol psymCompRef)
 void GdlGlyphClassDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 	GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymCompRef)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->CheckCompBox(pgdlSetAttrItem, psymtbl, pgax, psymCompRef);
 	}
@@ -2795,7 +2795,7 @@ void GdlRenderer::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int 
 void GdlGlyphClassDefn::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 	std::vector<GdlExpression *> & vpexpExtra)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 		m_vpglfdMembers[iglfd]->StorePseudoToActualAsGlyphAttr(pgax, nAttrID,vpexpExtra);
 }
 
@@ -2820,13 +2820,12 @@ void GdlGlyphDefn::StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int
 ----------------------------------------------------------------------------------------------*/
 unsigned int GdlGlyphClassDefn::FirstGlyphInClass(bool * pfMoreThanOne)
 {
-	if (m_vpglfdMembers.Size() == 0)
+	if (m_vpglfdMembers.size() == 0)
 		return 0;
 	int n = 0;
-	int iglfd;
-	for (iglfd = 0; n == 0 && iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; n == 0 && iglfd < m_vpglfdMembers.size(); iglfd++)
 		n = m_vpglfdMembers[iglfd]->FirstGlyphInClass(pfMoreThanOne);
-	if (m_vpglfdMembers.Size() > 1)
+	if (m_vpglfdMembers.size() > 1)
 		*pfMoreThanOne = true;
 	return n;
 }

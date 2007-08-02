@@ -2250,7 +2250,7 @@ void GdlGlyphClassDefn::GenerateOutputGlyphList(std::vector<utf16> & vwGlyphs)
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AddGlyphsToUnsortedList(std::vector<utf16> & vwGlyphs)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->AddGlyphsToUnsortedList(vwGlyphs);
 	}
@@ -2281,7 +2281,7 @@ void GdlGlyphClassDefn::GenerateInputGlyphList(std::vector<utf16> & vwGlyphs, st
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->AddGlyphsToSortedList(vwGlyphs, vnIndices);
 	}

@@ -1959,7 +1959,7 @@ void GdlRenderer::DebugCmap(GrcFont * pfont, utf16 * rgchwUniToGlyphID, unsigned
 void GdlGlyphClassDefn::DebugCmap(GrcFont * pfont,
 	utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 		m_vpglfdMembers[iglfd]->DebugCmapForMember(pfont, rgchwUniToGlyphID, rgnGlyphIDToUni);
 }
 

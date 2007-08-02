@@ -38,14 +38,14 @@ DEFINE_THIS_FILE
 
 GdlGlyphClassDefn::~GdlGlyphClassDefn()
 {
-	for (int i = 0; i < m_vpglfaAttrs.Size(); ++i)
+	for (size_t i = 0; i < m_vpglfaAttrs.size(); ++i)
 		delete m_vpglfaAttrs[i];
 }
 
 
 void GdlGlyphClassDefn::DeleteGlyphDefns()
 {
-	for (int i = 0; i < m_vpglfdMembers.Size(); ++i)
+	for (size_t i = 0; i < m_vpglfdMembers.size(); ++i)
 	{
 		if (dynamic_cast<GdlGlyphDefn * >(m_vpglfdMembers[i]))
 			delete m_vpglfdMembers[i];
@@ -137,7 +137,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& l
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AddMember(GdlGlyphClassMember * pglfd)
 {
-	m_vpglfdMembers.Push(pglfd);
+	m_vpglfdMembers.push_back(pglfd);
 }
 
 
@@ -150,7 +150,7 @@ void GdlGlyphClassDefn::AddGlyphAttr(Symbol psym, GdlAssignment * pasgn)
 {
 	GdlGlyphAttrSetting * pglfa = new GdlGlyphAttrSetting(psym, pasgn);
 	pglfa->SetLineAndFile(pasgn->LineAndFile());
-	m_vpglfaAttrs.Push(pglfa);	
+	m_vpglfaAttrs.push_back(pglfa);	
 }
 
 
@@ -177,7 +177,7 @@ void GdlGlyphClassDefn::AddComponent(Symbol psym, GdlAssignment * pasgn)
 ----------------------------------------------------------------------------------------------*/
 bool GdlGlyphClassDefn::IncludesGlyph(utf16 w)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		if (m_vpglfdMembers[iglfd]->IncludesGlyph(w))
 			return true;
@@ -191,7 +191,7 @@ bool GdlGlyphClassDefn::IncludesGlyph(utf16 w)
 ----------------------------------------------------------------------------------------------*/
 bool GdlGlyphClassDefn::HasBadGlyph()
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		if (m_vpglfdMembers[iglfd]->HasBadGlyph())
 			return true;

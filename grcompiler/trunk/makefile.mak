@@ -167,9 +167,9 @@ LINK32_OBJS= \
 		 "$(INTDIR)\String.obj" \
 		 "$(INTDIR)\Token.obj" \
 		 "$(INTDIR)\TokenBuffer.obj" \
-		 "$(INTDIR)\Util.obj" \
-		 "$(INTDIR)\UtilString.obj" \
-		 "$(INTDIR)\HashMap.obj" \
+#		 "$(INTDIR)\Util.obj" \
+#		 "$(INTDIR)\UtilString.obj" \
+#		 "$(INTDIR)\HashMap.obj" \
 		 "$(INTDIR)\Platform.obj" \
 		 "$(INTDIR)\TtfUtil.obj" \
 		 
@@ -227,9 +227,9 @@ BSC32_SBRS= \
 		 "$(INTDIR)\String.sbr" \
 		 "$(INTDIR)\Token.sbr" \
 		 "$(INTDIR)\TokenBuffer.sbr" \
-		 "$(INTDIR)\Util.sbr" \
-		 "$(INTDIR)\UtilString.sbr" \
-		 "$(INTDIR)\HashMap.sbr" \
+#		 "$(INTDIR)\Util.sbr" \
+#		 "$(INTDIR)\UtilString.sbr" \
+#		 "$(INTDIR)\HashMap.sbr" \
 		 "$(INTDIR)\Platform.sbr"\
 		 "$(INTDIR)\TtfUtil.sbr" \
 #
@@ -287,9 +287,9 @@ BSC32_SBRS= \
 "$(INTDIR)\Token.obj" "$(INTDIR)\Token.sbr" : "$(GRC_GRMR_SRC)\Token.cpp" "$(INTDIR)"
 "$(INTDIR)\TokenBuffer.obj" "$(INTDIR)\TokenBuffer.sbr" : "$(GRC_GRMR_SRC)\TokenBuffer.cpp" "$(INTDIR)"
 
-"$(INTDIR)\Util.obj" "$(INTDIR)\Util.sbr" : "$(GRC_GEN_SRC)\Util.cpp" "$(INTDIR)"
-"$(INTDIR)\UtilString.obj" "$(INTDIR)\UtilString.sbr" : "$(GRC_GEN_SRC)\UtilString.cpp" "$(INTDIR)"
-"$(INTDIR)\HashMap.obj" "$(INTDIR)\HashMap.sbr" : "$(GRC_GEN_SRC)\HashMap.cpp" "$(INTDIR)"
+# "$(INTDIR)\Util.obj" "$(INTDIR)\Util.sbr" : "$(GRC_GEN_SRC)\Util.cpp" "$(INTDIR)"
+# "$(INTDIR)\UtilString.obj" "$(INTDIR)\UtilString.sbr" : "$(GRC_GEN_SRC)\UtilString.cpp" "$(INTDIR)"
+# "$(INTDIR)\HashMap.obj" "$(INTDIR)\HashMap.sbr" : "$(GRC_GEN_SRC)\HashMap.cpp" "$(INTDIR)"
 
 "$(INTDIR)\Platform.obj" "$(INTDIR)\Platform.sbr" : "$(GRC_GEN_SRC)\Platform.cpp" "$(INTDIR)"
 "$(INTDIR)\TtfUtil.obj" "$(INTDIR)\TtfUtil.sbr" : "$(TTF_LIB_SRC)\TtfUtil.cpp" "$(INTDIR)"
