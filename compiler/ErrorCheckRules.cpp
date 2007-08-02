@@ -1679,7 +1679,7 @@ bool GdlRuleItem::OverlapsWith(GdlRuleItem * prit, GrcFont * pfont, int grfsdc)
 ----------------------------------------------------------------------------------------------*/
 bool GdlGlyphClassDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfont)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		if (m_vpglfdMembers[iglfd]->HasOverlapWith(pglfdLeft, pfont))
 			return true;
@@ -1724,7 +1724,7 @@ bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfo
 	{
 		GdlGlyphClassDefn * pglfcLeft = dynamic_cast<GdlGlyphClassDefn*>(pglfdLeft);
 		Assert(pglfcLeft);
-		for (int iglfd = 0; iglfd < pglfcLeft->m_vpglfdMembers.Size(); iglfd++)
+		for (size_t iglfd = 0; iglfd < pglfcLeft->m_vpglfdMembers.size(); iglfd++)
 		{
 			if (HasOverlapWith(pglfcLeft->m_vpglfdMembers[iglfd], pfont))
 				return true;
@@ -1750,7 +1750,7 @@ void GdlRenderer::DeleteAllBadGlyphs()
 bool GdlGlyphClassDefn::DeleteBadGlyphs()
 {
 	bool fRet = false;
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		fRet = (fRet || m_vpglfdMembers[iglfd]->DeleteBadGlyphs());
 	}
@@ -1780,7 +1780,7 @@ bool GdlGlyphDefn::DeleteBadGlyphs()
 bool GdlGlyphClassDefn::WarnAboutBadGlyphs(bool fTop)
 {
 	bool fRet = false;
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		fRet = (fRet || m_vpglfdMembers[iglfd]->WarnAboutBadGlyphs(false));
 	}
@@ -2132,7 +2132,7 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 	bool fRet = true;
 
 	//	For each attribute assignment in the value list:
-	for (int ipglfa = 0; ipglfa < m_vpglfaAttrs.Size(); ipglfa++)
+	for (size_t ipglfa = 0; ipglfa < m_vpglfaAttrs.size(); ipglfa++)
 	{
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		if (psym->IsMeasureAttr() || psym->DoesJustification())

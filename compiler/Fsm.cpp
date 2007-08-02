@@ -414,7 +414,7 @@ void GdlGlyphClassDefn::RecordInclusionInClass(GdlPass * ppass)
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc)
 {
-	for (int ipglfd = 0; ipglfd < m_vpglfdMembers.Size(); ipglfd++)
+	for (size_t ipglfd = 0; ipglfd < m_vpglfdMembers.size(); ipglfd++)
 		m_vpglfdMembers[ipglfd]->RecordInclusionInClass(ppass, pglfc);
 }
 
@@ -698,7 +698,7 @@ void GdlRuleItem::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 void GdlGlyphClassDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 	FsmMachineClassSet & setpfsmc)
 {
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.Size(); iglfd++)
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 		m_vpglfdMembers[iglfd]->GetMachineClasses(ppfsmcAssignments, setpfsmc);
 }
 

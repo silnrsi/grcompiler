@@ -82,7 +82,7 @@ public:
 		bool fLookUpPseudo = true) = 0;
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,
-		Vector<GdlGlyphAttrSetting *> & vpglfaAttrs) = 0;
+		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs) = 0;
 	virtual void CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr) = 0;
 	virtual void CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
@@ -185,7 +185,7 @@ public:
 		GdlRenderer * prndr, GrcLigComponentList * plclist);
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,
-		Vector<GdlGlyphAttrSetting *> & vpglfaAttrs);
+		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs);
 	virtual void CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr);
 	virtual void CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
@@ -248,10 +248,10 @@ public:
 
 protected:
 	//	Instance variables:
-	std::string						m_staName;
-	Vector<GdlGlyphClassMember*>	m_vpglfdMembers;
+	std::string							m_staName;
+	std::vector<GdlGlyphClassMember*>	m_vpglfdMembers;
 
-	Vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;
+	std::vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;
 
 //	std::vector<GdlGlyphAttrSetting*>	m_vpglfaComponents;
 //	std::vector<std::string>			m_vstaComponentNames;	// redundant with what is in components
