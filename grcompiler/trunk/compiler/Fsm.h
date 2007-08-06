@@ -101,7 +101,7 @@ class FsmcLess
 {
 	friend class FsmMachineClass;
 public:
-	operator()(const FsmMachineClass * pfsmc1, const FsmMachineClass * pfsmc2) const
+	bool operator()(const FsmMachineClass * pfsmc1, const FsmMachineClass * pfsmc2) const
 	{
 		return (*pfsmc1 < *pfsmc2);
 	}

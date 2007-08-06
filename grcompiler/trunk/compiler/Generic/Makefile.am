@@ -7,15 +7,8 @@ noinst_HEADERS = \
 	GrDebug.h \
 	GrPlatform.h \
 	Throwable.h \
-	UtilRect.h \
-	UtilString.h \
-	UtilString_i.cpp \
-	UtilHashMap.h \
-	HashMap_i.cpp \
-	UtilMem.h \
-	UtilSet.h \
-	Set_i.cpp \
-	UtilVector.h \
-	Vector_i.cpp
+	UtilString.h
 
-libgeneric_a_SOURCES = HashMap.cpp Util.cpp UtilInt.h UtilString.cpp Platform.cpp
+# libgeneric_a_SOURCES = HashMap.cpp Util.cpp UtilInt.h UtilString.cpp Platform.cpp
+
+libgeneric_a_SOURCES = UtilInt.h Platform.cpp

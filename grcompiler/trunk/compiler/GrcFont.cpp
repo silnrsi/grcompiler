@@ -1055,8 +1055,8 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	Assert(m_pLoca);
 	Assert(m_pHead);
 
-	int cContours;
-	int cPoints;
+	int cContours = 0;
+	int cPoints = 0;
 
 // these checks are actually done by GlyfContourCount
 // they're only needed if a specific error msg needs to be generated
@@ -1078,6 +1078,8 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	bool rgfOnCurveBuf[POINT_BUF_SIZE];
 	int rgnXBuf[POINT_BUF_SIZE];
 	int rgnYBuf[POINT_BUF_SIZE];
+    bool *prgfOnCurve;
+    int *prgnX, *prgnY;
 
 	int * prgnEndPt = (cContours > CONTOUR_BUF_SIZE) ? new int[cContours] : rgnEndPtBuf;
 	int fRet = false;
@@ -1090,9 +1092,9 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	pvnEndPt->assign(prgnEndPt, prgnEndPt + cContours);
 
 	cPoints = prgnEndPt[cContours - 1] + 1;
-	bool * prgfOnCurve = (cPoints > POINT_BUF_SIZE) ? new bool[cPoints] : rgfOnCurveBuf;
-	int * prgnX = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnXBuf;
-	int * prgnY = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnYBuf;
+	prgfOnCurve = (cPoints > POINT_BUF_SIZE) ? new bool[cPoints] : rgfOnCurveBuf;
+	prgnX = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnXBuf;
+	prgnY = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnYBuf;
 
 	if (!TtfUtil::GlyfPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, prgnEndPt,
 		cContours, prgnX, prgnY, prgfOnCurve, cPoints))

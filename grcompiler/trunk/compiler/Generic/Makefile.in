@@ -51,8 +51,7 @@ AR = ar
 ARFLAGS = cru
 libgeneric_a_AR = $(AR) $(ARFLAGS)
 libgeneric_a_LIBADD =
-am_libgeneric_a_OBJECTS = HashMap.$(OBJEXT) Util.$(OBJEXT) \
-	UtilString.$(OBJEXT) Platform.$(OBJEXT)
+am_libgeneric_a_OBJECTS = Platform.$(OBJEXT)
 libgeneric_a_OBJECTS = $(am_libgeneric_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir)
 depcomp = $(SHELL) $(top_srcdir)/admin/depcomp
@@ -176,18 +175,11 @@ noinst_HEADERS = \
 	GrDebug.h \
 	GrPlatform.h \
 	Throwable.h \
-	UtilRect.h \
-	UtilString.h \
-	UtilString_i.cpp \
-	UtilHashMap.h \
-	HashMap_i.cpp \
-	UtilMem.h \
-	UtilSet.h \
-	Set_i.cpp \
-	UtilVector.h \
-	Vector_i.cpp
+	UtilString.h
 
-libgeneric_a_SOURCES = HashMap.cpp Util.cpp UtilInt.h UtilString.cpp Platform.cpp
+
+# libgeneric_a_SOURCES = HashMap.cpp Util.cpp UtilInt.h UtilString.cpp Platform.cpp
+libgeneric_a_SOURCES = UtilInt.h Platform.cpp
 all: all-am
 
 .SUFFIXES:
@@ -235,10 +227,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HashMap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Platform.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Util.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/UtilString.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
