@@ -210,7 +210,7 @@ class SymbolLess
 {
 	friend class GrcSymbolTableEntry;
 public:
-	operator()(const Symbol psym1, const Symbol psym2) const
+	bool operator()(const Symbol psym1, const Symbol psym2) const
 	{
 		return (*psym1 < *psym2);
 	}
