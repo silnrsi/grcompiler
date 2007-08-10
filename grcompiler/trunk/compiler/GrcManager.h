@@ -31,6 +31,7 @@ struct PlatEncChange
 	uint16 platformID;
 	uint16 encodingID;
 	uint16 engLangID;
+	bool fChangeName;
 	utf16 * pchwFullName;
 	utf16 * pchwUniqueName;
 	utf16 * pchwPostscriptName;
@@ -295,7 +296,7 @@ protected:
 	bool FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords, 
 		uint16 suPlatformId, uint16 suEncodingId, uint16 suLangId, 
 		int * piFamily, int * piSubFamily, int * piFullName,
-		int * piVendor, int * piPSName, int * piUniqueName);
+		int * piVendor, int * piPSName, int * piUniqueName, int * piPrefFamily, int * piCompatibleFull);
 	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName, size_t cchwFamilyName, utf16 * stuDate,
 		uint8 * pSubFamily, uint16 cbSubFamily,
 		uint8 * pVendor, uint16 cbVendor,

@@ -187,6 +187,7 @@ size_t utf8len(const char *s);
 int utf16cmp(const utf16 *s1, const utf16 *s2);
 int utf16ncmp(const utf16 *s1, const utf16 *s2, size_t n);
 int utf16cmp(const utf16 *s1, const char *s2);
+int utf16ncmp(const utf16 *s1, const char *s2, size_t n);
 
 unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long, 
         const char * source, size_t src_count, 
