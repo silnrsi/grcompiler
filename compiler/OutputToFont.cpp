@@ -408,21 +408,73 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	uint16 ibStrOffset = swapw(pTblOld->stringOffset);
 	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pTblOld + 1);
 	
-	int irecFamilyName, irecSubFamily, irecFullName, irecVendor, irecPSName, irecUniqueName;
+	int irecFamilyName, irecSubFamily, irecFullName, irecVendor, irecPSName, irecUniqueName,
+		irecPrefFamily, irecCompatibleFull;
 
 	uint16 ibSubFamilyOffset, cbSubFamily;
 	uint16 ibVendorOffset, cbVendor;
 
 	int cbOldTblRecords = sizeof(sfnt_NamingTable) + (cRecords * sizeof(sfnt_NameRecord));
-	// Calculate bytes needed to hold all strings.
+
+	// Make a list of all platform+encodings that have an English family name and therefore
+	// need to be changed. (Include the Unicode platform 0 for which we don't actually know
+	// the language.) Keep track of any existing platform+encodings that also need feature
+	// names stored. Also calculate bytes needed to hold all strings.
+
+	std::vector<PlatEncChange> vpecToChange;
 	size_t cbOldStringData = 0;
 	int nMaxNameId = 0;
+	bool fUnchangedName = false;
 	for (int iRecord = 0; iRecord < cRecords; iRecord++)
 	{
+		if (swapw(pRecord[iRecord].nameID) == name_Family)
+		{
+			int nPlat = swapw(pRecord[iRecord].platformID);
+			int nEnc = swapw(pRecord[iRecord].specificID);
+			int nLang = swapw(pRecord[iRecord].languageID);
+			if ((nPlat == plat_Macintosh && nLang == langMac_English)
+				|| (nPlat == plat_MS && nLang == LG_USENG)
+				|| (nPlat == plat_Unicode))
+			{
+				// Found an English family name or one we're treating as English--
+				// change it if we're changing the names.
+				PlatEncChange pecChange;
+				pecChange.platformID = nPlat;
+				pecChange.encodingID = nEnc;
+				pecChange.engLangID = nLang;
+				pecChange.cbBytesPerChar = (nPlat == plat_Macintosh) ? 1 : 2;
+				pecChange.fChangeName = (pchwFamilyNameNew != NULL);
+				vpecToChange.push_back(pecChange);
+			}
+			else if ((nPlat == plat_Macintosh) || (nPlat == plat_Unicode)
+					|| (nPlat == plat_MS && (nEnc == 0 || nEnc == 1 || nEnc == 10)))
+			{
+				// We found a family name that is not English and we will not change. But we
+				// will need to output the feature names.
+				PlatEncChange pecChange;
+				pecChange.platformID = nPlat;
+				pecChange.encodingID = nEnc;
+				pecChange.engLangID = nLang;
+				pecChange.cbBytesPerChar = (nPlat == plat_Macintosh) ? 1 : 2;
+				pecChange.fChangeName = false;
+				vpecToChange.push_back(pecChange);
+				fUnchangedName = true;	// give a warning
+			}
+			else
+			{
+				// Otherwise it is non-English, non-Unicode.
+				fUnchangedName = true;
+			}
+		}
 		cbOldStringData += swapw(pRecord[iRecord].length);
 		nMaxNameId = max(nMaxNameId, int(swapw(pRecord[iRecord].nameID)));
 	}
 	size_t cbNewStringData = cbOldStringData;
+
+	// Give a warning if there are font names we won't change.
+	if (fUnchangedName)
+		g_errorList.AddWarning(5503, NULL,
+			"Font names that are not English and not in platform 0 (Unicode) will not be changed");
 
 	// Do this once for all platforms:
 	// Assign name table ids to the features and settings and get
@@ -457,129 +509,105 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	Assert(vstuExtNames.Size() == vnLangIds.Size());
 	Assert(vnLangIds.Size() == vnNameTblIds.Size());
 
-	// For each platform of interest, determine it if is present in the font and what encoding
-	// is being used. If it is present, we need to fix up the font names and store the feature strings.
+	// For each platform+encoding of interest, fix up the font names and store the feature strings.
 
-	std::vector<PlatEncChange> vpec;
-	for (int platformID = plat_Unicode; platformID <= plat_MS; platformID++)
+	for (int ipecChange = 0; ipecChange < signed(vpecToChange.size()); ipecChange++)
 	{
-		uint16 rgEncodingIDs[5];
-		int cEncodings;
-		int engID;
-		bool f8bit;
-		switch (platformID)
-		{
-		case plat_Unicode:
-			rgEncodingIDs[0] = 0;	// 0-0: Unicode 1.0
-			rgEncodingIDs[1] = 1;	// 0-1: Unicode 1.1
-			rgEncodingIDs[2] = 2;	// 0-2: ISO 10646
-			rgEncodingIDs[3] = 3;	// 0-3: Unicode 2.0+, BMP
-			rgEncodingIDs[4] = 4;	// 0-4: Unicode 2.0+, full repertoire
-			cEncodings = 5;
-			engID = 0;				// not used
-			f8bit = false;
-			break;
-		case plat_Macintosh:
-			rgEncodingIDs[0] = 0;	// 1-0
-			cEncodings = 1;
-			engID = langMac_English; // assume that new font names are English
-			f8bit = true;
-			break;
-		case plat_MS:
-			rgEncodingIDs[0] = 0;	// 3-0: Symbol
-			rgEncodingIDs[1] = 1;	// 3-1: Unicode BMP
-			rgEncodingIDs[2] = 10;	// 3-10: Unicode full repertoire
-			cEncodings = 3;
-			engID = LG_USENG;		// assume that new font names are English
-			f8bit = false;
-			break;
-		case plat_ISO:		// not supported
-		default:
-			cEncodings = 0;
-		}
+		PlatEncChange * ppec = &(vpecToChange[ipecChange]);
+		int engID = ppec->engLangID;
 
-		int iEncodingFound = -1;
-        for (int iEncoding = 0; iEncoding < cEncodings; iEncoding++)
+		if (ppec->cbBytesPerChar == 1)
+			f8bitFeatures = true;	// we need to output 8-bit feature strings
+		else
+			f16bitFeatures = true;	// we need to output 16-bit feature strings
+
+		if (ppec->fChangeName)
 		{
-			// See if there are (English) font names present for this platform and encoding.
-			irecFamilyName = irecSubFamily = irecFullName = irecVendor
-				= irecPSName = irecUniqueName = -1;
+			// There should be (English) font names present for this platform and encoding.
+			// Get pointers to the relevant records.
+			irecFamilyName = irecSubFamily = irecFullName = irecVendor = irecPSName = irecUniqueName
+				= irecPrefFamily = -1;
 			if (!FindNameTblEntries(pRecord, cRecords,
-				platformID, rgEncodingIDs[iEncoding], engID,
-				&irecFamilyName, &irecSubFamily, &irecFullName, &irecVendor, &irecPSName, &irecUniqueName))
+				ppec->platformID, ppec->encodingID, ppec->engLangID,
+				&irecFamilyName, &irecSubFamily, &irecFullName, &irecVendor, &irecPSName, &irecUniqueName,
+				&irecPrefFamily, &irecCompatibleFull))
 			{
+				Assert(false); // how did it get in the vpecToChange list?
 				continue;
 			}
 
-			PlatEncChange pec;
-			pec.cbBytesPerChar = (f8bit) ? 1 : sizeof(utf16);
-			pec.platformID = platformID;
-			pec.encodingID = rgEncodingIDs[iEncoding];
-			pec.engLangID = engID;
+			Assert(pchwFamilyNameNew);
 
-			if (f8bit)
-				f8bitFeatures = true;	// we need to output 8-bit feature strings
-			else
-				f16bitFeatures = true;	// we need to output 16-bit feature strings
+			// Generate the new full-font name, the postscript name, and the unique name.
 
-			if (pchwFamilyNameNew)
+			std::wstring stuFullName, stuPostscriptName, stuUniqueName;
+			ibSubFamilyOffset = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].offset) + ibStrOffset;
+			cbSubFamily = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].length);
+			ibVendorOffset = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].offset) + ibStrOffset;
+			cbVendor = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].length);
+
+			// NB: Call below may allocate space which must be deleted at the end of this method.
+
+			if (!BuildFontNames((ppec->cbBytesPerChar == 1), pchwFamilyNameNew, cchwFamilyName, stuDate,
+				(uint8*)pTblOld + ibSubFamilyOffset, cbSubFamily,
+				(uint8*)pTblOld + ibVendorOffset, cbVendor,
+				ppec))
 			{
-				// Generate the new full-font name, the postscript name, and the unique name.
+				return false;
+			}
 
-				std::wstring stuFullName, stuPostscriptName, stuUniqueName;
-				ibSubFamilyOffset = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].offset) + ibStrOffset;
-				cbSubFamily = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].length);
-				ibVendorOffset = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].offset) + ibStrOffset;
-				cbVendor = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].length);
-
-				// NB: Call below may allocate space which must be deleted at the end of this method.
-
-				if (!BuildFontNames(f8bit, pchwFamilyNameNew, cchwFamilyName, stuDate,
-					(uint8*)pTblOld + ibSubFamilyOffset, cbSubFamily,
-					(uint8*)pTblOld + ibVendorOffset, cbVendor,
-					&pec))
-				{
-					return false;
-				}
-
-				// Determine size adjustments for font name changes: subtract old names and add new ones.
-				int dbStringDiff = 0;
+			// Determine size adjustments for font name changes: subtract old names and add new ones.
+			int dbStringDiff = 0;
+			if (irecFamilyName > -1)
+			{
 				dbStringDiff -= swapw(pRecord[irecFamilyName].length);
-				dbStringDiff += cchwFamilyName * pec.cbBytesPerChar;
-				dbStringDiff -= swapw(pRecord[irecFullName].length);
-				dbStringDiff += pec.cchwFullName * pec.cbBytesPerChar;
-				if (irecUniqueName)
-				{
-					dbStringDiff -= swapw(pRecord[irecUniqueName].length);
-					dbStringDiff += pec.cchwUniqueName * pec.cbBytesPerChar;
-				}
-				if (irecPSName)
-				{
-					dbStringDiff -= swapw(pRecord[irecPSName].length);
-					dbStringDiff += pec.cchwPostscriptName * pec.cbBytesPerChar;
-				}
-
-				cbNewStringData += dbStringDiff;
+				dbStringDiff += cchwFamilyName * ppec->cbBytesPerChar;
 			}
-			else
+			if (irecFullName > -1)
 			{
-				// Font name is not changing, but we do have to output feature strings.
-				pec.pchwFullName = NULL;
-				pec.pchwUniqueName = NULL;
-				pec.pchwPostscriptName = NULL;
-				pec.cchwFullName = 0;
-				pec.cchwUniqueName = 0;
-				pec.cchwPostscriptName = 0;
+				dbStringDiff -= swapw(pRecord[irecFullName].length);
+				dbStringDiff += ppec->cchwFullName * ppec->cbBytesPerChar;
 			}
-			vpec.push_back(pec);
+			if (irecUniqueName > -1)
+			{
+				dbStringDiff -= swapw(pRecord[irecUniqueName].length);
+				dbStringDiff += ppec->cchwUniqueName * ppec->cbBytesPerChar;
+			}
+			if (irecPSName > -1)
+			{
+				dbStringDiff -= swapw(pRecord[irecPSName].length);
+				dbStringDiff += ppec->cchwPostscriptName * ppec->cbBytesPerChar;
+			}
+			if (irecPrefFamily > -1)
+			{
+				dbStringDiff -= swapw(pRecord[irecPrefFamily].length);
+				dbStringDiff += cchwFamilyName * ppec->cbBytesPerChar;
+			}
+			if (irecCompatibleFull > -1)
+			{
+				dbStringDiff -= swapw(pRecord[irecCompatibleFull].length);
+				dbStringDiff += ppec->cchwFullName * ppec->cbBytesPerChar;
+			}
+
+			cbNewStringData += dbStringDiff;
+		}
+		else
+		{
+			// Font name is not changing, but we do have to output feature strings.
+			ppec->pchwFullName = NULL;
+			ppec->pchwUniqueName = NULL;
+			ppec->pchwPostscriptName = NULL;
+			ppec->cchwFullName = 0;
+			ppec->cchwUniqueName = 0;
+			ppec->cchwPostscriptName = 0;
 		}
 	}
 
-	// Create the new name table.
+	// Calculate the size of the new name table.
 	size_t cbTblNew = cbOldTblRecords
-		+ cbNewStringData		// adjusted for font name changes
-		+ (vstuExtNames.size() * sizeof(sfnt_NameRecord) * vpec.size());
+		+ (vstuExtNames.size() * sizeof(sfnt_NameRecord) * vpecToChange.size())
 								// 1 record for each feature string for each platform+encoding of interest
+		+ cbNewStringData;		// adjusted for font name changes
 
 	// We need at most one version of the 8-bit feature strings and one version of the 16-bit strings.
 	if (f8bitFeatures)
@@ -587,13 +615,14 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	if (f16bitFeatures)
 		cbTblNew += cbFeatStringData16;
 
+	// Create the new buffer.
 	uint8 * pTblNew = new uint8[cbTblNew];
 
-	// copy directory entries and strings from source to destination
-	// modify font name and add feature names
+	// Copy directory entries and strings from source to destination,
+	// modify font name and add feature names.
 	if (!AddFeatsModFamilyAux((uint8 *)pTblOld, cbTblOld, pTblNew, cbTblNew, 
 		vstuExtNames, vnLangIds, vnNameTblIds, 
-		pchwFamilyNameNew, cchwFamilyName, vpec))
+		pchwFamilyNameNew, cchwFamilyName, vpecToChange))
 	{
 		return false;
 	}
@@ -603,11 +632,11 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	delete [] *ppNameTbl;	// old table
 	*ppNameTbl = pTblNew;
 
-	for (size_t ipec = 0; ipec < vpec.size(); ipec++)
+	for (size_t ipec = 0; ipec < vpecToChange.size(); ipec++)
 	{
-		delete vpec[ipec].pchwFullName;
-		delete vpec[ipec].pchwUniqueName;
-		delete vpec[ipec].pchwPostscriptName;
+		delete vpecToChange[ipec].pchwFullName;
+		delete vpecToChange[ipec].pchwUniqueName;
+		delete vpecToChange[ipec].pchwPostscriptName;
 	}
 
 	return true;
@@ -631,9 +660,12 @@ void GrcManager::BuildDateString(utf16 * stuDate)
 	std::copy(strTimeWchar.data() + 20, strTimeWchar.data() + 24, stuDate + 7);	// year
 	stuDate[11] = 0;
 #else
-    char tempDate[11];
-    std::strftime(tempDate, 11, "%d-%b-%Y", std::localtime(std::time()));
+    char tempDate[20];
+	time_t currentTime;
+	time(&currentTime);
+    strftime(tempDate, 20, "%d-%b-%Y", localtime(&currentTime));
     std::copy(tempDate, tempDate + strlen(tempDate), stuDate);
+	stuDate[11] = 0;
 #endif
 }
 
@@ -648,7 +680,8 @@ void GrcManager::BuildDateString(utf16 * stuDate)
 bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords, 
 	uint16 suPlatformId, uint16 suEncodingId, uint16 suLangId, 
 	int * piFamily, int * piSubFamily, int * piFullName,
-	int * piVendor, int * piPSName, int * piUniqueName)
+	int * piVendor, int * piPSName, int * piUniqueName,
+	int * piPrefFamily, int * piCompatibleFull)
 {
 	bool fNamesFound = false;
 
@@ -670,6 +703,8 @@ bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords,
 				case name_Vendor:		*piVendor = i; break;
 				case name_Postscript:	*piPSName = i; break;
 				case name_UniqueName:	*piUniqueName = i; break;
+				case name_PreferredFamily: *piPrefFamily = i; break;
+				case name_CompatibleFull:  *piCompatibleFull = i; break;
 				default:
 					break;
 				}
@@ -730,7 +765,7 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 		}
 		cchwSubFamily = (f8bitTable) ? cbSubFamily : cbSubFamily / sizeof(utf16);
 		rgchwSubFamily[cchwSubFamily] = 0;
-		fRegular = utf16ncmp(rgchwSubFamily, L"Regular", 7) || utf16ncmp(rgchwSubFamily, L"Standard", 8);
+		fRegular = utf16ncmp(rgchwSubFamily, "Regular", 7) || utf16ncmp(rgchwSubFamily, "Standard", 8);
 	}
 
 	// Get vendor name, if any.
@@ -738,7 +773,7 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	if (cbVendor == 0)
 	{
 		rgchwVendor = new utf16[15];
-		utf16ncpy(rgchwVendor, L"Unknown Vendor", 14);
+		utf16ncpy(rgchwVendor, "Unknown Vendor", 14);
 		cbVendor = (f8bitTable) ? 14 : 14 * sizeof(utf16); // pretend
 	}
 	else
@@ -886,21 +921,12 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	// First copy the old records, changing any font names as needed.
 
 	int ipec;
-	// vpec items should be in sorted order by platform and encoding, except that 3-1 comes before 3-0.
-	// Just force them into the right order.
+
 	for (ipec = 0; ipec < signed(vpec.size()) - 1; ipec++)
 	{
-		for (int ipec2 = ipec + 1; ipec2 < signed(vpec.size()); ipec2++)
-		{
-			if ((vpec[ipec].platformID > vpec[ipec2].platformID)
-				|| (vpec[ipec].platformID == vpec[ipec2].platformID
-					&& vpec[ipec].encodingID > vpec[ipec2].encodingID))
-			{
-				PlatEncChange pecTmp = vpec[ipec];
-				vpec[ipec] = vpec[ipec2];
-				vpec[ipec2] = pecTmp;
-			}
-		}
+		Assert((vpec[ipec].platformID < vpec[ipec + 1].platformID)
+				|| (vpec[ipec].platformID == vpec[ipec + 1].platformID
+					&& vpec[ipec].encodingID < vpec[ipec + 1].encodingID));
 	}
 
 	ipec = 0;
@@ -923,9 +949,6 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 		pNewRecord[irec].nameID = pOldRecord[irec].nameID;
 		pNewRecord[irec].length = pOldRecord[irec].length;
 		//pNewRecord[irec].offset = ibStrOffsetNew + dibNew;
-
-		// Ideally we should change the family name for any platform+encoding, not just our special
-		// list. But the calling method didn't calculate the string lengths correctly for that to happen.
 
 		size_t cchwStr, cbStr;
 		uint8 * pbStr = NULL;
@@ -989,8 +1012,9 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 	}
 
 	// Then add the feature strings. Do this for all platform-encodings of interest.
-	// The first time through, store the string data in the buffer and record the offsets.
-	// For any subsequent platforms and encodings, just use the same offsets.
+	// The first time through, store the string data in the buffer and record the offsets
+	// (do this once for 8-bit versions and once for 16-bit). For any subsequent platforms
+	// and encodings, just use the same offsets.
 
 	std::vector<uint16> vdibOffsets8, vdibOffsets16;
 	bool fStringsStored8 = false;
