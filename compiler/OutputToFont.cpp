@@ -619,6 +619,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::BuildDateString(utf16 * stuDate)
 {
+#if 0
 	// Get the current date, which will be used to create the unique name.
 	__time64_t ltime;
 	_time64( &ltime );
@@ -629,6 +630,11 @@ void GrcManager::BuildDateString(utf16 * stuDate)
 	stuDate[6] = '-';
 	std::copy(strTimeWchar.data() + 20, strTimeWchar.data() + 24, stuDate + 7);	// year
 	stuDate[11] = 0;
+#else
+    char tempDate[11];
+    std::strftime(tempDate, 11, "%d-%b-%Y", std::localtime(std::time()));
+    std::copy(tempDate, tempDate + strlen(tempDate), stuDate);
+#endif
 }
 
 /*----------------------------------------------------------------------------------------------
