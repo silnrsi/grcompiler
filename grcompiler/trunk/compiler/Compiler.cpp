@@ -1345,8 +1345,12 @@ void GrcManager::DebugGlyphAttributes()
 		strmOut << "GLYPH ATTRIBUTE IDS\n\n";
 		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 		{
-			strmOut << nAttrID << ": "
-				<< m_vpsymGlyphAttrs[nAttrID]->FullName() << "\n";
+			if (m_vpsymGlyphAttrs[nAttrID]->InternalID() == nAttrID)
+			{
+				strmOut << nAttrID << ": "
+					<< m_vpsymGlyphAttrs[nAttrID]->FullName() << "\n";
+			}
+			// else we have something like justify.stretch which is unused
 		}
 		strmOut << "\n\n\nGLYPH ATTRIBUTE VALUES\n\n";
 
