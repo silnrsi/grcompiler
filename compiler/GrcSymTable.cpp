@@ -1196,6 +1196,21 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 			return kslatJWeight;
 		else if (staField1 == "width")
 			return kslatJWidth;
+		else if (staField1 == "0")
+		{
+			if (staField2 == "stretch")
+				return kslatJStretch;
+			else if (staField2 == "shrink")
+				return kslatJShrink;
+			else if (staField2 == "step")
+				return kslatJStep;
+			else if (staField2 == "weight")
+				return kslatJWeight;
+			else if (staField2 == "width")
+				return kslatJWidth;
+			else
+				Assert(false);
+		}
 		else
 			Assert(false);
 	}
@@ -1536,6 +1551,13 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("justify", "step"),		kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("justify", "weight"),		kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("justify", "width"),		kst, kexptMeas);
+
+	PreDefineSymbol(GrcStructName("justify", "0", "stretch"),	kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "stretchHW"),	kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "shrink"),	kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "step"),		kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "weight"),	kst, kexptNumber);
+	PreDefineSymbol(GrcStructName("justify", "0", "width"),		kst, kexptMeas);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1561,6 +1583,15 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("justify", "step"), kst);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("justify", "weight"), kst);
+	psym->m_fGeneric = true;
+
+	psym = AddType2(GrcStructName("justify", "0", "stretch"), kst);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("justify", "0", "shrink"), kst);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("justify", "0", "step"), kst);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("justify", "0", "weight"), kst);
 	psym->m_fGeneric = true;
 
 	//	A fake glyph attribute that is used to store the actual glyph ID for pseudo-glyphs.

@@ -896,6 +896,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 		vstaJAttr.push_back("shrink");
 		vstaJAttr.push_back("step");
 		vstaJAttr.push_back("weight");
+		std::vector<int> vnLevel0Ids;
 		for (size_t istaJAttr = 0; istaJAttr < vstaJAttr.size(); istaJAttr++)
 		{
 			int nLevel;
@@ -906,11 +907,22 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				GrcStructName xnsJAttr("justify", rgchLev, vstaJAttr[istaJAttr]);
 
 				Symbol psymJAttr = FindSymbol(xnsJAttr);
+				Assert(psymJAttr);
 				int id = AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymJAttr);
+				if (nLevel == 0)
+					vnLevel0Ids.push_back(id);
 			}
 		}
-		//	Don't bother with the non-leveled attributes since they will be replaced by
-		//	the leveled ones.
+		// Set the ID of the non-leveled attributes to the same as level 0.
+		if (cJLevels > 0)
+			for (size_t istaJAttr = 0; istaJAttr < vstaJAttr.size(); istaJAttr++)
+			{
+				GrcStructName xnsJAttrNoLevel("justify", vstaJAttr[istaJAttr]);
+				Symbol psymJAttrNoLevel = FindSymbol(xnsJAttrNoLevel);
+				Assert(psymJAttrNoLevel);
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymJAttrNoLevel);
+				psymJAttrNoLevel->SetInternalID(vnLevel0Ids[istaJAttr]); // change it
+			}
 		return true;
 	}
 
@@ -1133,9 +1145,13 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	// justify.weight = 1
 	if (NumJustLevels() > 0)
 	{
-		GrcStructName xnsJWeight("justify", "weight");
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(xnsJWeight));
+		GrcStructName xnsJ0Weight("justify", "0", "weight");
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(xnsJ0Weight));
 		vnSysDefValues.push_back(1);
+		// Don't need to handle both since they have the same glyph-attr ID.
+		//GrcStructName xnsJWeight("justify", "weight");
+		//vpsymSysDefined.push_back(SymbolTable()->FindSymbol(xnsJWeight));
+		//vnSysDefValues.push_back(1);
 		// Other justify attrs have default of zero, and so do not need to be initialized.
 	}
 
