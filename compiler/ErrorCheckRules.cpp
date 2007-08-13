@@ -2137,8 +2137,8 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		if (psym->IsMeasureAttr() || psym->DoesJustification())
 		{
+			fRet = (fxdVersion >= 0x00020000);
 			*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
-			fRet = false;
 		}
 	}
 	return fRet;
@@ -2206,7 +2206,7 @@ bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 	if (m_psymName->IsMeasureAttr() || m_psymName->DoesJustification())
 	{
 		*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
-		return false;
+		return (fxdVersion >= 0x00020000);
 	}
 	else
 		return true;
