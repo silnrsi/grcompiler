@@ -185,30 +185,26 @@ void GrcRtFileFont::initializeFromFace()
 			return;
 		}
 		Assert(lSize %2 == 0);// should be utf16
-		wchar_t rgchwFace[128];
 		int cchw = (lSize / isizeof(utf16)) + 1;
 		cchw = min(cchw, 128);
 		utf16 * pTable16 = reinterpret_cast<utf16*>(pTable + lOffset);
+		utf16 rgchwFace[128];
 		std::copy(pTable16, pTable16 + cchw - 1, rgchwFace);
 		rgchwFace[cchw - 1] = 0;  // zero terminate
 		TtfUtil::SwapWString(rgchwFace, cchw - 1);
+// We could use something like "if (sizeof(std::wstring::value_type) == 4)" here,
+// but a compile-time switch is preferable.
 #if SIZEOF_WCHAR_T == 4
-//		if (sizeof(std::wstring::value_type) == 4)
-//		{
-			for (int c16 = 0; c16 < cchw; )
-			{
-				int charUsed = 0;
-				utf32 cch32 = GrCharStream::Utf16ToUtf32(&(rgchwFace[c16]), 
-														cchw - c16, &charUsed);
-				m_faceName.push_back(cch32);
-				c16 += charUsed;
-			}
-//		}
+		for (int c16 = 0; c16 < cchw; )
+		{
+			int charUsed = 0;
+			utf32 cch32 = GrCharStream::Utf16ToUtf32(&(rgchwFace[c16]), 
+				cchw - c16, &charUsed);
+			m_stu32FaceName.push_back(cch32);
+			c16 += charUsed;
+		}
 #else
-//		else
-//		{
-			m_faceName.assign(rgchwFace);
-//		}
+		m_stu32FaceName.assign(rgchwFace);
 #endif
 		delete[] pTable; // name
 
