@@ -81,7 +81,7 @@ protected:
 	int m_dpiX;
 	int m_dpiY;
 	bool m_isValid;
-	std::wstring m_faceName;
+	std::wstring m_stu32FaceName;
 	gr::byte * m_pHeader;
 	gr::byte * m_pTableDir;
 	float m_xScale;

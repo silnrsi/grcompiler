@@ -66,7 +66,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 {
 	Assert(irit <= m_vprit.size());
 
-	if (irit == m_vprit.size())
+	if (irit == signed(m_vprit.size()))
 	{
 		Symbol psymClass = g_cman.SymbolTable()->FindSymbol(staInput);
 		GdlRuleItem * prit;
