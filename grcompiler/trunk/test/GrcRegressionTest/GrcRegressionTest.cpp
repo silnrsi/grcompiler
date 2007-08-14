@@ -154,11 +154,13 @@ void RunTests(int numberOfTests, TestCase * ptcaseList)
 ----------------------------------------------------------------------------------------------*/
 int RunOneTestCase(TestCase * ptcase)
 {
+#ifdef _MSC_VER
 	// Break into the debugger if requested.
 	if (ptcase->m_debug && ::IsDebuggerPresent())
 	{
 		::DebugBreak();
 	}
+#endif
 
 	GrcRtFileFont fontBmark(ptcase->m_fontFileBmark, 12.0, 96, 96);
 	GrcRtFileFont fontTest( ptcase->m_fontFileTest,  12.0, 96, 96);
@@ -317,8 +319,8 @@ std::wstring StringFromNameTable(const gr::byte * pNameTbl, int nLangID, int nNa
 {
 	std::wstring stuName;
 	stuName.erase();
-	long lOffset = -1;
-	long lSize = -1;
+	size_t lOffset = -1;
+	size_t lSize = -1;
 
 	// The Graphite compiler stores our names in either 
 	// the MS (platform id = 3) Unicode (writing system id = 1) table

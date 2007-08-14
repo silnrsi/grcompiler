@@ -83,6 +83,8 @@ AC_CONFIG_FILES(Makefile \
 	preprocessor/Makefile \
 	compiler/Makefile \
 	compiler/Generic/Makefile \
-	compiler/Grammar/Makefile)
+	compiler/Grammar/Makefile \
+    test/Makefile \
+    test/GrcRegressionTest/Makefile)
 
 AC_OUTPUT
