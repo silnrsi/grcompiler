@@ -84,7 +84,8 @@ AC_CONFIG_FILES(Makefile \
 	compiler/Makefile \
 	compiler/Generic/Makefile \
 	compiler/Grammar/Makefile \
-    test/Makefile \
-    test/GrcRegressionTest/Makefile)
+    test/Makefile)
+
+AC_CONFIG_SUBDIRS([test/GrcRegressionTest])
 
 AC_OUTPUT
