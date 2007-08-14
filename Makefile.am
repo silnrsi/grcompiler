@@ -1,4 +1,4 @@
-SUBDIRS = doc preprocessor compiler
+SUBDIRS = doc preprocessor compiler test
 
 EXTRA_DIST = license makefile.mak
 

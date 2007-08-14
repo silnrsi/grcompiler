@@ -13,10 +13,10 @@ Description:
 	Graphite tables.
 ----------------------------------------------------------------------------------------------*/
 
-#include "Main.h"
+#include "main.h"
 
 #include "FontTableCache.h"
-#include "FileFont.h"
+#include "graphite/FileFont.h"
 #include <stdio.h>
 
 
@@ -132,8 +132,8 @@ FileFont::initializeFromFace()
 
 	if (m_file)
 	{
-		long lOffset;
-		long lSize;
+		size_t lOffset;
+		size_t lSize;
 		TtfUtil::GetHeaderInfo(lOffset, lSize);
 		m_pHeader = new byte [lSize];
 		m_isValid = true;
@@ -189,7 +189,7 @@ FileFont::initializeFromFace()
 			return;
 		}
 		Assert(lSize %2 == 0);// should be utf16
-		utf16 rgchwFace[128];
+		wchar_t rgchwFace[128];
 		int cchw = (lSize / isizeof(utf16)) + 1;
 		cchw = min(cchw, 128);
 		utf16 * pTable16 = reinterpret_cast<utf16*>(pTable + lOffset);
@@ -231,11 +231,11 @@ FileFont::initializeFromFace()
 }
 
 byte * 
-FileFont::readTable(int /*TableId*/ tid, long & size)
+FileFont::readTable(int /*TableId*/ tid, size_t & size)
 {
 	TableId tableId = static_cast<TableId>(tid);
 	bool isValid = true;
-	long lOffset = 0, lSize = 0;
+	size_t lOffset = 0, lSize = 0;
 	if (!m_pTableCache)
 	{
 		m_pTableCache = new FontTableCache();		
@@ -389,7 +389,7 @@ FileFont::getTable(fontTableId32 tableID, size_t * pcbSize)
 		}
 	}
 	Assert(tid < ktiLast);
-	long tableSize = 0;
+	size_t tableSize = 0;
 	void * pTable = readTable(tid, tableSize);
 	*pcbSize = static_cast<int>(tableSize);
 	return pTable;
@@ -419,7 +419,7 @@ bool FileFont::FontHasGraphiteTables(char * fileName)
 
 bool FileFont::fontHasGraphiteTables()
 {
-	long tableSize;
+	size_t tableSize;
 	bool isGraphiteFont = m_isValid;
 	isGraphiteFont &= (readTable(ktiSilf, tableSize) != NULL);
 	return isGraphiteFont;

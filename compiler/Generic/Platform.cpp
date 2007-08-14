@@ -271,6 +271,28 @@ int utf16cmp(const utf16 *s1, const char *s2)
 	return 0;
 }
 
+int utf16ncmp(const utf16 *s1, const char *s2, size_t n)
+{
+	size_t p = 0;
+	while (*s1 && s2 && (p < n))
+	{
+		if (*s1 < *s2)
+			return -1;
+		if (*s1 > *s2)
+			return 1;
+		*s1++;
+		*s2++;
+		p++;
+	}
+	if (p == n)
+		return 0;
+	else if (*s1)
+		return -1;
+	else if (*s2)
+		return 1;
+	return 0;
+}
+
 
 size_t Platform_UnicodeToANSI(const utf16 *src, size_t src_len, char *dest, size_t dest_len)
 {

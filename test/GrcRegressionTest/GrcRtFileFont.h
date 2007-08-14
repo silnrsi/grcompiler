@@ -10,12 +10,12 @@ Responsibility: Sharon Correll
 Description:
     The GrcRtFileFont class is based roughly on the FileFont class, but there is no table cache.
 -------------------------------------------------------------------------------*//*:End Ignore*/
-#include "GrCommon.h"
-#include "GrData.h"
+#include "graphite/GrCommon.h"
+#include "graphite/GrData.h"
 #ifndef _WIN32
-#include "GrMstypes.h"
+#include "graphite/GrMstypes.h"
 #endif
-#include "GrDebug.h"
+#include "graphite/GrDebug.h"
 
 #include <fstream>
 #include <iostream>
@@ -27,10 +27,10 @@ Description:
 // particularly those that won't be caught when loading the tables.
 #define gAssert(x) Assert(x)
 
-#include "GrResult.h"
-#include "GrAppData.h"
+#include "graphite/GrResult.h"
+#include "graphite/GrAppData.h"
 #include "TtfUtil.h"
-#include "Font.h"
+#include "graphite/Font.h"
 
 #ifdef _MSC_VER
 #pragma once
@@ -49,7 +49,7 @@ public:
 		unsigned int dpiX, unsigned int dpiY);
 	~GrcRtFileFont();
 
-	Font * GrcRtFileFont::copyThis();
+	Font * copyThis();
 	virtual bool bold()		{ return false; }
 	virtual bool italic()	{ return false; }
 	virtual float ascent()	{ return m_ascent; }
@@ -63,7 +63,7 @@ public:
 
 protected:
 	void initializeFromFace();
-	gr::byte * readTable(int /*TableId*/ tid, long & size);
+	gr::byte * readTable(int /*TableId*/ tid, size_t & size);
 
 	float scaleFromDpi(int dpi)
 	{
