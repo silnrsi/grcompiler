@@ -526,7 +526,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			// There should be (English) font names present for this platform and encoding.
 			// Get pointers to the relevant records.
 			irecFamilyName = irecSubFamily = irecFullName = irecVendor = irecPSName = irecUniqueName
-				= irecPrefFamily = -1;
+				= irecPrefFamily = irecCompatibleFull = -1;
 			if (!FindNameTblEntries(pRecord, cRecords,
 				ppec->platformID, ppec->encodingID, ppec->engLangID,
 				&irecFamilyName, &irecSubFamily, &irecFullName, &irecVendor, &irecPSName, &irecUniqueName,
