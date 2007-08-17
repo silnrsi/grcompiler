@@ -14,6 +14,11 @@ AC_PROG_CXX
 # Check packages needed
 PKG_CHECK_MODULES(GR2, silgraphite >= 2.2.0)
 
+# Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_SIZE_T
+AC_CHECK_SIZEOF(wchar_t)
+AC_SUBST(SIZEOF_WCHAR_T)
+
 AC_CONFIG_FILES(Makefile)
 AC_OUTPUT
 
