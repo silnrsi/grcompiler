@@ -39,6 +39,8 @@ AC_PROG_RANLIB
 AC_CHECK_LIB(sicuuc, u_charType_3_6)
 
 # Checks for header files.
+# need to check for icu .h files as in unicode/uchar.h
+AC_CHECK_HEADER(unicode/uchar.h,,)
 
 # Checks for typedefs, structures, and compiler characteristics.
 
