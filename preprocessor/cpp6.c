@@ -903,6 +903,14 @@ int get(struct Global *global)
   /*
    * Common processing for the new character.
    */
+  if (c == '\r') {
+    c = get(global);
+    if (c != '\n')
+    {
+      unget(global);
+      c = '\n';
+    }
+  }
   if (c == DEF_MAGIC && file->fp != NULL) /* Don't allow delete   */
     goto newline;			/* from a file		*/
   if (file->parent != NULL) {           /* Macro or #include    */
