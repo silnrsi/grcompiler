@@ -19,6 +19,9 @@ AC_TYPE_SIZE_T
 AC_CHECK_SIZEOF(wchar_t)
 AC_SUBST(SIZEOF_WCHAR_T)
 
+# need to check for icu .h files as in unicode/uchar.h
+AC_CHECK_HEADER(unicode/utf16.h,,)
+
 AC_CONFIG_FILES(Makefile)
 AC_OUTPUT
 

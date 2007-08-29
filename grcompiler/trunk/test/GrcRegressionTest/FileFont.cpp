@@ -18,6 +18,7 @@ Description:
 #include "FontTableCache.h"
 #include "graphite/FileFont.h"
 #include <stdio.h>
+#include "unicode/utf16.h"
 
 
 // TBD do this properly
@@ -201,11 +202,9 @@ FileFont::initializeFromFace()
 //		{
 			for (int c16 = 0; c16 < cchw; )
 			{
-				int charUsed = 0;
-				utf32 cch32 = GrCharStream::Utf16ToUtf32(&(rgchwFace[c16]), 
-														cchw - c16, &charUsed);
+				utf32 cch32;
+                U16_NEXT(rgchwFace, c16, cchw, cch32);
 				m_faceName.push_back(cch32);
-				c16 += charUsed;
 			}
 //		}
 #else
