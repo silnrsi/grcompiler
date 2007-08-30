@@ -1,0 +1,9 @@
+Pre-release
+
+ * allow either commandline option or environment variable to control where gdlpp is in grcompiler
+ * change grcregressiontest to take command line options of font files to compare, or move call to grcompiler into regression test
+
+Pre 1.0
+
+ * Working on mac
+

@@ -17,7 +17,8 @@ GrcRegressionTest_SOURCES = \
         FontStub.cpp \
         GrcRtFileFont.h \
         GrcRtFileFont.cpp \
-        GrcRegressionTest.cpp
+        GrcRegressionTest.cpp \
+        TtfUtil.cpp
 
 check-local: GrcRegressionTest
 	$(top_builddir)/test/GrcRegressionTest

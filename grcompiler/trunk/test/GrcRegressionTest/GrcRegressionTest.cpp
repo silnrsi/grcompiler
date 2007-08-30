@@ -22,6 +22,8 @@ int g_errorCount;
 
 bool g_debugMode = false;
 bool g_silentMode = false;
+char *g_basename = NULL;
+char *g_testname = NULL;
 
 int g_itcaseStart = 0;  // adjust to skip to a certain test
 
@@ -50,10 +52,18 @@ int main(int argc, char* argv[])
 		{
 			g_debugMode = true;
 		}
-		if (strcmp(argv[iargc], "/s") == 0 || strcmp(argv[iargc], "-s") == 0)
+		else if (strcmp(argv[iargc], "/s") == 0 || strcmp(argv[iargc], "-s") == 0)
 		{
 			g_silentMode = true;
 		}
+        else if (g_basename)
+        {
+            g_testname = argv[iargc];
+        }
+        else
+        {
+            g_basename = argv[iargc];
+        }
 		// TODO: handle -b and -t as switches specifying benchmark and test files
 		iargc++;
 	}
@@ -109,7 +119,12 @@ int main(int argc, char* argv[])
 
 	// *** Add tests here, and increment numberOfTests. ***
 
-	RunTests(numberOfTests, rgtcaseList);
+//	RunTests(numberOfTests, rgtcaseList);
+
+	GrcRtFileFont fontBmark(g_basename, 12.0, 96, 96);
+	GrcRtFileFont fontTest(g_testname,  12.0, 96, 96);
+
+	int errorCount = CompareFontTables(NULL, &fontBmark, &fontTest);
 
 	WriteToLog("\n==============================================\n");
 	g_strmLog << "\n\nTOTAL NUMBER OF ERRORS:  " << g_errorCount << "\n";
