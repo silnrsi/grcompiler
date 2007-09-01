@@ -21,10 +21,11 @@ GrcRegressionTest_SOURCES = \
         TtfUtil.cpp \
 	TtfUtil.h \
 	FileInput.h \
-	FontTableCache.h
+	FontTableCache.h \
+	TtfTypes.h
 
 check-local: GrcRegressionTest
-	$(top_builddir)/test/GrcRegressionTest
+	./GrcRegressionTest
 
 dist-hook:
 	rm -f grcregtest.log
