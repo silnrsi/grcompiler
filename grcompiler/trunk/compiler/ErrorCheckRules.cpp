@@ -91,7 +91,7 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
 
-	if (m_fBidi)
+	if (Bidi())
 		m_iPassBidi = nPassNum;
 	else
 		m_iPassBidi = -1;
