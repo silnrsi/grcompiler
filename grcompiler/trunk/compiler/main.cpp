@@ -53,6 +53,33 @@ int main(int argc, char * argv[])
 	::CoInitialize(NULL);
 #endif
 
+	char rgchExePath[256];
+	char * pchExePath = getenv("GDLPP");
+#ifdef _WIN32
+	int cch;
+	if (!pchExePath)
+	{
+		GetModuleFileName(NULL, rgchExePath, 256);
+		cch = strlen(rgchExePath);
+		while (rgchExePath[cch] != '\\')
+		{
+			rgchExePath[cch] = 0;
+			cch--;
+		}
+		pchExePath = rgchExePath;
+	}
+	cch = strlen(pchExePath);
+	if (pchExePath[cch - 1] != '\\')
+	{
+		pchExePath[cch] = '\\';
+		cch++;
+		pchExePath[cch] = 0;
+	}
+#else
+	// Fill this in for Linux using argv[0]. Make sure it has a terminating slash on the end.
+	Assert(false);
+#endif
+
 	char * pchGdlFile = NULL;
 	char * pchFontFile = NULL;
 	char rgchOutputFile[128];
@@ -227,7 +254,7 @@ int main(int argc, char * argv[])
 	{
 		if (g_cman.IsVerbose())
 			std::cout << "Parsing file " << pchGdlFile << "...\n";
-		if (g_cman.Parse(pchGdlFile))
+		if (g_cman.Parse(pchGdlFile, pchExePath))
 		{
 			if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
 			if (g_cman.PostParse())

@@ -14,8 +14,8 @@ Description:
 #ifdef _MSC_VER
 #pragma once
 #endif
-#ifndef WRC_MANAGER_INCLUDED
-#define WRC_MANAGER_INCLUDED
+#ifndef GRC_MANAGER_INCLUDED
+#define GRC_MANAGER_INCLUDED
 
 class GdlFeatureDefn;
 class GdlGlyphClassDefn;
@@ -145,9 +145,9 @@ public:
 
 public:
 	//	Parser:
-	bool Parse(std::string staFileName);
+	bool Parse(std::string staFileName, std::string staExePath);
 protected:
-	bool RunPreProcessor(std::string staFileName, std::string * staFilePreProc);
+	bool RunPreProcessor(std::string staFileName, std::string * staFilePreProc, std::string & staExePath);
 	void RecordPreProcessorErrors(FILE * pFilePreProcErr);
 	std::string PreProcName(std::string sta);
 	bool ParseFile(std::ifstream & strmIn, std::string staFileName);
@@ -451,4 +451,4 @@ public:
 	void test_Recycle();
 };
 
-#endif // WRC_MANAGER_INCLUDED
+#endif // GRC_MANAGER_INCLUDED
