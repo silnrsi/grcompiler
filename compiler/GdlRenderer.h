@@ -40,8 +40,9 @@ public:
 	bool AutoPseudo()			{ return m_fAutoPseudo; }
 	void SetAutoPseudo(bool f)	{ m_fAutoPseudo = f; }
 
-	bool Bidi()					{ return m_fBidi; }
-	void SetBidi(bool f)		{ m_fBidi = f; }
+	bool Bidi()					{ return (m_nBidi > 0); } // -1 = false (default)
+	int RawBidi()				{ return m_nBidi; }
+	void SetBidi(int n)			{ m_nBidi = n; }
 
 	int ScriptDirections()		{ return m_grfsdc; }
 	void AddScriptDirection(int fsdc)
@@ -207,7 +208,7 @@ protected:
 //	GdlStdStyle						m_rgsty[FeatureDefn::kstvLim];
 
 	bool m_fAutoPseudo;
-	bool m_fBidi;
+	int m_nBidi;		// boolean; -1 if not set
 	int m_iPassBidi;
 	int m_grfsdc;		// supported script directions
 	std::vector<int>	m_vnScriptTags;

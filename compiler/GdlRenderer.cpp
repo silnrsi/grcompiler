@@ -40,7 +40,7 @@ DEFINE_THIS_FILE
 GdlRenderer::GdlRenderer()
 {
 	m_fAutoPseudo = true;
-	m_fBidi = true;
+	m_nBidi = -1;	// not set
 	m_pexpXAscent = NULL;
 	m_pexpXDescent = NULL;
 	m_grfsdc = kfsdcNone;

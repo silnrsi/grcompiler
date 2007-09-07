@@ -35,6 +35,23 @@ DEFINE_THIS_FILE
 
 bool GrcManager::PostParse()
 {
+	if (m_prndr->RawBidi() == -1)
+	{
+		if (m_prndr->ScriptDirections() & kfsdcHorizRtl)
+		{
+			if (m_prndr->ScriptDirections() & kfsdcHorizLtr)
+				m_prndr->SetBidi(true);
+			else
+			{
+				g_errorList.AddWarning(1513, NULL,
+					"No bidi pass requested for right-to-left font.");
+				m_prndr->SetBidi(false);
+			}
+		}
+		else
+			m_prndr->SetBidi(false);
+	}
+
 	//	Add the system-defined "lang" feature whose values are 4-byte language ID codes.
 	//	This feature always has an ID = 1 (kfidStdLang).
 	Symbol psymFeat = SymbolTable()->AddFeatureSymbol(GrcStructName("lang"),

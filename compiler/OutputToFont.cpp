@@ -2398,7 +2398,7 @@ void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 
 	*pcpass = *pcpassLB + *pcpassSub + *pcpassJust + *pcpassPos;
 
-	if (m_fBidi)
+	if (Bidi())
 		*pipassBidi = *pcpassLB + *pcpassSub;	
 	else
 		*pipassBidi = -1;
