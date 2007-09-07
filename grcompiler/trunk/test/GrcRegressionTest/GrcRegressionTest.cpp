@@ -22,8 +22,9 @@ int g_errorCount;
 
 bool g_debugMode = false;
 bool g_silentMode = false;
-char *g_basename = NULL;
-char *g_testname = NULL;
+char * g_benchmarkName = NULL;
+char * g_testName = NULL;
+char * g_logFileName = NULL;
 
 int g_itcaseStart = 0;  // adjust to skip to a certain test
 
@@ -45,6 +46,16 @@ int main(int argc, char* argv[])
 	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
 #endif // WIN32
 
+	if (argc < 3)
+	{
+		std::cout << "\nUsage: GrcRegressionTest [options] benchmark-file test-file\n";
+		std::cout << "\nOptions:\n";
+		std::cout << "   -d       - debug mode\n";
+		std::cout << "   -s       - silent mode\n";
+		std::cout << "   -l file  - specify log file name\n";
+		return -1;
+	}
+
 	int iargc = 1;
 	while (iargc < argc)
 	{
@@ -56,15 +67,20 @@ int main(int argc, char* argv[])
 		{
 			g_silentMode = true;
 		}
-        else if (g_basename)
+		else if (strcmp(argv[iargc], "/l") == 0 || strcmp(argv[iargc], "-l") == 0)
+		{
+			iargc++;
+			if (iargc < argc)
+				g_logFileName = argv[iargc];
+		}
+        else if (g_benchmarkName)
         {
-            g_testname = argv[iargc];
+            g_testName = argv[iargc];
         }
         else
         {
-            g_basename = argv[iargc];
+            g_benchmarkName = argv[iargc];
         }
-		// TODO: handle -b and -t as switches specifying benchmark and test files
 		iargc++;
 	}
 
@@ -72,18 +88,27 @@ int main(int argc, char* argv[])
 		std::cout << "Graphite Compiler Regression Test\n\n";
 
 	//	Start a new log.
-	g_strmLog.open("grcregtest.log");
+	if (g_logFileName == NULL)
+		g_logFileName = "grcregtest.log";
+	g_strmLog.open(g_logFileName, std::ios_base::out | std::ios_base::app );
 	if (g_strmLog.fail())
 	{
 		std::cout << "Unable to open log file.";
 		return -1;
 	}
 
+	if (g_testName == NULL || g_benchmarkName == NULL)
+	{
+		std::cout << "Font files not adequately specified\n\n";
+		return -1;
+	}
+
 	g_errorCount = 0;
 
-	WriteToLog("Graphite Compiler Regression Test\n\n");
+	//WriteToLog("Graphite Compiler Regression Test\n\n");
 
 	// *** TEST CASES ***
+	/***
 	const int numberOfTests = 5;
 	TestCase rgtcaseList[5];
 
@@ -119,17 +144,29 @@ int main(int argc, char* argv[])
 
 	// *** Add tests here, and increment numberOfTests. ***
 
-//	RunTests(numberOfTests, rgtcaseList);
+	//RunTests(numberOfTests, rgtcaseList);
+	****/
 
-	GrcRtFileFont fontBmark(g_basename, 12.0, 96, 96);
-	GrcRtFileFont fontTest(g_testname,  12.0, 96, 96);
+	// Run the test.
 
-	int errorCount = CompareFontTables(NULL, &fontBmark, &fontTest);
+	WriteToLog("\nTesting ");
+	WriteToLog(g_testName);
+	WriteToLog(" against ");
+	WriteToLog(g_benchmarkName);
+	WriteToLog("...\n");
+	if (!g_silentMode)
+		std::cout << "Testing " << g_testName << " against " << g_benchmarkName << "...\n";
+
+	GrcRtFileFont fontBmark(g_benchmarkName, 12.0, 96, 96);
+	GrcRtFileFont fontTest(g_testName,  12.0, 96, 96);
+	int g_errorCount = CompareFontTables(NULL, &fontBmark, &fontTest);
+    WriteLog(g_errorCount);
 
 	WriteToLog("\n==============================================\n");
-	g_strmLog << "\n\nTOTAL NUMBER OF ERRORS:  " << g_errorCount << "\n";
-	if (!g_silentMode)
-		std::cout << "\n\nTOTAL NUMBER OF ERRORS:  " << g_errorCount << "\n";
+
+	//g_strmLog << "\n\nTOTAL NUMBER OF ERRORS:  " << g_errorCount << "\n";
+	//if (!g_silentMode)
+	//	std::cout << "\n\nTOTAL NUMBER OF ERRORS:  " << g_errorCount << "\n";
 
 	g_strmLog.close();
 
@@ -262,7 +299,7 @@ void OutputErrorAux(TestCase * ptcase,
 		{
 			std::cout << "[" << i2 << "]";
 		}
-		std::cout << "\n   ";
+		std::cout << "\n";
 	}
 
 	WriteToLog(strErr1, i1, strErr2, i2, showValues, valueFound, valueExpected);

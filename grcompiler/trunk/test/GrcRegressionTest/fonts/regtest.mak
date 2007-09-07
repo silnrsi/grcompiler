@@ -13,14 +13,15 @@ TEST_FONTS =\
 	$(FONTS)\PadaukTest.ttf
     
 
-all : deleteTestFonts $(GRCEXE)\grcompiler.exe $(TEST_FONTS) runRegressionTest
+all : deleteTestFonts $(GRCEXE)\grcompiler.exe $(TEST_FONTS) grcregtest.log
 	
 deleteTestFonts :
 	- delete $(FONTS)\SchTest.ttf
-	- delete $(FONTS)\CharisTest.ttf
+#	- delete $(FONTS)\CharisTest.ttf
 	- delete $(FONTS)\PigLatinTest_v2.ttf
 	- delete $(FONTS)\PigLatinTest_v3.ttf
 	- delete $(FONTS)\PadaukTest.ttf
+	- delete .\grcregtest.log
 	
 $(FONTS)\SchTest.ttf :
 	grcompiler -v2 $(FONTS)\SchMain.gdl $(FONTS)\SchInput.ttf $(FONTS)\SchTest.ttf
@@ -37,6 +38,11 @@ $(FONTS)\PigLatinTest_v3.ttf :
 $(FONTS)\PadaukTest.ttf :
 	grcompiler -v3 $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
 
-runRegressionTest :
-	$(RTEXE)\GrcRegressionTest.exe
-    
+grcregtest.log :
+	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\SchBenchmark.ttf $(FONTS)\SchTest.ttf
+	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\CharisBenchmark.ttf $(FONTS)\CharisTest.ttf
+ 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v2.ttf $(FONTS)\PigLatinTest_v2.ttf
+ 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v3.ttf $(FONTS)\PigLatinTest_v3.ttf
+ 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PadaukBenchmark.ttf $(FONTS)\PadaukTest.ttf
+
+ 	

@@ -31,23 +31,23 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 	int ec = 0; // error count
 
 	// benchmark font buffers
-	const void * pHeadTblB; const void * pCmapTblB; const void * pSileTblB; const void * pSilfTblB;
- 	const void * pFeatTblB; const void * pGlatTblB; const void * pGlocTblB; const void * pNameTblB; const void * pSillTblB;
+	const gr::byte * pHeadTblB; const gr::byte * pCmapTblB; const gr::byte * pSileTblB; const gr::byte * pSilfTblB;
+	const gr::byte * pFeatTblB; const gr::byte * pGlatTblB; const gr::byte * pGlocTblB; const gr::byte * pNameTblB; const gr::byte * pSillTblB;
 	size_t cbHeadSzB, cbCmapSzB, /*cbSileSzB,*/ cbSilfSzB, cbFeatSzB, cbGlatSzB, cbGlocSzB, cbNameSzB, cbSillSzB;
 	// test font buffers
-	const void * pHeadTblT; const void * pCmapTblT; const void * pSileTblT; const void * pSilfTblT;
- 	const void * pFeatTblT; const void * pGlatTblT; const void * pGlocTblT; const void * pNameTblT; const void * pSillTblT;
+	const gr::byte * pHeadTblT; const gr::byte * pCmapTblT; const gr::byte * pSileTblT; const gr::byte * pSilfTblT;
+	const gr::byte * pFeatTblT; const gr::byte * pGlatTblT; const gr::byte * pGlocTblT; const gr::byte * pNameTblT; const gr::byte * pSillTblT;
 	size_t cbHeadSzT, cbCmapSzT, /*cbSileSzT,*/ cbSilfSzT, cbFeatSzT, cbGlatSzT, cbGlocSzT, cbNameSzT, cbSillSzT;
 
 	// head table
 	try {
-		pHeadTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiHead), &cbHeadSzB);
+		pHeadTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiHead), &cbHeadSzB));
 		if (pHeadTblB == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty head table");
 		else
 		{
 			try {
-				pHeadTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiHead), &cbHeadSzT);
+				pHeadTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiHead), &cbHeadSzT));
 				if (pHeadTblT == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty head table");
 				else
@@ -81,13 +81,13 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 	// cmap
 
 	try {
-		pCmapTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiCmap), &cbCmapSzB);
+		pCmapTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiCmap), &cbCmapSzB));
 		if (pCmapTblB == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty cmap table");
 		else
 		{
 			try {
-				pCmapTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiCmap), &cbCmapSzT);
+				pCmapTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiCmap), &cbCmapSzT));
 				if (pHeadTblT == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty cmap table");
 				else
@@ -121,13 +121,13 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// name - need feature names later
 	try {
-        pNameTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiName), &cbNameSzB);
+        pNameTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiName), &cbNameSzB));
 		if (pNameTblB == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty name table");
 		else
 		{
 			try {
-				pNameTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiName), &cbNameSzT);
+				pNameTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiName), &cbNameSzT));
 				if (pNameTblT == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty name table");
 				else
@@ -174,12 +174,12 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// Silf
 	try {
-		if ((pSilfTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiSilf), &cbSilfSzB)) == NULL)
+		if ((pSilfTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiSilf), &cbSilfSzB))) == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty Silf table");
 		else
 		{
 			try {
-				if ((pSilfTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiSilf), &cbSilfSzT)) == NULL)
+				if ((pSilfTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiSilf), &cbSilfSzT))) == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty Silf table");
 				else
 				{
@@ -203,12 +203,12 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// Feat
 	try {
-		if ((pFeatTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiFeat), &cbFeatSzB)) == NULL)
+		if ((pFeatTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiFeat), &cbFeatSzB))) == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty Feat table");
 		else
 		{
 			try {
-				if ((pFeatTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiFeat), &cbFeatSzT)) == NULL)
+				if ((pFeatTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiFeat), &cbFeatSzT))) == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty Feat table");
 				else
 				{
@@ -233,12 +233,12 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// Glat
 	try {
-		if ((pGlatTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiGlat), &cbGlatSzB)) == NULL)
+		if ((pGlatTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiGlat), &cbGlatSzB))) == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty Glat table");
 		else
 		{
 			try {
-				if ((pGlatTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiGlat), &cbGlatSzT)) == NULL)
+				if ((pGlatTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiGlat), &cbGlatSzT))) == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty Glat table");
 				else
 				{
@@ -262,12 +262,12 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// Gloc
 	try {
-		if ((pGlocTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiGloc), &cbGlocSzB)) == NULL)
+		if ((pGlocTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiGloc), &cbGlocSzB))) == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty Gloc table");
 		else
 		{
 			try {
-				if ((pGlocTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiGloc), &cbGlocSzT)) == NULL)
+				if ((pGlocTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiGloc), &cbGlocSzT))) == NULL)
 					OutputError(ec, ptcase, "ERROR: test font has empty Gloc table");
 				else
 				{
@@ -291,9 +291,9 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// Sill
 	try {
-		pSillTblB = pfontBmark->getTable(TtfUtil::TableIdTag(ktiSill), &cbSillSzB);
+		pSillTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiSill), &cbSillSzB));
 		try {
-			pSillTblT = pfontTest->getTable(TtfUtil::TableIdTag(ktiSill), &cbSillSzT);
+			pSillTblT = static_cast<const gr::byte *> (pfontTest->getTable(TtfUtil::TableIdTag(ktiSill), &cbSillSzT));
 			if (cbSillSzB != cbSillSzT)
 				OutputError(ec, ptcase, "ERROR: size of Sill tables do not match");
 		}
