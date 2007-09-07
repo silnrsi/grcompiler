@@ -47,10 +47,10 @@ using std::endl;
 	Run the parser over the file with the given name. Record an error if the file does not
 	exist.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::Parse(std::string staFileName)
+bool GrcManager::Parse(std::string staFileName, std::string staExePath)
 {
 	std::string staFilePreProc;
-	if (!RunPreProcessor(staFileName, &staFilePreProc))
+	if (!RunPreProcessor(staFileName, &staFilePreProc, staExePath))
 		return false;
 
 	std::ifstream strmIn;
@@ -70,7 +70,8 @@ bool GrcManager::Parse(std::string staFileName)
 /*----------------------------------------------------------------------------------------------
 	Run the C pre-processor over the GDL file. Return the name of the resulting file.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc)
+bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc,
+	std::string & staExePath)
 {
 #ifdef _WIN32 
 	STARTUPINFO sui = {isizeof(sui)};
@@ -111,17 +112,19 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	achar rgchErrorCode[20];
 
 #ifdef UNICODE
-	// Note: this bit of code has not been tested:
+	// Note: this bit of code has not been tested; also we need to add the path name.
 	wchar_t rgchrFileName[200];
-	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200)
+	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200);
 	std::wstring strCommandLine(L"gdlpp ");
 	if (m_verbose)
 		strCommandLine = L"gdlpp -V ";
 	strCommandLine += rgchrFileName;
 #else
-	std::string strCommandLine = "gdlpp";
+	std::string strCommandLine = staExePath;
 	if (m_verbose)
-		 strCommandLine = _T("gdlpp -V ");
+		 strCommandLine += _T("gdlpp -V ");
+	else
+		strCommandLine += _T("gdlpp ");
 	strCommandLine += staFileName;
 #endif
 
@@ -559,7 +562,13 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 					"The Bidi global does not expect a scaled number",
 					LineAndFile(astValue));
 			else
+			{
+				if (nValue != 0 && nValue != 1)
+					g_errorList.AddWarning(1512, NULL,
+						"Non-boolean value for the Bidi global; will be set to true",
+						LineAndFile(astValue));
 				m_prndr->SetBidi(nValue != 0);
+			}
 		}
 
 		if (astValue->getNextSibling())
