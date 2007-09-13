@@ -12,3 +12,5 @@ noinst_HEADERS = \
 # libgeneric_a_SOURCES = HashMap.cpp Util.cpp UtilInt.h UtilString.cpp Platform.cpp
 
 libgeneric_a_SOURCES = UtilInt.h Platform.cpp
+
+EXTRA_DIST = UtilString_i.cpp
