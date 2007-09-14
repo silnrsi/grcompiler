@@ -13,6 +13,7 @@ Searches for fonts to run tests on in [dir] (defaults to .) and runs them
 storing log info in logfile and exiting with the number of errors
 
   -g grcompiler     command to use to run grcompiler [grcompiler]
+  -h                print this help and exit
   -o logfile        file to log to [regtest.log]
   -p gdlpp          command to run the gdlpp []
   -r regtest        command to test result font [GrcRegressionTest]
@@ -37,6 +38,7 @@ foreach $f (@fonts)
     $t =~ s/Benchmark.ttf$/Main.gdl/o;
     next unless (-f $t);
     $r =~ s/Input.ttf$/Test.ttf/o;
+    $r =~ s{[/\\](.*?)$}{$1}o;
 
     system($opt_g, "-q", $t, $f, $r);
     if (-f $r)      # assume it passes if it gives a result
@@ -53,6 +55,7 @@ foreach $f (@fonts)
             $logf->close;
         }
         $errors += $res;
+        unlink $r;
     }
     else
     {
