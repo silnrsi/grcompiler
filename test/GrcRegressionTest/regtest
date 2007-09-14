@@ -38,7 +38,7 @@ foreach $f (@fonts)
     $t =~ s/Benchmark.ttf$/Main.gdl/o;
     next unless (-f $t);
     $r =~ s/Input.ttf$/Test.ttf/o;
-    $r =~ s{[/\\](.*?)$}{$1}o;
+    $r =~ s{^.*[/\\](.*?)$}{$1}o;
 
     system($opt_g, "-q", $t, $f, $r);
     if (-f $r)      # assume it passes if it gives a result
