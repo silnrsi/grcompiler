@@ -1,0 +1,59 @@
+#!/usr/bin/perl
+
+use IO::File;
+use Getopt::Std;
+
+getopts('g:o:p:r:');
+
+$opt_g ||= 'grcompiler';
+$opt_o ||= 'regtest.log';
+$ENV{'GDLPP'} = $opt_p if ($opt_p);
+$opt_r ||= 'GrcRegressionTest';
+
+my (@fonts) = sort glob(($ARGV[0] ? $ARGV[0] : '.') . "/*Input.ttf");
+my ($outf) = IO::File->new("> $opt_o") || die "Can't create $opt_o";
+my ($f, $errors);
+
+foreach $f (@fonts)
+{
+    my ($t) = $f;
+    my ($r) = $f;
+    $t =~ s/Input.ttf$/Benchmark.ttf/o;
+    next unless (-f $t);
+    $t =~ s/Benchmark.ttf$/Main.gdl/o;
+    next unless (-f $t);
+    $r =~ s/Input.ttf$/Test.ttf/o;
+
+    system($opt_g, "-q", $t, $f, $r);
+    if (-f $r)      # assume it passes if it gives a result
+    {
+        $t =~ s/Main.gdl$/Benchmark.ttf/o;
+
+        unlink 'grcregtest.log';
+        my ($res) = system($opt_r, $r, $t) >> 8;
+        my ($logf) = IO::File->new("grcregtest.log");
+        if ($logf)
+        {
+            while (<$logf>)
+            { $outf->print($_); }
+            $logf->close;
+        }
+        $errors += $res;
+    }
+    else
+    {
+        my ($logf) = IO::File->new("gdlerr.log");
+        if ($logf)
+        {
+            while (<$logf>)
+            { $outf->print($_); }
+            $logf->close;
+        }
+        $errors++;
+    }
+}
+
+$outf->close;
+
+exit($errors);
+
