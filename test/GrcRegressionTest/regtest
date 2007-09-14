@@ -3,7 +3,21 @@
 use IO::File;
 use Getopt::Std;
 
-getopts('g:o:p:r:');
+getopts('g:ho:p:r:');
+
+if ($opt_h)
+{
+    die <<'EOT';
+    regtest [-g grcompiler] [-o logfile] [-p gdlpp] [-r regtest] [dir]
+Searches for fonts to run tests on in [dir] (defaults to .) and runs them
+storing log info in logfile and exiting with the number of errors
+
+  -g grcompiler     command to use to run grcompiler [grcompiler]
+  -o logfile        file to log to [regtest.log]
+  -p gdlpp          command to run the gdlpp []
+  -r regtest        command to test result font [GrcRegressionTest]
+EOT
+}
 
 $opt_g ||= 'grcompiler';
 $opt_o ||= 'regtest.log';
