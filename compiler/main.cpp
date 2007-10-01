@@ -131,9 +131,9 @@ int main(int argc, char * argv[])
 		return 2;
 	}
 
-	pchGdlFile = argv[1 + cargExtra];
-	if (argc > 2 + cargExtra)
-		pchFontFile = argv[2 + cargExtra];
+	SetGdlAndFontFileNames(argv[1 + cargExtra], (argc > 2 + cargExtra) ? argv[2 + cargExtra] : NULL,
+		&pchGdlFile, &pchFontFile);
+
 	if (argc > 3 + cargExtra)
 	{
 		char * pch = argv[3 + cargExtra];
@@ -455,6 +455,31 @@ void HandleCompilerOptions(char * arg)
 	//{
 	//	g_cman.SetSeparateControlFile(true);
 	//}
+}
+
+/*----------------------------------------------------------------------------------------------
+    Interpret the compiler options, which are preceded by slashes in the argument list.
+----------------------------------------------------------------------------------------------*/
+void SetGdlAndFontFileNames(char * pchFile1, char * pchFile2,
+	char ** ppchGdlFile, char ** ppchFontFile)
+{
+	byte bFirst, bSecond, bThird, bFourth;
+	std::ifstream strm1;
+	strm1.open(pchFile1, std::ios_base::in | std::ios_base::binary);
+	strm1 >> bFirst >> bSecond >> bThird >> bFourth;
+	strm1.close();
+
+	if (bFirst == 0 && bThird == 0 && bFourth == 0) // && bSecond = 1 -- this can change with the version number
+	{
+		// pchFile1 looks like the beginning of a TTF file.
+		*ppchFontFile = pchFile1;
+		*ppchGdlFile = pchFile2;
+	}
+	else
+	{
+		*ppchGdlFile = pchFile1;
+		*ppchFontFile = pchFile2;
+	}
 }
 
 /*----------------------------------------------------------------------------------------------

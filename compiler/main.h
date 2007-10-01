@@ -126,6 +126,8 @@ extern GrcManager g_cman;
 	Functions.
 *************************************************************************************/
 void HandleCompilerOptions(char *);
+void SetGdlAndFontFileNames(char * pchFile1, char * pchFile2,
+	char ** ppchGdlFile, char ** ppchFontFile);
 void BinarySearchConstants(int n, int * pnPowerOf2, int * pnLog);
 void GenerateOutputFontFileName(char * pchFontFile, char * ppchOutputFont);
 void GenerateOutputControlFileName(char * pchFontFile, char * pchOutputFont);
