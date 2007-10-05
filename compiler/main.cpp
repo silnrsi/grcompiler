@@ -53,30 +53,38 @@ int main(int argc, char * argv[])
 	::CoInitialize(NULL);
 #endif
 
-	char rgchExePath[256];
-	char * pchExePath = getenv("GDLPP");
+	char rgchGdlppFile[256];
+	char * pchGdlppFile = getenv("GDLPP");
 #ifdef _WIN32
 	int cch;
-	if (!pchExePath)
+	if (!pchGdlppFile)
 	{
-		GetModuleFileName(NULL, rgchExePath, 256);
-		cch = strlen(rgchExePath);
-		while (rgchExePath[cch] != '\\')
+		GetModuleFileName(NULL, rgchGdlppFile, 256);
+		cch = strlen(rgchGdlppFile);
+		while (rgchGdlppFile[cch] != '\\')
 		{
-			rgchExePath[cch] = 0;
+			rgchGdlppFile[cch] = 0;
 			cch--;
 		}
-		pchExePath = rgchExePath;
-	}
-	cch = strlen(pchExePath);
-	if (pchExePath[cch - 1] != '\\')
-	{
-		pchExePath[cch] = '\\';
-		cch++;
-		pchExePath[cch] = 0;
+		pchGdlppFile = rgchGdlppFile;
+		cch = strlen(pchGdlppFile);
+		if (pchGdlppFile[cch - 1] != '\\')
+		{
+			pchGdlppFile[cch++] = '\\';
+		}
+		pchGdlppFile[cch++] = 'g';
+		pchGdlppFile[cch++] = 'd';
+		pchGdlppFile[cch++] = 'l';
+		pchGdlppFile[cch++] = 'p';
+		pchGdlppFile[cch++] = 'p';
+		pchGdlppFile[cch++] = '.';
+		pchGdlppFile[cch++] = 'e';
+		pchGdlppFile[cch++] = 'x';
+		pchGdlppFile[cch++] = 'e';
+		pchGdlppFile[cch] = 0;
 	}
 #else
-	// Fill this in for Linux using argv[0]. Make sure it has a terminating slash on the end.
+	// Fill this in for Linux using argv[0].
 	Assert(false);
 #endif
 
@@ -254,7 +262,7 @@ int main(int argc, char * argv[])
 	{
 		if (g_cman.IsVerbose())
 			std::cout << "Parsing file " << pchGdlFile << "...\n";
-		if (g_cman.Parse(pchGdlFile, pchExePath))
+		if (g_cman.Parse(pchGdlFile, pchGdlppFile))
 		{
 			if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
 			if (g_cman.PostParse())
