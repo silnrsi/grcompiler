@@ -47,10 +47,10 @@ using std::endl;
 	Run the parser over the file with the given name. Record an error if the file does not
 	exist.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::Parse(std::string staFileName, std::string staExePath)
+bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile)
 {
 	std::string staFilePreProc;
-	if (!RunPreProcessor(staFileName, &staFilePreProc, staExePath))
+	if (!RunPreProcessor(staFileName, &staFilePreProc, staGdlppFile))
 		return false;
 
 	std::ifstream strmIn;
@@ -71,7 +71,7 @@ bool GrcManager::Parse(std::string staFileName, std::string staExePath)
 	Run the C pre-processor over the GDL file. Return the name of the resulting file.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc,
-	std::string & staExePath)
+	std::string & staGdlppFile)
 {
 #ifdef _WIN32 
 	STARTUPINFO sui = {isizeof(sui)};
@@ -115,17 +115,24 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	// Note: this bit of code has not been tested; also we need to add the path name.
 	wchar_t rgchrFileName[200];
 	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200);
-	std::wstring strCommandLine(L"gdlpp ");
+	std::wstring strCommandLine(L"gdlpp "); // no, use staGdlppFile instead
 	if (m_verbose)
-		strCommandLine = L"gdlpp -V ";
+		strCommandLine = L"\" -V \"";
 	strCommandLine += rgchrFileName;
+	strCommandLine += L"\"";
 #else
-	std::string strCommandLine = staExePath;
+	std::string strCommandLine(_T("\""));
+	strCommandLine += staGdlppFile;
+	//if (m_verbose)
+	//	 strCommandLine += _T("gdlpp -V ");
+	//else
+	//	strCommandLine += _T("gdlpp ");
 	if (m_verbose)
-		 strCommandLine += _T("gdlpp -V ");
+		strCommandLine += _T("\" -V \"");
 	else
-		strCommandLine += _T("gdlpp ");
+		strCommandLine += _T("\" \"");
 	strCommandLine += staFileName;
+	strCommandLine += _T("\"");
 #endif
 
 	strCommandLine += _T(" $_temp.gdl");	// output file

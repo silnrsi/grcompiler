@@ -145,9 +145,9 @@ public:
 
 public:
 	//	Parser:
-	bool Parse(std::string staFileName, std::string staExePath);
+	bool Parse(std::string staFileName, std::string staGdlppFile);
 protected:
-	bool RunPreProcessor(std::string staFileName, std::string * staFilePreProc, std::string & staExePath);
+	bool RunPreProcessor(std::string staFileName, std::string * staFilePreProc, std::string & staGdlppFile);
 	void RecordPreProcessorErrors(FILE * pFilePreProcErr);
 	std::string PreProcName(std::string sta);
 	bool ParseFile(std::ifstream & strmIn, std::string staFileName);

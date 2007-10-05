@@ -17,7 +17,7 @@ all : deleteTestFonts $(GRCEXE)\grcompiler.exe $(TEST_FONTS) grcregtest.log
 	
 deleteTestFonts :
 	- delete $(FONTS)\SchTest.ttf
-#	- delete $(FONTS)\CharisTest.ttf
+	- delete $(FONTS)\CharisTest.ttf
 	- delete $(FONTS)\PigLatinTest_v2.ttf
 	- delete $(FONTS)\PigLatinTest_v3.ttf
 	- delete $(FONTS)\PadaukTest.ttf
