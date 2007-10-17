@@ -33,12 +33,15 @@ foreach $f (@fonts)
 {
     my ($t) = $f;
     my ($r) = $f;
-    $t =~ s/Input.ttf$/Benchmark.ttf/o;
-    next unless (-f $t);
-    $t =~ s/Benchmark.ttf$/Main.gdl/o;
-    next unless (-f $t);
-    $r =~ s/Input.ttf$/Test.ttf/o;
-    $r =~ s{^.*[/\\](.*?)$}{$1}o;
+    my ($n) = $f;
+    $n =~ s/Input.ttf$//o;
+
+    print "Testing Font: $n\n";
+    next unless (-f "${n}Benchmark.ttf");
+    next unless (-f "${n}Main.gdl");
+    $r = "${n}Test.ttf";
+    $t = "${n}Main.gdl";
+#    $r =~ s{^.*[/\\](.*?)$}{$1}o;
 
     system($opt_g, "-q", $t, $f, $r);
     if (-f $r)      # assume it passes if it gives a result
@@ -46,15 +49,26 @@ foreach $f (@fonts)
         $t =~ s/Main.gdl$/Benchmark.ttf/o;
 
         unlink 'grcregtest.log';
-        my ($res) = system($opt_r, $r, $t) >> 8;
+        my ($res) = system($opt_r, $r, $t);
+        if ($res == -1)
+        {
+            print "Failed to run $opt_r because $!\n";
+            $errors++;
+        }
         my ($logf) = IO::File->new("grcregtest.log");
         if ($logf)
         {
+        
             while (<$logf>)
             { $outf->print($_); }
             $logf->close;
         }
-        $errors += $res;
+        if ($res > 0)
+        {
+            $res >>= 8;
+            print "job error $res\n";
+            $errors += $res;
+        }
         unlink $r;
     }
     else
@@ -72,5 +86,6 @@ foreach $f (@fonts)
 
 $outf->close;
 
+print "$errors errors encountered\n" if ($errors);
 exit($errors);
 

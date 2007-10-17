@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = 1.6
 
-EXTRA_DIST = fonts
+EXTRA_DIST = fonts regtest
 
 noinst_PROGRAMS = GrcRegressionTest
 
@@ -25,7 +25,7 @@ GrcRegressionTest_SOURCES = \
 	TtfTypes.h
 
 check-local: GrcRegressionTest
-	./GrcRegressionTest
+	./regtest -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest fonts
 
 dist-hook:
 	rm -f grcregtest.log
