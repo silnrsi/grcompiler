@@ -35,7 +35,7 @@ Source: "C:\silgraphite_2_0\grcompiler\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Fl
 Source: "C:\silgraphite_2_0\grcompiler\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\GTF_3_0.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\GDL_BNF.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
-;Source: "C:\Graphite\Compiler\2.4\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\StackMachineCommands.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\TransductionLog.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\installer\example\stddr.ttf"; DestDir: "{app}\example"; Flags: ignoreversion
