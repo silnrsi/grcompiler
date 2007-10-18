@@ -124,7 +124,7 @@ int main(int argc, char * argv[])
 			std::cout << "  [release build]";
 		#endif
 		std::cout << "\n"
-			<< "Copyright © 2002-2006, by SIL International.  All rights reserved.\n";
+			<< "Copyright © 2002-2007, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
@@ -134,8 +134,9 @@ int main(int argc, char * argv[])
 		std::cout << "   -d     - output debugger files\n";
 		std::cout << "   -g     - permit and ignore invalid glyph definitions\n";
 		std::cout << "   -nNNNN - set name table start location\n";
-		std::cout << "   -vN    - set Silf table version number\n";
 		std::cout << "   -q     - quiet mode (no messages except on error)\n";
+		std::cout << "   -vN    - set Silf table version number\n";
+		std::cout << "   -wNNNN - ignore warning with the given number\n";
 		return 2;
 	}
 
