@@ -10,8 +10,8 @@ AppSupportURL=http://graphite.sil.org/
 AppUpdatesURL=http://graphite.sil.org/
 DefaultDirName={pf}\Graphite Compiler
 ; Start Menu item name:
-DefaultGroupName=Graphite Compiler
-; allows them to say they don't want a desktop icon:
+DefaultGroupName=Graphite Compiler 2.4
+; allows them to say they don't want a start menu item:
 AllowNoIcons=yes
 ; installer file name:
 OutputBaseFilename=grcompiler_setup_2_4
@@ -28,7 +28,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "C:\silgraphite_2_0\grcompiler\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\release\icuuc36.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\installer\windows\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\installer\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\CompilerDebugFiles.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
@@ -44,6 +44,9 @@ Source: "C:\silgraphite_2_0\grcompiler\installer\example\makecaps.wpx"; DestDir:
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Graphite Compiler"; Filename: "{app}\GrCompiler.exe"
+Name: "{group}\Run GrCompiler"; Filename: "{app}\GrCompiler.exe"
+Name: "{group}\Read-Me"; Filename: "{app}\readme.txt"
+Name: "{group}\GDL documentation"; Filename: "{app}\doc\GDL.pdf"
+Name: "{group}\Compiler Debug Files Doc"; Filename: "{app}\doc\CompilerDebugFiles.pdf"
 Name: "{commondesktop}\Graphite Compiler"; Filename: "{app}\GrCompiler.exe"; Tasks: desktopicon
 
