@@ -288,7 +288,7 @@ public:
 	void WriteErrorsToFile(std::string staGdlFile, std::string staInputFontFile,
 		std::string staOutputFile, std::string staOutputFamily, std::string staVersion, int fSepCtrlFile)
 	{
-		WriteErrorsToFile("gdlerr.txt", staGdlFile, staInputFontFile, staOutputFile, staOutputFamily,
+		WriteErrorsToFile(m_strErrFile, staGdlFile, staInputFontFile, staOutputFile, staOutputFamily,
 			staVersion, fSepCtrlFile);
 	}
 	void WriteErrorsToFile(std::string staErrFile, std::string staGdlFile, std::string staInputFontFile,
@@ -298,6 +298,8 @@ public:
 		std::string staOutputFile, std::string staOutputFamily,
 		std::string staVersion, bool fSepCtrlFile);
 
+	void SetFileNameFromGdlFile(char * pchGdlFile);
+
 protected:
 	//	instance variables:
 	bool m_fFatalError;
@@ -305,6 +307,8 @@ protected:
 	std::vector<GrcErrorItem *> m_vperr;
 
 	std::vector<int> m_vnIgnoreWarnings;
+
+	std::string m_strErrFile;
 
 public:
 	//	For test procedures:

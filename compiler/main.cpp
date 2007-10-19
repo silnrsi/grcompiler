@@ -149,6 +149,8 @@ int main(int argc, char * argv[])
 	SetGdlAndFontFileNames(argv[1 + cargExtra], (argc > 2 + cargExtra) ? argv[2 + cargExtra] : NULL,
 		&pchGdlFile, &pchFontFile);
 
+	g_errorList.SetFileNameFromGdlFile(pchGdlFile);
+
 	if (argc > 3 + cargExtra)
 	{
 		char * pch = argv[3 + cargExtra];

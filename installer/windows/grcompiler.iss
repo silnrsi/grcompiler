@@ -30,6 +30,7 @@ Source: "C:\silgraphite_2_0\grcompiler\release\icuuc36.dll"; DestDir: "{app}"; F
 Source: "C:\silgraphite_2_0\grcompiler\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\installer\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\installer\gr_buildbat.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\CompilerDebugFiles.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
