@@ -371,3 +371,23 @@ void AddGlobalError(bool fFatal, int nID, std::string msg, GrpLineAndFile const&
 	else
 		g_errorList.AddWarning(nID, NULL, msg.c_str(), lnf);
 }
+
+
+/*----------------------------------------------------------------------------------------------
+	Set the error file name to use the same path as the GDL file.
+----------------------------------------------------------------------------------------------*/
+void GrcErrorList::SetFileNameFromGdlFile(char * pchGdlFile)
+{
+	char * pchEnd = pchGdlFile + strlen(pchGdlFile);
+	while (*pchEnd != '\\')
+	{
+		if (pchEnd <= pchGdlFile)
+		{
+			m_strErrFile = "gdlerr.txt";
+			return;
+		}
+		pchEnd--;
+	}
+	m_strErrFile.assign(pchGdlFile, (pchEnd - pchGdlFile + 1));
+	m_strErrFile.append("gdlerr.txt");
+}

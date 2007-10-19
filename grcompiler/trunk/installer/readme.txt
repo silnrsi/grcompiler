@@ -8,6 +8,7 @@ Program Files
 * icuuc.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
 * gdlpp.exe - preprocessor to handle #define and #include statements
 * stddef.gdh - standard GDL abbreviations
+* gr_buildbat.bat - will create a batch file to run the compiler for your font
 
 For testing the installation ("example" folder)
 * allcaps.gdl - simple GDL program
@@ -71,7 +72,7 @@ The file "allcaps.gdl" is a very simple program that you can try to compile. It 
 
 UNINSTALLING THE PROGRAM ON WINDOWS
 
-To uninstall, run "unins000.exe".
+To uninstall, run "unins000.exe" which is located in the same directory as the compiler.
 
 
 CHANGES SINCE VERSION 2.3
