@@ -11,7 +11,8 @@ goto getpath
 :ret2
 set FPATH=%_I%
 
-echo "%GPATH%grcompiler" "%1" "%2" > "%FPATH%grcompile.bat"
+echo @echo off > "%FPATH%grcompile.bat"
+echo "%GPATH%grcompiler" "%1" "%2" >> "%FPATH%grcompile.bat"
 
 goto done
 
