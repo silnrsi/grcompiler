@@ -1,14 +1,16 @@
 #!/usr/bin/perl
 
 use IO::File;
-use Getopt::Std;
+use Getopt::Long;
 
-getopts('g:ho:p:r:');
+my (%opts);
+GetOptions(\%opts, 'compiler|g=s', 'help|h|?', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'warning|w=i@');
 
-if ($opt_h)
+if ($opts{help})
 {
     die <<'EOT';
-    regtest [-g grcompiler] [-o logfile] [-p gdlpp] [-r regtest] [dir]
+    regtest [-g grcompiler] [-o logfile] [-p gdlpp] [-r regtest] [-v] 
+            [-w number] [dir]
 Searches for fonts to run tests on in [dir] (defaults to .) and runs them
 storing log info in logfile and exiting with the number of errors
 
@@ -17,16 +19,18 @@ storing log info in logfile and exiting with the number of errors
   -o logfile        file to log to [regtest.log]
   -p gdlpp          command to run the gdlpp []
   -r regtest        command to test result font [GrcRegressionTest]
+  -v                Run compiler -q by default, this stops it
+  -w number         Run compiler with -w value (may be repeated)
 EOT
 }
 
-$opt_g ||= 'grcompiler';
-$opt_o ||= 'regtest.log';
-$ENV{'GDLPP'} = $opt_p if ($opt_p);
-$opt_r ||= 'GrcRegressionTest';
+$opts{compiler} ||= 'grcompiler';
+$opts{output} ||= 'regtest.log';
+$ENV{'GDLPP'} = $opts{preprocessor} if (defined $opts{preprocessor});
+$opt{testengine} ||= 'GrcRegressionTest';
 
 my (@fonts) = sort glob(($ARGV[0] ? $ARGV[0] : '.') . "/*Input.ttf");
-my ($outf) = IO::File->new("> $opt_o") || die "Can't create $opt_o";
+my ($outf) = IO::File->new("> $opts{output}") || die "Can't create $opts{output}";
 my ($f, $errors);
 
 foreach $f (@fonts)
@@ -43,16 +47,19 @@ foreach $f (@fonts)
     $t = "${n}Main.gdl";
 #    $r =~ s{^.*[/\\](.*?)$}{$1}o;
 
-    system($opt_g, "-q", $t, $f, $r);
+    my (@gopts);
+    push (@gopts, '-q') unless ($opts{verbose});
+    push (@gopts, map {"-w" => $_}, @{$opts{warning}}) if (defined $opts{warning});
+    system($opts{compiler}, @gopts, $t, $f, $r);
     if (-f $r)      # assume it passes if it gives a result
     {
         $t =~ s/Main.gdl$/Benchmark.ttf/o;
 
         unlink 'grcregtest.log';
-        my ($res) = system($opt_r, $r, $t);
+        my ($res) = system($opts{testengine}, $r, $t);
         if ($res == -1)
         {
-            print "Failed to run $opt_r because $!\n";
+            print "Failed to run $opts{testengine} because $!\n";
             $errors++;
         }
         my ($logf) = IO::File->new("grcregtest.log");
