@@ -53,21 +53,21 @@ int main(int argc, char * argv[])
 	::CoInitialize(NULL);
 #endif
 
-	char rgchGdlppFile[256];
 	char * pchGdlppFile = getenv("GDLPP");
 #ifdef _WIN32
+	char rgchGdlppFile[256];
 	int cch;
 	if (!pchGdlppFile)
 	{
 		GetModuleFileName(NULL, rgchGdlppFile, 256);
 		cch = strlen(rgchGdlppFile);
-		while (rgchGdlppFile[cch] != '\\')
+		while (rgchGdlppFile[cch - 1] != '\\')
 		{
-			rgchGdlppFile[cch] = 0;
+			rgchGdlppFile[cch - 1] = 0;
 			cch--;
 		}
 		pchGdlppFile = rgchGdlppFile;
-		cch = strlen(pchGdlppFile);
+//		cch = strlen(pchGdlppFile);
 		if (pchGdlppFile[cch - 1] != '\\')
 		{
 			pchGdlppFile[cch++] = '\\';
@@ -84,8 +84,12 @@ int main(int argc, char * argv[])
 		pchGdlppFile[cch] = 0;
 	}
 #else
-	// Fill this in for Linux using argv[0].
-	Assert(false);
+    // On Linux just use the PATH since grcompiler has probably been run
+    // via the PATH and it allows people to use things like /usr/local/bin
+    if (!pchGdlppFile)
+    {
+        pchGdlppFile = "gdlpp";
+    }
 #endif
 
 	char * pchGdlFile = NULL;
@@ -192,7 +196,10 @@ int main(int argc, char * argv[])
 
 	std::string staVersion = VersionString(g_cman.FontTableVersion());
 
-	std::cout << "Reading input font...\n\n";
+	if (g_cman.IsVerbose())
+	{
+        std::cout << "Reading input font...\n\n";
+    }
 
 	GrcFont * pfont = new GrcFont(pchFontFile);
 	int nFontError = pfont->Init(&g_cman);
@@ -231,6 +238,7 @@ int main(int argc, char * argv[])
 	if (g_cman.IsVerbose())
 	{
 		std::cout << "GDL file: " << pchGdlFile << "\n"
+            << "PreProcessor: " << pchGdlppFile << "\n"
 			<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
 			<< "Output TT file: " << rgchOutputFile << "\n"
 			<< "Output font name: " << staFamily << ((fModFontName) ? "" : " (unchanged)") << "\n"
@@ -397,7 +405,7 @@ int main(int argc, char * argv[])
 				<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored)";
 		std::cout << ".\n";
 	}
-	else if (cerrWarningIgnored > 0)
+	else if (cerrWarningIgnored > 0 && g_cman.IsVerbose())
 	{
 		std::cout << cerrWarningIgnored
 			<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored.\n";

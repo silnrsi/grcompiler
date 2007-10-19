@@ -213,14 +213,14 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 		exit(-1);
 		case 0 : 
 			if (m_verbose)
-				testexec = execlp("gdlpp","gdlpp","-V",staFileName.c_str(),tmpgdl,0); // this is the code the child runs
+				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),"-V",staFileName.c_str(),tmpgdl,0); // this is the code the child runs
 			else
-				testexec = execlp("gdlpp","gdlpp",staFileName.c_str(),tmpgdl,0); // this is 
+				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),staFileName.c_str(),tmpgdl,0); // this is 
 			cout << "// exec retval:" << testexec << ", errno:" << strerror(errno) << "(" << errno << ")\n";
 			cout << "// tmpfile " << tmpgdl << endl;
 			cout << "// file " << staFileName.c_str() << endl;
 		g_errorList.AddError(1113, NULL,
-			"Failed to run pre-processor gdlpp",
+			"Failed to run pre-processor: ", staGdlppFile,
 			"compiling ",
 			staFileName);
 		return false;
