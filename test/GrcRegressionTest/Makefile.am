@@ -30,5 +30,5 @@ check-local: GrcRegressionTest
 	$(top_srcdir)/regtest -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest $(top_srcdir)/fonts
 
 dist-hook:
-	rm -f grcregtest.log
+	rm -f regtest.log gdlerr.txt grcregtest.log
 
