@@ -13,6 +13,7 @@ set FPATH=%_I%
 
 echo @echo off > "%FPATH%grcompile.bat"
 echo "%GPATH%grcompiler" "%1" "%2" >> "%FPATH%grcompile.bat"
+echo pause >> "%FPATH%grcompile.bat"
 
 goto done
 
