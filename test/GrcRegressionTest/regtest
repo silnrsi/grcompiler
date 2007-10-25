@@ -4,18 +4,19 @@ use IO::File;
 use Getopt::Long;
 
 my (%opts);
-GetOptions(\%opts, 'compiler|g=s', 'help|h|?', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'warning|w=i@');
+GetOptions(\%opts, 'compiler|g=s', 'help|h|?', 'keep|k', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'warning|w=i@');
 
 if ($opts{help})
 {
     die <<'EOT';
     regtest [-g grcompiler] [-o logfile] [-p gdlpp] [-r regtest] [-v] 
-            [-w number] [dir]
+            [-w number] [-k] [dir]
 Searches for fonts to run tests on in [dir] (defaults to .) and runs them
 storing log info in logfile and exiting with the number of errors
 
   -g grcompiler     command to use to run grcompiler [grcompiler]
   -h                print this help and exit
+  -k                keep temporary files
   -o logfile        file to log to [regtest.log]
   -p gdlpp          command to run the gdlpp []
   -r regtest        command to test result font [GrcRegressionTest]
@@ -76,7 +77,7 @@ foreach $f (@fonts)
             print "job error $res\n";
             $errors += $res;
         }
-        unlink $r;
+        unlink $r unless ($opts{'keep'});
     }
     else
     {
