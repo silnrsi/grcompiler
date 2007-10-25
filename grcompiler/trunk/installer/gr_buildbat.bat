@@ -2,18 +2,20 @@
 setlocal
 set _I=%0
 set _R=ret1
+set _D=\
 goto getpath
 :ret1
 set GPATH=%_I%
 set _I=%1
 set _R=ret2
+set _D=.
 goto getpath
 :ret2
 set FPATH=%_I%
 
-echo @echo off > "%FPATH%grcompile.bat"
-echo "%GPATH%grcompiler" "%1" "%2" >> "%FPATH%grcompile.bat"
-echo pause >> "%FPATH%grcompile.bat"
+echo @echo off > "%FPATH%.bat"
+echo "%GPATH%grcompiler" "%1" "%2" >> "%FPATH%.bat"
+echo pause >> "%FPATH%.bat"
 
 goto done
 
@@ -21,7 +23,7 @@ goto done
 set _I=%_I:"=%
 :getpath_l
 set _T=%_I:~-1,1%
-if %_T%X==\X goto getpath_d
+if %_T%X==%_D%X goto getpath_d
 if X%_I%==X goto getpath_d
 set _I=%_I:~0,-1%
 goto getpath_l
