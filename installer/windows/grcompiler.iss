@@ -45,7 +45,7 @@ Source: "C:\silgraphite_2_0\grcompiler\installer\example\makecaps.wpx"; DestDir:
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Run GrCompiler"; Filename: "{app}\GrCompiler.exe"
+;Name: "{group}\Run GrCompiler"; Filename: "{app}\GrCompiler.exe"
 Name: "{group}\Read-Me"; Filename: "{app}\readme.txt"
 Name: "{group}\GDL documentation"; Filename: "{app}\doc\GDL.pdf"
 Name: "{group}\Compiler Debug Files Doc"; Filename: "{app}\doc\CompilerDebugFiles.pdf"
