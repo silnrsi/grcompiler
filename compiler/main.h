@@ -82,6 +82,7 @@ using namespace gr;
 #include <map>
 #include <set>
 
+
 class GrcErrorList;
 class GrcManager;
 class GdlFeatureDefn;
@@ -91,6 +92,10 @@ class GdlRuleItem;
 class FsmTable;
 class FsmState;
 class FsmMachineClass;
+
+class ReplClassLess;
+typedef std::set<GdlGlyphClassDefn *, ReplClassLess> ReplacementClassSet;
+
 
 extern GrcErrorList g_errorList;
 extern GrcManager g_cman;

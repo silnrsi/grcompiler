@@ -22,6 +22,9 @@ class GdlGlyphDefn;
 //typedef std::set<GdlGlyphDefn *, PseudoLess> PseudoSet; // PseudoLess isn't implemented adquately yet
 typedef std::set<GdlGlyphDefn *> PseudoSet;
 
+//class ReplClassLess;
+//typedef std::set<GdlGlyphClassDefn *, ReplClassLess> ReplacementClassSet;
+
 /*----------------------------------------------------------------------------------------------
 Class: GdlGlyphAttrSetting
 Description: The setting of a glyph attribute--attribute name and expression indicating
@@ -98,6 +101,9 @@ public:
 	virtual bool WarnAboutBadGlyphs(bool fTop) = 0;
 	virtual bool DeleteBadGlyphs() = 0;
 
+	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened) = 0;
+
+public:
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc) = 0;
 	virtual void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
@@ -121,6 +127,7 @@ Hungarian: glfc
 class GdlGlyphClassDefn : public GdlGlyphClassMember
 {
 	friend class GdlGlyphDefn;
+	friend class ReplClassLess;
 
 public:
 	//	Constructors & destructors:
@@ -130,6 +137,7 @@ public:
 		m_fReplcmtOut = false;
 		m_nReplcmtInID = -1;
 		m_nReplcmtOutID = -1;
+		m_fHasFlatList = false;
 	}
 
 	~GdlGlyphClassDefn();
@@ -246,12 +254,27 @@ public:
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 
+	void FlattenMyGlyphList()
+	{
+		if (!m_fHasFlatList)
+		{
+			for (size_t i = 0; i < m_vpglfdMembers.size(); i++)
+				m_vpglfdMembers[i]->FlattenGlyphList(m_vgidFlattened);
+			m_fHasFlatList = true;
+		}
+	}
+	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened);
+
 protected:
 	//	Instance variables:
 	std::string							m_staName;
 	std::vector<GdlGlyphClassMember*>	m_vpglfdMembers;
 
 	std::vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;
+
+	// Flat list of included glyph ids; needed to generate a key for a replacement-class set.
+	std::vector<utf16> m_vgidFlattened;
+	bool m_fHasFlatList;
 
 //	std::vector<GdlGlyphAttrSetting*>	m_vpglfaComponents;
 //	std::vector<std::string>			m_vstaComponentNames;	// redundant with what is in components
@@ -270,7 +293,43 @@ protected:
 	int		m_nReplcmtInID;		// internal ID when serving as replacement input class
 	int		m_nReplcmtOutID;	// internal ID when serving as replacement output class
 
+	// Comparing two class definitions for insertion in a set; this assumes they are used as
+	// replacement classes and therefore the order of the items is signficant.
+	bool ReplClassLessThan(const GdlGlyphClassDefn * pglfc) const
+	{
+		//if (!this->m_fHasFlatList)
+		//	this->FlattenMyGlyphList();
+		//if (!pglfc->m_fHasFlatList)
+		//	pglfc->FlattenMyGlyphList();
+		Assert(this->m_fHasFlatList);
+		Assert(pglfc->m_fHasFlatList);
+
+		for (int igid = 0; igid < signed(m_vgidFlattened.size()); igid++)
+		{
+			if (signed(pglfc->m_vgidFlattened.size()) < igid - 1)
+				return false;
+			if (this->m_vgidFlattened[igid] < pglfc->m_vgidFlattened[igid])
+				return true;
+			if (this->m_vgidFlattened[igid] > pglfc->m_vgidFlattened[igid])
+				return false;
+		}
+		// At this point either the two classes are exactly the same, or pglfc is longer.
+		return (pglfc->m_vgidFlattened.size() > this->m_vgidFlattened.size());
+	}
+
 };	// end of class GdlGlyphClassDefn
+
+
+// Functor class for set manipulation.
+class ReplClassLess
+{
+	friend class GdlGlyphClassDefn;
+public:
+	operator()(const GdlGlyphClassDefn * pglfc1, const GdlGlyphClassDefn * pglfc2) const
+	{
+		return (pglfc1->ReplClassLessThan(pglfc2));
+	}
+};
 
 
 #endif // CLASSES_INCLUDED

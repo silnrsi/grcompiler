@@ -325,7 +325,7 @@ void GdlAttrValueSpec::AdjustSlotRefsForPreAnys(int critPrependedAnys, GdlRuleIt
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignClassInternalIDs()
 {
-	std::set<GdlGlyphClassDefn *> setpglfc;
+	ReplacementClassSet setpglfc;
 	m_prndr->MarkReplacementClasses(this, setpglfc);
 
 	//	Now that we've given warnings about invalid glyphs, delete them from the classes.
@@ -336,7 +336,7 @@ bool GrcManager::AssignClassInternalIDs()
 	//	batch to input classes. Note that some classes may have both an input
 	//	and an output ID.
 	int nSubID = 0;
-	std::set<GdlGlyphClassDefn *>::iterator itset;
+	ReplacementClassSet::iterator itset;
 	for (itset = setpglfc.begin();
 		itset != setpglfc.end();
 		++itset)
@@ -411,7 +411,7 @@ bool GrcManager::AssignClassInternalIDs()
 	for use in the FSMs.
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::MarkReplacementClasses(GrcManager * pcman,
-	std::set<GdlGlyphClassDefn *> & setpglfc)
+	ReplacementClassSet & setpglfc)
 {
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
@@ -421,7 +421,7 @@ void GdlRenderer::MarkReplacementClasses(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::MarkReplacementClasses(GrcManager * pcman,
-	std::set<GdlGlyphClassDefn *> & setpglfc)
+	ReplacementClassSet & setpglfc)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
@@ -431,7 +431,7 @@ void GdlRuleTable::MarkReplacementClasses(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlPass::MarkReplacementClasses(GrcManager * pcman,
-	std::set<GdlGlyphClassDefn *> & setpglfc)
+	ReplacementClassSet & setpglfc)
 {
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
@@ -441,7 +441,7 @@ void GdlPass::MarkReplacementClasses(GrcManager * pcman,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::MarkReplacementClasses(GrcManager * pcman, int nPassID,
-	std::set<GdlGlyphClassDefn *> & setpglfcReplace)
+	ReplacementClassSet & setpglfcReplace)
 {
 	//	Make lists of flags indicating whether each slot serves as an input replacement slot
 	//	and/or an output replacement slot.
@@ -557,7 +557,7 @@ void GdlSubstitutionItem::FindSubstitutionSlots(int irit,
 	Mark this item's class as a replacement class, and add it to the list.
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
-	std::set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput)
+	ReplacementClassSet & setpglfcReplace, bool fInput)
 {
 	GdlDefn * pdefn;
 	if (fInput)
@@ -589,6 +589,8 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 
 	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn *>(pdefn);
 	Assert(pglfc);
+	
+	pglfc->FlattenMyGlyphList();
 
 	if (pcman->IgnoreBadGlyphs())
 		pglfc->WarnAboutBadGlyphs(true);
