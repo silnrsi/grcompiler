@@ -10,10 +10,10 @@ PASS CONSTRAINTS: none
 RULE 1.0, PigLatin.gdl(46):  clsConsUC  clsCons  clsCons  clsWfLC  >  clsWfUC$4:4  clsConsLC$1:1 { user1=1;  }  @2 { user1=1;  }  @3 { user1=1;  }   /  _ {...}  ^  _ {...}  _ {...}  _  ;
 
 ACTIONS:
-PutSubs 3 5 1
+PutSubs 3 5 0
 Assoc 1 3
 Next
-PutSubs 255 4 0
+PutSubs 255 4 2
 Assoc 1 -1
 PushByte 1
 IAttrSet user 0
@@ -49,10 +49,10 @@ PopRet
 RULE 1.1, PigLatin.gdl(49):  clsConsUC  clsCons  clsWfLC  >  clsWfUC$3:3  clsConsLC$1:1 { user1=1;  }  @2 { user1=1;  }   /  _ {...}  ^  _ {...}  _  ;
 
 ACTIONS:
-PutSubs 2 5 1
+PutSubs 2 5 0
 Assoc 1 2
 Next
-PutSubs 255 4 0
+PutSubs 255 4 2
 Assoc 1 -1
 PushByte 1
 IAttrSet user 0
@@ -79,10 +79,10 @@ PopRet
 RULE 1.2, PigLatin.gdl(52):  clsConsUC  clsWfLC  >  clsWfUC$2:2  clsConsLC$1:1 { user1=1;  }   /  _ {...}  ^  _  ;
 
 ACTIONS:
-PutSubs 1 5 1
+PutSubs 1 5 0
 Assoc 1 1
 Next
-PutSubs 255 4 0
+PutSubs 255 4 2
 Assoc 1 -1
 PushByte 1
 IAttrSet user 0
@@ -191,7 +191,7 @@ Next
 PutCopy 0
 Next
 Insert
-PutGlyph 2
+PutGlyph 1
 Assoc 1 0
 Next
 Insert
@@ -225,7 +225,7 @@ Next
 PutCopy 0
 Next
 Insert
-PutGlyph 2
+PutGlyph 1
 Assoc 1 0
 Next
 Insert
@@ -252,7 +252,7 @@ ACTIONS:
 PutCopy 0
 Next
 Insert
-PutGlyph 2
+PutGlyph 1
 Assoc 1 0
 Next
 Insert

@@ -14,7 +14,7 @@ PASS CONSTRAINTS: none
 RULE 1.0, SchMain.gdl(119):  cUnencodedChar  >  cUnencodedGlyph  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 42 3
+PutSubs(V1&2) 0 59 7
 Next
 RetZero
 
@@ -23,10 +23,10 @@ CONSTRAINTS: none
 RULE 1.1, SchMain.gdl(122):  cUnencodedChar2Parts  _  >  cUnencodedGlyphPart1  cUnencodedGlyphPart2$1:1  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 43 4
+PutSubs(V1&2) 0 60 5
 Next
 Insert
-PutSubs(V1&2) 0 43 5
+PutSubs(V1&2) 0 60 34
 Assoc 1 0
 Next
 RetZero
@@ -37,10 +37,10 @@ RULE 1.2, SchMain.gdl(126):  _  cAlefPlusMark  >  absAlef:2  cAlefMark  ;
 
 ACTIONS:
 Insert
-PutGlyph(V1&2) 0
+PutGlyph(V1&2) 4
 Assoc 1 1
 Next
-PutSubs(V1&2) 0 47 10
+PutSubs(V1&2) 0 44 12
 Next
 RetZero
 
@@ -49,7 +49,7 @@ CONSTRAINTS: none
 RULE 1.3, SchMain.gdl(128):  *GC1*  >  *GC0*  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 61 34
+PutSubs(V1&2) 0 40 0
 Next
 RetZero
 
@@ -221,7 +221,7 @@ RULE 3.0, SchMain.gdl(157):  absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLig
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 58 30
+PutSubs(V1&2) 0 51 21
 Assoc 2 -1 0
 PushByte -1
 IAttrSetSlot comp_ref 3
@@ -243,7 +243,7 @@ RULE 3.1, SchMain.gdl(160):  absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLig
 ACTIONS:
 Delete
 Next
-PutSubs(V1&2) 0 58 30
+PutSubs(V1&2) 0 51 21
 Assoc 2 -1 0
 Next
 RetZero
@@ -264,7 +264,7 @@ PASS CONSTRAINTS: none
 RULE 4.0, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1=0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 44 6
+PutSubs(V1&2) 0 47 30
 PushByte 0
 IAttrSet user 0
 Next
@@ -272,7 +272,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 46 8
+PutSubs(V1&2) 0 45 31
 Next
 PushByte -1
 PopRet
@@ -282,14 +282,14 @@ CONSTRAINTS: none
 RULE 4.1, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1=0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 44 6
+PutSubs(V1&2) 0 47 30
 PushByte 0
 IAttrSet user 0
 Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 46 8
+PutSubs(V1&2) 0 45 31
 Next
 PushByte -1
 PopRet
@@ -299,13 +299,13 @@ CONSTRAINTS: none
 RULE 4.2, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1=0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 44 6
+PutSubs(V1&2) 0 47 30
 PushByte 0
 IAttrSet user 0
 Next
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 46 8
+PutSubs(V1&2) 0 45 31
 Next
 PushByte -1
 PopRet
@@ -315,12 +315,12 @@ CONSTRAINTS: none
 RULE 4.3, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1=0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 44 6
+PutSubs(V1&2) 0 47 30
 PushByte 0
 IAttrSet user 0
 Next
 CopyNext
-PutSubs(V1&2) 0 46 8
+PutSubs(V1&2) 0 45 31
 Next
 PushByte -1
 PopRet
@@ -330,11 +330,11 @@ CONSTRAINTS: none
 RULE 4.4, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1=0;  }  cAlefFinPostLamIni   /  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 44 6
+PutSubs(V1&2) 0 47 30
 PushByte 0
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 46 8
+PutSubs(V1&2) 0 45 31
 Next
 PushByte -1
 PopRet
@@ -344,7 +344,7 @@ CONSTRAINTS: none
 RULE 4.5, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1=0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 45 7
+PutSubs(V1&2) 0 50 32
 PushByte 0
 IAttrSet user 0
 Next
@@ -352,7 +352,7 @@ CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 46 9
+PutSubs(V1&2) 0 45 33
 Next
 PushByte -1
 PopRet
@@ -362,14 +362,14 @@ CONSTRAINTS: none
 RULE 4.6, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1=0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 45 7
+PutSubs(V1&2) 0 50 32
 PushByte 0
 IAttrSet user 0
 Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 46 9
+PutSubs(V1&2) 0 45 33
 Next
 PushByte -1
 PopRet
@@ -379,13 +379,13 @@ CONSTRAINTS: none
 RULE 4.7, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1=0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 45 7
+PutSubs(V1&2) 0 50 32
 PushByte 0
 IAttrSet user 0
 Next
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 46 9
+PutSubs(V1&2) 0 45 33
 Next
 PushByte -1
 PopRet
@@ -395,12 +395,12 @@ CONSTRAINTS: none
 RULE 4.8, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1=0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 45 7
+PutSubs(V1&2) 0 50 32
 PushByte 0
 IAttrSet user 0
 Next
 CopyNext
-PutSubs(V1&2) 0 46 9
+PutSubs(V1&2) 0 45 33
 Next
 PushByte -1
 PopRet
@@ -410,11 +410,11 @@ CONSTRAINTS: none
 RULE 4.9, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1=0;  }  cAlefFinPostLamMed   /  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 45 7
+PutSubs(V1&2) 0 50 32
 PushByte 0
 IAttrSet user 0
 Next
-PutSubs(V1&2) 0 46 9
+PutSubs(V1&2) 0 45 33
 Next
 PushByte -1
 PopRet
@@ -424,14 +424,14 @@ CONSTRAINTS: none
 RULE 4.10, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -441,13 +441,13 @@ CONSTRAINTS: none
 RULE 4.11, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -457,12 +457,12 @@ CONSTRAINTS: none
 RULE 4.12, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -472,11 +472,11 @@ CONSTRAINTS: none
 RULE 4.13, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -486,10 +486,10 @@ CONSTRAINTS: none
 RULE 4.14, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -499,13 +499,13 @@ CONSTRAINTS: none
 RULE 4.15, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -515,12 +515,12 @@ CONSTRAINTS: none
 RULE 4.16, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -530,11 +530,11 @@ CONSTRAINTS: none
 RULE 4.17, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -544,10 +544,10 @@ CONSTRAINTS: none
 RULE 4.18, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
 CopyNext
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -557,9 +557,9 @@ CONSTRAINTS: none
 RULE 4.19, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  ^  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 62 35
+PutSubs(V1&2) 0 43 3
 Next
-PutSubs(V1&2) 0 63 36
+PutSubs(V1&2) 0 42 2
 Next
 PushByte -1
 PopRet
@@ -569,15 +569,15 @@ CONSTRAINTS: none
 RULE 4.20, SchMain.gdl(195):  cSignTakes4  cDigitNormal  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign4  cDigitMedium  cDigitMedium  cDigitMedium  cDigitMedium  ;
 
 ACTIONS:
-PutGlyph(V1&2) 12
+PutGlyph(V1&2) 29
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
 RetZero
 
@@ -586,13 +586,13 @@ CONSTRAINTS: none
 RULE 4.21, SchMain.gdl(198):  cSignTakes3Medium  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign3Medium  cDigitMedium  cDigitMedium  cDigitMedium  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 49 13
+PutSubs(V1&2) 0 53 28
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
 RetZero
 
@@ -601,13 +601,13 @@ CONSTRAINTS: none
 RULE 4.22, SchMain.gdl(201):  cSignTakes3Small  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign3Small  cDigitSmall  cDigitSmall  cDigitSmall  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 50 14
+PutSubs(V1&2) 0 55 26
 Next
-PutSubs(V1&2) 0 53 18
+PutSubs(V1&2) 0 57 20
 Next
-PutSubs(V1&2) 0 53 18
+PutSubs(V1&2) 0 57 20
 Next
-PutSubs(V1&2) 0 53 18
+PutSubs(V1&2) 0 57 20
 Next
 RetZero
 
@@ -616,11 +616,11 @@ CONSTRAINTS: none
 RULE 4.23, SchMain.gdl(204):  cSignTakes2  cDigitNormal  cDigitNormal  >  cSign2  cDigitMedium  cDigitMedium  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 51 15
+PutSubs(V1&2) 0 52 27
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
 RetZero
 
@@ -629,9 +629,9 @@ CONSTRAINTS: none
 RULE 4.24, SchMain.gdl(207):  cSignTakes1  cDigitNormal  >  cSign1  cDigitMedium  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 52 16
+PutSubs(V1&2) 0 255 255
 Next
-PutSubs(V1&2) 0 53 17
+PutSubs(V1&2) 0 57 19
 Next
 RetZero
 
@@ -644,7 +644,7 @@ PASS CONSTRAINTS: none
 RULE 5.0, SchMain.gdl(214):  absSuperscriptAlef  >  absSuperscriptAlef__large   /  cNeedsLargeDaggerAlef  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 1
+PutGlyph(V1&2) 13
 Next
 RetZero
 
@@ -653,7 +653,7 @@ CONSTRAINTS: none
 RULE 5.1, SchMain.gdl(217):  cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3) { comp.base.ref=@2; comp.hamza.ref=@3;  }  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 48 11
+PutSubs(V1&2) 0 46 6
 Assoc 2 0 1
 PushByte 0
 IAttrSetSlot comp_ref 0
@@ -671,7 +671,7 @@ PopRet
 RULE 5.2, SchMain.gdl(220):  cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3)  _   /  ANY  _  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 48 11
+PutSubs(V1&2) 0 46 6
 Assoc 2 0 1
 Next
 Delete
@@ -686,7 +686,7 @@ PopRet
 RULE 5.3, SchMain.gdl(226):  cno_Meem  >  cMeemSindhi   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 57 29
+PutSubs(V1&2) 0 48 8
 Next
 RetZero
 
@@ -699,7 +699,7 @@ PopRet
 RULE 5.4, SchMain.gdl(230):  cno_Heh  >  cHehKurdish   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 56 26
+PutSubs(V1&2) 0 49 10
 Next
 RetZero
 
@@ -712,7 +712,7 @@ PopRet
 RULE 5.5, SchMain.gdl(233):  cno_Heh  >  cHehSindhi   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 56 27
+PutSubs(V1&2) 0 49 11
 Next
 RetZero
 
@@ -725,7 +725,7 @@ PopRet
 RULE 5.6, SchMain.gdl(236):  cno_Heh  >  cHehUrdu   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 56 28
+PutSubs(V1&2) 0 49 9
 Next
 RetZero
 
@@ -738,7 +738,7 @@ PopRet
 RULE 5.7, SchMain.gdl(240):  cEasternDigit  >  cEasternDigitSindhi   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 55 25
+PutSubs(V1&2) 0 58 17
 Next
 RetZero
 
@@ -751,7 +751,7 @@ PopRet
 RULE 5.8, SchMain.gdl(243):  cEasternDigit  >  cEasternDigitUrdu   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 55 24
+PutSubs(V1&2) 0 58 18
 Next
 RetZero
 
@@ -764,7 +764,7 @@ PopRet
 RULE 5.9, SchMain.gdl(247):  cno_Sukun  >  cSukunDownOpen   /  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 21
+PutGlyph(V1&2) 23
 Next
 RetZero
 
@@ -790,7 +790,7 @@ PopRet
 RULE 5.11, SchMain.gdl(254):  cno_OpenLeft  >  cOpenLeft   /  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 23
+PutGlyph(V1&2) 255
 Next
 RetZero
 
@@ -803,7 +803,7 @@ PopRet
 RULE 5.12, SchMain.gdl(258):  cno_Downward  >  cDownward   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 54 19
+PutSubs(V1&2) 0 54 14
 Next
 RetZero
 
@@ -814,7 +814,7 @@ PopRet
 RULE 5.13, SchMain.gdl(262):  cno_SixNine  >  cSixNine   /  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 20
+PutGlyph(V1&2) 24
 Next
 RetZero
 
@@ -825,7 +825,7 @@ PopRet
 RULE 5.14, SchMain.gdl(266):  cEndOfAyah  >  cEndOfAyahCircle   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 59 31
+PutSubs(V1&2) 0 56 15
 Next
 RetZero
 
@@ -838,7 +838,7 @@ PopRet
 RULE 5.15, SchMain.gdl(269):  cEndOfAyah  >  cEndOfAyahSquare   /  ANY  _  ;
 
 ACTIONS:
-PutSubs(V1&2) 0 59 32
+PutSubs(V1&2) 0 56 16
 Next
 RetZero
 
@@ -851,7 +851,7 @@ PopRet
 RULE 5.16, SchMain.gdl(275):  cInvisible  >  zeroWidthSpace { dir=...;  }   /  ANY  _  ;
 
 ACTIONS:
-PutGlyph(V1&2) 33
+PutGlyph(V1&2) 1
 PushSlotAttr dir 0
 AttrSet dir
 Next
@@ -876,7 +876,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -892,7 +892,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -907,7 +907,7 @@ Next
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -921,7 +921,7 @@ PutCopy 0
 Next
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -934,7 +934,7 @@ ACTIONS:
 PutCopy 0
 Next
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -951,7 +951,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -967,7 +967,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -982,7 +982,7 @@ Next
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -996,7 +996,7 @@ PutCopy 0
 Next
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -1009,7 +1009,7 @@ ACTIONS:
 PutCopy 0
 Next
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -1026,7 +1026,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -1042,7 +1042,7 @@ CopyNext
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -1057,7 +1057,7 @@ Next
 CopyNext
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -1071,7 +1071,7 @@ PutCopy 0
 Next
 CopyNext
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
@@ -1084,7 +1084,7 @@ ACTIONS:
 PutCopy 0
 Next
 Insert
-PutGlyph(V1&2) 2
+PutGlyph(V1&2) 25
 Assoc 1 1
 Next
 RetZero
