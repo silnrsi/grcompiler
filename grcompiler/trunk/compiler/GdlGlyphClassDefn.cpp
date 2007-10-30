@@ -199,6 +199,20 @@ bool GdlGlyphClassDefn::HasBadGlyph()
 	return false;
 }
 
+/*----------------------------------------------------------------------------------------------
+	Add this glyph's list of glyphs to the flat list.
+	Assumes method is called after list of glyphs is complete.
+----------------------------------------------------------------------------------------------*/
+void GdlGlyphClassDefn::FlattenGlyphList(std::vector<utf16> & vgidFlattened)
+{
+	if (!m_fHasFlatList)
+		FlattenMyGlyphList();
+	for (size_t igid = 0; igid < m_vgidFlattened.size(); igid++)
+	{
+		vgidFlattened.push_back(m_vgidFlattened[igid]);
+	}
+}
+
 
 #if 0
 

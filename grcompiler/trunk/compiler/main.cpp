@@ -141,8 +141,8 @@ int main(int argc, char * argv[])
 		std::cout << "   -q     - quiet mode (no messages except on error)\n";
 		std::cout << "   -vN    - set Silf table version number\n";
 		std::cout << "   -wNNNN - ignore warning with the given number\n";
-		std::cout << "\nPress Enter...";
-		char ch; std::cin.get(ch);
+		//std::cout << "\nPress Enter...";
+		//char ch; std::cin.get(ch);
 		return 2;
 	}
 

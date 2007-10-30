@@ -244,7 +244,7 @@ public:
 	virtual void FindSubstitutionSlots(int irit,
 		std::vector<bool> & vfInput, std::vector<bool> & vfOutput);
 	void MarkClassAsReplacementClass(GrcManager * pcman,
-		std::set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput);
+		ReplacementClassSet & setpglfcReplace, bool fInput);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
@@ -808,12 +808,12 @@ public:
 
 	void FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
 	void AssignClassInternalIDs(GrcManager * pcman, int nPassID,
-		std::set<GdlGlyphClassDefn *> & setpglfc);
+		ReplacementClassSet & setpglfc);
 	void FixFeatureTestsInRules(GrcFont *);
 	void MarkReplacementClasses(GrcManager * pcman, int nPassID,
-		std::set<GdlGlyphClassDefn *> & setpglfcReplace);
+		ReplacementClassSet & setpglfcReplace);
 	void MarkClassAsReplacementClass(GrcManager * pcman,
-		std::set<GdlGlyphClassDefn *> & setpglfcReplace, bool fInput);
+		ReplacementClassSet & setpglfcReplace, bool fInput);
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable, int grfrco);
 	bool CheckForJustificationConstraint();

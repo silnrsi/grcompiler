@@ -290,6 +290,14 @@ public:
 	virtual bool WarnAboutBadGlyphs(bool fTop);
 	virtual bool DeleteBadGlyphs();
 
+	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened)
+	{
+		for (size_t igid = 0; igid < m_vwGlyphIDs.size(); igid++)
+		{
+			vgidFlattened.push_back(m_vwGlyphIDs[igid]);
+		}
+	}
+
 public:
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);

@@ -86,7 +86,7 @@ public:
 	void FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
 	void FixFeatureTestsInPass(GrcFont * pfont);
 	void MarkReplacementClasses(GrcManager * pcman,
-		std::set<GdlGlyphClassDefn *> & setpglfc);
+		ReplacementClassSet & setpglfc);
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable, int grfrco);
 	void CheckLBsInRules(Symbol psymTable);
@@ -270,7 +270,7 @@ public:
 	void FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
 	void CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum);
 	void MarkReplacementClasses(GrcManager * pcman,
-		std::set<GdlGlyphClassDefn *> & setpglfc);
+		ReplacementClassSet & setpglfc);
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont, GdlRenderer * prndr);
 	void CheckLBsInRules();
 	void ReplaceKern(GrcManager * pcman);
