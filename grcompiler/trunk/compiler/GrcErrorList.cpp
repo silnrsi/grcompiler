@@ -391,3 +391,4 @@ void GrcErrorList::SetFileNameFromGdlFile(char * pchGdlFile)
 	m_strErrFile.assign(pchGdlFile, (pchEnd - pchGdlFile + 1));
 	m_strErrFile.append("gdlerr.txt");
 }
+

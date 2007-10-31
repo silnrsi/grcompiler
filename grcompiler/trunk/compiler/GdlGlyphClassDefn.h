@@ -325,7 +325,7 @@ class ReplClassLess
 {
 	friend class GdlGlyphClassDefn;
 public:
-	operator()(const GdlGlyphClassDefn * pglfc1, const GdlGlyphClassDefn * pglfc2) const
+	bool operator()(const GdlGlyphClassDefn * pglfc1, const GdlGlyphClassDefn * pglfc2) const
 	{
 		return (pglfc1->ReplClassLessThan(pglfc2));
 	}
