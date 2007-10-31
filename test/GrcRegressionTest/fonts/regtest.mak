@@ -30,10 +30,10 @@ $(FONTS)\CharisTest.ttf :
 	grcompiler -v2 $(FONTS)\CharisMain.gdl $(FONTS)\CharisInput.ttf $(FONTS)\CharisTest.ttf
     
 $(FONTS)\PigLatinTest_v2.ttf :
-	grcompiler -v2 $(FONTS)\PigLatin.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v2.ttf
+	grcompiler -v2 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v2.ttf
     
 $(FONTS)\PigLatinTest_v3.ttf :
-	grcompiler -v3 $(FONTS)\PigLatin.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v3.ttf
+	grcompiler -v3 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v3.ttf
     
 $(FONTS)\PadaukTest.ttf :
 	grcompiler -v3 $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
@@ -43,6 +43,6 @@ grcregtest.log :
 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\CharisBenchmark.ttf $(FONTS)\CharisTest.ttf
  	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v2.ttf $(FONTS)\PigLatinTest_v2.ttf
  	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v3.ttf $(FONTS)\PigLatinTest_v3.ttf
- 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PadaukBenchmark.ttf $(FONTS)\PadaukTest.ttf
+ 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PadaukBenchmark_v3.ttf $(FONTS)\PadaukTest.ttf
 
  	
