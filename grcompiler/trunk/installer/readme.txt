@@ -35,11 +35,6 @@ If you choose to put the gdlpp.exe file in a different folder from GrCompiler.ex
 The GDLPP_PREFS environment variable is used to indicate where the Graphite compiler will find #included files. The value consists of "-I" followed by the path or paths to files of interest, for instance, "-Ic:\graphite". At the very least, you will want to be able to #include "stddef.gdh", which is the standard include file that contains all the standard GDL abbrevations. If it is located in a different folder than the original two files, you will need to put its path in the GDLPP_PREFS environment variable.
 
 
-INSTALLING THE PROGRAM ON LINUX
-
->>>>>>>>>>>>  FILL THIS IN!!!  <<<<<<<<<<<<
-
-
 RUNNING THE COMPILER
 
 To run the compiler, execute the grcompiler.exe file. Omitting all arguments will give a summary of the expected syntax, which is:
