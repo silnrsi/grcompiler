@@ -1,0 +1,7009 @@
+ENGINE CODE FOR RULES
+
+
+TABLE: substitution
+
+PASS: 0
+
+PASS CONSTRAINTS: none
+
+PASS: 1
+
+PASS CONSTRAINTS: none
+
+RULE 1.0, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 78
+Assoc 2 0 7
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.1, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 9)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 78
+Assoc 2 0 6
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.2, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 8)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 78
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.3, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 7)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 78
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.4, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 6)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 78
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.5, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 5)  _   /  ANY  ANY  ^  _  cTakesUDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 78
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.6, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 83
+Assoc 2 0 7
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.7, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 9)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 83
+Assoc 2 0 6
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.8, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 8)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 83
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.9, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 7)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 83
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.10, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 6)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 83
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.11, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 5)  _   /  ANY  ANY  ^  _  cTakesUDia  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 83
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.12, CharisRules.gdh(269):  cno_ChinantecTn  >  cChinantecTn   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 169 88
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 5 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.13, CharisRules.gdh(271):  cChinantecTn  >  cno_ChinantecTn   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 170 72
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 5 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.14, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 8)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 127 27
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.15, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 7)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  cnHDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 127 27
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.16, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 6)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 127 27
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.17, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 5)  _   /  ANY  ANY  ^  _  cnHDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 127 27
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.18, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 4)  _   /  ANY  ANY  ^  _  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 127 27
+Assoc 2 0 1
+Next
+Delete
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.19, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 8)  _   /  ANY  ANY  ^  _  cnODia  cnODia  cnODia  cnODia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 126 11
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.20, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 7)  _   /  ANY  ANY  ^  _  cnODia  cnODia  cnODia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 126 11
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.21, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 6)  _   /  ANY  ANY  ^  _  cnODia  cnODia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 126 11
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.22, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 5)  _   /  ANY  ANY  ^  _  cnODia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 126 11
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.23, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 4)  _   /  ANY  ANY  ^  _  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 126 11
+Assoc 2 0 1
+Next
+Delete
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.24, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 8)  _   /  ANY  ANY  _  cnRDia  cnRDia  cnRDia  cnRDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 128 47
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.25, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 7)  _   /  ANY  ANY  _  cnRDia  cnRDia  cnRDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 128 47
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.26, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 6)  _   /  ANY  ANY  _  cnRDia  cnRDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 128 47
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.27, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 5)  _   /  ANY  ANY  _  cnRDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 128 47
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.28, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 4)  _   /  ANY  ANY  _  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 128 47
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.29, CharisRules.gdh(292):  _  c_aStack_noLit  >  g_a_sng_story:4  c_diacComb_vN   /  ANY  ANY  _  _ {...}  ;
+
+ACTIONS:
+Insert
+PutGlyph(V1&2) 10
+Assoc 1 1
+Next
+PutSubs(V1&2) 0 138 74
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+CntxtItem 0 6
+PushFeat 8 0
+PushByte 1
+Equal
+And
+PopRet
+
+RULE 1.30, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 5 168 73
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.31, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 4 168 73
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.32, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 3 168 73
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.33, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 2 168 73
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.34, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 168 73
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.35, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 5 168 80
+Assoc 2 0 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.36, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 4 168 80
+Assoc 2 0 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.37, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 3 168 80
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.38, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 2 168 80
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.39, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 168 80
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.40, CharisRules.gdh(296):  cno_VN  >  cVN   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 137 6
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.41, CharisRules.gdh(298):  cVN  >  cno_VN   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 139 5
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 3 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.42, CharisRules.gdh(304):  g0308  >  g0308_uU   /  g__l  g035F  _  g035F  g__l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 84
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.43, CharisRules.gdh(304):  g0308  >  g0308_uU   /  g__l  g035F  _  g__l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 84
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.44, CharisRules.gdh(304):  g0308  >  g0308_uU   /  ANY  g__l  _  g035F  g__l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 84
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.45, CharisRules.gdh(304):  g0308  >  g0308_uU   /  ANY  g__l  _  g__l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 84
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.46, CharisRules.gdh(305):  g0308  >  g0308_uL   /  g__l  g035F  _  g035F  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 86
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.47, CharisRules.gdh(305):  g0308  >  g0308_uL   /  g__l  g035F  _  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 86
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.48, CharisRules.gdh(305):  g0308  >  g0308_uL   /  ANY  g__l  _  g035F  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 86
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.49, CharisRules.gdh(305):  g0308  >  g0308_uL   /  ANY  g__l  _  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 86
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.50, CharisRules.gdh(306):  g0308  >  g0308_lL   /  g_l  g035F  _  g035F  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 85
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.51, CharisRules.gdh(306):  g0308  >  g0308_lL   /  g_l  g035F  _  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 85
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.52, CharisRules.gdh(306):  g0308  >  g0308_lL   /  ANY  g_l  _  g035F  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 85
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.53, CharisRules.gdh(306):  g0308  >  g0308_lL   /  ANY  g_l  _  g_l  ;
+
+ACTIONS:
+PutGlyph(V1&2) 85
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.54, CharisRules.gdh(309):  g0311  >  g0311_uU   /  g__o  g035F  _  g035F  g__u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 75
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.55, CharisRules.gdh(309):  g0311  >  g0311_uU   /  g__o  g035F  _  g__u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 75
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.56, CharisRules.gdh(309):  g0311  >  g0311_uU   /  ANY  g__o  _  g035F  g__u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 75
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.57, CharisRules.gdh(309):  g0311  >  g0311_uU   /  ANY  g__o  _  g__u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 75
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.58, CharisRules.gdh(310):  g0311  >  g0311_uL   /  g__o  g035F  _  g035F  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 76
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.59, CharisRules.gdh(310):  g0311  >  g0311_uL   /  g__o  g035F  _  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 76
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.60, CharisRules.gdh(310):  g0311  >  g0311_uL   /  ANY  g__o  _  g035F  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 76
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.61, CharisRules.gdh(310):  g0311  >  g0311_uL   /  ANY  g__o  _  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 76
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.62, CharisRules.gdh(311):  g0311  >  g0311_lL   /  g_o  g035F  _  g035F  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 77
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.63, CharisRules.gdh(311):  g0311  >  g0311_lL   /  g_o  g035F  _  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 77
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.64, CharisRules.gdh(311):  g0311  >  g0311_lL   /  ANY  g_o  _  g035F  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 77
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.65, CharisRules.gdh(311):  g0311  >  g0311_lL   /  ANY  g_o  _  g_u  ;
+
+ACTIONS:
+PutGlyph(V1&2) 77
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 6 0
+PopRet
+
+RULE 1.66, CharisRules.gdh(350):  *GC0*  >  g__eng   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 41
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 10 0
+PushByte 0
+Equal
+PopRet
+
+RULE 1.67, CharisRules.gdh(354):  *GC1*  >  cBaselineHook   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 40
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 10 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.68, CharisRules.gdh(358):  *GC2*  >  g__eng_u_c_style   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 38
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 10 0
+PushByte 2
+Equal
+PopRet
+
+RULE 1.69, CharisRules.gdh(362):  *GC3*  >  cKom   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 42
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 10 0
+PushByte 3
+Equal
+PopRet
+
+RULE 1.70, CharisRules.gdh(368):  *GC4*  >  g0264   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 59
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 11 0
+PushByte 0
+Equal
+PopRet
+
+RULE 1.71, CharisRules.gdh(372):  *GC5*  >  g0264_lrgBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 58
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 11 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.72, CharisRules.gdh(376):  *GC6*  >  g0264_gammaStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 60
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 11 0
+PushByte 2
+Equal
+PopRet
+
+RULE 1.73, CharisRules.gdh(382):  cno_MongolStyle  >  cMongolStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 147 17
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 25 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.74, CharisRules.gdh(384):  cMongolStyle  >  cno_MongolStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 148 16
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 25 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.75, CharisRules.gdh(398):  cno_CyShortMrkAlt  >  cCyShortMrkAlt   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 81
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 28 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.76, CharisRules.gdh(400):  cCyShortMrkAlt  >  cno_CyShortMrkAlt   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 79
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 28 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.77, CharisRules.gdh(406):  cno_ShowInv  >  cShowInv   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 167 114
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 31 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.78, CharisRules.gdh(420):  cno_SngBowl  >  cSngBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 133 25
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 8 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.79, CharisRules.gdh(421):  cno_SngStory  >  cSngStory   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 129 9
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 8 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.80, CharisRules.gdh(422):  g01E5  >  g01E5_barBowl_sngBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 26
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 8 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.81, CharisRules.gdh(424):  cSngBowl  >  cno_SngBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 150 3
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 8 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.82, CharisRules.gdh(425):  cSngStory  >  cno_SngStory   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 142 0
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 8 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.83, CharisRules.gdh(433):  g_f  cfLigC2  >  g_f_slant_italic  cfLigC2_slantItalic   /  ANY  ANY  _  _  cDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 20
+Next
+PutSubs(V1&2) 0 131 19
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.84, CharisRules.gdh(434):  g_f  cfLigC2  >  _  cfLig_slantItalic:(3 4) { comp.f1.ref=@3; comp.f2.ref=@4;  }   /  ANY  ANY  _  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs(V1&2) 0 131 24
+Assoc 2 -1 0
+PushByte -1
+IAttrSetSlot comp_ref 2
+PushByte 0
+IAttrSetSlot comp_ref 3
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.85, CharisRules.gdh(436):  g_f  g_f  cffLigC3  >  g_f_slant_italic  g_f_slant_italic  cffLigC3_slantItalic   /  ANY  ANY  _  _  _  cDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 20
+Next
+PutGlyph(V1&2) 20
+Next
+PutSubs(V1&2) 0 134 32
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.86, CharisRules.gdh(437):  g_f  g_f  cffLigC3  >  _  _  cffLig_slantItalic:(3 4 5) { comp.f1.ref=@3; comp.f2.ref=@4; comp.f3.ref=@5;  }   /  ANY  ANY  _  _  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+PutSubs(V1&2) 0 134 22
+Assoc 3 -2 -1 0
+PushByte -2
+IAttrSetSlot comp_ref 2
+PushByte -1
+IAttrSetSlot comp_ref 3
+PushByte 0
+IAttrSetSlot comp_ref 4
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.87, CharisRules.gdh(439):  cno_SlantItalic  >  cSlantItalic   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 132 18
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.88, CharisRules.gdh(440):  cno_2StorySlantItalic  >  c2StorySlantItalic   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 130 4
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.89, CharisRules.gdh(444):  g_f  cfLigC2  >  @3  @4   /  ANY  ANY  _  _  cDia  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.90, CharisRules.gdh(445):  g_f  cfLigC2  >  _  cfLig:(3 4) { comp.f1.ref=@3; comp.f2.ref=@4;  }   /  ANY  ANY  _  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs(V1&2) 0 131 23
+Assoc 2 -1 0
+PushByte -1
+IAttrSetSlot comp_ref 2
+PushByte 0
+IAttrSetSlot comp_ref 3
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.91, CharisRules.gdh(447):  g_f  g_f  cffLigC3  >  @3  @4  @5   /  ANY  ANY  _  _  _  cDia  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.92, CharisRules.gdh(448):  g_f  g_f  cffLigC3  >  _  _  cffLig:(3 4 5) { comp.f1.ref=@3; comp.f2.ref=@4; comp.f3.ref=@5;  }   /  ANY  ANY  _  _  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+PutSubs(V1&2) 0 134 21
+Assoc 3 -2 -1 0
+PushByte -2
+IAttrSetSlot comp_ref 2
+PushByte -1
+IAttrSetSlot comp_ref 3
+PushByte 0
+IAttrSetSlot comp_ref 4
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.93, CharisRules.gdh(451):  cSlantItalic  >  cno_SlantItalic   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 149 2
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.94, CharisRules.gdh(452):  c2StorySlantItalic  >  cno_2StorySlantItalic   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 136 1
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 9 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.95, CharisRules.gdh(459):  cno_BarBowl  >  cBarBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 144 12
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 7 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.96, CharisRules.gdh(463):  cBarBowl  >  cno_BarBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 143 13
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 7 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.97, CharisRules.gdh(468):  cno_TopSerifJStroke  >  cTopSerifJStroke   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 35
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 14 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.98, CharisRules.gdh(470):  cTopSerifJStroke  >  cno_TopSerifJStroke   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 36
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 14 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.99, CharisRules.gdh(474):  cno_TopSerifOpenO  >  cTopSerifOpenO   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 145 15
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 16 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.100, CharisRules.gdh(476):  cTopSerifOpenO  >  cno_TopSerifOpenO   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 146 14
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 16 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.101, CharisRules.gdh(480):  cno_StraightLft  >  cStraightLft   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 57
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 20 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.102, CharisRules.gdh(482):  cStraightLft  >  cno_StraightLft   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 56
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 20 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.103, CharisRules.gdh(486):  g01B3  >  g01B3_rtHook   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 62
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 21 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.104, CharisRules.gdh(488):  g01B3_rtHook  >  g01B3   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 61
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 21 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.105, CharisRules.gdh(492):  g019D  >  g019D_lCStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 39
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 15 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.106, CharisRules.gdh(494):  g019D_lCStyle  >  g019D   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 37
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 15 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.107, CharisRules.gdh(498):  g0293  >  g0293_lrgBowl   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 65
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 22 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.108, CharisRules.gdh(500):  g0293_lrgBowl  >  g0293   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 64
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 22 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.109, CharisRules.gdh(504):  g01AC  >  g01AC_rtHook   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 55
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 19 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.110, CharisRules.gdh(506):  g01AC_rtHook  >  g01AC   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 54
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 19 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.111, CharisRules.gdh(510):  cno_VertStrk  >  cVertStrk   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 31
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 13 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.112, CharisRules.gdh(512):  cVertStrk  >  cno_VertStrk   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 30
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 13 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.113, CharisRules.gdh(516):  g2C64  >  g2C64_lCStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 51
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 18 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.114, CharisRules.gdh(518):  g2C64_lCStyle  >  g2C64   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 50
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 18 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.115, CharisRules.gdh(522):  cno_BowlHook  >  cBowlHook   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 49
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 17 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.116, CharisRules.gdh(524):  cBowlHook  >  cno_BowlHook   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 48
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 17 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.117, CharisRules.gdh(528):  cno_CommaStyle  >  cCommaStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 159 52
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 4 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.118, CharisRules.gdh(530):  cCommaStyle  >  cno_CommaStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 158 53
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 4 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.119, CharisRules.gdh(534):  cno_RevSigmaStyle  >  cRevSigmaStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 164 63
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 23 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.120, CharisRules.gdh(536):  cRevSigmaStyle  >  cno_RevSigmaStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 163 66
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 23 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.121, CharisRules.gdh(542):  cno_Lrg  >  cLrg   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 165 69
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 26 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.122, CharisRules.gdh(544):  cLrg  >  cno_Lrg   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 166 68
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 26 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.123, CharisRules.gdh(548):  cno_OpenTop  >  cOpenTop   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 156 46
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 24 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.124, CharisRules.gdh(550):  cOpenTop  >  cno_OpenTop   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 157 45
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 24 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.125, CharisRules.gdh(554):  cno_SlashZero  >  cSlashZero   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 43
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 30 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.126, CharisRules.gdh(556):  cSlashZero  >  cno_SlashZero   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 44
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 30 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.127, CharisRules.gdh(560):  gF1E9  >  gF1E9_wide   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 71
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 27 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.128, CharisRules.gdh(562):  gF1E9_wide  >  gF1E9   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 70
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 27 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.129, CharisRules.gdh(575):  g04BB  >  g04BB_uCStyle   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 29
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 29 0
+PushByte 1
+Equal
+PopRet
+
+RULE 1.130, CharisRules.gdh(577):  g04BB_uCStyle  >  g04BB   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 28
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 29 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 1.131, CharisPitches.gdh(219):  cRightTone  >  cSupNum   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 175 67
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 0 0
+PopRet
+
+RULE 1.132, CharisPitches.gdh(220):  cLeftTone  >  cSupNum   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 176 67
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 0 0
+PopRet
+
+RULE 1.133, CharisPitches.gdh(237):  cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 91
+Next
+PutSubs(V1&2) 0 175 103
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+And
+PopRet
+
+RULE 1.134, CharisPitches.gdh(238):  cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 93
+Next
+PutSubs(V1&2) 0 175 103
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+And
+PopRet
+
+RULE 1.135, CharisPitches.gdh(239):  cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 94
+Next
+PutSubs(V1&2) 0 175 103
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+And
+PopRet
+
+RULE 1.136, CharisPitches.gdh(240):  cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 95
+Next
+PutSubs(V1&2) 0 175 103
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+And
+PopRet
+
+RULE 1.137, CharisPitches.gdh(241):  cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 96
+Next
+PutSubs(V1&2) 0 175 103
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+And
+PopRet
+
+RULE 1.138, CharisPitches.gdh(245):  cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 91
+Next
+PutSubs(V1&2) 0 175 89
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+Not
+And
+PopRet
+
+RULE 1.139, CharisPitches.gdh(246):  cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 93
+Next
+PutSubs(V1&2) 0 175 89
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+Not
+And
+PopRet
+
+RULE 1.140, CharisPitches.gdh(247):  cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 94
+Next
+PutSubs(V1&2) 0 175 89
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+Not
+And
+PopRet
+
+RULE 1.141, CharisPitches.gdh(248):  cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 95
+Next
+PutSubs(V1&2) 0 175 89
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+Not
+And
+PopRet
+
+RULE 1.142, CharisPitches.gdh(249):  cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 1 175 96
+Next
+PutSubs(V1&2) 0 175 89
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+Not
+And
+PopRet
+
+RULE 1.143, CharisPitches.gdh(255):  cLeftTone  >  cLeftStaff_no$3   /  ANY  ANY  ^  _  cLeftTone  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 176 104
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+And
+PopRet
+
+RULE 1.144, CharisPitches.gdh(258):  cLeftTone  >  cLeftStaff$3   /  ANY  ANY  ^  _  cLeftTone  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 176 90
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 0 0
+Not
+PushFeat 1 0
+Not
+And
+PopRet
+
+RULE 1.145, CharisPitches.gdh(263):  cLeftContourOrStaff1  cLeftTone  >  @3  cLeftTone1Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutSubs(V1&2) 0 176 97
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.146, CharisPitches.gdh(264):  cLeftContourOrStaff2  cLeftTone  >  @3  cLeftTone2Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutSubs(V1&2) 0 176 99
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.147, CharisPitches.gdh(265):  cLeftContourOrStaff3  cLeftTone  >  @3  cLeftTone3Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutSubs(V1&2) 0 176 100
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.148, CharisPitches.gdh(266):  cLeftContourOrStaff4  cLeftTone  >  @3  cLeftTone4Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutSubs(V1&2) 0 176 101
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.149, CharisPitches.gdh(267):  cLeftContourOrStaff5  cLeftTone  >  @3  cLeftTone5Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutSubs(V1&2) 0 176 102
+PushGlyphAttr(V1&2) 179 -1
+PushGlyphAttr(V1&2) 179 0
+Equal
+PushISlotAttr user -1 0
+PushByte 2
+NotEq
+And
+PushByte 1
+PushByte 2
+Cond
+IAttrSet user 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.150, CharisPitches.gdh(602):  g_space  >  g_pitchSpace   /  ANY  *GC8*  _  *GC9*  ;
+
+ACTIONS:
+PutGlyph(V1&2) 116
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.151, CharisPitches.gdh(605):  g_pitchSpace  >  @3   /  ANY  ANY  _  cno_LinesXXX  ;
+
+ACTIONS:
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.152, CharisPitches.gdh(607):  *GC10*  >  g_noPitchSpace   /  ANY  ^  g_pitchSpace  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 117
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.153, CharisPitches.gdh(609):  g_pitchSpace  >  g_noPitchSpace   /  ANY  ANY  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 117
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.154, CharisPitches.gdh(617):  *GC11*  c9PitchX  >  @3 { user1=1;  }  c9Pitch1X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 115
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.155, CharisPitches.gdh(618):  *GC12*  c9PitchX  >  @3 { user1=1;  }  c9Pitch2X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 105
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.156, CharisPitches.gdh(619):  *GC13*  c9PitchX  >  @3 { user1=1;  }  c9Pitch3X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 106
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.157, CharisPitches.gdh(620):  *GC14*  c9PitchX  >  @3 { user1=1;  }  c9Pitch4X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 107
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.158, CharisPitches.gdh(621):  *GC15*  c9PitchX  >  @3 { user1=1;  }  c9Pitch5X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 108
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.159, CharisPitches.gdh(622):  *GC16*  c9PitchX  >  @3 { user1=1;  }  c9Pitch6X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 109
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.160, CharisPitches.gdh(623):  *GC17*  c9PitchX  >  @3 { user1=1;  }  c9Pitch7X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 110
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.161, CharisPitches.gdh(624):  *GC18*  c9PitchX  >  @3 { user1=1;  }  c9Pitch8X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 111
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+RULE 1.162, CharisPitches.gdh(625):  *GC19*  c9PitchX  >  @3 { user1=1;  }  c9Pitch9X   /  ANY  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 0
+Next
+PutSubs(V1&2) 0 177 112
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+PopRet
+
+PASS: 2
+
+PASS CONSTRAINTS: none
+
+RULE 2.0, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 135 34
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.1, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 135 34
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.2, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cUDia  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 135 34
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.3, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cUDia  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 135 34
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.4, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cUDia  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 135 34
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.5, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 33
+Next
+Insert
+PutSubs(V1&2) 0 151 82
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.6, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 33
+Next
+Insert
+PutSubs(V1&2) 0 151 82
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.7, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cUDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 33
+Next
+Insert
+PutSubs(V1&2) 0 151 82
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.8, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cUDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 33
+Next
+Insert
+PutSubs(V1&2) 0 151 82
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.9, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cUDia  ;
+
+ACTIONS:
+PutGlyph(V1&2) 33
+Next
+Insert
+PutSubs(V1&2) 0 151 82
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.10, CharisRules.gdh(595):  cno_RetroHookStyle  >  cRetroHookStyle   /  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 140 8
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 12 0
+PushByte 1
+Equal
+PopRet
+
+RULE 2.11, CharisRules.gdh(597):  cRetroHookStyle  >  cno_RetroHookStyle   /  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 141 7
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 12 0
+PushByte 1
+Equal
+Not
+PopRet
+
+RULE 2.12, CharisRules.gdh(618):  cno_Sup  >  cSup   /  *GC7*  _  ;
+
+ACTIONS:
+PutGlyph(V1&2) 87
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.13, CharisPitches.gdh(276):  _  cRightStaff  >  cRightToneHoriz$3:3  @3   /  ANY  _  _ {...}  ;
+
+ACTIONS:
+Insert
+PutSubs(V1&2) 1 171 92
+Assoc 1 1
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS:
+CntxtItem 0 7
+PushISlotAttr user 0 0
+PushByte 1
+Equal
+PopRet
+
+RULE 2.14, CharisPitches.gdh(277):  _  cRightStaff_no  >  cRightToneHoriz$3:3  @3   /  ANY  _  _ {...}  ;
+
+ACTIONS:
+Insert
+PutSubs(V1&2) 1 173 92
+Assoc 1 1
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS:
+CntxtItem 0 7
+PushISlotAttr user 0 0
+PushByte 1
+Equal
+PopRet
+
+RULE 2.15, CharisPitches.gdh(286):  cLeftContourOrStaff { user2=1;  }   /  ANY  _ {...}  cLeftContour {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+RetZero
+
+CONSTRAINTS:
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+CntxtItem 1 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.16, CharisPitches.gdh(289):  cLeftContour { user2=2;  }   /  ^  cLeftContourOrStaff {...}  _ {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 2
+IAttrSet user 1
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem -1 7
+PushISlotAttr user 0 1
+PushByte 1
+Equal
+CntxtItem 0 7
+PushISlotAttr user 0 0
+PushByte 1
+Equal
+And
+PopRet
+
+RULE 2.17, CharisPitches.gdh(294):  cLeftStaff  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour {...}  ;
+
+ACTIONS:
+PutCopy 0
+Next
+Insert
+PutSubs(V1&2) 0 172 98
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS:
+CntxtItem 1 15
+PushISlotAttr user 0 1
+PushByte 2
+Equal
+PushISlotAttr user 0 0
+PushByte 1
+Equal
+And
+PopRet
+
+RULE 2.18, CharisPitches.gdh(296):  cLeftStaff_no  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour {...}  ;
+
+ACTIONS:
+PutCopy 0
+Next
+Insert
+PutSubs(V1&2) 0 174 98
+Assoc 1 0
+Next
+RetZero
+
+CONSTRAINTS:
+CntxtItem 1 15
+PushISlotAttr user 0 1
+PushByte 2
+Equal
+PushISlotAttr user 0 0
+PushByte 1
+Equal
+And
+PopRet
+
+RULE 2.19, CharisPitches.gdh(639):  c9PitchX  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 15
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+And
+PopRet
+
+RULE 2.20, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11  g9Pitch11  g9Pitch11  g9Pitch11 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.21, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11  g9Pitch11  g9Pitch11 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.22, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11  g9Pitch11 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.23, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.24, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22  g9Pitch22  g9Pitch22  g9Pitch22 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.25, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22  g9Pitch22  g9Pitch22 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.26, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22  g9Pitch22 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.27, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.28, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33  g9Pitch33  g9Pitch33  g9Pitch33 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.29, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33  g9Pitch33  g9Pitch33 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.30, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33  g9Pitch33 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.31, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.32, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44  g9Pitch44  g9Pitch44  g9Pitch44 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.33, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44  g9Pitch44  g9Pitch44 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.34, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44  g9Pitch44 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.35, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.36, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55  g9Pitch55  g9Pitch55  g9Pitch55 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.37, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55  g9Pitch55  g9Pitch55 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.38, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55  g9Pitch55 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.39, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.40, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66  g9Pitch66  g9Pitch66  g9Pitch66 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.41, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66  g9Pitch66  g9Pitch66 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.42, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66  g9Pitch66 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.43, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.44, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77  g9Pitch77  g9Pitch77  g9Pitch77 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.45, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77  g9Pitch77  g9Pitch77 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.46, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77  g9Pitch77 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.47, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.48, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88  g9Pitch88  g9Pitch88  g9Pitch88 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.49, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88  g9Pitch88  g9Pitch88 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.50, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88  g9Pitch88 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.51, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.52, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99  g9Pitch99  g9Pitch99  g9Pitch99 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.53, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99  g9Pitch99  g9Pitch99 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.54, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99  g9Pitch99 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.55, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99 {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+And
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 2.56, CharisPitches.gdh(655):  c9PitchX  c9PitchXX  >  _  @3:(2 3) { comp.p1.ref=@2; comp.p2.ref=@3;  }   /  ANY  _ {...}  ^  _  ;
+
+ACTIONS:
+Delete
+Next
+PutCopy 0
+Assoc 2 -1 0
+PushByte -1
+IAttrSetSlot comp_ref 0
+PushByte 0
+IAttrSetSlot comp_ref 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 2
+Less
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 1
+NotEq
+And
+PopRet
+
+RULE 2.57, CharisPitches.gdh(662):  cno_LinesXXX  >  cLinesXXX   /  ANY  _  ;
+
+ACTIONS:
+PutSubs(V1&2) 0 178 113
+Next
+RetZero
+
+CONSTRAINTS:
+PushFeat 2 0
+PushByte 1
+Equal
+PushFeat 2 0
+PushByte 3
+Equal
+Or
+PopRet
+
+TABLE: positioning
+
+PASS: 0
+
+PASS CONSTRAINTS: none
+
+PASS: 3
+
+PASS CONSTRAINTS: none
+
+RULE 3.0, CharisPitches.gdh(308):  cRightContour { user3=...; user4=...;  }  cRightContourOrStaff { attach {...} insert=1;  }   /  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_left 0 0
+IAttrSet user 2
+PushGlyphMetric bb_right 0 0
+IAttrSet user 3
+Next
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 134 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 137 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 136 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 138 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 139 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 142 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 141 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 143 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 3.1, CharisPitches.gdh(312):  cLeftContourOrStaff  cLeftContour { attach {...} insert=1;  }   /  _  ^  _  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 134 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 137 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 136 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 138 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 139 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 142 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 141 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 143 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 3.2, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.3, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.4, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.5, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.6, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.7, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.8, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.9, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.10, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.11, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.12, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.13, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.14, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.15, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.16, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.17, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.18, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.19, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.20, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.21, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.22, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.23, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.24, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.25, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.26, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+AttrSet insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.27, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.28, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.29, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.30, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.31, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 30 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 154 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 157 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 156 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 158 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.32, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.33, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.34, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.35, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.36, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 34 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 37 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 36 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 38 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 149 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 152 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 151 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 153 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.37, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.38, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.39, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.40, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.41, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 39 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 42 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 40 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 41 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 43 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 159 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 162 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 161 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 163 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.42, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.43, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.44, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.45, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.46, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 44 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 47 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 46 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 48 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 129 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 132 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 131 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 133 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.47, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.48, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.49, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.50, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.51, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr(V1&2) 49 0
+AttrSet attach_at_x
+PushAttToGlyphAttr(V1&2) 52 0
+AttrSet attach_at_y
+PushAttToGlyphAttr(V1&2) 50 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr(V1&2) 51 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr(V1&2) 53 0
+AttrSet attach_at_yoffset
+PushGlyphAttr(V1&2) 144 0
+AttrSet attach_with_x
+PushGlyphAttr(V1&2) 147 0
+AttrSet attach_with_y
+PushGlyphAttr(V1&2) 146 0
+AttrSet attach_with_xoffset
+PushGlyphAttr(V1&2) 148 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+PushFeat 32 0
+Not
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+And
+PopRet
+
+RULE 3.52, CharisRules.gdh(655):  cBridgeDiac { advance.x=0;  }  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 0
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+PASS: 4
+
+PASS CONSTRAINTS: none
+
+RULE 4.0, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -6 1
+PushGlyphMetric bb_top 1 1
+Max
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -6 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.1, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -5 1
+PushGlyphMetric bb_top 1 1
+Max
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -5 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.2, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -4 1
+PushGlyphMetric bb_top 1 1
+Max
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -4 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.3, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -3 1
+PushGlyphMetric bb_top 1 1
+Max
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -3 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.4, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -2 1
+PushGlyphMetric bb_top 1 1
+Max
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -2 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.5, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -1 1
+PushGlyphMetric bb_top 1 1
+Max
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -1 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.6, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -6 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.7, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -5 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.8, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -4 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.9, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -3 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.10, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -2 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.11, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top -1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.12, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top 1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.13, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top 1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.14, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top 1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.15, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top 1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.16, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top 1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.17, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesUDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_top 1 1
+PushGlyphMetric bb_bottom 0 0
+Sub
+PushShort 205
+Add
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+PASS: 5
+
+PASS CONSTRAINTS: none
+
+RULE 5.0, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -6 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 0
+PushGlyphMetric bb_width -6 0
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.1, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -5 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 0
+PushGlyphMetric bb_width -5 0
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.2, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -4 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 0
+PushGlyphMetric bb_width -4 0
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.3, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -3 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 0
+PushGlyphMetric bb_width -3 0
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.4, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -2 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 0
+PushGlyphMetric bb_width -2 0
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.5, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -1 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 0
+PushGlyphMetric bb_width -1 0
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.6, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -6 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -6 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.7, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -5 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -5 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.8, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -4 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -4 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.9, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -3 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -3 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.10, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -2 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -2 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.11, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -1 1
+PushGlyphMetric bb_bottom 1 1
+Min
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushGlyphMetric bb_width 1 1
+PushGlyphMetric bb_width -1 1
+Sub
+PushByte 2
+Div
+AttrSet shift_x
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.12, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -6 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.13, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -5 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.14, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -4 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.15, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -3 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.16, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -2 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.17, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom -1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.18, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom 1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.19, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom 1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.20, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom 1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.21, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom 1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.22, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom 1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 5.23, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesLDia  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric bb_bottom 1 1
+PushGlyphMetric bb_top 0 0
+Sub
+PushShort 205
+Sub
+AttrSet shift_y
+PushByte 1
+AttrSet insert
+Next
+RetZero
+
+CONSTRAINTS: none

@@ -1,0 +1,9 @@
+gnomesword (1.8+0000svn-1) unstable; urgency=low
+
+  * Initial Release from svn.
+
+ -- Daniel Glassey <wdg@debian.org>  Sat,  1 Sep 2007 18:35:41 +0100
+
+Local variables:
+mode: debian-changelog
+End:

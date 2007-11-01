@@ -1,0 +1,5209 @@
+ENGINE CODE FOR RULES
+
+
+TABLE: linebreak
+
+PASS: 1
+
+PASS CONSTRAINTS: none
+
+RULE 1.0, PadaukMain.gdl(407):  cSection { break=10;  }   /  ANY  _  ^  cCons  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 10
+AttrSet break
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.1, PadaukMain.gdl(408):  g_space { break=10;  }   /  ANY  _  ^  cCons  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 10
+AttrSet break
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.2, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.3, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.4, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.5, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.6, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.7, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.8, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.9, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.10, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.11, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.12, PadaukMain.gdl(416):  cCons { break=-30;  }  cMedBase { break=-50;  }   /  ANY  _  g1039  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+CopyNext
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.13, PadaukMain.gdl(417):  cCons { break=-30;  }  cClusMed { break=-50;  }   /  ANY  _  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.14, PadaukMain.gdl(420):  cCons { break=-50;  }   /  g1039  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -50
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.15, PadaukMain.gdl(423):  cCons { break=-30;  }   /  g2060  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.16, PadaukMain.gdl(426):  cCons { break=-30;  }   /  g1021  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -30
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.17, PadaukMain.gdl(429):  ANYGlyph { break=40;  }   /  cLQuote  ^  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 40
+AttrSet break
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.18, PadaukMain.gdl(430):  ANYGlyph { break=-40;  }   /  ANY  _  ^  cRQuote  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -40
+AttrSet break
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS: none
+
+RULE 1.19, PadaukMain.gdl(433):  cSection { break=30;  }   /  ANY  _  cNum  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 30
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.20, PadaukMain.gdl(435):  cNum { break=-15;  }   /  cCons  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -15
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.21, PadaukMain.gdl(436):  cSigns { break=-15;  }   /  cSection  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte -15
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 1.22, PadaukMain.gdl(439):  cSigns { break=40;  }   /  ANY  _  cSection  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 40
+AttrSet break
+Next
+RetZero
+
+CONSTRAINTS: none
+
+TABLE: substitution
+
+PASS: 0
+
+PASS CONSTRAINTS: none
+
+PASS: 2
+
+PASS CONSTRAINTS: none
+
+RULE 2.0, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -10 -9 -8
+Next
+PushByte -9
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.1, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -9 -8 -7
+Next
+PushByte -8
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.2, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -9 -8 -7
+Next
+PushByte -8
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.3, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -8 -7 -6
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.4, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -8 -7 -6
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.5, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.6, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.7, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.8, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.9, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -5 -4 -3
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.10, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -8 -7 -6
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.11, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.12, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.13, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.14, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.15, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -5 -4 -3
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.16, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -5 -4 -3
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.17, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -4 -3 -2
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.18, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -4 -3 -2
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.19, PadaukMain.gdl(462):  g1004  g103a  g1039  _  >  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+Insert
+PutGlyph 2
+Assoc 3 -3 -2 -1
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.20, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -11 -10 -9 -8
+Next
+PushByte -9
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.21, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -10 -9 -8 -7
+Next
+PushByte -8
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.22, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -10 -9 -8 -7
+Next
+PushByte -8
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.23, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -9 -8 -7 -6
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.24, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -9 -8 -7 -6
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.25, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -8 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.26, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -8 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.27, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -7 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.28, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -7 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.29, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -6 -5 -4 -3
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.30, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -9 -8 -7 -6
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.31, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -8 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.32, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -8 -7 -6 -5
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.33, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -7 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.34, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -7 -6 -5 -4
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.35, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -6 -5 -4 -3
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.36, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -6 -5 -4 -3
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.37, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -5 -4 -3 -2
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.38, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -5 -4 -3 -2
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.39, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  _  ;
+
+ACTIONS:
+Delete
+Next
+Delete
+Next
+Delete
+Next
+CopyNext
+PutSubs 0 52 3
+Assoc 4 -4 -3 -2 -1
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 2.40, PadaukMain.gdl(466):  g1039  cMedBase  >  _  cMed   /  ANY  _  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs 0 49 1
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.41, PadaukMain.gdl(470):  g1039  g1010  g103d  >  g1010_103d_med:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 11
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.42, PadaukMain.gdl(471):  g100b  g1039  g100b  >  g100b_100b:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 5
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.43, PadaukMain.gdl(472):  g100b  g1039  g100c  >  g100b_100c:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 6
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.44, PadaukMain.gdl(473):  g100d  g1039  g100d  >  g100d_100d:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 7
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.45, PadaukMain.gdl(474):  g100e  g1039  g100d  >  g100d_100e:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 8
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.46, PadaukMain.gdl(475):  g100f  g1039  g100b  >  g100f_100b:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 9
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.47, PadaukMain.gdl(476):  g100f  g1039  g100d  >  g100f_100d:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 10
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.48, PadaukMain.gdl(477):  g1014  g1039  g1010  g103c  >  g1014_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;
+
+ACTIONS:
+PutGlyph 13
+Assoc 4 0 1 2 3
+Next
+Delete
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.49, PadaukMain.gdl(478):  g1014  g1039  g1010  g103c  >  g1014_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;
+
+ACTIONS:
+PutGlyph 13
+Assoc 4 0 1 2 3
+Next
+Delete
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.50, PadaukMain.gdl(479):  g101e  g1039  g1010  g103c  >  g101e_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;
+
+ACTIONS:
+PutGlyph 26
+Assoc 4 0 1 2 3
+Next
+Delete
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.51, PadaukMain.gdl(480):  g103b  g103d  g103e  >  g103b_103d_103e:(2 3 4)  _  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutGlyph 15
+Assoc 3 0 1 2
+Next
+Delete
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.52, PadaukMain.gdl(481):  g103b  g103e  >  g103b_103e:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 16
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.53, PadaukMain.gdl(482):  g103c  g103d  g103e  >  @2  g103d_103e  _   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutGlyph 24
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.54, PadaukMain.gdl(483):  g103c  g103d  >  g103c_103d_narr:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 22
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.55, PadaukMain.gdl(484):  g103d  g103e  >  g103d_103e_small:(2 3)  _   /  g103c  _  _  ;
+
+ACTIONS:
+PutGlyph 25
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.56, PadaukMain.gdl(485):  g103d  g103e  >  g103d_103e:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 24
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.57, PadaukMain.gdl(486):  g103b  g103d  >  g103b_103d:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 14
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.58, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  @7   /  ANY  _  _  _  g1031  cUVowel  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs 0 49 1
+Next
+PutCopy 0
+Next
+CopyNext
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.59, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  @6   /  ANY  _  _  _  g1031  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs 0 49 1
+Next
+PutCopy 0
+Next
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.60, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  @6   /  ANY  _  _  _  cUVowel  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs 0 49 1
+Next
+PutCopy 0
+Next
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.61, PadaukMain.gdl(487):  g1039  cMedBase  g103c  g102f  >  _  cMed  @4  @5   /  ANY  _  _  _  _  ;
+
+ACTIONS:
+Delete
+Next
+PutSubs 0 49 1
+Next
+PutCopy 0
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.62, PadaukMain.gdl(488):  g103c  g103e  g102f  >  @2  @3  @6   /  ANY  _  _  g1031  cUVowel  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+CopyNext
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.63, PadaukMain.gdl(488):  g103c  g103e  g102f  >  @2  @3  @5   /  ANY  _  _  g1031  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.64, PadaukMain.gdl(488):  g103c  g103e  g102f  >  @2  @3  @5   /  ANY  _  _  cUVowel  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.65, PadaukMain.gdl(488):  g103c  g103e  g102f  >  @2  @3  @4   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.66, PadaukMain.gdl(489):  g103c  g103e  g1030  >  @2  @3  @6   /  ANY  _  _  g1031  cUVowel  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+CopyNext
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.67, PadaukMain.gdl(489):  g103c  g103e  g1030  >  @2  @3  @5   /  ANY  _  _  g1031  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.68, PadaukMain.gdl(489):  g103c  g103e  g1030  >  @2  @3  @5   /  ANY  _  _  cUVowel  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+CopyNext
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.69, PadaukMain.gdl(489):  g103c  g103e  g1030  >  @2  @3  @4   /  ANY  _  _  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PutCopy 0
+Next
+PutCopy 0
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.70, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 5)  _   /  ANY  _  g1031  cUVowel  _  ;
+
+ACTIONS:
+PutGlyph 23
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.71, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 4)  _   /  ANY  _  g1031  _  ;
+
+ACTIONS:
+PutGlyph 23
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.72, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 4)  _   /  ANY  _  cUVowel  _  ;
+
+ACTIONS:
+PutGlyph 23
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.73, PadaukMain.gdl(490):  g103c  g102f  >  g103c_102f_narr:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 23
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.74, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 5)  _   /  ANY  _  g1031  cUVowel  _  ;
+
+ACTIONS:
+PutGlyph 28
+Assoc 2 0 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.75, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 4)  _   /  ANY  _  g1031  _  ;
+
+ACTIONS:
+PutGlyph 28
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.76, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 4)  _   /  ANY  _  cUVowel  _  ;
+
+ACTIONS:
+PutGlyph 28
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.77, PadaukMain.gdl(491):  g103e  g102f  >  g103e_102f:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 28
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.78, PadaukMain.gdl(492):  g103e  g1030  >  g103e_1030:(2 4)  _   /  ANY  _  g1031  _  ;
+
+ACTIONS:
+PutGlyph 29
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.79, PadaukMain.gdl(492):  g103e  g1030  >  g103e_1030:(2 3)  _   /  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 29
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.80, PadaukMain.gdl(497):  g200c  >  _   /  ANY  _  ;
+
+ACTIONS:
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.81, PadaukMain.gdl(498):  g200d  >  _   /  ANY  _  ;
+
+ACTIONS:
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 2.82, PadaukMain.gdl(499):  g2060  >  _   /  ANY  _  ;
+
+ACTIONS:
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+PASS: 3
+
+PASS CONSTRAINTS: none
+
+RULE 3.0, PadaukMain.gdl(534):  ANYGlyph  >  @3   /  cCons  g103a  ^  _ {...}  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+CntxtItem 0 7
+PushGlyphAttr 28 0
+PushByte 1
+Gtr
+PopRet
+
+RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph {...}  ;
+
+ACTIONS:
+Insert
+PutGlyph 0
+Assoc 1 0
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS:
+CntxtItem 0 17
+PushGlyphAttr 28 0
+PushByte 1
+Gtr
+PushGlyphAttr 28 0
+PushGlyphAttr 28 -1
+LessEq
+And
+PopRet
+
+RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph {...}  _  ^  ANYGlyph {...}  ;
+
+ACTIONS:
+Insert
+PutGlyph 0
+Assoc 1 0
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS:
+CntxtItem -1 7
+PushGlyphAttr 28 0
+PushByte 0
+Equal
+CntxtItem 0 7
+PushGlyphAttr 28 0
+PushByte 1
+Gtr
+And
+PopRet
+
+PASS: 4
+
+PASS CONSTRAINTS: none
+
+RULE 4.0, PadaukMain.gdl(560):  g1014  >  g1014_alt   /  ANY  ANY  *GC2*  _  ;
+
+ACTIONS:
+PutGlyph 12
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.1, PadaukMain.gdl(567):  _  g1031  >  @12:12  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 8
+Assoc 1 8
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -7
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.2, PadaukMain.gdl(567):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 7
+Assoc 1 7
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.3, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 6
+Assoc 1 6
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.4, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 5
+Assoc 1 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.5, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  _  ;
+
+ACTIONS:
+Insert
+PutCopy 4
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.6, PadaukMain.gdl(567):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 7
+Assoc 1 7
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.7, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 6
+Assoc 1 6
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.8, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 5
+Assoc 1 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.9, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 4
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.10, PadaukMain.gdl(567):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  _  ;
+
+ACTIONS:
+Insert
+PutCopy 3
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.11, PadaukMain.gdl(567):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 7
+Assoc 1 7
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.12, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 6
+Assoc 1 6
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.13, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 5
+Assoc 1 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.14, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 4
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.15, PadaukMain.gdl(567):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  _  ;
+
+ACTIONS:
+Insert
+PutCopy 3
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.16, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 6
+Assoc 1 6
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.17, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 5
+Assoc 1 5
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.18, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 4
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.19, PadaukMain.gdl(567):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  _  ;
+
+ACTIONS:
+Insert
+PutCopy 3
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.20, PadaukMain.gdl(567):  _  g1031  >  @6:6  _   /  ANY  ANY  ANY  _  ^  cCons  _  ;
+
+ACTIONS:
+Insert
+PutCopy 2
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.21, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  c103b  _  ;
+
+ACTIONS:
+Insert
+PutSubs 4 50 21
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.22, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 21
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.23, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  c103b  _  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 21
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.24, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 21
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.25, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 19
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.26, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 19
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.27, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 19
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.28, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 19
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.29, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 19
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.30, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 19
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.31, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 19
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.32, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 19
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.33, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 20
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.34, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 20
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.35, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 20
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.36, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 20
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.37, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 20
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.38, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 20
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.39, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103e  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 20
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.40, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  cUSpace  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 20
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.41, PadaukMain.gdl(581):  _  c103c_nar  >  c103c_naralt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  cMedNar  _  ;
+
+ACTIONS:
+Insert
+PutSubs 4 50 19
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.42, PadaukMain.gdl(581):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  _  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 19
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.43, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_widalt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  cMed  _  ;
+
+ACTIONS:
+Insert
+PutSubs 4 50 20
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.44, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  _  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 20
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.45, PadaukMain.gdl(583):  _  c103c_nar  >  @8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  c103b  _  ;
+
+ACTIONS:
+Insert
+PutCopy 4
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.46, PadaukMain.gdl(583):  _  c103c_nar  >  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  ;
+
+ACTIONS:
+Insert
+PutCopy 3
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.47, PadaukMain.gdl(583):  _  c103c_nar  >  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;
+
+ACTIONS:
+Insert
+PutCopy 3
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.48, PadaukMain.gdl(583):  _  c103c_nar  >  @6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;
+
+ACTIONS:
+Insert
+PutCopy 2
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.49, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  c103b  _  ;
+
+ACTIONS:
+Insert
+PutSubs 4 50 21
+Assoc 1 4
+Next
+CopyNext
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.50, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  _  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 21
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.51, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;
+
+ACTIONS:
+Insert
+PutSubs 3 50 21
+Assoc 1 3
+Next
+CopyNext
+CopyNext
+Delete
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.52, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;
+
+ACTIONS:
+Insert
+PutSubs 2 50 21
+Assoc 1 2
+Next
+CopyNext
+Delete
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.53, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cLVowelAll  ;
+
+ACTIONS:
+PutGlyph 17
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.54, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cLVowelAll  ;
+
+ACTIONS:
+PutGlyph 17
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.55, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cUVowel  cLVowelAll  ;
+
+ACTIONS:
+PutGlyph 17
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.56, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cLVowelAll  ;
+
+ACTIONS:
+PutGlyph 17
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.57, PadaukMain.gdl(592):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103d  ;
+
+ACTIONS:
+PutGlyph 17
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.58, PadaukMain.gdl(593):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103b  ;
+
+ACTIONS:
+PutGlyph 17
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.59, PadaukMain.gdl(594):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  g103e  ;
+
+ACTIONS:
+PutGlyph 18
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.60, PadaukMain.gdl(595):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cUVowel  cLVowel  ;
+
+ACTIONS:
+PutGlyph 18
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.61, PadaukMain.gdl(595):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cLVowel  ;
+
+ACTIONS:
+PutGlyph 18
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.62, PadaukMain.gdl(604):  g1030  >  @4   /  c103c_only  cConsSVowel  cUVowel  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.63, PadaukMain.gdl(604):  g1030  >  @4   /  ANY  c103c_only  cConsSVowel  _  ;
+
+ACTIONS:
+PutCopy 0
+Next
+PushByte 0
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.64, PadaukMain.gdl(605):  cLVowel  >  cLVowelM   /  ANY  ^  cConsSVowel  cUVowel  _  ;
+
+ACTIONS:
+PutSubs 0 53 33
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.65, PadaukMain.gdl(605):  cLVowel  >  cLVowelM   /  ANY  ANY  ^  cConsSVowel  _  ;
+
+ACTIONS:
+PutSubs 0 53 33
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.66, PadaukMain.gdl(606):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
+
+ACTIONS:
+PutGlyph 12
+Assoc 1 0
+Next
+CopyNext
+PutSubs 0 53 33
+Assoc 1 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.67, PadaukMain.gdl(606):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
+
+ACTIONS:
+PutGlyph 12
+Assoc 1 0
+Next
+PutSubs 0 53 33
+Assoc 1 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.68, PadaukMain.gdl(607):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
+
+ACTIONS:
+PutGlyph 4
+Assoc 1 0
+Next
+CopyNext
+PutSubs 0 53 33
+Assoc 1 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.69, PadaukMain.gdl(607):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
+
+ACTIONS:
+PutGlyph 4
+Assoc 1 0
+Next
+PutSubs 0 53 33
+Assoc 1 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.70, PadaukMain.gdl(608):  g103d_103e  >  g103d_103e_small   /  ANY  c103c  cCons  _  ;
+
+ACTIONS:
+PutGlyph 25
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.71, PadaukMain.gdl(609):  cUTakesMa  g1036  >  cUWithMa:(4 6)  _   /  ANY  ANY  ANY  _  cLVowel  _  ;
+
+ACTIONS:
+PutSubs 0 51 32
+Assoc 2 0 2
+Next
+CopyNext
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.72, PadaukMain.gdl(609):  cUTakesMa  g1036  >  cUWithMa:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
+
+ACTIONS:
+PutSubs 0 51 32
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.73, PadaukMain.gdl(615):  g1014  >  g1014_alt   /  ANY  ANY  ANY  ^  _  t1014  ;
+
+ACTIONS:
+PutGlyph 12
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.74, PadaukMain.gdl(616):  g100a  >  g100a_alt   /  ANY  ANY  ANY  ^  _  t100a  ;
+
+ACTIONS:
+PutGlyph 4
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.75, PadaukMain.gdl(617):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g103a  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.76, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cUVowel  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.77, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.78, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.79, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.80, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cUVowel  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.81, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.82, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cUVowel  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.83, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cCons  ;
+
+ACTIONS:
+PutGlyph 30
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.84, PadaukMain.gdl(624):  g103e  >  g103e_alt   /  ANY  ^  c103c  cConsSVowel  _  ;
+
+ACTIONS:
+PutGlyph 27
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS: none
+
+RULE 4.85, PadaukMain.gdl(625):  g103e  >  g103e_alt   /  ANY  ANY  cConsSlantH  _  ;
+
+ACTIONS:
+PutGlyph 27
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 4.86, PadaukMain.gdl(631):  g102b  g103a  >  g102b_103a:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
+
+ACTIONS:
+PutGlyph 31
+Assoc 2 0 1
+Next
+Delete
+Next
+RetZero
+
+CONSTRAINTS: none
+
+TABLE: positioning
+
+PASS: 0
+
+PASS CONSTRAINTS: none
+
+PASS: 5
+
+PASS CONSTRAINTS: none
+
+RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x=...; user2=1;  }   /  ANY  ^  _ {...}  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphAttr 54 0
+AttrSet advance_x
+PushByte 1
+IAttrSet user 1
+Next
+PushByte -1
+PopRet
+
+CONSTRAINTS:
+CntxtItem 0 7
+PushISlotAttr user 0 1
+PushByte 0
+Equal
+PopRet
+
+RULE 5.1, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ^  c103c_only  _  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.2, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ^  c103c_only  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.3, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.4, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.5, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.6, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.7, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.8, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.9, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.10, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.11, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.12, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.13, PadaukMain.gdl(712):  c103c_mix  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.14, PadaukMain.gdl(712):  c103c_mix  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.15, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -5
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -6
+PopRet
+
+CONSTRAINTS:
+CntxtItem 5 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.16, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.17, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.18, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.19, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.20, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.21, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  c1036  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.22, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.23, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.24, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.25, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cLVowelM  c1036  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.26, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cLVowelM  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.27, PadaukMain.gdl(718):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.28, PadaukMain.gdl(718):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.29, PadaukMain.gdl(720):  cLeftLDot  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 29 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 32 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 31 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 33 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.30, PadaukMain.gdl(727):  cTakesUDia  cUDia { attach {...} user1=1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ {...}  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 1
+AttrSetSlot attach_to
+PushAttToGlyphAttr 23 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 44 0
+AttrSet attach_with_x
+PushGlyphAttr 47 0
+AttrSet attach_with_y
+PushGlyphAttr 46 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 48 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PutCopy 0
+PushByte 0
+AttrSetSlot insert
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.31, PadaukMain.gdl(727):  cTakesUDia  cUDia { attach {...} user1=1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _ {...}  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 1
+AttrSetSlot attach_to
+PushAttToGlyphAttr 23 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 44 0
+AttrSet attach_with_x
+PushGlyphAttr 47 0
+AttrSet attach_with_y
+PushGlyphAttr 46 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 48 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PutCopy 0
+PushByte 0
+AttrSetSlot insert
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.32, PadaukMain.gdl(727):  cTakesUDia  cUDia { attach {...} user1=1;  }  cLVowel   /  ANY  ^  _  _ {...}  _  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte 1
+AttrSetSlot attach_to
+PushAttToGlyphAttr 23 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 44 0
+AttrSet attach_with_x
+PushGlyphAttr 47 0
+AttrSet attach_with_y
+PushGlyphAttr 46 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 48 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PutCopy 0
+PushByte 0
+AttrSetSlot insert
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.33, PadaukMain.gdl(737):  cTakesBSDia  cBSDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesBSDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 8 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 11 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 39 0
+AttrSet attach_with_x
+PushGlyphAttr 42 0
+AttrSet attach_with_y
+PushGlyphAttr 41 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 43 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.34, PadaukMain.gdl(737):  cTakesBSDia  cBSDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 8 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 11 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 39 0
+AttrSet attach_with_x
+PushGlyphAttr 42 0
+AttrSet attach_with_y
+PushGlyphAttr 41 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 43 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.35, PadaukMain.gdl(739):  cTakesBDDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesBDDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 3 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 6 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 5 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 7 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 34 0
+AttrSet attach_with_x
+PushGlyphAttr 37 0
+AttrSet attach_with_y
+PushGlyphAttr 36 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 38 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.36, PadaukMain.gdl(739):  cTakesBDDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 3 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 6 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 5 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 7 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 34 0
+AttrSet attach_with_x
+PushGlyphAttr 37 0
+AttrSet attach_with_y
+PushGlyphAttr 36 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 38 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.37, PadaukMain.gdl(741):  cTakesBSDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesBSDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 8 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 11 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 34 0
+AttrSet attach_with_x
+PushGlyphAttr 37 0
+AttrSet attach_with_y
+PushGlyphAttr 36 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 38 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.38, PadaukMain.gdl(741):  cTakesBSDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 8 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 11 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 34 0
+AttrSet attach_with_x
+PushGlyphAttr 37 0
+AttrSet attach_with_y
+PushGlyphAttr 36 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 38 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.39, PadaukMain.gdl(743):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 23 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 24 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 44 0
+AttrSet attach_with_x
+PushGlyphAttr 47 0
+AttrSet attach_with_y
+PushGlyphAttr 46 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 48 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.40, PadaukMain.gdl(743):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesUDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 23 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 24 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 44 0
+AttrSet attach_with_x
+PushGlyphAttr 47 0
+AttrSet attach_with_y
+PushGlyphAttr 46 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 48 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.41, PadaukMain.gdl(743):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 23 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 24 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 44 0
+AttrSet attach_with_x
+PushGlyphAttr 47 0
+AttrSet attach_with_y
+PushGlyphAttr 46 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 48 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.42, PadaukMain.gdl(751):  cTakesRDia  cRDia { attach {...} user1=1; insert=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 62 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 65 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 64 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 66 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 18 0
+AttrSet attach_with_x
+PushGlyphAttr 21 0
+AttrSet attach_with_y
+PushGlyphAttr 20 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 22 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+PushByte 1
+AttrSet insert
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.43, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -4
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -5
+PopRet
+
+CONSTRAINTS:
+CntxtItem 4 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.44, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.45, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesLDia  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.46, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 16 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 15 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 17 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 57 0
+AttrSet attach_with_x
+PushGlyphAttr 60 0
+AttrSet attach_with_y
+PushGlyphAttr 59 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 61 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.47, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  cMed  g103a  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -4
+PopRet
+
+CONSTRAINTS:
+CntxtItem 3 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.48, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  cMed  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.49, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  g103a  _ {...}  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.50, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  _ {...}  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSetSlot insert
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+PASS: 6
+
+PASS CONSTRAINTS: none
+
+RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x=...; advance.x=...;  }  cHasRkern { shift.x=...;  }   /  ANY  _  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphAttr 56 1
+PushByte 10
+Add
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushGlyphAttr 56 1
+PushByte 10
+Add
+Add
+AttrSet advance_x
+Next
+PutCopy 0
+PushGlyphAttr 56 0
+Neg
+AttrSet shift_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x=...; advance.x=...;  }   /  cUDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphAttr 55 0
+PushByte 2
+Div
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushGlyphAttr 55 0
+PushByte 2
+Div
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.2, PadaukMain.gdl(794):  cConsNar   /  g102b_103a  _  cLowDia  cUDia  ;
+
+ACTIONS:
+CopyNext
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.3, PadaukMain.gdl(794):  cConsNar   /  g102b_103a  _  cUDia  ;
+
+ACTIONS:
+CopyNext
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x=...; advance.x=...;  }   /  g102b_103a  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphAttr 55 -1
+Neg
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushGlyphAttr 55 -1
+Neg
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x=...; advance.x=...;  }   /  g102b_103a  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphAttr 55 -1
+Neg
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushGlyphAttr 55 -1
+Neg
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.6, PadaukMain.gdl(797):  cRDia { shift.x=...;  }   /  cTakesRDia  _  ;
+
+ACTIONS:
+PutCopy 0
+PushGlyphMetric aw -1 0
+PushSlotAttr advance_x -1
+Add
+PushSlotAttr advance_x 0
+Sub
+PushByte 2
+Div
+PushSlotAttr pos_x -1
+Add
+PushSlotAttr pos_x 0
+Sub
+AttrSet shift_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.7, PadaukMain.gdl(798):  cUVowel { advance.x=0;  }   /  c103b  _  ;
+
+ACTIONS:
+PutCopy 0
+PushByte 0
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
