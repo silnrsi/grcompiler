@@ -27,7 +27,7 @@ GrcRegressionTest_SOURCES = \
     regtest
 
 check-local: GrcRegressionTest
-	$(top_srcdir)/regtest -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest $(top_srcdir)/fonts
+	$(top_srcdir)/regtest -v -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest $(top_srcdir)/fonts
 
 dist-hook:
 	rm -f regtest.log gdlerr.txt grcregtest.log
