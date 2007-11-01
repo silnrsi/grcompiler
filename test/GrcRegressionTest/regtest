@@ -65,7 +65,8 @@ foreach $f (@fonts)
         my (@gopts);
         push (@gopts, '-q') unless ($opts{verbose});
         push (@gopts, map {"-w" => $_}, @{$opts{warning}}) if (defined $opts{warning});
-        push (@gops, '-v', $v);
+        push (@gopts, "-v$v");
+        print $opts{compiler} . " " . join(" ", @gopts) . "\n" if ($opts{verbose});
         system($opts{compiler}, @gopts, $t, $f, $r);
         if (-f $r)      # assume it passes if it gives a result
         {
