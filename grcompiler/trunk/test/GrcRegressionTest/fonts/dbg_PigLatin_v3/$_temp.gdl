@@ -1,4 +1,4 @@
-#line 1 "PigLatin.gdl"
+#line 1 "PigLatinMain.gdl"
 #line 12
 Bidi = false;
 #line 18

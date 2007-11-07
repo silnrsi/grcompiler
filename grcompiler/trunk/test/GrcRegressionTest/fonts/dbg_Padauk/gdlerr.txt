@@ -2,7 +2,7 @@ Graphite Compilation Results
 
 GDL file: PadaukMain.gdl
 Input font file: PadaukInput.ttf
-Output font file: PadaukBenchmark.ttf
+Output font file: PadaukBenchmark_v3.ttf
 Output font family: Padauk
 Silf table version: 3.0
 Create separate control file: no

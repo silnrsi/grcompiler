@@ -301,20 +301,27 @@ protected:
 		//	this->FlattenMyGlyphList();
 		//if (!pglfc->m_fHasFlatList)
 		//	pglfc->FlattenMyGlyphList();
-		Assert(this->m_fHasFlatList);
+		Assert(this->m_fHasFlatList);	// obsolete
 		Assert(pglfc->m_fHasFlatList);
 
-		for (int igid = 0; igid < signed(m_vgidFlattened.size()); igid++)
-		{
-			if (signed(pglfc->m_vgidFlattened.size()) < igid - 1)
-				return false;
-			if (this->m_vgidFlattened[igid] < pglfc->m_vgidFlattened[igid])
-				return true;
-			if (this->m_vgidFlattened[igid] > pglfc->m_vgidFlattened[igid])
-				return false;
-		}
-		// At this point either the two classes are exactly the same, or pglfc is longer.
-		return (pglfc->m_vgidFlattened.size() > this->m_vgidFlattened.size());
+		if (this == pglfc)
+			return false;
+
+		//for (int igid = 0; igid < signed(m_vgidFlattened.size()); igid++)
+		//{
+		//	if (signed(pglfc->m_vgidFlattened.size()) < igid - 1)
+		//		return false;
+		//	if (this->m_vgidFlattened[igid] < pglfc->m_vgidFlattened[igid])
+		//		return true;
+		//	if (this->m_vgidFlattened[igid] > pglfc->m_vgidFlattened[igid])
+		//		return false;
+		//}
+		//// At this point either the two classes are exactly the same, or pglfc is longer.
+		//if (pglfc->m_vgidFlattened.size() > this->m_vgidFlattened.size())
+		//	return true;
+
+		// The contents of the two classes are the same; compare the names.
+		return (strcmp(this->m_staName.c_str(), pglfc->m_staName.c_str()) < 0);
 	}
 
 };	// end of class GdlGlyphClassDefn
