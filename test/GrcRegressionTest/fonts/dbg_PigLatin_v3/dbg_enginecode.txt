@@ -7,13 +7,13 @@ PASS: 1
 
 PASS CONSTRAINTS: none
 
-RULE 1.0, PigLatin.gdl(46):  clsConsUC  clsCons  clsCons  clsWfLC  >  clsWfUC$4:4  clsConsLC$1:1 { user1=1;  }  @2 { user1=1;  }  @3 { user1=1;  }   /  _ {...}  ^  _ {...}  _ {...}  _  ;
+RULE 1.0, PigLatinMain.gdl(46):  clsConsUC  clsCons  clsCons  clsWfLC  >  clsWfUC$4:4  clsConsLC$1:1 { user1=1;  }  @2 { user1=1;  }  @3 { user1=1;  }   /  _ {...}  ^  _ {...}  _ {...}  _  ;
 
 ACTIONS:
-PutSubs 3 5 0
+PutSubs 3 5 1
 Assoc 1 3
 Next
-PutSubs 255 4 2
+PutSubs 255 4 0
 Assoc 1 -1
 PushByte 1
 IAttrSet user 0
@@ -46,13 +46,13 @@ Equal
 And
 PopRet
 
-RULE 1.1, PigLatin.gdl(49):  clsConsUC  clsCons  clsWfLC  >  clsWfUC$3:3  clsConsLC$1:1 { user1=1;  }  @2 { user1=1;  }   /  _ {...}  ^  _ {...}  _  ;
+RULE 1.1, PigLatinMain.gdl(49):  clsConsUC  clsCons  clsWfLC  >  clsWfUC$3:3  clsConsLC$1:1 { user1=1;  }  @2 { user1=1;  }   /  _ {...}  ^  _ {...}  _  ;
 
 ACTIONS:
-PutSubs 2 5 0
+PutSubs 2 5 1
 Assoc 1 2
 Next
-PutSubs 255 4 2
+PutSubs 255 4 0
 Assoc 1 -1
 PushByte 1
 IAttrSet user 0
@@ -76,13 +76,13 @@ Equal
 And
 PopRet
 
-RULE 1.2, PigLatin.gdl(52):  clsConsUC  clsWfLC  >  clsWfUC$2:2  clsConsLC$1:1 { user1=1;  }   /  _ {...}  ^  _  ;
+RULE 1.2, PigLatinMain.gdl(52):  clsConsUC  clsWfLC  >  clsWfUC$2:2  clsConsLC$1:1 { user1=1;  }   /  _ {...}  ^  _  ;
 
 ACTIONS:
-PutSubs 1 5 0
+PutSubs 1 5 1
 Assoc 1 1
 Next
-PutSubs 255 4 2
+PutSubs 255 4 0
 Assoc 1 -1
 PushByte 1
 IAttrSet user 0
@@ -97,7 +97,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 1.3, PigLatin.gdl(58):  clsCons  clsCons  clsCons  clsWf  >  @4  @1 { user1=1;  }  @2 { user1=1;  }  @3 { user1=1;  }   /  _  ^  _ {...}  _ {...}  _ {...}  ;
+RULE 1.3, PigLatinMain.gdl(58):  clsCons  clsCons  clsCons  clsWf  >  @4  @1 { user1=1;  }  @2 { user1=1;  }  @3 { user1=1;  }   /  _  ^  _ {...}  _ {...}  _ {...}  ;
 
 ACTIONS:
 PutCopy 3
@@ -134,7 +134,7 @@ Equal
 And
 PopRet
 
-RULE 1.4, PigLatin.gdl(61):  clsCons  clsCons  clsWf  >  @3  @1 { user1=1;  }  @2 { user1=1;  }   /  _  ^  _ {...}  _ {...}  ;
+RULE 1.4, PigLatinMain.gdl(61):  clsCons  clsCons  clsWf  >  @3  @1 { user1=1;  }  @2 { user1=1;  }   /  _  ^  _ {...}  _ {...}  ;
 
 ACTIONS:
 PutCopy 2
@@ -162,7 +162,7 @@ Equal
 And
 PopRet
 
-RULE 1.5, PigLatin.gdl(64):  clsCons  clsWf  >  @2  @1 { user1=1;  }   /  _  ^  _ {...}  ;
+RULE 1.5, PigLatinMain.gdl(64):  clsCons  clsWf  >  @2  @1 { user1=1;  }   /  _  ^  _ {...}  ;
 
 ACTIONS:
 PutCopy 1
@@ -181,7 +181,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 1.6, PigLatin.gdl(68):  clsCons  clsCons  clsCons  _  _  >  @1  @2  @3  g_aIns:3  g_yIns:3   /  _ {...}  _ {...}  _ {...}  _  _  ;
+RULE 1.6, PigLatinMain.gdl(68):  clsCons  clsCons  clsCons  _  _  >  @1  @2  @3  g_aIns:3  g_yIns:3   /  _ {...}  _ {...}  _ {...}  _  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -191,7 +191,7 @@ Next
 PutCopy 0
 Next
 Insert
-PutGlyph 1
+PutGlyph 2
 Assoc 1 0
 Next
 Insert
@@ -217,7 +217,7 @@ Equal
 And
 PopRet
 
-RULE 1.7, PigLatin.gdl(70):  clsCons  clsCons  _  _  >  @1  @2  g_aIns:2  g_yIns:2   /  _ {...}  _ {...}  _  _  ;
+RULE 1.7, PigLatinMain.gdl(70):  clsCons  clsCons  _  _  >  @1  @2  g_aIns:2  g_yIns:2   /  _ {...}  _ {...}  _  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -225,7 +225,7 @@ Next
 PutCopy 0
 Next
 Insert
-PutGlyph 1
+PutGlyph 2
 Assoc 1 0
 Next
 Insert
@@ -246,13 +246,13 @@ Equal
 And
 PopRet
 
-RULE 1.8, PigLatin.gdl(72):  clsCons  _  _  >  @1  g_aIns:1  g_yIns:1   /  _ {...}  _  _  ;
+RULE 1.8, PigLatinMain.gdl(72):  clsCons  _  _  >  @1  g_aIns:1  g_yIns:1   /  _ {...}  _  _  ;
 
 ACTIONS:
 PutCopy 0
 Next
 Insert
-PutGlyph 1
+PutGlyph 2
 Assoc 1 0
 Next
 Insert
