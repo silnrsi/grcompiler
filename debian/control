@@ -1,5 +1,5 @@
 Source: grcompiler
-Build-Depends: autotools-dev, cdbs (>= 0.4.27-1), debhelper (>= 4.2.21), docbook2x
+Build-Depends: autotools-dev, cdbs (>= 0.4.27-1), debhelper (>= 4.2.21), docbook2x, pkg-config, libgraphite-dev (>= 2.2), libicu36-dev (>= 3.6)
 Build-Conflicts: libgtkhtml3.2-dev, libgtkhtml3.6-dev
 Section: devel
 Priority: optional
