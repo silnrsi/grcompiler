@@ -1,6 +1,6 @@
 Graphite Compilation Results
 
-GDL file: PigLatin.gdl
+GDL file: PigLatinMain.gdl
 Input font file: PigLatinInput.ttf
 Output font file: PigLatinBenchmark_v2.ttf
 Output font family: Std SILDoulos
