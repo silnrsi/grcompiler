@@ -17,7 +17,7 @@ showcodename:
 	echo "Codename: ${DISTRIB_CODENAME}"
 
 deb-base: dist
-	rm -rf grcompiler*
+	rm -fr ${DEBPACKAGE}
 	mkdir -p ${DEBPACKAGE}
 	cp ${PACKAGE}-${VERSION}.tar.gz $(DEBPACKAGE)
 	tar cfz $(ORIGTAR) $(DEBPACKAGE)
