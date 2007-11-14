@@ -27,6 +27,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "C:\silgraphite_2_0\grcompiler\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\release\icuuc36.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\release\icudt36.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\installer\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
