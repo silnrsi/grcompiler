@@ -537,6 +537,8 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 		return TtfUtil::FontDescent(m_pOs2);
 	case kgmetAdvHeight: // TODO AlanW (SharonC): eventually the vmtx table will be needed?
 		return 0;
+	default:
+		break;	// fall through
 	}
 
 	int nAdvWid, nLsb;
@@ -1071,15 +1073,15 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	if (!TtfUtil::GlyfContourCount(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, cContours))
 		return false;
 
-	const size_t CONTOUR_BUF_SIZE = 8;
-	const size_t POINT_BUF_SIZE = 64;
+	const int CONTOUR_BUF_SIZE = 8;
+	const int POINT_BUF_SIZE = 64;
 	// Fixed-size buffers that will be used in most cases:
 	int rgnEndPtBuf[CONTOUR_BUF_SIZE];	
 	bool rgfOnCurveBuf[POINT_BUF_SIZE];
 	int rgnXBuf[POINT_BUF_SIZE];
 	int rgnYBuf[POINT_BUF_SIZE];
-    bool *prgfOnCurve;
-    int *prgnX, *prgnY;
+    bool * prgfOnCurve = NULL;
+    int * prgnX, *prgnY = NULL;
 
 	int * prgnEndPt = (cContours > CONTOUR_BUF_SIZE) ? new int[cContours] : rgnEndPtBuf;
 	int fRet = false;
