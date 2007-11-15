@@ -559,7 +559,7 @@ void GdlSubstitutionItem::FindSubstitutionSlots(int irit,
 void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 	ReplacementClassSet & setpglfcReplace, bool fInput)
 {
-	GdlDefn * pdefn;
+	GdlDefn * pdefn = NULL;
 	if (fInput)
 	{
 		if (m_psymInput)
@@ -1389,7 +1389,6 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 ----------------------------------------------------------------------------------------------*/
 bool GdlRule::CheckForJustificationConstraint()
 {
-	bool fFound = false;
 	for (size_t ipexp = 0; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		GdlExpression * pexp = m_vpexpConstraints[ipexp];
@@ -1840,7 +1839,6 @@ void GdlPass::CheckLBsInRules(Symbol psymTable)
 
 	int critPreLB = 0;
 	int critPostLB = 0;
-	bool fReproc = false;
 
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{

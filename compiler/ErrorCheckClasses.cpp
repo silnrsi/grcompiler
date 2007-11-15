@@ -244,7 +244,7 @@ int GrcManager::PseudoForUnicode(int nUnicode)
 {
 	for (size_t iw = 0; iw < m_vnUnicodeForPseudo.size(); iw++)
 	{
-		if (m_vnUnicodeForPseudo[iw] == nUnicode)
+		if (m_vnUnicodeForPseudo[iw] == unsigned(nUnicode))
 			return m_vwPseudoForUnicode[iw];
 	}
 	return 0;
@@ -255,7 +255,7 @@ int GrcManager::PseudoForUnicode(int nUnicode)
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::ActualForPseudo(utf16 wPseudo)
 {
-	utf16 wActual = 0;
+	//utf16 wActual = 0;
 	std::map<utf16, utf16>::iterator hmit = m_hmActualForPseudo.find(wPseudo);
 	if (hmit == m_hmActualForPseudo.end()) // no value
 		return 0;
@@ -969,7 +969,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			// || it->FitsSymbolType(ksymtGlyphMetric) && it->Used()
 		{
 			Symbol psymGeneric = psym->Generic();
-			bool f = psym->FitsSymbolType(ksymtGlyphAttr);
+			//bool f = psym->FitsSymbolType(ksymtGlyphAttr);
 			if (!psymGeneric)
 				// Probably because this was a glyph metric--already gave an error.
 				continue;
@@ -977,7 +977,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 
 			if (nPass == 2 && psym->IsComponentBoxField())
 			{
-				int ipsymOffset;
+				int ipsymOffset = 0;
 				std::string sta = psym->LastField();
 				if (sta == "top")
 					ipsymOffset = 0;
@@ -1278,9 +1278,9 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 {
 	bool fIcuAvailable = false;
 	try {
-		int charType = u_charType(0x0020);
-		int charCat = UCharCategory(u_charType(0x0020));
-		int charDir = u_charDirection(0x0020);
+		//int charType = u_charType(0x0020);
+		//int charCat = UCharCategory(u_charType(0x0020));
+		//int charDir = u_charDirection(0x0020);
 		if (UCharCategory(u_charType(0x0020)) == U_SPACE_SEPARATOR
 			&& u_charDirection(0x0020) == U_WHITE_SPACE_NEUTRAL)
 		{
@@ -2454,7 +2454,7 @@ void GdlGlyphDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 
 		if (psymGpoint && pgax->GpointDefined(wGlyphID, psymGpoint->InternalID()))
 		{
-			bool fShadowX, fShadowY;
+			bool fShadowX = false; bool fShadowY = false;
 			bool fAlsoX = (psymX && pgax->DefinedButMaybeShadow(wGlyphID, psymX->InternalID(), &fShadowX));
 			bool fAlsoY = (psymY && pgax->DefinedButMaybeShadow(wGlyphID, psymY->InternalID(), &fShadowY));
 			// Error already handled in ConvertBetweenXYAndGpoint

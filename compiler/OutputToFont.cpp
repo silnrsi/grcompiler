@@ -514,7 +514,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	for (int ipecChange = 0; ipecChange < signed(vpecToChange.size()); ipecChange++)
 	{
 		PlatEncChange * ppec = &(vpecToChange[ipecChange]);
-		int engID = ppec->engLangID;
+		//int engID = ppec->engLangID;
 
 		if (ppec->cbBytesPerChar == 1)
 			f8bitFeatures = true;	// we need to output 8-bit feature strings
@@ -950,7 +950,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 		pNewRecord[irec].length = pOldRecord[irec].length;
 		//pNewRecord[irec].offset = ibStrOffsetNew + dibNew;
 
-		size_t cchwStr, cbStr;
+		size_t cchwStr, cbStr = 0;
 		uint8 * pbStr = NULL;
 		if (ipec < signed(vpec.size())
 			&& ppec->pchwFullName // this is a platform+encoding where we need to change the font
