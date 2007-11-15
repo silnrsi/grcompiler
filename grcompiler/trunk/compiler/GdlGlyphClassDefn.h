@@ -330,7 +330,7 @@ protected:
 // Functor class for set manipulation.
 class ReplClassLess
 {
-	friend class GdlGlyphClassDefn;
+		friend class GdlGlyphClassDefn;
 public:
 	bool operator()(const GdlGlyphClassDefn * pglfc1, const GdlGlyphClassDefn * pglfc2) const
 	{
