@@ -1,4 +1,4 @@
-/*--------------------------------------------------------------------*//*:Ignore this sentence.
+﻿/*--------------------------------------------------------------------*//*:Ignore this sentence.
 Copyright (C) 1999, 2001 SIL International. All rights reserved.
 
 Distributable under the terms of either the Common Public License or the
@@ -88,7 +88,7 @@ int main(int argc, char * argv[])
     // via the PATH and it allows people to use things like /usr/local/bin
     if (!pchGdlppFile)
     {
-        pchGdlppFile = "gdlpp";
+    	pchGdlppFile = "gdlpp";
     }
 #endif
 
@@ -200,8 +200,8 @@ int main(int argc, char * argv[])
 
 	if (g_cman.IsVerbose())
 	{
-        std::cout << "Reading input font...\n\n";
-    }
+		std::cout << "Reading input font...\n\n";
+	}
 
 	GrcFont * pfont = new GrcFont(pchFontFile);
 	int nFontError = pfont->Init(&g_cman);
