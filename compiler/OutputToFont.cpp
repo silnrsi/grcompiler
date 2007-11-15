@@ -660,11 +660,11 @@ void GrcManager::BuildDateString(utf16 * stuDate)
 	std::copy(strTimeWchar.data() + 20, strTimeWchar.data() + 24, stuDate + 7);	// year
 	stuDate[11] = 0;
 #else
-    char tempDate[20];
+	char tempDate[20];
 	time_t currentTime;
 	time(&currentTime);
-    strftime(tempDate, 20, "%d-%b-%Y", localtime(&currentTime));
-    std::copy(tempDate, tempDate + strlen(tempDate), stuDate);
+	strftime(tempDate, 20, "%d-%b-%Y", localtime(&currentTime));
+	std::copy(tempDate, tempDate + strlen(tempDate), stuDate);
 	stuDate[11] = 0;
 #endif
 }
