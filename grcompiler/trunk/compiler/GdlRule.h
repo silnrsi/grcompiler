@@ -167,10 +167,10 @@ public:
 	GdlRuleItem(const GdlRuleItem & rit)
 		:	GdlObject(rit),
 			m_iritContextPos(rit.m_iritContextPos),
-			m_iritContextPosOrig(rit.m_iritContextPosOrig),
 			m_psymInput(rit.m_psymInput),
-			m_nInputFsmID(rit.m_nInputFsmID),
-			m_staAlias(rit.m_staAlias)
+			m_staAlias(rit.m_staAlias),
+			m_iritContextPosOrig(rit.m_iritContextPosOrig),
+			m_nInputFsmID(rit.m_nInputFsmID)
 	{
 		if (rit.m_pexpConstraint)
 			m_pexpConstraint = rit.m_pexpConstraint->Clone();

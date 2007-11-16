@@ -51,16 +51,16 @@ public:
 	//	Constructor & destructor:
 	GrcSymbolTableEntry(std::string sta, SymbolType symt, GrcSymbolTable* psymtbl)
 	:	m_staFieldName(sta),
+		m_psymtblSubTable(NULL),
+		m_psymtbl(psymtbl),
+		m_fHasData(false),
 		m_symt(symt),
 		m_symt2(ksymtNone),
-		m_psymtbl(psymtbl),
-		m_pData(NULL),
-		m_fHasData(false),
-		m_psymtblSubTable(NULL),
 		m_expt(kexptUnknown),
-		m_fUserDefined(true),
+		m_pData(NULL),
 		m_psymGeneric(NULL),
-		m_fGeneric(false)
+		m_fGeneric(false),
+		m_fUserDefined(true)
 	{
 	}
 

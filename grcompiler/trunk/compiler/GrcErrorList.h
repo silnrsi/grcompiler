@@ -29,12 +29,12 @@ class GrcErrorItem
 
 public:
 	GrcErrorItem(bool fFatal, int nID, GrpLineAndFile & lnf, std::string staMsg, GdlObject * pgdlObj)
-		:	m_fFatal(fFatal),
-			m_nID(nID),
-			m_fMsgIncludesFatality(false),
-			m_lnf(lnf),
+		:	m_nID(nID),
+			m_pgdlObject(pgdlObj),
 			m_staMsg(staMsg),
-			m_pgdlObject(pgdlObj)
+			m_fFatal(fFatal),
+			m_fMsgIncludesFatality(false),
+			m_lnf(lnf)
 	{
 	}
 
