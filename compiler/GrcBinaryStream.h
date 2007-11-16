@@ -13,8 +13,8 @@ Description:
 #ifdef _MSC_VER
 #pragma once
 #endif
-#ifndef WRC_BINSTRM_INCLUDED
-#define WRC_BINSTRM_INCLUDED
+#ifndef GRC_BINSTRM_INCLUDED
+#define GRC_BINSTRM_INCLUDED
 
 using std::fstream;
 
@@ -27,7 +27,7 @@ Hungarian: bstrm
 class GrcBinaryStream : public fstream
 {
 public:
-	GrcBinaryStream(char * stFileName)
+	GrcBinaryStream(const char * stFileName)
 		: fstream(stFileName, std::ios::binary | std::ios::out | std::ios::in | std::ios::trunc)
 	{
 	}
@@ -80,4 +80,4 @@ public:
 	std::ostream m_strm;
 };
 
-#endif // !WRC_BINSTRM_INCLUDED
+#endif // !GRC_BINSTRM_INCLUDED

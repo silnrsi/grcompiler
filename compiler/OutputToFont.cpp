@@ -99,8 +99,8 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	Assert(iTableHeadSrc >= 0);
 
 	// Do the same for the minimal control file.
-	char * rgchEnvVarName = "GDLPP_PREFS";
-	char * rgchMinPath = getenv(rgchEnvVarName);
+	const char * rgchEnvVarName = "GDLPP_PREFS";
+	const char * rgchMinPath = getenv(rgchEnvVarName);
 	std::string staMinFile(rgchMinPath ? rgchMinPath : "");
 	if (staMinFile.length() > 2)
 	{
@@ -3278,5 +3278,6 @@ void GrcManager::DebugOutput()
 
 	bstrm.SetPosition(lSavePos);
 }
+
 
 
