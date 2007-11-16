@@ -111,11 +111,11 @@ public:
 	//	pseudo(unicode(0x3344))
 	GdlGlyphDefn(GlyphType glft, GdlGlyphDefn * pglf)
 		:	m_glft(glft),
-			m_pglfOutput(pglf),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
 			m_nUnicodeInput(0),
+			m_pglfOutput(pglf),
 			m_fGAResolved(false)
 	{
 		Assert(m_glft == kglftPseudo);
@@ -125,11 +125,11 @@ public:
 	//	pseudo(unicode(0x3344), 0xf123)
 	GdlGlyphDefn(GlyphType glft, GdlGlyphDefn * pglf, int nInput)
 		:	m_glft(glft),
-			m_pglfOutput(pglf),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
 			m_nUnicodeInput(nInput),
+			m_pglfOutput(pglf),
 			m_fGAResolved(false)
 	{
 		Assert(m_glft == kglftPseudo);
