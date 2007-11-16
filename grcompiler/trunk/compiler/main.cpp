@@ -54,41 +54,29 @@ int main(int argc, char * argv[])
 #endif
 
 	char * pchGdlppFile = getenv("GDLPP");
+	std::string staGdlppFile(pchGdlppFile ? pchGdlppFile : "");
 #ifdef _WIN32
-	char rgchGdlppFile[256];
-	int cch;
-	if (!pchGdlppFile)
+	if (staGdlppFile.empty())
 	{
-		GetModuleFileName(NULL, rgchGdlppFile, 256);
-		cch = strlen(rgchGdlppFile);
-		while (rgchGdlppFile[cch - 1] != '\\')
-		{
-			rgchGdlppFile[cch - 1] = 0;
-			cch--;
-		}
-		pchGdlppFile = rgchGdlppFile;
-//		cch = strlen(pchGdlppFile);
-		if (pchGdlppFile[cch - 1] != '\\')
-		{
-			pchGdlppFile[cch++] = '\\';
-		}
-		pchGdlppFile[cch++] = 'g';
-		pchGdlppFile[cch++] = 'd';
-		pchGdlppFile[cch++] = 'l';
-		pchGdlppFile[cch++] = 'p';
-		pchGdlppFile[cch++] = 'p';
-		pchGdlppFile[cch++] = '.';
-		pchGdlppFile[cch++] = 'e';
-		pchGdlppFile[cch++] = 'x';
-		pchGdlppFile[cch++] = 'e';
-		pchGdlppFile[cch] = 0;
+		char rgchGdlppFile[1024];
+		DWORD cch = GetModuleFileName(NULL, rgchGdlppFile, sizeof(rgchGdlppFile)-1);
+		rgchGdlppFile[cch] = '\0';
+		staGdlppFile = rgchGdlppFile;
+
+		std::string::size_type pos = staGdlppFile.rfind('\\');
+		if (pos == staGdlppFile.npos)
+			pos = 0;
+		staGdlppFile.erase(pos, staGdlppFile.npos);
+		if (!staGdlppFile.empty())
+			staGdlppFile += '\\';
+		staGdlppFile += "gdlpp.exe";
 	}
 #else
     // On Linux just use the PATH since grcompiler has probably been run
     // via the PATH and it allows people to use things like /usr/local/bin
-    if (!pchGdlppFile)
+    if (staGdlppFile.empty())
     {
-    	pchGdlppFile = "gdlpp";
+        staGdlppFile = "gdlpp";
     }
 #endif
 
@@ -240,7 +228,7 @@ int main(int argc, char * argv[])
 	if (g_cman.IsVerbose())
 	{
 		std::cout << "GDL file: " << pchGdlFile << "\n"
-            << "PreProcessor: " << pchGdlppFile << "\n"
+			<< "PreProcessor: " << staGdlppFile << "\n"
 			<< "Input TT file: " << (pchFontFile ? pchFontFile : "none") << "\n"
 			<< "Output TT file: " << rgchOutputFile << "\n"
 			<< "Output font name: " << staFamily << ((fModFontName) ? "" : " (unchanged)") << "\n"
@@ -275,7 +263,7 @@ int main(int argc, char * argv[])
 	{
 		if (g_cman.IsVerbose())
 			std::cout << "Parsing file " << pchGdlFile << "...\n";
-		if (g_cman.Parse(pchGdlFile, pchGdlppFile))
+		if (g_cman.Parse(pchGdlFile, staGdlppFile))
 		{
 			if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
 			if (g_cman.PostParse())
