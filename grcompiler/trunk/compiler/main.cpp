@@ -1,4 +1,4 @@
-﻿/*--------------------------------------------------------------------*//*:Ignore this sentence.
+/*--------------------------------------------------------------------*//*:Ignore this sentence.
 Copyright (C) 1999, 2001 SIL International. All rights reserved.
 
 Distributable under the terms of either the Common Public License or the
@@ -9,7 +9,7 @@ Responsibility: Sharon Correll
 Last reviewed: Not yet.
 
 Description:
-    Main function that runs the compiler.
+    Main function that runs the compiler. 
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -115,8 +115,9 @@ int main(int argc, char * argv[])
 		#else
 			std::cout << "  [release build]";
 		#endif
+		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright © 2002-2007, by SIL International.  All rights reserved.\n";
+			<< "Copyright \xc2\xa9 2002-2007, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
