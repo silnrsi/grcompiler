@@ -716,6 +716,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	vfDeletion.resize(crit, false);
 	std::vector<int> vcwClassSizes;
 	vcwClassSizes.resize(crit, false);
+	bool fAnyAssocs = false;
 	size_t irit;
 	for (irit = 0; irit < crit; irit++)
 	{
@@ -742,6 +743,8 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 					vcwClassSizes[irit] = 0;
 			}
 			else vcwClassSizes[irit] = 0;
+
+			fAnyAssocs = (fAnyAssocs || prit->AnyAssociations());
 		}
 	}
 
@@ -765,7 +768,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 //		}
 
 		if (!m_vprit[irit]->CheckRulesForErrors(pgax, pfont, prndr, psymTable,
-				grfrco, irit, vfLb,
+				grfrco, irit, fAnyAssocs, vfLb, 
 				vfInsertion, vfDeletion, vcwClassSizes))
 		{
 			fOkay = false;
@@ -788,7 +791,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit,
+	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwClassSizes)
 {
@@ -836,7 +839,7 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit,
+	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwSizes)
 {
@@ -852,7 +855,7 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	}
 
 	//	method on superclass: check constraints.
-	if(!GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit,
+	if(!GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit, fAnyAssocs,
 		vfLb, vfIns, vfDel, vcwSizes))
 	{
 		fOkay = false;
@@ -863,12 +866,12 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco,
-	int irit, std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwSizes)
 {
 	bool fOkay = GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit,
-			vfLb, vfIns, vfDel, vcwSizes);
+			fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes);
 
 	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
@@ -884,8 +887,8 @@ bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pf
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco,
-	int irit, std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwClassSizes)
 {
 	int crit = signed(vfLb.size());
@@ -924,6 +927,13 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 				delete m_vpexpAssocs[ipexp];
 			m_vpexpAssocs.clear();
 			fOkay = false;
+		}
+
+		if (!fAnyAssocs)
+		{
+			g_errorList.AddWarning(3529, this,
+				"Item ", PosString(),
+				": deleted item was not associated with another slot");
 		}
 	}
 	if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
@@ -1026,7 +1036,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		}
 	}
 
-	if (!GdlSetAttrItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit,
+	if (!GdlSetAttrItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit, fAnyAssocs,
 		vfLb, vfIns, vfDel, vcwClassSizes))
 	{
 		fOkay = false;
@@ -1378,6 +1388,21 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	return fOkay;
 }
 
+
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Return true if this item sets has any associations.
+----------------------------------------------------------------------------------------------*/
+bool GdlRuleItem::AnyAssociations()
+{
+	return false;
+}
+
+bool GdlSubstitutionItem::AnyAssociations()
+{
+	return (m_vpexpAssocs.size() > 0);
+}
 
 /**********************************************************************************************/
 

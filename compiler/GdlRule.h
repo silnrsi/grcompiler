@@ -248,9 +248,10 @@ public:
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
-		int grfrco, int irit,
+		int grfrco, int irit, bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
+	virtual bool AnyAssociations();
 	bool CheckForJustificationConstraint();
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
@@ -358,7 +359,7 @@ protected:
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
-		int grfrco, int irit,
+		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
@@ -444,7 +445,7 @@ protected:
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
-		int grfrco, int irit,
+		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
@@ -581,13 +582,14 @@ protected:
 		std::vector<bool> & vfInput, std::vector<bool> & vfOutput);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable,
-		int grfrco, int irit,
+		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
 		std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
+	virtual bool AnyAssociations();
 
 	//	Compiler:
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
