@@ -671,6 +671,29 @@ std::string GrcSymbolTableEntry::FullAbbrev()
 
 
 /*----------------------------------------------------------------------------------------------
+    Return the full dotted name of the symbol, using abbreviations. Omit the given string,
+	which should be the top level item. For instance, if "attach" is passed, return
+	"with.x" instead of "attach.with.x".
+----------------------------------------------------------------------------------------------*/
+std::string GrcSymbolTableEntry::FullAbbrevOmit(std::string staOmit)
+{
+	std::string staRet = Abbreviation(m_staFieldName);
+	GrcSymbolTableEntry * psymCurr = m_psymtbl->m_psymParent;
+	while (psymCurr)
+	{
+		std::string staTmp = Abbreviation(psymCurr->m_staFieldName);
+		if (staTmp == staOmit)
+			break;
+		staTmp += ".";
+		staTmp += staRet;
+		staRet = staTmp;
+		psymCurr = psymCurr->m_psymtbl->m_psymParent;
+	}
+	return staRet;
+}
+
+
+/*----------------------------------------------------------------------------------------------
     Return the standard abbreviation for the keyword.
 ----------------------------------------------------------------------------------------------*/
 std::string GrcSymbolTableEntry::Abbreviation(std::string staFieldName)
@@ -863,9 +886,9 @@ bool GrcSymbolTableEntry::IsAttachAtField()
 {
 	Assert(FitsSymbolType(ksymtSlotAttr));
 	Symbol psymParent = ParentSymbol();
-	return (psymParent && psymParent->ParentSymbol() &&
-		psymParent->ParentSymbol()->m_staFieldName == "attach" &&
-		psymParent->m_staFieldName == "at");
+	return (psymParent && psymParent->ParentSymbol()
+		&& psymParent->ParentSymbol()->m_staFieldName == "attach"
+		&& psymParent->m_staFieldName == "at");
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -875,9 +898,33 @@ bool GrcSymbolTableEntry::IsAttachWithField()
 {
 	Assert(FitsSymbolType(ksymtSlotAttr));
 	Symbol psymParent = ParentSymbol();
-	return (psymParent && psymParent->ParentSymbol() &&
-		psymParent->ParentSymbol()->m_staFieldName == "attach" &&
-		psymParent->m_staFieldName == "with");
+	return (psymParent && psymParent->ParentSymbol()
+		&& psymParent->ParentSymbol()->m_staFieldName == "attach"
+		&& psymParent->m_staFieldName == "with");
+}
+
+/*----------------------------------------------------------------------------------------------
+    Return true if the symbol is of the form "attach.at/with.x"
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsAttachXField()
+{
+	Assert(FitsSymbolType(ksymtSlotAttr));
+	Symbol psymParent = ParentSymbol();
+	return ((psymParent && psymParent->ParentSymbol())
+		&& (psymParent->ParentSymbol()->m_staFieldName == "attach")
+		&& ((psymParent->m_staFieldName == "with") || (psymParent->m_staFieldName == "at"))
+		&& m_staFieldName == "x");
+}
+
+/*----------------------------------------------------------------------------------------------
+    Return true if the symbol is of the form "attach.at/with.xoffset/yoffset"
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsAttachOffsetField()
+{
+	Assert(FitsSymbolType(ksymtSlotAttr));
+	Symbol psymParent = ParentSymbol();
+	return ((IsAttachWithField() || IsAttachAtField())
+		&& (m_staFieldName == "xoffset" || m_staFieldName == "yoffset"));
 }
 
 /*----------------------------------------------------------------------------------------------

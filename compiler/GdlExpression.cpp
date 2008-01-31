@@ -2970,43 +2970,61 @@ void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 							needs to decide how to handle the accompanying insert = false;
 							only slot references need to worry about it
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
-	strmOut << "...";
+	strmOut << m_psymOperator->FullName().data() << "(";
+	m_pexpOperand->PrettyPrint(pcman, strmOut, false);
+	strmOut << ")";
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
-	strmOut << "...";
+	if (fParens)
+		strmOut << "(";
+	m_pexpOperand1->PrettyPrint(pcman, strmOut, true);
+	strmOut << " " << m_psymOperator->FullName().data() << " ";
+	m_pexpOperand2->PrettyPrint(pcman, strmOut, true);
+	if (fParens)
+		strmOut << ")";
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
-	strmOut << "...";
+	strmOut << "(";
+	m_pexpTest->PrettyPrint(pcman, strmOut, true);
+	strmOut << ") ? ";
+	m_pexpTrue->PrettyPrint(pcman, strmOut, true);
+	strmOut << " : ";
+	m_pexpFalse->PrettyPrint(pcman, strmOut, true);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
-	strmOut << "...";
+	if (m_pexpSelector)
+	{
+		m_pexpSelector->PrettyPrint(pcman, strmOut, true);
+		strmOut << ".";
+	}
+	strmOut << m_psymName->FullAbbrev().data();
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlNumericExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
 	strmOut << m_nValue;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlSlotRefExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
 	strmOut << "@" << m_srNumber;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlStringExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
 {
 	strmOut << m_staValue;
 }

@@ -87,6 +87,7 @@ public:
 	bool FieldIs(int, std::string);
 	std::string FullName();
 	std::string FullAbbrev();
+	std::string FullAbbrevOmit(std::string staOmit);
 	static std::string Abbreviation(std::string staFieldName);
 	void GetStructuredName(GrcStructName * pxns);
 	bool MatchesOp(std::string);
@@ -145,6 +146,8 @@ public:
 	bool IsAttachTo();
 	bool IsAttachAtField();
 	bool IsAttachWithField();
+	bool IsAttachXField();
+	bool IsAttachOffsetField();
 	bool IsAttachment();
 	bool IsMovement();	// shift, kern, advance
 	bool DoesJustification();

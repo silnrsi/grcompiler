@@ -1442,6 +1442,15 @@ void GrcSymbolTable::GlyphAttrList(std::vector<Symbol> & vpsym)
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 {
+	size_t cEndif = 0;
+	for (size_t iexp = 0; iexp < m_vpexpConstraints.size(); iexp++)
+	{
+		strmOut << "if (";
+		m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut);
+		strmOut << ") ";
+		cEndif++;
+	}
+
 	//	Loop through all the items to see if we need a LHS or a context.
 	bool fLhs = false;
 	bool fContext = (m_nScanAdvance != -1);
@@ -1486,6 +1495,9 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 	}
 
 	strmOut << ";";
+
+	for (size_t i = 0; i < cEndif; i++)
+		strmOut << " endif; ";
 }
 
 
@@ -1523,9 +1535,9 @@ void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, GdlRule * prule, int
 {
 	if (m_pexpConstraint)
 	{
-		strmOut << " {";
+		strmOut << " { ";
 		m_pexpConstraint->PrettyPrint(pcman, strmOut);
-		strmOut << "}";
+		strmOut << " }";
 	}
 }
 
@@ -1597,46 +1609,110 @@ void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, 
 		bool fAttAt = false;
 		bool fAttWith = false;
 		strmOut << " { ";
+
+		// Do attach attributes first. Use the {} structure to take up less room.
+		int ciavsAttach = 0;
 		for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 		{
-			m_vpavs[iavs]->PrettyPrint(pcman, strmOut, &fAtt, &fAttAt, &fAttWith, m_vpavs.size());
+			if (m_vpavs[iavs]->m_psymName->IsAttachment())
+				ciavsAttach++;
+		}
+		if (ciavsAttach)
+		{
+			strmOut << " attach {";
+			for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
+			{
+				if (m_vpavs[iavs]->m_psymName->IsAttachment())
+					m_vpavs[iavs]->PrettyPrintAttach(pcman, strmOut);
+			}
+			strmOut << "} ";
+		}
+
+		// Now do everything else.
+		for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
+		{
+			if (!m_vpavs[iavs]->m_psymName->IsAttachment())
+				m_vpavs[iavs]->PrettyPrint(pcman, strmOut, &fAtt, &fAttAt, &fAttWith, m_vpavs.size());
 		}
 		strmOut << " }";
 	}
 }
 
+void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut)
+{
+	if (m_fFlattened
+		&& (m_psymName->IsAttachAtField() || m_psymName->IsAttachWithField()))
+	{
+		// A single statement like "attach.at = apt" has been translated into
+		// "attach.at.x = apt.x, attach.at.y = apt.y, attach.at.xoffset = apt.xoffset,
+		// attach.at.yoffset = apt.yoffset". Just print out one of these, say, the x.
+		if (m_psymName->IsAttachXField())
+		{
+			if (m_psymName->IsAttachAtField())
+				strmOut << "at = ";
+			else
+				strmOut << "with = ";
+			GdlLookupExpression * pexpLookup = dynamic_cast<GdlLookupExpression *>(m_pexpValue);
+			if (pexpLookup)
+			{
+				Symbol psym = pexpLookup->Name()->ParentSymbol();
+				strmOut << psym->FullAbbrevOmit("attach");
+			}
+			else
+				// strange...
+				m_pexpValue->PrettyPrint(pcman, strmOut);
+			strmOut << "; ";
+		}
+		return;
+	}
+	
+	if (m_psymName->IsAttachOffsetField())
+	{
+		int nValue;
+		if (m_pexpValue->ResolveToInteger(&nValue, false) && nValue == 0)
+			// Don't bother putting out something like attach.at.xoffset = 0.
+			return;
+	}
+
+	strmOut << m_psymName->FullAbbrevOmit("attach");
+	strmOut << " " << m_psymOperator->FullAbbrev() << " ";
+	m_pexpValue->PrettyPrint(pcman, strmOut);
+	strmOut << "; ";
+}
+
 void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut,
 	bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs)
 {
-	if (cpavs > 6 && m_psymName->IsAttachment())
-	{
-		if (*pfAtt)
-			return;
-		*pfAtt = true;
-		strmOut << "attach {...} ";
-		return;
-	}
+	//if (cpavs > 6 && m_psymName->IsAttachment())
+	//{
+	//	if (*pfAtt)
+	//		return;
+	//	*pfAtt = true;
+	//	strmOut << "attach {...} ";
+	//	return;
+	//}
 
-	if (m_psymName->IsAttachAtField() && m_fFlattened)
-	{
-		if (*pfAttAt)
-			return;
-		*pfAttAt = true;
-		strmOut << "attach.at=...";
-		return;
-	}
-	else if (m_psymName->IsAttachWithField() && m_fFlattened)
-	{
-		if (*pfAttWith)
-			return;
-		*pfAttWith = true;
-		strmOut << "attach.with=...";
-		return;
-	}
-	else
-		strmOut << m_psymName->FullAbbrev();
+	//if (m_psymName->IsAttachAtField() && m_fFlattened)
+	//{
+	//	if (*pfAttAt)
+	//		return;
+	//	*pfAttAt = true;
+	//	strmOut << "attach.at=...";
+	//	return;
+	//}
+	//else if (m_psymName->IsAttachWithField() && m_fFlattened)
+	//{
+	//	if (*pfAttWith)
+	//		return;
+	//	*pfAttWith = true;
+	//	strmOut << "attach.with=...";
+	//	return;
+	//}
+	//else
+	//	strmOut << m_psymName->FullAbbrev();
 	
-	strmOut << m_psymOperator->FullAbbrev();
+	strmOut << m_psymName->FullAbbrev();
+	strmOut << " " << m_psymOperator->FullAbbrev() << " ";
 	m_pexpValue->PrettyPrint(pcman, strmOut);
 	strmOut << "; ";
 }
