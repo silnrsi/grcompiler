@@ -132,7 +132,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue) = 0;
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut) = 0;
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false) = 0;
 
 private:
 	//void operator=(GdlExpression);	// don't call the assignment operator
@@ -274,7 +274,7 @@ public:
 	}
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false)
 	{
 		strmOut << "???";
 	};
@@ -372,7 +372,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
@@ -481,7 +481,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
@@ -572,7 +572,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
@@ -666,7 +666,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
@@ -767,7 +767,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
@@ -876,7 +876,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
@@ -1061,7 +1061,7 @@ public:
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
 
 protected:
 	//	Instance variables:
