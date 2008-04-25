@@ -39,6 +39,9 @@ AC_PATH_PROG(LSB_RELEASE, lsb_release, no)
 # Checks for libraries.
 
 AC_CHECK_LIB(sicuuc, u_charType_3_6)
+AC_CHECK_LIB(sicuuc, u_charType_3_8)
+AC_CHECK_LIB(sicuuc, u_charType_3_9)
+AC_CHECK_LIB(sicuuc, u_charType_4_0)
 
 # Checks for header files.
 # need to check for icu .h files as in unicode/uchar.h
