@@ -13,7 +13,6 @@ GrcRegressionTest_SOURCES = \
         stdafx.h \
         TestCase.h \
         CompareFontTables.cpp \
-        FileFont.cpp \
         FontStub.cpp \
         GrcRtFileFont.h \
         GrcRtFileFont.cpp \
