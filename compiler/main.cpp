@@ -260,11 +260,19 @@ int main(int argc, char * argv[])
 	    g_errorList.AddError(132, NULL, "Illegal encoding in GDL file - only 7 bit characters are legal.");
 	}
 
+	// Calculate the length of the path part of the output file name.
+	int cchOutputPath = strlen(rgchOutputFile);
+	while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\')
+		cchOutputPath--;
+	char rgchOutputPath[128];
+	memset(rgchOutputPath, 0, isizeof(char) * 128);
+	memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); // don't include \
+
 	if (!fEncodingErr)
 	{
 		if (g_cman.IsVerbose())
 			std::cout << "Parsing file " << pchGdlFile << "...\n";
-		if (g_cman.Parse(pchGdlFile, staGdlppFile))
+		if (g_cman.Parse(pchGdlFile, staGdlppFile, rgchOutputPath))
 		{
 			if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
 			if (g_cman.PostParse())

@@ -354,7 +354,7 @@ RefAST nullAST;
 
 
 // Sharon added:
-// This approach handles siblings interatively instead of one long recursive chain,
+// This approach handles siblings iteratively instead of one long recursive chain,
 // to avoid stack overflows. When doSiblings == true, recipient is the first sibling in a chain.
 void AST::iterativeRemoveChildren(bool doSiblings, int level)
 {

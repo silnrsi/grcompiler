@@ -47,10 +47,11 @@ using std::endl;
 	Run the parser over the file with the given name. Record an error if the file does not
 	exist.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile)
+bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile,
+	std::string staOutputPath)
 {
 	std::string staFilePreProc;
-	if (!RunPreProcessor(staFileName, &staFilePreProc, staGdlppFile))
+	if (!RunPreProcessor(staFileName, &staFilePreProc, staGdlppFile, staOutputPath))
 		return false;
 
 	std::ifstream strmIn;
@@ -71,7 +72,7 @@ bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile)
 	Run the C pre-processor over the GDL file. Return the name of the resulting file.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc,
-	std::string & staGdlppFile)
+	std::string & staGdlppFile, std::string & staOutputPath)
 {
 #ifdef _WIN32 
 	STARTUPINFO sui = {isizeof(sui)};
@@ -84,18 +85,22 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	//       and security
 	// Search MSDN for "Creating a Child Process with Redirected Input and Output" for 
 	// more proper way. Using the C RTL is much easier than the proper way with the Win API.
-	char * pszPreProcErr = new char[L_tmpnam + strlen("c:")];
+	int cchOutputPath = strlen(staOutputPath.data());
+	char * pszPreProcErr = new char[L_tmpnam + cchOutputPath];
 	if (!pszPreProcErr)
 	{
 	    g_errorList.AddError(1106, NULL, "Out of memory");
 	    return false;
 	}
-	strcpy(pszPreProcErr, "c:");
-	tmpnam(pszPreProcErr + strlen("c:"));
+	strcpy(pszPreProcErr, staOutputPath.c_str());
+	tmpnam(pszPreProcErr + cchOutputPath);
+	if (pszPreProcErr[0] == '\\')
+		memcpy(pszPreProcErr, pszPreProcErr + 1, L_tmpnam + cchOutputPath - 1);
+	////_tempnam(pszPreProcErr, staOutputPath.data());
 	FILE * pFilePreProcErr = fopen(pszPreProcErr, "w+");
 	if (!pFilePreProcErr)
 	{
-	    g_errorList.AddError(1107, NULL, "Could not create temporary file to run pre-processor");
+		g_errorList.AddError(1107, NULL, "Could not create temporary file to run pre-processor: ", pszPreProcErr);
 		delete[] pszPreProcErr;
 	    return false;
 	}
@@ -402,7 +407,10 @@ bool GrcManager::ParseFile(std::ifstream & strmIn, std::string staFileName)
 		RefAST ast = parser.getAST();
 
 		if (g_errorList.AnyFatalErrors())
+		{
+			ast->iterativeRemoveChildren(true); // to avoid stack overflows
 			return false;
+		}
 
 		InitPreDefined();
 		
@@ -2113,8 +2121,8 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 }
 
 /*----------------------------------------------------------------------------------------------
-	Return true if all the children of the -if- structure are pass structures. If there is
-	a mixture, return false and give a warning.
+	Return true if all the direct children of the -if- structure are pass structures.
+	If there is a mixture, return false and give a warning.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AllContentsArePasses(RefAST ast)
 {
