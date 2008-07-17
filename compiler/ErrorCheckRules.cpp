@@ -744,7 +744,9 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 			}
 			else vcwClassSizes[irit] = 0;
 
-			fAnyAssocs = (fAnyAssocs || prit->AnyAssociations());
+			fAnyAssocs = (fAnyAssocs || prit->AnyAssociations()
+				// an @ has an implied association
+				|| (prit->OutputSymbol() && prit->OutputSymbol()->FitsSymbolType(ksymtSpecialAt)));
 		}
 	}
 
@@ -939,7 +941,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	Insertion
-		if (m_vpexpAssocs.size() == 0)
+		if (m_vpexpAssocs.size() == 0 && !m_psymOutput->FitsSymbolType(ksymtSpecialAt))
 		{
 			g_errorList.AddWarning(3507, this,
 				"Item ", PosString(),
