@@ -1111,6 +1111,10 @@ bool GrcSymbolTableEntry::AdjustExpTypeIfPossible(ExpressionType expt)
 		m_expt = expt;
 		return true;
 	}
+	if (m_expt == expt)
+	{
+		return true;
+	}
 	if (m_expt == kexptZero && (expt == kexptNumber || expt == kexptMeas || expt == kexptBoolean))
 	{
 		m_expt = expt;
