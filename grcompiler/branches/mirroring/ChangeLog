@@ -1,0 +1,18 @@
+This is the changelog for the SIL Graphite Compiler project
+
+1st Jan 2006	Tim Eves
+	Create initial version separated from the Graphite engine project.
+
+3rd Jan 2006	Tim EVes
+	Restructured project:
+	 * Moved generic and the grammer sub-projects into their own
+	   static libs.
+	 * Moved gdlpp into a separate independant of the compiler.
+
+6th Jan 2006	Tim Eves
+	Added Iconv support to the configure.in scripts so it can find the
+	iconv library on Mac OS X.
+	Restructured some of the template classes in generic to allow:
+	  * Removal of explicit_instatiations.cpp.
+	  * To make them more portable to other compilers.
+

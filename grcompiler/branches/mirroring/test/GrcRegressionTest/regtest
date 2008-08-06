@@ -1,0 +1,116 @@
+#!/usr/bin/perl
+
+use IO::File;
+use Getopt::Long;
+
+my (%opts);
+GetOptions(\%opts, 'dir|d=s', 'compiler|g=s', 'help|h|?', 'keep|k', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'version=i', 'warning|w=i@');
+
+if ($opts{help})
+{
+    die <<'EOT';
+    regtest [-g grcompiler] [-o logfile] [-p gdlpp] [-r regtest] [-v] 
+            [-w number] [-k] [dir]
+Searches for fonts to run tests on in [dir] (defaults to .) and runs them
+storing log info in logfile and exiting with the number of errors
+
+  -d|--dir=dir              Use dir for intermediate test files
+  -g|--compiler=grcompiler  command to use to run grcompiler [grcompiler]
+  -h|--help                 print this help and exit
+  -k|--keep                 keep temporary files
+  -o|--output= logfile      file to log to [regtest.log]
+  -p|--preprocessor=gdlpp   command to run the gdlpp []
+  -r|--testengine=regtest   command to test result font [GrcRegressionTest]
+  -v|--verbose              Run compiler -q by default, this stops it
+  --version=num             default graphite version to generate [2]
+  -w|--warning= number      Run compiler with -w value (may be repeated)
+EOT
+}
+
+$opts{compiler} ||= 'grcompiler';
+$opts{output} ||= 'regtest.log';
+$ENV{'GDLPP'} = $opts{preprocessor} if (defined $opts{preprocessor});
+$opt{testengine} ||= 'GrcRegressionTest';
+$opt{version} ||= 2;
+
+my (@fonts) = sort glob(($ARGV[0] ? $ARGV[0] : '.') . "/*Input.ttf");
+my ($outf) = IO::File->new("> $opts{output}") || die "Can't create $opts{output}";
+my ($f, $errors);
+
+foreach $f (@fonts)
+{
+    my ($b, $v);
+    my ($t) = $f;
+    my ($r) = $f;
+    my ($n) = $f;
+    $n =~ s/Input.ttf$//o;
+
+    next unless (-f "${n}Main.gdl");
+    foreach $b ("${n}Benchmark_v2.ttf", "${n}Benchmark_v3.ttf", "${n}Benchmark.ttf")
+    {
+        next unless (-f $b);
+        if ($b =~ m/_v(\d)/o)
+        { 
+            $v = $1;
+            $r = "${n}Test_v$v.ttf";
+        }
+        else
+        {
+            $v = $opt{version};
+            $r = "${n}Test.ttf";
+        }
+        if ($opts{dir})
+        { $r =~ s{^.*[\\/](.*?)$}{$opts{dir}/$1}o; }
+        print "Testing Font: $n at v$v\n";
+        $t = "${n}Main.gdl";
+#    $r =~ s{^.*[/\\](.*?)$}{$1}o;
+
+        my (@gopts);
+        push (@gopts, '-q') unless ($opts{verbose});
+        push (@gopts, map {"-w" => $_}, @{$opts{warning}}) if (defined $opts{warning});
+        push (@gopts, "-v$v");
+        print $opts{compiler} . " " . join(" ", @gopts) . "\n" if ($opts{verbose});
+        system($opts{compiler}, @gopts, $t, $f, $r);
+        if (-f $r)      # assume it passes if it gives a result
+        {
+            unlink 'grcregtest.log';
+            my ($res) = system($opts{testengine}, $r, $b);
+            if ($res == -1)
+            {
+                print "Failed to run $opts{testengine} because $!\n";
+                $errors++;
+            }
+            my ($logf) = IO::File->new("grcregtest.log");
+            if ($logf)
+            {
+                while (<$logf>)
+                { $outf->print($_); }
+                $logf->close;
+            }
+            if ($res > 0)
+            {
+                $res >>= 8;
+                print "job error $res\n";
+                $errors += $res;
+            }
+            unlink $r unless ($opts{'keep'});
+        }
+        else
+        {
+            my ($logf) = IO::File->new("gdlerr.log");
+            if ($logf)
+            {
+                while (<$logf>)
+                { $outf->print($_); }
+                $logf->close;
+            }
+            $errors++;
+        }
+    }
+}
+
+$outf->close;
+
+print "$errors errors encountered\n" if ($errors);
+exit($errors);
+
