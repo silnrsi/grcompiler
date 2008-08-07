@@ -1098,7 +1098,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 				ProcessFunction(astValue, vsta, false);
 			else
 			{
-				GdlExpression * pexpValue = WalkExpressionTree(astValue);
+				GdlExpression * pexpValue = WalkExpressionTree(astValue, true);
 
 				Symbol psym = SymbolTable()->AddGlyphAttrSymbol(GrcStructName(vsta),
 					LineAndFile(ast), pexpValue->ExpType());
@@ -2491,9 +2491,9 @@ std::string GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
 		if (!*pastNext)
 			return ast->getText();
 		int nextNodeTyp = ast->getNextSibling()->getType();
-		if (nextNodeTyp != IDENT && nextNodeTyp != LITERAL_glyphid &&
-			nextNodeTyp != LITERAL_unicode && nextNodeTyp != LITERAL_codepoint &&
-			nextNodeTyp != LITERAL_postscript && nextNodeTyp != LITERAL_pseudo)
+		if (nextNodeTyp != IDENT && nextNodeTyp != LITERAL_glyphid // && nextNodeType != ZuHex ????
+			&& nextNodeTyp != LITERAL_unicode && nextNodeTyp != LITERAL_codepoint
+			&& nextNodeTyp != LITERAL_postscript && nextNodeTyp != LITERAL_pseudo)
 		{
 			return ast->getText().c_str();
 		}
@@ -2659,8 +2659,11 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<st
 			else
 			{
 				GdlExpression * pexpValue = WalkExpressionTree(astValue);
-				GdlAttrValueSpec * pavs = new GdlAttrValueSpec(psymSlotAttr, psymOp, pexpValue);
-				prit->AddAttrValueSpec(pavs);
+				if (pexpValue)
+				{
+					GdlAttrValueSpec * pavs = new GdlAttrValueSpec(psymSlotAttr, psymOp, pexpValue);
+					prit->AddAttrValueSpec(pavs);
+				}
 			}
 		}
 	}
@@ -2681,7 +2684,7 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<st
 /*----------------------------------------------------------------------------------------------
 	Process an expression.
 ----------------------------------------------------------------------------------------------*/
-GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
+GdlExpression * GrcManager::WalkExpressionTree(RefAST ast, bool fGlyphSpec) // @@@@@
 {
 	GdlExpression * pexpRet;
 	GdlExpression * pexp1;
@@ -2701,10 +2704,13 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 	RefAST astName;
 	RefAST astCluster;
 	RefAST astText;
+	RefAST astValue;
 	RefAST astCodePage;
 
 	int nValue;
 	int nCluster;
+	int nCodePage;
+	std::string staValue;
 	bool fM;
 	std::vector<std::string> vsta;
 
@@ -2812,8 +2818,8 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 		Assert(astOperand2);
 
 		pexpCond = WalkExpressionTree(astCond);
-		pexp1 = WalkExpressionTree(astOperand1);
-		pexp2 = WalkExpressionTree(astOperand2);
+		pexp1 = WalkExpressionTree(astOperand1, fGlyphSpec);
+		pexp2 = WalkExpressionTree(astOperand2, fGlyphSpec);
 		pexpRet = new GdlCondExpression(pexpCond, pexp1, pexp2);
 		break;
 
@@ -2929,6 +2935,62 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 		}
 		else
 			pexpRet = new GdlStringExpression(astText->getText().c_str(), CodePage());
+		break;
+
+	case LITERAL_codepoint:
+	case LITERAL_glyphid:
+	case LITERAL_postscript:
+	case LITERAL_unicode:
+	case ZuHex:
+		if (!fGlyphSpec)
+		{
+			g_errorList.AddError(99999, NULL,
+				"Glyph-id specification is not permitted in rules",
+				LineAndFile(ast));
+			return NULL;
+		}
+		else
+		{
+			astValue = ast->getFirstChild();
+			astCodePage = ast->getNextSibling();
+			int nType = astValue->getType();
+			if (astValue->getType() == LIT_INT || astValue->getType() == LIT_UHEX)
+			{
+				nValue = NumericValue(astValue, &fM);
+				staValue = "";
+			}
+			else if (astValue->getType() == LIT_STRING)
+				staValue = astValue->getText().c_str();
+			else
+				Assert(false);
+			if (astCodePage)
+				nCodePage = NumericValue(astCodePage, &fM);
+			GlyphType glft;
+			switch (nodetyp)
+			{
+			case LITERAL_codepoint:		glft = kglftCodepoint;	break;
+			case LITERAL_glyphid:		glft = kglftGlyphID;	break;
+			case LITERAL_postscript:	glft = kglftPostscript;	break;
+			case LITERAL_unicode:		glft = kglftUnicode;	break;
+			case ZuHex:					glft = kglftUnicode;	break;
+			default:
+				Assert(false);
+			}
+			if (staValue == "") // number value
+			{
+				if (astCodePage)
+					pexpRet = new GdlGlyphidExpression(glft, nValue, nCodePage);
+				else
+					pexpRet = new GdlGlyphidExpression(glft, nValue);
+			}
+			else
+			{
+				if (astCodePage)
+					pexpRet = new GdlGlyphidExpression(glft, staValue, nCodePage);
+				else
+					pexpRet = new GdlGlyphidExpression(glft, staValue);
+			}
+		}
 		break;
 
 	default:

@@ -247,18 +247,22 @@ glyphAttrs!		:	I:IDENT
 
 
 glyphSpec		:	(	IDENT
-					|	codepointFunc
-					|	glyphidFunc
-					|	postscriptFunc
-					|	unicodeFunc
-					|	unicodeCodepoint
+					|	simpleGlyphSpec	// @@@@@ mirroring
 					|	pseudoFunc
 					|	( OP_LPAREN! (glyphSpec ((OP_COMMA!)? glyphSpec)*)? OP_RPAREN! )
 					)
 ;
 
+simpleGlyphSpec	:	(	codepointFunc	// @@@@@ mirroring
+					|	glyphidFunc
+					|	postscriptFunc
+					|	unicodeFunc
+					|	unicodeCodepoint
+					)
+;
+
 pseudoFunc		:	"pseudo"^ OP_LPAREN!
-					(codepointFunc | glyphidFunc | postscriptFunc | unicodeFunc | unicodeCodepoint)
+					simpleGlyphSpec
 					((OP_COMMA!)? (LIT_INT | LIT_UHEX))?
 					OP_RPAREN!
 ;
@@ -675,18 +679,17 @@ attrItemStruct!	:	(I1:IDENT | I2:LIT_INT) OP_LBRACE! (X:attrItemList)? (OP_SEMI!
 
 //attrItemFlatTop! :	(	S:attrSel OP_DOT X3:attrItemFlatTop
 //							{ #attrItemFlatTop = #([OP_DOT], S, X3); }
-//					|	X:attrItemFlat
+//						|	X:attrItemFlat
 //							{ #attrItemFlatTop = X; }
-//					)
+//						)
 //;
 
 attrItemFlat!	:	(I1:IDENT | I2:LIT_INT)
 					(	D:OP_DOT! ( X1:attrItemFlat | X2:attrItemStruct )
-							{ #attrItemFlat = #(D, I1, I2, X1, X2); }
-
+						{ #attrItemFlat = #(D, I1, I2, X1, X2); }
 					|	E:attrAssignOp
-						(V1:function | V2:expr)
-							{ #attrItemFlat = #(E, I1, I2, V1, V2); }
+						( V1:function | V2:expr | V3:simpleGlyphSpec )		// @@@@@ mirroring
+						{ #attrItemFlat = #(E, I1, I2, V1, V2, V3); }
 					)
 ;
 

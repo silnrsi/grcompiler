@@ -82,6 +82,15 @@ void GdlLookupExpression::PropagateLineAndFile(GrpLineAndFile & lnf)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::PropagateLineAndFile(GrpLineAndFile & lnf)
+{
+	if (LineIsZero())
+	{
+		SetLineAndFile(lnf);
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::PropagateLineAndFile(GrpLineAndFile & lnf)
 {
 	if (LineIsZero())
@@ -193,6 +202,12 @@ bool GdlLookupExpression::ReplaceAliases(GdlRule * prule)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphidExpression::ReplaceAliases(GdlRule * prule)
+{
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 bool GdlNumericExpression::ReplaceAliases(GdlRule * prule)
 {
 	return true;
@@ -276,6 +291,13 @@ bool GdlLookupExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector
 }
 
 /*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphidExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
+	GdlRule * prule)
+{
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 bool GdlNumericExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
 	GdlRule * prule)
 {
@@ -333,11 +355,11 @@ bool GdlStringExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector
 	Set the return argument to the value of the expression as an integer if it can be
 	calculated without any context; otherwise return false.
 ----------------------------------------------------------------------------------------------*/
-bool GdlUnaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlUnaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 
 	int nTmp;
-	if (!m_pexpOperand->ResolveToInteger(&nTmp, fSlotRef))
+	if (!m_pexpOperand->ResolveToInteger(&nTmp, fSlotRef, pfont))
 		return false;
 
 	if (m_psymOperator->MatchesOp("!"))
@@ -351,12 +373,12 @@ bool GdlUnaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlBinaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlBinaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 	int nTmp1, nTmp2;
-	if (!m_pexpOperand1->ResolveToInteger(&nTmp1, fSlotRef))
+	if (!m_pexpOperand1->ResolveToInteger(&nTmp1, fSlotRef, pfont))
 		return false;
-	if (!m_pexpOperand2->ResolveToInteger(&nTmp2, fSlotRef))
+	if (!m_pexpOperand2->ResolveToInteger(&nTmp2, fSlotRef, pfont))
 		return false;
 
 	if (m_psymOperator->MatchesOp("+"))
@@ -404,38 +426,135 @@ bool GdlBinaryExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlCondExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlCondExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 	int nTmp;
 	if (m_pexpTest->ResolveToInteger(&nTmp, fSlotRef))
 	{
 		if (nTmp == 0)
-			return m_pexpFalse->ResolveToInteger(pnRet, fSlotRef);
+			return m_pexpFalse->ResolveToInteger(pnRet, fSlotRef, pfont);
 		else
-			return m_pexpTrue->ResolveToInteger(pnRet, fSlotRef);
+			return m_pexpTrue->ResolveToInteger(pnRet, fSlotRef, pfont);
 	}
 	else
 		return false;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLookupExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlLookupExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 	if (m_pexpSimplified)
-		return m_pexpSimplified->ResolveToInteger(pnRet, fSlotRef);
+		return m_pexpSimplified->ResolveToInteger(pnRet, fSlotRef, pfont);
 
 	return false;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlGlyphidExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
+{
+	if (m_nGlyphid != 0)
+	{
+		*pnRet = m_nGlyphid;
+		return true;
+	}
+
+	if (pfont == NULL)
+		return false;
+
+	int nUnicode;
+
+	switch (m_glft)
+	{
+	case kglftGlyphID:
+		m_nGlyphid = m_nValue;
+		break;
+
+	case kglftCodepoint:
+		char rgchCdPg[20];
+		itoa(m_wCodePage, rgchCdPg, 10);
+		if (m_sta.length() > 1)
+			g_errorList.AddError(99999, this,
+				"Only one character permitted in glyph specification");
+		if (m_sta.length() > 0)
+			nUnicode = pfont->UnicodeFromCodePage(m_wCodePage, m_sta[0], this);
+		else
+			nUnicode = pfont->UnicodeFromCodePage(m_wCodePage, m_nValue, this);
+		if (nUnicode == 0)
+		{
+			g_errorList.AddError(4111, this,
+				"Codepoint '",
+				rgchCdPg,
+				"' not valid for codepage ",
+				rgchCdPg);
+		}
+		else
+		{
+			m_nGlyphid = pfont->GlyphFromCmap(nUnicode, this);
+			if (m_nGlyphid == 0)
+			{
+				std::string staChar(m_sta, 1);
+				//staChar.assign(m_sta, 1);
+				if (m_sta.length() > 0)
+					g_errorList.AddError(99999, this,
+						"Codepoint in codepage ",
+						rgchCdPg, " not present in cmap: '",
+						staChar, "'");
+				else
+					g_errorList.AddError(99999, this,
+						"Codepoint in codepage ",
+						rgchCdPg, " not present in cmap: ",
+						GdlGlyphDefn::CodepointIDString(m_nValue));
+			}
+		}
+		break;
+
+	case kglftUnicode:
+		if (m_nValue == 0x0000FFFE || m_nValue == 0x0000FFFF)
+		{
+			g_errorList.AddError(4108, this, "U+",
+				GdlGlyphDefn::CodepointIDString(m_nValue),
+				" is not a valid Unicode codepoint");
+			m_nGlyphid = 0;
+		}
+		else
+		{
+			m_nGlyphid = pfont->GlyphFromCmap(m_nValue, this);
+			if (m_nGlyphid == 0)
+				g_errorList.AddError(4109, this,
+					"Unicode character not present in cmap: U+",
+					GdlGlyphDefn::CodepointIDString(m_nValue));
+		}
+		break;
+
+	case kglftPostscript:
+		m_nGlyphid = pfont->GlyphFromPostscript(m_sta, this, true);
+		if (m_nGlyphid == 0)
+		{
+			g_errorList.AddError(4110, this,
+				"Invalid postscript name: ",
+				m_sta);
+		}
+		break;
+
+	default:
+		g_errorList.AddError(99999, this,
+			"Invalid glyph specification");
+		return false;
+	}
+
+	*pnRet = m_nGlyphid;
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlNumericExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 	*pnRet = m_nValue;
 	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSlotRefExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlSlotRefExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 	if (fSlotRef)
 	{
@@ -447,7 +566,7 @@ bool GdlSlotRefExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlStringExpression::ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 {
 	return false;
 }
@@ -553,6 +672,12 @@ ExpressionType GdlCondExpression::ExpType()
 ExpressionType GdlLookupExpression::ExpType()
 {
 	return m_psymName->ExpType();
+}
+
+/*--------------------------------------------------------------------------------------------*/
+ExpressionType GdlGlyphidExpression::ExpType()
+{
+	return kexptGlyphid;
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -850,6 +975,13 @@ bool GdlLookupExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphidExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
+{
+	*pexptRet = kexptGlyphid;
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 bool GdlNumericExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 {
 	if (m_nValue == 0 && m_munits == kmunitNone)
@@ -930,6 +1062,11 @@ void GdlLookupExpression::GlyphAttrCheck()
 		g_errorList.AddError(2111, this,
 			"Unknown attribute: ",
 			m_psymName->FullName());
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::GlyphAttrCheck()
+{
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1040,6 +1177,11 @@ void GdlCondExpression::FixFeatureTestsInRules(GrcFont *pfont)
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlLookupExpression::FixFeatureTestsInRules(GrcFont *pfont)
+{
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::FixFeatureTestsInRules(GrcFont *pfont)
 {
 }
 
@@ -1162,6 +1304,14 @@ GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 }
 
 /*--------------------------------------------------------------------------------------------*/
+GdlExpression * GdlGlyphidExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+{
+	g_errorList.AddError(99999, this,
+		"Cannot using a glyph-id expression to text a feature value");
+	return this;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
 {
 	if (pfeat->IsLanguageFeature())
@@ -1224,6 +1374,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 
 /*----------------------------------------------------------------------------------------------
 	Do a final check to make sure that all look-up expressions within a rule are meaningful.
+	Add error statements if there are problems.
 	Argument:
 		fInIf			- true if the statement was inside an -if- statement, rather than
 							inside a rule's context.
@@ -1308,6 +1459,21 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::LookupExpCheck(bool fInIf)
+{
+	if (fInIf)
+	{
+		g_errorList.AddError(99999, this,
+			"Glyph-id expressions are not permitted within 'if' statements");
+	}
+	else
+	{
+		g_errorList.AddError(99999, this,
+			"Glyph-id expressions are not permitted within rules");
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::LookupExpCheck(bool fInIf)
 {
 }
@@ -1372,7 +1538,7 @@ GdlExpression * GdlUnaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax
 	*pfCanSub = (pexpunRet == this);
 
 	int nValue;
-	if (this->ResolveToInteger(&nValue, false))
+	if (this->ResolveToInteger(&nValue, false, pfont))
 	{
 		GdlExpression * pexpRet = new GdlNumericExpression(nValue);
 		pexpRet->CopyLineAndFile(*this);
@@ -1423,7 +1589,7 @@ GdlExpression * GdlBinaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 	*pfCanSub = (pexpbinRet == this);
 
 	int nValue;
-	if (this->ResolveToInteger(&nValue, false))
+	if (this->ResolveToInteger(&nValue, false, pfont))
 	{
 		GdlExpression * pexpRet = new GdlNumericExpression(nValue);
 		pexpRet->CopyLineAndFile(*this);
@@ -1487,7 +1653,7 @@ GdlExpression * GdlCondExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 	*pfCanSub = (pexpcondRet == this);
 
 	int nValue;
-	if (this->ResolveToInteger(&nValue, false))
+	if (this->ResolveToInteger(&nValue, false, pfont))
 	{
 		GdlExpression * pexpRet = new GdlNumericExpression(nValue);
 		pexpRet->CopyLineAndFile(*this);
@@ -1700,6 +1866,17 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 }
 
 /*--------------------------------------------------------------------------------------------*/
+GdlExpression * GdlGlyphidExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
+	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	bool * pfCanSub)
+{
+	int nValue;
+	this->ResolveToInteger(&nValue, false, pfont);
+	*pfCanSub = true;
+	return this;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlNumericExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
@@ -1823,6 +2000,13 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 }
 
 /*------------------------------------------------------s--------------------------------------*/
+void GdlGlyphidExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+{
+	// Error--should already be an error message given.
+}
+
+/*------------------------------------------------------s--------------------------------------*/
 void GdlNumericExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
@@ -1920,6 +2104,13 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 	}
 	else
 		LookupExpCheck(false);
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+	bool * pfXY, bool * pfGpoint)
+{
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2233,6 +2424,16 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 }
 
 /*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphidExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+	bool fValue, bool fValueIsInputSlot)
+{
+	g_errorList.AddError(99999, this,
+		"Glyph-id expressions are not permitted in rules");
+	return false;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 bool GdlNumericExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
@@ -2337,6 +2538,11 @@ void GdlLookupExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
+{
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 {
 }
@@ -2391,6 +2597,12 @@ void GdlLookupExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleIte
 	Assert(prit == NULL);
 	if (m_pexpSelector)
 		m_pexpSelector->AdjustToIOIndices(virit, prit);
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
+{
+	Assert(prit == NULL);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2474,6 +2686,11 @@ void GdlLookupExpression::MaxJustificationLevel(int * pnLevel)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::MaxJustificationLevel(int * pnLevel)
+{
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::MaxJustificationLevel(int * pnLevel)
 {
 }
@@ -2533,6 +2750,12 @@ bool GdlLookupExpression::TestsJustification()
 	//if (m_psymName->FullName() == "JustifyLevel")
 	//	return true;
 
+	return false;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphidExpression::TestsJustification()
+{
 	return false;
 }
 
@@ -2607,6 +2830,12 @@ bool GdlLookupExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded
 	}
 
 	return fRet;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphidExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+{
+	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2891,39 +3120,19 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 }
 
 /*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
+	bool fAttachAt, int iritAttachTo, int * pnValue)
+{
+	GenerateEngineCodeForNumber(vbOutput, m_nValue);
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
-	//	Output most-significant byte first.
-
-	byte b4 = m_nValue & 0x000000FF;
-	if ((m_nValue & 0xFFFFFF80) == 0 || (m_nValue & 0xFFFFFF80) == 0xFFFFFF80)
-	{
-		vbOutput.push_back(kopPushByte);
-		vbOutput.push_back(b4);
-	}
-	else
-	{
-		byte b3 = (m_nValue & 0x0000FF00) >> 8;
-		if ((m_nValue & 0xFFFF8000) == 0 || (m_nValue & 0xFFFF8000) == 0xFFFF8000)
-		{
-			vbOutput.push_back(kopPushShort);
-			vbOutput.push_back(b3);
-			vbOutput.push_back(b4);
-		}
-		else
-		{
-			byte b1 = (m_nValue & 0xFF000000) >> 24;
-			byte b2 = (m_nValue & 0x00FF0000) >> 16;
-
-			vbOutput.push_back(kopPushLong);
-			vbOutput.push_back(b1);
-			vbOutput.push_back(b2);
-			vbOutput.push_back(b3);
-			vbOutput.push_back(b4);
-		}
-	}
+	GenerateEngineCodeForNumber(vbOutput, m_nValue);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2955,6 +3164,42 @@ void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 {
 	//	Should never have string expressions in engine code.
 	Assert(false);
+}
+
+/*----------------------------------------------------------------------------------------------
+	Used by GdlNumericExpression and GdlGlyphidExpression
+----------------------------------------------------------------------------------------------*/
+void GdlExpression::GenerateEngineCodeForNumber(std::vector<byte> & vbOutput, int nValue)
+{
+	//	Output most-significant byte first.
+
+	byte b4 = nValue & 0x000000FF;
+	if ((nValue & 0xFFFFFF80) == 0 || (nValue & 0xFFFFFF80) == 0xFFFFFF80)
+	{
+		vbOutput.push_back(kopPushByte);
+		vbOutput.push_back(b4);
+	}
+	else
+	{
+		byte b3 = (nValue & 0x0000FF00) >> 8;
+		if ((nValue & 0xFFFF8000) == 0 || (nValue & 0xFFFF8000) == 0xFFFF8000)
+		{
+			vbOutput.push_back(kopPushShort);
+			vbOutput.push_back(b3);
+			vbOutput.push_back(b4);
+		}
+		else
+		{
+			byte b1 = (nValue & 0xFF000000) >> 24;
+			byte b2 = (nValue & 0x00FF0000) >> 16;
+
+			vbOutput.push_back(kopPushLong);
+			vbOutput.push_back(b1);
+			vbOutput.push_back(b2);
+			vbOutput.push_back(b3);
+			vbOutput.push_back(b4);
+		}
+	}
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -3009,6 +3254,12 @@ void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut
 		strmOut << ".";
 	}
 	strmOut << m_psymName->FullAbbrev().data();
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlGlyphidExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+{
+	strmOut << "glyphid(" << m_nValue << ")";
 }
 
 /*--------------------------------------------------------------------------------------------*/

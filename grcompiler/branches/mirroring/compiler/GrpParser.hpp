@@ -1,18 +1,18 @@
 #ifndef INC_GrpParser_hpp_
 #define INC_GrpParser_hpp_
 
-#include "Antlr/config.hpp"
+#include "antlr/config.hpp"
 /*
- * ANTLR-generated file resulting from grammar c:\fw\src\graphite\grcompiler\grpparser.g
+ * ANTLR-generated file resulting from grammar .\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software
  * ANTLR Version 2.6.0; 1996-1999
  */
 
-#include "Antlr/TokenStream.hpp"
-#include "Antlr/TokenBuffer.hpp"
-#include "Antlr/LLkParser.hpp"
+#include "antlr/TokenStream.hpp"
+#include "antlr/TokenBuffer.hpp"
+#include "antlr/LLkParser.hpp"
 
 
 //	Header stuff here
@@ -85,12 +85,13 @@ public:
 	public: void attrItemList();
 	public: void attrItemFlat();
 	public: void attrItemStruct();
+	public: void simpleGlyphSpec();
+	public: void pseudoFunc();
 	public: void codepointFunc();
 	public: void glyphidFunc();
 	public: void postscriptFunc();
 	public: void unicodeFunc();
 	public: void unicodeCodepoint();
-	public: void pseudoFunc();
 	public: void codepointList();
 	public: void codepointItem();
 	public: void charOrIntOrRange();
@@ -336,6 +337,8 @@ private:
 	static const BitSet _tokenSet_85;
 	static const unsigned long _tokenSet_86_data_[];
 	static const BitSet _tokenSet_86;
+	static const unsigned long _tokenSet_87_data_[];
+	static const BitSet _tokenSet_87;
 };
 
 #endif /*INC_GrpParser_hpp_*/

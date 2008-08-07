@@ -38,7 +38,8 @@ typedef enum ExpressionType {	// hungarian: expt
 	kexptOne,	// to handle the fact that 1 == true
 	kexptSlotRef,
 	kexptString,
-	kexptPoint
+	kexptPoint,
+	kexptGlyphid
 } ExpressionType;
 
 
