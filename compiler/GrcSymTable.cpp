@@ -1616,6 +1616,9 @@ void GrcSymbolTable::InitGlyphAttrs()
 {
 	SymbolType kst = ksymtGlyphAttr;
 
+	// @@@@@ mirroring
+	PreDefineSymbol(GrcStructName("mirror"), kst, kexptGlyphid);
+
 	//	These were first recorded as slot attributes:
 
 	Symbol psym;

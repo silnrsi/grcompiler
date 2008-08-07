@@ -519,14 +519,22 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 	//	directionality
 	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
 		OutputError(ec, ptcase, "ERROR: Silf table - directionality attr");
+	// @@@@@ mirroring
 
 	if (fxdSilfVersionB >= 0x00020000 && fxdSilfVersionT >= 0x00020000)
 	{
-		// reserved
-		grstrmB.ReadByteFromFont();
-		grstrmB.ReadByteFromFont();
+		if (fxdSilfVersionB >= 0x00040000 && fxdSilfVersionT >= 0x00040000
+			&& grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+		{
+			OutputError(ec, ptcase, "ERROR: Silf table - mirror attr");
+		}
+		else
+		{
+			grstrmB.ReadByteFromFont();	// reserved
+			grstrmB.ReadByteFromFont();
+		}
 
-		grstrmT.ReadByteFromFont();
+		grstrmT.ReadByteFromFont();		// reserved
 		grstrmT.ReadByteFromFont();
 
 		//	justification levels

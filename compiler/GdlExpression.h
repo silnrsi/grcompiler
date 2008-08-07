@@ -82,7 +82,11 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *) = 0;
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *) = 0;
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef) = 0;
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont) = 0;
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef)
+	{
+		return ResolveToInteger(pnRet, fSlotRef, NULL);
+	}
 	virtual bool ResolveToFeatureID(unsigned int * pnRet);
 
 public:
@@ -130,6 +134,7 @@ public:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue) = 0;
+	void GdlExpression::GenerateEngineCodeForNumber(std::vector<byte> & vbOutput, int nValue);
 
 	//	debuggers:
 	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false) = 0;
@@ -187,7 +192,7 @@ public:
 	{
 		return true;
 	}
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef)
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont)
 	{
 		return false;
 	}
@@ -338,7 +343,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 
 public:
 	//	Pre-compiler:
@@ -448,7 +453,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 
 public:
 	//	Pre-compiler:
@@ -536,7 +541,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 	virtual bool ResolveToFeatureID(unsigned int *pnRet);
 
 	std::wstring ConvertToUnicode();
@@ -633,7 +638,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 
 public:
 	//	Pre-compiler:
@@ -734,7 +739,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 
 public:
 	//	Pre-compiler:
@@ -843,7 +848,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 
 public:
 	//	Pre-compiler:
@@ -1024,7 +1029,7 @@ public:
 	//	Post-parser:
 	virtual bool ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
 
 public:
 	//	Pre-compiler:
@@ -1076,6 +1081,151 @@ protected:
 	//	for compiler use:
 	int m_nInternalID;
 	int m_nSubIndex;	//	for indexed attributes (component.X.ref)
+};
+
+/*----------------------------------------------------------------------------------------------
+Class: GdlGlyphidExpression
+Description: Expression that resolves to a glyph ID.
+Hungarian: 
+----------------------------------------------------------------------------------------------*/
+
+class GdlGlyphidExpression : public GdlExpression
+{
+	friend class GdlUnaryExpression;
+	friend class GdlBinaryExpression;
+	friend class GdlCondExpression;
+
+public:
+	//	name space in which to do look-up:
+//	enum LookupType {
+//		klookUnknown,
+//		klookGlyph,
+//		klookSlot,
+//		klookFeature
+//	};
+
+	//	Constructors & destructors:
+	GdlGlyphidExpression(GlyphType glft, unsigned int n)
+		:	GdlExpression(),
+			m_glft(glft),
+			m_nValue(n),
+			m_wCodePage(1252)
+	{
+		Assert(m_glft == kglftGlyphID || m_glft == kglftCodepoint || mglft == kglftUnicode);
+		m_nGlyphid = 0;
+	}
+
+	GdlGlyphidExpression(GlyphType glft, unsigned int n, utf16 wCodePage)
+		:	GdlExpression(),
+			m_glft(glft),
+			m_nValue(n),
+			m_wCodePage(wCodePage)
+	{
+		Assert(m_glft == kglftGlyphID || m_glft == kglftCodepoint || mglft == kglftUnicode);
+		m_nGlyphid = 0;
+	}
+
+	GdlGlyphidExpression(GlyphType glft, std::string sta)
+		:	GdlExpression(),
+			m_glft(glft),
+			m_sta(sta),
+			m_wCodePage(1252),
+			m_nValue(0)
+	{
+		Assert(m_glft == kglftPostscript || m_glft == kglftCodepoint);
+		m_nGlyphid = 0;
+	}
+
+	GdlGlyphidExpression(GlyphType glft, std::string sta, utf16 wCodePage)
+		:	GdlExpression(),
+			m_glft(glft),
+			m_sta(sta),
+			m_wCodePage(wCodePage),
+			m_nValue(0)
+	{
+		Assert(m_glft == kglftCodepoint);
+		m_nGlyphid = 0;
+	}
+
+	//	copy constructor
+	GdlGlyphidExpression(const GdlGlyphidExpression& exp)
+		:	GdlExpression(exp),
+			m_glft(exp.m_glft),
+			m_nValue(exp.m_nValue),
+			m_wCodePage(exp.m_wCodePage),
+			m_sta(exp.m_sta),
+			m_nGlyphid(exp.m_nGlyphid)
+	{
+	}
+
+	virtual GdlExpression * Clone()
+	{
+		return new GdlGlyphidExpression(*this);
+	}
+
+	virtual ~GdlGlyphidExpression()
+	{
+	}
+
+	//	Getters:
+	GlyphType Type()			{ return m_glft; }
+	unsigned int Value()		{ return m_nValue; }
+	utf16 CodePage()			{ return m_wCodePage; }
+	std::string String()		{ return m_sta; }
+	unsigned int Glyphid()		{ return m_nGlyphid; }
+
+
+public:
+	//	Parser:
+	virtual void PropagateLineAndFile(GrpLineAndFile &);
+
+public:
+	//	Post-parser:
+	virtual bool ReplaceAliases(GdlRule *);
+	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
+	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef, GrcFont * pfont);
+
+public:
+	//	Pre-compiler:
+	virtual ExpressionType ExpType();
+	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
+	virtual void GlyphAttrCheck();
+	virtual void FixFeatureTestsInRules(GrcFont *);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
+	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		bool fGAttrDefChk, bool * pfCanSub);
+	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
+	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
+		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
+		bool * pfXY, bool * pfGpoint);
+	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
+		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
+		bool fValue, bool fValueIsInputSlot);
+	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
+	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
+	virtual void MaxJustificationLevel(int * pnLevel);
+	virtual bool TestsJustification();
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+
+	//	Compiler:
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+		int irit, std::vector<int> * pviritInput, int nIIndex,
+		bool fAttachAt, int iritAttachTo, int * pnValue);
+
+	//	debuggers:
+	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false);
+
+protected:
+	//	Instance variables:
+	GlyphType m_glft;
+	unsigned int m_nValue;
+	utf16 m_wCodePage;
+	std::string m_sta;				// postscript name or codepoint string
+
+	unsigned int m_nGlyphid;
 };
 
 

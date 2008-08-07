@@ -1061,6 +1061,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			&& psym->FieldCount() == 1
 			&& (psym->FieldIs(0, "directionality")
 				|| psym->FieldIs(0, "breakweight")
+				|| psym->FieldIs(0, "mirror")
 				|| psym->FieldIs(0, "*actualForPseudo*")))
 		{
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
@@ -1142,7 +1143,10 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	//	breakweight = letter
 	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("breakweight"));
 	vnSysDefValues.push_back(klbLetterBreak);
-	// justify.weight = 1
+	//	mirror = 0 @@@@@
+	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("mirror"));
+	vnSysDefValues.push_back(0);
+	//	justify.weight = 1
 	if (NumJustLevels() > 0)
 	{
 		GrcStructName xnsJ0Weight("justify", "0", "weight");
@@ -1317,6 +1321,8 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				//	range to skip?
 				int nUnicodeStd;
 				bool fInitFailed = false;
+				bool fGlyphid = false;
+				bool fStoreZero = true;
 
                 if (psym->LastFieldIs("breakweight"))
                 {
@@ -1375,6 +1381,18 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 						}
 					}
                 }
+				// @@@@@ mirroring
+				else if (psym->LastFieldIs("mirror"))
+				{
+					fGlyphid = true;
+					fStoreZero = false;
+					if (fIcuAvailable)
+					{
+						nUnicodeStd = u_charMirror(nUnicode);
+						if (nUnicodeStd == nUnicode)
+							nUnicodeStd = 0; // no mirror
+					}
+				}
                 else
                     break;	// ...out of the character loop; this is not an attribute
 							// it makes sense to read from the db
@@ -1391,9 +1409,16 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 					}
 					fErrorForAttr = true; // don't give the warning again
 				}
+				else if (nUnicodeStd == 0 && !fStoreZero)
+				{	// don't store a value of zero
+				}
 				else if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 				{
-					GdlExpression * pexpDefault = new GdlNumericExpression(nUnicodeStd);
+					GdlExpression * pexpDefault;
+					if (fGlyphid)
+						pexpDefault = new GdlGlyphidExpression(kglftUnicode, nUnicodeStd);
+					else
+						pexpDefault = new GdlNumericExpression(nUnicodeStd);
 					vpexpExtra.push_back(pexpDefault);
 					pgax->Set(wGlyphID, nGlyphAttrID,
 						pexpDefault, 0, 0, false, false, GrpLineAndFile());
@@ -1557,7 +1582,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 							psymAttr->FullName(),
 							lnf);
 					}
-					else if (!pexpNew->ResolveToInteger(&nGPathValue, false))
+					else if (!pexpNew->ResolveToInteger(&nGPathValue, false, pfont))
 					{
 						g_errorList.AddError(4126, pexp,
 							"Invalid value for gpath attribute--must be an integer: ",
@@ -1654,7 +1679,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 				if (!pexpX)
 					continue;
 				int nX;
-				if (!pexpX->ResolveToInteger(&nX, false))
+				if (!pexpX->ResolveToInteger(&nX, false, pfont))
 					continue;
 
 				GdlExpression * pexpY;
@@ -1666,7 +1691,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 				if (!pexpY)
 					continue;
 				int nY;
-				if (!pexpY->ResolveToInteger(&nY, false))
+				if (!pexpY->ResolveToInteger(&nY, false, pfont))
 					continue;
 
 				Assert(fShadowX == fShadowY);
@@ -1717,7 +1742,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 				if (!pexpGpoint)
 					continue;
 				int nGPoint;
-				if (!pexpGpoint->ResolveToInteger(&nGPoint, false))
+				if (!pexpGpoint->ResolveToInteger(&nGPoint, false, pfont))
 					continue;
 
 				//	Convert gpoint to x/y. On Linux gpoint will never work.
@@ -2691,7 +2716,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 						pexp = pexpNew;
 					}
 					int n;
-					if (!pexp->ResolveToInteger(&n, false))
+					if (!pexp->ResolveToInteger(&n, false, pfont))
 					{
 						g_errorList.AddError(4143, pexp,
 							"Could not resolve definition of glyph attribute ",

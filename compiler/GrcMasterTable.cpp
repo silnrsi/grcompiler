@@ -445,6 +445,18 @@ void GrcMasterValueList::SetupGlyphAttrs(GdlGlyphClassDefn * pglfc)
 				g_errorList.AddError(2157, pexp,
 					"Invalid use of breakweight attribute");
 		}
+		// @@@@@ mirroring
+		else if (psym->FieldIs(1, "mirror"))
+		{
+			if (psym->FieldCount() == 2)
+			{
+				pglfc->AddGlyphAttr(psym, pasgnValue);
+				vpsymProcessed.push_back(psym);
+			}
+			else
+				g_errorList.AddError(2157, pexp,
+					"Invalid use of mirror attribute");
+		}
 		else if (psym->FieldIs(1, "component"))
 		{
 			if (psym->FieldCount() == 4 &&

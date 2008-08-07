@@ -2022,11 +2022,19 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	directionality attribute ID
 	psym = m_psymtbl->FindSymbol("directionality");
 	pbstrm->WriteByte(psym->InternalID());
+psym = m_psymtbl->FindSymbol("mirror");
+int x = psym->InternalID();
 	if (fxdVersion >= 0x00020000)
 	{
-		// reserved (pad bytes)
-		pbstrm->WriteByte(0);
-		pbstrm->WriteByte(0);
+		if (fxdVersion >= 0x00040000) // @@@@@
+		{
+			//	mirror attribute ID
+			psym = m_psymtbl->FindSymbol("mirror");
+			pbstrm->WriteByte(psym->InternalID());
+		}
+		else
+			pbstrm->WriteByte(0);	// pad byte
+		pbstrm->WriteByte(0);		// pad byte
 
 		if (m_fBasicJust)
 		{

@@ -416,7 +416,8 @@ utf16 GrcFont::GlyphFromCmap(unsigned int nUnicode, GdlObject * pgdlobj)
 }
 
 /*----------------------------------------------------------------------------------------------
-	Convert the given postscript name to a glyph ID. 
+	Convert the given postscript name to a glyph ID.
+	If fError == false, let caller give error messages.
 	Return 0 if the postscript name is invalid.
 ----------------------------------------------------------------------------------------------*/
 utf16 GrcFont::GlyphFromPostscript(std::string staPostscriptName, GdlObject * pgdlobj, bool fError)

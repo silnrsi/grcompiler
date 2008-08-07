@@ -179,7 +179,7 @@ protected:
 	bool AllContentsArePasses(RefAST ast);
 	void WalkRuleTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass);
 	void WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<std::string> & vsta);
-	GdlExpression * WalkExpressionTree(RefAST ast);
+	GdlExpression * WalkExpressionTree(RefAST ast, bool fGlyphSpec = false);
 
 	void ProcessGlobalSetting(RefAST);
 	void ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
