@@ -22,6 +22,8 @@ Description:
 #include <cassert>
 #include <cstddef>
 #include <stdexcept>
+#include <cstring>
+#include <climits>
 // Platform headers
 // Module headers
 #include "TtfUtil.h"

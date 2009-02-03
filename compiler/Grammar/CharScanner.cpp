@@ -39,6 +39,7 @@
 #include <cctype>
 #include <iostream>
 #include <cstring>
+#include <cstdlib>
 #pragma warning(disable: 4355) // used in base member initializer list
 
 CharScannerLiteralsLess::CharScannerLiteralsLess(const CharScanner* theScanner)

@@ -35,6 +35,7 @@ using std::max;
 using std::min;
 #include "GrPlatform.h"
 #else
+#include <cstring>
 #include "GrCommon.h"
 #include "GrPlatform.h"
 #endif

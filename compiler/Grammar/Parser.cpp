@@ -37,6 +37,7 @@
 #include "Antlr/MismatchedTokenException.hpp"
 //#include "Antlr/ASTFactory.hpp"
 #include <iostream>
+#include <cstdlib>
 
 /**A generic ANTLR parser (LL(k) for k>=1) containing a bunch of
  * utility routines useful at any lookahead depth.  We distinguish between
