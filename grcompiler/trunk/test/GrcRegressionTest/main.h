@@ -35,6 +35,7 @@ Description:
 #include <functional>	// ptr_fun
 ////#include <algorithm>
 #include <string>
+#include <cstring>
 #ifdef _WIN32
 #include <crtdbg.h>
 #endif // _WIN32
