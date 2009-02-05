@@ -1176,7 +1176,10 @@ void CompareGlatAndGlocTables(int & ec, TestCase * ptcase, int wMaxGlyphID,
 				int nValueB = grstrmGlatB.ReadShortFromFont();
 				int nValueT = grstrmGlatT.ReadShortFromFont();
 				if (nValueB != nValueT)
+                {
 					OutputError(ec, ptcase, "ERROR: Glat table - glyph", wGlyphID, ", attr value", nAttrNumB+iAttr);
+                    OutputError(ec, ptcase, "   Values: ", nValueB, " -> ", nValueT);
+                }
 				cbGlatOffset += 2; // 2 bytes
 			}
 			iAttrEntry++;

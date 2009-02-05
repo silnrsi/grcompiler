@@ -4,7 +4,7 @@ use IO::File;
 use Getopt::Long;
 
 my (%opts);
-GetOptions(\%opts, 'dir|d=s', 'compiler|g=s', 'help|h|?', 'keep|k', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'version=i', 'warning|w=i@');
+GetOptions(\%opts, 'dir|d=s', 'compiler|g=s', 'help|h|?', 'icu|i', 'keep|k', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'version=i', 'warning|w=i@');
 
 if ($opts{help})
 {
@@ -17,6 +17,7 @@ storing log info in logfile and exiting with the number of errors
   -d|--dir=dir              Use dir for intermediate test files
   -g|--compiler=grcompiler  command to use to run grcompiler [grcompiler]
   -h|--help                 print this help and exit
+  -i|--icu                  Gives icu version or uses icu-config * 10 to guess
   -k|--keep                 keep temporary files
   -o|--output= logfile      file to log to [regtest.log]
   -p|--preprocessor=gdlpp   command to run the gdlpp []
@@ -33,9 +34,12 @@ $ENV{'GDLPP'} = $opts{preprocessor} if (defined $opts{preprocessor});
 $opt{testengine} ||= 'GrcRegressionTest';
 $opt{version} ||= 2;
 
-my (@fonts) = sort glob(($ARGV[0] ? $ARGV[0] : '.') . "/*Input.ttf");
+my ($dir) = $ARGV[0] || '.';
+my (@fonts) = sort glob("$dir/*Input.ttf");
 my ($outf) = IO::File->new("> $opts{output}") || die "Can't create $opts{output}";
 my ($f, $errors);
+$opts{icu} ||= `icu-config --version` * 10;
+my (@icudirs) = reverse sort map {s/^.*?(\d+)$/$1/o; $_} glob("$dir/icu*");
 
 foreach $f (@fonts)
 {
@@ -74,7 +78,18 @@ foreach $f (@fonts)
         if (-f $r)      # assume it passes if it gives a result
         {
             unlink 'grcregtest.log';
-            my ($res) = system($opts{testengine}, $r, $b);
+            foreach $i (@icudirs)
+            {
+                next if ($i > $opts{icu});
+                my ($bench) = $b;
+                $bench =~ s{/([^/]*)$}{/icu$i/$1}og;
+                if (-f $bench)
+                {
+                    $b = $bench;
+                    last;
+                }
+            }
+            my ($res) = system($opts{testengine}, $b, $r);
             if ($res == -1)
             {
                 print "Failed to run $opts{testengine} because $!\n";
