@@ -1,0 +1,5 @@
+Jan 6th 2006	Tim Eves
+	Succefully built on Mac OS X, binary runs, though probably not able 
+	to produce Graphite fonts yet due potential TruType font file reading
+	problems.
+

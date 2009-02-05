@@ -1,0 +1,964 @@
+RULE PRECEDENCE
+
+
+TABLE: substitution
+
+PASS: 1
+
+0 - RULE 1.0, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+
+1 - RULE 1.6, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+
+2 - RULE 1.1, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 9)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+
+
+3 - RULE 1.7, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 9)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+
+
+4 - RULE 1.2, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 8)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  _  ;
+
+
+5 - RULE 1.8, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 8)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  _  ;
+
+
+6 - RULE 1.14, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 8)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _  ;
+
+
+7 - RULE 1.19, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 8)  _   /  ANY  ANY  ^  _  cnODia  cnODia  cnODia  cnODia  _  ;
+
+
+8 - RULE 1.24, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 8)  _   /  ANY  ANY  _  cnRDia  cnRDia  cnRDia  cnRDia  _  ;
+
+
+9 - RULE 1.30, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ;
+
+
+10 - RULE 1.35, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ;
+
+
+11 - RULE 1.3, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 7)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  _  ;
+
+
+12 - RULE 1.9, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 7)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  _  ;
+
+
+13 - RULE 1.15, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 7)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  cnHDia  _  ;
+
+
+14 - RULE 1.20, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 7)  _   /  ANY  ANY  ^  _  cnODia  cnODia  cnODia  _  ;
+
+
+15 - RULE 1.25, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 7)  _   /  ANY  ANY  _  cnRDia  cnRDia  cnRDia  _  ;
+
+
+16 - RULE 1.31, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ;
+
+
+17 - RULE 1.36, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ;
+
+
+18 - RULE 1.42, CharisRules.gdh(304):  g0308  >  g0308_uU   /  g__l  g035F  _  g035F  g__l  ;
+
+
+19 - RULE 1.46, CharisRules.gdh(305):  g0308  >  g0308_uL   /  g__l  g035F  _  g035F  g_l  ;
+
+
+20 - RULE 1.50, CharisRules.gdh(306):  g0308  >  g0308_lL   /  g_l  g035F  _  g035F  g_l  ;
+
+
+21 - RULE 1.54, CharisRules.gdh(309):  g0311  >  g0311_uU   /  g__o  g035F  _  g035F  g__u  ;
+
+
+22 - RULE 1.58, CharisRules.gdh(310):  g0311  >  g0311_uL   /  g__o  g035F  _  g035F  g_u  ;
+
+
+23 - RULE 1.62, CharisRules.gdh(311):  g0311  >  g0311_lL   /  g_o  g035F  _  g035F  g_u  ;
+
+
+24 - RULE 1.4, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 6)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  _  ;
+
+
+25 - RULE 1.10, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 6)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  _  ;
+
+
+26 - RULE 1.16, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 6)  _   /  ANY  ANY  ^  _  cnHDia  cnHDia  _  ;
+
+
+27 - RULE 1.21, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 6)  _   /  ANY  ANY  ^  _  cnODia  cnODia  _  ;
+
+
+28 - RULE 1.26, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 6)  _   /  ANY  ANY  _  cnRDia  cnRDia  _  ;
+
+
+29 - RULE 1.32, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ;
+
+
+30 - RULE 1.37, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ;
+
+
+31 - RULE 1.43, CharisRules.gdh(304):  g0308  >  g0308_uU   /  g__l  g035F  _  g__l  ;
+
+
+32 - RULE 1.44, CharisRules.gdh(304):  g0308  >  g0308_uU   /  ANY  g__l  _  g035F  g__l  ;
+
+
+33 - RULE 1.47, CharisRules.gdh(305):  g0308  >  g0308_uL   /  g__l  g035F  _  g_l  ;
+
+
+34 - RULE 1.48, CharisRules.gdh(305):  g0308  >  g0308_uL   /  ANY  g__l  _  g035F  g_l  ;
+
+
+35 - RULE 1.51, CharisRules.gdh(306):  g0308  >  g0308_lL   /  g_l  g035F  _  g_l  ;
+
+
+36 - RULE 1.52, CharisRules.gdh(306):  g0308  >  g0308_lL   /  ANY  g_l  _  g035F  g_l  ;
+
+
+37 - RULE 1.55, CharisRules.gdh(309):  g0311  >  g0311_uU   /  g__o  g035F  _  g__u  ;
+
+
+38 - RULE 1.56, CharisRules.gdh(309):  g0311  >  g0311_uU   /  ANY  g__o  _  g035F  g__u  ;
+
+
+39 - RULE 1.59, CharisRules.gdh(310):  g0311  >  g0311_uL   /  g__o  g035F  _  g_u  ;
+
+
+40 - RULE 1.60, CharisRules.gdh(310):  g0311  >  g0311_uL   /  ANY  g__o  _  g035F  g_u  ;
+
+
+41 - RULE 1.63, CharisRules.gdh(311):  g0311  >  g0311_lL   /  g_o  g035F  _  g_u  ;
+
+
+42 - RULE 1.64, CharisRules.gdh(311):  g0311  >  g0311_lL   /  ANY  g_o  _  g035F  g_u  ;
+
+
+43 - RULE 1.85, CharisRules.gdh(436):  g_f  g_f  cffLigC3  >  g_f_slant_italic  g_f_slant_italic  cffLigC3_slantItalic   /  ANY  ANY  _  _  _  cDia  ;
+
+
+44 - RULE 1.91, CharisRules.gdh(447):  g_f  g_f  cffLigC3  >  @3  @4  @5   /  ANY  ANY  _  _  _  cDia  ;
+
+
+45 - RULE 1.5, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 5)  _   /  ANY  ANY  ^  _  cTakesUDia  _  ;
+
+
+46 - RULE 1.11, CharisRules.gdh(265):  gFE22  gFE23  >  g0360:(3 5)  _   /  ANY  ANY  ^  _  cTakesUDia  _  ;
+
+
+47 - RULE 1.17, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 5)  _   /  ANY  ANY  ^  _  cnHDia  _  ;
+
+
+48 - RULE 1.22, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 5)  _   /  ANY  ANY  ^  _  cnODia  _  ;
+
+
+49 - RULE 1.27, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 5)  _   /  ANY  ANY  _  cnRDia  _  ;
+
+
+50 - RULE 1.33, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ;
+
+
+51 - RULE 1.38, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ;
+
+
+52 - RULE 1.45, CharisRules.gdh(304):  g0308  >  g0308_uU   /  ANY  g__l  _  g__l  ;
+
+
+53 - RULE 1.49, CharisRules.gdh(305):  g0308  >  g0308_uL   /  ANY  g__l  _  g_l  ;
+
+
+54 - RULE 1.53, CharisRules.gdh(306):  g0308  >  g0308_lL   /  ANY  g_l  _  g_l  ;
+
+
+55 - RULE 1.57, CharisRules.gdh(309):  g0311  >  g0311_uU   /  ANY  g__o  _  g__u  ;
+
+
+56 - RULE 1.61, CharisRules.gdh(310):  g0311  >  g0311_uL   /  ANY  g__o  _  g_u  ;
+
+
+57 - RULE 1.65, CharisRules.gdh(311):  g0311  >  g0311_lL   /  ANY  g_o  _  g_u  ;
+
+
+58 - RULE 1.83, CharisRules.gdh(433):  g_f  cfLigC2  >  g_f_slant_italic  cfLigC2_slantItalic   /  ANY  ANY  _  _  cDia  ;
+
+
+59 - RULE 1.86, CharisRules.gdh(437):  g_f  g_f  cffLigC3  >  _  _  cffLig_slantItalic:(3 4 5) { comp.f1.ref=@3; comp.f2.ref=@4; comp.f3.ref=@5;  }   /  ANY  ANY  _  _  _  ;
+
+
+60 - RULE 1.89, CharisRules.gdh(444):  g_f  cfLigC2  >  @3  @4   /  ANY  ANY  _  _  cDia  ;
+
+
+61 - RULE 1.92, CharisRules.gdh(448):  g_f  g_f  cffLigC3  >  _  _  cffLig:(3 4 5) { comp.f1.ref=@3; comp.f2.ref=@4; comp.f3.ref=@5;  }   /  ANY  ANY  _  _  _  ;
+
+
+62 - RULE 1.150, CharisPitches.gdh(602):  g_space  >  g_pitchSpace   /  ANY  *GC8*  _  *GC9*  ;
+
+
+63 - RULE 1.18, CharisRules.gdh(276):  cCedillaBase  g0327  >  cCedillaComposite:(3 4)  _   /  ANY  ANY  ^  _  _  ;
+
+
+64 - RULE 1.23, CharisRules.gdh(280):  cOgonekBase  g0328  >  cOgonekComposite:(3 4)  _   /  ANY  ANY  ^  _  _  ;
+
+
+65 - RULE 1.28, CharisRules.gdh(283):  cHornBase  g031B  >  cHornComposite:(3 4)  _   /  ANY  ANY  _  _  ;
+
+
+66 - RULE 1.34, CharisRules.gdh(294):  g0302  cDiacComb  >  c_g0302DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ;
+
+
+67 - RULE 1.39, CharisRules.gdh(295):  g0306  cDiacComb  >  c_g0306DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ;
+
+
+68 - RULE 1.84, CharisRules.gdh(434):  g_f  cfLigC2  >  _  cfLig_slantItalic:(3 4) { comp.f1.ref=@3; comp.f2.ref=@4;  }   /  ANY  ANY  _  _  ;
+
+
+69 - RULE 1.90, CharisRules.gdh(445):  g_f  cfLigC2  >  _  cfLig:(3 4) { comp.f1.ref=@3; comp.f2.ref=@4;  }   /  ANY  ANY  _  _  ;
+
+
+70 - RULE 1.133, CharisPitches.gdh(237):  cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+71 - RULE 1.134, CharisPitches.gdh(238):  cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+72 - RULE 1.135, CharisPitches.gdh(239):  cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+73 - RULE 1.136, CharisPitches.gdh(240):  cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+74 - RULE 1.137, CharisPitches.gdh(241):  cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff_no$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+75 - RULE 1.138, CharisPitches.gdh(245):  cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+76 - RULE 1.139, CharisPitches.gdh(246):  cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+77 - RULE 1.140, CharisPitches.gdh(247):  cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+78 - RULE 1.141, CharisPitches.gdh(248):  cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+79 - RULE 1.142, CharisPitches.gdh(249):  cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+80 - RULE 1.143, CharisPitches.gdh(255):  cLeftTone  >  cLeftStaff_no$3   /  ANY  ANY  ^  _  cLeftTone  ;
+
+
+81 - RULE 1.144, CharisPitches.gdh(258):  cLeftTone  >  cLeftStaff$3   /  ANY  ANY  ^  _  cLeftTone  ;
+
+
+82 - RULE 1.145, CharisPitches.gdh(263):  cLeftContourOrStaff1  cLeftTone  >  @3  cLeftTone1Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+83 - RULE 1.146, CharisPitches.gdh(264):  cLeftContourOrStaff2  cLeftTone  >  @3  cLeftTone2Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+84 - RULE 1.147, CharisPitches.gdh(265):  cLeftContourOrStaff3  cLeftTone  >  @3  cLeftTone3Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+85 - RULE 1.148, CharisPitches.gdh(266):  cLeftContourOrStaff4  cLeftTone  >  @3  cLeftTone4Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+86 - RULE 1.149, CharisPitches.gdh(267):  cLeftContourOrStaff5  cLeftTone  >  @3  cLeftTone5Contour$4 { user1=...;  }   /  ANY  ANY  _  ^  _  ;
+
+
+87 - RULE 1.151, CharisPitches.gdh(605):  g_pitchSpace  >  @3   /  ANY  ANY  _  cno_LinesXXX  ;
+
+
+88 - RULE 1.152, CharisPitches.gdh(607):  *GC10*  >  g_noPitchSpace   /  ANY  ^  g_pitchSpace  _  ;
+
+
+89 - RULE 1.154, CharisPitches.gdh(617):  *GC11*  c9PitchX  >  @3 { user1=1;  }  c9Pitch1X   /  ANY  ANY  _  ^  _  ;
+
+
+90 - RULE 1.155, CharisPitches.gdh(618):  *GC12*  c9PitchX  >  @3 { user1=1;  }  c9Pitch2X   /  ANY  ANY  _  ^  _  ;
+
+
+91 - RULE 1.156, CharisPitches.gdh(619):  *GC13*  c9PitchX  >  @3 { user1=1;  }  c9Pitch3X   /  ANY  ANY  _  ^  _  ;
+
+
+92 - RULE 1.157, CharisPitches.gdh(620):  *GC14*  c9PitchX  >  @3 { user1=1;  }  c9Pitch4X   /  ANY  ANY  _  ^  _  ;
+
+
+93 - RULE 1.158, CharisPitches.gdh(621):  *GC15*  c9PitchX  >  @3 { user1=1;  }  c9Pitch5X   /  ANY  ANY  _  ^  _  ;
+
+
+94 - RULE 1.159, CharisPitches.gdh(622):  *GC16*  c9PitchX  >  @3 { user1=1;  }  c9Pitch6X   /  ANY  ANY  _  ^  _  ;
+
+
+95 - RULE 1.160, CharisPitches.gdh(623):  *GC17*  c9PitchX  >  @3 { user1=1;  }  c9Pitch7X   /  ANY  ANY  _  ^  _  ;
+
+
+96 - RULE 1.161, CharisPitches.gdh(624):  *GC18*  c9PitchX  >  @3 { user1=1;  }  c9Pitch8X   /  ANY  ANY  _  ^  _  ;
+
+
+97 - RULE 1.162, CharisPitches.gdh(625):  *GC19*  c9PitchX  >  @3 { user1=1;  }  c9Pitch9X   /  ANY  ANY  _  ^  _  ;
+
+
+98 - RULE 1.12, CharisRules.gdh(269):  cno_ChinantecTn  >  cChinantecTn   /  ANY  ANY  _  ;
+
+
+99 - RULE 1.13, CharisRules.gdh(271):  cChinantecTn  >  cno_ChinantecTn   /  ANY  ANY  _  ;
+
+
+100 - RULE 1.29, CharisRules.gdh(292):  _  c_aStack_noLit  >  g_a_sng_story:4  c_diacComb_vN   /  ANY  ANY  _  _ {...}  ;
+
+
+101 - RULE 1.40, CharisRules.gdh(296):  cno_VN  >  cVN   /  ANY  ANY  _  ;
+
+
+102 - RULE 1.41, CharisRules.gdh(298):  cVN  >  cno_VN   /  ANY  ANY  _  ;
+
+
+103 - RULE 1.66, CharisRules.gdh(350):  *GC0*  >  g__eng   /  ANY  ANY  _  ;
+
+
+104 - RULE 1.67, CharisRules.gdh(354):  *GC1*  >  cBaselineHook   /  ANY  ANY  _  ;
+
+
+105 - RULE 1.68, CharisRules.gdh(358):  *GC2*  >  g__eng_u_c_style   /  ANY  ANY  _  ;
+
+
+106 - RULE 1.69, CharisRules.gdh(362):  *GC3*  >  cKom   /  ANY  ANY  _  ;
+
+
+107 - RULE 1.70, CharisRules.gdh(368):  *GC4*  >  g0264   /  ANY  ANY  _  ;
+
+
+108 - RULE 1.71, CharisRules.gdh(372):  *GC5*  >  g0264_lrgBowl   /  ANY  ANY  _  ;
+
+
+109 - RULE 1.72, CharisRules.gdh(376):  *GC6*  >  g0264_gammaStyle   /  ANY  ANY  _  ;
+
+
+110 - RULE 1.73, CharisRules.gdh(382):  cno_MongolStyle  >  cMongolStyle   /  ANY  ANY  _  ;
+
+
+111 - RULE 1.74, CharisRules.gdh(384):  cMongolStyle  >  cno_MongolStyle   /  ANY  ANY  _  ;
+
+
+112 - RULE 1.75, CharisRules.gdh(398):  cno_CyShortMrkAlt  >  cCyShortMrkAlt   /  ANY  ANY  _  ;
+
+
+113 - RULE 1.76, CharisRules.gdh(400):  cCyShortMrkAlt  >  cno_CyShortMrkAlt   /  ANY  ANY  _  ;
+
+
+114 - RULE 1.77, CharisRules.gdh(406):  cno_ShowInv  >  cShowInv   /  ANY  ANY  _  ;
+
+
+115 - RULE 1.78, CharisRules.gdh(420):  cno_SngBowl  >  cSngBowl   /  ANY  ANY  _  ;
+
+
+116 - RULE 1.79, CharisRules.gdh(421):  cno_SngStory  >  cSngStory   /  ANY  ANY  _  ;
+
+
+117 - RULE 1.80, CharisRules.gdh(422):  g01E5  >  g01E5_barBowl_sngBowl   /  ANY  ANY  _  ;
+
+
+118 - RULE 1.81, CharisRules.gdh(424):  cSngBowl  >  cno_SngBowl   /  ANY  ANY  _  ;
+
+
+119 - RULE 1.82, CharisRules.gdh(425):  cSngStory  >  cno_SngStory   /  ANY  ANY  _  ;
+
+
+120 - RULE 1.87, CharisRules.gdh(439):  cno_SlantItalic  >  cSlantItalic   /  ANY  ANY  _  ;
+
+
+121 - RULE 1.88, CharisRules.gdh(440):  cno_2StorySlantItalic  >  c2StorySlantItalic   /  ANY  ANY  _  ;
+
+
+122 - RULE 1.93, CharisRules.gdh(451):  cSlantItalic  >  cno_SlantItalic   /  ANY  ANY  _  ;
+
+
+123 - RULE 1.94, CharisRules.gdh(452):  c2StorySlantItalic  >  cno_2StorySlantItalic   /  ANY  ANY  _  ;
+
+
+124 - RULE 1.95, CharisRules.gdh(459):  cno_BarBowl  >  cBarBowl   /  ANY  ANY  _  ;
+
+
+125 - RULE 1.96, CharisRules.gdh(463):  cBarBowl  >  cno_BarBowl   /  ANY  ANY  _  ;
+
+
+126 - RULE 1.97, CharisRules.gdh(468):  cno_TopSerifJStroke  >  cTopSerifJStroke   /  ANY  ANY  _  ;
+
+
+127 - RULE 1.98, CharisRules.gdh(470):  cTopSerifJStroke  >  cno_TopSerifJStroke   /  ANY  ANY  _  ;
+
+
+128 - RULE 1.99, CharisRules.gdh(474):  cno_TopSerifOpenO  >  cTopSerifOpenO   /  ANY  ANY  _  ;
+
+
+129 - RULE 1.100, CharisRules.gdh(476):  cTopSerifOpenO  >  cno_TopSerifOpenO   /  ANY  ANY  _  ;
+
+
+130 - RULE 1.101, CharisRules.gdh(480):  cno_StraightLft  >  cStraightLft   /  ANY  ANY  _  ;
+
+
+131 - RULE 1.102, CharisRules.gdh(482):  cStraightLft  >  cno_StraightLft   /  ANY  ANY  _  ;
+
+
+132 - RULE 1.103, CharisRules.gdh(486):  g01B3  >  g01B3_rtHook   /  ANY  ANY  _  ;
+
+
+133 - RULE 1.104, CharisRules.gdh(488):  g01B3_rtHook  >  g01B3   /  ANY  ANY  _  ;
+
+
+134 - RULE 1.105, CharisRules.gdh(492):  g019D  >  g019D_lCStyle   /  ANY  ANY  _  ;
+
+
+135 - RULE 1.106, CharisRules.gdh(494):  g019D_lCStyle  >  g019D   /  ANY  ANY  _  ;
+
+
+136 - RULE 1.107, CharisRules.gdh(498):  g0293  >  g0293_lrgBowl   /  ANY  ANY  _  ;
+
+
+137 - RULE 1.108, CharisRules.gdh(500):  g0293_lrgBowl  >  g0293   /  ANY  ANY  _  ;
+
+
+138 - RULE 1.109, CharisRules.gdh(504):  g01AC  >  g01AC_rtHook   /  ANY  ANY  _  ;
+
+
+139 - RULE 1.110, CharisRules.gdh(506):  g01AC_rtHook  >  g01AC   /  ANY  ANY  _  ;
+
+
+140 - RULE 1.111, CharisRules.gdh(510):  cno_VertStrk  >  cVertStrk   /  ANY  ANY  _  ;
+
+
+141 - RULE 1.112, CharisRules.gdh(512):  cVertStrk  >  cno_VertStrk   /  ANY  ANY  _  ;
+
+
+142 - RULE 1.113, CharisRules.gdh(516):  g2C64  >  g2C64_lCStyle   /  ANY  ANY  _  ;
+
+
+143 - RULE 1.114, CharisRules.gdh(518):  g2C64_lCStyle  >  g2C64   /  ANY  ANY  _  ;
+
+
+144 - RULE 1.115, CharisRules.gdh(522):  cno_BowlHook  >  cBowlHook   /  ANY  ANY  _  ;
+
+
+145 - RULE 1.116, CharisRules.gdh(524):  cBowlHook  >  cno_BowlHook   /  ANY  ANY  _  ;
+
+
+146 - RULE 1.117, CharisRules.gdh(528):  cno_CommaStyle  >  cCommaStyle   /  ANY  ANY  _  ;
+
+
+147 - RULE 1.118, CharisRules.gdh(530):  cCommaStyle  >  cno_CommaStyle   /  ANY  ANY  _  ;
+
+
+148 - RULE 1.119, CharisRules.gdh(534):  cno_RevSigmaStyle  >  cRevSigmaStyle   /  ANY  ANY  _  ;
+
+
+149 - RULE 1.120, CharisRules.gdh(536):  cRevSigmaStyle  >  cno_RevSigmaStyle   /  ANY  ANY  _  ;
+
+
+150 - RULE 1.121, CharisRules.gdh(542):  cno_Lrg  >  cLrg   /  ANY  ANY  _  ;
+
+
+151 - RULE 1.122, CharisRules.gdh(544):  cLrg  >  cno_Lrg   /  ANY  ANY  _  ;
+
+
+152 - RULE 1.123, CharisRules.gdh(548):  cno_OpenTop  >  cOpenTop   /  ANY  ANY  _  ;
+
+
+153 - RULE 1.124, CharisRules.gdh(550):  cOpenTop  >  cno_OpenTop   /  ANY  ANY  _  ;
+
+
+154 - RULE 1.125, CharisRules.gdh(554):  cno_SlashZero  >  cSlashZero   /  ANY  ANY  _  ;
+
+
+155 - RULE 1.126, CharisRules.gdh(556):  cSlashZero  >  cno_SlashZero   /  ANY  ANY  _  ;
+
+
+156 - RULE 1.127, CharisRules.gdh(560):  gF1E9  >  gF1E9_wide   /  ANY  ANY  _  ;
+
+
+157 - RULE 1.128, CharisRules.gdh(562):  gF1E9_wide  >  gF1E9   /  ANY  ANY  _  ;
+
+
+158 - RULE 1.129, CharisRules.gdh(575):  g04BB  >  g04BB_uCStyle   /  ANY  ANY  _  ;
+
+
+159 - RULE 1.130, CharisRules.gdh(577):  g04BB_uCStyle  >  g04BB   /  ANY  ANY  _  ;
+
+
+160 - RULE 1.131, CharisPitches.gdh(219):  cRightTone  >  cSupNum   /  ANY  ANY  _  ;
+
+
+161 - RULE 1.132, CharisPitches.gdh(220):  cLeftTone  >  cSupNum   /  ANY  ANY  _  ;
+
+
+162 - RULE 1.153, CharisPitches.gdh(609):  g_pitchSpace  >  g_noPitchSpace   /  ANY  ANY  _  ;
+
+
+PASS: 2
+
+0 - RULE 2.0, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+
+1 - RULE 2.5, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+
+2 - RULE 2.1, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+
+3 - RULE 2.6, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cnUDia  cUDia  ;
+
+
+4 - RULE 2.20, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11  g9Pitch11  g9Pitch11  g9Pitch11 {...}  ;
+
+
+5 - RULE 2.24, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22  g9Pitch22  g9Pitch22  g9Pitch22 {...}  ;
+
+
+6 - RULE 2.28, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33  g9Pitch33  g9Pitch33  g9Pitch33 {...}  ;
+
+
+7 - RULE 2.32, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44  g9Pitch44  g9Pitch44  g9Pitch44 {...}  ;
+
+
+8 - RULE 2.36, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55  g9Pitch55  g9Pitch55  g9Pitch55 {...}  ;
+
+
+9 - RULE 2.40, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66  g9Pitch66  g9Pitch66  g9Pitch66 {...}  ;
+
+
+10 - RULE 2.44, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77  g9Pitch77  g9Pitch77  g9Pitch77 {...}  ;
+
+
+11 - RULE 2.48, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88  g9Pitch88  g9Pitch88  g9Pitch88 {...}  ;
+
+
+12 - RULE 2.52, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99  g9Pitch99  g9Pitch99  g9Pitch99 {...}  ;
+
+
+13 - RULE 2.2, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cUDia  ;
+
+
+14 - RULE 2.7, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cnUDia  cUDia  ;
+
+
+15 - RULE 2.21, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11  g9Pitch11  g9Pitch11 {...}  ;
+
+
+16 - RULE 2.25, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22  g9Pitch22  g9Pitch22 {...}  ;
+
+
+17 - RULE 2.29, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33  g9Pitch33  g9Pitch33 {...}  ;
+
+
+18 - RULE 2.33, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44  g9Pitch44  g9Pitch44 {...}  ;
+
+
+19 - RULE 2.37, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55  g9Pitch55  g9Pitch55 {...}  ;
+
+
+20 - RULE 2.41, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66  g9Pitch66  g9Pitch66 {...}  ;
+
+
+21 - RULE 2.45, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77  g9Pitch77  g9Pitch77 {...}  ;
+
+
+22 - RULE 2.49, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88  g9Pitch88  g9Pitch88 {...}  ;
+
+
+23 - RULE 2.53, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99  g9Pitch99  g9Pitch99 {...}  ;
+
+
+24 - RULE 2.3, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cUDia  ;
+
+
+25 - RULE 2.8, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cnUDia  cUDia  ;
+
+
+26 - RULE 2.22, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11  g9Pitch11 {...}  ;
+
+
+27 - RULE 2.26, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22  g9Pitch22 {...}  ;
+
+
+28 - RULE 2.30, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33  g9Pitch33 {...}  ;
+
+
+29 - RULE 2.34, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44  g9Pitch44 {...}  ;
+
+
+30 - RULE 2.38, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55  g9Pitch55 {...}  ;
+
+
+31 - RULE 2.42, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66  g9Pitch66 {...}  ;
+
+
+32 - RULE 2.46, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77  g9Pitch77 {...}  ;
+
+
+33 - RULE 2.50, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88  g9Pitch88 {...}  ;
+
+
+34 - RULE 2.54, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99  g9Pitch99 {...}  ;
+
+
+35 - RULE 2.4, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cUDia  ;
+
+
+36 - RULE 2.9, CharisRules.gdh(590):  cSpecialDotted  _  >  g_i_dotless  cSpecialDottedDia$2:2   /  ANY  _  _  cUDia  ;
+
+
+37 - RULE 2.12, CharisRules.gdh(618):  cno_Sup  >  cSup   /  *GC7*  _  ;
+
+
+38 - RULE 2.15, CharisPitches.gdh(286):  cLeftContourOrStaff { user2=1;  }   /  ANY  _ {...}  cLeftContour {...}  ;
+
+
+39 - RULE 2.16, CharisPitches.gdh(289):  cLeftContour { user2=2;  }   /  ^  cLeftContourOrStaff {...}  _ {...}  ;
+
+
+40 - RULE 2.17, CharisPitches.gdh(294):  cLeftStaff  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour {...}  ;
+
+
+41 - RULE 2.18, CharisPitches.gdh(296):  cLeftStaff_no  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour {...}  ;
+
+
+42 - RULE 2.23, CharisPitches.gdh(644):  g9Pitch1  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch11 {...}  ;
+
+
+43 - RULE 2.27, CharisPitches.gdh(645):  g9Pitch2  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch22 {...}  ;
+
+
+44 - RULE 2.31, CharisPitches.gdh(646):  g9Pitch3  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch33 {...}  ;
+
+
+45 - RULE 2.35, CharisPitches.gdh(647):  g9Pitch4  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch44 {...}  ;
+
+
+46 - RULE 2.39, CharisPitches.gdh(648):  g9Pitch5  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch55 {...}  ;
+
+
+47 - RULE 2.43, CharisPitches.gdh(649):  g9Pitch6  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch66 {...}  ;
+
+
+48 - RULE 2.47, CharisPitches.gdh(650):  g9Pitch7  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch77 {...}  ;
+
+
+49 - RULE 2.51, CharisPitches.gdh(651):  g9Pitch8  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch88 {...}  ;
+
+
+50 - RULE 2.55, CharisPitches.gdh(652):  g9Pitch9  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  g9Pitch99 {...}  ;
+
+
+51 - RULE 2.56, CharisPitches.gdh(655):  c9PitchX  c9PitchXX  >  _  @3:(2 3) { comp.p1.ref=@2; comp.p2.ref=@3;  }   /  ANY  _ {...}  ^  _  ;
+
+
+52 - RULE 2.10, CharisRules.gdh(595):  cno_RetroHookStyle  >  cRetroHookStyle   /  ANY  _  ;
+
+
+53 - RULE 2.11, CharisRules.gdh(597):  cRetroHookStyle  >  cno_RetroHookStyle   /  ANY  _  ;
+
+
+54 - RULE 2.13, CharisPitches.gdh(276):  _  cRightStaff  >  cRightToneHoriz$3:3  @3   /  ANY  _  _ {...}  ;
+
+
+55 - RULE 2.14, CharisPitches.gdh(277):  _  cRightStaff_no  >  cRightToneHoriz$3:3  @3   /  ANY  _  _ {...}  ;
+
+
+56 - RULE 2.19, CharisPitches.gdh(639):  c9PitchX  >  @2 { user2=1;  }   /  ANY  ^  _ {...}  ;
+
+
+57 - RULE 2.57, CharisPitches.gdh(662):  cno_LinesXXX  >  cLinesXXX   /  ANY  _  ;
+
+
+TABLE: positioning
+
+PASS: 3
+
+0 - RULE 3.2, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+
+1 - RULE 3.7, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+
+2 - RULE 3.12, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _ {...}  ;
+
+
+3 - RULE 3.17, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+
+4 - RULE 3.22, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+
+5 - RULE 3.27, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+
+6 - RULE 3.32, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+
+7 - RULE 3.37, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _ {...}  ;
+
+
+8 - RULE 3.42, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+
+9 - RULE 3.47, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+
+10 - RULE 3.3, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+
+11 - RULE 3.8, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+
+12 - RULE 3.13, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  _ {...}  ;
+
+
+13 - RULE 3.18, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+
+14 - RULE 3.23, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+
+15 - RULE 3.28, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _ {...}  ;
+
+
+16 - RULE 3.33, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _ {...}  ;
+
+
+17 - RULE 3.38, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  cnODia  cnODia  _ {...}  ;
+
+
+18 - RULE 3.43, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _ {...}  ;
+
+
+19 - RULE 3.48, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _ {...}  ;
+
+
+20 - RULE 3.4, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  cnHDia  _ {...}  ;
+
+
+21 - RULE 3.9, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  cnLDia  _ {...}  ;
+
+
+22 - RULE 3.14, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  cnODia  _ {...}  ;
+
+
+23 - RULE 3.19, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  cnRDia  _ {...}  ;
+
+
+24 - RULE 3.24, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  cnUDia  _ {...}  ;
+
+
+25 - RULE 3.29, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  cnHDia  _ {...}  ;
+
+
+26 - RULE 3.34, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  cnLDia  _ {...}  ;
+
+
+27 - RULE 3.39, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  cnODia  _ {...}  ;
+
+
+28 - RULE 3.44, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  cnRDia  _ {...}  ;
+
+
+29 - RULE 3.49, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  cnUDia  _ {...}  ;
+
+
+30 - RULE 3.5, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnHDia  _ {...}  ;
+
+
+31 - RULE 3.10, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnLDia  _ {...}  ;
+
+
+32 - RULE 3.15, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  cnODia  _ {...}  ;
+
+
+33 - RULE 3.20, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnRDia  _ {...}  ;
+
+
+34 - RULE 3.25, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  cnUDia  _ {...}  ;
+
+
+35 - RULE 3.30, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  cnHDia  _ {...}  ;
+
+
+36 - RULE 3.35, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  cnLDia  _ {...}  ;
+
+
+37 - RULE 3.40, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  cnODia  _ {...}  ;
+
+
+38 - RULE 3.45, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  cnRDia  _ {...}  ;
+
+
+39 - RULE 3.50, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  cnUDia  _ {...}  ;
+
+
+40 - RULE 3.0, CharisPitches.gdh(308):  cRightContour { user3=...; user4=...;  }  cRightContourOrStaff { attach {...} insert=1;  }   /  _  ^  _  ;
+
+
+41 - RULE 3.1, CharisPitches.gdh(312):  cLeftContourOrStaff  cLeftContour { attach {...} insert=1;  }   /  _  ^  _  ;
+
+
+42 - RULE 3.6, CharisRules.gdh(639):  cTakesHDia  cHDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+
+43 - RULE 3.11, CharisRules.gdh(640):  cTakesLDia  cLDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+
+44 - RULE 3.16, CharisRules.gdh(641):  cTakesODia  cODia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+
+45 - RULE 3.21, CharisRules.gdh(642):  cTakesRDia  cRDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+
+46 - RULE 3.26, CharisRules.gdh(643):  cTakesUDia  cUDia { attach {...} insert=1; user1=1;  }   /  ^  _  _ {...}  ;
+
+
+47 - RULE 3.31, CharisRules.gdh(645):  cTakesHDia  cHDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+
+48 - RULE 3.36, CharisRules.gdh(646):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+
+49 - RULE 3.41, CharisRules.gdh(647):  cTakesODia  cODia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+
+50 - RULE 3.46, CharisRules.gdh(648):  cTakesRDia  cRDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+
+51 - RULE 3.51, CharisRules.gdh(649):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ^  _  _ {...}  ;
+
+
+52 - RULE 3.52, CharisRules.gdh(655):  cBridgeDiac { advance.x=0;  }  ;
+
+
+PASS: 4
+
+0 - RULE 4.0, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+
+1 - RULE 4.1, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+
+2 - RULE 4.6, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+
+3 - RULE 4.12, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+
+4 - RULE 4.2, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+
+5 - RULE 4.7, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+
+
+6 - RULE 4.13, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+
+
+7 - RULE 4.3, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  cTakesUDia  ;
+
+
+8 - RULE 4.8, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  ;
+
+
+9 - RULE 4.14, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesUDia  ;
+
+
+10 - RULE 4.4, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  cTakesUDia  ;
+
+
+11 - RULE 4.9, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  ;
+
+
+12 - RULE 4.15, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesUDia  ;
+
+
+13 - RULE 4.5, CharisRules.gdh(668):  cUDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  cTakesUDia  ;
+
+
+14 - RULE 4.10, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  ;
+
+
+15 - RULE 4.16, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesUDia  ;
+
+
+16 - RULE 4.11, CharisRules.gdh(672):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  ;
+
+
+17 - RULE 4.17, CharisRules.gdh(674):  cUDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesUDia  ;
+
+
+PASS: 5
+
+0 - RULE 5.0, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+1 - RULE 5.6, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+2 - RULE 5.1, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+3 - RULE 5.7, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+4 - RULE 5.12, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  ;
+
+
+5 - RULE 5.18, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+6 - RULE 5.2, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+7 - RULE 5.8, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+8 - RULE 5.13, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  ;
+
+
+9 - RULE 5.19, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+10 - RULE 5.3, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
+
+
+11 - RULE 5.9, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
+
+
+12 - RULE 5.14, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  ;
+
+
+13 - RULE 5.20, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesLDia  ;
+
+
+14 - RULE 5.4, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
+
+
+15 - RULE 5.10, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
+
+
+16 - RULE 5.15, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  ;
+
+
+17 - RULE 5.21, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesLDia  ;
+
+
+18 - RULE 5.5, CharisRules.gdh(684):  g035F { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
+
+
+19 - RULE 5.11, CharisRules.gdh(687):  cLDblDia { shift.y=...; shift.x=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
+
+
+20 - RULE 5.16, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  ;
+
+
+21 - RULE 5.22, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesLDia  ;
+
+
+22 - RULE 5.17, CharisRules.gdh(690):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  ;
+
+
+23 - RULE 5.23, CharisRules.gdh(691):  cLDblDia { shift.y=...; insert=1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesLDia  ;
+

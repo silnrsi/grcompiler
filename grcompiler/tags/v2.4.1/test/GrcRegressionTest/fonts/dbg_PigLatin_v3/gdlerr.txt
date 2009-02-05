@@ -1,0 +1,12 @@
+Graphite Compilation Results
+
+GDL file: PigLatinMain.gdl
+Input font file: PigLatinInput.ttf
+Output font file: PigLatinBenchmark_v3.ttf
+Output font family: Std SILDoulos
+Silf table version: 3.0
+Create separate control file: no
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 0 warnings

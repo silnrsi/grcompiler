@@ -1,0 +1,224 @@
+Graphite Compilation Results
+
+GDL file: CharisMain.gdl
+Input font file: CharisInput.ttf
+Output font file: CharisBenchmark.ttf
+Output font family: Charis SIL
+Silf table version: 2.0
+Create separate control file: no
+
+*******************************************************
+
+CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (300, -100) in glyph 0x0003
+CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (300, 0) in glyph 0x0003
+CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (300, 1500) in glyph 0x0003
+CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (350, 0) in glyph 0x0003
+CharisMain.gdl(10) : warning(510): Cannot find point number for coordinates (600, 1000) in glyph 0x0003
+CharisMain.gdl(179) : warning(510): Cannot find point number for coordinates (300, -100) in glyph 0x00ac
+CharisMain.gdl(179) : warning(510): Cannot find point number for coordinates (300, 0) in glyph 0x00ac
+CharisMain.gdl(179) : warning(510): Cannot find point number for coordinates (300, 1500) in glyph 0x00ac
+CharisMain.gdl(179) : warning(510): Cannot find point number for coordinates (350, 0) in glyph 0x00ac
+CharisMain.gdl(179) : warning(510): Cannot find point number for coordinates (600, 1000) in glyph 0x00ac
+CharisMain.gdl(1991) : warning(510): Cannot find point number for coordinates (-20, 57) in glyph 0x07c0
+CharisMain.gdl(1992) : warning(510): Cannot find point number for coordinates (-20, 399) in glyph 0x07c1
+CharisMain.gdl(1993) : warning(510): Cannot find point number for coordinates (-20, 741) in glyph 0x07c2
+CharisMain.gdl(1994) : warning(510): Cannot find point number for coordinates (-20, 1081) in glyph 0x07c3
+CharisMain.gdl(1995) : warning(510): Cannot find point number for coordinates (-20, 1423) in glyph 0x07c4
+CharisMain.gdl(1996) : warning(510): Cannot find point number for coordinates (192, 57) in glyph 0x07c5
+CharisMain.gdl(1997) : warning(510): Cannot find point number for coordinates (192, 399) in glyph 0x07c6
+CharisMain.gdl(1998) : warning(510): Cannot find point number for coordinates (192, 741) in glyph 0x07c7
+CharisMain.gdl(1999) : warning(510): Cannot find point number for coordinates (192, 1081) in glyph 0x07c8
+CharisMain.gdl(2000) : warning(510): Cannot find point number for coordinates (192, 1423) in glyph 0x07c9
+CharisMain.gdl(2582) : warning(510): Cannot find point number for coordinates (0, 0) in glyph 0x0a0f
+CharisMain.gdl(2626) : warning(510): Cannot find point number for coordinates (1036, 0) in glyph 0x0a3b
+CharisMain.gdl(2626) : warning(510): Cannot find point number for coordinates (1971, 1000) in glyph 0x0a3b
+CharisMain.gdl(2626) : warning(510): Cannot find point number for coordinates (985, -100) in glyph 0x0a3b
+CharisMain.gdl(2626) : warning(510): Cannot find point number for coordinates (985, 0) in glyph 0x0a3b
+CharisMain.gdl(2626) : warning(510): Cannot find point number for coordinates (985, 1500) in glyph 0x0a3b
+CharisMain.gdl(2627) : warning(510): Cannot find point number for coordinates (1024, -100) in glyph 0x0a3c
+CharisMain.gdl(2627) : warning(510): Cannot find point number for coordinates (1024, 0) in glyph 0x0a3c
+CharisMain.gdl(2627) : warning(510): Cannot find point number for coordinates (1024, 1500) in glyph 0x0a3c
+CharisMain.gdl(2627) : warning(510): Cannot find point number for coordinates (1074, 0) in glyph 0x0a3c
+CharisMain.gdl(2627) : warning(510): Cannot find point number for coordinates (2048, 1000) in glyph 0x0a3c
+CharisMain.gdl(2628) : warning(510): Cannot find point number for coordinates (246, -100) in glyph 0x0a3d
+CharisMain.gdl(2628) : warning(510): Cannot find point number for coordinates (246, 0) in glyph 0x0a3d
+CharisMain.gdl(2628) : warning(510): Cannot find point number for coordinates (246, 1500) in glyph 0x0a3d
+CharisMain.gdl(2628) : warning(510): Cannot find point number for coordinates (297, 0) in glyph 0x0a3d
+CharisMain.gdl(2628) : warning(510): Cannot find point number for coordinates (493, 1000) in glyph 0x0a3d
+CharisMain.gdl(2629) : warning(510): Cannot find point number for coordinates (286, -100) in glyph 0x0a3e
+CharisMain.gdl(2629) : warning(510): Cannot find point number for coordinates (286, 0) in glyph 0x0a3e
+CharisMain.gdl(2629) : warning(510): Cannot find point number for coordinates (286, 1500) in glyph 0x0a3e
+CharisMain.gdl(2629) : warning(510): Cannot find point number for coordinates (336, 0) in glyph 0x0a3e
+CharisMain.gdl(2629) : warning(510): Cannot find point number for coordinates (573, 1000) in glyph 0x0a3e
+CharisMain.gdl(2630) : warning(510): Cannot find point number for coordinates (164, -100) in glyph 0x0a3f
+CharisMain.gdl(2630) : warning(510): Cannot find point number for coordinates (164, 0) in glyph 0x0a3f
+CharisMain.gdl(2630) : warning(510): Cannot find point number for coordinates (164, 1500) in glyph 0x0a3f
+CharisMain.gdl(2630) : warning(510): Cannot find point number for coordinates (214, 0) in glyph 0x0a3f
+CharisMain.gdl(2630) : warning(510): Cannot find point number for coordinates (328, 1000) in glyph 0x0a3f
+CharisMain.gdl(2631) : warning(510): Cannot find point number for coordinates (328, -100) in glyph 0x0a40
+CharisMain.gdl(2631) : warning(510): Cannot find point number for coordinates (328, 0) in glyph 0x0a40
+CharisMain.gdl(2631) : warning(510): Cannot find point number for coordinates (328, 1500) in glyph 0x0a40
+CharisMain.gdl(2631) : warning(510): Cannot find point number for coordinates (379, 0) in glyph 0x0a40
+CharisMain.gdl(2631) : warning(510): Cannot find point number for coordinates (657, 1000) in glyph 0x0a40
+CharisMain.gdl(2632) : warning(510): Cannot find point number for coordinates (492, -100) in glyph 0x0a41
+CharisMain.gdl(2632) : warning(510): Cannot find point number for coordinates (492, 0) in glyph 0x0a41
+CharisMain.gdl(2632) : warning(510): Cannot find point number for coordinates (492, 1500) in glyph 0x0a41
+CharisMain.gdl(2632) : warning(510): Cannot find point number for coordinates (543, 0) in glyph 0x0a41
+CharisMain.gdl(2632) : warning(510): Cannot find point number for coordinates (985, 1000) in glyph 0x0a41
+CharisMain.gdl(2633) : warning(510): Cannot find point number for coordinates (1024, 1000) in glyph 0x0a42
+CharisMain.gdl(2633) : warning(510): Cannot find point number for coordinates (512, -100) in glyph 0x0a42
+CharisMain.gdl(2633) : warning(510): Cannot find point number for coordinates (512, 0) in glyph 0x0a42
+CharisMain.gdl(2633) : warning(510): Cannot find point number for coordinates (512, 1500) in glyph 0x0a42
+CharisMain.gdl(2633) : warning(510): Cannot find point number for coordinates (562, 0) in glyph 0x0a42
+CharisMain.gdl(2634) : warning(510): Cannot find point number for coordinates (246, -100) in glyph 0x0a43
+CharisMain.gdl(2634) : warning(510): Cannot find point number for coordinates (246, 0) in glyph 0x0a43
+CharisMain.gdl(2634) : warning(510): Cannot find point number for coordinates (246, 1500) in glyph 0x0a43
+CharisMain.gdl(2634) : warning(510): Cannot find point number for coordinates (297, 0) in glyph 0x0a43
+CharisMain.gdl(2634) : warning(510): Cannot find point number for coordinates (493, 1000) in glyph 0x0a43
+CharisMain.gdl(2635) : warning(510): Cannot find point number for coordinates (1126, 1000) in glyph 0x0a44
+CharisMain.gdl(2635) : warning(510): Cannot find point number for coordinates (563, -100) in glyph 0x0a44
+CharisMain.gdl(2635) : warning(510): Cannot find point number for coordinates (563, 0) in glyph 0x0a44
+CharisMain.gdl(2635) : warning(510): Cannot find point number for coordinates (563, 1500) in glyph 0x0a44
+CharisMain.gdl(2635) : warning(510): Cannot find point number for coordinates (613, 0) in glyph 0x0a44
+CharisMain.gdl(2636) : warning(510): Cannot find point number for coordinates (256, -100) in glyph 0x0a45
+CharisMain.gdl(2636) : warning(510): Cannot find point number for coordinates (256, 0) in glyph 0x0a45
+CharisMain.gdl(2636) : warning(510): Cannot find point number for coordinates (256, 1500) in glyph 0x0a45
+CharisMain.gdl(2636) : warning(510): Cannot find point number for coordinates (306, 0) in glyph 0x0a45
+CharisMain.gdl(2636) : warning(510): Cannot find point number for coordinates (512, 1000) in glyph 0x0a45
+CharisMain.gdl(2637) : warning(510): Cannot find point number for coordinates (20, -100) in glyph 0x0a46
+CharisMain.gdl(2637) : warning(510): Cannot find point number for coordinates (20, 0) in glyph 0x0a46
+CharisMain.gdl(2637) : warning(510): Cannot find point number for coordinates (20, 1500) in glyph 0x0a46
+CharisMain.gdl(2637) : warning(510): Cannot find point number for coordinates (41, 1000) in glyph 0x0a46
+CharisMain.gdl(2637) : warning(510): Cannot find point number for coordinates (71, 0) in glyph 0x0a46
+CharisRules.gdh(639) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(639) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(639) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(639) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(639) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(640) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(640) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(640) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(640) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(640) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(641) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(641) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(641) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(641) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(641) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(642) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(642) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(642) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(642) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(642) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(643) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(643) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(643) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(643) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(643) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(645) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(645) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(645) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(645) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(645) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(646) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(646) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(646) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(646) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(646) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(647) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(647) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(647) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(647) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(647) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(648) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(648) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(648) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(648) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(648) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 2 and 7; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 3 and 7; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 4 and 7; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 7 and 8; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 2 and 7; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 3 and 7; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 4 and 7; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 1 and 6; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 2 and 6; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 3 and 6; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 2 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 3 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 4 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 7 and 8; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 2 and 7; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 3 and 7; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 4 and 7; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 7 and 8; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 2 and 7; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 3 and 7; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 4 and 7; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 1 and 6; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 2 and 6; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 3 and 6; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 209 warnings
