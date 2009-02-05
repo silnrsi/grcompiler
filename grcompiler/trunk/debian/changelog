@@ -1,3 +1,9 @@
+grcompiler (2.4.1-1ubuntu1) unstable; urgency=low
+
+  * Bug fix release
+
+ -- Martin Hosken <martin_hosken@sil.org>  Thu, 05 Feb 2009 09:15:25 +0700
+
 grcompiler (2.1+0000svn-1) unstable; urgency=low
 
   * Initial Release from svn.
