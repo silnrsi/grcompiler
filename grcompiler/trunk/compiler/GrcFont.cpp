@@ -544,7 +544,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	int nAdvWid, nLsb;
 	if (gmet == kgmetAdvWidth || gmet == kgmetLsb || gmet == kgmetRsb)
 	{
-		if (!TtfUtil::HorMetrics(wGlyphID, m_pHmtx, m_cHhea, m_pHhea, nLsb, nAdvWid))
+		if (!TtfUtil::HorMetrics(wGlyphID, m_pHmtx, m_cHmtx, m_pHhea, nLsb, nAdvWid))
 		{
 			g_errorList.AddError(120, pgdlobj, 
 				"Unable to get horizontal metrics for glyph 0x", 
