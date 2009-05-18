@@ -3156,7 +3156,7 @@ void GrcBinaryStream::WriteInt(int iOutput)
 ----------------------------------------------------------------------------------------------*/
 long GrcBinaryStream::SeekPadLong(long ibOffset)
 {
-	int cPad = (ibOffset + 3 & ~3) - ibOffset;
+	int cPad = ((ibOffset + 3) & ~3) - ibOffset;
 	seekp(ibOffset);
 	if (cPad)
 		write("\0\0\0", cPad);
@@ -3212,7 +3212,7 @@ void GrcSubStream::WriteInt(int iOutput)
 ----------------------------------------------------------------------------------------------*/
 DWORD PadLong(DWORD ul)
 {
-	return ul + 3 & ~3;
+	return (ul + 3) & ~3;
 }
 
 /*----------------------------------------------------------------------------------------------

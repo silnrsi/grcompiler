@@ -244,7 +244,7 @@ int main(int argc, char * argv[])
 	strmGdl >> bFirst >> bSecond >> bThird;
 	strmGdl.close();
 
-	if (bFirst == 0xFF && bSecond == 0xFE || bFirst == 0xFE && bSecond == 0xFF)
+	if ((bFirst == 0xFF && bSecond == 0xFE) || (bFirst == 0xFE && bSecond == 0xFF))
 	{
 	    fEncodingErr = true;
 	    g_errorList.AddError(130, NULL, "Illegal encoding in GDL file - probably UTF-16 encoding.");
