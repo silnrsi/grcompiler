@@ -408,7 +408,8 @@ bool GrcManager::ParseFile(std::ifstream & strmIn, std::string staFileName)
 
 		if (g_errorList.AnyFatalErrors())
 		{
-			ast->iterativeRemoveChildren(true); // to avoid stack overflows
+			if (ast != NULL)
+				ast->iterativeRemoveChildren(true); // to avoid stack overflows
 			return false;
 		}
 
