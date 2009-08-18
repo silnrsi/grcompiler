@@ -170,7 +170,7 @@ int main(int argc, char **argv)
 #elif defined (OS9)
   tagptr->data = "/dd/defs/";
 #else
-  tagptr->data = "/usr/include/";
+  tagptr->data = PKGDATADIR;
 #endif
   tagptr++;
 
