@@ -27,6 +27,7 @@ AC_ARG_ENABLE(profilefn,
     [enable_profilefn=yes],[enable_profilefn=no])
 
 # Checks for programs.
+
 AC_PROG_CXX
 AM_PROG_CC_C_O
 AC_PROG_CPP
@@ -35,6 +36,13 @@ AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
 AC_PATH_PROG(LSB_RELEASE, lsb_release, no)
+
+# docbook2man utility
+AC_ARG_VAR(DOCBOOK2MAN, [Program used to process XML man pages])
+AC_CHECK_PROGS(DOCBOOK2MAN, docbook2x-man docbook2man, no)
+if test "$DOCBOOK2MAN" = no; then
+    AC_MSG_FAILURE([Could not find a program to process XML man pages])
+fi
 
 # Checks for libraries.
 
