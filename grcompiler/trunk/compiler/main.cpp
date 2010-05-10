@@ -24,6 +24,12 @@ Description:
 #include "..\..\..\..\Output\Common\bldinc.h"
 #endif // GR_FW
 
+#if !defined(_WIN32) && !HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+#include <libgen.h>
+char* program_invocation_name;
+char* program_invocation_short_name;
+#endif
+
 #pragma hdrstop
 #undef THIS_FILE
 DEFINE_THIS_FILE
@@ -51,6 +57,11 @@ int main(int argc, char * argv[])
 //	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_CHECK_ALWAYS_DF);
 	// COM thing
 	::CoInitialize(NULL);
+#endif
+
+#if !defined(_WIN32) && !HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+	program_invocation_name = argv[0];
+	program_invocation_short_name = basename(argv[0]);
 #endif
 
 	char * pchGdlppFile = getenv("GDLPP");
