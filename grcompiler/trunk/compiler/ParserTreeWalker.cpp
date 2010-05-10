@@ -206,31 +206,49 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	if (mkstemp(tmpgdl)==-1)
 	{
 		g_errorList.AddError(1112, NULL,
-			"Could not create process to run pre-processor gdlpp",
-			"compiling ",
+			"Could not create temp file to run pre-processor: ", staGdlppFile,
+			" compiling ",
 			staFileName);
 		return false;
 	}
 	pid_t pid;
 	int status, died, testexec;
-	switch(pid=fork()){
-		case -1: cout << "can't fork\n";
+	switch (pid = fork())
+	{
+	case -1:
+		cout << "Can't fork pre-processor: " << strerror(errno) << "\n";
 		exit(-1);
-		case 0 : 
-			if (m_verbose)
-				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),"-V",staFileName.c_str(),tmpgdl,NULL); // this is the code the child runs
-			else
-				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),staFileName.c_str(),tmpgdl,NULL); // this is the code the child runs
-			cout << "// exec retval:" << testexec << ", errno:" << strerror(errno) << "(" << errno << ")\n";
-			cout << "// tmpfile " << tmpgdl << endl;
-			cout << "// file " << staFileName.c_str() << endl;
+	case 0 :
+		// In child process
+		if (m_verbose)
+			testexec = execlp(staGdlppFile.c_str(), staGdlppFile.c_str(),
+				"-V", staFileName.c_str(), tmpgdl, NULL);
+		else
+			testexec = execlp(staGdlppFile.c_str(), staGdlppFile.c_str(),
+				staFileName.c_str(), tmpgdl, NULL);
+		cout << "exec failed - retval: " << testexec
+		     << ", errno: " << strerror(errno) << " (" << errno << ")\n";
+		cout << "tmpfile " << tmpgdl << endl;
+		cout << "file " << staFileName.c_str() << endl;
+		exit(-2);
+	default:
+		// In parent process
+		died = waitpid(pid, &status, 0); // this is the code the parent runs
+		if (WIFSIGNALED(status))
+			cout << "Pre-processor died with signal " << WTERMSIG(status) << "\n";
+		else if (WIFSTOPPED(status))
+			cout << "Pre-processor stopped with signal " << WSTOPSIG(status) << "\n";
+		else if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
+			cout << "Pre-processor exited with result " << WEXITSTATUS(status) << "\n";
+		else
+			break;
 		g_errorList.AddError(1113, NULL,
 			"Failed to run pre-processor: ", staGdlppFile,
-			"compiling ",
+			" compiling ",
 			staFileName);
 		return false;
-		default: died= wait(&status); // this is the code the parent runs
 	}
+
 	*pstaFilePreProc = tmpgdl;
 #endif
 
