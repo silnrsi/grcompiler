@@ -60,6 +60,7 @@ AC_CHECK_LIB(sicuuc, u_charType_4_0)
 AC_CHECK_HEADER(unicode/uchar.h,,)
 
 # Checks for typedefs, structures, and compiler characteristics.
+AC_C_BIGENDIAN
 
 # Checks for library functions.
 

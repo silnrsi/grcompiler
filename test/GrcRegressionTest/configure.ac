@@ -8,9 +8,12 @@ AC_CONFIG_AUX_DIR(config)
 AM_INIT_AUTOMAKE(foreign)
 AM_MAINTAINER_MODE
 
-AC_PROG_CXX
+# System checks.
+AC_CANONICAL_HOST
 
 # Check programs we need
+AC_PROG_CXX
+
 # Check packages needed
 PKG_CHECK_MODULES(GR2, silgraphite >= 2.2.0)
 
@@ -18,6 +21,7 @@ PKG_CHECK_MODULES(GR2, silgraphite >= 2.2.0)
 AC_LANG(C++)
 
 # Checks for typedefs, structures, and compiler characteristics.
+AC_C_BIGENDIAN
 AC_TYPE_SIZE_T
 AC_CHECK_SIZEOF(wchar_t)
 AC_SUBST(SIZEOF_WCHAR_T)

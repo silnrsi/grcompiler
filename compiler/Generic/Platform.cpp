@@ -355,12 +355,17 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
 	return src_count*3;
 
     std::ostringstream oss; oss << "CP" << code_page;
-    iconv_t cdesc = iconv_open("UCS-2", oss.str().c_str()); // tocode, fromcode
+    const char* fromcode = oss.str().c_str();
+
+    short endian_test = 1;
+    const char* tocode = *(char*)&endian_test ? "UCS-2LE" : "UCS-2BE";
+
+    iconv_t cdesc = iconv_open(tocode, fromcode);
    
     if (cdesc == iconv_t(-1))
     {
-	std::cerr << program_invocation_short_name 
-                  << ": iconv_open(\"UCS-2\", \"" << oss.str() << "\"): "
+	std::cerr << program_invocation_short_name
+                  << ": iconv_open(\"" << tocode << "\", \"" << oss.str() << "\"): "
                   << strerror(errno) << std::endl;
 	exit(1);
     }
