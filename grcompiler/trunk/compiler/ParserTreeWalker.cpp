@@ -218,9 +218,9 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 		exit(-1);
 		case 0 : 
 			if (m_verbose)
-				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),"-V",staFileName.c_str(),tmpgdl,0); // this is the code the child runs
+				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),"-V",staFileName.c_str(),tmpgdl,NULL); // this is the code the child runs
 			else
-				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),staFileName.c_str(),tmpgdl,0); // this is 
+				testexec = execlp(staGdlppFile.c_str(),staGdlppFile.c_str(),staFileName.c_str(),tmpgdl,NULL); // this is the code the child runs
 			cout << "// exec retval:" << testexec << ", errno:" << strerror(errno) << "(" << errno << ")\n";
 			cout << "// tmpfile " << tmpgdl << endl;
 			cout << "// file " << staFileName.c_str() << endl;
