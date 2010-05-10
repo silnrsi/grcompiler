@@ -45,6 +45,7 @@
 
 // Project headers
 #ifndef _WIN32
+#include <stdint.h>
 #include "GrMstypes.h"
 #else
 #include <algorithm>

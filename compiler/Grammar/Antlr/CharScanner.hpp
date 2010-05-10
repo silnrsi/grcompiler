@@ -39,6 +39,7 @@
 #include "Antlr/InputBuffer.hpp"
 #include "Antlr/BitSet.hpp"
 #include "Antlr/LexerSharedInputState.hpp"
+#include <cstdio>
 #include <map>
 
 class CharScanner;
