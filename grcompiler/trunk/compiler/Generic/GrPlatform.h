@@ -45,7 +45,6 @@
 
 // Project headers
 #ifndef _WIN32
-#include <stdint.h>
 #include "GrMstypes.h"
 #else
 #include <algorithm>
@@ -79,27 +78,12 @@ namespace std
 namespace gr
 {
 // Typedefs
-#ifdef __int8_t_defined
-typedef uint32_t utf32;	// UTF32 encoded Unicode codepoints
-typedef uint16_t utf16;	// UTF16 encoded Unicode codepoints
-typedef uint16_t gid16;	// glyph ID
-typedef uint16_t data16;	// generic 16-bit data
-typedef uint32_t fontTableId32;	// ID to pass to getTable()
-#else
-// Typedefs
-typedef unsigned long int utf32;	// UTF32 encoded unicode codepoints.
-typedef unsigned short int utf16;	// UTF16 encoded unicode codepoints.
-typedef unsigned short int gid16;	// glyph ID
-typedef unsigned short int data16;	// generic 16-bit data
-typedef unsigned long int fontTableId32;	// ID to pass to getTable()
-#endif
-
-//typedef unsigned char		uchar;
-//typedef unsigned int		uint;
-//typedef unsigned short		ushort;
-//typedef unsigned long		ulong;
-//typedef __int64 			int64; // Hungarian: lln
-//typedef unsigned __int64	uint64; // Hungarian llu
+// These are correct for the x86_64 architecture too, on both Windows and Unix
+typedef unsigned       int utf32;          // UTF32 encoded Unicode codepoints
+typedef unsigned short int utf16;          // UTF16 encoded Unicode codepoints
+typedef unsigned short int gid16;          // glyph ID
+typedef unsigned short int data16;         // generic 16-bit data
+typedef unsigned       int fontTableId32;  // ID to pass to getTable()
 
 #ifndef NO_ASM
 #define NO_ASM
