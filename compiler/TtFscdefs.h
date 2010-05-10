@@ -11,22 +11,15 @@
 #define ONEFRAC     ( 1L << 30 )
 #define ONEHALFFIX  0x8000L
 
-#ifdef __int8_t_defined
-typedef int8_t int8;
-typedef uint8_t uint8;
-typedef int16_t int16;
-typedef uint16_t uint16;
-typedef int32_t int32;
-typedef uint32_t uint32;
-#else
-/* On 64 bit architecture this may be wrong */
-typedef char int8;
-typedef unsigned char uint8;
-typedef short int16;
+// Typedefs
+// These are correct for the x86_64 architecture too, on both Windows and Unix
+
+typedef   signed char   int8;
+typedef unsigned char  uint8;
+typedef   signed short  int16;
 typedef unsigned short uint16;
-typedef long int32;
-typedef unsigned long uint32;
-#endif
+typedef   signed int    int32;
+typedef unsigned int   uint32;
 
 typedef int16 FUnit;
 typedef uint16 uFUnit;
