@@ -44,6 +44,10 @@ if test "$DOCBOOK2MAN" = no; then
     AC_MSG_FAILURE([Could not find a program to process XML man pages])
 fi
 
+# Set default language for tests
+
+AC_LANG(C++)
+
 # Checks for libraries.
 
 AC_CHECK_LIB(sicuuc, u_charType_3_6)
@@ -59,6 +63,7 @@ AC_CHECK_HEADER(unicode/uchar.h,,)
 
 # Checks for library functions.
 
+AC_CHECK_DECLS([program_invocation_short_name],,,[[#include <errno.h>]])
 
 # Setup the build compiler flags and linker flags.
 # Enable debug

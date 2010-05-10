@@ -14,6 +14,9 @@ AC_PROG_CXX
 # Check packages needed
 PKG_CHECK_MODULES(GR2, silgraphite >= 2.2.0)
 
+# Set default language for tests
+AC_LANG(C++)
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T
 AC_CHECK_SIZEOF(wchar_t)

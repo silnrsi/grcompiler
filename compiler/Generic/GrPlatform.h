@@ -72,6 +72,15 @@ namespace std
 #endif // _MSC_VER == 1200
 //////using std::max; // SJC moved to GrCommon.h
 //////using std::min;
+
+#else // _WIN32
+
+#if !HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+// These are GNU extensions to libc and not available on Mac or BSD
+extern char* program_invocation_name;
+extern char* program_invocation_short_name;
+#endif
+
 #endif // _WIN32
 
 
