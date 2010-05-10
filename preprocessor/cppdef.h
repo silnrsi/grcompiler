@@ -109,6 +109,8 @@
 #else
 #ifdef	amiga
 #define HOST			SYS_AMIGADOS
+#else
+#error "Unknown HOST system"
 #endif
 #endif
 #endif
