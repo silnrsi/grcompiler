@@ -1601,6 +1601,8 @@ void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
 {
 	*pibOffset = pbstrm->Position();
 
+
+
 	// version
 	pbstrm->WriteInt(VersionForTable(ktiSile));
 
@@ -1840,10 +1842,12 @@ void GrcManager::ConvertBwForVersion(int wGlyphID, int nAttrIdBw)
 /*----------------------------------------------------------------------------------------------
 	Convert the specification version number requested by the user into the actual
 	version for the given table.
+
+	@param	ti		- table index
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::VersionForTable(int ti)
 {
-	return VersionForTable(ti, FontTableVersion());
+	return VersionForTable(ti, SilfTableVersion());
 }
 
 int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
@@ -1866,7 +1870,7 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 			return 0x00020000;
 		else
 			// No version specified, or an invalid version:
-			return kfxdCompilerVersion;
+			return kfxdMaxSilfVersion;
 	default:
 		Assert(false);
 	}
@@ -1930,25 +1934,28 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 {
 	*pnSilfOffset = pbstrm->Position();
 
-	int fxdVersion = VersionForTable(ktiSilf);
+	int fxdSilfVersion = VersionForTable(ktiSilf);
 
 	//	version number
-	pbstrm->WriteInt(fxdVersion);
+	pbstrm->WriteInt(fxdSilfVersion);
 
 	//	compiler version
-	if (fxdVersion >= 0x00030000)
-		pbstrm->WriteInt(kfxdCompilerVersion);
+	if (fxdSilfVersion >= 0x00030000)
+	{
+		SetCompilerVersionFor(fxdSilfVersion);
+		pbstrm->WriteInt(CompilerVersion());
+	}
 
 	//	number of sub-tables
 	pbstrm->WriteShort(1);
-	if (fxdVersion >= 0x00030000)
+	if (fxdSilfVersion >= 0x00030000)
 	{
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
 		//	offset of zeroth table relative to the start of this table
 		pbstrm->WriteInt(isizeof(int) * 3 + isizeof(utf16) * 2);
 	}
-	else if (fxdVersion >= 0x00020000)
+	else if (fxdSilfVersion >= 0x00020000)
 	{
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
@@ -1964,11 +1971,11 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	long lTableStartSub = pbstrm->Position();
 
 	//	rule version - right now this is the same as the table version
-	if (fxdVersion >= 0x00030000)
-		pbstrm->WriteInt(fxdVersion);
+	if (fxdSilfVersion >= 0x00030000)
+		pbstrm->WriteInt(fxdSilfVersion);
 
 	long lOffsetsPos = pbstrm->Position();
-	if (fxdVersion >= 0x00030000)
+	if (fxdSilfVersion >= 0x00030000)
 	{
 		// Place holders for offsets to passes and pseudo-glyphs.
 		pbstrm->WriteShort(0);
@@ -2000,7 +2007,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	first positioning pass
 	pbstrm->WriteByte(cpassLB + cpassSub + cpassJust);
 	//	first justification pass
-	if (fxdVersion < 0x00020000)
+	if (fxdSilfVersion < 0x00020000)
 		pbstrm->WriteByte(cpass);
 	else
 		pbstrm->WriteByte(cpassLB + cpassSub);
@@ -2022,7 +2029,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	directionality attribute ID
 	psym = m_psymtbl->FindSymbol("directionality");
 	pbstrm->WriteByte(psym->InternalID());
-	if (fxdVersion >= 0x00020000)
+	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved (pad bytes)
 		pbstrm->WriteByte(0);
@@ -2082,7 +2089,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteByte(0);
 	pbstrm->WriteByte(0);
 
-	if (fxdVersion >= 0x00020000)
+	if (fxdSilfVersion >= 0x00020000)
 	{
 		//	reserved (pad byte)
 		pbstrm->WriteByte(0);
@@ -2126,7 +2133,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	array of unicode-to-pseudo mappings
 	for (i = 0; i < signed(m_vwPseudoForUnicode.size()); i++)
 	{
-		if (fxdVersion < 0x00020000)
+		if (fxdSilfVersion < 0x00020000)
 			pbstrm->WriteShort(m_vnUnicodeForPseudo[i]);
 		else
 			pbstrm->WriteInt(m_vnUnicodeForPseudo[i]);
@@ -2145,7 +2152,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	long lSavePos = pbstrm->Position();
 
-	if (fxdVersion >= 0x00030000)
+	if (fxdSilfVersion >= 0x00030000)
 	{
 		pbstrm->SetPosition(lOffsetsPos);
 		pbstrm->WriteShort(nPassOffset);
@@ -2522,6 +2529,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	pbstrm->WriteShort(NumSuccessStates());
 	//	number of columns
 	pbstrm->WriteShort(m_pfsm->NumberOfColumns());
+
 	//	number of glyph sub-ranges
 	int n = TotalNumGlyphSubRanges();
 	pbstrm->WriteShort(n);

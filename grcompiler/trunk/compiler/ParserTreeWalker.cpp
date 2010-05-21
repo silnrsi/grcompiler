@@ -2043,7 +2043,7 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 	Assert(ast->getType() == ZifStruct);
 	int cConds = 0;
 
-	bool fPassConstraint = false; /// AllContentsArePasses(ast);
+	bool fPassConstraint = AllContentsArePasses(ast);
 
 	//	Only the most immediate pass constraints apply to the embedded passes, so
 	//	temporarily remove any that are hanging around at this point.
