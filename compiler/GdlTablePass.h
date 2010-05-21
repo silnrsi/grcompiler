@@ -161,7 +161,7 @@ protected:
 	int m_nMaxBackup;
 	bool m_fBidi;
 	std::vector<GdlRule*> m_vprule;
-	std::vector<GdlExpression *>	m_vpexpConstraints; // multiple constraints result from -else if-
+	std::vector<GdlExpression *> m_vpexpConstraints; // multiple constraints result from -else if-
 
 	int m_critMinPreContext;
 	int m_critMaxPreContext;

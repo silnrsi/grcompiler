@@ -56,16 +56,16 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	m_prndr->ReplaceKern(this);
 
 	int fxdVersionNeeded;
-	if (!CompatibleWithVersion(FontTableVersion(), &fxdVersionNeeded))
+	if (!CompatibleWithVersion(SilfTableVersion(), &fxdVersionNeeded))
 	{
 		if (UserSpecifiedVersion())
 			g_errorList.AddWarning(3501, NULL,
 				"Version ",
-				VersionString(FontTableVersion()),
-				" of the font tables is inadequate for your specfication; version ",
+				VersionString(SilfTableVersion()),
+				" of the Silf table is inadequate for your specfication; version ",
 				VersionString(fxdVersionNeeded),
 				" will be generated instead.");
-		SetFontTableVersion(fxdVersionNeeded, false);
+		SetSilfTableVersion(fxdVersionNeeded, false);
 	}
 
 	return true;
@@ -2115,16 +2115,18 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	*pfxdNeeded = fxdVersion;
 
-	if (fxdVersion >= kfxdCompilerVersion)
+	if (fxdVersion >= kfxdMaxSilfVersion)
 		return true;
 
 	if (!m_fBasicJust)
 	{
+		// We need version 2.0 for basic justification.
 		*pfxdNeeded = max(0x00020000, *pfxdNeeded);
 	}
 
 	if (m_vpglfcReplcmtClasses.size() >= kMaxReplcmtClassesV1_2)
 	{
+		// For a large set of replacement classes, we need 3.0.
 		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
 	}
 
@@ -2164,6 +2166,7 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		if (psym->IsMeasureAttr() || psym->DoesJustification())
 		{
+			// For justification, we need version 2.0.
 			fRet = (fxdVersion >= 0x00020000);
 			*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
 		}
@@ -2186,6 +2189,13 @@ bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
 	bool fRet = true;
+	if (m_vpexpConstraints.size() > 0)
+	{
+		// Pass constraints need 3.1. (Version 3.0 outputs empty pass constraints.)
+		fRet = fRet = (fxdVersion >= 0x00030001);
+		*pfxdNeeded = max(*pfxdNeeded, 0x00030001);
+	}
+
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
 		fRet = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
@@ -2230,12 +2240,13 @@ bool GdlSetAttrItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 /*--------------------------------------------------------------------------------------------*/
 bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 {
+	bool fRet = true;
 	if (m_psymName->IsMeasureAttr() || m_psymName->DoesJustification())
 	{
+		// Measuring and justification need 2.0.
 		*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
-		return (fxdVersion >= 0x00020000);
+		fRet = (fxdVersion >= 0x00020000);
 	}
-	else
-		return true;
+	return fRet;
 }
 

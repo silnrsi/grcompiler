@@ -265,7 +265,7 @@ int GrcFont::Init(GrcManager * pcman)
 	if (!ScanGlyfIds())
 		return 30;
 
-	if (AnySupplementaryPlaneChars() && pcman->FontTableVersion() <= 0x00010000)
+	if (AnySupplementaryPlaneChars() && pcman->SilfTableVersion() <= 0x00010000)
 	{
 		g_errorList.AddError(115, NULL,
 			"Supplementary plane characters are not supported in version 1.0");

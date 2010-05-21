@@ -102,7 +102,7 @@ int main(int argc, char * argv[])
 	bool fModFontName = false;
 
 	g_cman.SetOutputDebugFiles(false);
-	g_cman.SetFontTableVersion(g_cman.DefaultFontVersion(), false);
+	g_cman.SetSilfTableVersion(g_cman.DefaultSilfVersion(), false);
 	g_cman.SetSeparateControlFile(false);
 	g_cman.SetVerbose(true);
 
@@ -120,7 +120,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 2.4";
+		std::cout << "Graphite Compiler Version 4.0";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -196,7 +196,7 @@ int main(int argc, char * argv[])
 			GenerateOutputFontFileName(pchFontFile, rgchOutputFile);   // ttf
 	}
 
-	std::string staVersion = VersionString(g_cman.FontTableVersion());
+	std::string staVersion = VersionString(g_cman.SilfTableVersion());
 
 	if (g_cman.IsVerbose())
 	{
@@ -292,11 +292,11 @@ int main(int argc, char * argv[])
 				{
 					if (g_cman.IsVerbose()) std::cout << "Checking for errors...\n";
 
-					if (g_cman.FontTableVersion() > g_cman.MaxFontVersion())
+					if (g_cman.SilfTableVersion() > g_cman.MaxSilfVersion())
 					{
 						g_errorList.AddError(133, NULL,
 							"Invalid font table version: ",
-							VersionString(g_cman.FontTableVersion()));
+							VersionString(g_cman.SilfTableVersion()));
 					}
 					if (g_cman.NameTableStart() != -1
 						&& (g_cman.NameTableStart() < g_cman.NameTableStartMin()
@@ -386,7 +386,7 @@ int main(int argc, char * argv[])
 	g_errorList.SortErrors();
 	g_errorList.WriteErrorsToFile(pchGdlFile, pchFontFile,
 		rgchOutputFile, staFamily,
-		VersionString(g_cman.FontTableVersion()), g_cman.SeparateControlFile());
+		VersionString(g_cman.SilfTableVersion()), g_cman.SeparateControlFile());
 
 	int cerrFatal = g_errorList.NumberOfErrors();
 	int cerrWarning = g_errorList.NumberOfWarnings();
@@ -469,7 +469,7 @@ void HandleCompilerOptions(char * arg)
 
 			// Give an error later if the version is invalid.
 
-			g_cman.SetFontTableVersion(fxdVersion, true);
+			g_cman.SetSilfTableVersion(fxdVersion, true);
 		}
 		else if (arg[1] == 'w')
 		{

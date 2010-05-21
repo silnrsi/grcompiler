@@ -67,27 +67,44 @@ public:
 	int NumGlyphs()							{ return m_cwGlyphIDs; }
 	utf16 PhantomGlyph()					{ return m_wPhantom; }
 
-	int FontTableVersion()
+	int SilfTableVersion()
 	{
-		return m_fxdFontTableVersion;
+		return m_fxdSilfTableVersion;
 	}
-	void SetFontTableVersion(int fxd, bool f)
+	void SetSilfTableVersion(int fxd, bool f)
 	{
-		m_fxdFontTableVersion = fxd;
+		m_fxdSilfTableVersion = fxd;
 		m_fUserSpecifiedVersion = f;
 	}
-	int MaxFontVersion()
+	int MaxSilfVersion()
 	{
-		// Highest version of the font tables this version of the compiler can generate:
-		return kfxdCompilerVersion;
+		// Highest version of the Silf table this version of the compiler can generate:
+		return kfxdMaxSilfVersion;
 	}
-	int DefaultFontVersion()
+
+	int DefaultSilfVersion()
 	{
-		return 0x00020000; // kfxdCompilerVersion;
+		return 0x00020000;
 	}
 	bool UserSpecifiedVersion()
 	{
 		return m_fUserSpecifiedVersion;
+	}
+
+	int CompilerVersion()
+	{
+		return m_fxdCompilerVersion;
+	}
+	void SetCompilerVersionFor(int fxdSilfVersion)
+	{
+		switch (fxdSilfVersion)
+		{
+		case 0x00010000:	m_fxdCompilerVersion = fxdSilfVersion;	break;
+		case 0x00020000:	m_fxdCompilerVersion = fxdSilfVersion;	break;
+		case 0x00030000:	m_fxdCompilerVersion = 0x00030000;		break;
+		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
+		default:			m_fxdCompilerVersion = fxdSilfVersion;	break;
+		}
 	}
 
 	int VersionForTable(int ti);
@@ -344,8 +361,13 @@ public:
 protected:
 	//	Instance variables:
 
-	//	The version of the font tables to output.
-	int m_fxdFontTableVersion;
+	//	The version of the Silf table to output.
+	int m_fxdSilfTableVersion;
+	//	The compiler version with which to mark the font. This might or might not be the
+	//	actual current version of the compiler. If we are outputting a lower version of
+	//	the tables than what this compiler can generate, we can put a lower compiler version
+	//	in the font (and that way the font can be used with earlier engines).
+	int m_fxdCompilerVersion;
 	//	Did the user include a /v option?
 	bool m_fUserSpecifiedVersion;
 
