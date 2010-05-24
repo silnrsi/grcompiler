@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -64,7 +66,7 @@ int GdlRule::LookupAliasIndex(std::string sta)
 GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 	std::string staInput, std::string staAlias)
 {
-	Assert(irit <= m_vprit.size());
+	Assert(irit <= static_cast<int>(m_vprit.size()));
 
 	if (irit == signed(m_vprit.size()))
 	{
@@ -108,7 +110,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 	staSel == "" indicates a bare '@'.
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	std::string staClassOrAt, int nSel, std::string staAlias)
+	std::string staClassOrAt, int /*nSel*/, std::string staAlias)
 {
 	g_errorList.AddError(3135, this,
 		"Cannot specify a selector in the context");
@@ -120,7 +122,7 @@ GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
 }
 
 GdlRuleItem * GdlRule::ContextSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	std::string staClassOrAt, std::string staSel, std::string staAlias)
+	std::string staClassOrAt, std::string /*staSel*/, std::string staAlias)
 {
 	g_errorList.AddError(3136, this,
 		"Cannot specify a selector in the context");
@@ -434,7 +436,7 @@ LLbError:
 	staSel == "" indicates a bare '@'.
 ----------------------------------------------------------------------------------------------*/
 GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	std::string staClassOrAt, int nSel, std::string staAlias)
+	std::string staClassOrAt, int /*nSel*/, std::string staAlias)
 {
 	g_errorList.AddError(3146, this,
 		"Cannot specify a selector in the lhs");
@@ -446,7 +448,7 @@ GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
 }
 
 GdlRuleItem * GdlRule::LhsSelectorItemAt(GrpLineAndFile & lnf, int irit,
-	std::string staClassOrAt, std::string staSel, std::string staAlias)
+	std::string staClassOrAt, std::string /*staSel*/, std::string staAlias)
 {
 	g_errorList.AddError(3147, this,
 		"Cannot specify a selector in the lhs");
@@ -480,14 +482,14 @@ void GdlRule::AddOptionalRange(int iritStart, int crit, bool fContext)
 /*----------------------------------------------------------------------------------------------
 	Add an association to a rule item.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, int n)
+void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, int /*n*/)
 {
 	g_errorList.AddError(3148, NULL,
 		"Associations are only permitted in the rhs of a substitution rule",
 		lnf);
 }
 
-void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, std::string sta)
+void GdlRuleItem::AddAssociation(GrpLineAndFile & lnf, std::string /*sta*/)
 {
 	g_errorList.AddError(3149, NULL,
 		"Associations are only permitted in the rhs of a substitution rule",

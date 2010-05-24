@@ -506,8 +506,8 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	bool f8bitFeatures = false;
 	bool f16bitFeatures = false;
 
-	Assert(vstuExtNames.Size() == vnLangIds.Size());
-	Assert(vnLangIds.Size() == vnNameTblIds.Size());
+	Assert(vstuExtNames.size() == vnLangIds.size());
+	Assert(vnLangIds.size() == vnNameTblIds.size());
 
 	// For each platform+encoding of interest, fix up the font names and store the feature strings.
 
@@ -864,8 +864,8 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	The method also copies names from pNameTbl into pNewTbl. The feature data is in the three
 	vectors passed in which must parallel each other. The don't need to be sorted. 
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, 
-	uint8 * pTblNew, uint32 cbTblNew,
+bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/, 
+	uint8 * pTblNew, uint32 /*cbTblNew*/,
 	std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 	std::vector<uint16> & vnNameTblIds, 
 	uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec)
@@ -1060,7 +1060,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 				swapw(vdibOffsets16[istring]);
 			irec++;
 		}
-		Assert(vstuExtNames.Size() == vdibOffsets.Size());
+
 		(f8bit) ?
 			fStringsStored8 = true:
 			fStringsStored16 = true;
@@ -1093,7 +1093,11 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld,
 		66-67	USHORT	usLastCharIndex
 		...plus more stuff we don't care about
 ----------------------------------------------------------------------------------------------*/
+#ifdef NDEBUG
+bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 /*cbOs2TblSrc*/,
+#else
 bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
+#endif
 	uint8 * pOs2TblMin, uint32 cbOs2TblMin,
 	GrcBinaryStream * pbstrm, uint32 * pcbSizeRet)
 {
@@ -1139,7 +1143,7 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 	Write the cmap table to the control file. We are outputting a copy of the cmap in the
 	source file, with every supported character pointing at some bogus glyph (ie, square box).
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 cbCmapTblSrc,
+bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 	GrcBinaryStream * pbstrm, uint32 * pcbSizeRet)
 {
 	long lPosStart = pbstrm->Position();
@@ -1692,7 +1696,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 
 			//	We've found a run of non-zero attributes. Output them.
 
-			Assert(nAttrIDLim - nAttrIDMin == vnValues.Size());
+			Assert(nAttrIDLim - nAttrIDMin == static_cast<int>(vnValues.size()));
 			Assert(nAttrIDLim - nAttrIDMin < 256);
 			if (nAttrIDLim > nAttrIDMin)
 			{
@@ -2082,7 +2086,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	//	directions supported
 	byte  grfsdc = m_prndr->ScriptDirections();
-	grfsdc = (grfsdc == 0) ? kfsdcHorizLtr : grfsdc;	// supply default--left-to-right
+	grfsdc = (grfsdc == 0) ? static_cast<byte>(kfsdcHorizLtr) : grfsdc;	// supply default--left-to-right
 	pbstrm->WriteByte(grfsdc);
 	//	reserved (pad bytes)
 	pbstrm->WriteByte(0);
@@ -2146,7 +2150,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	passes
 	std::vector<int> vnPassOffsets;
 	m_prndr->OutputPasses(this, pbstrm, lTableStartSub, vnPassOffsets);
-	Assert(vnPassOffsets.Size() == cpass + 1);
+	Assert(vnPassOffsets.size() == static_cast<size_t>(cpass + 1));
 
 	//	Now go back and fill in the offsets.
 
@@ -2327,7 +2331,7 @@ void GdlGlyphClassDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vector<int> & vnIndices)
 {
-	Assert(vwGlyphs.size() == vnIndices.Size());
+	Assert(vwGlyphs.size() == vnIndices.size());
 
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
@@ -2366,7 +2370,7 @@ void GdlGlyphDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vec
 			}
 			else
 			{
-				Assert(iHigh == vwGlyphs.size() || w < vwGlyphs[iHigh]);
+				Assert(static_cast<size_t>(iHigh) == vwGlyphs.size() || w < vwGlyphs[iHigh]);
 				vwGlyphs.insert(vwGlyphs.begin() + iLow + 1, w);
 				vnIndices.insert(vnIndices.begin() + iLow + 1, nNextIndex);
 			}
@@ -2574,7 +2578,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	maxRulePreContext
 	pbstrm->WriteByte(m_critMaxPreContext);
 	//	start states
-	Assert(m_critMaxPreContext - m_critMinPreContext + 1 == m_vrowStartStates.Size());
+	Assert(m_critMaxPreContext - m_critMinPreContext + 1 == static_cast<int>(m_vrowStartStates.size()));
 	Assert(m_vrowStartStates[0] == 0);
 	for (i = 0; i < signed(m_vrowStartStates.size()); i++)
 		pbstrm->WriteShort(m_vrowStartStates[i]);
@@ -2675,8 +2679,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	}
 	vnActionOffsets.push_back(pbstrm->Position() - nOffsetToAction - lTableStart);
 
-	Assert(vnConstraintOffsets.Size() == m_vprule.Size() + 1);
-	Assert(vnActionOffsets.Size() == m_vprule.Size() + 1);
+	Assert(vnConstraintOffsets.size() == m_vprule.size() + 1);
+	Assert(vnActionOffsets.size() == m_vprule.size() + 1);
 
 	//	TODO: output debugger strings
 	nOffsetToDebugArrays = 0;	// pbstrm->Position() - lTableStart;
@@ -2803,8 +2807,10 @@ void GdlPass::GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & 
 				vnRuleList.push_back(virule[iirule]);
 		}
 		else
+		{
 			//	All non-success states should be together at the beginning of the table.
 			Assert(vnRuleList.size() == 0);
+		}
 	}
 
 	//	Push a final offset, so that the last state can figure its length.
@@ -2950,7 +2956,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 		m_vpfeat[ifeat]->OutputSettings(pbstrm);
 	}
 
-	Assert(vnOffsets.Size() == m_vpfeat.Size());
+	Assert(vnOffsets.size() == m_vpfeat.size());
 
 	//	Now fill in the offsets.
 
@@ -3059,7 +3065,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	}
 	vnOffsets.push_back(pbstrm->Position() - lTableStart); // offset of bogus entry gives length of last real one
 
-	Assert(vnOffsets.Size() == m_vplang.Size() + 1);
+	Assert(vnOffsets.size() == m_vplang.size() + 1);
 
 	//	Now fill in the offsets.
 

@@ -18,7 +18,10 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
+
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -64,7 +67,7 @@ bool GrcManager::PreCompile(GrcFont * pfont)
 }
 
 
-bool GrcManager::Compile(GrcFont * pfont)
+bool GrcManager::Compile(GrcFont * /*pfont*/)
 {
 	GenerateFsms();
 	CalculateContextOffsets(); // after max-rule-context has been set
@@ -80,7 +83,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 {
 	GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints);
 	//	Save the size of the rule constraints from the -if- statements.
-	int cbGenConstraint = vbConstraints.size();
+	// int cbGenConstraint = vbConstraints.size();
 
 	//	Count the number of unmodified items at the end of the rule; these do not need to
 	//	be processed as far as actions go, and the default scan advance position is just
@@ -166,7 +169,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	Generate engine code for the constraints of a given rule that were in -if- statements,
 	minus the final pop-and-return command.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion,
+void GdlRule::GenerateConstraintEngineCode(GrcManager */*pcman*/, int fxdRuleVersion,
 	std::vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
@@ -195,7 +198,7 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager *pcman, int fxdRuleVersion
 		viritInput			- input indices for items of this rule
 		irit				- index of item
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, int fxdRuleVersion,
+void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
 	std::vector<byte> & vbOutput,
 	int irit, std::vector<int> & viritInput, int iritFirstModItem)
 {
@@ -232,7 +235,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * pcman, int fxdRuleVe
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints of a pass.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
+void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
 	std::vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
@@ -256,9 +259,9 @@ void GdlPass::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 /*----------------------------------------------------------------------------------------------
 	Generate engine code to perform the actions for a given item.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
+void GdlRuleItem::GenerateActionEngineCode(GrcManager * /*pcman*/, int /*fxdRuleVersion*/,
 	std::vector<byte> & vbOutput,
-	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
+	GdlRule * /*prule*/, int /*irit*/, bool * pfSetInsertToFalse)
 {
 	if (*pfSetInsertToFalse)
 	{
@@ -276,7 +279,7 @@ void GdlRuleItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersio
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	std::vector<byte> & vbOutput,
-	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
+	GdlRule * /*prule*/, int irit, bool * pfSetInsertToFalse)
 {
 	if (m_vpavs.size() == 0 && !*pfSetInsertToFalse)
 		vbOutput.push_back(kopCopyNext);
@@ -497,7 +500,9 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 			else if (staOp == "-=")
 				vbOutput.push_back(kopIAttrSub);
 			else
+			{
 				Assert(false);
+			}
 		}
 		vbOutput.push_back(slat);
 		vbOutput.push_back(pcman->SlotAttributeIndex(m_psymName));
@@ -533,7 +538,7 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 			(slat == kslatAttAtX || slat == kslatAttAtY || slat == kslatAttAtGpt ||
 				slat == kslatAttAtXoff || slat == kslatAttAtYoff);
 
-		int op;
+		int op = kopNop;
 		if (staOp == "=")
 			op = kopAttrSet;
 		else if (staOp == "+=")
@@ -541,7 +546,9 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 		else if (staOp == "-=")
 			op = kopAttrSub;
 		else
+		{
 			Assert(false);
+		}
 
 		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
 			fAttachAt, iritAttachTo, &nBogus);
@@ -588,8 +595,10 @@ int GrcManager::SlotAttributeIndex(Symbol psym)
 		return psym->UserDefinableSlotAttrIndex();
 	}
 	else
+	{
 		//	No other kinds of indexed attributes so far.
 		Assert(false);
+	}
 	return 0;
 }
 
@@ -817,7 +826,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 			vnKeys.push_back(nSortKey1);
 		}
 
-		Assert(viruleSorted.Size() == irule1 + 1);
+		Assert(viruleSorted.size() == irule1 + 1);
 	}
 
 	int nPassNum = PassDebuggerNumber();
@@ -943,7 +952,7 @@ void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 	}
 }
 
-void GdlRule::DebugEngineCode(std::vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(std::vector<byte> & vb, int /*fxdRuleVersion*/, std::ostream & strmOut)
 {
 	int ib = 0;
 	while (ib < signed(vb.size()))
@@ -1345,7 +1354,7 @@ void GrcManager::DebugGlyphAttributes()
 		strmOut << "GLYPH ATTRIBUTE IDS\n\n";
 		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 		{
-			if (m_vpsymGlyphAttrs[nAttrID]->InternalID() == nAttrID)
+			if (m_vpsymGlyphAttrs[nAttrID]->InternalID() == static_cast<int>(nAttrID))
 			{
 				strmOut << nAttrID << ": "
 					<< m_vpsymGlyphAttrs[nAttrID]->FullName() << "\n";
@@ -1502,14 +1511,14 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 
 
 
-void GdlRuleItem::LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
+void GdlRuleItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
+	std::ostream & /*strmOut*/)
 {
 	//	Do nothing.
 }
 
-void GdlRuleItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
+void GdlRuleItem::RhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
+	std::ostream & /*strmOut*/)
 {
 	//	Do nothing.
 }
@@ -1530,7 +1539,7 @@ void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, i
 	strmOut << "  ";
 }
 
-void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	if (m_pexpConstraint)
@@ -1541,7 +1550,7 @@ void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, GdlRule * prule, int
 	}
 }
 
-void GdlSetAttrItem::LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlSetAttrItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	strmOut << m_psymInput->FullAbbrev();
@@ -1564,7 +1573,7 @@ void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int
 	strmOut << "  ";
 }
 
-void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	strmOut << m_psymInput->FullAbbrev();
@@ -1600,7 +1609,7 @@ void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, in
 }
 
 
-void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	if (m_vpavs.size() > 0)
@@ -1681,7 +1690,7 @@ void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strm
 }
 
 void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut,
-	bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs)
+	bool * /*pfAtt*/, bool * /*pfAttAt*/, bool * /*pfAttWith*/, int /*cpavs*/)
 {
 	//if (cpavs > 6 && m_psymName->IsAttachment())
 	//{
@@ -2044,8 +2053,8 @@ void GdlGlyphClassDefn::DebugCmap(GrcFont * pfont,
 }
 
 
-void GdlGlyphClassDefn::DebugCmapForMember(GrcFont * pfont,
-	utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni)
+void GdlGlyphClassDefn::DebugCmapForMember(GrcFont * /*pfont*/,
+	utf16 * /*rgchwUniToGlyphID*/, unsigned int * /*rgnGlyphIDToUni*/)
 {
 	//	Do nothing; this class will be handled separately at the top level.
 }

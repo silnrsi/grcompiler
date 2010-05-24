@@ -55,7 +55,9 @@ test and debug: highest error: 6106 / highest warning: 6500
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 

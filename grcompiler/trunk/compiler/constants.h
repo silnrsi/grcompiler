@@ -54,7 +54,7 @@ typedef enum GlyphType {	// hungarian: glft
 	kglftGlyphID,
 	kglftCodepoint,
 	kglftPostscript,
-	kglftPseudo,
+	kglftPseudo
 } GlyphType;
 
 
@@ -113,7 +113,7 @@ typedef enum RuleCheckOption {
 	kfrcoSetInsert	= 0x0020,	// set insertion attr?
 	kfrcoSetPos		= 0x0040,	// set attach, shift, kern attrs?
 	kfrcoPreBidi	= 0x0080,	// justifiy.stretch/shrink vs. justify.width
-	kfrcoNeedJust	= 0x0100,	// need tests for justification
+	kfrcoNeedJust	= 0x0100	// need tests for justification
 } RuleCheckOption;
 
 
@@ -123,7 +123,7 @@ typedef enum TableType {	// hungarian: tblt
 	ktbltFeature,
 	ktbltGlyph,
 	ktbltRule,
-	ktbltLanguage,
+	ktbltLanguage
 } TableType;
 
 
@@ -138,7 +138,7 @@ enum {
 	kMaxScriptTags			= 256,
 	kMaxReplcmtClasses		= 65535,	// Class map
 	kMaxReplcmtClassesV1_2	= 256,
-	kMaxComponents			= 16383,
+	kMaxComponents			= 16383
 };
 
 
@@ -149,14 +149,14 @@ enum {
 	kFieldsPerComponent		=     4,	// four corners of the box
 	kMaxSlotsPerRule		=    64,
 	kMaxGlyphsPerInputClass	= 65535,
-	kMaxTotalGlyphs			= 65535,
+	kMaxTotalGlyphs			= 65535
 };
 
 //	Pragmatic maxima:
 enum {
 	//	Maxima imposed by the binary tables = 256
 	kMaxUserDefinableSlotAttrs	= 64,
-	kMaxComponentsPerGlyph		= 32,
+	kMaxComponentsPerGlyph		= 32
 };
 
 
@@ -196,7 +196,7 @@ enum ActionCommand {
 	kopIAttrSet,		kopIAttrAdd,		kopIAttrSub,
 	kopPushProcState,	kopPushVersion,
 	kopPutSubs,			kopPutSubs2,		kopPutSubs3,
-	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr,
+	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr
 
 };
 
@@ -220,7 +220,7 @@ enum SlotAttrName {
 	kslatMeasureSol,	kslatMeasureEol,
 	kslatJStretch,		kslatJShrink,		kslatJStep,		kslatJWeight,	kslatJWidth,
 	// this must be last:
-	kslatUserDefn = kslatJStretch + 30,
+	kslatUserDefn = kslatJStretch + 30
 };
 
 
@@ -230,7 +230,7 @@ typedef enum GlyphMetric {
 	kgmetBbTop,			kgmetBbBottom,		kgmetBbLeft,		kgmetBbRight,
 	kgmetBbHeight,		kgmetBbWidth,
 	kgmetAdvWidth,		kgmetAdvHeight,
-	kgmetAscent,		kgmetDescent,
+	kgmetAscent,		kgmetDescent
 } GlyphMetric;
 
 
@@ -280,7 +280,7 @@ enum DefinedChars {
 	kchwRLE		= 0x202B,		// right-to-left embedding
 	kchwPDF		= 0x202C,		// pop directional format
 	kchwLRO		= 0x202D,		// left-to-right override
-	kchwRLO		= 0x202E,		// right-to-left override
+	kchwRLO		= 0x202E			// right-to-left override
 
 };
 
@@ -290,7 +290,7 @@ enum BreakWeightsV1
 	klbv1WordBreak		= 1,
 	klbv1HyphenBreak	= 2,
 	klbv1LetterBreak	= 3,
-	klbv1ClipBreak		= 4,
+	klbv1ClipBreak		= 4
 };
 
 enum BreakWeightsV2
@@ -299,7 +299,7 @@ enum BreakWeightsV2
 	klbv2WordBreak		= 15,
 	klbv2HyphenBreak	= 20,
 	klbv2LetterBreak	= 30,
-	klbv2ClipBreak		= 40,
+	klbv2ClipBreak		= 40
 };
 
 //	Gpoint = zero value. This code MUST match that used by the engine.
@@ -314,12 +314,12 @@ enum {
 enum ProcessStates
 {
 	kpstatJustifyMode	= 1,
-	kpstatJustifyLevel	= 2,
+	kpstatJustifyLevel	= 2
 };
 
 enum JustifyModes
 {
 	kjmodNormal		= 0,
 	kjmodMeasure	= 1,
-	kjmodJustify	= 2,
+	kjmodJustify	= 2
 };

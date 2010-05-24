@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -277,7 +279,7 @@ bool GdlRule::HandleOptionalItems(std::vector<GdlRule*> & vpruleNewList)
 	std::vector<bool> vfOmit;
 	for (size_t irange = 0; irange < m_viritOptRangeStart.size(); ++irange)
 		vfOmit.push_back(false);
-	Assert(vfOmit.size() == m_viritOptRangeStart.Size());
+	Assert(vfOmit.size() == m_viritOptRangeStart.size());
 	
 	GenerateOptRanges(vpruleNewList, vfOmit, 0);
 
@@ -686,13 +688,13 @@ void GdlRule::CheckSelectors()
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::CheckSelectors(GdlRule * prule, int irit, int crit)
+void GdlRuleItem::CheckSelectors(GdlRule * /*prule*/, int /*irit*/, int /*crit*/)
 {
 	//	No selector--do nothing.
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int irit, int crit)
+void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int /*irit*/, int crit)
 {
 	if (m_psymOutput->FitsSymbolType(ksymtClass) ||
 		m_psymOutput->FitsSymbolType(ksymtSpecialAt))

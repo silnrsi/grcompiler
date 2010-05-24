@@ -1579,8 +1579,8 @@ bool TtfUtil::GlyfContourEndPoints(int nGlyphId, const void * pGlyf, const void 
 		relative to current glyph). 
 ----------------------------------------------------------------------------------------------*/
 bool TtfUtil::GlyfPoints(int nGlyphId, const void * pGlyf, const void * pLoca, 
-						 long lLocaSize, const void * pHead, const int * prgnContourEndPoint, 
-						 int cnEndPoints, int * prgnX, int * prgnY, bool * prgfOnCurve, 
+						 long lLocaSize, const void * pHead, const int * /*prgnContourEndPoint*/, 
+						 int /*cnEndPoints*/, int * prgnX, int * prgnY, bool * prgfOnCurve, 
 						 int cnPoints)
 {
 	int i;

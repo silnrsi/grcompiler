@@ -335,7 +335,7 @@ std::string AST::toStringList() const
 
 std::string AST::toStringTree() const
 {
-	const AST* t=this;
+	//const AST* t=this;
 	std::string ts="";
 	if (getFirstChild()) {
 		ts+=" ( ";

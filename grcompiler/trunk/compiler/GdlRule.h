@@ -214,7 +214,7 @@ public:
 	//	Parser:
 	virtual void AddAssociation(GrpLineAndFile &, int n);
 	virtual void AddAssociation(GrpLineAndFile &, std::string sta);
-	virtual void AddAttrValueSpec(GdlAttrValueSpec * pavs)
+	virtual void AddAttrValueSpec(GdlAttrValueSpec * /*pavs*/)
 	{
 		Assert(false);	// should have been converted to an GdlSetAttrItem
 	}
@@ -258,7 +258,7 @@ public:
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
 		std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
-	virtual void SetAttachTo(int n)
+	virtual void SetAttachTo(int /*n*/)
 	{
 		Assert(false);	// only useful for GdlSetAttrItem
 	}
@@ -723,7 +723,7 @@ public:
 	//	General:
 	GdlRuleItem * Item(int irit)
 	{
-		Assert((unsigned int)irit < (unsigned int)m_vprit.Size());
+		Assert((unsigned int)irit < (unsigned int)m_vprit.size());
 		return m_vprit[irit];
 	}
 	int LookupAliasIndex(std::string sta);
@@ -771,7 +771,7 @@ public:
 	}
 	void SetScanAdvance(int n)
 	{
-		Assert(n >= -1 && n <= m_vprit.Size());
+		Assert((n >= -1) && (n <= static_cast<int>(m_vprit.size())));
 		m_nScanAdvance = n;
 	}
 	void AddConstraint(GdlExpression * pexp)

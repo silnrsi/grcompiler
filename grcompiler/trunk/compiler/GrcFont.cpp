@@ -18,7 +18,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -50,7 +52,7 @@ GrcFont::GrcFont(char * pchFontFile) :
 	m_pOs2(NULL) , m_cOs2(0L),
 	m_pPost(NULL), m_cPost(0L), 
 	m_pName(NULL), m_cName(0L),
-	m_pCmap_3_1(NULL), m_pCmap_3_10(NULL), 
+	m_pCmap_3_10(NULL), m_pCmap_3_1(NULL),
 	m_nMaxGlyfId(-1) 
 {
 	AssertPtr(pchFontFile);
@@ -77,11 +79,11 @@ GrcFont::GrcFont(bool fDebug) :
 	m_pHhea(NULL), m_cHhea(0L),
 	m_pHmtx(NULL), m_cHmtx(0L), 
 	m_pLoca(NULL), m_cLoca(0L), 
-	m_pPost(NULL), m_cPost(0L), 
 	m_pMaxp(NULL), m_cMaxp(0L), 
 	m_pOs2(NULL) , m_cOs2(0L),
+	m_pPost(NULL), m_cPost(0L),
 	m_pName(NULL), m_cName(0L),
-	m_pCmap_3_1(NULL), m_pCmap_3_10(NULL),
+	m_pCmap_3_10(NULL), m_pCmap_3_1(NULL),
 	m_nMaxGlyfId(-1) 
 {
 	Assert(fDebug);
@@ -396,7 +398,7 @@ unsigned int GrcFont::UnicodeFromCodePage(utf16 wCodePage, utf16 wCodePoint, Gdl
 	Convert the given unicode character to a glyph ID via the cmap. Return 0 if the 
 	character was not present in the cmap.
 ----------------------------------------------------------------------------------------------*/
-utf16 GrcFont::GlyphFromCmap(unsigned int nUnicode, GdlObject * pgdlobj)
+utf16 GrcFont::GlyphFromCmap(unsigned int nUnicode, GdlObject * /*pgdlobj*/)
 {
 #ifdef _DEBUG
 	if (m_fDebug)
@@ -559,6 +561,8 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 			return nAdvWid;
 		case kgmetLsb: // Review: should we return xMin instead?
 			return nLsb;
+		default:
+		    break;
 		// handle Rsb below
 		}
 	}
@@ -641,6 +645,8 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 			return yMax - yMin;
 		case kgmetRsb:
 			return nAdvWid - nLsb - (xMax - xMin);
+		default:
+		    break;
 		}
 	}
 
@@ -945,7 +951,7 @@ int GrcFont::ScanGlyfIds(void)
 	}
 	if (fInUsedRange)
 		m_vnLimUnicode.push_back(nUni);
-	Assert(m_vnLimUnicode.Size() == m_vnMinUnicode.Size());
+	Assert(m_vnLimUnicode.size() == m_vnMinUnicode.size());
 
 	// create array indexed by glyf id containing unicode codepoints
 	unsigned int *prgnUsed = new unsigned int[0x10000];
@@ -1082,7 +1088,7 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	int rgnXBuf[POINT_BUF_SIZE];
 	int rgnYBuf[POINT_BUF_SIZE];
     bool * prgfOnCurve = NULL;
-    int * prgnX, *prgnY = NULL;
+    int * prgnX = NULL, *prgnY = NULL;
 
 	int * prgnEndPt = (cContours > CONTOUR_BUF_SIZE) ? new int[cContours] : rgnEndPtBuf;
 	int fRet = false;

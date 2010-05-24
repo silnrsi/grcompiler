@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -105,7 +107,7 @@ void GrcManager::Clear()
 	if (m_psymtbl)
 		delete m_psymtbl;
 
-	for (i = 0; signed(i) < this->m_vplcls.size(); i++)
+	for (i = 0; i < this->m_vplcls.size(); i++)
 		delete m_vplcls[i];
 	m_vplcls.clear();
 }
@@ -207,7 +209,7 @@ GrcEnv * GrcManager::PushPassEnv(GrpLineAndFile & lnf, int nPass)
 /*----------------------------------------------------------------------------------------------
 	Push a new environment corresponding to an environment statement.
 ----------------------------------------------------------------------------------------------*/
-GrcEnv * GrcManager::PushGeneralEnv(GrpLineAndFile & lnf)
+GrcEnv * GrcManager::PushGeneralEnv(GrpLineAndFile & /*lnf*/)
 {
 	return PushEnvAux();
 }

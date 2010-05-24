@@ -306,8 +306,8 @@ char GetPrefs(struct fppTag **tagptr, char **string)
     fseek(PrefsFile_PF, 0, SEEK_SET);
 
     if ((*string = (char *)malloc(Length_U+1))) {
-      fread(*string, 1, Length_U, PrefsFile_PF);
-      (*string)[Length_U] = '\0';
+      size_t bytesRead = fread(*string, 1, Length_U, PrefsFile_PF);
+      (*string)[bytesRead] = '\0';
       
       ret = !DoString(tagptr, *string);
     }

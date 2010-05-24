@@ -48,9 +48,9 @@ inline int32 swapls(int32 a) {return a;};
  /* which was encoded using Motorola 68000 (TrueType "native") byte order. */
 // if p were signed, the last element in the p array would be signed extended 
 // use the first two for unsigned fields and the last two for signed fields
-inline uint16 swapw(int16 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<8 | p[1];};
-inline uint32 swapl(int32 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<24 | p[1]<<16 | p[2]<<8 | p[3];};
-inline int16 swapws(int16 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<8 | p[1];};
-inline int32 swapls(int32 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<24 | p[1]<<16 | p[2]<<8 | p[3];};
+inline uint16 swapw(int16 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<8 | p[1];}
+inline uint32 swapl(int32 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<24 | p[1]<<16 | p[2]<<8 | p[3];}
+inline int16 swapws(int16 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<8 | p[1];}
+inline int32 swapls(int32 a) {unsigned char * p = (unsigned char *)&a; return p[0]<<24 | p[1]<<16 | p[2]<<8 | p[3];}
 #endif
 

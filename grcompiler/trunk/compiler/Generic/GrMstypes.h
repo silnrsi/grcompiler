@@ -75,15 +75,15 @@ typedef signed long	    HRESULT;
 typedef DWORD 			COLORREF;
 typedef unsigned short* LPWSTR;
 
-inline const long InterlockedIncrement(long *const intr_lck) {
+inline long InterlockedIncrement(long *const intr_lck) {
 	return ++*intr_lck;
 }
 
-inline const long InterlockedDecrement(long *const intr_lck) {
+inline long InterlockedDecrement(long *const intr_lck) {
 	return --*intr_lck;
 }
 
-inline const int MulDiv(const int v, const int n, const int d) {
+inline int MulDiv(const int v, const int n, const int d) {
 		return int(n < 0 ? double(v * n)/double(d) - 0.5 : double(v * n)/double(d) + 0.5);
 }
 

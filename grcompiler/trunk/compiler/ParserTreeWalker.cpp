@@ -26,7 +26,9 @@ Description:
 #include <errno.h>
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -72,7 +74,7 @@ bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile,
 	Run the C pre-processor over the GDL file. Return the name of the resulting file.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc,
-	std::string & staGdlppFile, std::string & staOutputPath)
+	std::string & staGdlppFile, std::string & /*staOutputPath*/)
 {
 #ifdef _WIN32 
 	STARTUPINFO sui = {isizeof(sui)};
@@ -478,7 +480,7 @@ void GrcManager::WalkParseTree(RefAST ast)
 
 	WalkTopTree(ast);
 
-	Assert(m_venv.Size() == 1);
+	Assert(m_venv.size() == 1);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -767,7 +769,9 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 	}
 
 	else
+	{
 		Assert(false);
+	}
 }
 
 
@@ -823,7 +827,7 @@ void GrcManager::WalkDirectivesTree(RefAST ast)
 		//	For now, all directives have numeric or boolean values.
 		RefAST astValue = astDirective->getFirstChild()->getNextSibling();
 		Assert(astValue);
-		int nValue;
+		int nValue = -1;
 		bool fM = false;
 		if (astValue->getType() == LIT_INT)
 			nValue = NumericValue(astValue, &fM);
@@ -832,7 +836,9 @@ void GrcManager::WalkDirectivesTree(RefAST ast)
 		else if (astValue->getType() == LITERAL_true)
 			nValue = 1;
 		else
+		{
 			Assert(false);
+		}
 
 		Symbol psym = SymbolTable()->FindSymbol(staName);
 		if (!psym || !psym->FitsSymbolType(ksymtDirective))
@@ -874,7 +880,9 @@ void GrcManager::WalkDirectivesTree(RefAST ast)
 				SetPointRadius(nValue, MUnits());
 			}
 			else
+			{
 				Assert(false);
+			}
 		}
 
 		astDirective = astDirective->getNextSibling();
@@ -1420,7 +1428,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 	RefAST astItem;
 	int nCodePage;
 	int nPseudoInput;
-	GlyphType glft;
+	GlyphType glft = kglftUnknown;
 	std::string staSubClassName;
 	Symbol psymSubClass;
 
@@ -1564,12 +1572,12 @@ GdlGlyphDefn * GrcManager::ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCo
 	RefAST ast1;
 	RefAST ast2;
 
-	int n1, n2;
+	int n1 = 0, n2 = 0;
 	utf16 w1;
 	std::string sta;
 	utf16 wCodePage = (utf16)nCodePage;
 
-	GdlGlyphDefn * pglfRet;
+	GdlGlyphDefn * pglfRet = NULL;
 
 	int nodetyp = astGlyph->getType();
 	switch (nodetyp)
@@ -1586,14 +1594,18 @@ GdlGlyphDefn * GrcManager::ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCo
 		else if (ast1->getType() == LIT_CHAR)
 			n1 = *(ast1->getText().c_str());
 		else
+		{
 			Assert(false);
+		}
 
 		if (ast2->getType() == LIT_INT || ast1->getType() == LIT_UHEX)
 			n2 = NumericValue(ast2);
 		else if (ast2->getType() == LIT_CHAR)
 			n2 = *(ast2->getText().c_str());
 		else
+		{
 			Assert(false);
+		}
 
 		pglfRet = (nCodePage == -1) ?
 			new GdlGlyphDefn(glft, n1, n2) :
@@ -1970,7 +1982,9 @@ void GrcManager::WalkRuleTableTree(RefAST ast, int nodetyp)
 	else if (nodetyp == LITERAL_justification)
 		PushTableEnv(lnf, "justification");
 	else
+	{
 		Assert(false);
+	}
 
 	RefAST astDirectives = ast->getFirstChild()->getNextSibling();
 	RefAST astContents = astDirectives;
@@ -1997,7 +2011,7 @@ void GrcManager::WalkRuleTableTree(RefAST ast, int nodetyp)
 /*----------------------------------------------------------------------------------------------
 	Process a "pass" statement and its contents.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppassPrev)
+void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*ppassPrev*/)
 {
 	RefAST astPassNumber = ast->getFirstChild();
 	Assert(astPassNumber->getType() == LIT_INT);
@@ -2134,7 +2148,7 @@ void GrcManager::WalkIfTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppass)
 	}
 
 	//	Put the pass constraint list back the way it was.
-	Assert(m_vpexpPassConstraints.Size() == 0);
+	Assert(m_vpexpPassConstraints.size() == 0);
 	for (ipexp = 0; ipexp < vpexpSavePassConstr.size(); ipexp++)
 		m_vpexpPassConstraints.push_back(vpexpSavePassConstr[ipexp]);
 }
@@ -2312,7 +2326,7 @@ void GrcManager::ProcessItemRange(RefAST astItem, GdlRuleTable * prultbl, GdlPas
 		fHasLhs		- if we are in the rhs, and there is in fact a lhs (irrelevant
 						if we are not in the rhs)
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass * ppass,
+void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass * /*ppass*/,
 	GdlRule * prule, int * pirit, int lrc, bool fHasLhs)
 {
 	GrpLineAndFile lnf = LineAndFile(astItem);
@@ -2325,11 +2339,11 @@ void GrcManager::ProcessRuleItem(RefAST astItem, GdlRuleTable * prultbl, GdlPass
 	RefAST astSelValue = RefAST(NULL);
 	RefAST astClass = RefAST(NULL);
 	bool fSel = false;
-	bool fAssocs = false;
+	// bool fAssocs = false;
 	GdlAlias aliasSel;
 	std::string staAlias;
 	std::string staClass;
-	GdlRuleItem * prit;
+	GdlRuleItem * prit = NULL;
 
 	if (astNext->getType() == OP_AT)
 	{
@@ -2593,7 +2607,9 @@ void GrcManager::ProcessSlotIndicator(RefAST ast, GdlAlias * palias)
 		palias->SetName(ast->getText().c_str());
 	}
 	else
+	{
 		Assert(false);
+	}
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2702,12 +2718,12 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<st
 ----------------------------------------------------------------------------------------------*/
 GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 {
-	GdlExpression * pexpRet;
-	GdlExpression * pexp1;
-	GdlExpression * pexp2;
-	GdlExpression * pexpCond;
-	GdlExpression * pexpSel;
-	GdlSlotRefExpression * pexpsrSel;
+	GdlExpression * pexpRet = NULL;
+	GdlExpression * pexp1 = NULL;
+	GdlExpression * pexp2 = NULL;
+	GdlExpression * pexpCond = NULL;
+	GdlExpression * pexpSel = NULL;
+	GdlSlotRefExpression * pexpsrSel = NULL;
 	Symbol psymOp;
 	Symbol psymName;
 
@@ -3258,8 +3274,8 @@ void GdlRule::ConvertLhsOptRangesToContext()
 		{
 			int irit1 = m_viritOptRangeStart[iirit];
 			int irit2 = m_viritOptRangeEnd[iirit];
-			Assert(irit1 < viritToContext.Size());
-			Assert(irit2 < viritToContext.Size());
+			Assert(irit1 < static_cast<int>(viritToContext.size()));
+			Assert(irit2 < static_cast<int>(viritToContext.size()));
 
 			m_viritOptRangeStart[iirit] = viritToContext[irit1];
 			m_viritOptRangeEnd[iirit] = viritToContext[irit2];

@@ -42,7 +42,7 @@ typedef enum tagLgBidiCategory
 
 	// Neutrals:
 	kbicWS,  //	Whitespace
-	kbicON,  //	Other Neutrals ; All other characters: punctuation, symbols
+	kbicON  //	Other Neutrals ; All other characters: punctuation, symbols
 } LgBidiCategory;  // Hungarian: bic
 
 
@@ -53,7 +53,7 @@ typedef enum tagScriptDirCode
 	kfsdcHorizLtr		= 1,	// horizontal left-to-right
 	kfsdcHorizRtl		= 2,	// horizontal right-to-left
 	kfsdcVertFromLeft	= 4,	// vertical from left
-	kfsdcVertFromRight	= 8,	// vertical from right
+	kfsdcVertFromRight	= 8	// vertical from right
 
 } ScriptDirCode;	// Hungarian: sdc
 
@@ -76,12 +76,12 @@ typedef bool ComBool;
 class ILgCharacterPropertyEngine
 {
 public:
-	HRESULT get_IsSeparator(wchar wUnicode,  ComBool * pfIsSep)
+	HRESULT get_IsSeparator(wchar /*wUnicode*/,  ComBool * /*pfIsSep*/)
 	{
 		GrAssert(false);
 		return E_NOTIMPL;
 	}
-	HRESULT get_BidiCategory(wchar wUnicode,  LgBidiCategory * pbidi)
+	HRESULT get_BidiCategory(wchar /*wUnicode*/,  LgBidiCategory * /*pbidi*/)
 	{
 		GrAssert(false);
 		return E_NOTIMPL;

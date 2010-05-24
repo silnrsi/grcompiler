@@ -12,7 +12,9 @@
 #include "Antlr/SemanticException.hpp"
 
 //	Insert at the beginning of the GrpParser.cpp file
+#ifdef _MSC_VER
 #pragma warning(disable:4101)
+#endif
 #include "Grp.h"
 
 //	This function needs to go in the .cpp file, not the .hpp file, after the

@@ -17,7 +17,10 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
+
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -155,7 +158,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 		}
 	}
 	//	Handle auto-pseudos.
-	Assert(vnAutoUnicode.Size() == vwAutoGlyphID.Size());
+	Assert(vnAutoUnicode.size() == vwAutoGlyphID.size());
 	m_wFirstAutoPseudo = wFirstFree;
 	for (size_t iw = 0; iw < vnAutoUnicode.size(); iw++)
 	{
@@ -384,8 +387,8 @@ void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 	Determine the glyph ID equivalents for the recipient by virtue of its being a member
 	of a class. Only do this for simple glyphs; classes are handled separately.
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
-	std::map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
+void GdlGlyphClassDefn::AssignGlyphIDsToClassMember(GrcFont * /*pfont8*/, utf16 /*wGlyphIDLim*/,
+	std::map<utf16, utf16> & /*hmActualForPseudo*/, bool /*fLookUpPseudos*/)
 {
 	//	Do nothing; this class will be handled separately at the top level.
 }
@@ -394,7 +397,7 @@ void GdlGlyphClassDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyp
 void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
 {
-	Assert(m_vwGlyphIDs.Size() == 0);
+	Assert(m_vwGlyphIDs.size() == 0);
 
 	utf16 w;
 	unsigned int n;
@@ -988,14 +991,18 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				else if (sta == "right")
 					ipsymOffset = 3;
 				else
+				{
 					Assert(false);
+				}
 
 				Assert(ipsymOffset < kFieldsPerComponent);
 
 				int nBaseID = psym->BaseLigComponent()->InternalID();
 				int ipsym = cComponents + (nBaseID * kFieldsPerComponent) + ipsymOffset;
-
-				int i = AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGeneric, ipsym);
+#ifndef NDEBUG
+				int i = 
+#endif
+				    AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGeneric, ipsym);
 				Assert(i == ipsym);
 				psymGeneric->SetInternalID(ipsym);
 				psym->SetInternalID(psymGeneric->InternalID());
@@ -1107,7 +1114,7 @@ int GrcSymbolTable::AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttr
 		while (signed(vpsymGlyphAttrIDs.size()) < ipsymToAssign)
 			vpsymGlyphAttrIDs.push_back(NULL);
 
-		Assert(ipsymToAssign == vpsymGlyphAttrIDs.Size());
+		Assert(static_cast<size_t>(ipsymToAssign) == vpsymGlyphAttrIDs.size());
 		psymGeneric->SetInternalID(ipsymToAssign);
 		vpsymGlyphAttrIDs.push_back(psymGeneric);
 		return ipsymToAssign;
@@ -1274,7 +1281,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 	GrcGlyphAttrMatrix * pgax, int cwGlyphs,
 	std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 	std::vector<GdlExpression *> & vpexpExtra,
-	std::vector<Symbol> & vpsymGlyphAttrs)
+	std::vector<Symbol> & /*vpsymGlyphAttrs*/)
 {
 	bool fIcuAvailable = false;
 	try {
@@ -1291,7 +1298,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 	{
 	}
 
-	Assert(vpsymSysDefined.Size() == vnSysDefValues.Size());
+	Assert(vpsymSysDefined.size() == vnSysDefValues.size());
 
 	for (size_t i = 0; i < vpsymSysDefined.size(); i++) // loop over attributes
 	{
@@ -1844,7 +1851,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 			//	invalid input class
 			vpglfcInClasses.push_back(NULL);
 	}
-	Assert(m_vprit.Size() == vpglfcInClasses.size());
+	Assert(m_vprit.size() == vpglfcInClasses.size());
 
 	//	Flatten slot attributes that use points to use integers instead. Do this
 	//	entire process before fixing glyph attrs, because there can be some interaction between
@@ -1868,7 +1875,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::FixGlyphAttrsInRules(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit)
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * /*prule*/, int irit)
 {
 	if (!m_psymInput)
 		return;
@@ -2105,8 +2112,13 @@ void GdlSubstitutionItem::FixGlyphAttrsInRules(GrcManager * pcman,
 }
 
 /*--------------------------------------------------------------------------------------------*/
+#ifdef NDEBUG
+void GdlAttrValueSpec::FixGlyphAttrsInRules(GrcManager * pcman,
+	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit, Symbol /*psymOutClass*/)
+#else
 void GdlAttrValueSpec::FixGlyphAttrsInRules(GrcManager * pcman,
 	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit, Symbol psymOutClass)
+#endif
 {
 	Assert(psymOutClass->FitsSymbolType(ksymtClass) ||
 		psymOutClass->FitsSymbolType(ksymtSpecialUnderscore) ||
@@ -2161,7 +2173,7 @@ Symbol GdlSubstitutionItem::OutputClassSymbol()
 	We create as many of the above five as are defined in the symbol table, and later delete
 	the superfluous one(s) (x/y or gpoint).
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::FlattenPointSlotAttrs(GrcManager * pcman)
+void GdlRuleItem::FlattenPointSlotAttrs(GrcManager * /*pcman*/)
 {
 	//	No attribute setters to worry about.
 }
@@ -2337,7 +2349,7 @@ void GdlGlyphClassDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
-	GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr)
+	GrcSymbolTable * /*psymtbl*/, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr)
 {
 	int nGlyphAttrID = psymGlyphAttr->InternalID();
 	bool fGpoint = psymGlyphAttr->LastFieldIs("gpoint");
@@ -2436,7 +2448,7 @@ void GdlGlyphClassDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
-	GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr,
+	GrcSymbolTable * /*psymtbl*/, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr,
 	bool * pfXY, bool * pfGpoint)
 {
 	Symbol psymX = psymGlyphAttr->SubField("x");
@@ -2530,7 +2542,7 @@ void GdlGlyphClassDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
-	GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymCompRef)
+	GrcSymbolTable * /*psymtbl*/, GrcGlyphAttrMatrix * pgax, Symbol psymCompRef)
 {
 	Symbol psymTop = psymCompRef->SubField("top");
 	Symbol psymBottom = psymCompRef->SubField("bottom");

@@ -324,7 +324,7 @@ void FsmMachineClass::AddGlyph(utf16 w)
 		m_wGlyphs.insert(m_wGlyphs.begin() + iLow, w);
 	else if (w > m_wGlyphs[iLow])
 	{
-		Assert(iHigh == m_wGlyphs.size() || w < m_wGlyphs[iHigh]);
+		Assert(static_cast<size_t>(iHigh) == m_wGlyphs.size() || w < m_wGlyphs[iHigh]);
 		m_wGlyphs.insert(m_wGlyphs.begin() + iLow + 1, w);
 	}
 }
@@ -599,7 +599,7 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 							also Lim of range that may need to have cells fixed
 		ifsCheckLim		- lim of range that may have duplicates
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::MergeIdenticalStates(int ifsFixMin, int ifsCheckMin, int ifsCheckLim)
+void GdlPass::MergeIdenticalStates(int /*ifsFixMin*/, int ifsCheckMin, int ifsCheckLim)
 {
 	//	Work backwards so that we can delete with impunity. However, currently this algorithm
 	//	doesn't actually delete, it just sets pointers from the invalid to the valid
@@ -759,7 +759,7 @@ int GdlRule::NumberOfInputItems()
 void GdlPass::ReorderFsmStates()
 {
 	m_vifsWorkToFinal.resize(m_pfsm->RawNumberOfStates(), -1);
-	Assert(m_vifsFinalToWork.Size() == 0);
+	Assert(m_vifsFinalToWork.size() == 0);
 
 	int ifsFinal = 0;
 
@@ -1148,7 +1148,7 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 	strmOut << "\n";
 }
 
-void GdlPass::DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking)
+void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool fWorking)
 {
 	int cfsmc = m_pfsm->NumberOfColumns();
 	if (fWorking)
@@ -1204,7 +1204,7 @@ void GdlPass::DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWo
 	strmOut << "\n\n";
 }
 
-void FsmState::DebugFsmState(std::ostream & strmOut, int ifs)
+void FsmState::DebugFsmState(std::ostream & strmOut, int /*ifs*/)
 {
 	strmOut << "\n   Matched=";
 	std::set<int>::iterator it;

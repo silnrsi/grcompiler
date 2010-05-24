@@ -82,7 +82,7 @@ public:
 	//	Sharon added:
 #include "ASTDebug.hpp"
 	void iterativeRemoveChildren(bool doSiblings, int level = 0);
-	void deleteNode(int level)
+	void deleteNode(int /*level*/)
 	{
 		if (node)
 		{

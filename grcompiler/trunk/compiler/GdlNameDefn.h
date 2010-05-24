@@ -48,7 +48,7 @@ public:
 
 	void DeleteExtName(int i)
 	{
-		Assert(i < m_vextname.Size());
+		Assert(i < static_cast<int>(m_vextname.size()));
 		m_vextname.erase(m_vextname.begin() + i);
 	}
 

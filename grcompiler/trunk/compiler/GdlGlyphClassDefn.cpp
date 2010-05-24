@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -124,7 +126,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 	return pglf;
 }
 
-GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& lnf,
+GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& /*lnf*/,
 	GdlGlyphClassDefn * pglfcMember)
 {
 	AddMember(pglfcMember);

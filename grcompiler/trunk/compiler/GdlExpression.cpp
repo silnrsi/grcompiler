@@ -18,7 +18,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -193,7 +195,7 @@ bool GdlLookupExpression::ReplaceAliases(GdlRule * prule)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::ReplaceAliases(GdlRule * prule)
+bool GdlNumericExpression::ReplaceAliases(GdlRule * /*prule*/)
 {
 	return true;
 }
@@ -217,7 +219,7 @@ bool GdlSlotRefExpression::ReplaceAliases(GdlRule * prule)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::ReplaceAliases(GdlRule * prule)
+bool GdlStringExpression::ReplaceAliases(GdlRule * /*prule*/)
 {
 	return true;
 }
@@ -276,8 +278,8 @@ bool GdlLookupExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
-	GdlRule * prule)
+bool GdlNumericExpression::AdjustSlotRefs(std::vector<bool> & /*vfOmit*/, std::vector<int> & /*vnNewIndices*/,
+	GdlRule * /*prule*/)
 {
 	return true;
 }
@@ -322,8 +324,8 @@ bool GdlSlotRefExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vecto
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vector<int> & vnNewIndices,
-	GdlRule * prule)
+bool GdlStringExpression::AdjustSlotRefs(std::vector<bool> & /*vfOmit*/, std::vector<int> & /*vnNewIndices*/,
+	GdlRule * /*prule*/)
 {
 	return true;
 }
@@ -428,7 +430,7 @@ bool GdlLookupExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlNumericExpression::ResolveToInteger(int * pnRet, bool /*fSlotRef*/)
 {
 	*pnRet = m_nValue;
 	return true;
@@ -447,7 +449,7 @@ bool GdlSlotRefExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlStringExpression::ResolveToInteger(int * /*pnRet*/, bool /*fSlotRef*/)
 {
 	return false;
 }
@@ -1039,22 +1041,22 @@ void GdlCondExpression::FixFeatureTestsInRules(GrcFont *pfont)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::FixFeatureTestsInRules(GrcFont *pfont)
+void GdlLookupExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::FixFeatureTestsInRules(GrcFont *pfont)
+void GdlNumericExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::FixFeatureTestsInRules(GrcFont *pfont)
+void GdlSlotRefExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::FixFeatureTestsInRules(GrcFont *pfont)
+void GdlStringExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
 {
 }
 
@@ -1172,7 +1174,7 @@ GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/)
 {
 	//	Caller will replace slot-ref expression with numeric expression.
 	char rgch[20];
@@ -1308,17 +1310,17 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::LookupExpCheck(bool fInIf)
+void GdlNumericExpression::LookupExpCheck(bool /*fInIf*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::LookupExpCheck(bool fInIf)
+void GdlSlotRefExpression::LookupExpCheck(bool /*fInIf*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::LookupExpCheck(bool fInIf)
+void GdlStringExpression::LookupExpCheck(bool /*fInIf*/)
 {
 }
 
@@ -1502,7 +1504,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
-	int nAttrID;
+	int nAttrID = -1;
 
 	if (!m_psymName->IsGeneric() && pgax
 		&& (m_psymName->FitsSymbolType(ksymtGlyphAttr)
@@ -1556,7 +1558,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 				m_psymName->FullName());
 		}
 
-		GdlExpression * pexpRet;
+		GdlExpression * pexpRet = NULL;
 		if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
 		{
 			setpsym.insert(m_psymName);
@@ -1700,8 +1702,8 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlNumericExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+GdlExpression * GdlNumericExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
+	utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * pfont, bool /*fGAttrDefChk*/,
 	bool * pfCanSub)
 {
 	m_nValue = pfont->ScaledToAbsolute(m_nValue, m_munits);
@@ -1711,8 +1713,8 @@ GdlExpression * GdlNumericExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pg
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlSlotRefExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+GdlExpression * GdlSlotRefExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
+	utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * /*pfont*/, bool /*fGAttrDefChk*/,
 	bool * pfCanSub)
 {
 	*pfCanSub = true;
@@ -1720,8 +1722,8 @@ GdlExpression * GdlSlotRefExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pg
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlStringExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+GdlExpression * GdlStringExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
+	utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * /*pfont*/, bool /*fGAttrDefChk*/,
 	bool * pfCanSub)
 {
 	*pfCanSub = true;
@@ -1823,20 +1825,20 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 }
 
 /*------------------------------------------------------s--------------------------------------*/
-void GdlNumericExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+void GdlNumericExpression::CheckAndFixGlyphAttrsInRules(GrcManager * /*pcman*/,
+	std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+void GdlSlotRefExpression::CheckAndFixGlyphAttrsInRules(GrcManager * /*pcman*/,
+	std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+void GdlStringExpression::CheckAndFixGlyphAttrsInRules(GrcManager * /*pcman*/,
+	std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/)
 {
 }
 
@@ -1923,23 +1925,23 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
-	bool * pfXY, bool * pfGpoint)
+void GdlNumericExpression::CheckCompleteAttachmentPoint(GrcManager * /*pcman*/,
+	std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/,
+	bool * /*pfXY*/, bool * /*pfGpoint*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
-	bool * pfXY, bool * pfGpoint)
+void GdlSlotRefExpression::CheckCompleteAttachmentPoint(GrcManager * /*pcman*/,
+	std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/,
+	bool * /*pfXY*/, bool * /*pfGpoint*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
-	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
-	bool * pfXY, bool * pfGpoint)
+void GdlStringExpression::CheckCompleteAttachmentPoint(GrcManager * /*pcman*/,
+	std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/,
+	bool * /*pfXY*/, bool * /*pfGpoint*/)
 {
 }
 
@@ -1956,16 +1958,16 @@ void GdlStringExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 	then there is no slot attribute setting making use of it, so we can afford to just
 	ignore it at this point. Eventually	we may detect an error due to the omission.
 ----------------------------------------------------------------------------------------------*/
-bool GdlExpression::PointFieldEquivalents(GrcManager * pcman,
-	GdlExpression ** ppexpX, GdlExpression ** ppexpY,
-	GdlExpression ** ppexpGpoint, GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset)
+bool GdlExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
+	GdlExpression ** /*ppexpX*/, GdlExpression ** /*ppexpY*/,
+	GdlExpression ** /*ppexpGpoint*/, GdlExpression ** /*ppexpXoffset*/, GdlExpression ** /*ppexpYoffset*/)
 {
 	//	Only glyph attribute lookups can handle this.
 	return false;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLookupExpression::PointFieldEquivalents(GrcManager * pcman,
+bool GdlLookupExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
 	GdlExpression ** ppexpX, GdlExpression ** ppexpY,
 	GdlExpression ** ppexpGpoint, GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset)
 {
@@ -2143,9 +2145,9 @@ bool GdlCondExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	bool fValue, bool fValueIsInputSlot)
+bool GdlLookupExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer * prndr,
+	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & /*vfDel*/,
+	bool /*fValue*/, bool /*fValueIsInputSlot*/)
 {
 	Assert(m_psymName->FitsSymbolType(ksymtGlyph) ||
 		m_psymName->FitsSymbolType(ksymtSlotAttr) ||
@@ -2233,9 +2235,9 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prn
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	bool fValue, bool fValueIsInputSlot)
+bool GdlNumericExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * /*prndr*/,
+	std::vector<bool> & /*vfLb*/, std::vector<bool> & /*vfIns*/, std::vector<bool> & /*vfDel*/,
+	bool /*fValue*/, bool /*fValueIsInputSlot*/)
 {
 	m_nValue = pfont->ScaledToAbsolute(m_nValue, m_munits);
 	m_munits = (m_munits == kmunitNone) ? kmunitNone : kmunitUnscaled;
@@ -2243,7 +2245,7 @@ bool GdlNumericExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
+bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer * /*prndr*/,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
@@ -2290,9 +2292,9 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * pr
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	bool fValue, bool fValueIsInputSlot)
+bool GdlStringExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer * /*prndr*/,
+	std::vector<bool> & /*vfLb*/, std::vector<bool> & /*vfIns*/, std::vector<bool> & /*vfDel*/,
+	bool /*fValue*/, bool /*fValueIsInputSlot*/)
 {
 	//	By this point any value string values (eg, values of the "lang" feature) should
 	//	have been converted to integers.
@@ -2337,7 +2339,7 @@ void GdlLookupExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
+void GdlNumericExpression::AdjustSlotRefsForPreAnys(int /*critPrependedAnys*/)
 {
 }
 
@@ -2348,7 +2350,7 @@ void GdlSlotRefExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::AdjustSlotRefsForPreAnys(int critPrependedAnys)
+void GdlStringExpression::AdjustSlotRefsForPreAnys(int /*critPrependedAnys*/)
 {
 }
 
@@ -2394,7 +2396,11 @@ void GdlLookupExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleIte
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
+#ifdef NDEBUG
+void GdlNumericExpression::AdjustToIOIndices(std::vector<int> &, GdlRuleItem *)
+#else
+void GdlNumericExpression::AdjustToIOIndices(std::vector<int> & /*virit*/, GdlRuleItem * prit)
+#endif
 {
 	Assert(prit == NULL);
 }
@@ -2411,7 +2417,11 @@ void GdlSlotRefExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleIt
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem * prit)
+#ifdef NDEBUG
+void GdlStringExpression::AdjustToIOIndices(std::vector<int> &, GdlRuleItem *)
+#else
+void GdlStringExpression::AdjustToIOIndices(std::vector<int> & /*virit*/, GdlRuleItem * prit)
+#endif
 {
 	Assert(prit == NULL);
 }
@@ -2474,17 +2484,17 @@ void GdlLookupExpression::MaxJustificationLevel(int * pnLevel)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::MaxJustificationLevel(int * pnLevel)
+void GdlNumericExpression::MaxJustificationLevel(int * /*pnLevel*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::MaxJustificationLevel(int * pnLevel)
+void GdlSlotRefExpression::MaxJustificationLevel(int * /*pnLevel*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::MaxJustificationLevel(int * pnLevel)
+void GdlStringExpression::MaxJustificationLevel(int * /*pnLevel*/)
 {
 }
 
@@ -2581,7 +2591,7 @@ bool GdlCondExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLookupExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlLookupExpression::CompatibleWithVersion(int /*fxdVersion*/, int * pfxdNeeded)
 {
 	bool fRet = true;
 	if (TestsJustification())
@@ -2610,19 +2620,19 @@ bool GdlLookupExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlNumericExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
 {
 	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSlotRefExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlSlotRefExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
 {
 	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlStringExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
 {
 	return true;
 }
@@ -2666,13 +2676,15 @@ void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte
 		vbOutput.push_back(kopNeg);
 	// eventually, perhaps add kopTrunc8 and kopTrunc16
 	else
+	{
 		Assert(false);
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
-	bool fAttachAt, int iritAttachTo, int * pnValue)
+	bool fAttachAt, int iritAttachTo, int * /*pnValue*/)
 {
 	int nBogus;
 	m_pexpOperand1->GenerateEngineCode(fxdRuleVersion, vbOutput,
@@ -2713,7 +2725,9 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 	else if (staOp == ">=")
 		vbOutput.push_back(kopGtrEq);
 	else
+	{
 		Assert(false);
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2789,8 +2803,10 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 				vbOutput.push_back(m_psymName->UserDefinableSlotAttrIndex());
 			}
 			else
+			{
 				Assert(false);	// currently no way to look up the value of a
 								// component.XXX.ref attr
+			}
 		}
 		else
 		{
@@ -2884,16 +2900,20 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 		else if (m_psymName->FullName() == "JustifyLevel")
 			vbOutput.push_back(kpstatJustifyLevel);
 		else
+		{
 			Assert(false);
+		}
 	}
 	else
+	{
 		Assert(false);
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
-	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
-	bool fAttachAt, int iritAttachTo, int * pnValue)
+void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & vbOutput,
+	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
+	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 {
 	//	Output most-significant byte first.
 
@@ -2927,9 +2947,9 @@ void GdlNumericExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<by
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
-	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
-	bool fAttachAt, int iritAttachTo, int * pnValue)
+void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int /*nIIndex*/,
+	bool /*fAttachAt*/, int /*iritAttachTo*/, int * pnValue)
 {
 	int nOffset = m_nIOIndex - iritCurrent;
 
@@ -2949,9 +2969,9 @@ void GdlSlotRefExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<by
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
-	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
-	bool fAttachAt, int iritAttachTo, int * pnValue)
+void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & /*vbOutput*/,
+	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
+	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 {
 	//	Should never have string expressions in engine code.
 	Assert(false);
@@ -2970,7 +2990,7 @@ void GdlStringExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 							needs to decide how to handle the accompanying insert = false;
 							only slot references need to worry about it
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
 {
 	strmOut << m_psymOperator->FullName().data() << "(";
 	m_pexpOperand->PrettyPrint(pcman, strmOut, false);
@@ -2990,7 +3010,7 @@ void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
 {
 	strmOut << "(";
 	m_pexpTest->PrettyPrint(pcman, strmOut, true);
@@ -3001,7 +3021,7 @@ void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
 {
 	if (m_pexpSelector)
 	{
@@ -3012,19 +3032,19 @@ void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlNumericExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/)
 {
 	strmOut << m_nValue;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlSlotRefExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/)
 {
 	strmOut << "@" << m_srNumber;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlStringExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/)
 {
 	strmOut << m_staValue;
 }

@@ -36,7 +36,7 @@ public:
 	Throwable(unsigned long hr = S_OK, const wchar_t *pszMsg = 0, int hHelpId = 0)
 	: m_hr(hr)
 	{
-		AssertPszN(pszMsg);
+		AssertPszN(reinterpret_cast<const gr::data16*>(pszMsg));
 		if(pszMsg)
 		{
 			m_pszMsg = new wchar_t[wcslen(pszMsg)+1];//.Assign(pszMsg);

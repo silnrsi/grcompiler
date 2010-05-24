@@ -180,7 +180,7 @@ size_t utf16len(const utf16 *s)
 size_t utf16len(const utf16 *s, size_t n)
 {
 	const utf16 *start = s;
-	for (; *s && s - start <= n; ++s) ;
+	for (; *s && static_cast<size_t>(s - start) <= n; ++s) ;
 
 	return s - start;
 }
@@ -335,7 +335,7 @@ size_t Platform_AnsiToUnicode(const char * src, size_t src_len, utf16 * dest, si
 	return dest_len;
 }
 
-size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, int cchsSrc,
+size_t Platform_8bitToUnicode(int /*nCodePage*/, const char * prgchsSrc, int cchsSrc,
 	utf16 * prgchwDst, int cchwDst)
 {
 	return Platform_AnsiToUnicode(prgchsSrc, cchsSrc, prgchwDst, cchwDst);

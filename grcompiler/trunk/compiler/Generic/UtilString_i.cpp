@@ -18,7 +18,9 @@ Last reviewed: 27Sep99
 
 #include "UtilString.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 //#undef THIS_FILE
 //DEFINE_THIS_FILE
 

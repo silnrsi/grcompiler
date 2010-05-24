@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -36,7 +38,7 @@ bool GrcManager::PreCompileFeatures(GrcFont * pfont)
 
 /*--------------------------------------------------------------------------------------------*/
 
-bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion)
+bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, int * pfxdFeatVersion)
 {
 	*pfxdFeatVersion = 0x00010000;
 
@@ -111,7 +113,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * 
 	compilation cannot continue due to an unrecoverable error.
 ----------------------------------------------------------------------------------------------*/
 
-bool GrcManager::PreCompileLanguages(GrcFont * pfont)
+bool GrcManager::PreCompileLanguages(GrcFont * /*pfont*/)
 {
 	for (size_t ilcls = 0; ilcls < m_vplcls.size(); ilcls++)
 		m_vplcls[ilcls]->PreCompile(this);

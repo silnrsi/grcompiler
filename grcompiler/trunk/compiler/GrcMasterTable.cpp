@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -527,7 +529,7 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 					staLangID,
 					"--should be an integer");
 
-			GdlNameDefn * pndefn;
+			GdlNameDefn * pndefn = NULL;
 			NameDefnMap::iterator itmap = hmNameMap.find(nNameID);
 			if (itmap == hmNameMap.end())
 			//if (!hmNameMap.Retrieve(nNameID, &pndefn))
