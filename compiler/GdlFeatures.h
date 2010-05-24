@@ -117,7 +117,7 @@ class GdlFeatureDefn : public GdlDefn
 public:
 	enum {
 		kfidStdStyles = 0,	// whatever
-		kfidStdLang = 1,
+		kfidStdLang = 1
 	};
 
 //	enum {	// standard style values
@@ -263,7 +263,7 @@ public:
 
 	void SetCode(std::string staCode)
 	{
-		Assert(staCode.sength() <= 4);
+		Assert(staCode.length() <= 4);
 		staCode = staCode.substr(0, 4);
 		memset(m_rgchID, 0, sizeof(m_rgchID));
 		memcpy(m_rgchID, staCode.data(), staCode.size() * sizeof(char));

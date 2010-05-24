@@ -89,7 +89,9 @@ int main(int argc, char* argv[])
 
 	//	Start a new log.
 	if (g_logFileName == NULL)
-		g_logFileName = "grcregtest.log";
+	{
+	    strcpy(g_logFileName, "grcregtest.log");
+	}
 	g_strmLog.open(g_logFileName, std::ios_base::out | std::ios_base::app );
 	if (g_strmLog.fail())
 	{

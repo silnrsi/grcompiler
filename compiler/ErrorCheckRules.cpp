@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -309,7 +311,7 @@ void GdlSubstitutionItem::AdjustSlotRefsForPreAnys(int critPrependedAnys)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlAttrValueSpec::AdjustSlotRefsForPreAnys(int critPrependedAnys, GdlRuleItem * prit)
+void GdlAttrValueSpec::AdjustSlotRefsForPreAnys(int critPrependedAnys, GdlRuleItem * /*prit*/)
 {
 	Assert(m_psymName->FitsSymbolType(ksymtSlotAttr));
 
@@ -388,7 +390,7 @@ bool GrcManager::AssignClassInternalIDs()
 		}
 	}
 
-	Assert(nSubID == m_vpglfcReplcmtClasses.Size());
+	Assert(static_cast<size_t>(nSubID) == m_vpglfcReplcmtClasses.size());
 
 	if (nSubID >= kMaxReplcmtClasses)
 	{
@@ -515,8 +517,8 @@ void GdlGlyphClassDefn::MarkFsmClass(int nPassID, int nClassID)
 /*----------------------------------------------------------------------------------------------
 	If this item is performing an substitution, set the flags for input and output slots.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::FindSubstitutionSlots(int irit,
-	std::vector<bool> & vfInput, std::vector<bool> & vfOutput)
+void GdlRuleItem::FindSubstitutionSlots(int /*irit*/,
+	std::vector<bool> & /*vfInput*/, std::vector<bool> & /*vfOutput*/)
 {
 	//	Do nothing.
 }
@@ -670,7 +672,9 @@ void GdlRuleTable::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfon
 	else if (m_psymName->LastFieldIs("positioning"))
 		grfrco = kfrcoLb | kfrcoSetInsert | kfrcoSetPos;
 	else
+	{
 		Assert(false);
+	}
 
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
@@ -793,9 +797,9 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
+	GdlRenderer * prndr, Symbol /*psymTable*/, int /*grfrco*/, int /*irit*/, bool /*fAnyAssocs*/,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & vcwClassSizes)
+	std::vector<int> & /*vcwClassSizes*/)
 {
 	bool fOkay = true;
 
@@ -1034,7 +1038,9 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					"Item ", PosString(),
 					": mismatched class sizes");
 			else
+			{
 				Assert(cwOutput <= 1 || cwInput == cwOutput);
+			}
 		}
 	}
 
@@ -1485,7 +1491,7 @@ void GdlRule::CalculateIOIndices()
 	{
 		if (m_nScanAdvance >= signed(m_vprit.size()))
 		{
-			Assert(m_nScanAdvance == m_vprit.size());
+			Assert(static_cast<size_t>(m_nScanAdvance) == m_vprit.size());
 			m_nOutputAdvance = m_viritOutput[m_vprit.size() - 1];
 			m_nOutputAdvance = (m_nOutputAdvance < 0) ?
 				m_nOutputAdvance * -1 :
@@ -1546,7 +1552,7 @@ void GdlSubstitutionItem::AssignIOIndices(int * pcritInput, int * pcritOutput,
 /*----------------------------------------------------------------------------------------------
 	Modify the rule items to use either input or output indices.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput)
+void GdlRuleItem::AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & /*viritOutput*/)
 {
 	//	Constraints are read from the input stream.
 	if (m_pexpConstraint)
@@ -1587,7 +1593,7 @@ void GdlSubstitutionItem::AdjustToIOIndices(std::vector<int> & viritInput, std::
 	for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
 	{
 		int srAssoc = m_vpexpAssocs[ipexp]->SlotNumber(); // 1-based
-		Assert(srAssoc >= 1 && srAssoc <= viritInput.Size());
+		Assert(srAssoc >= 1 && static_cast<size_t>(srAssoc) <= viritInput.size());
 		m_vnAssocs.push_back(viritInput[srAssoc - 1]);
 	}
 }
@@ -1608,7 +1614,9 @@ void GdlAttrValueSpec::AdjustToIOIndices(GdlRuleItem * prit,
 			m_pexpValue->AdjustToIOIndices(viritOutput, prit);
 		}
 		else
+		{
 			Assert(false);
+		}
 	}
 	else
 		m_pexpValue->AdjustToIOIndices(viritInput, NULL);
@@ -1818,7 +1826,11 @@ bool GdlGlyphClassDefn::WarnAboutBadGlyphs(bool fTop)
 	return fRet;
 }
 
+#ifdef NDEBUG
+bool GdlGlyphDefn::WarnAboutBadGlyphs(bool)
+#else
 bool GdlGlyphDefn::WarnAboutBadGlyphs(bool fTop)
+#endif
 {
 	Assert(!fTop);
 	bool fRet = false;
@@ -1889,7 +1901,7 @@ void GdlPass::CheckLBsInRules(Symbol psymTable)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRule::CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB)
+bool GdlRule::CheckLBsInRules(Symbol /*psymTable*/, int * pcritPreLB, int * pcritPostLB)
 {
 	//	Check to make sure that there are at most two line-break slots in the rule,
 	//	and if there are two, they are the first and last. While we're at it, count the
@@ -2023,7 +2035,7 @@ void GdlRule::ReplaceKern(GrcManager * pcman)
 
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::ReplaceKern(GrcManager * pcman)
+void GdlRuleItem::ReplaceKern(GrcManager * /*pcman*/)
 {
 	//	Do nothing.
 }
@@ -2192,7 +2204,7 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 	if (m_vpexpConstraints.size() > 0)
 	{
 		// Pass constraints need 3.1. (Version 3.0 outputs empty pass constraints.)
-		fRet = fRet = (fxdVersion >= 0x00030001);
+		fRet = (fxdVersion >= 0x00030001);
 		*pfxdNeeded = max(*pfxdNeeded, 0x00030001);
 	}
 

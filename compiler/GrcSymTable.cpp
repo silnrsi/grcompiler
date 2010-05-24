@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -922,7 +924,7 @@ bool GrcSymbolTableEntry::IsAttachXField()
 bool GrcSymbolTableEntry::IsAttachOffsetField()
 {
 	Assert(FitsSymbolType(ksymtSlotAttr));
-	Symbol psymParent = ParentSymbol();
+	// Symbol psymParent = ParentSymbol();
 	return ((IsAttachWithField() || IsAttachAtField())
 		&& (m_staFieldName == "xoffset" || m_staFieldName == "yoffset"));
 }
@@ -1146,7 +1148,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		else if (staField1 == "y")
 			return kslatAdvY;
 		else
+		{
 			Assert(false);
+		}
 	}
 	else if (staField0 == "attach")
 	{
@@ -1166,7 +1170,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 			else if (staField2 == "yoffset")
 				return kslatAttAtYoff;
 			else
+			{
 				Assert(false);
+			}
 		}
 		else if (staField1 == "with")
 		{
@@ -1181,14 +1187,18 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 			else if (staField2 == "yoffset")
 				return kslatAttWithYoff;
 			else
+			{
 				Assert(false);
+			}
 		}
 
 		else if (staField1 == "level")
 			return kslatAttLevel;
 
 		else
+		{
 			Assert(false);
+		}
 	}
 	else if (staField0 == "breakweight")
 		return kslatBreak;
@@ -1212,7 +1222,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		else if (staField1 == "y")
 			return kslatPosY;
 		else
+		{
 			Assert(false);
+		}
 	}
 
 	else if (staField0 == "shift")
@@ -1222,7 +1234,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		else if (staField1 == "y")
 			return kslatShiftY;
 		else
+		{
 			Assert(false);
+		}
 	}
 
 	else if (staField0 == "measure")
@@ -1232,7 +1246,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		else if (staField1 == "endofline")
 			return kslatMeasureEol;
 		else
+		{
 			Assert(false);
+		}
 	}
 
 	else if (staField0 == "justify")	// TODO: handle all the levels
@@ -1260,10 +1276,14 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 			else if (staField2 == "width")
 				return kslatJWidth;
 			else
+			{
 				Assert(false);
+			}
 		}
 		else
+		{
 			Assert(false);
+		}
 	}
 
 	else if (IsUserDefinableSlotAttr())
@@ -1279,7 +1299,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 	}
 
 	else
+	{
 		Assert(false);
+	}
 
 	return -1;
 }
@@ -1322,7 +1344,9 @@ int GrcSymbolTableEntry::GlyphMetricEngineCodeOp()
 		else if (staField1 == "height")
 			return kgmetBbHeight;
 		else
+		{
 			Assert(false);
+		}
 	}
 	else if (staField0 == "advancewidth")
 	{
@@ -1350,8 +1374,9 @@ int GrcSymbolTableEntry::GlyphMetricEngineCodeOp()
 		return kgmetDescent;
 	}
 	else
+	{
 		Assert(false);
-
+    }
 	return -1;
 }
 

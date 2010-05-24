@@ -78,7 +78,7 @@ public:
 	}
 	int ScriptTag(int i)
 	{
-		Assert(i < m_vnScriptTags.size());
+		Assert(i < static_cast<int>(m_vnScriptTags.size()));
 		return m_vnScriptTags[i];
 	}
 

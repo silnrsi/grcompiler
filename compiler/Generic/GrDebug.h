@@ -118,7 +118,7 @@ namespace gr
 	#define DoAssertHr(hr) Assert(SUCCEEDED(hr))
 	#define DoAssertHrC(hr) AssertC(SUCCEEDED(hr))
 #else
-	#define Assert(exp)
+	#define Assert(exp) assert(exp)
 	#define AssertC(exp)
 	#define AssertMsg(exp, msg)
 	#define AssertMsgC(exp, msg)

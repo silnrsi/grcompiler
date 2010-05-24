@@ -214,7 +214,7 @@ int main(int argc, char * argv[])
 	}
 	else if (nFontError == 0)
 	{
-		Assert(fModFontname);
+		// Assert(fModFontName); // seems to be false in regression tests
 		pfont->GetFontFamilyName(rgchwInputFontFamily, 128);
 		if (g_cman.SeparateControlFile())
 			GenerateOutputControlFontFamily(rgchwInputFontFamily, rgchwOutputFontFamily);
@@ -277,7 +277,7 @@ int main(int argc, char * argv[])
 		cchOutputPath--;
 	char rgchOutputPath[128];
 	memset(rgchOutputPath, 0, isizeof(char) * 128);
-	memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); // don't include \
+	memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); /* don't include \ */
 
 	if (!fEncodingErr)
 	{

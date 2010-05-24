@@ -44,16 +44,22 @@ if test "$DOCBOOK2MAN" = no; then
     AC_MSG_FAILURE([Could not find a program to process XML man pages])
 fi
 
+# ICU configuration
+AC_ARG_VAR(ICU_CONFIG, [Check for ICU configuration helper])
+AC_CHECK_PROGS(ICU_CONFIG, icu-config, no)
+
 # Set default language for tests
 
 AC_LANG(C++)
 
 # Checks for libraries.
 
-AC_CHECK_LIB(sicuuc, u_charType_3_6)
-AC_CHECK_LIB(sicuuc, u_charType_3_8)
-AC_CHECK_LIB(sicuuc, u_charType_3_9)
-AC_CHECK_LIB(sicuuc, u_charType_4_0)
+if test "$ICU_CONFIG" == no; then
+    AC_MSG_FAILURE([Could not find icu-config])
+else
+    CXXFLAGS="$CXXFLAGS `$ICU_CONFIG --cxxflags`"
+    LIBS="$LIBS `$ICU_CONFIG --ldflags`"
+fi
 
 # Checks for header files.
 # need to check for icu .h files as in unicode/uchar.h

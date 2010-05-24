@@ -40,7 +40,9 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#ifdef _MSC_VER
 #pragma warning(disable: 4355) // used in base member initializer list
+#endif
 
 CharScannerLiteralsLess::CharScannerLiteralsLess(const CharScanner* theScanner)
 : scanner(theScanner)

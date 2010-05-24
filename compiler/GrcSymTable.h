@@ -242,9 +242,9 @@ class GrcSymbolTable
 public:
 	//	Constructor and destructor:
 	GrcSymbolTable(bool fMain)
-		:	m_csymAnonClass(0),
-			m_psymParent(NULL),
-			m_cLevel(0)
+		:	m_psymParent(NULL),
+			m_cLevel(0),
+			m_csymAnonClass(0)
 	{
 		if (fMain)
 			InitWithPreDefined();
@@ -468,12 +468,12 @@ public:
 
 	void InsertField(int i, std::string sta)
 	{
-		Assert(i <= m_vstaFields.size());
+		Assert(i <= static_cast<int>(m_vstaFields.size()));
 		m_vstaFields.insert(m_vstaFields.begin() + i, sta);
 	}
 	void DeleteField(int i)
 	{
-		Assert(i < m_vstaFields.size());
+		Assert(i < static_cast<int>(m_vstaFields.size()));
 		m_vstaFields.erase(m_vstaFields.begin() + i);
 	}
 

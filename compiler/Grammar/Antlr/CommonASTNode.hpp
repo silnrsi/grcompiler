@@ -60,7 +60,7 @@ public:
 	static ASTNode* factory();
 
 	// Sharon added:
-	int debug(int level) { return -1; }
+	int debug(int /*level*/) { return -1; }
 
 private:
 	int ttype;

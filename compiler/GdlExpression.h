@@ -187,7 +187,7 @@ public:
 	{
 		return true;
 	}
-	virtual bool ResolveToInteger(int * pnRet, bool fSlotRef)
+	virtual bool ResolveToInteger(int * /*pnRet*/, bool /*fSlotRef*/)
 	{
 		return false;
 	}
@@ -208,51 +208,51 @@ public:
 	virtual void GlyphAttrCheck() { }
 	virtual void FixFeatureTestsInRules(GrcFont *) { }
 
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/)
 		{ return this; }
 
-	virtual void LookupExpCheck(bool fInIf) { }
+	virtual void LookupExpCheck(bool /*fInIf*/) { }
 
-	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
-		bool fGAttrDefChk, bool * pfCanSub)
+	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
+		utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * /*pfont*/,
+		bool /*fGAttrDefChk*/, bool * /*pfCanSub*/)
 	{
 		return this;
 	}
 
-	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
-		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
+	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * /*pcman*/,
+		std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/)
 	{ }
 
-	virtual void CheckCompleteAttachmentPoint(GrcManager * pcman,
-		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit,
-		bool * pfXY, bool * pfGpoint)
+	virtual void CheckCompleteAttachmentPoint(GrcManager * /*pcman*/,
+		std::vector<GdlGlyphClassDefn *> & /*vpglfcInClasses*/, int /*irit*/,
+		bool * /*pfXY*/, bool * /*pfGpoint*/)
 	{ }
 
-	virtual bool PointFieldEquivalents(GrcManager * pcman,
-		GdlExpression ** ppexpX, GdlExpression ** ppexpY,
-		GdlExpression ** ppexpGpoint,
-		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset)
+	virtual bool PointFieldEquivalents(GrcManager * /*pcman*/,
+		GdlExpression ** /*ppexpX*/, GdlExpression ** /*ppexpY*/,
+		GdlExpression ** /*ppexpGpoint*/,
+		GdlExpression ** /*ppexpXoffset*/, GdlExpression ** /*ppexpYoffset*/)
 	{
 		return false;
 	}
 
-	virtual bool CheckRuleExpression(GrcFont * pfont, GdlRenderer * prndr,
-		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-		bool fValue, bool fValueIsInputSlot)
+	virtual bool CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer * /*prndr*/,
+		std::vector<bool> & /*vfLb*/, std::vector<bool> & /*vfIns*/, std::vector<bool> & /*vfDel*/,
+		bool /*fValue*/, bool /*fValueIsInputSlot*/)
 	{
 		return true;
 	}
 
-	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys)
+	virtual void AdjustSlotRefsForPreAnys(int /*critPrependedAnys*/)
 	{
 	}
 
-	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *)
+	virtual void AdjustToIOIndices(std::vector<int> & /*virit*/, GdlRuleItem *)
 	{
 	}
 
-	virtual void MaxJustificationLevel(int * pnLevel)
+	virtual void MaxJustificationLevel(int * /*pnLevel*/)
 	{
 	}
 
@@ -261,20 +261,20 @@ public:
 		return false;
 	}
 
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+	virtual bool CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
 	{
 		return true;
 	}
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
-		int irit, std::vector<int> * pviritInput, int nIIndex,
-		bool fAttachAt, int iritAttachTo, int * pnValue)
+	virtual void GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & /*vbOutput*/,
+		int /*irit*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
+		bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 	{
 	}
 
 	//	debuggers:
-	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens = false)
+	virtual void PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/ = false)
 	{
 		strmOut << "???";
 	};
