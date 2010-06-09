@@ -1041,22 +1041,22 @@ void GdlCondExpression::FixFeatureTestsInRules(GrcFont *pfont)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
+void GdlLookupExpression::FixFeatureTestsInRules(GrcFont * /*pfont*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
+void GdlNumericExpression::FixFeatureTestsInRules(GrcFont * /*pfont*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
+void GdlSlotRefExpression::FixFeatureTestsInRules(GrcFont * /*pfont*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::FixFeatureTestsInRules(GrcFont */*pfont*/)
+void GdlStringExpression::FixFeatureTestsInRules(GrcFont * /*pfont*/)
 {
 }
 
