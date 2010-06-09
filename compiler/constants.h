@@ -145,6 +145,7 @@ enum {
 //	Maxima permitted by the engine implementation. These codes MUST match those used by
 //	the engine.
 enum {
+	kMaxFontNameLength		=    32,	// font cache name buffer size
 	kMaxFeatures			=    64,
 	kFieldsPerComponent		=     4,	// four corners of the box
 	kMaxSlotsPerRule		=    64,

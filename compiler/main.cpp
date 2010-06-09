@@ -128,7 +128,7 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (C) 2002-2008, by SIL International.  All rights reserved.\n";
+			<< "Copyright (C) 2002-2010, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
@@ -210,7 +210,7 @@ int main(int argc, char * argv[])
 	utf16 rgchwInputFontFamily[128];
 	if (utf16len(rgchwOutputFontFamily) > 0)
 	{
-		Assert(!fModFontName);
+		Assert(fModFontName);	//////// ????????
 	}
 	else if (nFontError == 0)
 	{
@@ -227,6 +227,9 @@ int main(int argc, char * argv[])
 		//utf16cpy(rgchwOutputFontFamily, (const utf16*)stu.Chars());
 		std::copy(stu.data(), stu.data() + stu.length() + 1, rgchwOutputFontFamily);
 	}
+
+	if (utf16len(rgchwOutputFontFamily) > kMaxFontNameLength)
+		g_errorList.AddError(141, NULL, "Font name is longer than 32 characters.");
 
 	//std::string staFamily((char*)rgchwOutputFontFamily);
 	char rgchFamily[128];
