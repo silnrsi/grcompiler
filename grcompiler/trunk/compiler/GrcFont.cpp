@@ -909,9 +909,9 @@ bool GrcFont::IsGraphiteFont(void * pHdr, void * pTableDir)
 	return false;
 }
 /*----------------------------------------------------------------------------------------------
-	Scan through the cmap finding any Unicode ids that have the same Glyph id. Store
-	these colliding Unicode ids in  m_vwchCollions. Also store the largest Glyph id
-	in m_nMaxGlyfId.
+	Scan through the cmap finding any Unicode ids that have the same Glyph id.
+	Store the largest glyph id in m_nMaxGlyfId.
+
 	Return true is successful, false otherwise.
 ----------------------------------------------------------------------------------------------*/
 int GrcFont::ScanGlyfIds(void)
