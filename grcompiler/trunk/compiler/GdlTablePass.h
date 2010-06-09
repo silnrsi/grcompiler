@@ -92,7 +92,8 @@ public:
 	void CheckLBsInRules(Symbol psymTable);
 	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints);
+	void MovePassConstraintsToRules(int fxdSilfVersion);
 
 	void AssignGlobalID(int nID)
 	{
@@ -275,7 +276,8 @@ public:
 	void CheckLBsInRules();
 	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints);
+	void MovePassConstraintsToRules(int fxdSilfVersion);
 
 	//	Compiler:
 	void GenerateFsms(GrcManager * pcman);

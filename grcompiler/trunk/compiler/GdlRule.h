@@ -827,6 +827,7 @@ public:
 	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);
 
 	//	Compiler:
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,

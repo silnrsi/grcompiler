@@ -264,7 +264,7 @@ protected:
 	bool AddAllGlyphsToTheAnyClass(GrcFont * pfont, std::map<utf16, utf16> & hmActualForPseudo);
 
 	bool MaxJustificationLevel(int * pnJLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints);
 
 	bool AssignInternalGlyphAttrIDs();
 

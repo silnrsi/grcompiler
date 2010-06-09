@@ -58,16 +58,31 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	m_prndr->ReplaceKern(this);
 
 	int fxdVersionNeeded;
-	if (!CompatibleWithVersion(SilfTableVersion(), &fxdVersionNeeded))
+	bool fFixPassConstraints = true;	// remains true if the only thing that is incompatible are
+										// the pass constraints
+	int fxdRequested = SilfTableVersion();
+	if (!CompatibleWithVersion(fxdRequested, &fxdVersionNeeded, &fFixPassConstraints))
 	{
-		if (UserSpecifiedVersion())
-			g_errorList.AddWarning(3501, NULL,
-				"Version ",
-				VersionString(SilfTableVersion()),
-				" of the Silf table is inadequate for your specfication; version ",
-				VersionString(fxdVersionNeeded),
-				" will be generated instead.");
-		SetSilfTableVersion(fxdVersionNeeded, false);
+		if (fFixPassConstraints && fxdRequested <= 0x00030000 && fxdVersionNeeded > 0x00030000)
+		{
+			// Converting pass constraints to rule constraints should take care of the
+			// incompatibility.
+			m_prndr->MovePassConstraintsToRules(fxdRequested);
+		}
+		else 
+		{
+			if (UserSpecifiedVersion())
+			{
+				g_errorList.AddWarning(3501, NULL,
+					"Version ",
+					VersionString(fxdRequested),
+					" of the Silf table is inadequate for your specfication; version ",
+					VersionString(fxdVersionNeeded),
+					" will be generated instead.");
+			}
+			SetSilfTableVersion(fxdVersionNeeded, false);
+		}
+		
 	}
 
 	return true;
@@ -2123,7 +2138,7 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 
 	This routine assumes that we can always sucessfully use a later version.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
 {
 	*pfxdNeeded = fxdVersion;
 
@@ -2142,15 +2157,18 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
 	}
 
+	if (*pfxdNeeded > fxdVersion)
+		*pfFixPassConstraints = false;
+
 	bool fRet = (*pfxdNeeded <= fxdVersion);
 
-	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet);
+	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfFixPassConstraints) && fRet);
 
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 
@@ -2158,11 +2176,14 @@ bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		fRet = m_vpglfc[ipglfc]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		if (!fRet)
+			*pfFixPassConstraints = false;	// something else is a problem
 	}
 	//	Rules:
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfFixPassConstraints)
+			&& fRet;
 	}
 	return fRet;
 }
@@ -2187,18 +2208,19 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfFixPassConstraints)
+			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 	if (m_vpexpConstraints.size() > 0)
@@ -2210,7 +2232,10 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
-		fRet = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		bool fRetTmp = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+		if (!fRetTmp)
+			*pfFixPassConstraints = false;	// something else is a problem
+		fRet = fRet && fRetTmp;
 	}
 	return fRet;
 }
@@ -2262,3 +2287,57 @@ bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 	return fRet;
 }
 
+/**********************************************************************************************/
+/*----------------------------------------------------------------------------------------------
+	Convert pass constraints to rule constraints.
+
+	This is needed when the version to be output is earlier than what is compatible with
+	pass constraints.
+----------------------------------------------------------------------------------------------*/
+void GdlRenderer::MovePassConstraintsToRules(int fxdSilfVersion)
+{
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
+	{
+		m_vprultbl[iprultbl]->MovePassConstraintsToRules(fxdSilfVersion);
+	}	
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleTable::MovePassConstraintsToRules(int fxdSilfVersion)
+{
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
+	{
+		m_vppass[ippass]->MovePassConstraintsToRules(fxdSilfVersion);
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlPass::MovePassConstraintsToRules(int fxdSilfVersion)
+{
+	if (m_vpexpConstraints.size() > 0)
+	{
+		g_errorList.AddWarning(3530, this,
+			"Pass constraints are not compatible with version ",
+			VersionString(fxdSilfVersion),
+			"; constraint will be applied directly to rules.");
+
+		for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
+		{
+			m_vprule[iprule]->MovePassConstraintsToRule(m_vpexpConstraints);
+		}
+	}
+	// Delete pass constraint(s).
+	for (size_t i = 0; i < m_vpexpConstraints.size(); ++i)
+		delete m_vpexpConstraints[i];
+	m_vpexpConstraints.clear();
+
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRule::MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr)
+{
+	for (size_t ipexp = 0; ipexp < m_vpexpPassConstr.size(); ipexp++)
+	{
+		m_vpexpConstraints.push_back(m_vpexpPassConstr[ipexp]->Clone());
+	}
+}
