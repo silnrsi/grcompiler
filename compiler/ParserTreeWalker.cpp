@@ -74,9 +74,13 @@ bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile,
 	Run the C pre-processor over the GDL file. Return the name of the resulting file.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFilePreProc,
+#ifdef _WIN32
 	std::string & staGdlppFile, std::string & staOutputPath)
+#else
+	std::string & staGdlppFile, std::string &)
+#endif
 {
-#ifdef _WIN32 
+#ifdef _WIN32
 	STARTUPINFO sui = {isizeof(sui)};
 	//Apparently not needed for DOS programs:
 	//sui.wShowWindow = SW_HIDE;
