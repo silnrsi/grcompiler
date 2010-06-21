@@ -15,6 +15,7 @@ Description:
 #include "GrcRtFileFont.h"
 #include <stdio.h>
 
+#define isizeof(T) (sizeof(T))
 
 // TBD do this properly
 ////#define FUDGE_FACTOR 72
@@ -327,6 +328,7 @@ GrcRtFileFont::GrcRtFileFont(const FileFont & font, float pointSize,
 		if (dpiX > 0)
 		{
 			m_dpiX = dpiX;
+
 			if (dpiY > 0) m_dpiY = dpiY;
 			else dpiY = dpiX;
 		}
