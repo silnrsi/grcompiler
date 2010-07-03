@@ -169,7 +169,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	Generate engine code for the constraints of a given rule that were in -if- statements,
 	minus the final pop-and-return command.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateConstraintEngineCode(GrcManager */*pcman*/, int fxdRuleVersion,
+void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
 	std::vector<byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
@@ -568,7 +568,7 @@ void GdlRuleItem::GenerateInsertEqualsFalse(std::vector<byte> & vbOutput)
 {
 	vbOutput.push_back(kopPushByte);
 	vbOutput.push_back(0);	// false;
-	vbOutput.push_back(kopAttrSetSlot);
+	vbOutput.push_back(kopAttrSet);
 	vbOutput.push_back(kslatInsert);
 }
 
