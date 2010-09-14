@@ -63,9 +63,6 @@ grcompiler_SOURCES = \
         ParserTreeWalker.cpp \
         PostParser.cpp \
         StrAnsiHash.h \
-        TtFscdefs.h \
         TtfUtil.cpp \
         TtfUtil.h \
-        Tt.h \
-        TtSfnt_en.h \
-        TtSfnt.h
+        TtfTypes.h

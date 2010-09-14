@@ -114,7 +114,7 @@ extern GrcManager g_cman;
 ////#include "StrAnsiHash.h"
 #include "GrcSymTable.h"
 #include "TtfUtil.h" //must occur before GrcFont.h
-#include "Tt.h"
+#include "TtfTypes.h"
 #include "GrcFont.h"
 #include "GdlExpression.h"
 #include "GdlFeatures.h"
