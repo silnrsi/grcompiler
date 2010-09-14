@@ -84,7 +84,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
     if (!GetTableDirInfo(&OffsetTableSrc, lOffset, lSize)) return 1;
     uint16 cTableSrc = read(OffsetTableSrc.num_tables);
     pDirEntrySrc = (OffsetSubTable::Entry *)new uint8[lSize];
-    strmSrc.read((char *)&pDirEntrySrc, lSize);
+    strmSrc.read((char *)pDirEntrySrc, lSize);
     if (!GetTableInfo(ktiCmap, &OffsetTableSrc, pDirEntrySrc, iTableCmapSrc, iTableCmapLen)) return 2;
     if (!GetTableInfo(ktiOs2, &OffsetTableSrc, pDirEntrySrc, iTableOS2Src, iTableOS2Len)) return 2;
     if (!GetTableInfo(ktiHead, &OffsetTableSrc, pDirEntrySrc, iTableHeadSrc, iTableHeadLen)) return 2;

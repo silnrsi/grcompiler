@@ -86,7 +86,7 @@ enum
 
 	template <int R, typename T>
 	inline float fixed_to_float(const T f) {
-		return float(f)/float(2^R);
+		return float(f)/float(1 << R);
 	}
 
 //**********************************************************************************************

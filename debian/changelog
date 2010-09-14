@@ -1,3 +1,9 @@
+grcompiler (2.4.3) lucid; urgency=low
+
+  * use TtfUtils code from GrEngine
+
+ -- Martin Hosken <martin_hosken@sil.org>  Tue, 14 Sep 2010 09:50:05 +0700
+
 grcompiler (2.4.1-1ubuntu1) unstable; urgency=low
 
   * Bug fix release
