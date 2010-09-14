@@ -144,7 +144,7 @@ int GrcFont::Init(GrcManager * pcman)
 	}
 	
 	// read the offset table
-	long lnOffset, lnSize;
+	size_t lnOffset, lnSize;
 	byte * pHdr, * pTableDir;
 	if (!TtfUtil::GetHeaderInfo(lnOffset, lnSize))
 		return 2;
@@ -281,8 +281,8 @@ int GrcFont::Init(GrcManager * pcman)
 ----------------------------------------------------------------------------------------------*/
 void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
 {
-	long lOffset = -1;
-	long lSize = -1;
+	size_t lOffset;
+	size_t lSize;
 
 	// Alan Ward says don't bother looking for the 3-10 version, even if we have a 3-10
 	// cmap subtable.
@@ -544,7 +544,8 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 		break;	// fall through
 	}
 
-	int nAdvWid, nLsb;
+	unsigned int nAdvWid;
+    int nLsb;
 	if (gmet == kgmetAdvWidth || gmet == kgmetLsb || gmet == kgmetRsb)
 	{
 		if (!TtfUtil::HorMetrics(wGlyphID, m_pHmtx, m_cHmtx, m_pHhea, nLsb, nAdvWid))
@@ -857,7 +858,7 @@ int GrcFont::ReadData(byte ** ppData, long lnOffset, long lnSize)
 int GrcFont::ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, 
 					   byte ** ppTable, long * plnSize)
 {
-	long lnOffset, lnSize;
+	size_t lnOffset, lnSize;
 
 	if (!TtfUtil::GetTableInfo(ktiTableId, pHdr, pTableDir, lnOffset, lnSize))
 		goto error;
@@ -895,7 +896,7 @@ error:
 ----------------------------------------------------------------------------------------------*/
 bool GrcFont::IsGraphiteFont(void * pHdr, void * pTableDir)
 {
-	long lnOffset, lnSize;
+	size_t lnOffset, lnSize;
 
 	if (TtfUtil::GetTableInfo(ktiSilf, pHdr, pTableDir, lnOffset, lnSize))
 		return true;
@@ -1019,7 +1020,7 @@ int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
 	Assert(m_pLoca);
 	Assert(m_pHead);
 
-	int cContours;
+	size_t cContours;
 
 // these checks are actually done by GlyfContourCount
 // they're only needed if a specific error msg needs to be generated
@@ -1064,8 +1065,8 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	Assert(m_pLoca);
 	Assert(m_pHead);
 
-	int cContours = 0;
-	int cPoints = 0;
+	size_t cContours = 0;
+	size_t cPoints = 0;
 
 // these checks are actually done by GlyfContourCount
 // they're only needed if a specific error msg needs to be generated
@@ -1080,8 +1081,8 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	if (!TtfUtil::GlyfContourCount(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, cContours))
 		return false;
 
-	const int CONTOUR_BUF_SIZE = 8;
-	const int POINT_BUF_SIZE = 64;
+	const unsigned int CONTOUR_BUF_SIZE = 8;
+	const unsigned int POINT_BUF_SIZE = 64;
 	// Fixed-size buffers that will be used in most cases:
 	int rgnEndPtBuf[CONTOUR_BUF_SIZE];	
 	bool rgfOnCurveBuf[POINT_BUF_SIZE];

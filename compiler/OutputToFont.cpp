@@ -30,6 +30,8 @@ static DWORD PadLong(DWORD ul); //
 static unsigned long CalcCheckSum(const void  * pluTable, size_t cluSize);
 static int CompareDirEntries(const void *,  const void *); // compare fn for qsort()
 
+using namespace TtfUtil;
+using namespace Sfnt;
 
 /***********************************************************************************************
 	Methods
@@ -53,50 +55,39 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	std::ifstream strmSrc(pchSrcFileName, std::ios::binary);
 	GrcBinaryStream bstrmDst(pchDstFileName); // this deletes pre-existing file
 
-	sfnt_OffsetTable OffsetTableSrc;
-	sfnt_DirectoryEntry * pDirEntrySrc;
-	uint16 cTableSrc;
+	OffsetSubTable OffsetTableSrc;
 
-	sfnt_OffsetTable OffsetTableMin;
-	sfnt_DirectoryEntry * pDirEntryMin;
+	OffsetSubTable OffsetTableMin;
+	uint8* pDirEntryMin;
 	uint16 cTableMin;
 
 	uint16 cTableCopy;
 	std::ifstream * pstrmCopy;
-	sfnt_DirectoryEntry * pDirEntryCopy;
+	OffsetSubTable::Entry * pDirEntryCopy;
 
-	sfnt_OffsetTable * pOffsetTableOut;
+	OffsetSubTable * pOffsetTableOut;
 	int cTableOut;
 
-	int iTableCmapSrc = -1;
-	int iTableOS2Src = -1;
-	int iTableHeadSrc = -1;
 	unsigned int luMasterChecksumSrc;
 	unsigned int rgnCreateTime[2];
 	unsigned int rgnModifyTime[2];
 
 	// Read offset table and directory entries.
-	strmSrc.read((char *)&OffsetTableSrc, OFFSETTABLESIZE);
-	if (swapl(OffsetTableSrc.version) != ONEFIX)
-		return 1;
-	cTableSrc = swapw(OffsetTableSrc.numOffsets);
-	if (!(pDirEntrySrc = new sfnt_DirectoryEntry[cTableSrc + kcExtraTables])) // room for extras
-		return 2;
-	int i;
-	for (i = 0; i < cTableSrc; i++)
-	{
-		strmSrc.read((char *)(pDirEntrySrc + i), sizeof(sfnt_DirectoryEntry));
+    size_t lOffset, lSize;
+    size_t iTableCmapSrc, iTableCmapLen;
+    size_t iTableOS2Src, iTableOS2Len;
+    size_t iTableHeadSrc, iTableHeadLen;
+    OffsetSubTable::Entry *pDirEntrySrc;
 
-		if (tag_CharToIndexMap == SFNT_SWAPTAG(pDirEntrySrc[i].tag))
-			iTableCmapSrc = i;
-		else if (tag_OS_2 == SFNT_SWAPTAG(pDirEntrySrc[i].tag))
-			iTableOS2Src = i;
-		else if (tag_FontHeader == SFNT_SWAPTAG(pDirEntrySrc[i].tag))
-			iTableHeadSrc = i;
-	};
-	Assert(iTableCmapSrc >= 0);
-	Assert(iTableOS2Src >= 0);
-	Assert(iTableHeadSrc >= 0);
+    if (!GetHeaderInfo(lOffset, lSize)) return 1;
+    strmSrc.read((char *)&OffsetTableSrc, lSize + lOffset);
+    if (!GetTableDirInfo(&OffsetTableSrc, lOffset, lSize)) return 1;
+    uint16 cTableSrc = read(OffsetTableSrc.num_tables);
+    pDirEntrySrc = (OffsetSubTable::Entry *)new uint8[lSize];
+    strmSrc.read((char *)&pDirEntrySrc, lSize);
+    if (!GetTableInfo(ktiCmap, &OffsetTableSrc, pDirEntrySrc, iTableCmapSrc, iTableCmapLen)) return 2;
+    if (!GetTableInfo(ktiOs2, &OffsetTableSrc, pDirEntrySrc, iTableOS2Src, iTableOS2Len)) return 2;
+    if (!GetTableInfo(ktiHead, &OffsetTableSrc, pDirEntrySrc, iTableHeadSrc, iTableHeadLen)) return 2;
 
 	// Do the same for the minimal control file.
 	const char * rgchEnvVarName = "GDLPP_PREFS";
@@ -118,25 +109,21 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	std::ifstream strmMin(staMinFile.c_str(), std::ios::binary);
 	if (SeparateControlFile())
 	{
-		strmMin.read((char *)&OffsetTableMin, OFFSETTABLESIZE);
-		if (swapl(OffsetTableMin.version) != ONEFIX)
+        size_t lOffset, lSize;
+
+        if (!GetHeaderInfo(lOffset, lSize)) return 3;
+		strmMin.read((char *)&OffsetTableMin, lOffset + lSize);
+		if (read(OffsetTableMin.scaler_type) != OneFix)
 			return 3;
-		cTableMin = swapw(OffsetTableMin.numOffsets);
-		if (!(pDirEntryMin = new sfnt_DirectoryEntry[cTableMin]))
-			return 4;
-		for (i = 0; i < cTableMin; i++)
-		{
-			strmMin.read((char *)(pDirEntryMin + i), sizeof(sfnt_DirectoryEntry));
-		};
+        cTableMin = read(OffsetTableMin.num_tables);
+        if (!GetTableDirInfo(&OffsetTableSrc, lOffset, lSize)) return 3;
+        pDirEntryMin = new uint8[lSize];
+        strmSrc.read((char *)&pDirEntryMin, lSize);
 
 		// Read the master checksum and dates from the source font head table.
-		uint8 * pbTableHeadSrc;
-		int cbSizeSrc = swapl(pDirEntrySrc[iTableHeadSrc].length);
-		int ibOffsetSrc = swapl(pDirEntrySrc[iTableHeadSrc].offset);
-		if (!(pbTableHeadSrc = new uint8[cbSizeSrc]))
-			return 5;
-		strmSrc.seekg(ibOffsetSrc);
-		strmSrc.read((char *)pbTableHeadSrc, cbSizeSrc);
+		uint8 * pbTableHeadSrc = new uint8[iTableHeadLen];
+        strmSrc.seekg(iTableHeadSrc);
+        strmSrc.read((char *)pbTableHeadSrc, iTableHeadLen);
 		luMasterChecksumSrc = TtfUtil::HeadTableCheckSum(pbTableHeadSrc);
 		TtfUtil::HeadTableCreateTime(pbTableHeadSrc, &rgnCreateTime[0], &rgnCreateTime[1]);
 		TtfUtil::HeadTableModifyTime(pbTableHeadSrc, &rgnModifyTime[0], &rgnModifyTime[1]);
@@ -147,7 +134,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		pOffsetTableOut = &OffsetTableMin;
 		cTableCopy = cTableMin;
 		pstrmCopy = &strmMin;
-		pDirEntryCopy = pDirEntryMin;
+		pDirEntryCopy = (OffsetSubTable::Entry *)pDirEntryMin;
 	}
 	else
 	{
@@ -160,24 +147,24 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		pDirEntryCopy = pDirEntrySrc;
 	}
 
-	sfnt_DirectoryEntry * pDirEntryOut;
-	if (!(pDirEntryOut = new sfnt_DirectoryEntry[cTableOut]))
+	OffsetSubTable::Entry * pDirEntryOut;
+	if (!(pDirEntryOut = new OffsetSubTable::Entry[cTableOut]))
 		return 6;
-	memcpy(pDirEntryOut, pDirEntryCopy, cTableSrc * sizeof(sfnt_DirectoryEntry));
+	memcpy(pDirEntryOut, pDirEntryCopy, cTableSrc * sizeof(OffsetSubTable::Entry));
 
 	// Offset table: adjust for extra tables and output.
 	int nP2, nLog;
 	uint16 suTmp;
 	BinarySearchConstants(cTableOut, &nP2, &nLog);
-	pOffsetTableOut->numOffsets = swapw(cTableOut);
+	pOffsetTableOut->num_tables = read(cTableOut);
 	suTmp = (uint16)(nP2 << 4);
-	pOffsetTableOut->searchRange = swapw(suTmp);
+	pOffsetTableOut->search_range = read(suTmp);
 	suTmp = (uint16)nLog;
-	pOffsetTableOut->entrySelector = swapw(suTmp);
+	pOffsetTableOut->entry_selector = read(suTmp);
 	suTmp = (cTableOut << 4) - (uint16)(nP2 << 4);
-	pOffsetTableOut->rangeShift = swapw(suTmp);
+	pOffsetTableOut->range_shift = read(suTmp);
 	// write offset table (version & search constants)
-	bstrmDst.Write((char *)pOffsetTableOut, OFFSETTABLESIZE);
+	bstrmDst.Write((char *)pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
 	
 	// Copy tables from input stream to output stream.
 	long ibTableOffset, ibHeadOffset, cbHeadSize;
@@ -185,26 +172,26 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	int iCmapTbl = -1;
 	int iOS2Tbl = -1;
 	uint8 * pbTable;
-	ibTableOffset = PadLong(OFFSETTABLESIZE + cTableOut * sizeof(sfnt_DirectoryEntry));
+	ibTableOffset = PadLong(offsetof(OffsetSubTable, table_directory) + cTableOut * sizeof(OffsetSubTable::Entry));
 	bstrmDst.SetPosition(ibTableOffset);
-	for (i = 0; i < cTableCopy; i++)
+	for (int i = 0; i < cTableCopy; i++)
 	{
 		// read table
 		uint32 ibOffset, cbSize;
-		cbSize = swapl(pDirEntryCopy[i].length); // dir entries are word aligned already
-		ibOffset = swapl(pDirEntryCopy[i].offset);
+		cbSize = read(pDirEntryCopy[i].length); // dir entries are word aligned already
+		ibOffset = read(pDirEntryCopy[i].offset);
 		if (!(pbTable = new uint8[cbSize]))
 			return 7;
 		pstrmCopy->seekg(ibOffset);
 		pstrmCopy->read((char *)pbTable, cbSize);
 
 		// merge the OS/2 tables from the minimal and source fonts
-		if (SeparateControlFile() && tag_OS_2 == SFNT_SWAPTAG(pDirEntryCopy[i].tag))
+		if (SeparateControlFile() && TableIdTag(ktiOs2) == read(pDirEntryCopy[i].tag))
 		{
 			iOS2Tbl = i;
 			uint8 * pbTableSrc;
-			int cbSizeSrc = swapl(pDirEntrySrc[iTableOS2Src].length);
-			int ibOffsetSrc = swapl(pDirEntrySrc[iTableOS2Src].offset);
+			int cbSizeSrc = read(pDirEntrySrc[iTableOS2Src].length);
+			int ibOffsetSrc = read(pDirEntrySrc[iTableOS2Src].offset);
 			if (!(pbTableSrc = new uint8[cbSizeSrc]))
 				return 8;
 			strmSrc.seekg(ibOffsetSrc);
@@ -213,17 +200,17 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			bstrmDst.SetPosition(ibTableOffset);
 			if (!OutputOS2Table(pbTableSrc, cbSizeSrc, pbTable, cbSize, &bstrmDst, &cbSize))
 				return 9;
-			pDirEntryOut[i].length = swapl(cbSize);
+			pDirEntryOut[i].length = read(cbSize);
 
 			delete[] pbTableSrc;
 		}
 		// generate a new cmap
-		else if (SeparateControlFile() && tag_CharToIndexMap == SFNT_SWAPTAG(pDirEntryCopy[i].tag))
+		else if (SeparateControlFile() && TableIdTag(ktiCmap) == read(pDirEntryCopy[i].tag))
 		{
 			iCmapTbl = i;
 			uint8 * pbTableSrc;
-			int cbSizeSrc = swapl(pDirEntrySrc[iTableCmapSrc].length);
-			int ibOffsetSrc = swapl(pDirEntrySrc[iTableCmapSrc].offset);
+			int cbSizeSrc = read(pDirEntrySrc[iTableCmapSrc].length);
+			int ibOffsetSrc = read(pDirEntrySrc[iTableCmapSrc].offset);
 			if (!(pbTableSrc = new uint8[cbSizeSrc]))
 				return 10;
 			strmSrc.seekg(ibOffsetSrc);
@@ -231,23 +218,23 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 
 			bstrmDst.SetPosition(ibTableOffset);
 			OutputCmapTable(pbTableSrc, cbSizeSrc, &bstrmDst, &cbSize);
-			pDirEntryOut[i].length = swapl(cbSize);
+			pDirEntryOut[i].length = read(cbSize);
 
 			delete[] pbTableSrc;
 		}
 		else
 		{
 			// add the feature names and change the font name in the name table
-			if (tag_NamingTable == SFNT_SWAPTAG(pDirEntryCopy[i].tag))
+			if (TableIdTag(ktiName) == read(pDirEntryCopy[i].tag))
 			{
 				iNameTbl = i;
 				if (!AddFeatsModFamily((fModFontName ? pchDstFontFamily : NULL), &pbTable, &cbSize))
 					return 11;
-				pDirEntryOut[i].length = swapl(cbSize);
+				pDirEntryOut[i].length = read(cbSize);
 			}
 
 			// remember offset and size of head table to adjust the file checksum later
-			if (tag_FontHeader == SFNT_SWAPTAG(pDirEntryCopy[i].tag))
+			if (TableIdTag(ktiHead) == read(pDirEntryCopy[i].tag))
 			{
 				ibHeadOffset = ibTableOffset;
 				cbHeadSize = cbSize;
@@ -259,7 +246,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		}
 
 		// adjust table's directory entry, offset will change since table directory is bigger
-		pDirEntryOut[i].offset = swapl(ibTableOffset);
+		pDirEntryOut[i].offset = read(ibTableOffset);
 
 		ibTableOffset = bstrmDst.SeekPadLong(ibTableOffset + cbSize);
 		delete [] pbTable;
@@ -276,37 +263,37 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	// Gloc
 	OutputGlatAndGloc(&bstrmDst, (int *)&ibOffset, (int *)&cbSize, 
 		(int *)&ibOffset2, (int *)&cbSize2);
-	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Gloc);
-	pDirEntryOut[nCurTable].length = swapl(cbSize);
-	pDirEntryOut[nCurTable].offset = swapl(ibOffset);
-	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+	pDirEntryOut[nCurTable].tag = read(TableIdTag(ktiGloc));
+	pDirEntryOut[nCurTable].length = read(cbSize);
+	pDirEntryOut[nCurTable].offset = read(ibOffset);
+	pDirEntryOut[nCurTable++].checksum = 0L; // place holder
 
 	// Glat
-	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Glat);
-	pDirEntryOut[nCurTable].length = swapl(cbSize2);
-	pDirEntryOut[nCurTable].offset = swapl(ibOffset2);
-	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+	pDirEntryOut[nCurTable].tag = read(TableIdTag(ktiGlat));
+	pDirEntryOut[nCurTable].length = read(cbSize2);
+	pDirEntryOut[nCurTable].offset = read(ibOffset2);
+	pDirEntryOut[nCurTable++].checksum = 0L; // place holder
 
 	// Silf
 	OutputSilfTable(&bstrmDst, (int *)&ibOffset, (int *)&cbSize);
-	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Silf);
-	pDirEntryOut[nCurTable].length = swapl(cbSize);
-	pDirEntryOut[nCurTable].offset = swapl(ibOffset);
-	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+	pDirEntryOut[nCurTable].tag = read(TableIdTag(ktiSilf));
+	pDirEntryOut[nCurTable].length = read(cbSize);
+	pDirEntryOut[nCurTable].offset = read(ibOffset);
+	pDirEntryOut[nCurTable++].checksum = 0L; // place holder
 
 	// Feat
 	OutputFeatTable(&bstrmDst, (int *)&ibOffset, (int *)&cbSize);
-	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Feat);
-	pDirEntryOut[nCurTable].length = swapl(cbSize);
-	pDirEntryOut[nCurTable].offset = swapl(ibOffset);
-	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+	pDirEntryOut[nCurTable].tag = read(TableIdTag(ktiFeat));
+	pDirEntryOut[nCurTable].length = read(cbSize);
+	pDirEntryOut[nCurTable].offset = read(ibOffset);
+	pDirEntryOut[nCurTable++].checksum = 0L; // place holder
 
 	// Sill
 	OutputSillTable(&bstrmDst, (int *)&ibOffset, (int *)&cbSize);
-	pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Sill);
-	pDirEntryOut[nCurTable].length = swapl(cbSize);
-	pDirEntryOut[nCurTable].offset = swapl(ibOffset);
-	pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+	pDirEntryOut[nCurTable].tag = read(TableIdTag(ktiSill));
+	pDirEntryOut[nCurTable].length = read(cbSize);
+	pDirEntryOut[nCurTable].offset = read(ibOffset);
+	pDirEntryOut[nCurTable++].checksum = 0L; // place holder
 
 	if (SeparateControlFile())
 	{
@@ -315,50 +302,50 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			pchSrcFontFamily, pchSrcFileName,
 			luMasterChecksumSrc, rgnCreateTime, rgnModifyTime,
 			(int *)&ibOffset, (int *)&cbSize);
-		pDirEntryOut[nCurTable].tag = SFNT_SWAPTAG(tag_Sile);
-		pDirEntryOut[nCurTable].length = swapl(cbSize);
-		pDirEntryOut[nCurTable].offset = swapl(ibOffset);
-		pDirEntryOut[nCurTable++].checkSum = 0L; // place holder
+		pDirEntryOut[nCurTable].tag = read(TableIdTag(ktiSile));
+		pDirEntryOut[nCurTable].length = read(cbSize);
+		pDirEntryOut[nCurTable].offset = read(ibOffset);
+		pDirEntryOut[nCurTable++].checksum = 0L; // place holder
 	}
 
 	Assert(nCurTable == cTableOut);
 
 	// fix up file checksums in table directory for our tables and any we modified
 	uint32 luCheckSum;
-	for (i = 0; i < cTableOut; i++)
+	for (int i = 0; i < cTableOut; i++)
 	{
 		if (i >= cTableCopy // one of our new Graphite tables
 			|| i == iNameTbl || i == iOS2Tbl || i == iCmapTbl)
 		{ // iterate over our tables
-			cbSize = PadLong(swapl(pDirEntryOut[i].length)); // find table size (tables are padded)
+			cbSize = PadLong(read(pDirEntryOut[i].length)); // find table size (tables are padded)
 			if (!(pbTable = new uint8[cbSize]))
 				return 12;
-			bstrmDst.seekg(swapl(pDirEntryOut[i].offset));
+			bstrmDst.seekg(read(pDirEntryOut[i].offset));
 			bstrmDst.read((char *)pbTable, cbSize);
 			luCheckSum = CalcCheckSum(pbTable, cbSize);
-			pDirEntryOut[i].checkSum = swapl(luCheckSum);
+			pDirEntryOut[i].checksum = read(luCheckSum);
 			delete [] pbTable;
 		}
 	}
 
 	// calc file checksum
 	luCheckSum = 0;
-	for (i = 0; i < cTableOut; i++)
+	for (int i = 0; i < cTableOut; i++)
 	{
-		luCheckSum += swapl(pDirEntryOut[i].checkSum);
+		luCheckSum += read(pDirEntryOut[i].checksum);
 	}
-	luCheckSum += CalcCheckSum(pDirEntryOut, sizeof(sfnt_DirectoryEntry) * cTableOut);
-	luCheckSum += CalcCheckSum(pOffsetTableOut, OFFSETTABLESIZE);
+	luCheckSum += CalcCheckSum(pDirEntryOut, sizeof(OffsetSubTable::Entry) * cTableOut);
+	luCheckSum += CalcCheckSum(pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
 	luCheckSum = 0xB1B0AFBA - luCheckSum; // adjust checksum for head table
 	
 	// sort directory entries
-	::qsort((void *)pDirEntryOut, cTableOut, sizeof(sfnt_DirectoryEntry), CompareDirEntries);
+	::qsort((void *)pDirEntryOut, cTableOut, sizeof(OffsetSubTable::Entry), CompareDirEntries);
 
 	// write directory entries
-	bstrmDst.seekp(OFFSETTABLESIZE);
-	for (i = 0; i < cTableOut; i++)
+	bstrmDst.seekp(offsetof(OffsetSubTable, table_directory));
+	for (int i = 0; i < cTableOut; i++)
 	{
-		bstrmDst.write((char *)(pDirEntryOut + i), sizeof(sfnt_DirectoryEntry)); 
+		bstrmDst.write((char *)(pDirEntryOut + i), sizeof(OffsetSubTable::Entry)); 
 	}
 
 	// write adjusted checksum to head table
@@ -366,7 +353,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	if (!(pbTable = new uint8[cbHeadSize]))
 		return 13;
 	bstrmDst.read((char *)pbTable, cbHeadSize); // read the head table
-	((sfnt_FontHeader *)pbTable)->checkSumAdjustment = swapl(luCheckSum);
+	((FontHeader *)pbTable)->check_sum_adjustment = read(luCheckSum);
 	bstrmDst.seekp(ibHeadOffset);
 	bstrmDst.write((char *)pbTable, cbHeadSize); // overwrite the head table
 	delete [] pbTable;
@@ -403,10 +390,10 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	size_t cchwFamilyName = (pchwFamilyNameNew) ? utf16len(pchwFamilyNameNew) : 0;
 
 	// Interpret name table header:
-	sfnt_NamingTable * pTblOld = (sfnt_NamingTable *)(*ppNameTbl);
-	uint16 cRecords = swapw(pTblOld->count);
-	uint16 ibStrOffset = swapw(pTblOld->stringOffset);
-	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pTblOld + 1);
+	FontNames * pTblOld = (FontNames *)(*ppNameTbl);
+	uint16 cRecords = read(pTblOld->count);
+	uint16 ibStrOffset = read(pTblOld->string_offset);
+	NameRecord * pRecord = (NameRecord *)(pTblOld + 1);
 	
 	int irecFamilyName, irecSubFamily, irecFullName, irecVendor, irecPSName, irecUniqueName,
 		irecPrefFamily, irecCompatibleFull;
@@ -414,7 +401,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	uint16 ibSubFamilyOffset, cbSubFamily;
 	uint16 ibVendorOffset, cbVendor;
 
-	int cbOldTblRecords = sizeof(sfnt_NamingTable) + (cRecords * sizeof(sfnt_NameRecord));
+	int cbOldTblRecords = sizeof(FontNames) + (cRecords * sizeof(FontNames));
 
 	// Make a list of all platform+encodings that have an English family name and therefore
 	// need to be changed. (Include the Unicode platform 0 for which we don't actually know
@@ -427,14 +414,14 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	bool fUnchangedName = false;
 	for (int iRecord = 0; iRecord < cRecords; iRecord++)
 	{
-		if (swapw(pRecord[iRecord].nameID) == name_Family)
+		if (read(pRecord[iRecord].name_id) == n_family)
 		{
-			int nPlat = swapw(pRecord[iRecord].platformID);
-			int nEnc = swapw(pRecord[iRecord].specificID);
-			int nLang = swapw(pRecord[iRecord].languageID);
-			if ((nPlat == plat_Macintosh && nLang == langMac_English)
-				|| (nPlat == plat_MS && nLang == LG_USENG)
-				|| (nPlat == plat_Unicode))
+			int nPlat = read(pRecord[iRecord].platform_id);
+			int nEnc = read(pRecord[iRecord].platform_specific_id);
+			int nLang = read(pRecord[iRecord].language_id);
+			if ((nPlat == NameRecord::Macintosh && nLang == 0)
+				|| (nPlat == NameRecord::Microsoft && nLang == LG_USENG)
+				|| (nPlat == NameRecord::Unicode))
 			{
 				// Found an English family name or one we're treating as English--
 				// change it if we're changing the names.
@@ -442,12 +429,12 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 				pecChange.platformID = nPlat;
 				pecChange.encodingID = nEnc;
 				pecChange.engLangID = nLang;
-				pecChange.cbBytesPerChar = (nPlat == plat_Macintosh) ? 1 : 2;
+				pecChange.cbBytesPerChar = (nPlat == NameRecord::Macintosh) ? 1 : 2;
 				pecChange.fChangeName = (pchwFamilyNameNew != NULL);
 				vpecToChange.push_back(pecChange);
 			}
-			else if ((nPlat == plat_Macintosh) || (nPlat == plat_Unicode)
-					|| (nPlat == plat_MS && (nEnc == 0 || nEnc == 1 || nEnc == 10)))
+			else if ((nPlat == NameRecord::Macintosh) || (nPlat == NameRecord::Unicode)
+					|| (nPlat == NameRecord::Microsoft && (nEnc == 0 || nEnc == 1 || nEnc == 10)))
 			{
 				// We found a family name that is not English and we will not change. But we
 				// will need to output the feature names.
@@ -455,7 +442,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 				pecChange.platformID = nPlat;
 				pecChange.encodingID = nEnc;
 				pecChange.engLangID = nLang;
-				pecChange.cbBytesPerChar = (nPlat == plat_Macintosh) ? 1 : 2;
+				pecChange.cbBytesPerChar = (nPlat == NameRecord::Macintosh) ? 1 : 2;
 				pecChange.fChangeName = false;
 				vpecToChange.push_back(pecChange);
 				fUnchangedName = true;	// give a warning
@@ -466,8 +453,8 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 				fUnchangedName = true;
 			}
 		}
-		cbOldStringData += swapw(pRecord[iRecord].length);
-		nMaxNameId = max(nMaxNameId, int(swapw(pRecord[iRecord].nameID)));
+		cbOldStringData += read(pRecord[iRecord].length);
+		nMaxNameId = max(nMaxNameId, int(read(pRecord[iRecord].name_id)));
 	}
 	size_t cbNewStringData = cbOldStringData;
 
@@ -541,10 +528,10 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			// Generate the new full-font name, the postscript name, and the unique name.
 
 			std::wstring stuFullName, stuPostscriptName, stuUniqueName;
-			ibSubFamilyOffset = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].offset) + ibStrOffset;
-			cbSubFamily = (irecSubFamily == -1) ? 0 : swapw(pRecord[irecSubFamily].length);
-			ibVendorOffset = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].offset) + ibStrOffset;
-			cbVendor = (irecVendor == -1) ? 0 : swapw(pRecord[irecVendor].length);
+			ibSubFamilyOffset = (irecSubFamily == -1) ? 0 : read(pRecord[irecSubFamily].offset) + ibStrOffset;
+			cbSubFamily = (irecSubFamily == -1) ? 0 : read(pRecord[irecSubFamily].length);
+			ibVendorOffset = (irecVendor == -1) ? 0 : read(pRecord[irecVendor].offset) + ibStrOffset;
+			cbVendor = (irecVendor == -1) ? 0 : read(pRecord[irecVendor].length);
 
 			// NB: Call below may allocate space which must be deleted at the end of this method.
 
@@ -560,32 +547,32 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			int dbStringDiff = 0;
 			if (irecFamilyName > -1)
 			{
-				dbStringDiff -= swapw(pRecord[irecFamilyName].length);
+				dbStringDiff -= read(pRecord[irecFamilyName].length);
 				dbStringDiff += cchwFamilyName * ppec->cbBytesPerChar;
 			}
 			if (irecFullName > -1)
 			{
-				dbStringDiff -= swapw(pRecord[irecFullName].length);
+				dbStringDiff -= read(pRecord[irecFullName].length);
 				dbStringDiff += ppec->cchwFullName * ppec->cbBytesPerChar;
 			}
 			if (irecUniqueName > -1)
 			{
-				dbStringDiff -= swapw(pRecord[irecUniqueName].length);
+				dbStringDiff -= read(pRecord[irecUniqueName].length);
 				dbStringDiff += ppec->cchwUniqueName * ppec->cbBytesPerChar;
 			}
 			if (irecPSName > -1)
 			{
-				dbStringDiff -= swapw(pRecord[irecPSName].length);
+				dbStringDiff -= read(pRecord[irecPSName].length);
 				dbStringDiff += ppec->cchwPostscriptName * ppec->cbBytesPerChar;
 			}
 			if (irecPrefFamily > -1)
 			{
-				dbStringDiff -= swapw(pRecord[irecPrefFamily].length);
+				dbStringDiff -= read(pRecord[irecPrefFamily].length);
 				dbStringDiff += cchwFamilyName * ppec->cbBytesPerChar;
 			}
 			if (irecCompatibleFull > -1)
 			{
-				dbStringDiff -= swapw(pRecord[irecCompatibleFull].length);
+				dbStringDiff -= read(pRecord[irecCompatibleFull].length);
 				dbStringDiff += ppec->cchwFullName * ppec->cbBytesPerChar;
 			}
 
@@ -605,7 +592,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 
 	// Calculate the size of the new name table.
 	size_t cbTblNew = cbOldTblRecords
-		+ (vstuExtNames.size() * sizeof(sfnt_NameRecord) * vpecToChange.size())
+		+ (vstuExtNames.size() * sizeof(FontNames) * vpecToChange.size())
 								// 1 record for each feature string for each platform+encoding of interest
 		+ cbNewStringData;		// adjusted for font name changes
 
@@ -685,26 +672,26 @@ bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords,
 {
 	bool fNamesFound = false;
 
-	sfnt_NameRecord * pRecord = (sfnt_NameRecord *)(pNameTblRecord);
+	NameRecord * pRecord = (NameRecord *)(pNameTblRecord);
 	for (int i = 0; i < cNameTblRecords; i++, pRecord++)
 	{
-		if (swapw(pRecord->platformID) == suPlatformId && 
-			swapw(pRecord->specificID) == suEncodingId)
+		if (read(pRecord->platform_id) == suPlatformId && 
+			read(pRecord->platform_specific_id) == suEncodingId)
 		{
 			fNamesFound = true;
-			if (swapw(pRecord->languageID) == suLangId)
+			if (read(pRecord->language_id) == suLangId)
 			{
-				uint16 nameID = swapw(pRecord->nameID);
+				uint16 nameID = read(pRecord->name_id);
 				switch (nameID)
 				{
-				case name_Family:		*piFamily = i; break;
-				case name_Subfamily:	*piSubFamily = i; break;
-				case name_FullName:		*piFullName = i; break;
-				case name_Vendor:		*piVendor = i; break;
-				case name_Postscript:	*piPSName = i; break;
-				case name_UniqueName:	*piUniqueName = i; break;
-				case name_PreferredFamily: *piPrefFamily = i; break;
-				case name_CompatibleFull:  *piCompatibleFull = i; break;
+				case n_family:		*piFamily = i; break;
+				case n_subfamily:	*piSubFamily = i; break;
+				case n_fullname:		*piFullName = i; break;
+				case n_vendor:		*piVendor = i; break;
+				case n_postscript:	*piPSName = i; break;
+				case n_uniquename:	*piUniqueName = i; break;
+				case n_preferredfamily: *piPrefFamily = i; break;
+				case n_compatiblefull:  *piCompatibleFull = i; break;
 				default:
 					break;
 				}
@@ -886,32 +873,32 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 			NameTblEntry * p2 = (NameTblEntry *) ptr2;
 
 			if (p1->nPlatId != p2->nPlatId)
-				return swapw(p1->nPlatId) - swapw(p2->nPlatId);
+				return read(p1->nPlatId) - read(p2->nPlatId);
 			else if (p1->nEncId != p2->nEncId)
-				return swapw(p1->nEncId) - swapw(p2->nEncId);
+				return read(p1->nEncId) - read(p2->nEncId);
 			else if (p1->nLangId != p2->nLangId)
-				return swapw(p1->nLangId) - swapw(p2->nLangId);
+				return read(p1->nLangId) - read(p2->nLangId);
 			else
-				return swapw(p1->nNameId) - swapw(p2->nNameId);
+				return read(p1->nNameId) - read(p2->nNameId);
 		}
 	};
 
-	sfnt_NamingTable * pTbl = (sfnt_NamingTable *)(pTblOld);
-	uint16 crecOld = swapw(pTbl->count);
-	uint16 ibStrOffsetOld = swapw(pTbl->stringOffset);
-	sfnt_NameRecord * pOldRecord = (sfnt_NameRecord *)(pTbl + 1);
+	FontNames * pTbl = (FontNames *)(pTblOld);
+	uint16 crecOld = read(pTbl->count);
+	uint16 ibStrOffsetOld = read(pTbl->string_offset);
+	NameRecord * pOldRecord = (NameRecord *)(pTbl + 1);
 
 	int crecNew = crecOld + (vstuExtNames.size() * vpec.size());
 
-	sfnt_NameRecord * pNewRecord;
+	NameRecord * pNewRecord;
 
 	// name table header
-	((sfnt_NamingTable *)pTblNew)->format = pTbl->format;
-	((sfnt_NamingTable *)pTblNew)->count = swapw(crecNew);
-	int ibStrOffsetNew = sizeof(sfnt_NamingTable) + (crecNew * sizeof(sfnt_NameRecord));
-	((sfnt_NamingTable *)pTblNew)->stringOffset = swapw(ibStrOffsetNew);
+	((FontNames *)pTblNew)->format = pTbl->format;
+	((FontNames *)pTblNew)->count = read(crecNew);
+	int ibStrOffsetNew = sizeof(FontNames) + (crecNew * sizeof(NameRecord));
+	((FontNames *)pTblNew)->string_offset = read(ibStrOffsetNew);
 
-	pNewRecord = (sfnt_NameRecord *)(pTblNew + sizeof(sfnt_NamingTable)); // where records start
+	pNewRecord = (NameRecord *)(pTblNew + sizeof(FontNames)); // where records start
 
 	uint8 * pbNextString = pTblNew + ibStrOffsetNew;
 	size_t dibNew = 0; // delta offset
@@ -935,47 +922,47 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 	{
 		PlatEncChange * ppec = &(vpec[ipec]);
 		while(ipec < signed(vpec.size())
-			&& (ppec->platformID < swapw(pOldRecord[irec].platformID)
-				|| (ppec->platformID == swapw(pOldRecord[irec].platformID)
-					&& ppec->encodingID < swapw(pOldRecord[irec].specificID))))
+			&& (ppec->platformID < read(pOldRecord[irec].platform_id)
+				|| (ppec->platformID == read(pOldRecord[irec].platform_id)
+					&& ppec->encodingID < read(pOldRecord[irec].platform_specific_id))))
 		{
 			ipec++;
 			ppec = &(vpec[ipec]);
 		}
 
-		pNewRecord[irec].platformID = pOldRecord[irec].platformID;
-		pNewRecord[irec].specificID = pOldRecord[irec].specificID;
-		pNewRecord[irec].languageID = pOldRecord[irec].languageID;
-		pNewRecord[irec].nameID = pOldRecord[irec].nameID;
+		pNewRecord[irec].platform_id = pOldRecord[irec].platform_id;
+		pNewRecord[irec].platform_specific_id = pOldRecord[irec].platform_specific_id;
+		pNewRecord[irec].language_id = pOldRecord[irec].language_id;
+		pNewRecord[irec].name_id = pOldRecord[irec].name_id;
 		pNewRecord[irec].length = pOldRecord[irec].length;
 		//pNewRecord[irec].offset = ibStrOffsetNew + dibNew;
 
-		size_t cchwStr, cbStr = 0;
+		size_t cchwStr = 0, cbStr = 0;
 		uint8 * pbStr = NULL;
 		if (ipec < signed(vpec.size())
 			&& ppec->pchwFullName // this is a platform+encoding where we need to change the font
-			&& ppec->platformID == swapw(pOldRecord[irec].platformID)
-			&& ppec->encodingID == swapw(pOldRecord[irec].specificID)
-			&& ppec->engLangID == swapw(pOldRecord[irec].languageID))
+			&& ppec->platformID == read(pOldRecord[irec].platform_id)
+			&& ppec->encodingID == read(pOldRecord[irec].platform_specific_id)
+			&& ppec->engLangID == read(pOldRecord[irec].language_id))
 		{
-			uint16 nameID = swapw(pOldRecord[irec].nameID);
+			uint16 nameID = read(pOldRecord[irec].name_id);
 			switch (nameID)
 			{
-			case name_Family:
-			case name_PreferredFamily:
+			case n_family:
+			case n_preferredfamily:
 				pbStr = (uint8 *)pchwFamilyName;
 				cchwStr = cchwFamilyName;
 				break;
-			case name_FullName:
-			case name_CompatibleFull:
+			case n_fullname:
+			case n_compatiblefull:
 				pbStr = (uint8 *)vpec[ipec].pchwFullName;
 				cchwStr = vpec[ipec].cchwFullName;
 				break;
-			case name_UniqueName:
+			case n_uniquename:
 				pbStr = (uint8 *)vpec[ipec].pchwUniqueName;
 				cchwStr = vpec[ipec].cchwUniqueName;
 				break;
-			case name_Postscript:
+			case n_postscript:
 				pbStr = (uint8 *)vpec[ipec].pchwPostscriptName;
 				cchwStr = vpec[ipec].cchwPostscriptName;
 				break;
@@ -987,7 +974,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 		{
 			// Copy in the new string.
 			cbStr = cchwStr * vpec[ipec].cbBytesPerChar;
-			pNewRecord[irec].length = swapw(cbStr);
+			pNewRecord[irec].length = read(cbStr);
 			if (ppec->cbBytesPerChar == sizeof(utf16))
 			{
 				memcpy(pbNextString, pbStr, cbStr);
@@ -1002,11 +989,11 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 		else
 		{
 			// Copy the old string.
-			cbStr = swapw(pOldRecord[irec].length);
-			pbStr = pTblOld + ibStrOffsetOld + swapw(pOldRecord[irec].offset);
+			cbStr = read(pOldRecord[irec].length);
+			pbStr = pTblOld + ibStrOffsetOld + read(pOldRecord[irec].offset);
 			memcpy(pbNextString, pbStr, cbStr);
 		}
-		pNewRecord[irec].offset = swapw(dibNew);
+		pNewRecord[irec].offset = read(dibNew);
 		dibNew += cbStr;
 		pbNextString += cbStr;
 	}
@@ -1025,10 +1012,10 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 		bool f8bit = (ppec->cbBytesPerChar != sizeof(utf16));
 		for (size_t istring = 0; istring < vstuExtNames.size(); istring++)
 		{
-			pNewRecord[irec].platformID = swapw(ppec->platformID);
-			pNewRecord[irec].specificID = swapw(ppec->encodingID);
-			pNewRecord[irec].languageID = swapw(vnLangIds[istring]);
-			pNewRecord[irec].nameID = swapw(vnNameTblIds[istring]);
+			pNewRecord[irec].platform_id = read(ppec->platformID);
+			pNewRecord[irec].platform_specific_id = read(ppec->encodingID);
+			pNewRecord[irec].language_id = read(vnLangIds[istring]);
+			pNewRecord[irec].name_id = read(vnNameTblIds[istring]);
 			int cbStr = vstuExtNames[istring].length() * ppec->cbBytesPerChar;
 
 			// Convert from wchar_t to 16-bit chars.
@@ -1054,10 +1041,10 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 			}
 			// else the string has already been stored, and we've saved the offset.
 
-			pNewRecord[irec].length = swapw(cbStr);
+			pNewRecord[irec].length = read(cbStr);
 			pNewRecord[irec].offset = (f8bit) ?
-				swapw(vdibOffsets8[istring]):
-				swapw(vdibOffsets16[istring]);
+				read(vdibOffsets8[istring]):
+				read(vdibOffsets16[istring]);
 			irec++;
 		}
 
@@ -3234,8 +3221,8 @@ DWORD PadLong(DWORD ul)
 ----------------------------------------------------------------------------------------------*/
 int CompareDirEntries(const void * ptr1, const void * ptr2)
 {
-	long lTmp1 = swapl(((sfnt_DirectoryEntry *)ptr1)->tag);
-	long lTmp2 = swapl(((sfnt_DirectoryEntry *)ptr2)->tag);
+	long lTmp1 = read(((OffsetSubTable::Entry *)ptr1)->tag);
+	long lTmp2 = read(((OffsetSubTable::Entry *)ptr2)->tag);
 	return (lTmp1 - lTmp2);
 }
 
@@ -3252,7 +3239,7 @@ unsigned long CalcCheckSum(const void * pluTable, size_t cluSize)
     const DWORD *        element = static_cast<const DWORD *>(pluTable);
 	const DWORD *const   end = element + cluSize / sizeof(DWORD);
     for (;element != end; ++element)
-		luCheckSum += swapl(*element);
+		luCheckSum += read(*element);
 
     return luCheckSum;
 }
