@@ -66,7 +66,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	OffsetSubTable::Entry * pDirEntryCopy;
 
 	OffsetSubTable * pOffsetTableOut;
-	int cTableOut;
+	uint16 cTableOut;
 
 	unsigned int luMasterChecksumSrc;
 	unsigned int rgnCreateTime[2];
@@ -167,13 +167,14 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	bstrmDst.Write((char *)pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
 	
 	// Copy tables from input stream to output stream.
-	long ibTableOffset, ibHeadOffset, cbHeadSize;
+	uint32 ibTableOffset, ibHeadOffset, cbHeadSize;
 	int iNameTbl;
 	int iCmapTbl = -1;
 	int iOS2Tbl = -1;
 	uint8 * pbTable;
 	ibTableOffset = PadLong(offsetof(OffsetSubTable, table_directory) + cTableOut * sizeof(OffsetSubTable::Entry));
-	bstrmDst.SetPosition(ibTableOffset);
+//	bstrmDst.SetPosition(ibTableOffset);
+    bstrmDst.Write((char *)pDirEntryOut, cTableOut * sizeof(OffsetSubTable::Entry));
 	for (int i = 0; i < cTableCopy; i++)
 	{
 		// read table
@@ -342,7 +343,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	::qsort((void *)pDirEntryOut, cTableOut, sizeof(OffsetSubTable::Entry), CompareDirEntries);
 
 	// write directory entries
-	bstrmDst.seekp(offsetof(OffsetSubTable, table_directory));
+	bstrmDst.SetPosition(offsetof(OffsetSubTable, table_directory));
 	for (int i = 0; i < cTableOut; i++)
 	{
 		bstrmDst.write((char *)(pDirEntryOut + i), sizeof(OffsetSubTable::Entry)); 
@@ -393,7 +394,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	FontNames * pTblOld = (FontNames *)(*ppNameTbl);
 	uint16 cRecords = read(pTblOld->count);
 	uint16 ibStrOffset = read(pTblOld->string_offset);
-	NameRecord * pRecord = (NameRecord *)(pTblOld + 1);
+	NameRecord * pRecord = pTblOld->name_record;
 	
 	int irecFamilyName, irecSubFamily, irecFullName, irecVendor, irecPSName, irecUniqueName,
 		irecPrefFamily, irecCompatibleFull;
@@ -401,7 +402,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	uint16 ibSubFamilyOffset, cbSubFamily;
 	uint16 ibVendorOffset, cbVendor;
 
-	int cbOldTblRecords = sizeof(FontNames) + (cRecords * sizeof(FontNames));
+	int cbOldTblRecords = sizeof(FontNames) + (cRecords - 1) * sizeof(NameRecord);
 
 	// Make a list of all platform+encodings that have an English family name and therefore
 	// need to be changed. (Include the Unicode platform 0 for which we don't actually know
@@ -592,7 +593,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 
 	// Calculate the size of the new name table.
 	size_t cbTblNew = cbOldTblRecords
-		+ (vstuExtNames.size() * sizeof(FontNames) * vpecToChange.size())
+		+ (vstuExtNames.size() * sizeof(NameRecord) * vpecToChange.size())
 								// 1 record for each feature string for each platform+encoding of interest
 		+ cbNewStringData;		// adjusted for font name changes
 
@@ -857,6 +858,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 	std::vector<uint16> & vnNameTblIds, 
 	uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec)
 {
+    #pragma pack(1)
 	// Struct used to store data from directory entries that need to be sorted.
 	// Must match the NameRecord struct exactly.
 	struct NameTblEntry
@@ -886,22 +888,22 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 	FontNames * pTbl = (FontNames *)(pTblOld);
 	uint16 crecOld = read(pTbl->count);
 	uint16 ibStrOffsetOld = read(pTbl->string_offset);
-	NameRecord * pOldRecord = (NameRecord *)(pTbl + 1);
+	NameRecord * pOldRecord = pTbl->name_record;
 
-	int crecNew = crecOld + (vstuExtNames.size() * vpec.size());
+	uint16 crecNew = crecOld + (vstuExtNames.size() * vpec.size());
 
 	NameRecord * pNewRecord;
 
 	// name table header
 	((FontNames *)pTblNew)->format = pTbl->format;
 	((FontNames *)pTblNew)->count = read(crecNew);
-	int ibStrOffsetNew = sizeof(FontNames) + (crecNew * sizeof(NameRecord));
+	uint16 ibStrOffsetNew = sizeof(FontNames) + (crecNew - 1) * sizeof(NameRecord);
 	((FontNames *)pTblNew)->string_offset = read(ibStrOffsetNew);
 
-	pNewRecord = (NameRecord *)(pTblNew + sizeof(FontNames)); // where records start
+    pNewRecord = ((FontNames *)pTblNew)->name_record;
 
 	uint8 * pbNextString = pTblNew + ibStrOffsetNew;
-	size_t dibNew = 0; // delta offset
+	uint16 dibNew = 0; // delta offset
 
 	utf16 rgch16[512];	// buffer for converting between wchar_t and utf16;
 
@@ -937,7 +939,8 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 		pNewRecord[irec].length = pOldRecord[irec].length;
 		//pNewRecord[irec].offset = ibStrOffsetNew + dibNew;
 
-		size_t cchwStr = 0, cbStr = 0;
+		size_t cchwStr = 0;
+        uint16 cbStr = 0;
 		uint8 * pbStr = NULL;
 		if (ipec < signed(vpec.size())
 			&& ppec->pchwFullName // this is a platform+encoding where we need to change the font
@@ -1016,7 +1019,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 			pNewRecord[irec].platform_specific_id = read(ppec->encodingID);
 			pNewRecord[irec].language_id = read(vnLangIds[istring]);
 			pNewRecord[irec].name_id = read(vnNameTblIds[istring]);
-			int cbStr = vstuExtNames[istring].length() * ppec->cbBytesPerChar;
+			uint16 cbStr = vstuExtNames[istring].length() * ppec->cbBytesPerChar;
 
 			// Convert from wchar_t to 16-bit chars.
 			std::wstring stuWchar = vstuExtNames[istring];
