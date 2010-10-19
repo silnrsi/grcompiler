@@ -913,6 +913,11 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 
 	for (ipec = 0; ipec < signed(vpec.size()) - 1; ipec++)
 	{
+		int p1 = vpec[ipec].platformID;
+		int p2 = vpec[ipec+1].platformID;
+		int e1 = vpec[ipec].encodingID;
+		int e2 = vpec[ipec+1].encodingID;
+		bool f = (e1 < e2);
 		Assert((vpec[ipec].platformID < vpec[ipec + 1].platformID)
 				|| (vpec[ipec].platformID == vpec[ipec + 1].platformID
 					&& vpec[ipec].encodingID < vpec[ipec + 1].encodingID));
@@ -1860,8 +1865,8 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 	case ktiSilf:
 		if (fxdSpecVersion == 0x00010000)
 			return 0x00010000;
-		else if (fxdSpecVersion == 0x00020000)
-			return 0x00020000;
+		else if (m_fUserSpecifiedVersion && fxdSpecVersion <= kfxdMaxSilfVersion)
+			return fxdSpecVersion;
 		else
 			// No version specified, or an invalid version:
 			return kfxdMaxSilfVersion;
