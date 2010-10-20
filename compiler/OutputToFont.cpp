@@ -911,17 +911,16 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 
 	int ipec;
 
+#ifndef NDEBUG
 	for (ipec = 0; ipec < signed(vpec.size()) - 1; ipec++)
 	{
-		int p1 = vpec[ipec].platformID;
-		int p2 = vpec[ipec+1].platformID;
-		int e1 = vpec[ipec].encodingID;
-		int e2 = vpec[ipec+1].encodingID;
-		bool f = (e1 < e2);
 		Assert((vpec[ipec].platformID < vpec[ipec + 1].platformID)
 				|| (vpec[ipec].platformID == vpec[ipec + 1].platformID
-					&& vpec[ipec].encodingID < vpec[ipec + 1].encodingID));
+					&& (vpec[ipec].encodingID < vpec[ipec + 1].encodingID ||
+					    (vpec[ipec].encodingID == vpec[ipec + 1].encodingID &&
+					     vpec[ipec].engLangID < vpec[ipec+1].engLangID))));
 	}
+#endif
 
 	ipec = 0;
 	int irec = 0; // scope of this variable is larger than for-loop below.
