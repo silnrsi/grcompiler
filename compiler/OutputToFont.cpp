@@ -1650,8 +1650,15 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	//	Output the Glat table, recording the offsets in the array.
 
 	*pnGlatOffset = pbstrm->Position();
+	int fxdGlatVersion = VersionForTable(ktiGlat);
+	//	The version of the Glat table really just depends on the number of glyph attributes defined.
+	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrsGlat1 && fxdGlatVersion < 0x00020000)
+	{
+		g_errorList.AddWarning(3531, NULL, "Version 2.0 of the Glat table will be generated.");
+		fxdGlatVersion = 0x00020000;
+	}
+	pbstrm->WriteInt(fxdGlatVersion);	// version number
 
-	pbstrm->WriteInt(VersionForTable(ktiGlat));	// version number
 	int cbOutput = 4;	// first glyph starts after the version number
 
 	int wGlyphID;
@@ -1691,14 +1698,27 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 			//	We've found a run of non-zero attributes. Output them.
 
 			Assert(nAttrIDLim - nAttrIDMin == static_cast<int>(vnValues.size()));
-			Assert(nAttrIDLim - nAttrIDMin < 256);
+			
 			if (nAttrIDLim > nAttrIDMin)
 			{
-				pbstrm->WriteByte(nAttrIDMin);
-				pbstrm->WriteByte(nAttrIDLim - nAttrIDMin);
+				int cbHeader;
+				if (fxdGlatVersion < 0x00020000)
+				{
+					Assert(nAttrIDLim - nAttrIDMin < 256);
+					pbstrm->WriteByte(nAttrIDMin);
+					pbstrm->WriteByte(nAttrIDLim - nAttrIDMin);
+					cbHeader = 2;
+				}
+				else
+				{
+					Assert(nAttrIDLim - nAttrIDMin < 65536);
+					pbstrm->WriteShort(nAttrIDMin);
+					pbstrm->WriteShort(nAttrIDLim - nAttrIDMin);
+					cbHeader = 4;
+				}
 				for (size_t i = 0; i < vnValues.size(); i++)
 					pbstrm->WriteShort(vnValues[i]);
-				cbOutput += (vnValues.size() * 2) + 2;
+				cbOutput += (vnValues.size() * 2) + cbHeader;
 			}
 
 			nAttrIDMin = nAttrIDLim;

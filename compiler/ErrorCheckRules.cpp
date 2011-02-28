@@ -2157,6 +2157,13 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * 
 		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
 	}
 
+	// For now, the Glat table version does not affect the other tables.
+	//if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrsGlat1)
+	//{
+	//	// For a large number of glyph attributes, we need 3.0.
+	//	*pfxdNeeded = max(0x00030000, *pfxdNeeded);
+	//}
+
 	if (*pfxdNeeded > fxdVersion)
 		*pfFixPassConstraints = false;
 
