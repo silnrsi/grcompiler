@@ -138,6 +138,7 @@ enum {
 	kMaxScriptTags			= 256,
 	kMaxReplcmtClasses		= 65535,	// Class map
 	kMaxReplcmtClassesV1_2	= 256,
+	kMaxGlyphAttrsGlat1		= 256,
 	kMaxComponents			= 16383
 };
 
