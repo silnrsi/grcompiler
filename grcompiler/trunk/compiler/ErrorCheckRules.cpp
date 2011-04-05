@@ -788,7 +788,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 //			fOkay = false;
 //		}
 
-		if (!m_vprit[irit]->CheckRulesForErrors(pgax, pfont, prndr, psymTable,
+		if (!m_vprit[irit]->CheckRulesForErrors(pgax, pfont, prndr, this, psymTable, 
 				grfrco, irit, fAnyAssocs, vfLb, 
 				vfInsertion, vfDeletion, vcwClassSizes))
 		{
@@ -812,9 +812,10 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol /*psymTable*/, int /*grfrco*/, int /*irit*/, bool /*fAnyAssocs*/,
+	GdlRenderer * prndr, GdlRule * /*prule*/, Symbol /*psymTable*/,
+	int /*grfrco*/, int /*irit*/, bool /*fAnyAssocs*/,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & /*vcwClassSizes*/)
+	std::vector<int> & /*vcwClassSizes*/ )
 {
 	bool fOkay = true;
 
@@ -860,7 +861,8 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
+	GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
+	int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwSizes)
 {
@@ -876,8 +878,8 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	}
 
 	//	method on superclass: check constraints.
-	if(!GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit, fAnyAssocs,
-		vfLb, vfIns, vfDel, vcwSizes))
+	if(!GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, prule, psymTable,
+		grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes))
 	{
 		fOkay = false;
 	}
@@ -887,12 +889,13 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
+	GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
+	int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwSizes)
 {
-	bool fOkay = GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit,
-			fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes);
+	bool fOkay = GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, prule, psymTable,
+			grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes);
 
 	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
@@ -908,7 +911,8 @@ bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pf
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-	GdlRenderer * prndr, Symbol psymTable, int grfrco, int irit, bool fAnyAssocs,
+	GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
+	int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	std::vector<int> & vcwClassSizes)
 {
@@ -952,9 +956,26 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		if (!fAnyAssocs)
 		{
-			g_errorList.AddWarning(3529, this,
-				"Item ", PosString(),
-				": deleted item was not associated with another slot");
+			if (prule->ItemCount() == 2)
+			{
+				// Automatically associate the deleted item with the single other item in the rule.
+				// Also associate that item with itself.
+				int iritOther = (irit == 0) ? 1 : 0;
+				GdlRuleItem * pritOther = prule->Rule(iritOther);
+				pritOther->AddAssociation(prule->LineAndFile(), 1);	// 1-based
+				pritOther->AddAssociation(prule->LineAndFile(), 2);
+				char rgch[20];
+				itoa(int(iritOther+1), rgch, 10);
+				g_errorList.AddWarning(3532, this,
+					"Item ", PosString(),
+					": deleted slot automatically associated with slot ", rgch);
+			}
+			else
+			{
+				g_errorList.AddWarning(3529, this,
+					"Item ", PosString(),
+					": deleted item was not associated with another slot");
+			}
 		}
 	}
 	if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
@@ -962,9 +983,25 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		//	Insertion
 		if (m_vpexpAssocs.size() == 0 && !m_psymOutput->FitsSymbolType(ksymtSpecialAt))
 		{
-			g_errorList.AddWarning(3507, this,
-				"Item ", PosString(),
-				": inserted item was not given association");
+			if (prule->ItemCount() == 2)
+			{
+				// Automatically associate the inserted item with the single item in the LHS.
+				int iritOther = (irit == 0) ? 1 : 0;
+				GdlRuleItem * pritOther = prule->Rule(iritOther);
+				int nOther = (irit == 0) ? 2 : 1;
+				this->AddAssociation(prule->LineAndFile(), nOther);	// 1-based
+				char rgch[20];
+				itoa(int(nOther), rgch, 10);
+				g_errorList.AddWarning(3533, this,
+					"Item ", PosString(),
+					": inserted item automatically associated with slot ", rgch);
+			}
+			else
+			{
+				g_errorList.AddWarning(3507, this,
+					"Item ", PosString(),
+					": inserted item was not given association");
+			}
 		}
 		if (m_pexpConstraint)
 		{
@@ -1059,8 +1096,8 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		}
 	}
 
-	if (!GdlSetAttrItem::CheckRulesForErrors(pgax, pfont, prndr, psymTable, grfrco, irit, fAnyAssocs,
-		vfLb, vfIns, vfDel, vcwClassSizes))
+	if (!GdlSetAttrItem::CheckRulesForErrors(pgax, pfont, prndr, prule, psymTable,
+		grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwClassSizes))
 	{
 		fOkay = false;
 	}

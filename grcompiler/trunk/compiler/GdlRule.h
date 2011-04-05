@@ -248,7 +248,7 @@ public:
 		ReplacementClassSet & setpglfcReplace, bool fInput);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-		GdlRenderer * prndr, Symbol psymTable,
+		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit, bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
@@ -359,7 +359,7 @@ protected:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, GdlRule * prule, int irit);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-		GdlRenderer * prndr, Symbol psymTable,
+		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
@@ -445,7 +445,7 @@ protected:
 	void CheckCompBox(GrcManager * pcman, Symbol psymCompRef);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-		GdlRenderer * prndr, Symbol psymTable,
+		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
@@ -582,7 +582,7 @@ protected:
 	virtual void FindSubstitutionSlots(int irit,
 		std::vector<bool> & vfInput, std::vector<bool> & vfOutput);
 	virtual bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
-		GdlRenderer * prndr, Symbol psymTable,
+		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 		std::vector<int> & vcwClassSizes);
@@ -792,6 +792,14 @@ public:
 	bool HasNoItems()
 	{
 		return m_vprit.size() == 0;
+	}
+	int ItemCount()
+	{
+		return m_vprit.size();
+	}
+	GdlRuleItem * Rule(int irit)
+	{
+		return m_vprit[irit];
 	}
 protected:
 	bool AdjustOptRanges();
