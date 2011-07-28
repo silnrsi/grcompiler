@@ -1,6 +1,6 @@
 AC_PREREQ(2.54)
 
-AC_INIT(grcompiler, 2.4.5, silgraphite-devel@lists.sourceforge.net)
+AC_INIT(grcompiler, 2.4.6, silgraphite-devel@lists.sourceforge.net)
 AC_CONFIG_SRCDIR(compiler/GrpParser.g)
 AC_CONFIG_AUX_DIR(admin)
 
