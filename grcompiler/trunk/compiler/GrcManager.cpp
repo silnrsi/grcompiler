@@ -68,6 +68,12 @@ void GrcManager::Init()
 	m_fBasicJust = false;
 
 	m_nNameTblStart = -1;
+
+	m_fxdSilfTableVersion = 0;
+	m_fxdGlocTableVersion = 0;
+	m_fxdGlatTableVersion = 0;
+	m_fxdFeatTableVersion = 0;
+	m_fxdSillTableVersion = 0;
 }
 
 

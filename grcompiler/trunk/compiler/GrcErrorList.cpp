@@ -274,9 +274,14 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 	if (m_vperr.size() > 0)
 		strmOut << "\n*******************************************************\n\n";
 	if (AnyFatalErrors())
+	{
 		strmOut << "Compilation failed";
+	}
 	else
+	{
+		WriteTableVersionsGenerated(strmOut);
 		strmOut << "Compilation succeeded";
+	}
 	strmOut << " - " << cError << " error" << ((cError == 1) ? ", " : "s, ")
 		<< cWarning << " warning" << ((cWarning == 1) ? "" : "s");
 	if (cWarningIgnored > 0)
@@ -284,6 +289,26 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 			<< " ignored)";
 }
 
+/*----------------------------------------------------------------------------------------------
+	Output the table version numbers to the error file.
+----------------------------------------------------------------------------------------------*/
+void GrcErrorList::WriteTableVersionsGenerated(std::ostream& strmOut)
+{
+	strmOut << "Table versions generated:\n";
+
+	int fxd = g_cman.TableVersion(ktiSilf);
+	strmOut << "  Silf: " << VersionString(fxd) << "\n";
+	fxd = g_cman.TableVersion(ktiGloc);
+	strmOut << "  Gloc: " << VersionString(fxd) << "\n";
+	fxd = g_cman.TableVersion(ktiGlat);
+	strmOut << "  Glat: " << VersionString(fxd) << "\n";
+	fxd = g_cman.TableVersion(ktiFeat);
+	strmOut << "  Feat: " << VersionString(fxd) << "\n";
+	fxd = g_cman.TableVersion(ktiSill);
+	strmOut << "  Sill: " << VersionString(fxd) << "\n";
+
+	strmOut << "\n*******************************************************\n\n";
+}
 
 /*----------------------------------------------------------------------------------------------
 	Return the number of non-fatal errors.
@@ -393,4 +418,3 @@ void GrcErrorList::SetFileNameFromGdlFile(char * pchGdlFile)
 	m_strErrFile.assign(pchGdlFile, (pchEnd - pchGdlFile + 1));
 	m_strErrFile.append("gdlerr.txt");
 }
-

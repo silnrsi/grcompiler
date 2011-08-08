@@ -76,7 +76,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 				g_errorList.AddWarning(3501, NULL,
 					"Version ",
 					VersionString(fxdRequested),
-					" of the Silf table is inadequate for your specfication; version ",
+					" of the Silf table is inadequate for your specification; version ",
 					VersionString(fxdVersionNeeded),
 					" will be generated instead.");
 			}

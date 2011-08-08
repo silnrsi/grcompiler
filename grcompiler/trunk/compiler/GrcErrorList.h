@@ -300,6 +300,8 @@ public:
 
 	void SetFileNameFromGdlFile(char * pchGdlFile);
 
+	void WriteTableVersionsGenerated(std::ostream& strmOut);
+
 protected:
 	//	instance variables:
 	bool m_fFatalError;
