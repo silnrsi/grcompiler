@@ -91,6 +91,32 @@ public:
 		return m_fUserSpecifiedVersion;
 	}
 
+	void SetTableVersion(int ti, int fxdVersion)
+	{
+		switch (ti)
+		{
+		case ktiSilf:	m_fxdSilfTableVersion = fxdVersion; break;
+		case ktiGloc:	m_fxdGlocTableVersion = fxdVersion;	break;
+		case ktiGlat:	m_fxdGlatTableVersion = fxdVersion;	break;
+		case ktiFeat:	m_fxdFeatTableVersion = fxdVersion;	break;
+		case ktiSill:	m_fxdSillTableVersion = fxdVersion;	break;
+		default:
+			break;
+		}
+	}
+	int TableVersion(int ti)
+	{
+		switch (ti)
+		{
+		case ktiSilf:	return m_fxdSilfTableVersion;
+		case ktiGloc:	return m_fxdGlocTableVersion;
+		case ktiGlat:	return m_fxdGlatTableVersion;
+		case ktiFeat:	return m_fxdFeatTableVersion;
+		case ktiSill:	return m_fxdSillTableVersion;
+		default:		return 0;
+		}
+	}
+
 	int CompilerVersion()
 	{
 		return m_fxdCompilerVersion;
@@ -370,6 +396,12 @@ protected:
 	int m_fxdCompilerVersion;
 	//	Did the user include a /v option?
 	bool m_fUserSpecifiedVersion;
+
+	//	Other table versions.
+	int m_fxdGlocTableVersion;
+	int m_fxdGlatTableVersion;
+	int m_fxdFeatTableVersion;
+	int m_fxdSillTableVersion;
 
 	//	Are we creating a separate control file?
 	bool m_fSepCtrlFile;

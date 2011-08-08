@@ -1599,10 +1599,9 @@ void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
 {
 	*pibOffset = pbstrm->Position();
 
-
-
 	// version
-	pbstrm->WriteInt(VersionForTable(ktiSile));
+	int fxd = VersionForTable(ktiSile);
+	pbstrm->WriteInt(fxd);
 
 	// master check sum from source font
 	pbstrm->WriteInt(luMasterChecksum);
@@ -1657,6 +1656,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 		g_errorList.AddWarning(3531, NULL, "Version 2.0 of the Glat table will be generated.");
 		fxdGlatVersion = 0x00020000;
 	}
+	SetTableVersion(ktiGlat, fxdGlatVersion);
 	pbstrm->WriteInt(fxdGlatVersion);	// version number
 
 	int cbOutput = 4;	// first glyph starts after the version number
@@ -1736,7 +1736,9 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	//	Output the Gloc table.
 	*pnGlocOffset = pbstrm->Position();
 
-	pbstrm->WriteInt(VersionForTable(ktiGloc));	// version number
+	int fxd = VersionForTable(ktiGloc);
+	pbstrm->WriteInt(fxd);	// version number
+	SetTableVersion(ktiGloc, fxd);
 
 	//	flags
 	utf16 wFlags = 0;
@@ -1888,7 +1890,7 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 			return fxdSpecVersion;
 		else
 			// No version specified, or an invalid version:
-			return kfxdMaxSilfVersion;
+			return g_cman.DefaultSilfVersion();
 	default:
 		Assert(false);
 	}
@@ -1953,6 +1955,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	*pnSilfOffset = pbstrm->Position();
 
 	int fxdSilfVersion = VersionForTable(ktiSilf);
+	SetTableVersion(ktiSilf, fxdSilfVersion);
 
 	//	version number
 	pbstrm->WriteInt(fxdSilfVersion);
@@ -2913,6 +2916,7 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 
 	//	version number
 	int fxdFeatVersion = VersionForTable(ktiFeat);
+	SetTableVersion(ktiFeat, fxdFeatVersion);
 	pbstrm->WriteInt(fxdFeatVersion);
 
 	m_prndr->OutputFeatTable(pbstrm, *pnFeatOffset, fxdFeatVersion);
@@ -3021,7 +3025,9 @@ void GrcManager::OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, i
 	*pnSillOffset = pbstrm->Position();
 
 	//	version number
-	pbstrm->WriteInt(VersionForTable(ktiSill));
+	int fxd = VersionForTable(ktiSill);
+	SetTableVersion(ktiSill, fxd);
+	pbstrm->WriteInt(fxd);
 
 	m_prndr->OutputSillTable(pbstrm, *pnSillOffset);
 
