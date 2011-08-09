@@ -120,7 +120,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 4.0";
+		std::cout << "Graphite Compiler Version 4.1";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
