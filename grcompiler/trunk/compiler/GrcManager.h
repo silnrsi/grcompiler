@@ -40,6 +40,17 @@ struct PlatEncChange
 	size_t cchwPostscriptName;
 };
 
+
+//	Processing passes in the parser where we process and assign IDs to glyph attributes:
+enum GlyphAttrProcessPasses
+{
+	kgappBuiltIn	= 0,
+	kgappCompBase	= 1,
+	kgappCompBox	= 2,
+	kgappJustify	= 3,
+	kgappOther		= 4
+};
+
 /*----------------------------------------------------------------------------------------------
 Class: GrcManager
 Description: The object that manages the complication process. There is one global instance.
@@ -125,8 +136,8 @@ public:
 	{
 		switch (fxdSilfVersion)
 		{
-		case 0x00010000:	m_fxdCompilerVersion = fxdSilfVersion;	break;
-		case 0x00020000:	m_fxdCompilerVersion = fxdSilfVersion;	break;
+		case 0x00010000:	m_fxdCompilerVersion = 0x00010000;		break;
+		case 0x00020000:	m_fxdCompilerVersion = 0x00020000;		break;
 		case 0x00030000:	m_fxdCompilerVersion = 0x00030000;		break;
 		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
 		default:			m_fxdCompilerVersion = fxdSilfVersion;	break;
@@ -445,6 +456,7 @@ protected:
 	int m_wGlyphIDLim;	// lim of range of glyph IDs in the font
 	int m_cwGlyphIDs;
 
+	int m_cpsymBuiltIn;		// total number of built-in attributes
 	int m_cpsymComponents;	// total number of ligature components encountered
 
 	//	Pseudo-code mappings: the two vectors form pairs of underlying unicode values and 

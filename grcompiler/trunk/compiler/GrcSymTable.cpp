@@ -358,7 +358,7 @@ bool GrcSymbolTableEntry::FitsSymbolType(SymbolType symt)
 			return true;
 		break;
 
-	case ksymtGlyph:
+	case ksymtGlyphData:
 		if (FitsSymbolType(ksymtGlyphAttr))
 			return true;
 		if (FitsSymbolType(ksymtGlyphMetric))
@@ -1639,39 +1639,45 @@ void GrcSymbolTable::InitSlotAttrs()
 /*--------------------------------------------------------------------------------------------*/
 void GrcSymbolTable::InitGlyphAttrs()
 {
-	SymbolType kst = ksymtGlyphAttr;
-
 	//	These were first recorded as slot attributes:
 
 	Symbol psym;
-	psym = AddType2(GrcStructName("component"), kst);
+	psym = AddType2(GrcStructName("component"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("directionality"), kst);
+	psym = AddType2(GrcStructName("directionality"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("breakweight"), kst);
+	psym = AddType2(GrcStructName("breakweight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
 	//	TODO: handle all the levels
-	psym = AddType2(GrcStructName("justify", "stretch"), kst);
+	psym = AddType2(GrcStructName("justify", "stretch"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "shrink"), kst);
+	psym = AddType2(GrcStructName("justify", "shrink"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "step"), kst);
+	psym = AddType2(GrcStructName("justify", "step"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "weight"), kst);
+	psym = AddType2(GrcStructName("justify", "weight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
-	psym = AddType2(GrcStructName("justify", "0", "stretch"), kst);
+	psym = AddType2(GrcStructName("justify", "0", "stretch"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "0", "shrink"), kst);
+	psym = AddType2(GrcStructName("justify", "0", "shrink"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "0", "step"), kst);
+	psym = AddType2(GrcStructName("justify", "0", "step"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "0", "weight"), kst);
+	psym = AddType2(GrcStructName("justify", "0", "weight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
 	//	A fake glyph attribute that is used to store the actual glyph ID for pseudo-glyphs.
-	psym = PreDefineSymbol(GrcStructName("*actualForPseudo*"), kst, kexptNumber);
+	psym = PreDefineSymbol(GrcStructName("*actualForPseudo*"), ksymtGlyphAttr, kexptNumber);
+	psym->m_fGeneric = true;
+
+	// These are just glyph attributes. These two must be in this order and contiguous,
+	// so that the internal IDs are assigned correctly.
+
+	psym = PreDefineSymbol(GrcStructName("mirror", "glyph"), ksymtGlyphAttr, kexptGlyphID);
+	psym->m_fGeneric = true;
+	psym = PreDefineSymbol(GrcStructName("mirror", "isEncoded"), ksymtGlyphAttr, kexptBoolean);
 	psym->m_fGeneric = true;
 }
 

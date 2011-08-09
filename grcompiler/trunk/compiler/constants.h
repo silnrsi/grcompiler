@@ -40,7 +40,8 @@ typedef enum ExpressionType {	// hungarian: expt
 	kexptOne,	// to handle the fact that 1 == true
 	kexptSlotRef,
 	kexptString,
-	kexptPoint
+	kexptPoint,
+	kexptGlyphID
 } ExpressionType;
 
 
@@ -69,7 +70,7 @@ typedef enum SymbolType {	// hungarian: symt
 	ksymtFeatSetting,			// user-defined
 	ksymtLanguage,				// user defined
 	ksymtGlobal,				// pre-defined
-	ksymtGlyph,
+	ksymtGlyphData,
 		ksymtGlyphAttr,			// pre-defined and user-defined
 			ksymtGlyphAttrComp,	// user-defined: component.???.top/bottom/right/left
 		ksymtGlyphMetric,		// pre-defined
@@ -325,3 +326,4 @@ enum JustifyModes
 	kjmodMeasure	= 1,
 	kjmodJustify	= 2
 };
+

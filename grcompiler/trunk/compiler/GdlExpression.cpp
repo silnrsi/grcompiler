@@ -909,7 +909,7 @@ void GdlCondExpression::GlyphAttrCheck()
 /*--------------------------------------------------------------------------------------------*/
 void GdlLookupExpression::GlyphAttrCheck()
 {
-	if (m_psymName->FitsSymbolType(ksymtGlyph))
+	if (m_psymName->FitsSymbolType(ksymtGlyphData))
 	{
 		//	okay
 	}
@@ -2149,7 +2149,7 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer *
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & /*vfDel*/,
 	bool /*fValue*/, bool /*fValueIsInputSlot*/)
 {
-	Assert(m_psymName->FitsSymbolType(ksymtGlyph) ||
+	Assert(m_psymName->FitsSymbolType(ksymtGlyphData) ||
 		m_psymName->FitsSymbolType(ksymtSlotAttr) ||
 		m_psymName->FitsSymbolType(ksymtFeature) ||
 		m_psymName->FitsSymbolType(ksymtInvalid));
@@ -2978,17 +2978,11 @@ void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector
 }
 
 /*----------------------------------------------------------------------------------------------
-	Translate the expression into engine code and append it to the code block.
+	Generate a pretty-print of the expression.
 	Arguments:
-		vbOutput		- vector of bytes, engine code being generated
-		iritCurrent		- current rule item index (0-based); -1 if we are in an -if- statement
-		fAttachAt		- true if this the value of an attach.at attribute, in which case
-							output a special command that will read the value of the attached
-							slot
-		pnValue			- return the value of the slot ref expression for the benefit of
-							calling code that, if it happens to be an attach.to setter,
-							needs to decide how to handle the accompanying insert = false;
-							only slot references need to worry about it
+		pcman
+		strmOut		- Stream on which to generate the results
+		fParens		- Put parens around binary expression
 ----------------------------------------------------------------------------------------------*/
 void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
 {

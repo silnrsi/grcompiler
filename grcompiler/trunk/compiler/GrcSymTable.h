@@ -372,8 +372,8 @@ public:
 
 public:
 	//	Pre-compiler methods:
-	bool AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
-		std::vector<Symbol> & vpsymGlyphAttrIDs, int nPass, int cComponents, int nMaxJLevel);
+	bool AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain, std::vector<Symbol> & vpsymGlyphAttrIDs, 
+		int nPass, int cpsymBuiltIn, int cpsymComponents, int nMaxJLevel);
 	Symbol BaseLigComponent();
 
 	//	Debuggers:
