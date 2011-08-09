@@ -1079,4 +1079,26 @@ protected:
 };
 
 
+/*----------------------------------------------------------------------------------------------
+Class: GdlIndexedLookupExpression
+Description: Expression to look up the a glyph, with an index into a class.
+Hungarian: 
+----------------------------------------------------------------------------------------------*/
+
+//class GdlIndexedLookupExpression : public GdlExpression
+//{
+//public:
+//	// Pre-compiler:
+//	virtual void GlyphAttrCheck();
+//	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
+//		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+//		bool fGAttrDefChk, bool * pfCanSub);
+//	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+//
+//protected:
+//	//	Instance variables:
+//	int m_nIndex;
+//
+//};
+
 #endif // !GDL_EXP_INCLUDED

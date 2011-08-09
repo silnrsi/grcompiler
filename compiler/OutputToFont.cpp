@@ -1783,14 +1783,15 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::FinalAttrValue(utf16 wGlyphID, int nAttrID)
 {
-	if (nAttrID < m_cpsymComponents)
+	if (m_cpsymBuiltIn <= nAttrID && nAttrID < m_cpsymBuiltIn + m_cpsymComponents)
 	{
 		Assert(!m_pgax->Defined(wGlyphID, nAttrID));
 
 		if (!m_plclist->FindComponentFor(wGlyphID, nAttrID))
 			return 0;
 		else
-			return m_cpsymComponents + (kFieldsPerComponent * nAttrID);
+			// What does this really mean??
+			return m_cpsymBuiltIn + m_cpsymComponents + (kFieldsPerComponent * nAttrID);
 	}
 	else
 	{
@@ -2052,8 +2053,11 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteByte(psym->InternalID());
 	if (fxdSilfVersion >= 0x00020000)
 	{
-		// reserved (pad bytes)
-		pbstrm->WriteByte(0);
+		// mirror attribute ID
+		psym = m_psymtbl->FindSymbol(GrcStructName("mirror", "glyph"));
+		pbstrm->WriteByte(psym->InternalID());
+
+		// reserved (pad byte)
 		pbstrm->WriteByte(0);
 
 		if (m_fBasicJust)

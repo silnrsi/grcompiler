@@ -835,18 +835,25 @@ void GdlAttrValueSpec::MaxJustificationLevel(int * pnJLevel)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignInternalGlyphAttrIDs()
 {
+	//	Assign the first batch of IDs to the built-in attributes;
+	//	this is an optimization for the Graphite2 engine.
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1);
+	m_cpsymBuiltIn = m_vpsymGlyphAttrs.size();
+
 	//	Assign the first batch of IDs to component bases (ie, component.X).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 1, -1, -1);
-	m_cpsymComponents = m_vpsymGlyphAttrs.size();
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1);
+	m_cpsymComponents = m_vpsymGlyphAttrs.size() - m_cpsymBuiltIn;
 
 	//	Assign the next batch to component box fields. (ie, component.X.top/bottom/left/right).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 2, m_cpsymComponents, -1);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBox,
+		m_cpsymBuiltIn, m_cpsymComponents, -1);
 
 	//	Assign the next batch to the justification attributes.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 3, -1, NumJustLevels());
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappJustify, -1, -1,
+		NumJustLevels());
 
 	//	Finally, assign IDs to everything else.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, 4, -1, -1);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1);
 
 	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
@@ -869,17 +876,20 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 	Arguments:
 		psymtblMain			- main, top-level symbol table
 		vpsymGlyphAttrIDs	- list of assigned symbols
-		nPass				- 1: process component bases;
-							  2: process component box fields;
-							  3: process justification attributes
-							  4: process everything else
-		cComponents			- only used on pass 2
-		cJLevels			- only used on pass 3
+		gapp				- 1: process built-in attributes
+							  2: process component bases;
+							  3: process component box fields;
+							  4: process justification attributes
+							  5: process everything else
+		cpsymBuiltIn		- only used on pass 3
+		cpsymComponents		- only used on pass 3
+		cJLevels			- only used on pass 4
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
-	std::vector<Symbol> & vpsymGlyphAttrIDs, int nPass, int cComponents, int cJLevels)
+	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, int cpsymBuiltIn, int cpsymComponents,
+	int cJLevels)
 {
-	if (nPass == 3)
+	if (gapp == kgappJustify)
 	{
 		//	Justification attributes must be put in a specific order, with the corresponding
 		//	attributes for the various levels contiguous. Eg, if cJLevels = 2:
@@ -947,7 +957,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 
 		if (psym->m_psymtblSubTable)
 		{
-			if (!psym->IsGeneric() && nPass == 1 && psym->IsComponentBase())
+			if (!psym->IsGeneric() && gapp == kgappCompBase && psym->IsComponentBase())
 			{
 				Symbol psymGeneric = psym->Generic();
 				if (!psymGeneric)
@@ -965,7 +975,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			}
 			else
 				psym->m_psymtblSubTable->AssignInternalGlyphAttrIDs(psymtblMain,
-					vpsymGlyphAttrIDs, nPass, cComponents, cJLevels);
+					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels);
 		}
 		else if (!psym->IsGeneric() &&
 			psym->FitsSymbolType(ksymtGlyphAttr))
@@ -978,7 +988,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				continue;
 			Assert(psymGeneric);
 
-			if (nPass == 2 && psym->IsComponentBoxField())
+			if (gapp == kgappCompBox && psym->IsComponentBoxField())
 			{
 				int ipsymOffset = 0;
 				std::string sta = psym->LastField();
@@ -998,7 +1008,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				Assert(ipsymOffset < kFieldsPerComponent);
 
 				int nBaseID = psym->BaseLigComponent()->InternalID();
-				int ipsym = cComponents + (nBaseID * kFieldsPerComponent) + ipsymOffset;
+				int ipsym = cpsymBuiltIn + cpsymComponents + ((nBaseID - cpsymBuiltIn) * kFieldsPerComponent) 
+					+ ipsymOffset;
 #ifndef NDEBUG
 				int i = 
 #endif
@@ -1007,7 +1018,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				psymGeneric->SetInternalID(ipsym);
 				psym->SetInternalID(psymGeneric->InternalID());
 			}
-			else if (nPass == 4 && !psym->IsComponentBoxField())
+			else if (gapp == kgappOther && !psym->IsComponentBoxField())
 			{
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGeneric);
 				psym->SetInternalID(psymGeneric->InternalID());
@@ -1064,13 +1075,25 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				}
 			}				
 		}
-		else if (nPass == 4 && psym->FitsSymbolType(ksymtGlyphAttr)
+		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
 			&& psym->FieldCount() == 1
 			&& (psym->FieldIs(0, "directionality")
 				|| psym->FieldIs(0, "breakweight")
 				|| psym->FieldIs(0, "*actualForPseudo*")))
 		{
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
+		}
+		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
+			&& psym->FieldCount() == 2
+			&& psym->FieldIs(0, "mirror"))
+		{
+			//	Put mirror.glyph first, immediately followed by mirror.isEncoded.
+			Symbol psymGlyph = psymtblMain->FindSymbol(GrcStructName("mirror", "glyph"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGlyph);
+			Symbol psymIsEnc = psymtblMain->FindSymbol(GrcStructName("mirror", "isEncoded"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymIsEnc);
+			Assert(psymGlyph->InternalID() + 1 == psymIsEnc->InternalID());
+			Assert(psymGlyph->InternalID() != 0);
 		}
 	}
 
@@ -1149,6 +1172,15 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	//	breakweight = letter
 	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("breakweight"));
 	vnSysDefValues.push_back(klbLetterBreak);
+	if (m_prndr->Bidi())
+	{
+		//	mirror.glyph
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("mirror", "glyph")));
+		vnSysDefValues.push_back(0);
+		//	mirror.isEncoded
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("mirror", "isEncoded")));
+		vnSysDefValues.push_back(0);
+	}
 	// justify.weight = 1
 	if (NumJustLevels() > 0)
 	{
@@ -1322,7 +1354,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				//  Read the character property from ICU.
 				//	How do we handle values from the Private Use Area? Just hard-code the
 				//	range to skip?
-				int nUnicodeStd;
+				int nStdValue;
 				bool fInitFailed = false;
 
                 if (psym->LastFieldIs("breakweight"))
@@ -1349,39 +1381,50 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 							fInitFailed = true; // not sure we got the right answer
 						}
                     }
-                    nUnicodeStd = (fIsSep) ? klbWordBreak : nDefaultValue;
+                    nStdValue = (fIsSep) ? klbWordBreak : nDefaultValue;
                 }
                 else if (psym->LastFieldIs("directionality"))
                 {
 					if (fIcuAvailable)
                     {
 						UCharDirection diricu = u_charDirection(nUnicode);
-						nUnicodeStd = ConvertBidiCode(diricu, nUnicode);
-						//if (!Bidi() && nUnicodeStd == kdircL)
-						//	nUnicodeStd = 0;	// don't bother storing this for non-bidi fonts
+						nStdValue = ConvertBidiCode(diricu, nUnicode);
+						//if (!Bidi() && nStdValue == kdircL)
+						//	nStdValue = 0;	// don't bother storing this for non-bidi fonts
                     }
                     else
 					{
 						switch (nUnicode)
 						{
-						case kchwSpace:			nUnicodeStd = kdircWhiteSpace; break;
-						case kchwLRM:			nUnicodeStd = kdircL; break;
-						case kchwRLM:			nUnicodeStd = kdircR; break;
-						case kchwLRO:			nUnicodeStd = kdircLRO; break;
-						case kchwRLO:			nUnicodeStd = kdircRLO; break;
-						case kchwLRE:			nUnicodeStd = kdircLRE; break;
-						case kchwRLE:			nUnicodeStd = kdircRLE; break;
-						case kchwPDF:			nUnicodeStd = kdircPDF; break;
+						case kchwSpace:			nStdValue = kdircWhiteSpace; break;
+						case kchwLRM:			nStdValue = kdircL; break;
+						case kchwRLM:			nStdValue = kdircR; break;
+						case kchwLRO:			nStdValue = kdircLRO; break;
+						case kchwRLO:			nStdValue = kdircRLO; break;
+						case kchwLRE:			nStdValue = kdircLRE; break;
+						case kchwRLE:			nStdValue = kdircRLE; break;
+						case kchwPDF:			nStdValue = kdircPDF; break;
 						default:
 							if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
-								nUnicodeStd = kdircWhiteSpace;
+								nStdValue = kdircWhiteSpace;
 							else
-								nUnicodeStd = 0;		// don't know
+								nStdValue = 0;		// don't know
 								fInitFailed = Bidi();	// we only care about the failure if this is a bidi font
 							break;
 						}
 					}
                 }
+				else if (psym->LastFieldIs("glyph") && Bidi())
+				{
+					nStdValue = (int)u_charMirror(nUnicode);
+					if (nStdValue == nUnicode)
+						nStdValue = 0;
+				}
+				else if (psym->LastFieldIs("hasEncoded") && Bidi())
+				{
+					boolean fIsEnc = u_isMirrored(nUnicode);
+					nStdValue = (int)fIsEnc;
+				}
                 else
                     break;	// ...out of the character loop; this is not an attribute
 							// it makes sense to read from the db
@@ -1400,7 +1443,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				}
 				else if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 				{
-					GdlExpression * pexpDefault = new GdlNumericExpression(nUnicodeStd);
+					GdlExpression * pexpDefault = new GdlNumericExpression(nStdValue);
 					vpexpExtra.push_back(pexpDefault);
 					pgax->Set(wGlyphID, nGlyphAttrID,
 						pexpDefault, 0, 0, false, false, GrpLineAndFile());
