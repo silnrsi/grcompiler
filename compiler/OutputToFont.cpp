@@ -1887,7 +1887,7 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 	case ktiSilf:
 		if (fxdSpecVersion == 0x00010000)
 			return 0x00010000;
-		else if (m_fUserSpecifiedVersion && fxdSpecVersion <= kfxdMaxSilfVersion)
+		else if (fxdSpecVersion <= kfxdMaxSilfVersion)
 			return fxdSpecVersion;
 		else
 			// No version specified, or an invalid version:
@@ -1961,10 +1961,11 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	version number
 	pbstrm->WriteInt(fxdSilfVersion);
 
+	SetCompilerVersionFor(fxdSilfVersion);
+
 	//	compiler version
 	if (fxdSilfVersion >= 0x00030000)
-	{
-		SetCompilerVersionFor(fxdSilfVersion);
+	{	
 		pbstrm->WriteInt(CompilerVersion());
 	}
 

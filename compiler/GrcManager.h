@@ -132,15 +132,18 @@ public:
 	{
 		return m_fxdCompilerVersion;
 	}
+	// See documentation at the beginning of the main.cpp file.
 	void SetCompilerVersionFor(int fxdSilfVersion)
 	{
 		switch (fxdSilfVersion)
 		{
 		case 0x00010000:	m_fxdCompilerVersion = 0x00010000;		break;
 		case 0x00020000:	m_fxdCompilerVersion = 0x00020000;		break;
+		case 0x00020001:	m_fxdCompilerVersion = 0x00040001;		break;
 		case 0x00030000:	m_fxdCompilerVersion = 0x00030000;		break;
 		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
-		default:			m_fxdCompilerVersion = fxdSilfVersion;	break;
+		case 0x00030002:	m_fxdCompilerVersion = 0x00040001;		break;
+		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
 	}
 
@@ -301,7 +304,8 @@ protected:
 	bool AddAllGlyphsToTheAnyClass(GrcFont * pfont, std::map<utf16, utf16> & hmActualForPseudo);
 
 	bool MaxJustificationLevel(int * pnJLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+		bool * pfFixPassConstraints);
 
 	bool AssignInternalGlyphAttrIDs();
 
@@ -313,12 +317,17 @@ protected:
 		int cJLevels, int nAttrIDJStr, int nAttrIDJShr, int nAttrIDJStep, int nAttrIDJWeight,
 		int * pnMin, int * pnMax);
 	bool StorePseudoToActualAsGlyphAttr();
+
 public:
 	int PseudoForUnicode(int nUnicode);
 	int ActualForPseudo(utf16 wPseudo);
 	utf16 LbGlyphId()
 	{
 		return m_wLineBreak;
+	}
+	void StoreModifiedExpression(GdlExpression * pexp)	// store an extra expression so it can be deleted later
+	{
+		m_vpexpModified.push_back(pexp);
 	}
 
 protected:

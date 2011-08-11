@@ -1,5 +1,5 @@
 /*
- * ANTLR-generated file resulting from grammar c:\fw\src\graphite\grcompiler\grpparser.g
+ * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software
@@ -8,17 +8,15 @@
 
 #include "GrpParser.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "Antlr/NoViableAltException.hpp"
-#include "Antlr/SemanticException.hpp"
+#include "antlr/NoViableAltException.hpp"
+#include "antlr/SemanticException.hpp"
 
 //	Insert at the beginning of the GrpParser.cpp file
-#ifdef _MSC_VER
 #pragma warning(disable:4101)
-#endif
 #include "Grp.h"
 
 //	This function needs to go in the .cpp file, not the .hpp file, after the
-//	WprASTNode class is defined.
+//	GrpASTNode class is defined.
 void GrpParser::init(GrpTokenStreamFilter & tsf)
 {
 	m_ptsf = &tsf;
@@ -2552,6 +2550,7 @@ void GrpParser::glyphAttrs() {
 			switch ( LA(1)) {
 			case IDENT:
 			case LIT_INT:
+			case LITERAL_glyph:
 			{
 				attrItemList();
 				X1_AST = returnAST;
@@ -2579,11 +2578,11 @@ void GrpParser::glyphAttrs() {
 			tmp97_AST = astFactory.create(LT(1));
 			match(OP_DOT);
 			{
-			if ((LA(1)==IDENT||LA(1)==LIT_INT) && (_tokenSet_24.member(LA(2)))) {
+			if ((LA(1)==IDENT||LA(1)==LIT_INT||LA(1)==LITERAL_glyph) && (_tokenSet_24.member(LA(2)))) {
 				attrItemFlat();
 				X2_AST = returnAST;
 			}
-			else if ((LA(1)==IDENT||LA(1)==LIT_INT) && (LA(2)==OP_LBRACE)) {
+			else if ((LA(1)==IDENT||LA(1)==LIT_INT||LA(1)==LITERAL_glyph) && (LA(2)==OP_LBRACE)) {
 				attrItemStruct();
 				X3_AST = returnAST;
 			}
@@ -2780,6 +2779,7 @@ void GrpParser::attributes() {
 			switch ( LA(1)) {
 			case IDENT:
 			case LIT_INT:
+			case LITERAL_glyph:
 			{
 				attrItemList();
 				X_AST = returnAST;
@@ -2873,11 +2873,11 @@ void GrpParser::attrItemList() {
 	
 	try {      // for error handling
 		{
-		if ((LA(1)==IDENT||LA(1)==LIT_INT) && (LA(2)==OP_LBRACE)) {
+		if ((LA(1)==IDENT||LA(1)==LIT_INT||LA(1)==LITERAL_glyph) && (LA(2)==OP_LBRACE)) {
 			attrItemStruct();
 			astFactory.addASTChild(currentAST, returnAST);
 		}
-		else if ((LA(1)==IDENT||LA(1)==LIT_INT) && (_tokenSet_24.member(LA(2)))) {
+		else if ((LA(1)==IDENT||LA(1)==LIT_INT||LA(1)==LITERAL_glyph) && (_tokenSet_24.member(LA(2)))) {
 			attrItemFlat();
 			astFactory.addASTChild(currentAST, returnAST);
 		}
@@ -2887,7 +2887,7 @@ void GrpParser::attrItemList() {
 		
 		}
 		{
-		if ((LA(1)==OP_SEMI) && (LA(2)==IDENT||LA(2)==LIT_INT) && (_tokenSet_28.member(LA(3)))) {
+		if ((LA(1)==OP_SEMI) && (LA(2)==IDENT||LA(2)==LIT_INT||LA(2)==LITERAL_glyph) && (_tokenSet_28.member(LA(3)))) {
 			RefAST tmp105_AST = nullAST;
 			tmp105_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
@@ -2920,6 +2920,8 @@ void GrpParser::attrItemFlat() {
 	RefAST I1_AST = nullAST;
 	RefToken  I2 = nullToken;
 	RefAST I2_AST = nullAST;
+	RefToken  I3 = nullToken;
+	RefAST I3_AST = nullAST;
 	RefToken  D = nullToken;
 	RefAST D_AST = nullAST;
 	RefAST X1_AST = nullAST;
@@ -2945,6 +2947,13 @@ void GrpParser::attrItemFlat() {
 			match(LIT_INT);
 			break;
 		}
+		case LITERAL_glyph:
+		{
+			I3 = LT(1);
+			I3_AST = astFactory.create(I3);
+			match(LITERAL_glyph);
+			break;
+		}
 		default:
 		{
 			throw NoViableAltException(LT(1));
@@ -2959,11 +2968,11 @@ void GrpParser::attrItemFlat() {
 			D_AST = astFactory.create(D);
 			match(OP_DOT);
 			{
-			if ((LA(1)==IDENT||LA(1)==LIT_INT) && (_tokenSet_24.member(LA(2)))) {
+			if ((LA(1)==IDENT||LA(1)==LIT_INT||LA(1)==LITERAL_glyph) && (_tokenSet_24.member(LA(2)))) {
 				attrItemFlat();
 				X1_AST = returnAST;
 			}
-			else if ((LA(1)==IDENT||LA(1)==LIT_INT) && (LA(2)==OP_LBRACE)) {
+			else if ((LA(1)==IDENT||LA(1)==LIT_INT||LA(1)==LITERAL_glyph) && (LA(2)==OP_LBRACE)) {
 				attrItemStruct();
 				X2_AST = returnAST;
 			}
@@ -2973,7 +2982,7 @@ void GrpParser::attrItemFlat() {
 			
 			}
 			attrItemFlat_AST = currentAST.root;
-			attrItemFlat_AST = astFactory.make( (new ASTArray(5))->add(D_AST)->add(I1_AST)->add(I2_AST)->add(X1_AST)->add(X2_AST));
+			attrItemFlat_AST = astFactory.make( (new ASTArray(6))->add(D_AST)->add(I1_AST)->add(I2_AST)->add(I3_AST)->add(X1_AST)->add(X2_AST));
 			currentAST.root = attrItemFlat_AST;
 			currentAST.child = attrItemFlat_AST!=nullAST &&attrItemFlat_AST->getFirstChild()!=nullAST ?
 				attrItemFlat_AST->getFirstChild() : attrItemFlat_AST;
@@ -3003,7 +3012,7 @@ void GrpParser::attrItemFlat() {
 			
 			}
 			attrItemFlat_AST = currentAST.root;
-			attrItemFlat_AST = astFactory.make( (new ASTArray(5))->add(E_AST)->add(I1_AST)->add(I2_AST)->add(V1_AST)->add(V2_AST));
+			attrItemFlat_AST = astFactory.make( (new ASTArray(6))->add(E_AST)->add(I1_AST)->add(I2_AST)->add(I3_AST)->add(V1_AST)->add(V2_AST));
 			currentAST.root = attrItemFlat_AST;
 			currentAST.child = attrItemFlat_AST!=nullAST &&attrItemFlat_AST->getFirstChild()!=nullAST ?
 				attrItemFlat_AST->getFirstChild() : attrItemFlat_AST;
@@ -3034,6 +3043,8 @@ void GrpParser::attrItemStruct() {
 	RefAST I1_AST = nullAST;
 	RefToken  I2 = nullToken;
 	RefAST I2_AST = nullAST;
+	RefToken  I3 = nullToken;
+	RefAST I3_AST = nullAST;
 	RefAST X_AST = nullAST;
 	
 	try {      // for error handling
@@ -3053,6 +3064,13 @@ void GrpParser::attrItemStruct() {
 			match(LIT_INT);
 			break;
 		}
+		case LITERAL_glyph:
+		{
+			I3 = LT(1);
+			I3_AST = astFactory.create(I3);
+			match(LITERAL_glyph);
+			break;
+		}
 		default:
 		{
 			throw NoViableAltException(LT(1));
@@ -3066,6 +3084,7 @@ void GrpParser::attrItemStruct() {
 		switch ( LA(1)) {
 		case IDENT:
 		case LIT_INT:
+		case LITERAL_glyph:
 		{
 			attrItemList();
 			X_AST = returnAST;
@@ -3105,7 +3124,7 @@ void GrpParser::attrItemStruct() {
 		tmp108_AST = astFactory.create(LT(1));
 		match(OP_RBRACE);
 		attrItemStruct_AST = currentAST.root;
-		attrItemStruct_AST = astFactory.make( (new ASTArray(4))->add(astFactory.create(ZdotStruct))->add(I1_AST)->add(I2_AST)->add(X_AST));
+		attrItemStruct_AST = astFactory.make( (new ASTArray(5))->add(astFactory.create(ZdotStruct))->add(I1_AST)->add(I2_AST)->add(I3_AST)->add(X_AST));
 		currentAST.root = attrItemStruct_AST;
 		currentAST.child = attrItemStruct_AST!=nullAST &&attrItemStruct_AST->getFirstChild()!=nullAST ?
 			attrItemStruct_AST->getFirstChild() : attrItemStruct_AST;
@@ -8825,7 +8844,7 @@ const unsigned long GrpParser::_tokenSet_49_data_[] = { 1056972864UL, 737280UL, 
 const BitSet GrpParser::_tokenSet_49(_tokenSet_49_data_,4);
 const unsigned long GrpParser::_tokenSet_50_data_[] = { 2130848208UL, 4192256UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_50(_tokenSet_50_data_,4);
-const unsigned long GrpParser::_tokenSet_51_data_[] = { 4281532368UL, 71303152UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_51_data_[] = { 4289920976UL, 71303152UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_51(_tokenSet_51_data_,4);
 const unsigned long GrpParser::_tokenSet_52_data_[] = { 1056973120UL, 776192UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_52(_tokenSet_52_data_,4);
@@ -8845,7 +8864,7 @@ const unsigned long GrpParser::_tokenSet_59_data_[] = { 1056975184UL, 1046528UL,
 const BitSet GrpParser::_tokenSet_59(_tokenSet_59_data_,4);
 const unsigned long GrpParser::_tokenSet_60_data_[] = { 1057106256UL, 3143680UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_60(_tokenSet_60_data_,4);
-const unsigned long GrpParser::_tokenSet_61_data_[] = { 2130902992UL, 71303152UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_61_data_[] = { 2139291600UL, 71303152UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_61(_tokenSet_61_data_,4);
 const unsigned long GrpParser::_tokenSet_62_data_[] = { 1056975168UL, 784384UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_62(_tokenSet_62_data_,4);
@@ -8859,7 +8878,7 @@ const unsigned long GrpParser::_tokenSet_66_data_[] = { 2236416UL, 2097152UL, 0U
 const BitSet GrpParser::_tokenSet_66(_tokenSet_66_data_,4);
 const unsigned long GrpParser::_tokenSet_67_data_[] = { 2130848208UL, 4190208UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_67(_tokenSet_67_data_,4);
-const unsigned long GrpParser::_tokenSet_68_data_[] = { 4281532368UL, 71301104UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_68_data_[] = { 4289920976UL, 71301104UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_68(_tokenSet_68_data_,4);
 const unsigned long GrpParser::_tokenSet_69_data_[] = { 1056973120UL, 774144UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_69(_tokenSet_69_data_,4);

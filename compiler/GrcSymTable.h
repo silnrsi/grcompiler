@@ -120,6 +120,7 @@ public:
 		case ksymtGlyphAttr:		return "glyph attribute";
 		case ksymtGlyphMetric:		return "glyph metric";
 		case ksymtSlotAttr:			return "slot attribute";
+		case ksymtClass:			return "class";
 		default:					return "";
 		}
 	}
@@ -152,6 +153,7 @@ public:
 	bool IsMovement();	// shift, kern, advance
 	bool DoesJustification();
 	bool IsMeasureAttr();
+	bool IsMirrorAttr();
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
 

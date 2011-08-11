@@ -101,7 +101,7 @@ protected:
 	bool ReplaceKern(GrcManager * pcman,
 		GdlAttrValueSpec ** ppavsShift, GdlAttrValueSpec ** ppavsAdvance);
 	void MaxJustificationLevel(int * pnJLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -271,7 +271,7 @@ public:
 ///	void CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
 	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -453,7 +453,7 @@ protected:
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	virtual void SetAttachTo(int n)
 	{
 		m_nAttachTo = n;
@@ -834,7 +834,7 @@ public:
 	bool HasReprocessing();
 	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);
 
 	//	Compiler:
