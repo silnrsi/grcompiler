@@ -1124,8 +1124,8 @@ public:
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
-	virtual bool GdlClassMemberExpression::CheckTypeAndUnits(ExpressionType * pexptRet);
-	bool GdlClassMemberExpression::ResolveToInteger(int * pnRet, bool fSlotRef);
+	virtual bool CheckTypeAndUnits(ExpressionType * pexptRet);
+	bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
 	// Compiler:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
