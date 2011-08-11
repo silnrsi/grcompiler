@@ -423,8 +423,20 @@ bool GdlCondExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 /*--------------------------------------------------------------------------------------------*/
 bool GdlLookupExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 {
-	if (m_pexpSimplified)
+	if (m_pexpSimplified)	// result of SimplifyAndUnscale
 		return m_pexpSimplified->ResolveToInteger(pnRet, fSlotRef);
+
+	return false;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlClassMemberExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+{
+	if (m_gid > -1)
+	{
+		*pnRet = m_gid;
+		return true;
+	}
 
 	return false;
 }
@@ -852,6 +864,13 @@ bool GdlLookupExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 }
 
 /*--------------------------------------------------------------------------------------------*/
+bool GdlClassMemberExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
+{
+	*pexptRet = kexptGlyphID;
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
 bool GdlNumericExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 {
 	if (m_nValue == 0 && m_munits == kmunitNone)
@@ -886,28 +905,28 @@ bool GdlStringExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 	Check that the expression, which is the value of a glyph attribute, does not make use
 	of slot attributes, features, or slot index references.
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::GlyphAttrCheck()
+void GdlUnaryExpression::GlyphAttrCheck(Symbol psymAttr)
 {
-	m_pexpOperand->GlyphAttrCheck();
+	m_pexpOperand->GlyphAttrCheck(psymAttr);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::GlyphAttrCheck()
+void GdlBinaryExpression::GlyphAttrCheck(Symbol psymAttr)
 {
-	m_pexpOperand1->GlyphAttrCheck();
-	m_pexpOperand2->GlyphAttrCheck();
+	m_pexpOperand1->GlyphAttrCheck(psymAttr);
+	m_pexpOperand2->GlyphAttrCheck(psymAttr);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::GlyphAttrCheck()
+void GdlCondExpression::GlyphAttrCheck(Symbol psymAttr)
 {
-	m_pexpTest->GlyphAttrCheck();
-	m_pexpTrue->GlyphAttrCheck();
-	m_pexpFalse->GlyphAttrCheck();
+	m_pexpTest->GlyphAttrCheck(psymAttr);
+	m_pexpTrue->GlyphAttrCheck(psymAttr);
+	m_pexpFalse->GlyphAttrCheck(psymAttr);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::GlyphAttrCheck()
+void GdlLookupExpression::GlyphAttrCheck(Symbol /*psymAttr*/)
 {
 	if (m_psymName->FitsSymbolType(ksymtGlyphData))
 	{
@@ -929,25 +948,60 @@ void GdlLookupExpression::GlyphAttrCheck()
 			"Processing-state references are not permitted in glyph attribute values");
 	}
 	else
+	{
 		g_errorList.AddError(2111, this,
 			"Unknown attribute: ",
 			m_psymName->FullName());
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::GlyphAttrCheck()
+void GdlClassMemberExpression::GlyphAttrCheck(Symbol psymAttr)
+{
+	if (m_psymName == NULL && m_gid != -1)
+	{
+		// Assume okay--probably represents a default value.
+	}
+	else if (m_psymName->FitsSymbolType(ksymtClass))
+	{
+		//	Check that the class sizes match.
+		GdlDefn * pgdl = m_psymName->Data();
+		GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn *>(pgdl);
+		if (pglfc)
+		{
+			int cgidTarget = pglfc->GlyphIDCount();
+			if (m_cgidClassSize != cgidTarget)
+			{
+				g_errorList.AddError(4146, this,
+					"Size of classes do not match for ", psymAttr->FullName(), " attribute");
+			}
+		}
+		// else give an error in SimplifyAndUnscale
+	}
+	else
+	{
+		//	indexed-lookup-expressions are only created for classes, so this should never
+		//	happen:
+		g_errorList.AddError(4147, this,
+			"Invalid value of attribute: ",
+			m_psymName->FullName());
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlNumericExpression::GlyphAttrCheck(Symbol /*psymAttr*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::GlyphAttrCheck()
+void GdlSlotRefExpression::GlyphAttrCheck(Symbol /*psymAttr*/)
 {
 	g_errorList.AddError(2112, this,
 		"Slot references are not permitted in glyph attribute values");
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::GlyphAttrCheck()
+void GdlStringExpression::GlyphAttrCheck(Symbol /*psymAttr*/)
 {
 }
 
@@ -1699,6 +1753,52 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 	*pfCanSub = true;
 	return this;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+GdlExpression * GdlClassMemberExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
+	utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * pfont, bool /*fGAttrDefChk*/,
+	bool * pfCanSub)
+{
+	if (m_psymName == NULL && m_gid != -1)
+	{
+		// Okay, probably a default value.
+		return this;
+	}
+	else if (m_psymName->FitsSymbolType(ksymtClass))
+	{
+		GdlDefn * pgdl = m_psymName->Data();
+		GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn *>(pgdl);
+		if (!pglfc)
+		{
+			g_errorList.AddError(2163, this,
+				"Undefined glyph class: ", m_psymName->FullName());
+			return NULL;
+		}
+		else
+		{
+			std::vector<utf16> vgid;
+			pglfc->FlattenGlyphList(vgid);
+			int nValue = 0;
+			if (m_igid >= (signed)vgid.size())
+			{
+				char rgch[20];
+				itoa(m_igid, rgch, 10);
+				g_errorList.AddError(2164, this,
+					"Class sizes do not match; no corresponding glyph in class ", m_psymName->FullName(),
+					" for glyph #", rgch);
+			}
+			else
+				nValue = vgid[m_igid];
+
+			m_gid = nValue;
+			*pfCanSub = false;
+			return this;
+		}
+	}
+	else
+		//	error already given
+		return NULL;
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2565,45 +2665,48 @@ bool GdlStringExpression::TestsJustification()
 }
 
 /*----------------------------------------------------------------------------------------------
-	Check that the expression is compatible with the requested version.
+	Check that the expression is compatible with the requested version of the Silf table.
 	If not, return the version required.
 ----------------------------------------------------------------------------------------------*/
-bool GdlUnaryExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlUnaryExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
-	return m_pexpOperand->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+	return m_pexpOperand->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlBinaryExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlBinaryExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
-	bool f1 = m_pexpOperand1->CompatibleWithVersion(fxdVersion, pfxdNeeded);
-	bool f2 = m_pexpOperand2->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+	bool f1 = m_pexpOperand1->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
+	bool f2 = m_pexpOperand2->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 	return (f1 && f2);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlCondExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlCondExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
-	bool fTest = m_pexpTest->CompatibleWithVersion(fxdVersion, pfxdNeeded);
-	bool fTrue = m_pexpTrue->CompatibleWithVersion(fxdVersion, pfxdNeeded);
-	bool fFalse = m_pexpFalse->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+	bool fTest = m_pexpTest->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
+	bool fTrue = m_pexpTrue->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
+	bool fFalse = m_pexpFalse->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 	return (fTest && fTrue && fFalse);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlLookupExpression::CompatibleWithVersion(int /*fxdVersion*/, int * pfxdNeeded)
+bool GdlLookupExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded,
+	int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 	if (TestsJustification())
 	{
 		*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
-		fRet = false;
+		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00020000);
+		fRet = (fxdVersion >= 0x00020000);
 	}
 
 	if (m_psymName->IsMeasureAttr())
 	{
 		*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
-		fRet = false;
+		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00020000);
+		fRet = (fxdVersion >= 0x00020000);
 	}
 
 	if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
@@ -2612,7 +2715,8 @@ bool GdlLookupExpression::CompatibleWithVersion(int /*fxdVersion*/, int * pfxdNe
 		if (nID >= 0xFF)
 		{
 			*pfxdNeeded = max(*pfxdNeeded, 0x00030000);
-			fRet = false;
+			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00030000);
+			fRet = (fxdVersion >= 0x00030000);
 		}
 	}
 
@@ -2620,19 +2724,36 @@ bool GdlLookupExpression::CompatibleWithVersion(int /*fxdVersion*/, int * pfxdNe
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlNumericExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
+bool GdlClassMemberExpression::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded,
+	int * pfxdCpilrNeeded)
+{
+	bool fRet = (fxdVersion >= 0x00020000);
+	if (*pfxdNeeded < 0x00030000)
+		*pfxdNeeded = max(*pfxdNeeded, 0x00020001);
+	else
+		*pfxdNeeded = max(*pfxdNeeded, 0x00030002);
+	*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040001);
+
+	return fRet;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlNumericExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/,
+	int * /*pfxdCpilrNeeded*/)
 {
 	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSlotRefExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
+bool GdlSlotRefExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/, 
+	int * /*pfxdCpilrNeeded*/)
 {
 	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlStringExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
+bool GdlStringExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/,
+	int * /*pfxdCpilrNeeded*/)
 {
 	return true;
 }

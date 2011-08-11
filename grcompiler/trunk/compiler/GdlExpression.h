@@ -92,7 +92,7 @@ public:
 	bool TypeCheck(ExpressionType, ExpressionType, ExpressionType);
 	bool TypeCheck(std::vector<ExpressionType>& vnExpectedTypes);
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt) = 0;
-	virtual void GlyphAttrCheck() = 0;
+	virtual void GlyphAttrCheck(Symbol psymAttr) = 0;
 	virtual void FixFeatureTestsInRules(GrcFont *) = 0;
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat) = 0;
 	virtual void LookupExpCheck(bool fInIf) = 0;
@@ -124,7 +124,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *) = 0;
 	virtual void MaxJustificationLevel(int * pnLevel) = 0;
 	virtual bool TestsJustification() = 0;
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded) = 0;
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded) = 0;
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -205,7 +205,7 @@ public:
 		return true;
 	}
 
-	virtual void GlyphAttrCheck() { }
+	virtual void GlyphAttrCheck(Symbol /*psymAttr*/) { }
 	virtual void FixFeatureTestsInRules(GrcFont *) { }
 
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/)
@@ -261,7 +261,7 @@ public:
 		return false;
 	}
 
-	virtual bool CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/)
+	virtual bool CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxdNeeded*/, int * /*pfxdCpilrNeeded*/)
 	{
 		return true;
 	}
@@ -344,7 +344,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -364,7 +364,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -454,7 +454,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -473,7 +473,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -545,7 +545,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -564,7 +564,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -639,7 +639,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -658,7 +658,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -740,7 +740,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -759,7 +759,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -849,7 +849,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -868,7 +868,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -1030,7 +1030,7 @@ public:
 	//	Pre-compiler:
 	virtual ExpressionType ExpType();
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
-	virtual void GlyphAttrCheck();
+	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
 	virtual void LookupExpCheck(bool fInIf);
@@ -1053,7 +1053,7 @@ public:
 	virtual void AdjustToIOIndices(std::vector<int> & virit, GdlRuleItem *);
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
-	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
@@ -1080,25 +1080,73 @@ protected:
 
 
 /*----------------------------------------------------------------------------------------------
-Class: GdlIndexedLookupExpression
+Class: GdlClassMemberExpression
 Description: Expression to look up the a glyph, with an index into a class.
+	Only used within glyph attribute definitions.
 Hungarian: 
 ----------------------------------------------------------------------------------------------*/
 
-//class GdlIndexedLookupExpression : public GdlExpression
-//{
-//public:
-//	// Pre-compiler:
-//	virtual void GlyphAttrCheck();
-//	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-//		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
-//		bool fGAttrDefChk, bool * pfCanSub);
-//	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
-//
-//protected:
-//	//	Instance variables:
-//	int m_nIndex;
-//
-//};
+class GdlClassMemberExpression : public GdlLookupExpression
+{
+public:
+	//	Constructors & destructors:
+	GdlClassMemberExpression(Symbol psymName)
+		:	GdlLookupExpression(psymName)
+	{
+		m_igid = -1;
+		m_cgidClassSize = -1;
+		m_gid = -1;
+	}
+	GdlClassMemberExpression(int gid)	// used for setting defaults
+		:	GdlLookupExpression(NULL)
+	{
+		m_igid = -1;
+		m_cgidClassSize = -1;
+		m_gid = gid;
+	}
+	//	copy constructor
+	GdlClassMemberExpression(const GdlClassMemberExpression& exp)
+		:	GdlLookupExpression(exp),
+			m_igid(exp.m_igid),
+			m_cgidClassSize(exp.m_cgidClassSize),
+			m_gid(exp.m_gid)
+	{
+	}
+
+	virtual GdlExpression * Clone()
+	{
+		return new GdlClassMemberExpression(*this);
+	}
+
+public:
+	// Pre-compiler:
+	virtual void GlyphAttrCheck(Symbol psymAttr);
+	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
+		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		bool fGAttrDefChk, bool * pfCanSub);
+	virtual bool GdlClassMemberExpression::CheckTypeAndUnits(ExpressionType * pexptRet);
+	bool GdlClassMemberExpression::ResolveToInteger(int * pnRet, bool fSlotRef);
+
+	// Compiler:
+	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
+
+	void SetClassSize(int cgid)
+	{
+		m_cgidClassSize = cgid;
+	}
+	void SetGlyphIndex(int igid)
+	{
+		m_igid = igid;
+	}
+	int GlyphIndex() { return m_igid; }
+
+
+protected:
+	//	Instance variables:
+	int m_igid;				// index of glyph within defining class
+	int m_cgidClassSize;	// of defining class
+	int m_gid;				// resolved glyphid value
+
+};
 
 #endif // !GDL_EXP_INCLUDED

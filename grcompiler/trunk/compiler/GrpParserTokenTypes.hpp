@@ -1,9 +1,9 @@
 #ifndef INC_GrpParserTokenTypes_hpp_
 #define INC_GrpParserTokenTypes_hpp_
 
-#include "Antlr/config.hpp"
+#include "antlr/config.hpp"
 /*
- * ANTLR-generated file resulting from grammar c:\fw\src\graphite\grcompiler\grpparser.g
+ * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software
@@ -117,6 +117,6 @@ enum GrpParserTokenTypes {
 	DQUOTE = 105,
 	OP_LINEMARKER = 106,
 	OP_BSLASH = 107,
-	AT_IDENT = 108
+	AT_IDENT = 108,
 };
 #endif /*INC_GrpParserTokenTypes_hpp_*/

@@ -1,18 +1,18 @@
 #ifndef INC_GrpParser_hpp_
 #define INC_GrpParser_hpp_
 
-#include "Antlr/config.hpp"
+#include "antlr/config.hpp"
 /*
- * ANTLR-generated file resulting from grammar c:\fw\src\graphite\grcompiler\grpparser.g
+ * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software
  * ANTLR Version 2.6.0; 1996-1999
  */
 
-#include "Antlr/TokenStream.hpp"
-#include "Antlr/TokenBuffer.hpp"
-#include "Antlr/LLkParser.hpp"
+#include "antlr/TokenStream.hpp"
+#include "antlr/TokenBuffer.hpp"
+#include "antlr/LLkParser.hpp"
 
 
 //	Header stuff here

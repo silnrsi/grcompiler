@@ -12,19 +12,19 @@ Description:
 
 Here are how the error and warning IDs are assigned:
 
-global - highest error: 140 / highest warning: 511
+global - highest error: 141 / highest warning: 511
 		main.cpp
 		GrpParser.g
 		GrpLexer
 		GrpParser
 		GrcFont
 
-parsing - highest error: 1184 / highest warning: 1513
+parsing - highest error: 1183 / highest warning: 1513
 		ParserTreeWalker
 		PostParser
 
 error checking:
-	general - highest error: 2162 / highest warning: 2535
+	general - highest error: 2164 / highest warning: 2535
 		GdlExpression
 		GrcMasterTable
 		GrcSymTable
@@ -38,7 +38,7 @@ error checking:
 		GdlRule
 		GdlTablePass
 		Fsm
-	classes - highest error: 4145 / highest warning: 4517
+	classes - highest error: 4147 / highest warning: 4517
 		ErrorCheckClass
 		GrcGlyphAttrMatrix
 		GdlGlyphDefn
@@ -47,7 +47,7 @@ error checking:
 compilation:	highest error: 5101 / highest warning: 5503
 		OutputToFont
 
-test and debug: highest error: 6106 / highest warning: 6500
+test and debug: highest error: 6106 / highest warning: none (start at: 6500)
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -305,7 +305,10 @@ void GrcErrorList::WriteTableVersionsGenerated(std::ostream& strmOut)
 	fxd = g_cman.TableVersion(ktiFeat);
 	strmOut << "  Feat: " << VersionString(fxd) << "\n";
 	fxd = g_cman.TableVersion(ktiSill);
-	strmOut << "  Sill: " << VersionString(fxd) << "\n";
+	strmOut << "  Sill: " << VersionString(fxd) << "\n\n";
+
+	fxd = g_cman.CompilerVersion();
+	strmOut << "Minimal compiler version required: " << VersionString(fxd) << "\n";
 
 	strmOut << "\n*******************************************************\n\n";
 }

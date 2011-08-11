@@ -669,8 +669,8 @@ attrItemList	:	( attrItemStruct | attrItemFlat )
 					(OP_SEMI! attrItemList)?
 ;
 
-attrItemStruct!	:	(I1:IDENT | I2:LIT_INT) OP_LBRACE! (X:attrItemList)? (OP_SEMI!)? OP_RBRACE!
-						{ #attrItemStruct = #([ZdotStruct], I1, I2, X); }
+attrItemStruct!	:	(I1:IDENT | I2:LIT_INT | I3:"glyph") OP_LBRACE! (X:attrItemList)? (OP_SEMI!)? OP_RBRACE!
+						{ #attrItemStruct = #([ZdotStruct], I1, I2, I3, X); }
 ;
 
 //attrItemFlatTop! :	(	S:attrSel OP_DOT X3:attrItemFlatTop
@@ -680,13 +680,13 @@ attrItemStruct!	:	(I1:IDENT | I2:LIT_INT) OP_LBRACE! (X:attrItemList)? (OP_SEMI!
 //					)
 //;
 
-attrItemFlat!	:	(I1:IDENT | I2:LIT_INT)
+attrItemFlat!	:	(I1:IDENT | I2:LIT_INT | I3:"glyph")
 					(	D:OP_DOT! ( X1:attrItemFlat | X2:attrItemStruct )
-							{ #attrItemFlat = #(D, I1, I2, X1, X2); }
+							{ #attrItemFlat = #(D, I1, I2, I3, X1, X2); }
 
 					|	E:attrAssignOp
 						(V1:function | V2:expr)
-							{ #attrItemFlat = #(E, I1, I2, V1, V2); }
+							{ #attrItemFlat = #(E, I1, I2, I3, V1, V2); }
 					)
 ;
 

@@ -230,7 +230,7 @@ public:
 		bool fLookUpPseudo = true);
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,
-		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs);
+		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs, int cgid, int & igid);
 	virtual void CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr);
 	virtual void CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,

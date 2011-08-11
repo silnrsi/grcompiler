@@ -61,7 +61,10 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	bool fFixPassConstraints = true;	// remains true if the only thing that is incompatible are
 										// the pass constraints
 	int fxdRequested = SilfTableVersion();
-	if (!CompatibleWithVersion(fxdRequested, &fxdVersionNeeded, &fFixPassConstraints))
+	SetCompilerVersionFor(fxdRequested);
+	int fxdCompilerVersionNeeded = m_fxdCompilerVersion;
+	if (!CompatibleWithVersion(fxdRequested, &fxdVersionNeeded, &fxdCompilerVersionNeeded,
+			&fFixPassConstraints))
 	{
 		if (fFixPassConstraints && fxdRequested <= 0x00030000 && fxdVersionNeeded > 0x00030000)
 		{
@@ -83,6 +86,11 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 			SetSilfTableVersion(fxdVersionNeeded, false);
 		}
 		
+	}
+	else if (fxdVersionNeeded > fxdRequested)
+	{
+		// Eg, 2.0 -> 2.1
+		SetSilfTableVersion(fxdVersionNeeded, false);
 	}
 
 	return true;
@@ -2170,12 +2178,15 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 
 /**********************************************************************************************/
 /*----------------------------------------------------------------------------------------------
-	Check that the rules and glyph attributes are compatible with the requested version.
-	If not, return the version required.
+	Check that the rules and glyph attributes are compatible with the requested version of the
+	Silf table. If not, return the version required.
+	
+	Also return the compiler version needed to support the GDL.
 
 	This routine assumes that we can always sucessfully use a later version.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
+bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
 	*pfxdNeeded = fxdVersion;
 
@@ -2186,12 +2197,14 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * 
 	{
 		// We need version 2.0 for basic justification.
 		*pfxdNeeded = max(0x00020000, *pfxdNeeded);
+		*pfxdCpilrNeeded = max(0x00020000, *pfxdCpilrNeeded);
 	}
 
 	if (m_vpglfcReplcmtClasses.size() >= kMaxReplcmtClassesV1_2)
 	{
 		// For a large set of replacement classes, we need 3.0.
 		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
+		*pfxdCpilrNeeded = max(0x00030000, *pfxdCpilrNeeded);
 	}
 
 	// For now, the Glat table version does not affect the other tables.
@@ -2206,34 +2219,38 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * 
 
 	bool fRet = (*pfxdNeeded <= fxdVersion);
 
-	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfFixPassConstraints) && fRet);
+	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded, pfFixPassConstraints) 
+		&& fRet);
 
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
+bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 
 	//	Glyph atrributes:
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
-		fRet = m_vpglfc[ipglfc]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		fRet = m_vpglfc[ipglfc]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded) 
+			&& fRet;
 		if (!fRet)
 			*pfFixPassConstraints = false;	// something else is a problem
 	}
 	//	Rules:
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfFixPassConstraints)
+		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded,
+			pfFixPassConstraints)
 			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 
@@ -2243,28 +2260,42 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		if (psym->IsMeasureAttr() || psym->DoesJustification())
 		{
-			// For justification, we need version 2.0.
+			// For justification, we need Silf version 2.0.
 			fRet = (fxdVersion >= 0x00020000);
 			*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
+			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00020000);
+		}
+		else if (psym->IsMirrorAttr())
+		{
+			// For mirroring, we need version Silf 2.1 or 3.2.
+			fRet = (fxdVersion >= 0x00020000);
+			if (*pfxdNeeded < 0x00030000)
+				*pfxdNeeded = max(*pfxdNeeded, 0x00020001);
+			else
+				*pfxdNeeded = max(*pfxdNeeded, 0x00030002);
+			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040001);
 		}
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
+bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfFixPassConstraints)
+		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded,
+			pfFixPassConstraints)
 			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints)
+bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 	if (m_vpexpConstraints.size() > 0)
@@ -2272,11 +2303,12 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfF
 		// Pass constraints need 3.1. (Version 3.0 outputs empty pass constraints.)
 		fRet = (fxdVersion >= 0x00030001);
 		*pfxdNeeded = max(*pfxdNeeded, 0x00030001);
+		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040000);
 	}
 
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
-		bool fRetTmp = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+		bool fRetTmp = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 		if (!fRetTmp)
 			*pfFixPassConstraints = false;	// something else is a problem
 		fRet = fRet && fRetTmp;
@@ -2285,47 +2317,50 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfF
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRule::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlRule::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
-		fRet = m_vprit[iprit]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		fRet = m_vprit[iprit]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded)
+			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRuleItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlRuleItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	if (m_pexpConstraint)
 	{
-		return m_pexpConstraint->CompatibleWithVersion(fxdVersion, pfxdNeeded);
+		return m_pexpConstraint->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 	}
 	else
 		return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSetAttrItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlSetAttrItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
-	bool fRet = GdlRuleItem::CompatibleWithVersion(fxdVersion, pfxdNeeded);
+	bool fRet = GdlRuleItem::CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 
 	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
-		fRet = m_vpavs[ipavs]->CompatibleWithVersion(fxdVersion, pfxdNeeded) && fRet;
+		fRet = m_vpavs[ipavs]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded)
+			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded)
+bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 	if (m_psymName->IsMeasureAttr() || m_psymName->DoesJustification())
 	{
 		// Measuring and justification need 2.0.
 		*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
+		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00020000);
 		fRet = (fxdVersion >= 0x00020000);
 	}
 	return fRet;

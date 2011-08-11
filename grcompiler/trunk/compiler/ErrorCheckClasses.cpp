@@ -1230,7 +1230,9 @@ void GdlRenderer::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 void GdlGlyphClassDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	GdlRenderer * prndr, GrcLigComponentList * plclist)
 {
-	AssignGlyphAttrsToClassMembers(pgax, prndr, plclist, m_vpglfaAttrs);
+	int cgid = GlyphIDCount();
+	int igid = 0;
+	AssignGlyphAttrsToClassMembers(pgax, prndr, plclist, m_vpglfaAttrs, cgid, igid);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1238,20 +1240,22 @@ void GdlGlyphClassDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	GdlRenderer * prndr, GrcLigComponentList * plclist,
-	std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs)
+	std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs, int cgid, int & igid)
 {
 	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->AssignGlyphAttrsToClassMembers(pgax, prndr, plclist,
-			vpglfaAttrs);
+			vpglfaAttrs, cgid, igid);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	GdlRenderer * prndr, GrcLigComponentList * plclist,
-	std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs)
+	std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs, int cgid, int & igid)
 {
+	int igidInitial = igid;
+
 	//	For each attribute assignment in the value list:
 	for (size_t ipglfa = 0; ipglfa < vpglfaAttrs.size(); ipglfa++)
 	{
@@ -1267,6 +1271,25 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		bool fOverrideNew = pasgnValue->Override();
 		GrpLineAndFile lnfNew = pasgnValue->LineAndFile();
 		int nStmtNoNew = lnfNew.PreProcessedLine();
+
+		GdlClassMemberExpression * pexpilNew = dynamic_cast<GdlClassMemberExpression *>(pexpNew);
+		if (pexpilNew)
+		{
+			Assert(pexpilNew->Name()->FitsSymbolType(ksymtClass));
+			pexpilNew->SetClassSize(cgid);
+			if (pexpilNew->GlyphIndex() != -1 && pexpilNew->GlyphIndex() != igid)
+			{
+				//	Make a copy for this specific glyph definition.
+				GdlClassMemberExpression * pexpilThisGlyphId 
+					= dynamic_cast<GdlClassMemberExpression *>(pexpilNew->Clone());
+				pexpilNew = pexpilThisGlyphId;
+				pexpNew = dynamic_cast<GdlExpression *>(pexpilNew);
+				g_cman.StoreModifiedExpression(pexpNew);
+			}
+			pexpilNew->SetGlyphIndex(igid);
+		}
+
+		igid = igidInitial;	// start over for each attribute
 
 		//	For each glyph ID covered by this definition's range:
 		for (size_t iwGlyphID = 0; iwGlyphID < m_vwGlyphIDs.size(); iwGlyphID++)
@@ -1289,9 +1312,22 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 				(nStmtNoNew > nStmtNoOld && fOverrideNew) ||
 				(nStmtNoOld > nStmtNoNew && !fOverrideOld))
 			{
+				// For indexed-lookup expressions, we need to make a separate copy 
+				// for each individual glyph ID.
+				GdlExpression * pexpThisGlyphId = pexpNew;
+				if (pexpilNew && pexpilNew->GlyphIndex() != igid)
+				{
+					//	Make a copy for this specific glyph ID.
+					pexpThisGlyphId = pexpNew->Clone();
+					GdlClassMemberExpression * pexpilThisGlyphId 
+						= dynamic_cast<GdlClassMemberExpression *>(pexpThisGlyphId);
+					pexpilThisGlyphId->SetGlyphIndex(igid);
+					g_cman.StoreModifiedExpression(pexpThisGlyphId);
+				}
+
 				//	The current attribute assignment overrides the previous--set it.
 				pgax->Set(m_vwGlyphIDs[iwGlyphID], nGlyphAttrID,
-					pexpNew, nPRNew, mPrUnitsNew, fOverrideNew, false, lnfNew);
+					pexpThisGlyphId, nPRNew, mPrUnitsNew, fOverrideNew, false, lnfNew);
 			}
 
 			//	If this glyph is a ligature, add the given component to its list.
@@ -1301,6 +1337,8 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 				plclist->AddComponentFor(m_vwGlyphIDs[iwGlyphID],
 					psym->Generic()->BaseLigComponent(), prndr);
 			}
+
+			igid++;
 		}
 	}
 }
@@ -1356,6 +1394,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				//	range to skip?
 				int nStdValue;
 				bool fInitFailed = false;
+				bool fClassMember = false;
 
                 if (psym->LastFieldIs("breakweight"))
                 {
@@ -1416,13 +1455,16 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                 }
 				else if (psym->LastFieldIs("glyph") && Bidi())
 				{
-					nStdValue = (int)u_charMirror(nUnicode);
-					if (nStdValue == nUnicode)
+					int nUnicodeMirror = (int)u_charMirror(nUnicode);
+					if (nUnicodeMirror == nUnicode)
 						nStdValue = 0;
+					else
+						nStdValue = pfont->GlyphFromCmap(nUnicodeMirror, NULL);
+					fClassMember = true;
 				}
-				else if (psym->LastFieldIs("hasEncoded") && Bidi())
+				else if (psym->LastFieldIs("isEncoded") && Bidi())
 				{
-					boolean fIsEnc = u_isMirrored(nUnicode);
+					bool fIsEnc = u_isMirrored(nUnicode);
 					nStdValue = (int)fIsEnc;
 				}
                 else
@@ -1443,7 +1485,11 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				}
 				else if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 				{
-					GdlExpression * pexpDefault = new GdlNumericExpression(nStdValue);
+					GdlExpression * pexpDefault;
+					if (fClassMember)
+						pexpDefault = new GdlClassMemberExpression(nStdValue);
+					else
+						pexpDefault = new GdlNumericExpression(nStdValue);
 					vpexpExtra.push_back(pexpDefault);
 					pgax->Set(wGlyphID, nGlyphAttrID,
 						pexpDefault, 0, 0, false, false, GrpLineAndFile());
@@ -1583,7 +1629,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 						psymAttr->FullName(),
 						lnf);
 
-				pexp->GlyphAttrCheck();
+				pexp->GlyphAttrCheck(psymAttr);
 
 				GdlExpression * pexpNew = pexp->SimplifyAndUnscale(wGlyphID, pfont);
 				Assert(pexpNew);

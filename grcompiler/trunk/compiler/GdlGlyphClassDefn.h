@@ -85,7 +85,7 @@ public:
 		bool fLookUpPseudo = true) = 0;
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,
-		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs) = 0;
+		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs, int cgid, int & igid) = 0;
 	virtual void CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr) = 0;
 	virtual void CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
@@ -100,7 +100,6 @@ public:
 	virtual bool HasBadGlyph() = 0;
 	virtual bool WarnAboutBadGlyphs(bool fTop) = 0;
 	virtual bool DeleteBadGlyphs() = 0;
-
 	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened) = 0;
 
 public:
@@ -193,7 +192,7 @@ public:
 		GdlRenderer * prndr, GrcLigComponentList * plclist);
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GdlRenderer * prndr, GrcLigComponentList * plclist,
-		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs);
+		std::vector<GdlGlyphAttrSetting *> & vpglfaAttrs, int cgid, int & igid);
 	virtual void CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 		GrcSymbolTable * psymtbl, GrcGlyphAttrMatrix * pgax, Symbol psymGlyphAttr);
 	virtual void CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
@@ -228,7 +227,7 @@ public:
 	int ReplcmtInputID()					{ return m_nReplcmtInID; }
 	int ReplcmtOutputID()					{ return m_nReplcmtOutID; }
 
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont);
 	virtual bool HasBadGlyph();
@@ -264,6 +263,7 @@ public:
 		}
 	}
 	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened);
+
 
 protected:
 	//	Instance variables:

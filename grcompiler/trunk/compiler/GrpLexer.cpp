@@ -1,5 +1,5 @@
 /*
- * ANTLR-generated file resulting from grammar c:\fw\src\graphite\grcompiler\grpparser.g
+ * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software
@@ -8,15 +8,13 @@
 
 #include "GrpLexer.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "Antlr/ScannerException.hpp"
-#include "Antlr/CharBuffer.hpp"
+#include "antlr/ScannerException.hpp"
+#include "antlr/CharBuffer.hpp"
 
 
 
 //	Insert at the beginning of the GrpLexer.cpp file:
-#ifdef _MSC_VER
 #pragma warning(disable:4101)
-#endif
 #include "Grp.h"
 
 //	This function needs to go in the .cpp file, not the .hpp file, after the
@@ -364,7 +362,7 @@ tryAgain:;
 void GrpLexer::mWS(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = WS;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	{
 	switch ( LA(1)) {
@@ -421,7 +419,7 @@ void GrpLexer::mWS(bool _createToken) {
 void GrpLexer::mCOMMENT_SL(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = COMMENT_SL;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("//");
 	{
@@ -449,7 +447,7 @@ void GrpLexer::mCOMMENT_SL(bool _createToken) {
 void GrpLexer::mCOMMENT_ML(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = COMMENT_ML;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("/*");
 	{
@@ -744,7 +742,7 @@ void GrpLexer::mCOMMENT_ML(bool _createToken) {
 void GrpLexer::mLIT_INT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = LIT_INT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	{
 	if ((LA(1)==static_cast<unsigned char>('0')) && (LA(2)==static_cast<unsigned char>('x'))) {
@@ -814,7 +812,7 @@ void GrpLexer::mLIT_INT(bool _createToken) {
 void GrpLexer::mDIGIT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = DIGIT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	matchRange(static_cast<unsigned char>('0'),static_cast<unsigned char>('9'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -827,7 +825,7 @@ void GrpLexer::mDIGIT(bool _createToken) {
 void GrpLexer::mXDIGIT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = XDIGIT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	switch ( LA(1)) {
 	case static_cast<unsigned char>('0'):
@@ -879,7 +877,7 @@ void GrpLexer::mXDIGIT(bool _createToken) {
 void GrpLexer::mLIT_UHEX(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = LIT_UHEX;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("U+");
 	{
@@ -938,7 +936,7 @@ void GrpLexer::mLIT_CHAR(bool _createToken) {
 void GrpLexer::mSQUOTE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = SQUOTE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	{
 	switch ( LA(1)) {
@@ -973,7 +971,7 @@ void GrpLexer::mSQUOTE(bool _createToken) {
 void GrpLexer::mESC(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = ESC;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('\\'));
 	{
@@ -1069,7 +1067,7 @@ void GrpLexer::mLIT_STRING(bool _createToken) {
 void GrpLexer::mDQUOTE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = DQUOTE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	{
 	switch ( LA(1)) {
@@ -1104,7 +1102,7 @@ void GrpLexer::mDQUOTE(bool _createToken) {
 void GrpLexer::mODIGIT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = ODIGIT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	matchRange(static_cast<unsigned char>('0'),static_cast<unsigned char>('7'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1117,7 +1115,7 @@ void GrpLexer::mODIGIT(bool _createToken) {
 void GrpLexer::mOP_DOT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_DOT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('.'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1130,7 +1128,7 @@ void GrpLexer::mOP_DOT(bool _createToken) {
 void GrpLexer::mOP_DOTDOT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_DOTDOT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("..");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1143,7 +1141,7 @@ void GrpLexer::mOP_DOTDOT(bool _createToken) {
 void GrpLexer::mOP_COLON(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_COLON;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>(':'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1156,7 +1154,7 @@ void GrpLexer::mOP_COLON(bool _createToken) {
 void GrpLexer::mOP_SEMI(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_SEMI;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>(';'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1169,7 +1167,7 @@ void GrpLexer::mOP_SEMI(bool _createToken) {
 void GrpLexer::mOP_LBRACKET(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_LBRACKET;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('['));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1182,7 +1180,7 @@ void GrpLexer::mOP_LBRACKET(bool _createToken) {
 void GrpLexer::mOP_RBRACKET(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_RBRACKET;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>(']'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1195,7 +1193,7 @@ void GrpLexer::mOP_RBRACKET(bool _createToken) {
 void GrpLexer::mOP_LPAREN(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_LPAREN;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('('));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1208,7 +1206,7 @@ void GrpLexer::mOP_LPAREN(bool _createToken) {
 void GrpLexer::mOP_RPAREN(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_RPAREN;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>(')'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1221,7 +1219,7 @@ void GrpLexer::mOP_RPAREN(bool _createToken) {
 void GrpLexer::mOP_LBRACE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_LBRACE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('{'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1234,7 +1232,7 @@ void GrpLexer::mOP_LBRACE(bool _createToken) {
 void GrpLexer::mOP_RBRACE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_RBRACE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('}'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1247,7 +1245,7 @@ void GrpLexer::mOP_RBRACE(bool _createToken) {
 void GrpLexer::mOP_NOT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_NOT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('!'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1260,7 +1258,7 @@ void GrpLexer::mOP_NOT(bool _createToken) {
 void GrpLexer::mOP_LT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_LT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('<'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1273,7 +1271,7 @@ void GrpLexer::mOP_LT(bool _createToken) {
 void GrpLexer::mOP_LE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_LE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("<=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1286,7 +1284,7 @@ void GrpLexer::mOP_LE(bool _createToken) {
 void GrpLexer::mOP_EQ(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_EQ;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('='));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1299,7 +1297,7 @@ void GrpLexer::mOP_EQ(bool _createToken) {
 void GrpLexer::mOP_EQUALEQUAL(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_EQUALEQUAL;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("==");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1312,7 +1310,7 @@ void GrpLexer::mOP_EQUALEQUAL(bool _createToken) {
 void GrpLexer::mOP_NE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_NE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("!=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1325,7 +1323,7 @@ void GrpLexer::mOP_NE(bool _createToken) {
 void GrpLexer::mOP_GE(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_GE;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(">=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1338,7 +1336,7 @@ void GrpLexer::mOP_GE(bool _createToken) {
 void GrpLexer::mOP_GT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_GT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('>'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1351,7 +1349,7 @@ void GrpLexer::mOP_GT(bool _createToken) {
 void GrpLexer::mOP_PLUS(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_PLUS;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('+'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1364,7 +1362,7 @@ void GrpLexer::mOP_PLUS(bool _createToken) {
 void GrpLexer::mOP_PLUSEQUAL(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_PLUSEQUAL;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("+=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1377,7 +1375,7 @@ void GrpLexer::mOP_PLUSEQUAL(bool _createToken) {
 void GrpLexer::mOP_MINUS(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_MINUS;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('-'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1390,7 +1388,7 @@ void GrpLexer::mOP_MINUS(bool _createToken) {
 void GrpLexer::mOP_MINUSEQUAL(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_MINUSEQUAL;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("-=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1403,7 +1401,7 @@ void GrpLexer::mOP_MINUSEQUAL(bool _createToken) {
 void GrpLexer::mOP_MULT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_MULT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('*'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1416,7 +1414,7 @@ void GrpLexer::mOP_MULT(bool _createToken) {
 void GrpLexer::mOP_MULTEQUAL(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_MULTEQUAL;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("*=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1429,7 +1427,7 @@ void GrpLexer::mOP_MULTEQUAL(bool _createToken) {
 void GrpLexer::mOP_DIV(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_DIV;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('/'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1442,7 +1440,7 @@ void GrpLexer::mOP_DIV(bool _createToken) {
 void GrpLexer::mOP_DIVEQUAL(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_DIVEQUAL;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("/=");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1455,7 +1453,7 @@ void GrpLexer::mOP_DIVEQUAL(bool _createToken) {
 void GrpLexer::mOP_COMMA(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_COMMA;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>(','));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1468,7 +1466,7 @@ void GrpLexer::mOP_COMMA(bool _createToken) {
 void GrpLexer::mOP_DOLLAR(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_DOLLAR;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('$'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1481,7 +1479,7 @@ void GrpLexer::mOP_DOLLAR(bool _createToken) {
 void GrpLexer::mOP_LINEMARKER(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_LINEMARKER;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("#line");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1494,7 +1492,7 @@ void GrpLexer::mOP_LINEMARKER(bool _createToken) {
 void GrpLexer::mOP_HASH(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_HASH;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('#'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1507,7 +1505,7 @@ void GrpLexer::mOP_HASH(bool _createToken) {
 void GrpLexer::mOP_AND(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_AND;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("&&");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1520,7 +1518,7 @@ void GrpLexer::mOP_AND(bool _createToken) {
 void GrpLexer::mOP_OR(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_OR;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match("||");
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1533,7 +1531,7 @@ void GrpLexer::mOP_OR(bool _createToken) {
 void GrpLexer::mOP_BSLASH(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_BSLASH;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('\\'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1546,7 +1544,7 @@ void GrpLexer::mOP_BSLASH(bool _createToken) {
 void GrpLexer::mOP_UNDER(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_UNDER;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('_'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1559,7 +1557,7 @@ void GrpLexer::mOP_UNDER(bool _createToken) {
 void GrpLexer::mOP_QUESTION(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_QUESTION;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('?'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1572,7 +1570,7 @@ void GrpLexer::mOP_QUESTION(bool _createToken) {
 void GrpLexer::mOP_CARET(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_CARET;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	match(static_cast<unsigned char>('^'));
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1585,7 +1583,7 @@ void GrpLexer::mOP_CARET(bool _createToken) {
 void GrpLexer::mIDENT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = IDENT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	{
 	switch ( LA(1)) {
@@ -1756,7 +1754,7 @@ void GrpLexer::mIDENT(bool _createToken) {
 void GrpLexer::mAT_IDENT(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = AT_IDENT;
-	//int _saveIndex;
+	int _saveIndex;
 	
 	{
 	if ((LA(1)==static_cast<unsigned char>('@')) && (LA(2)==static_cast<unsigned char>(':'))) {

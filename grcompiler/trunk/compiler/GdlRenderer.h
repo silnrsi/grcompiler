@@ -141,7 +141,8 @@ public:
 	bool CheckLBsInRules();
 	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnLevel);
-	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, bool * pfFixPassConstraints);
+	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
 
 	void SetNumUserDefn(int c);

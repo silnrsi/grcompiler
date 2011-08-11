@@ -2896,6 +2896,8 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 
 		if (pexpSel)
 			pexpRet = new GdlLookupExpression(psymName, pexpsrSel, nCluster);
+		else if (psymName->FitsSymbolType(ksymtClass))
+			pexpRet = new GdlClassMemberExpression(psymName);
 		else
 			pexpRet = new GdlLookupExpression(psymName, -1, nCluster);
 

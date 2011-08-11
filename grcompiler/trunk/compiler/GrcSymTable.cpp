@@ -986,6 +986,19 @@ bool GrcSymbolTableEntry::IsMeasureAttr()
 }
 
 /*----------------------------------------------------------------------------------------------
+    Return true if the symbol is a mirroring-related attribute.
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsMirrorAttr()
+{
+	if (m_staFieldName == "mirror")
+		return true;
+	Symbol psymParent = ParentSymbol();
+	if (!psymParent)
+		return false;
+	return (psymParent->IsMirrorAttr());
+}
+
+/*----------------------------------------------------------------------------------------------
     Return true if the symbol is a user-definable slot attribute.
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsUserDefinableSlotAttr()
