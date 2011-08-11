@@ -14,8 +14,9 @@ Description:
 Compiler versions:
 	1.0		- Initial
 	2.0		- justification, measuring (Silf table 2.0)
-	3.0		- large set (> 256) of replacement classes  (Silf table 3.0)
+	3.0?	- Silf table 3.1
 	4.0		- pass constraints (Silf table 3.1)
+			- large set (> 256) of replacement classes
 	4.1		- mirror glyph attributes (Silf table 2.1 or 3.2)
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
