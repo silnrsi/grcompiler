@@ -1420,6 +1420,7 @@ void GrcManager::BadFunctionError(GrpLineAndFile & lnf, std::string staFunction,
 	to be used in creating a pseudo-glyph.
 	Arguments:
 		pglfc			- class to add to
+		lnf				- where this member was added
 		pglfRet			- value to return to embed inside of pseudo;
 								one or the other of these arguments will be NULL
 ----------------------------------------------------------------------------------------------*/
@@ -1467,7 +1468,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 		{
 			pglfT = ProcessGlyph(astItem, glft);
 			if (pglfc)
-				pglfc->AddMember(pglfT);
+				pglfc->AddMember(pglfT, LineAndFile(ast));
 			else
 				*ppglfRet = pglfT;	// return for pseudo
 
@@ -1498,7 +1499,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 		{
 			pglfT = ProcessGlyph(astItem, kglftCodepoint, nCodePage);
 			if (pglfc)
-				pglfc->AddMember(pglfT);
+				pglfc->AddMember(pglfT, LineAndFile(ast));
 			else
 				*ppglfRet = pglfT;	// return for pseudo
 
@@ -1530,7 +1531,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 		else
 			pglfT = new GdlGlyphDefn(kglftPseudo, pglfForPseudo);
 		pglfT->SetLineAndFile(LineAndFile(ast));
-		pglfc->AddMember(pglfT);
+		pglfc->AddMember(pglfT, LineAndFile(ast));
 
 		break;
 
@@ -1558,7 +1559,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast,
 		}
 		pglfcSub = psymSubClass->GlyphClassDefnData();
 		Assert(pglfcSub);
-		pglfc->AddMember(pglfcSub);
+		pglfc->AddMember(pglfcSub, LineAndFile(ast));
 
 		break;
 

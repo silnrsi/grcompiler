@@ -115,6 +115,8 @@ public:
 	//	debuggers
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni) = 0;
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut, 
+		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs) = 0;
 };
 
 
@@ -149,7 +151,7 @@ public:
 	//	Setters:
 	void SetName(std::string sta)		{ m_staName = sta; }
 
-	void AddMember(GdlGlyphClassMember * pglfd);
+	void AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
 
 	void AddGlyphAttr(Symbol, GdlAssignment * pasgn);
 	void AddComponent(Symbol, GdlAssignment * pasgn);
@@ -252,6 +254,9 @@ public:
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
+	void DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs);
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut,
+		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs);
 
 	void FlattenMyGlyphList()
 	{
@@ -264,11 +269,17 @@ public:
 	}
 	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened);
 
+	GrpLineAndFile & LineAndFileForMember(int iglfd)
+	{
+		return m_vlnfMembers[iglfd];
+	}
+
 
 protected:
 	//	Instance variables:
 	std::string							m_staName;
 	std::vector<GdlGlyphClassMember*>	m_vpglfdMembers;
+	std::vector<GrpLineAndFile>			m_vlnfMembers;	// where each member was added, for debugger file
 
 	std::vector<GdlGlyphAttrSetting*>	m_vpglfaAttrs;
 

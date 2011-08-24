@@ -68,7 +68,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, nFirst);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
@@ -77,7 +77,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, nFirst, nLast);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
@@ -86,7 +86,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, nFirst, nLast, wCodePage);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
@@ -95,7 +95,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, staPostscript);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
@@ -104,7 +104,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, staCodepoints, wCodePage);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
@@ -113,7 +113,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, pglfOutput, (int)wPseudoInput);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
@@ -122,14 +122,14 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddGlyphToClass(GrpLineAndFile const& l
 {
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(glft, pglfOutput);
 	pglf->SetLineAndFile(lnf);
-	AddMember(pglf);
+	AddMember(pglf, lnf);
 	return pglf;
 }
 
-GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& /*lnf*/,
+GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& lnf,
 	GdlGlyphClassDefn * pglfcMember)
 {
-	AddMember(pglfcMember);
+	AddMember(pglfcMember, lnf);
 	return pglfcMember;
 }
 
@@ -137,9 +137,11 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& /
 /*----------------------------------------------------------------------------------------------
 	Add a member to the class.
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::AddMember(GdlGlyphClassMember * pglfd)
+void GdlGlyphClassDefn::AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf)
 {
+	Assert(m_vpglfdMembers.size() == m_vlnfMembers.size());
 	m_vpglfdMembers.push_back(pglfd);
+	m_vlnfMembers.push_back(lnf);
 }
 
 
