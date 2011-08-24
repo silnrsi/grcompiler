@@ -233,7 +233,8 @@ void GrcManager::CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 
 	pglf->SetAssignedPseudo(wAssigned);
 
 	GdlGlyphClassDefn * pglfc = new GdlGlyphClassDefn();
-	pglfc->AddMember(pglf);
+	GrpLineAndFile lnf;	// bogus
+	pglfc->AddMember(pglf, lnf);
 	m_prndr->AddGlyphClass(pglfc);
 	
 	m_vnUnicodeForPseudo.push_back(nUnicode);
@@ -349,7 +350,8 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 	Assert(pglfcAny);
 
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(kglftGlyphID, (utf16)0, m_cwGlyphIDs - 1);
-	pglfcAny->AddMember(pglf);
+	GrpLineAndFile lnf;	// bogus
+	pglfcAny->AddMember(pglf, lnf);
 
 	pglfcAny->AssignGlyphIDs(pfont, m_cwGlyphIDs, hmActualForPseudo);
 

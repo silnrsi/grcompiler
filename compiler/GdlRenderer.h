@@ -185,6 +185,7 @@ public:
 	void DebugCmap(GrcFont * pfont, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	void DebugClasses(std::ostream & strmOut,
 		std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear);
+	void DebugXmlClasses(std::ofstream & strmOut);
 
 	//	Output:
 	void OutputReplacementClasses(std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,

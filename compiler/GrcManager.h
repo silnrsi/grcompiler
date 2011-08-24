@@ -395,6 +395,7 @@ public:
 	void DebugGlyphAttributes();
 	void DebugClasses();
 	void DebugFsm();
+	void DebugXml();
 	////void WalkFsmMachineClasses();
 	void DebugOutput();
 	void DebugCmap(GrcFont * pfont);
@@ -403,6 +404,7 @@ public:
 		bool fPseudo, bool fInCmap);
 	static void DebugHex(std::ostream & strmOut, utf16 wGlyphID);
 	static void DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit);
+	static std::string ExpressionDebugString(ExpressionType expt);
 
 protected:
 	//	Instance variables:

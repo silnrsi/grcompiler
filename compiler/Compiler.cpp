@@ -2158,6 +2158,194 @@ void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 	}
 }
 
+/*----------------------------------------------------------------------------------------------
+	Output XML to be used by the engine debugger.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::DebugXml()
+{
+	std::ofstream strmOut;
+	strmOut.open("dbg.xml");
+	if (strmOut.fail())
+	{
+		g_errorList.AddError(6101, NULL,
+			"Error in writing to file ",
+			"dbg.xml");
+		return;
+	}
+
+	Symbol psymActual = m_psymtbl->FindSymbol("*actualForPseudo*");
+	int nAttrIdActual = psymActual->InternalID();
+	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
+	int nAttrIdBw = psymBw->InternalID();
+	Symbol psymDir = m_psymtbl->FindSymbol("directionality");
+	int nAttrIdDir = psymDir->InternalID();
+
+	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
+	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
+	int nAttrIdJStr = psymJStr->InternalID();
+
+	if (g_errorList.AnyFatalErrors())
+		strmOut << "Fatal errors--compilation aborted";
+	else
+	{
+		strmOut << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<graphite>\n\n";
+
+		// Glyph attribute definitions
+
+		strmOut << "  <glyphAttrs>\n";
+
+		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+		{
+			if (m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() && !m_prndr->Bidi())
+				continue;
+
+			if (m_vpsymGlyphAttrs[nAttrID]->InternalID() == static_cast<int>(nAttrID))
+			{
+				std::string staExpType = ExpressionDebugString(m_vpsymGlyphAttrs[nAttrID]->ExpType());
+				if (nAttrID == nAttrIdBw)
+					staExpType = "bw";
+				else if (nAttrID == nAttrIdDir)
+					staExpType = "dircode";
+				else if (nAttrID == nAttrIdActual)
+					staExpType = "gid";
+
+				strmOut << "    <glyphAttr name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName() 
+					<< "\" attrId=\"" << nAttrID 
+					<< "\" type=\"" << staExpType
+					<< "\" />\n";
+			}
+			// else we have something like justify.stretch which is unused
+		}
+
+		strmOut << "  </glyphAttrs>\n\n";
+
+		// Glyphs and their attribute values
+
+		strmOut << "  <glyphs>\n";
+
+		for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
+		{
+			// Convert breakweight values depending on the table version to output.
+			////ConvertBwForVersion(wGlyphID, nAttrIdBw);
+
+			//	Split any large stretch values into two 16-bit words.
+			////SplitLargeStretchValue(wGlyphID, nAttrIdJStr);
+
+			strmOut << "    <glyph glyphid=\"" << wGlyphID << "\"" << ">\n";
+		
+			for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+			{
+				int nValue = FinalAttrValue(wGlyphID, nAttrID);
+
+				if (nAttrID == nAttrIdActual && nValue == 0)
+					continue;
+
+				if (m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() && !m_prndr->Bidi())
+					continue;
+
+				// Get the original expression where this attribute was set.
+				GdlExpression * pexp;
+				int nPR;
+				int munitPR;
+				bool fOverride, fShadow;
+				GrpLineAndFile lnf;
+				m_pgax->Get(wGlyphID, nAttrID,
+					&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
+
+				if (m_vpsymGlyphAttrs[nAttrID]->IsUserDefined() && !m_pgax->Defined(wGlyphID, nAttrID))
+					// attribute not defined for this glyph
+					continue;
+
+				strmOut << "      <glyphAttrValue name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName()
+					<< "\" value=\"";
+				if (m_vpsymGlyphAttrs[nAttrID]->LastFieldIs("gpoint") && nValue == kGpointZero)
+					strmOut << "zero";
+				else
+					strmOut  << nValue;
+
+				if (!lnf.NotSet())
+					strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
+				strmOut << "\" />\n";
+
+			}
+
+			strmOut << "    </glyph>\n";
+		}
+
+		strmOut << "  </glyphs>\n\n";
+
+		// Classes and members
+
+		strmOut << "  <classes>\n";
+		this->m_prndr->DebugXmlClasses(strmOut);
+		strmOut << "  </classes>\n\n";
+
+		// Features
+
+		strmOut << "  <features>\n";
+
+		strmOut << "  </features>\n\n";
+		
+		// Rules
+
+		strmOut << "  <rules>\n";
+
+		strmOut << "  </rules>\n\n";
+
+
+		strmOut << "</graphite>\n";
+	}
+
+	strmOut.close();
+}
+/*--------------------------------------------------------------------------------------------*/
+void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut)
+{
+	int cwGlyphIDs;
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
+	{
+		cwGlyphIDs = 0;
+		m_vpglfc[ipglfc]->DebugXmlClasses(strmOut, cwGlyphIDs);
+	}
+}
+
+
+void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs)
+{
+	strmOut << "    <class name=\"" << this->Name() << "\">\n";
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+	{
+		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, this, LineAndFileForMember(iglfd),
+			cwGlyphIDs);
+	}
+	strmOut << "    </class>\n";
+}
+
+
+void GdlGlyphClassDefn::DebugXmlClassMembers(std::ofstream & strmOut,
+	GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs)
+{
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+	{
+		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, pglfdParent, lnf,
+			cwGlyphIDs);
+	}
+}
+
+void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut, 
+	GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs)
+{
+	for (unsigned int iw = 0; iw < m_vwGlyphIDs.size(); iw++)
+	{
+		strmOut << "      <member glyphid=\"" << m_vwGlyphIDs[iw] << "\" index=\"" << cwGlyphIDs;
+		if (!lnf.NotSet())
+			strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+		strmOut << "\" />\n";
+		cwGlyphIDs++;
+	}
+
+}
 
 /*----------------------------------------------------------------------------------------------
 	Output a number in hex format.
@@ -2192,4 +2380,25 @@ void GrcManager::DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit)
 	if (nUnicode <= 0x00ff) strmOut << "0";
 	if (nUnicode <= 0x000f) strmOut << "0";
 	strmOut << rgch;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return a string version of an expression type
+----------------------------------------------------------------------------------------------*/
+std::string GrcManager::ExpressionDebugString(ExpressionType expt)
+{
+	switch (expt)
+	{
+	default:
+	case kexptUnknown:	return "unknown";
+	case kexptZero:
+	case kexptOne:
+	case kexptNumber:	return "integer";
+	case kexptBoolean:	return "boolean";
+	case kexptMeas:		return "em-units";
+	case kexptSlotRef:	return "slot-ref";
+	case kexptString:	return "string";
+	case kexptPoint:	return "point";
+	case kexptGlyphID:	return "gid";
+	}
 }
