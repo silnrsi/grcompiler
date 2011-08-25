@@ -93,6 +93,9 @@ public:
 	}
 	void SetNameTblId(utf16 w)		{ m_wNameTblId = w; }
 
+	// Debuggers:
+	void DebugXmlFeatures(std::ofstream & strmOut);
+
 protected:
 	//	Instance variables:
 	std::string				m_staName;
@@ -216,6 +219,9 @@ public:
 	}
 
 	void OutputSettings(GrcBinaryStream * pbstrm);
+
+	// Debuggers
+	void DebugXmlFeatures(std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:

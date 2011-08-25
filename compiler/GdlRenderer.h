@@ -186,6 +186,7 @@ public:
 	void DebugClasses(std::ostream & strmOut,
 		std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear);
 	void DebugXmlClasses(std::ofstream & strmOut);
+	void DebugXmlFeatures(std::ofstream & strmOut);
 
 	//	Output:
 	void OutputReplacementClasses(std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
