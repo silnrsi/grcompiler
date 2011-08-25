@@ -332,7 +332,7 @@ int main(int argc, char * argv[])
 							g_cman.DebugClasses();
 							//g_cman.DebugOutput();
 							g_cman.DebugCmap(pfont);
-							g_cman.DebugXml();
+							g_cman.DebugXml(rgchOutputFile);
 							if (g_cman.IsVerbose())
 								std::cout << "Debug files generated.\n";
 						}
