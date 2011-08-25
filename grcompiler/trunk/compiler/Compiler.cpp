@@ -2285,6 +2285,8 @@ void GrcManager::DebugXml()
 
 		strmOut << "  <features>\n";
 
+		m_prndr->DebugXmlFeatures(strmOut);
+
 		strmOut << "  </features>\n\n";
 		
 		// Rules
@@ -2299,6 +2301,48 @@ void GrcManager::DebugXml()
 
 	strmOut.close();
 }
+/*--------------------------------------------------------------------------------------------*/
+void GdlRenderer::DebugXmlFeatures(std::ofstream & strmOut)
+{
+	for (size_t ipfeat = 0; ipfeat < m_vpfeat.size(); ipfeat++)
+	{
+		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
+		pfeat->DebugXmlFeatures(strmOut);
+	}
+}
+
+void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
+{
+	GrpLineAndFile lnf = this->LineAndFile();
+	strmOut << "    <feature name=\"" << this->Name()
+		<< "\" featureID=\"" << this->ID()
+		<< "\" internalID=\"" << this->InternalID();
+
+	if (!lnf.NotSet() && this->ID() != kfidStdLang)
+		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
+	strmOut << "\" >\n";
+
+	for (unsigned int ifset = 0; ifset < m_vpfset.size(); ifset++)
+	{
+		m_vpfset[ifset]->DebugXmlFeatures(strmOut);
+	}
+
+	strmOut << "    </feature>\n";
+}
+
+void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut)
+{
+	GrpLineAndFile lnf = this->LineAndFile();
+	strmOut << "      <featureSetting name=\"" << this->Name()
+		<< "\" value=\"" << this->Value();
+
+	if (!lnf.NotSet())
+		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
+	strmOut << "\" />\n";
+}
+
 /*--------------------------------------------------------------------------------------------*/
 void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut)
 {
@@ -2339,8 +2383,10 @@ void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut,
 	for (unsigned int iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
 		strmOut << "      <member glyphid=\"" << m_vwGlyphIDs[iw] << "\" index=\"" << cwGlyphIDs;
+
 		if (!lnf.NotSet())
 			strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
 		strmOut << "\" />\n";
 		cwGlyphIDs++;
 	}
