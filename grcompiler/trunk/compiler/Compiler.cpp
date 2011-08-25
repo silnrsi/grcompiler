@@ -2161,10 +2161,24 @@ void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 /*----------------------------------------------------------------------------------------------
 	Output XML to be used by the engine debugger.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugXml()
+void GrcManager::DebugXml(char * pchOutputFilename)
 {
+	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
+	// a .gdx extension.
+	char * pchOut = pchOutputFilename;
+	char rgchDbgXmlFile[128];
+	char * pchXml = rgchDbgXmlFile;
+	while (*pchOut != '.' && *pchOut != 0)
+		*pchXml++ = *pchOut++;
+
+	*pchXml++ = '.';
+	*pchXml++ = 'g';
+	*pchXml++ = 'd';
+	*pchXml++ = 'x';
+	*pchXml = 0;
+
 	std::ofstream strmOut;
-	strmOut.open("dbg.xml");
+	strmOut.open(rgchDbgXmlFile);
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6101, NULL,
@@ -2173,121 +2187,21 @@ void GrcManager::DebugXml()
 		return;
 	}
 
-	Symbol psymActual = m_psymtbl->FindSymbol("*actualForPseudo*");
-	int nAttrIdActual = psymActual->InternalID();
-	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
-	int nAttrIdBw = psymBw->InternalID();
-	Symbol psymDir = m_psymtbl->FindSymbol("directionality");
-	int nAttrIdDir = psymDir->InternalID();
-
-	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
-	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
-	int nAttrIdJStr = psymJStr->InternalID();
-
 	if (g_errorList.AnyFatalErrors())
 		strmOut << "Fatal errors--compilation aborted";
 	else
 	{
-		strmOut << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<graphite>\n\n";
+		strmOut << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+			<< "<graphite>\n\n";
 
-		// Glyph attribute definitions
-
-		strmOut << "  <glyphAttrs>\n";
-
-		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
-		{
-			if (m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() && !m_prndr->Bidi())
-				continue;
-
-			if (m_vpsymGlyphAttrs[nAttrID]->InternalID() == static_cast<int>(nAttrID))
-			{
-				std::string staExpType = ExpressionDebugString(m_vpsymGlyphAttrs[nAttrID]->ExpType());
-				if (nAttrID == nAttrIdBw)
-					staExpType = "bw";
-				else if (nAttrID == nAttrIdDir)
-					staExpType = "dircode";
-				else if (nAttrID == nAttrIdActual)
-					staExpType = "gid";
-
-				strmOut << "    <glyphAttr name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName() 
-					<< "\" attrId=\"" << nAttrID 
-					<< "\" type=\"" << staExpType
-					<< "\" />\n";
-			}
-			// else we have something like justify.stretch which is unused
-		}
-
-		strmOut << "  </glyphAttrs>\n\n";
-
-		// Glyphs and their attribute values
-
-		strmOut << "  <glyphs>\n";
-
-		for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
-		{
-			// Convert breakweight values depending on the table version to output.
-			////ConvertBwForVersion(wGlyphID, nAttrIdBw);
-
-			//	Split any large stretch values into two 16-bit words.
-			////SplitLargeStretchValue(wGlyphID, nAttrIdJStr);
-
-			strmOut << "    <glyph glyphid=\"" << wGlyphID << "\"" << ">\n";
-		
-			for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
-			{
-				int nValue = FinalAttrValue(wGlyphID, nAttrID);
-
-				if (nAttrID == nAttrIdActual && nValue == 0)
-					continue;
-
-				if (m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() && !m_prndr->Bidi())
-					continue;
-
-				// Get the original expression where this attribute was set.
-				GdlExpression * pexp;
-				int nPR;
-				int munitPR;
-				bool fOverride, fShadow;
-				GrpLineAndFile lnf;
-				m_pgax->Get(wGlyphID, nAttrID,
-					&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
-
-				if (m_vpsymGlyphAttrs[nAttrID]->IsUserDefined() && !m_pgax->Defined(wGlyphID, nAttrID))
-					// attribute not defined for this glyph
-					continue;
-
-				strmOut << "      <glyphAttrValue name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName()
-					<< "\" value=\"";
-				if (m_vpsymGlyphAttrs[nAttrID]->LastFieldIs("gpoint") && nValue == kGpointZero)
-					strmOut << "zero";
-				else
-					strmOut  << nValue;
-
-				if (!lnf.NotSet())
-					strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
-
-				strmOut << "\" />\n";
-
-			}
-
-			strmOut << "    </glyph>\n";
-		}
-
-		strmOut << "  </glyphs>\n\n";
+		// Glyphs and glyph attributes
+		this->DebugXmlGlyphs(strmOut);
 
 		// Classes and members
-
-		strmOut << "  <classes>\n";
 		this->m_prndr->DebugXmlClasses(strmOut);
-		strmOut << "  </classes>\n\n";
 
 		// Features
-
-		strmOut << "  <features>\n";
-
 		m_prndr->DebugXmlFeatures(strmOut);
-
-		strmOut << "  </features>\n\n";
 		
 		// Rules
 
@@ -2301,63 +2215,169 @@ void GrcManager::DebugXml()
 
 	strmOut.close();
 }
+
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::DebugXmlFeatures(std::ofstream & strmOut)
+void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
 {
-	for (size_t ipfeat = 0; ipfeat < m_vpfeat.size(); ipfeat++)
+	// Glyph attribute definitions
+
+	strmOut << "  <glyphAttrs>\n";
+
+	Symbol psymActual = m_psymtbl->FindSymbol("*actualForPseudo*");
+	int nAttrIdActual = psymActual->InternalID();
+	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
+	int nAttrIdBw = psymBw->InternalID();
+	Symbol psymDir = m_psymtbl->FindSymbol("directionality");
+	int nAttrIdDir = psymDir->InternalID();
+
+	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
+	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
+	int nAttrIdJStr = psymJStr->InternalID();
+
+	for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 	{
-		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
-		pfeat->DebugXmlFeatures(strmOut);
+		Symbol psymGlyphAttr = m_vpsymGlyphAttrs[nAttrID];
+
+		if (psymGlyphAttr->IsMirrorAttr() && !m_prndr->Bidi())
+			continue;
+
+		if (psymGlyphAttr->InternalID() == static_cast<int>(nAttrID))
+		{
+			std::string staExpType = ExpressionDebugString(psymGlyphAttr->ExpType());
+			if (nAttrID == nAttrIdBw)
+				staExpType = "bw";
+			else if (nAttrID == nAttrIdDir)
+				staExpType = "dircode";
+			else if (nAttrID == nAttrIdActual)
+				staExpType = "gid";
+			else if (psymGlyphAttr->IsPointField())
+				staExpType = "point";
+			else if (psymGlyphAttr->IsComponentBoxField())
+				staExpType = "comp";
+
+			strmOut << "    <glyphAttr name=\"" << psymGlyphAttr->FullName() 
+				<< "\" attrId=\"" << nAttrID 
+				<< "\" type=\"" << staExpType
+				<< "\" />\n";
+		}
+		// else we have something like justify.stretch which is unused
+	}
+
+	strmOut << "  </glyphAttrs>\n\n";
+
+	// Glyphs and their attribute values
+
+	strmOut << "  <glyphs>\n";
+
+	std::vector<std::string> vstaSingleMemberClasses;
+	m_prndr->RecordSingleMemberClasses(vstaSingleMemberClasses);
+
+	for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
+	{
+		// Convert breakweight values depending on the table version to output.
+		////ConvertBwForVersion(wGlyphID, nAttrIdBw);
+
+		//	Split any large stretch values into two 16-bit words.
+		////SplitLargeStretchValue(wGlyphID, nAttrIdJStr);
+
+		strmOut << "    <glyph glyphid=\"" << wGlyphID;
+		if (vstaSingleMemberClasses.size() > (unsigned)wGlyphID && vstaSingleMemberClasses[wGlyphID] != "")
+			strmOut << "\" className=\"" << vstaSingleMemberClasses[wGlyphID];
+		strmOut<< "\"" << ">\n";
+	
+		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+		{
+			int nValue = FinalAttrValue(wGlyphID, nAttrID);
+
+			if (nAttrID == nAttrIdActual && nValue == 0)
+				continue;
+
+			if (m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() && !m_prndr->Bidi())
+				continue;
+
+			// Get the original expression where this attribute was set.
+			GdlExpression * pexp;
+			int nPR;
+			int munitPR;
+			bool fOverride, fShadow;
+			GrpLineAndFile lnf;
+			m_pgax->Get(wGlyphID, nAttrID,
+				&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
+
+			if (m_vpsymGlyphAttrs[nAttrID]->IsUserDefined() && !m_pgax->Defined(wGlyphID, nAttrID))
+				// attribute not defined for this glyph
+				continue;
+
+			strmOut << "      <glyphAttrValue name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName()
+				<< "\" value=\"";
+			if (m_vpsymGlyphAttrs[nAttrID]->LastFieldIs("gpoint") && nValue == kGpointZero)
+				strmOut << "zero";
+			else
+				strmOut  << nValue;
+
+			if (!lnf.NotSet())
+				strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
+			strmOut << "\" />\n";
+
+		}
+
+		strmOut << "    </glyph>\n";
+	}
+
+	strmOut << "  </glyphs>\n\n";
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRenderer::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses)
+{
+	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
+	{
+		m_vpglfc[ipglfc]->RecordSingleMemberClasses(vstaSingleMemberClasses);
 	}
 }
 
-void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
+void GdlGlyphClassDefn::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses)
 {
-	GrpLineAndFile lnf = this->LineAndFile();
-	strmOut << "    <feature name=\"" << this->Name()
-		<< "\" featureID=\"" << this->ID()
-		<< "\" internalID=\"" << this->InternalID();
-
-	if (!lnf.NotSet() && this->ID() != kfidStdLang)
-		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
-
-	strmOut << "\" >\n";
-
-	for (unsigned int ifset = 0; ifset < m_vpfset.size(); ifset++)
+	FlattenMyGlyphList();
+	if (m_vgidFlattened.size() == 1)
 	{
-		m_vpfset[ifset]->DebugXmlFeatures(strmOut);
+		utf16 gid = m_vgidFlattened[0];
+		while (vstaSingleMemberClasses.size() <= gid)
+			vstaSingleMemberClasses.push_back("");
+		if (vstaSingleMemberClasses[gid] == "")
+			vstaSingleMemberClasses[gid] = this->Name();
 	}
-
-	strmOut << "    </feature>\n";
-}
-
-void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut)
-{
-	GrpLineAndFile lnf = this->LineAndFile();
-	strmOut << "      <featureSetting name=\"" << this->Name()
-		<< "\" value=\"" << this->Value();
-
-	if (!lnf.NotSet())
-		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
-
-	strmOut << "\" />\n";
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut)
+void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut)		
 {
+	strmOut << "  <classes>\n";
+
 	int cwGlyphIDs;
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
+		if (m_vpglfc[ipglfc]->Name() == "ANY")
+			continue;
+
 		cwGlyphIDs = 0;
 		m_vpglfc[ipglfc]->DebugXmlClasses(strmOut, cwGlyphIDs);
 	}
+
+	strmOut << "  </classes>\n\n";
 }
 
 
 void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs)
 {
-	strmOut << "    <class name=\"" << this->Name() << "\">\n";
+	strmOut << "    <class name=\"" << this->Name();
+	if (m_fReplcmtIn)
+		strmOut << "\" subClassIndexLhs=\"" << m_nReplcmtInID;
+	if (m_fReplcmtOut)
+		strmOut << "\" subClassIndexRhs=\"" << m_nReplcmtOutID;
+	strmOut << "\">\n";
+
 	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, this, LineAndFileForMember(iglfd),
@@ -2390,7 +2410,79 @@ void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut,
 		strmOut << "\" />\n";
 		cwGlyphIDs++;
 	}
+}
 
+/*--------------------------------------------------------------------------------------------*/
+void GdlRenderer::DebugXmlFeatures(std::ofstream & strmOut)
+{
+	strmOut << "  <features>\n";
+
+	for (size_t ipfeat = 0; ipfeat < m_vpfeat.size(); ipfeat++)
+	{
+		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
+		pfeat->DebugXmlFeatures(strmOut);
+	}
+
+	strmOut << "  </features>\n\n";
+}
+
+void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
+{
+	GrpLineAndFile lnf = this->LineAndFile();
+	unsigned int nID = this->ID();
+	strmOut << "    <feature name=\"" << this->Name()
+		<< "\" featureID=\"" << nID;
+	if (nID >= 0x1000000)
+	{
+		//union {
+		//	char rgch[4];
+		//	unsigned int n;
+		//} featid;
+		//featid.n = nID;
+		//// Reverse them.
+		//char chTmp = featid.rgch[0];
+		//featid.rgch[0] = featid.rgch[4];
+		//featid.rgch[4] = chTmp;
+		//chTmp = featid.rgch[2];
+		//featid.rgch[2] = featid.rgch[3];
+		//featid.rgch[3] = chTmp;
+		//std::string staT(featid.rgch);
+
+		// Output string format as well.
+		char rgch[5];
+		rgch[4] = 0;
+		rgch[3] = (char)(nID & 0x000000FF);
+		rgch[2] = (char)((nID & 0x0000FF00) >> 8);
+		rgch[1] = (char)((nID & 0x00FF0000) >> 16);
+		rgch[0] = (char)((nID & 0xFF000000) >> 24);
+		std::string staT(rgch);
+		strmOut << "\" featureIDstring=\"" << staT;
+	}
+	strmOut << "\" index=\"" << this->InternalID();
+
+	if (!lnf.NotSet() && this->ID() != kfidStdLang)
+		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
+	strmOut << "\" >\n";
+
+	for (unsigned int ifset = 0; ifset < m_vpfset.size(); ifset++)
+	{
+		m_vpfset[ifset]->DebugXmlFeatures(strmOut);
+	}
+
+	strmOut << "    </feature>\n";
+}
+
+void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut)
+{
+	GrpLineAndFile lnf = this->LineAndFile();
+	strmOut << "      <featureSetting name=\"" << this->Name()
+		<< "\" value=\"" << this->Value();
+
+	if (!lnf.NotSet())
+		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+
+	strmOut << "\" />\n";
 }
 
 /*----------------------------------------------------------------------------------------------

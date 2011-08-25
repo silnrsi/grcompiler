@@ -871,6 +871,25 @@ bool GrcSymbolTableEntry::IsComponentBase()
 }
 
 /*----------------------------------------------------------------------------------------------
+    Return true if the symbol is of the form ...???.x or ???.y and there is a sister field
+	with the appropriate name. Current only used for the debugger-xml output.
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsPointField()
+{
+	if (m_staFieldName == "x")
+		return PointSisterField("y") != NULL;
+	else if (m_staFieldName == "y")
+		return PointSisterField("x") != NULL;
+	else if (m_staFieldName == "xoffset" || m_staFieldName == "yoffset")
+		return (PointSisterField("x") != NULL && PointSisterField("y") != NULL)
+			|| (PointSisterField("gpoint") != NULL);
+	else if (m_staFieldName == "gpoint")
+		return true;
+	else
+		return false;
+}
+
+/*----------------------------------------------------------------------------------------------
     Return true if the symbol is of the form "attach.to"
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsAttachTo()

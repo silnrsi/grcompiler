@@ -144,6 +144,7 @@ public:
 	bool IsComponentRef();
 	bool IsComponentBoxField();
 	bool IsComponentBase();
+	bool IsPointField();
 	bool IsAttachTo();
 	bool IsAttachAtField();
 	bool IsAttachWithField();
