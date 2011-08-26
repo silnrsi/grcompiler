@@ -294,8 +294,11 @@ public:
 		std::ostream & strmOut);
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut);
-	virtual void ConstraintPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+	virtual void ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fSpace = false);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
+	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -370,6 +373,7 @@ public:
 	//	debuggers:
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut);
+	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
 
 };	//	end of GdlLineBreakItem
 
@@ -484,6 +488,10 @@ public:
 		std::ostream & strmOut);
 	virtual void AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
+	//virtual void DebugXmlAttrSetter(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -601,6 +609,8 @@ public:
 		std::ostream & strmOut);
 	virtual void RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -856,6 +866,7 @@ public:
 	static std::string GlyphMetricDebugString(int gmet);
 	static std::string EngineCodeDebugString(int op);
 	static std::string ProcessStateDebugString(int pstat);
+	void DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNumber, int nRuleNum);
 
 protected:
 	//	Instance variables:

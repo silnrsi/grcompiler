@@ -780,7 +780,6 @@ void GdlRenderer::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut
 		prultbl->DebugRulePrecedence(pcman, strmOut);
 }
 
-/*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
@@ -1509,45 +1508,11 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 		strmOut << " endif; ";
 }
 
-
-
+/*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & /*strmOut*/)
 {
 	//	Do nothing.
-}
-
-void GdlRuleItem::RhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & /*strmOut*/)
-{
-	//	Do nothing.
-}
-
-void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
-{
-	strmOut << m_psymInput->FullAbbrev();
-	ConstraintPrettyPrint(pcman, prule, irit, strmOut);
-	strmOut << "  ";
-}
-
-void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
-{
-	strmOut << "#";
-	ConstraintPrettyPrint(pcman, prule, irit, strmOut);
-	strmOut << "  ";
-}
-
-void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
-{
-	if (m_pexpConstraint)
-	{
-		strmOut << " { ";
-		m_pexpConstraint->PrettyPrint(pcman, strmOut);
-		strmOut << " }";
-	}
 }
 
 void GdlSetAttrItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
@@ -1557,26 +1522,25 @@ void GdlSetAttrItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/,
 	strmOut << "  ";
 }
 
+void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
+	std::ostream & strmOut)
+{
+	strmOut << m_psymInput->FullAbbrev();
+	strmOut << "  ";
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleItem::RhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
+	std::ostream & /*strmOut*/)
+{
+	//	Do nothing.
+}
+
 void GdlSetAttrItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 	std::ostream & strmOut)
 {
 	strmOut << m_psymInput->FullAbbrev();
 	AttrSetterPrettyPrint(pcman, prule, irit, strmOut);
-	strmOut << "  ";
-}
-
-void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
-{
-	strmOut << "_";
-	ConstraintPrettyPrint(pcman, prule, irit, strmOut);
-	strmOut << "  ";
-}
-
-void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
-{
-	strmOut << m_psymInput->FullAbbrev();
 	strmOut << "  ";
 }
 
@@ -1608,7 +1572,44 @@ void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, in
 	strmOut << "  ";
 }
 
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+	std::ostream & strmOut)
+{
+	strmOut << m_psymInput->FullAbbrev();
+	ConstraintPrettyPrint(pcman, strmOut, true);
+	strmOut << "  ";
+}
 
+void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+	std::ostream & strmOut)
+{
+	strmOut << "#";
+	ConstraintPrettyPrint(pcman, strmOut, true);
+	strmOut << "  ";
+}
+
+void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+	std::ostream & strmOut)
+{
+	strmOut << "_";
+	ConstraintPrettyPrint(pcman, strmOut, true);
+	strmOut << "  ";
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fSpace)
+{
+	if (m_pexpConstraint)
+	{
+		if (fSpace) strmOut << " ";
+		strmOut << "{ ";
+		m_pexpConstraint->PrettyPrint(pcman, strmOut);
+		strmOut << " }";
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
@@ -2204,11 +2205,7 @@ void GrcManager::DebugXml(char * pchOutputFilename)
 		m_prndr->DebugXmlFeatures(strmOut);
 		
 		// Rules
-
-		strmOut << "  <rules>\n";
-
-		strmOut << "  </rules>\n\n";
-
+		m_prndr->DebugXmlRules(this, strmOut);
 
 		strmOut << "</graphite>\n";
 	}
@@ -2238,8 +2235,9 @@ void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
 	{
 		Symbol psymGlyphAttr = m_vpsymGlyphAttrs[nAttrID];
 
-		if (psymGlyphAttr->IsMirrorAttr() && !m_prndr->Bidi())
-			continue;
+		//if ((psymGlyphAttr->IsMirrorAttr() || nAttrID == nAttrIdDir)
+		//		&& !m_prndr->Bidi())
+		//	continue;
 
 		if (psymGlyphAttr->InternalID() == static_cast<int>(nAttrID))
 		{
@@ -2292,7 +2290,8 @@ void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
 			if (nAttrID == nAttrIdActual && nValue == 0)
 				continue;
 
-			if (m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() && !m_prndr->Bidi())
+			if ((m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() || nAttrID == nAttrIdDir)
+					&& !m_prndr->Bidi())
 				continue;
 
 			// Get the original expression where this attribute was set.
@@ -2432,8 +2431,19 @@ void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
 	unsigned int nID = this->ID();
 	strmOut << "    <feature name=\"" << this->Name()
 		<< "\" featureID=\"" << nID;
-	if (nID >= 0x1000000)
+	if (nID > 0xFFFFFF)
 	{
+		// Output string format as well.
+
+		char rgch[5];
+		rgch[4] = 0;
+		rgch[3] = (char)(nID & 0x000000FF);
+		rgch[2] = (char)((nID & 0x0000FF00) >> 8);
+		rgch[1] = (char)((nID & 0x00FF0000) >> 16);
+		rgch[0] = (char)((nID & 0xFF000000) >> 24);
+		std::string staT(rgch);
+
+		// Why doesn't this work??
 		//union {
 		//	char rgch[4];
 		//	unsigned int n;
@@ -2447,15 +2457,7 @@ void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
 		//featid.rgch[2] = featid.rgch[3];
 		//featid.rgch[3] = chTmp;
 		//std::string staT(featid.rgch);
-
-		// Output string format as well.
-		char rgch[5];
-		rgch[4] = 0;
-		rgch[3] = (char)(nID & 0x000000FF);
-		rgch[2] = (char)((nID & 0x0000FF00) >> 8);
-		rgch[1] = (char)((nID & 0x00FF0000) >> 16);
-		rgch[0] = (char)((nID & 0xFF000000) >> 24);
-		std::string staT(rgch);
+		
 		strmOut << "\" featureIDstring=\"" << staT;
 	}
 	strmOut << "\" index=\"" << this->InternalID();
@@ -2483,6 +2485,257 @@ void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut)
 		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
 
 	strmOut << "\" />\n";
+}
+
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRenderer::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut)
+{
+	strmOut << "  <rules>\n";
+
+	GdlRuleTable * prultbl;
+
+	if ((prultbl = FindRuleTable("linebreak")) != NULL)
+		prultbl->DebugXmlRules(pcman, strmOut);
+
+	if ((prultbl = FindRuleTable("substitution")) != NULL)
+		prultbl->DebugXmlRules(pcman, strmOut);
+
+	if (Bidi())
+		strmOut << "    <pass table=\"bidi\" index=\"" << m_iPassBidi + 1 << "\" />\n";
+
+	if ((prultbl = FindRuleTable("justification")) != NULL)
+		prultbl->DebugXmlRules(pcman, strmOut);
+
+	if ((prultbl = FindRuleTable("positioning")) != NULL)
+		prultbl->DebugXmlRules(pcman, strmOut);
+
+	strmOut << "  </rules>\n\n";
+}
+
+void GdlRuleTable::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut)
+{
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
+	{
+		m_vppass[ippass]->DebugXmlRules(pcman, strmOut, this->NameSymbol());
+	}
+}
+
+void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+	Symbol psymTableName)
+{
+	if (m_vprule.size() == 0)
+		return;
+
+	Assert(PassDebuggerNumber() != 0);
+
+	strmOut << "    <pass table=\"" << psymTableName->FullName()
+		<< "\" index=\"" << PassDebuggerNumber() << "\" >\n";
+
+	if (m_vpexpConstraints.size() > 0)
+	{
+		strmOut << "        <passConstraints>\n";
+		for (size_t iexp = 0; iexp < m_vpexpConstraints.size(); iexp++)
+		{
+			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
+			strmOut << "          <passConstraint gdl=\"{ ";
+			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut);
+			strmOut << " }\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
+		}
+		strmOut << "        </passConstraints>\n";
+	}
+
+	for (size_t irule = 0; irule < m_vprule.size(); irule++)
+	{
+		m_vprule[irule]->DebugXml(pcman, strmOut, PassDebuggerNumber(), irule);
+	}
+
+	strmOut << "    </pass>  <!-- pass " << PassDebuggerNumber() 
+				<< " (" << psymTableName->FullName() << " table) -->\n\n";
+}
+
+void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum, int nRuleNum)
+{
+	strmOut << "      <rule id=\"" << nPassNum << "." << nRuleNum
+		<< "\" inFile=\"" << LineAndFile().File()
+		<< "\" atLine=\"" << LineAndFile().OriginalLine()
+		<< "\"\n            prettyPrint=\"";
+	this->RulePrettyPrint(pcman, strmOut);
+	strmOut << "\" >\n";
+
+	if (m_vpexpConstraints.size() > 0)
+	{
+		strmOut << "        <ruleConstraints>\n";
+		for (size_t iexp = 0; iexp < m_vpexpConstraints.size(); iexp++)
+		{
+			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
+			strmOut << "          <ruleConstraint gdl=\"{ ";
+			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut);
+			strmOut << " }\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
+		}
+		strmOut << "        </ruleConstraints>\n";
+	}
+
+	//	Loop through all the items to see if we need a LHS or a context.
+	bool fLhs = false;
+	bool fContext = (m_nScanAdvance != -1);
+	int irit;
+	for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
+	{
+		GdlRuleItem * prit = m_vprit[irit];
+		GdlSubstitutionItem * pritsub = dynamic_cast<GdlSubstitutionItem *>(prit);
+		if (pritsub)
+			fLhs = true;
+
+		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem *>(prit);
+		if (!pritset)
+			fContext = true;
+		else if (prit->m_pexpConstraint)
+			fContext = true;
+	}
+
+	// LHS
+	if (fLhs)
+	{
+		strmOut << "        <lhs>\n";
+		for (size_t irit = 0; irit < m_vprit.size(); irit++)
+		{
+			m_vprit[irit]->DebugXmlLhs(pcman, strmOut);
+		}
+		strmOut << "        </lhs>\n";
+	}
+
+	// RHS
+	strmOut << "        <rhs>\n";
+	for (size_t irit = 0; irit < m_vprit.size(); irit++)
+	{
+		m_vprit[irit]->DebugXmlRhs(pcman, strmOut);
+	}
+	strmOut << "        </rhs>\n";
+
+	// Context
+	if (fContext)
+	{
+		strmOut << "        <context>\n";
+		int iritRhs = 0;
+		for (size_t irit = 0; irit < m_vprit.size(); irit++)
+		{
+			if (m_nScanAdvance == irit)
+				strmOut << "          <caret />\n";
+
+			m_vprit[irit]->DebugXmlContext(pcman, strmOut, iritRhs);
+		}
+		strmOut << "        </context>\n";
+	}
+
+	strmOut << "      </rule>\n";
+}
+
+
+void GdlRuleItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & /*strmOut*/)
+{
+	//	Do nothing.
+}
+
+void GdlSetAttrItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & strmOut)
+{
+	strmOut << "          <lhsSlot className=\"" << m_psymInput->FullAbbrev()
+		<< "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
+}
+
+void GdlSubstitutionItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & strmOut)
+{
+	strmOut << "          <lhsSlot className=\"" << m_psymInput->FullAbbrev()
+		<< "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
+}
+
+void GdlRuleItem::DebugXmlRhs(GrcManager * /*pcman*/, std::ofstream & /*strmOut*/)
+{
+	//	Do nothing.
+}
+
+void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
+{
+	strmOut << "          <rhsSlot className=\"" << m_psymInput->FullAbbrev();
+	if (m_vpavs.size() > 0)
+	{
+		strmOut << "\" assignmentGdl=\"";
+		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut);	// NULL and 0 are bogus but not used
+	}
+	strmOut << "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
+}
+
+void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
+{
+	strmOut << "          <rhsSlot className=\"" << m_psymOutput->FullAbbrev();
+	
+	if (m_pexpSelector)
+		strmOut << "\" selectorIndex=\"" << m_pexpSelector->SlotNumber();
+
+	if (m_vpexpAssocs.size() > 0)
+	{
+		strmOut << "\" associations=\"";
+		int iexp;
+		for (iexp = 0; iexp < signed(m_vpexpAssocs.size()) - 1; iexp++)
+			strmOut << m_vpexpAssocs[iexp]->SlotNumber() << " ";
+		strmOut << m_vpexpAssocs[iexp]->SlotNumber();
+	}
+
+	if (m_vpavs.size() > 0)
+	{
+		strmOut << "\" assignmentGdl=\"";
+		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut);	// NULL and 0 are bogus but not used
+	}
+	strmOut << "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
+
+}
+
+void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs)
+{
+	strmOut << "          <contextSlot type=\"class\" className=\"" << m_psymInput->FullAbbrev() 
+		<< "\"";
+	if (this->m_pexpConstraint)
+	{
+		strmOut << " >\n            <constraint gdl=\"";
+		ConstraintPrettyPrint(pcman, strmOut);
+		strmOut << "\">\n          </contextSlot>\n";
+	}
+	else
+		strmOut << " />\n";
+}
+
+void GdlSetAttrItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs)
+{
+	iritRhs++;
+
+	strmOut << "          <contextSlot type=\"place-holder\""
+		<< " rhsIndex=\"" << iritRhs << "\"";
+	if (this->m_pexpConstraint)
+	{
+		strmOut << " >\n            <constraint gdl=\"";
+		ConstraintPrettyPrint(pcman, strmOut);
+		strmOut << "\">\n          </contextSlot>\n";
+	}
+	else
+		strmOut << " />\n";
+}
+
+void GdlRuleItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut)
+{
+	if (m_pexpConstraint)
+	{
+		strmOut << "        <constraint gdl=\"";
+		m_pexpConstraint->PrettyPrint(pcman, strmOut);
+		strmOut << "\" />\n";
+	}
+}
+
+void GdlLineBreakItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut)
+{
+	strmOut << "          <contextSlot className=\"#\"";
+	ConstraintPrettyPrint(pcman, strmOut);
+	strmOut << "\" />\n";
+
 }
 
 /*----------------------------------------------------------------------------------------------

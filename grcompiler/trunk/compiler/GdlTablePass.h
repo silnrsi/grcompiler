@@ -155,6 +155,8 @@ public:
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking);
 	void WalkFsmMachineClasses();
+	void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+		Symbol psymTableName);
 
 protected:
 	//	Instance variables:
@@ -297,13 +299,13 @@ public:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
-
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
-	Symbol				m_psymName;
-	bool				m_fSubstitution;	// are substitutions (& associations) allowed in
-											// this table?
+	Symbol m_psymName;
+	bool m_fSubstitution;	// are substitutions (& associations) allowed in
+							// this table?
 	std::vector<GdlPass*>	m_vppass;
 };
 
