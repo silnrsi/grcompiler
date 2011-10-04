@@ -1,14 +1,11 @@
-GRAPHITE COMPILER 2.4
-=====================
-
 FILES INCLUDED
 
 Program Files
-* GrCompiler.exe - Graphite compiler version 2.4
-* icuuc.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
+* GrCompiler.exe - Graphite compiler version 4.0
+* icuuc36.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
+* icudt36.dll - ICU data tables
 * gdlpp.exe - preprocessor to handle #define and #include statements
 * stddef.gdh - standard GDL abbreviations
-* gr_buildbat.bat - will create a batch file to run the compiler for your font (Windows only)
 
 For testing the installation ("example" folder)
 * allcaps.gdl - simple GDL program
@@ -16,19 +13,19 @@ For testing the installation ("example" folder)
 * makecaps.wpx - WorldPad file to use to test the result
 
 Documentation files ("doc" folder)
-* GraphiteOverview.rtf
+* GraphiteOverview.pdf
 * GDL.pdf
 * CompilerDebugFiles.pdf
-* StackMachineCommands.rtf
-* TransductionLlog.rtf
-* GTF_3_0.rtf
-* GDL_BNF_1_0.rtf
+* StackMachineCommands.pdf
+* TransductionLog.pdf
+* GTF_4_0.pdf
+* GDL_BNF.pdf
 * CppDoc.pdf
 
 
-INSTALLING THE PROGRAM ON WINDOWS
+INSTALLING THE PROGRAM
 
-After running the installer program, all the program files will be located in the selected folder and the example and doc subfolders.
+After running the installer program, all the program files will be located in the indicated folder.
 
 If you choose to put the gdlpp.exe file in a different folder from GrCompiler.exe, you need to set the GDLPP environment variable to indicate where this utility is, for instance: "c:\graphite_extras\gdlpp.exe". Note that the variable must include the name of the program as well as well as the path.
 
@@ -47,7 +44,7 @@ If the output-font-name is omitted, the resulting font will have the same name a
 
 Options:
 
--d - causes the compiler to output files that can be used to debug the Graphite version of the font. This flag is recommended. These files are documented in "Compiler Debug Files.rtf".
+-d - causes the compiler to output files that can be used to debug the Graphite version of the font. This flag is recommended. These files are documented in "Compiler Debug Files.doc".
 
 -g - permit and ignore invalid glyph definitions.
 
@@ -60,17 +57,29 @@ Options:
 -wNNNN - ignore warning with the given number.
 
 
-On Windows, you can use the gr_buildbat.bat file to create a batch file to run the compiler for a given GDL file and font. Select the pair of files and drag-and-drop them onto the gr_buildbat.bat file icon. This will create a .bat file with the same name as your GDL file that contains the appropriate command to the run the compiler. If you wish, you can then edit the batch file and add additional options.
-
-
 TESTING THE INSTALLATION
 
 The file "allcaps.gdl" is a very simple program that you can try to compile. It needs to be compiled with a font that contains the Roman alphabet--a, b, c, etc. The stddr.ttf is such a font and is included as part of the installation. These files are located in the example folder.
 
 
-UNINSTALLING THE PROGRAM ON WINDOWS
+UNINSTALLING THE PROGRAM
 
-To uninstall, run "unins000.exe" which is located in the same directory as the compiler.
+To uninstall, run "unins000.exe".
+
+
+CHANGES SINCE VERSION 2.4
+
+* Support pass constraints.
+
+* Handles the mirror.glyph and mirror.isEncoded glyph attributes. (These are only supported in the Graphite2 engine.)
+
+* Outputs a .GDX file to be used by the Graphite2 debugger.
+
+* Automatically creates associations for insertions and deletions when they are unambiguous.
+
+* Improved pretty-print output for rules.
+
+* Support version 2.0 of the Glat table which allows more than 256 glyph attributes.
 
 
 CHANGES SINCE VERSION 2.3

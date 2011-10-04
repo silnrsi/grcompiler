@@ -3,18 +3,18 @@
 
 [Setup]
 AppName=Graphite Compiler
-AppVerName=Graphite Compiler 2.4
+AppVerName=Graphite Compiler 4.1
 AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
 AppUpdatesURL=http://graphite.sil.org/
 DefaultDirName={pf}\Graphite Compiler
 ; Start Menu item name:
-DefaultGroupName=Graphite Compiler 2.4
+DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
 AllowNoIcons=yes
 ; installer file name:
-OutputBaseFilename=grcompiler_setup_2_4
+OutputBaseFilename=grcompiler_setup_4_1
 Compression=lzma
 SolidCompression=yes
 
@@ -37,11 +37,11 @@ Source: "C:\silgraphite_2_0\grcompiler\installer\gr_buildbat.bat"; DestDir: "{ap
 Source: "C:\silgraphite_2_0\grcompiler\doc\CompilerDebugFiles.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\doc\GTF_3_0.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\doc\GDL_BNF.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\doc\GDL_BNF.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\doc\StackMachineCommands.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\doc\TransductionLog.rtf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\doc\GTF_4_0.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\doc\StackMachineCommands.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\doc\TransductionLog.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\installer\example\stddr.ttf"; DestDir: "{app}\example"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\installer\example\allcaps.gdl"; DestDir: "{app}\example"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\installer\example\makecaps.wpx"; DestDir: "{app}\example"; Flags: ignoreversion
