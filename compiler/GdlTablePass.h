@@ -155,7 +155,7 @@ public:
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking);
 	void WalkFsmMachineClasses();
-	void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 		Symbol psymTableName);
 
 protected:
