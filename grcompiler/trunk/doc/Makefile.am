@@ -2,7 +2,7 @@ pkgdocdir = $(datadir)/doc/@PACKAGE@
 
 dist_pkgdoc_DATA = CompilerDebugFiles.pdf CppDoc.pdf GDL.pdf GraphiteOverview.pdf
 
-EXTRA_DIST = grcompiler.1.xml
+EXTRA_DIST = grcompiler.1.xml gdlpp.1
 
 # EXTRA_DIST = CompilerDebugFiles.pdf CppDoc.pdf GDL.pdf GraphiteOverview.pdf
 
