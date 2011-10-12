@@ -46,7 +46,7 @@ clean :
 realclean : clean
     @- rd /s/q $(OUTDIR)
 
-CPP_PROJ=/nologo /MTd /W3 /Gm /GR /GX /GZ /ZI /Od  /I "."  /I "../../compiler"  /I "../../../graphite/engine/include"  /I "../../../graphite/engine/include/graphite"  /I "../../../graphite/engine/src/segment"  /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od  /I "."  /I "../../compiler"  /I "../../../graphite/engine/include"  /I "../../../graphite/engine/include/graphite"  /I "../../../graphite/engine/src/segment"  /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "_DEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET).pdb" /debug /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe"  /libpath:"..\..\debug" 
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
@@ -133,7 +133,7 @@ BSC32_SBRS= \
 "$(INTDIR)\CompareFontTables.obj"  "$(INTDIR)\CompareFontTables.sbr" : "$(REGT_SRC)\CompareFontTables.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcRtFileFont.obj"  "$(INTDIR)\GrcRtFileFont.sbr" : "$(REGT_SRC)\GrcRtFileFont.cpp" "$(INTDIR)"
 "$(INTDIR)\FontStub.obj"  "$(INTDIR)\FontStub.sbr" : "$(REGT_SRC)\FontStub.cpp" "$(INTDIR)"
-"$(INTDIR)\TtfUtil.obj"  "$(INTDIR)\TtfUtil.sbr" : "$(GR_FONT)\TtfUtil.cpp" "$(INTDIR)"
+"$(INTDIR)\TtfUtil.obj"  "$(INTDIR)\TtfUtil.sbr" : "$(REGT_SRC)\TtfUtil.cpp" "$(INTDIR)"
 "$(INTDIR)\FileInput.obj"  "$(INTDIR)\FileInput.sbr" : "$(GR_SEG)\FileInput.cpp" "$(INTDIR)"
 "$(INTDIR)\Platform.obj"  "$(INTDIR)\Platform.sbr" : "$(GR_SEG)\Platform.cpp" "$(INTDIR)"
 

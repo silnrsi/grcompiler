@@ -186,7 +186,7 @@ void GrcRtFileFont::initializeFromFace()
 			return;
 		}
 		Assert(lSize %2 == 0);// should be utf16
-		int cchw = (lSize / isizeof(utf16)) + 1;
+		int cchw = (lSize / sizeof(utf16)) + 1;
 		cchw = min(cchw, 128);
 		utf16 * pTable16 = reinterpret_cast<utf16*>(pTable + lOffset);
 		utf16 rgchwFace[128];
@@ -195,15 +195,15 @@ void GrcRtFileFont::initializeFromFace()
 		TtfUtil::SwapWString(rgchwFace, cchw - 1);
 // We could use something like "if (sizeof(std::wstring::value_type) == 4)" here,
 // but a compile-time switch is preferable.
-#if SIZEOF_WCHAR_T == 4
+////#if SIZEOF_WCHAR_T == 4
 		// Quick and dirty utf16 -> wchar_t:
 		for (int c16 = 0; c16 < cchw; c16++)
 		{
 			m_stu32FaceName.push_back((wchar_t)rgchwFace[c16]);
 		}
-#else
-		m_stu32FaceName.assign(rgchwFace);
-#endif
+////#else -- for some reason this won't build on Windows, but the above approach works okay
+////		m_stu32FaceName.assign(const_cast<utf16 *>(rgchwFace));
+////#endif
 		delete[] pTable; // name
 
 		pTable = readTable(ktiHead, lSize);
