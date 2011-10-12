@@ -35,7 +35,7 @@ void Font::UniqueCacheInfo(std::wstring & stuFace, bool & fBold, bool & fItalic)
 	}
 	// byte * pvName = (byte *)pNameTbl + lOffset;
 	utf16 rgchwFace[128];
-	const size_t cchw = min(long(lSize / sizeof(utf16)), long(sizeof rgchwFace - 1));
+	const size_t cchw = min(long(lSize / sizeof(utf16)), long(sizeof(rgchwFace - 1)));
 	const utf16 *src_start = reinterpret_cast<const utf16 *>(pNameTbl+ lOffset);
 	std::copy(src_start, src_start + cchw, rgchwFace);
 	rgchwFace[cchw] = 0;  // zero terminate

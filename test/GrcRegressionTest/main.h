@@ -20,15 +20,18 @@ Description:
 #define NO_EXCEPTIONS 1
 
 // To allow call to IsDebuggerPresent:
-#define _WIN32_WINNT WINVER
+//////#define _WIN32_WINNT WINVER
 
 //:>********************************************************************************************
 //:>	Include files
 //:>********************************************************************************************
-// #include "windows.h"
+#ifdef _WIN32
+#include <windows.h>
+#endif // _WIN32
+
 #include "stdafx.h"
 ////#include "resource.h"
-// #include <hash_map>
+////#include <hash_map>
 #include <fstream>
 #include <iostream>
 #include <vector>

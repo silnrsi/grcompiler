@@ -24,7 +24,7 @@ bool g_debugMode = false;
 bool g_silentMode = false;
 char * g_benchmarkName = NULL;
 char * g_testName = NULL;
-char * g_logFileName = NULL;
+char g_logFileName[128];
 
 int g_itcaseStart = 0;  // adjust to skip to a certain test
 
@@ -71,10 +71,18 @@ int main(int argc, char* argv[])
 		{
 			iargc++;
 			if (iargc < argc)
-				g_logFileName = argv[iargc];
+			{
+				strcpy(g_logFileName, argv[iargc]);
+				//g_logFileName = argv[iargc];
+			}
+				
 		}
         else if (g_benchmarkName)
         {
+			if (g_testName) {
+				std::cout << "Incorrect number of arguments";
+				return -1;
+			}
             g_testName = argv[iargc];
         }
         else
@@ -88,8 +96,9 @@ int main(int argc, char* argv[])
 		std::cout << "Graphite Compiler Regression Test\n\n";
 
 	//	Start a new log.
-	if (g_logFileName == NULL)
+	if (strlen(g_logFileName) == 0)
 	{
+		memset(g_logFileName, 0, 128);
 	    strcpy(g_logFileName, "grcregtest.log");
 	}
 	g_strmLog.open(g_logFileName, std::ios_base::out | std::ios_base::app );
@@ -209,11 +218,13 @@ void RunTests(int numberOfTests, TestCase * ptcaseList)
 int RunOneTestCase(TestCase * ptcase)
 {
 #ifdef _MSC_VER
+#if  (_WIN32_WINNT > 0x0400)
 	// Break into the debugger if requested.
-	if (ptcase->m_debug && ::IsDebuggerPresent())
+	if (ptcase->m_debug ) ///&& ::IsDebuggerPresent())
 	{
 		::DebugBreak();
 	}
+#endif
 #endif
 
 	GrcRtFileFont fontBmark(ptcase->m_fontFileBmark, 12.0, 96, 96);

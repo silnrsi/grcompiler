@@ -166,10 +166,10 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 		if (vbName[lnNameOff + 1] == (unsigned char)0xF0) // 1 - Unicode id is big endian
 			ReturnResult(kresFail);
 	}
-	if (!TtfUtil::SwapWString(vbName.Begin() + lnNameOff, lnNameSz / isizeof(utf16)))
+	if (!TtfUtil::SwapWString(vbName.Begin() + lnNameOff, lnNameSz / sizeof(utf16)))
 		ReturnResult(kresFail);
 
-	m_stuFaceName = std::wstring((utf16 *)(vbName.begin() + lnNameOff), lnNameSz / isizeof(utf16));
+	m_stuFaceName = std::wstring((utf16 *)(vbName.begin() + lnNameOff), lnNameSz / sizeof(utf16));
 	****/
 
 	// Silf
