@@ -68,7 +68,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	OffsetSubTable * pOffsetTableOut;
 	uint16 cTableOut;
 
-	unsigned int luMasterChecksumSrc;
+	unsigned int luMasterChecksumSrc = 0;
 	unsigned int rgnCreateTime[2];
 	unsigned int rgnModifyTime[2];
 
@@ -167,8 +167,10 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	bstrmDst.Write((char *)pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
 	
 	// Copy tables from input stream to output stream.
-	uint32 ibTableOffset, ibHeadOffset, cbHeadSize;
-	int iNameTbl;
+	uint32 ibTableOffset = 0;	// initialize to avoid warnings
+	uint32 ibHeadOffset = 0;
+	uint32 cbHeadSize = 0;
+	int iNameTbl = 0;
 	int iCmapTbl = -1;
 	int iOS2Tbl = -1;
 	uint8 * pbTable;
@@ -1178,7 +1180,7 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 	pbstrm->WriteInt(0);	// offset
 
 	long lPos310Dir = pbstrm->Position();
-	long lPosOffset310;
+	long lPosOffset310 = 0;
 	if (pCmap_3_10)
 	{
 		pbstrm->WriteShort(3);	// platform ID
@@ -2502,17 +2504,17 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int fxdSilfVersion = pcman->VersionForTable(ktiSilf);
 	int fxdRuleVersion = fxdSilfVersion; // someday these may be different
 
-	int nOffsetToPConstraint;
-	long lOffsetToPConstraintPos;
+	int nOffsetToPConstraint = 0;
+	long lOffsetToPConstraintPos = 0;
 
-	int nOffsetToConstraint;
-	long lOffsetToConstraintPos;
+	int nOffsetToConstraint = 0;
+	long lOffsetToConstraintPos = 0;
 
-	int nOffsetToAction;
-	long lOffsetToActionPos;
+	int nOffsetToAction = 0;
+	long lOffsetToActionPos = 0;
 
-	int nOffsetToDebugArrays;
-	long lOffsetToDebugArraysPos;
+	int nOffsetToDebugArrays = 0;
+	long lOffsetToDebugArraysPos = 0;
 
 	//	flags; TODO SharonC: figure out what should be in here
 	pbstrm->WriteByte(0);
@@ -3317,6 +3319,3 @@ void GrcManager::DebugOutput()
 
 	bstrm.SetPosition(lSavePos);
 }
-
-
-

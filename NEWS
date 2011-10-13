@@ -1,4 +1,7 @@
-Jan 6th 2006	Tim Eves
+4 Oct 2011  Sharon Correll
+	Release v 4.1
+	
+6 Jan 2006	Tim Eves
 	Succefully built on Mac OS X, binary runs, though probably not able 
 	to produce Graphite fonts yet due potential TruType font file reading
 	problems.

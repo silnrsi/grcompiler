@@ -179,12 +179,13 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVe
 
 	//	'and' all the constraints together; the separate constraints come from separate
 	//	-if- or -elseif- statements.
+	int nBogus;
 	m_vpexpConstraints[0]->GenerateEngineCode(fxdRuleVersion, vbOutput,
-		-1, NULL, -1, false, -1, false);
+		-1, NULL, -1, false, -1, &nBogus);
 	for (size_t ipexp = 1; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
-			-1, NULL, -1, false, -1, false);
+			-1, NULL, -1, false, -1, &nBogus);
 		vbOutput.push_back(kopAnd);
 	}
 }
@@ -221,8 +222,9 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRu
 	vbOutput.push_back(iritByte - iritFirstModItem);
 	vbOutput.push_back(0); // place holder
 	int ibSkipLoc = vbOutput.size();
+	int nBogus;
 	m_pexpConstraint->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, &viritInput, irit,
-		fInserting, -1, false);
+		fInserting, -1, &nBogus);
 
 	//	Go back and fill in number of bytes to skip if we are not at the 
 	//	appropriate context item.
@@ -245,12 +247,13 @@ void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
 
 	//	'and' all the constraints together; multiple constraints result from an -else if-
 	//	structure.
+	int nBogus;
 	m_vpexpConstraints[0]->GenerateEngineCode(fxdRuleVersion, vbOutput,
-		-1, NULL, -1, false, -1, false);
+		-1, NULL, -1, false, -1, &nBogus);
 	for (size_t ipexp = 1; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->GenerateEngineCode(fxdRuleVersion, vbOutput,
-			-1, NULL, -1, false, -1, false);
+			-1, NULL, -1, false, -1, &nBogus);
 		vbOutput.push_back(kopAnd);
 	}
 	vbOutput.push_back(kopPopRet);
@@ -1573,7 +1576,7 @@ void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, in
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	strmOut << m_psymInput->FullAbbrev();
@@ -1581,7 +1584,7 @@ void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int ir
 	strmOut << "  ";
 }
 
-void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	strmOut << "#";
@@ -1589,7 +1592,7 @@ void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, i
 	strmOut << "  ";
 }
 
-void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
+void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
 	std::ostream & strmOut)
 {
 	strmOut << "_";
@@ -2221,11 +2224,11 @@ void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
 	strmOut << "  <glyphAttrs>\n";
 
 	Symbol psymActual = m_psymtbl->FindSymbol("*actualForPseudo*");
-	int nAttrIdActual = psymActual->InternalID();
+	unsigned int nAttrIdActual = psymActual->InternalID();
 	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
-	int nAttrIdBw = psymBw->InternalID();
+	unsigned int nAttrIdBw = psymBw->InternalID();
 	Symbol psymDir = m_psymtbl->FindSymbol("directionality");
-	int nAttrIdDir = psymDir->InternalID();
+	unsigned int nAttrIdDir = psymDir->InternalID();
 
 	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
 	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
@@ -2397,7 +2400,7 @@ void GdlGlyphClassDefn::DebugXmlClassMembers(std::ofstream & strmOut,
 }
 
 void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut, 
-	GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs)
+	GdlGlyphClassDefn * /*pglfdParent*/, GrpLineAndFile lnf, int & cwGlyphIDs)
 {
 	for (unsigned int iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
@@ -2620,7 +2623,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 		int iritRhs = 0;
 		for (size_t irit = 0; irit < m_vprit.size(); irit++)
 		{
-			if (m_nScanAdvance == irit)
+			if (m_nScanAdvance == (signed)irit)
 				strmOut << "          <caret />\n";
 
 			m_vprit[irit]->DebugXmlContext(pcman, strmOut, iritRhs);
@@ -2690,7 +2693,7 @@ void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOu
 
 }
 
-void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs)
+void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & /*iritRhs*/)
 {
 	strmOut << "          <contextSlot type=\"class\" className=\"" << m_psymInput->FullAbbrev() 
 		<< "\"";

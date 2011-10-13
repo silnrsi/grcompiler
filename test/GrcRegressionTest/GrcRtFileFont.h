@@ -41,8 +41,6 @@ Description:
 #define NO_EXCEPTIONS 1
 
 using namespace gr;
-//using std::min;
-//using std::max;
 
 class GrcRtFileFont : public Font
 {

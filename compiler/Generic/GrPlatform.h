@@ -51,7 +51,6 @@
 #endif
 #include <iostream>
 
-
 #if defined(_WIN32)
 //  TSE: We need to define std::max and std::min, because VC6.0 seems to omit
 //  these from their version of <algorithm> and rely on the macro versions
