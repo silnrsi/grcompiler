@@ -995,7 +995,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 			{
 				// Automatically associate the inserted item with the single item in the LHS.
 				int iritOther = (irit == 0) ? 1 : 0;
-				GdlRuleItem * pritOther = prule->Rule(iritOther);
+				//GdlRuleItem * pritOther = prule->Rule(iritOther);
 				int nOther = (irit == 0) ? 2 : 1;
 				this->AddAssociation(prule->LineAndFile(), nOther);	// 1-based
 				char rgch[20];

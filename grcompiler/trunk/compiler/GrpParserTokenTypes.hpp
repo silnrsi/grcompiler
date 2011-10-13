@@ -117,6 +117,6 @@ enum GrpParserTokenTypes {
 	DQUOTE = 105,
 	OP_LINEMARKER = 106,
 	OP_BSLASH = 107,
-	AT_IDENT = 108,
+	AT_IDENT = 108
 };
 #endif /*INC_GrpParserTokenTypes_hpp_*/

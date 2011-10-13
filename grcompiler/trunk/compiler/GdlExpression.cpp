@@ -430,7 +430,7 @@ bool GdlLookupExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlClassMemberExpression::ResolveToInteger(int * pnRet, bool fSlotRef)
+bool GdlClassMemberExpression::ResolveToInteger(int * pnRet, bool /*fSlotRef*/)
 {
 	if (m_gid > -1)
 	{
@@ -1757,7 +1757,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlClassMemberExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
-	utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * pfont, bool /*fGAttrDefChk*/,
+	utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * /*pfont*/, bool /*fGAttrDefChk*/,
 	bool * pfCanSub)
 {
 	if (m_psymName == NULL && m_gid != -1)

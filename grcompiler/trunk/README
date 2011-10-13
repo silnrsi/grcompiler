@@ -64,3 +64,5 @@ files are needed as well:
 - utf_old.h
 - utypes.h
 - uversion.h
+
+The makefile expects to find these in icu/source/common.
