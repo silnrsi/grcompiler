@@ -3,7 +3,7 @@ Graphite Compilation Results
 GDL file: CharisMain.gdl
 Input font file: CharisInput.ttf
 Output font file: CharisBenchmark.ttf
-Output font family: Charis SIL
+Output font family: Charis GrcRegTest
 Silf table version: 2.0
 Create separate control file: no
 
@@ -185,6 +185,7 @@ CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 5
 CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
 CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
 CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 7 and 8; attachment may be needed
+CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
 CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -197,6 +198,7 @@ CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 5
 CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
 CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
 CharisRules.gdh(687) : warning(3521): Vertical overlap between glyphs in items 7 and 8; attachment may be needed
+CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
 CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -208,6 +210,7 @@ CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 4
 CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
 CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
 CharisRules.gdh(690) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 1 and 6; attachment may be needed
 CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -221,4 +224,15 @@ CharisRules.gdh(691) : warning(3521): Vertical overlap between glyphs in items 6
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 209 warnings
+Table versions generated:
+  Silf: 2.0
+  Gloc: 1.0
+  Glat: 1.0
+  Feat: 1.0
+  Sill: 1.0
+
+Minimal compiler version required: 2.0
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 212 warnings

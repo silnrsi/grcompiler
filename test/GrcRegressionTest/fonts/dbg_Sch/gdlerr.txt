@@ -3,7 +3,7 @@ Graphite Compilation Results
 GDL file: SchMain.gdl
 Input font file: SchInput.ttf
 Output font file: SchBenchmark.ttf
-Output font family: Scheherazade
+Output font family: Scheherazade GrcRegTest
 Silf table version: 2.0
 Create separate control file: no
 
@@ -31,6 +31,7 @@ SchMain.gdl(361) : warning(3521): Vertical overlap between glyphs in items 1 and
 SchMain.gdl(361) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(361) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 SchMain.gdl(361) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
+SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
@@ -39,6 +40,7 @@ SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 4 and
 SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
 SchMain.gdl(416) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
@@ -46,6 +48,7 @@ SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 3 and
 SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
 SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 SchMain.gdl(419) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
@@ -54,6 +57,7 @@ SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 4 and
 SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
 SchMain.gdl(422) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+SchMain.gdl(428) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(428) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(428) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(428) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
@@ -86,6 +90,7 @@ SchMain.gdl(448) : warning(3521): Vertical overlap between glyphs in items 1 and
 SchMain.gdl(448) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(451) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(451) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+SchMain.gdl(452) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(452) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(452) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(454) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
@@ -96,20 +101,24 @@ SchMain.gdl(456) : warning(3521): Vertical overlap between glyphs in items 1 and
 SchMain.gdl(456) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(459) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(459) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+SchMain.gdl(460) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(460) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(460) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
+SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
 SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 SchMain.gdl(463) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
 SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 SchMain.gdl(464) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 1 and 6; attachment may be needed
 SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 10 and 11; attachment may be needed
@@ -125,6 +134,7 @@ SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 7 and
 SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 8 and 9; attachment may be needed
 SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 9 and 10; attachment may be needed
 SchMain.gdl(467) : warning(3521): Vertical overlap between glyphs in items 9 and 11; attachment may be needed
+SchMain.gdl(470) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 SchMain.gdl(470) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 SchMain.gdl(470) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
 SchMain.gdl(470) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
@@ -134,4 +144,15 @@ SchMain.gdl(470) : warning(3521): Vertical overlap between glyphs in items 5 and
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 122 warnings
+Table versions generated:
+  Silf: 2.0
+  Gloc: 1.0
+  Glat: 1.0
+  Feat: 1.0
+  Sill: 1.0
+
+Minimal compiler version required: 2.0
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 132 warnings

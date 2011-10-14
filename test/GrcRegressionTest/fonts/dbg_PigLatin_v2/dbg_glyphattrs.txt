@@ -3,6 +3,8 @@ GLYPH ATTRIBUTE IDS
 0: *actualForPseudo*
 1: breakweight
 2: directionality
+3: mirror.glyph
+4: mirror.isEncoded
 
 
 

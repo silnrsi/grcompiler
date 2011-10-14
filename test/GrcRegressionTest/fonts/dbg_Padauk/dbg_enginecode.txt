@@ -7,7 +7,7 @@ PASS: 1
 
 PASS CONSTRAINTS: none
 
-RULE 1.0, PadaukMain.gdl(407):  cSection { break=10;  }   /  ANY  _  ^  cCons  ;
+RULE 1.0, PadaukMain.gdl(407):  cSection { break = 10;  }   /  ANY  _  ^  cCons  ;
 
 ACTIONS:
 PutCopy 0
@@ -19,7 +19,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.1, PadaukMain.gdl(408):  g_space { break=10;  }   /  ANY  _  ^  cCons  ;
+RULE 1.1, PadaukMain.gdl(408):  g_space { break = 10;  }   /  ANY  _  ^  cCons  ;
 
 ACTIONS:
 PutCopy 0
@@ -31,7 +31,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.2, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+RULE 1.2, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -53,7 +53,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.3, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+RULE 1.3, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -74,7 +74,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.4, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  _  ;
+RULE 1.4, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -94,7 +94,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.5, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  _  ;
+RULE 1.5, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -113,7 +113,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.6, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  g1039  cMed  _  ;
+RULE 1.6, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -131,7 +131,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.7, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+RULE 1.7, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -151,7 +151,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.8, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
+RULE 1.8, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -170,7 +170,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.9, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  _  ;
+RULE 1.9, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -188,7 +188,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.10, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  cnTakesUDia  _  ;
+RULE 1.10, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -205,7 +205,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.11, PadaukMain.gdl(411):  cTakesUDia { break=-30;  }  g103a { break=-50;  }   /  ANY  _  ^  _  ;
+RULE 1.11, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -221,7 +221,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.12, PadaukMain.gdl(416):  cCons { break=-30;  }  cMedBase { break=-50;  }   /  ANY  _  g1039  _  ;
+RULE 1.12, PadaukMain.gdl(416):  cCons { break = -30;  }  cMedBase { break = -50;  }   /  ANY  _  g1039  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -237,7 +237,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.13, PadaukMain.gdl(417):  cCons { break=-30;  }  cClusMed { break=-50;  }   /  ANY  _  _  ;
+RULE 1.13, PadaukMain.gdl(417):  cCons { break = -30;  }  cClusMed { break = -50;  }   /  ANY  _  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -252,7 +252,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.14, PadaukMain.gdl(420):  cCons { break=-50;  }   /  g1039  _  ;
+RULE 1.14, PadaukMain.gdl(420):  cCons { break = -50;  }   /  g1039  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -263,7 +263,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.15, PadaukMain.gdl(423):  cCons { break=-30;  }   /  g2060  _  ;
+RULE 1.15, PadaukMain.gdl(423):  cCons { break = -30;  }   /  g2060  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -274,7 +274,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.16, PadaukMain.gdl(426):  cCons { break=-30;  }   /  g1021  _  ;
+RULE 1.16, PadaukMain.gdl(426):  cCons { break = -30;  }   /  g1021  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -285,7 +285,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.17, PadaukMain.gdl(429):  ANYGlyph { break=40;  }   /  cLQuote  ^  _  ;
+RULE 1.17, PadaukMain.gdl(429):  ANYGlyph { break = 40;  }   /  cLQuote  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -297,7 +297,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.18, PadaukMain.gdl(430):  ANYGlyph { break=-40;  }   /  ANY  _  ^  cRQuote  ;
+RULE 1.18, PadaukMain.gdl(430):  ANYGlyph { break = -40;  }   /  ANY  _  ^  cRQuote  ;
 
 ACTIONS:
 PutCopy 0
@@ -309,7 +309,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.19, PadaukMain.gdl(433):  cSection { break=30;  }   /  ANY  _  cNum  ;
+RULE 1.19, PadaukMain.gdl(433):  cSection { break = 30;  }   /  ANY  _  cNum  ;
 
 ACTIONS:
 PutCopy 0
@@ -320,7 +320,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.20, PadaukMain.gdl(435):  cNum { break=-15;  }   /  cCons  _  ;
+RULE 1.20, PadaukMain.gdl(435):  cNum { break = -15;  }   /  cCons  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -331,7 +331,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.21, PadaukMain.gdl(436):  cSigns { break=-15;  }   /  cSection  _  ;
+RULE 1.21, PadaukMain.gdl(436):  cSigns { break = -15;  }   /  cSection  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -342,7 +342,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.22, PadaukMain.gdl(439):  cSigns { break=40;  }   /  ANY  _  cSection  ;
+RULE 1.22, PadaukMain.gdl(439):  cSigns { break = 40;  }   /  ANY  _  cSection  ;
 
 ACTIONS:
 PutCopy 0
@@ -1243,12 +1243,13 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 2.40, PadaukMain.gdl(466):  g1039  cMedBase  >  _  cMed   /  ANY  _  _  ;
+RULE 2.40, PadaukMain.gdl(466):  g1039  cMedBase  >  _  cMed:(1 2)   /  ANY  _  _  ;
 
 ACTIONS:
 Delete
 Next
 PutSubs 0 51 4
+Assoc 2 -2 -1
 Next
 RetZero
 
@@ -1823,7 +1824,7 @@ PASS: 3
 
 PASS CONSTRAINTS: none
 
-RULE 3.0, PadaukMain.gdl(534):  ANYGlyph  >  @3   /  cCons  g103a  ^  _ {...}  ;
+RULE 3.0, PadaukMain.gdl(534):  ANYGlyph  >  @3   /  cCons  g103a  ^  _ { order > 1 }  ;
 
 ACTIONS:
 PutCopy 0
@@ -1833,12 +1834,12 @@ PopRet
 
 CONSTRAINTS:
 CntxtItem 0 7
-PushGlyphAttr 28 0
+PushGlyphAttr 30 0
 PushByte 1
 Gtr
 PopRet
 
-RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph {...}  ;
+RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph { (order > 1) && (order <= @2.order) }  ;
 
 ACTIONS:
 Insert
@@ -1850,16 +1851,16 @@ PopRet
 
 CONSTRAINTS:
 CntxtItem 0 17
-PushGlyphAttr 28 0
+PushGlyphAttr 30 0
 PushByte 1
 Gtr
-PushGlyphAttr 28 0
-PushGlyphAttr 28 -1
+PushGlyphAttr 30 0
+PushGlyphAttr 30 -1
 LessEq
 And
 PopRet
 
-RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph {...}  _  ^  ANYGlyph {...}  ;
+RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph { order == 0 }  _  ^  ANYGlyph { order > 1 }  ;
 
 ACTIONS:
 Insert
@@ -1871,11 +1872,11 @@ PopRet
 
 CONSTRAINTS:
 CntxtItem -1 7
-PushGlyphAttr 28 0
+PushGlyphAttr 30 0
 PushByte 0
 Equal
 CntxtItem 0 7
-PushGlyphAttr 28 0
+PushGlyphAttr 30 0
 PushByte 1
 Gtr
 And
@@ -3133,11 +3134,11 @@ PASS: 5
 
 PASS CONSTRAINTS: none
 
-RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x=...; user2=1;  }   /  ANY  ^  _ {...}  ;
+RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x = advx; user2 = 1;  }   /  ANY  ^  _ { user2 == 0 }  ;
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr 54 0
+PushGlyphAttr 56 0
 AttrSet advance_x
 PushByte 1
 IAttrSet user 1
@@ -3152,7 +3153,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.1, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ^  c103c_only  _  cUDia  _ {...}  ;
+RULE 5.1, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3161,22 +3162,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3191,7 +3192,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.2, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ^  c103c_only  _  _ {...}  ;
+RULE 5.2, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3199,22 +3200,22 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3229,7 +3230,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.3, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUDia  _ {...}  ;
+RULE 5.3, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3238,22 +3239,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3268,7 +3269,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.4, PadaukMain.gdl(706):  cConsSVowel  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.4, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3276,22 +3277,22 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3306,7 +3307,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.5, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ {...}  ;
+RULE 5.5, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3318,22 +3319,22 @@ PutCopy 0
 PushByte -5
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3348,7 +3349,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.6, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ {...}  ;
+RULE 5.6, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3359,22 +3360,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3389,7 +3390,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.7, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _ {...}  ;
+RULE 5.7, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3400,22 +3401,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3430,7 +3431,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.8, PadaukMain.gdl(708):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  _ {...}  ;
+RULE 5.8, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3440,22 +3441,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3470,7 +3471,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.9, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ {...}  ;
+RULE 5.9, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3482,22 +3483,22 @@ PutCopy 0
 PushByte -5
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3512,7 +3513,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.10, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ {...}  ;
+RULE 5.10, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3523,22 +3524,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3553,7 +3554,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.11, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _ {...}  ;
+RULE 5.11, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3564,22 +3565,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3594,7 +3595,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.12, PadaukMain.gdl(710):  c103c  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _ {...}  ;
+RULE 5.12, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3604,22 +3605,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3634,7 +3635,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.13, PadaukMain.gdl(712):  c103c_mix  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _ {...}  ;
+RULE 5.13, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3644,22 +3645,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3674,7 +3675,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.14, PadaukMain.gdl(712):  c103c_mix  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cConsSVowel  _ {...}  ;
+RULE 5.14, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3683,22 +3684,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3713,7 +3714,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.15, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _ {...}  ;
+RULE 5.15, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3725,22 +3726,22 @@ PutCopy 0
 PushByte -5
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3755,7 +3756,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.16, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _ {...}  ;
+RULE 5.16, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3766,22 +3767,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3796,7 +3797,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.17, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _ {...}  ;
+RULE 5.17, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3807,22 +3808,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3837,7 +3838,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.18, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cUVowel  _ {...}  ;
+RULE 5.18, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3847,22 +3848,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3877,7 +3878,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.19, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _ {...}  ;
+RULE 5.19, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3888,22 +3889,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3918,7 +3919,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.20, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _ {...}  ;
+RULE 5.20, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3928,22 +3929,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3958,7 +3959,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.21, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  c1036  _ {...}  ;
+RULE 5.21, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  c1036  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -3968,22 +3969,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -3998,7 +3999,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.22, PadaukMain.gdl(714):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  *GC3*  _ {...}  ;
+RULE 5.22, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4007,22 +4008,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4037,7 +4038,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.23, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _ {...}  ;
+RULE 5.23, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4048,22 +4049,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4078,7 +4079,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.24, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _ {...}  ;
+RULE 5.24, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4088,22 +4089,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4118,7 +4119,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.25, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cLVowelM  c1036  _ {...}  ;
+RULE 5.25, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  c1036  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4128,22 +4129,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4158,7 +4159,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.26, PadaukMain.gdl(716):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cLVowelM  _ {...}  ;
+RULE 5.26, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4167,22 +4168,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4197,7 +4198,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.27, PadaukMain.gdl(718):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  cUDia  _ {...}  ;
+RULE 5.27, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4206,22 +4207,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 29 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 32 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 31 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 34 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 33 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4236,7 +4237,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.28, PadaukMain.gdl(718):  c101b  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.28, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4244,22 +4245,22 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 29 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 32 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 31 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 34 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 33 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4274,7 +4275,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.29, PadaukMain.gdl(720):  cLeftLDot  g1037 { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.29, PadaukMain.gdl(720):  cLeftLDot  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4282,22 +4283,22 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 29 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 32 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 31 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 34 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 33 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 35 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4312,7 +4313,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.30, PadaukMain.gdl(727):  cTakesUDia  cUDia { attach {...} user1=1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ {...}  _  ;
+RULE 5.30, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @6; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 == 0 }  _  ;
 
 ACTIONS:
 CopyNext
@@ -4321,28 +4322,28 @@ CopyNext
 PutCopy 0
 PushByte 1
 AttrSetSlot attach_to
-PushAttToGlyphAttr 23 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 26 0
-AttrSet attach_at_y
 PushAttToGlyphAttr 25 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 28 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 27 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 29 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 44 0
-AttrSet attach_with_x
-PushGlyphAttr 47 0
-AttrSet attach_with_y
 PushGlyphAttr 46 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 49 0
+AttrSet attach_with_y
 PushGlyphAttr 48 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 50 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
 Next
 PutCopy 0
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 Next
 PushByte -5
 PopRet
@@ -4354,7 +4355,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.31, PadaukMain.gdl(727):  cTakesUDia  cUDia { attach {...} user1=1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _ {...}  _  ;
+RULE 5.31, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @5; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _ { user1 == 0 }  _  ;
 
 ACTIONS:
 CopyNext
@@ -4362,28 +4363,28 @@ CopyNext
 PutCopy 0
 PushByte 1
 AttrSetSlot attach_to
-PushAttToGlyphAttr 23 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 26 0
-AttrSet attach_at_y
 PushAttToGlyphAttr 25 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 28 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 27 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 29 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 44 0
-AttrSet attach_with_x
-PushGlyphAttr 47 0
-AttrSet attach_with_y
 PushGlyphAttr 46 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 49 0
+AttrSet attach_with_y
 PushGlyphAttr 48 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 50 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
 Next
 PutCopy 0
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 Next
 PushByte -4
 PopRet
@@ -4395,35 +4396,35 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.32, PadaukMain.gdl(727):  cTakesUDia  cUDia { attach {...} user1=1;  }  cLVowel   /  ANY  ^  _  _ {...}  _  ;
+RULE 5.32, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @4; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  _ { user1 == 0 }  _  ;
 
 ACTIONS:
 CopyNext
 PutCopy 0
 PushByte 1
 AttrSetSlot attach_to
-PushAttToGlyphAttr 23 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 26 0
-AttrSet attach_at_y
 PushAttToGlyphAttr 25 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 28 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 27 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 29 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 44 0
-AttrSet attach_with_x
-PushGlyphAttr 47 0
-AttrSet attach_with_y
 PushGlyphAttr 46 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 49 0
+AttrSet attach_with_y
 PushGlyphAttr 48 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 50 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
 Next
 PutCopy 0
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 Next
 PushByte -3
 PopRet
@@ -4435,7 +4436,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.33, PadaukMain.gdl(737):  cTakesBSDia  cBSDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesBSDia  _ {...}  ;
+RULE 5.33, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4444,256 +4445,256 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 8 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 11 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 10 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 12 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 14 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 39 0
-AttrSet attach_with_x
-PushGlyphAttr 42 0
-AttrSet attach_with_y
 PushGlyphAttr 41 0
-AttrSet attach_with_xoffset
-PushGlyphAttr 43 0
-AttrSet attach_with_yoffset
-PushByte 1
-IAttrSet user 0
-Next
-PushByte -3
-PopRet
-
-CONSTRAINTS:
-CntxtItem 2 7
-PushISlotAttr user 0 0
-PushByte 0
-Equal
-PopRet
-
-RULE 5.34, PadaukMain.gdl(737):  cTakesBSDia  cBSDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
-
-ACTIONS:
-CopyNext
-PutCopy 0
-PushByte -1
-AttrSetSlot attach_to
-PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 8 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 11 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 10 0
-AttrSet attach_at_xoffset
-PushAttToGlyphAttr 12 0
-AttrSet attach_at_yoffset
-PushGlyphAttr 39 0
 AttrSet attach_with_x
-PushGlyphAttr 42 0
-AttrSet attach_with_y
-PushGlyphAttr 41 0
-AttrSet attach_with_xoffset
-PushGlyphAttr 43 0
-AttrSet attach_with_yoffset
-PushByte 1
-IAttrSet user 0
-Next
-PushByte -2
-PopRet
-
-CONSTRAINTS:
-CntxtItem 1 7
-PushISlotAttr user 0 0
-PushByte 0
-Equal
-PopRet
-
-RULE 5.35, PadaukMain.gdl(739):  cTakesBDDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesBDDia  _ {...}  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-PutCopy 0
-PushByte -2
-AttrSetSlot attach_to
-PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 3 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 6 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 5 0
-AttrSet attach_at_xoffset
-PushAttToGlyphAttr 7 0
-AttrSet attach_at_yoffset
-PushGlyphAttr 34 0
-AttrSet attach_with_x
-PushGlyphAttr 37 0
-AttrSet attach_with_y
-PushGlyphAttr 36 0
-AttrSet attach_with_xoffset
-PushGlyphAttr 38 0
-AttrSet attach_with_yoffset
-PushByte 1
-IAttrSet user 0
-Next
-PushByte -3
-PopRet
-
-CONSTRAINTS:
-CntxtItem 2 7
-PushISlotAttr user 0 0
-PushByte 0
-Equal
-PopRet
-
-RULE 5.36, PadaukMain.gdl(739):  cTakesBDDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
-
-ACTIONS:
-CopyNext
-PutCopy 0
-PushByte -1
-AttrSetSlot attach_to
-PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 3 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 6 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 5 0
-AttrSet attach_at_xoffset
-PushAttToGlyphAttr 7 0
-AttrSet attach_at_yoffset
-PushGlyphAttr 34 0
-AttrSet attach_with_x
-PushGlyphAttr 37 0
-AttrSet attach_with_y
-PushGlyphAttr 36 0
-AttrSet attach_with_xoffset
-PushGlyphAttr 38 0
-AttrSet attach_with_yoffset
-PushByte 1
-IAttrSet user 0
-Next
-PushByte -2
-PopRet
-
-CONSTRAINTS:
-CntxtItem 1 7
-PushISlotAttr user 0 0
-PushByte 0
-Equal
-PopRet
-
-RULE 5.37, PadaukMain.gdl(741):  cTakesBSDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesBSDia  _ {...}  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-PutCopy 0
-PushByte -2
-AttrSetSlot attach_to
-PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 8 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 11 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 10 0
-AttrSet attach_at_xoffset
-PushAttToGlyphAttr 12 0
-AttrSet attach_at_yoffset
-PushGlyphAttr 34 0
-AttrSet attach_with_x
-PushGlyphAttr 37 0
-AttrSet attach_with_y
-PushGlyphAttr 36 0
-AttrSet attach_with_xoffset
-PushGlyphAttr 38 0
-AttrSet attach_with_yoffset
-PushByte 1
-IAttrSet user 0
-Next
-PushByte -3
-PopRet
-
-CONSTRAINTS:
-CntxtItem 2 7
-PushISlotAttr user 0 0
-PushByte 0
-Equal
-PopRet
-
-RULE 5.38, PadaukMain.gdl(741):  cTakesBSDia  cBDDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
-
-ACTIONS:
-CopyNext
-PutCopy 0
-PushByte -1
-AttrSetSlot attach_to
-PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 8 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 11 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 10 0
-AttrSet attach_at_xoffset
-PushAttToGlyphAttr 12 0
-AttrSet attach_at_yoffset
-PushGlyphAttr 34 0
-AttrSet attach_with_x
-PushGlyphAttr 37 0
-AttrSet attach_with_y
-PushGlyphAttr 36 0
-AttrSet attach_with_xoffset
-PushGlyphAttr 38 0
-AttrSet attach_with_yoffset
-PushByte 1
-IAttrSet user 0
-Next
-PushByte -2
-PopRet
-
-CONSTRAINTS:
-CntxtItem 1 7
-PushISlotAttr user 0 0
-PushByte 0
-Equal
-PopRet
-
-RULE 5.39, PadaukMain.gdl(743):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ {...}  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte -3
-AttrSetSlot attach_to
-PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 23 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 26 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 24 0
-AttrSet attach_at_gpoint
-PushAttToGlyphAttr 25 0
-AttrSet attach_at_xoffset
-PushAttToGlyphAttr 27 0
-AttrSet attach_at_yoffset
 PushGlyphAttr 44 0
-AttrSet attach_with_x
-PushGlyphAttr 47 0
 AttrSet attach_with_y
-PushGlyphAttr 46 0
+PushGlyphAttr 43 0
 AttrSet attach_with_xoffset
+PushGlyphAttr 45 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.34, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSet insert
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 14 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 41 0
+AttrSet attach_with_x
+PushGlyphAttr 44 0
+AttrSet attach_with_y
+PushGlyphAttr 43 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 45 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.35, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBDDia  _ { user1 == 0 }  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSet insert
+PushAttToGlyphAttr 5 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 8 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 7 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 9 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 36 0
+AttrSet attach_with_x
+PushGlyphAttr 39 0
+AttrSet attach_with_y
+PushGlyphAttr 38 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 40 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.36, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSet insert
+PushAttToGlyphAttr 5 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 8 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 7 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 9 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 36 0
+AttrSet attach_with_x
+PushGlyphAttr 39 0
+AttrSet attach_with_y
+PushGlyphAttr 38 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 40 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.37, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 == 0 }  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -2
+AttrSetSlot attach_to
+PushByte 0
+AttrSet insert
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 14 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 36 0
+AttrSet attach_with_x
+PushGlyphAttr 39 0
+AttrSet attach_with_y
+PushGlyphAttr 38 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 40 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -3
+PopRet
+
+CONSTRAINTS:
+CntxtItem 2 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.38, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+
+ACTIONS:
+CopyNext
+PutCopy 0
+PushByte -1
+AttrSetSlot attach_to
+PushByte 0
+AttrSet insert
+PushAttToGlyphAttr 10 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 13 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 12 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 14 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 36 0
+AttrSet attach_with_x
+PushGlyphAttr 39 0
+AttrSet attach_with_y
+PushGlyphAttr 38 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 40 0
+AttrSet attach_with_yoffset
+PushByte 1
+IAttrSet user 0
+Next
+PushByte -2
+PopRet
+
+CONSTRAINTS:
+CntxtItem 1 7
+PushISlotAttr user 0 0
+PushByte 0
+Equal
+PopRet
+
+RULE 5.39, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 == 0 }  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -3
+AttrSetSlot attach_to
+PushByte 0
+AttrSet insert
+PushAttToGlyphAttr 25 0
+AttrSet attach_at_x
+PushAttToGlyphAttr 28 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_gpoint
+PushAttToGlyphAttr 27 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 29 0
+AttrSet attach_at_yoffset
+PushGlyphAttr 46 0
+AttrSet attach_with_x
+PushGlyphAttr 49 0
+AttrSet attach_with_y
 PushGlyphAttr 48 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 50 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4708,7 +4709,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.40, PadaukMain.gdl(743):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesUDia  _ {...}  ;
+RULE 5.40, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4717,24 +4718,24 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 23 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 26 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 24 0
-AttrSet attach_at_gpoint
+AttrSet insert
 PushAttToGlyphAttr 25 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 28 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_gpoint
 PushAttToGlyphAttr 27 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 29 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 44 0
-AttrSet attach_with_x
-PushGlyphAttr 47 0
-AttrSet attach_with_y
 PushGlyphAttr 46 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 49 0
+AttrSet attach_with_y
 PushGlyphAttr 48 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 50 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4749,7 +4750,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.41, PadaukMain.gdl(743):  cTakesUDia  cUDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.41, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4757,24 +4758,24 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 23 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 26 0
-AttrSet attach_at_y
-PushAttToGlyphAttr 24 0
-AttrSet attach_at_gpoint
+AttrSet insert
 PushAttToGlyphAttr 25 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 28 0
+AttrSet attach_at_y
+PushAttToGlyphAttr 26 0
+AttrSet attach_at_gpoint
 PushAttToGlyphAttr 27 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 29 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 44 0
-AttrSet attach_with_x
-PushGlyphAttr 47 0
-AttrSet attach_with_y
 PushGlyphAttr 46 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 49 0
+AttrSet attach_with_y
 PushGlyphAttr 48 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 50 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4789,7 +4790,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.42, PadaukMain.gdl(751):  cTakesRDia  cRDia { attach {...} user1=1; insert=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.42, PadaukMain.gdl(751):  cTakesRDia  cRDia {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4797,22 +4798,22 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 62 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 65 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 64 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 67 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 66 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 68 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 18 0
-AttrSet attach_with_x
-PushGlyphAttr 21 0
-AttrSet attach_with_y
 PushGlyphAttr 20 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 23 0
+AttrSet attach_with_y
 PushGlyphAttr 22 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 24 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4829,7 +4830,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.43, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _ {...}  ;
+RULE 5.43, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4840,22 +4841,22 @@ PutCopy 0
 PushByte -4
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4870,7 +4871,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.44, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _ {...}  ;
+RULE 5.44, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4880,22 +4881,22 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4910,7 +4911,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.45, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  cnTakesLDia  _ {...}  ;
+RULE 5.45, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4919,22 +4920,22 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4949,7 +4950,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.46, PadaukMain.gdl(766):  cTakesLDia  cLDia { attach {...} user1=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.46, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4957,22 +4958,22 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
-PushAttToGlyphAttr 13 0
-AttrSet attach_at_x
-PushAttToGlyphAttr 16 0
-AttrSet attach_at_y
+AttrSet insert
 PushAttToGlyphAttr 15 0
-AttrSet attach_at_xoffset
+AttrSet attach_at_x
+PushAttToGlyphAttr 18 0
+AttrSet attach_at_y
 PushAttToGlyphAttr 17 0
+AttrSet attach_at_xoffset
+PushAttToGlyphAttr 19 0
 AttrSet attach_at_yoffset
-PushGlyphAttr 57 0
-AttrSet attach_with_x
-PushGlyphAttr 60 0
-AttrSet attach_with_y
 PushGlyphAttr 59 0
-AttrSet attach_with_xoffset
+AttrSet attach_with_x
+PushGlyphAttr 62 0
+AttrSet attach_with_y
 PushGlyphAttr 61 0
+AttrSet attach_with_xoffset
+PushGlyphAttr 63 0
 AttrSet attach_with_yoffset
 PushByte 1
 IAttrSet user 0
@@ -4987,7 +4988,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.47, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  cMed  g103a  _ {...}  ;
+RULE 5.47, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  g103a  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -4997,7 +4998,7 @@ PutCopy 0
 PushByte -3
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 PushByte 1
 IAttrSet user 0
 Next
@@ -5011,7 +5012,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.48, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  cMed  _ {...}  ;
+RULE 5.48, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -5020,7 +5021,7 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 PushByte 1
 IAttrSet user 0
 Next
@@ -5034,7 +5035,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.49, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  g103a  _ {...}  ;
+RULE 5.49, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  g103a  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -5043,7 +5044,7 @@ PutCopy 0
 PushByte -2
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 PushByte 1
 IAttrSet user 0
 Next
@@ -5057,7 +5058,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 5.50, PadaukMain.gdl(773):  cCons  cYMed { attach.to=@2; user1=1;  }   /  ANY  ^  _  _ {...}  ;
+RULE 5.50, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
 
 ACTIONS:
 CopyNext
@@ -5065,7 +5066,7 @@ PutCopy 0
 PushByte -1
 AttrSetSlot attach_to
 PushByte 0
-AttrSetSlot insert
+AttrSet insert
 PushByte 1
 IAttrSet user 0
 Next
@@ -5083,23 +5084,23 @@ PASS: 6
 
 PASS CONSTRAINTS: none
 
-RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x=...; advance.x=...;  }  cHasRkern { shift.x=...;  }   /  ANY  _  _  ;
+RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }  cHasRkern { shift.x = -(rkern);  }   /  ANY  _  _  ;
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr 56 1
+PushGlyphAttr 58 1
 PushByte 10
 Add
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr 56 1
+PushGlyphAttr 58 1
 PushByte 10
 Add
 Add
 AttrSet advance_x
 Next
 PutCopy 0
-PushGlyphAttr 56 0
+PushGlyphAttr 58 0
 Neg
 AttrSet shift_x
 Next
@@ -5107,16 +5108,16 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x=...; advance.x=...;  }   /  cUDia  _  ;
+RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }   /  cUDia  _  ;
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr 55 0
+PushGlyphAttr 57 0
 PushByte 2
 Div
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr 55 0
+PushGlyphAttr 57 0
 PushByte 2
 Div
 Add
@@ -5142,15 +5143,15 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x=...; advance.x=...;  }   /  g102b_103a  _  ;
+RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr 55 -1
+PushGlyphAttr 57 -1
 Neg
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr 55 -1
+PushGlyphAttr 57 -1
 Neg
 Add
 AttrSet advance_x
@@ -5159,15 +5160,15 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x=...; advance.x=...;  }   /  g102b_103a  _  ;
+RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
 
 ACTIONS:
 PutCopy 0
-PushGlyphAttr 55 -1
+PushGlyphAttr 57 -1
 Neg
 AttrSet shift_x
 PushGlyphMetric aw 0 0
-PushGlyphAttr 55 -1
+PushGlyphAttr 57 -1
 Neg
 Add
 AttrSet advance_x
@@ -5176,7 +5177,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.6, PadaukMain.gdl(797):  cRDia { shift.x=...;  }   /  cTakesRDia  _  ;
+RULE 6.6, PadaukMain.gdl(797):  cRDia { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }   /  cTakesRDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -5197,7 +5198,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.7, PadaukMain.gdl(798):  cUVowel { advance.x=0;  }   /  c103b  _  ;
+RULE 6.7, PadaukMain.gdl(798):  cUVowel { advance.x = 0;  }   /  c103b  _  ;
 
 ACTIONS:
 PutCopy 0

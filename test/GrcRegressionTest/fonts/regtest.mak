@@ -2,7 +2,7 @@
 # Run: nmake -f regtest.mak
 
 RTEXE = ..\Debug
-GRCEXE = ..\..\Release
+GRCEXE = ..\..\..\Release
 FONTS = .
 
 TEST_FONTS =\
