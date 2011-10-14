@@ -846,6 +846,8 @@ public:
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);
+	int ItemCountOriginal();
+	int FindSubstitutionItem(int iritDel);
 
 	//	Compiler:
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,

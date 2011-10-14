@@ -964,19 +964,22 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 
 		if (!fAnyAssocs)
 		{
-			if (prule->ItemCount() == 2)
+			if (prule->ItemCountOriginal() == 2)
 			{
 				// Automatically associate the deleted item with the single other item in the rule.
 				// Also associate that item with itself.
-				int iritOther = (irit == 0) ? 1 : 0;
-				GdlRuleItem * pritOther = prule->Rule(iritOther);
-				pritOther->AddAssociation(prule->LineAndFile(), 1);	// 1-based
-				pritOther->AddAssociation(prule->LineAndFile(), 2);
-				char rgch[20];
-				itoa(int(iritOther+1), rgch, 10);
-				g_errorList.AddWarning(3532, this,
-					"Item ", PosString(),
-					": deleted slot automatically associated with slot ", rgch);
+				int iritSub = prule->FindSubstitutionItem(irit);
+				if (iritSub > -1)
+				{
+					GdlRuleItem * pritSub = prule->Rule(iritSub);
+					pritSub->AddAssociation(prule->LineAndFile(), 1);	// 1-based
+					pritSub->AddAssociation(prule->LineAndFile(), 2);
+					char rgch[20];
+					itoa(int(iritSub+1), rgch, 10);
+					g_errorList.AddWarning(3532, this,
+						"Item ", PosString(),
+						": deleted slot automatically associated with slot ", rgch);
+				}
 			}
 			else
 			{
@@ -2419,4 +2422,40 @@ void GdlRule::MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPa
 	{
 		m_vpexpConstraints.push_back(m_vpexpPassConstr[ipexp]->Clone());
 	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return the original number of items in the rule. Don't include ANY items.
+----------------------------------------------------------------------------------------------*/
+int GdlRule::ItemCountOriginal()
+{
+	int crit = 0;
+	for (size_t irit = 0; irit <m_vprit.size(); irit++)
+	{
+		GdlRuleItem * prit = m_vprit[irit];
+		if (prit->OutputSymbol()->FullName() != "ANY")
+			crit++;
+	}
+	return crit;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Give a deletion slot, return the indices of the substitution item it should be associated
+	with.
+
+	Assumes there are exactly two items in the rule (not including ANY items).
+----------------------------------------------------------------------------------------------*/
+int GdlRule::FindSubstitutionItem(int iritDel)
+{
+	for (size_t irit = 0; irit <m_vprit.size(); irit++)
+	{
+		GdlRuleItem * prit = m_vprit[irit];
+		if (prit->OutputSymbol()->FullName() == "ANY")
+			continue;
+		if (irit == iritDel)
+			continue;
+		if (dynamic_cast<GdlSubstitutionItem *>(prit) != NULL)
+			return irit;
+	}
+	return -1;
 }
