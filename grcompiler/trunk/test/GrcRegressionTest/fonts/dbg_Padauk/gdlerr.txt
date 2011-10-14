@@ -3,18 +3,25 @@ Graphite Compilation Results
 GDL file: PadaukMain.gdl
 Input font file: PadaukInput.ttf
 Output font file: PadaukBenchmark_v3.ttf
-Output font family: Padauk
+Output font family: Padauk GrcRegTest
 Silf table version: 3.0
 Create separate control file: no
 
 *******************************************************
 
+PadaukMain.gdl(466) : warning(3532): Item 1: deleted slot automatically associated with slot 3
+PadaukMain.gdl(497) : warning(3529): Item 1: deleted item was not associated with another slot
+PadaukMain.gdl(498) : warning(3529): Item 1: deleted item was not associated with another slot
+PadaukMain.gdl(499) : warning(3529): Item 1: deleted item was not associated with another slot
+PadaukMain.gdl(706) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 PadaukMain.gdl(706) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
+PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 3 and 5; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 PadaukMain.gdl(708) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
 PadaukMain.gdl(710) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
@@ -64,4 +71,15 @@ PadaukMain.gdl(798) : warning(3521): Vertical overlap between glyphs in items 1 
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 52 warnings
+Table versions generated:
+  Silf: 3.0
+  Gloc: 1.0
+  Glat: 1.0
+  Feat: 1.0
+  Sill: 1.0
+
+Minimal compiler version required: 3.0
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 59 warnings

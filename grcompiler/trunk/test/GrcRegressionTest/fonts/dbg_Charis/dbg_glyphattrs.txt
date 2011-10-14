@@ -1,185 +1,187 @@
 GLYPH ATTRIBUTE IDS
 
-0: component.p1
-1: component.p2
-2: component.f1
-3: component.f2
-4: component.f3
-5: component.p1.top
-6: component.p1.bottom
-7: component.p1.left
-8: component.p1.right
-9: component.p2.top
-10: component.p2.bottom
-11: component.p2.left
-12: component.p2.right
-13: component.f1.top
-14: component.f1.bottom
-15: component.f1.left
-16: component.f1.right
-17: component.f2.top
-18: component.f2.bottom
-19: component.f2.left
-20: component.f2.right
-21: component.f3.top
-22: component.f3.bottom
-23: component.f3.left
-24: component.f3.right
-25: *actualForPseudo*
-26: order
-27: breakweight
-28: directionality
-29: H.x
-30: H.gpoint
-31: H.xoffset
-32: H.y
-33: H.yoffset
-34: L.x
-35: L.gpoint
-36: L.xoffset
-37: L.y
-38: L.yoffset
-39: O.x
-40: O.gpoint
-41: O.xoffset
-42: O.y
-43: O.yoffset
-44: R.x
-45: R.gpoint
-46: R.xoffset
-47: R.y
-48: R.yoffset
-49: U.x
-50: U.gpoint
-51: U.xoffset
-52: U.y
-53: U.yoffset
-54: C11.x
-55: C11.gpoint
-56: C11.xoffset
-57: C11.y
-58: C11.yoffset
-59: C12.x
-60: C12.gpoint
-61: C12.xoffset
-62: C12.y
-63: C12.yoffset
-64: C22.x
-65: C22.gpoint
-66: C22.xoffset
-67: C22.y
-68: C22.yoffset
-69: L11.x
-70: L11.gpoint
-71: L11.xoffset
-72: L11.y
-73: L11.yoffset
-74: L12.x
-75: L12.gpoint
-76: L12.xoffset
-77: L12.y
-78: L12.yoffset
-79: L13.x
-80: L13.gpoint
-81: L13.xoffset
-82: L13.y
-83: L13.yoffset
-84: L22.x
-85: L22.gpoint
-86: L22.xoffset
-87: L22.y
-88: L22.yoffset
-89: L23.x
-90: L23.gpoint
-91: L23.xoffset
-92: L23.y
-93: L23.yoffset
-94: L33.x
-95: L33.gpoint
-96: L33.xoffset
-97: L33.y
-98: L33.yoffset
-99: U11.x
-100: U11.gpoint
-101: U11.xoffset
-102: U11.y
-103: U11.yoffset
-104: U12.x
-105: U12.gpoint
-106: U12.xoffset
-107: U12.y
-108: U12.yoffset
-109: U13.x
-110: U13.gpoint
-111: U13.xoffset
-112: U13.y
-113: U13.yoffset
-114: U22.x
-115: U22.gpoint
-116: U22.xoffset
-117: U22.y
-118: U22.yoffset
-119: U23.x
-120: U23.gpoint
-121: U23.xoffset
-122: U23.y
-123: U23.yoffset
-124: U33.x
-125: U33.gpoint
-126: U33.xoffset
-127: U33.y
-128: U33.yoffset
-129: RM.x
-130: RM.gpoint
-131: RM.xoffset
-132: RM.y
-133: RM.yoffset
-134: TL.x
-135: TL.gpoint
-136: TL.xoffset
-137: TL.y
-138: TL.yoffset
-139: TML.x
-140: TML.gpoint
-141: TML.xoffset
-142: TML.y
-143: TML.yoffset
-144: UM.x
-145: UM.gpoint
-146: UM.xoffset
-147: UM.y
-148: UM.yoffset
-149: LM.x
-150: LM.gpoint
-151: LM.xoffset
-152: LM.y
-153: LM.yoffset
-154: HM.x
-155: HM.gpoint
-156: HM.xoffset
-157: HM.y
-158: HM.yoffset
-159: OM.x
-160: OM.gpoint
-161: OM.xoffset
-162: OM.y
-163: OM.yoffset
-164: C13.x
-165: C13.gpoint
-166: C13.xoffset
-167: C13.y
-168: C13.yoffset
-169: C23.x
-170: C23.gpoint
-171: C23.xoffset
-172: C23.y
-173: C23.yoffset
-174: C33.x
-175: C33.gpoint
-176: C33.xoffset
-177: C33.y
-178: C33.yoffset
-179: tone
+0: *actualForPseudo*
+1: breakweight
+2: directionality
+3: mirror.glyph
+4: mirror.isEncoded
+5: component.p1
+6: component.p2
+7: component.f1
+8: component.f2
+9: component.f3
+10: component.p1.top
+11: component.p1.bottom
+12: component.p1.left
+13: component.p1.right
+14: component.p2.top
+15: component.p2.bottom
+16: component.p2.left
+17: component.p2.right
+18: component.f1.top
+19: component.f1.bottom
+20: component.f1.left
+21: component.f1.right
+22: component.f2.top
+23: component.f2.bottom
+24: component.f2.left
+25: component.f2.right
+26: component.f3.top
+27: component.f3.bottom
+28: component.f3.left
+29: component.f3.right
+30: order
+31: H.x
+32: H.gpoint
+33: H.xoffset
+34: H.y
+35: H.yoffset
+36: L.x
+37: L.gpoint
+38: L.xoffset
+39: L.y
+40: L.yoffset
+41: O.x
+42: O.gpoint
+43: O.xoffset
+44: O.y
+45: O.yoffset
+46: R.x
+47: R.gpoint
+48: R.xoffset
+49: R.y
+50: R.yoffset
+51: U.x
+52: U.gpoint
+53: U.xoffset
+54: U.y
+55: U.yoffset
+56: C11.x
+57: C11.gpoint
+58: C11.xoffset
+59: C11.y
+60: C11.yoffset
+61: C12.x
+62: C12.gpoint
+63: C12.xoffset
+64: C12.y
+65: C12.yoffset
+66: C22.x
+67: C22.gpoint
+68: C22.xoffset
+69: C22.y
+70: C22.yoffset
+71: L11.x
+72: L11.gpoint
+73: L11.xoffset
+74: L11.y
+75: L11.yoffset
+76: L12.x
+77: L12.gpoint
+78: L12.xoffset
+79: L12.y
+80: L12.yoffset
+81: L13.x
+82: L13.gpoint
+83: L13.xoffset
+84: L13.y
+85: L13.yoffset
+86: L22.x
+87: L22.gpoint
+88: L22.xoffset
+89: L22.y
+90: L22.yoffset
+91: L23.x
+92: L23.gpoint
+93: L23.xoffset
+94: L23.y
+95: L23.yoffset
+96: L33.x
+97: L33.gpoint
+98: L33.xoffset
+99: L33.y
+100: L33.yoffset
+101: U11.x
+102: U11.gpoint
+103: U11.xoffset
+104: U11.y
+105: U11.yoffset
+106: U12.x
+107: U12.gpoint
+108: U12.xoffset
+109: U12.y
+110: U12.yoffset
+111: U13.x
+112: U13.gpoint
+113: U13.xoffset
+114: U13.y
+115: U13.yoffset
+116: U22.x
+117: U22.gpoint
+118: U22.xoffset
+119: U22.y
+120: U22.yoffset
+121: U23.x
+122: U23.gpoint
+123: U23.xoffset
+124: U23.y
+125: U23.yoffset
+126: U33.x
+127: U33.gpoint
+128: U33.xoffset
+129: U33.y
+130: U33.yoffset
+131: RM.x
+132: RM.gpoint
+133: RM.xoffset
+134: RM.y
+135: RM.yoffset
+136: TL.x
+137: TL.gpoint
+138: TL.xoffset
+139: TL.y
+140: TL.yoffset
+141: TML.x
+142: TML.gpoint
+143: TML.xoffset
+144: TML.y
+145: TML.yoffset
+146: UM.x
+147: UM.gpoint
+148: UM.xoffset
+149: UM.y
+150: UM.yoffset
+151: LM.x
+152: LM.gpoint
+153: LM.xoffset
+154: LM.y
+155: LM.yoffset
+156: HM.x
+157: HM.gpoint
+158: HM.xoffset
+159: HM.y
+160: HM.yoffset
+161: OM.x
+162: OM.gpoint
+163: OM.xoffset
+164: OM.y
+165: OM.yoffset
+166: C13.x
+167: C13.gpoint
+168: C13.xoffset
+169: C13.y
+170: C13.yoffset
+171: C23.x
+172: C23.gpoint
+173: C23.xoffset
+174: C23.y
+175: C23.yoffset
+176: C33.x
+177: C33.gpoint
+178: C33.xoffset
+179: C33.y
+180: C33.yoffset
+181: tone
 
 
 
@@ -6169,8 +6171,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0279  (633)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 644 (0x0284)
@@ -6178,12 +6181,12 @@ GLYPH ATTRIBUTE VALUES
    component.f2.bottom = -900 (0xfc7c)
    component.f2.left = 644 (0x0284)
    component.f2.right = 1288 (0x0508)
-   breakweight = 30 (0x001e)
 
 
 0x027a  (634)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 644 (0x0284)
@@ -6191,12 +6194,12 @@ GLYPH ATTRIBUTE VALUES
    component.f2.bottom = -900 (0xfc7c)
    component.f2.left = 644 (0x0284)
    component.f2.right = 1288 (0x0508)
-   breakweight = 30 (0x001e)
 
 
 0x027b  (635)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 638 (0x027e)
@@ -6204,12 +6207,12 @@ GLYPH ATTRIBUTE VALUES
    component.f2.bottom = -900 (0xfc7c)
    component.f2.left = 638 (0x027e)
    component.f2.right = 1276 (0x04fc)
-   breakweight = 30 (0x001e)
 
 
 0x027c  (636)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 638 (0x027e)
@@ -6217,13 +6220,13 @@ GLYPH ATTRIBUTE VALUES
    component.f2.bottom = -900 (0xfc7c)
    component.f2.left = 638 (0x027e)
    component.f2.right = 1276 (0x04fc)
-   breakweight = 30 (0x001e)
 
 
 0x027d  (637)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
-   component.f3 = 21 (0x0015)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
+   component.f3 = 46 (0x002e)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 652 (0x028c)
@@ -6235,13 +6238,13 @@ GLYPH ATTRIBUTE VALUES
    component.f3.bottom = -900 (0xfc7c)
    component.f3.left = 1305 (0x0519)
    component.f3.right = 1958 (0x07a6)
-   breakweight = 30 (0x001e)
 
 
 0x027e  (638)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
-   component.f3 = 21 (0x0015)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
+   component.f3 = 46 (0x002e)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 652 (0x028c)
@@ -6253,7 +6256,6 @@ GLYPH ATTRIBUTE VALUES
    component.f3.bottom = -900 (0xfc7c)
    component.f3.left = 1305 (0x0519)
    component.f3.right = 1958 (0x07a6)
-   breakweight = 30 (0x001e)
 
 
 0x027f  (639)
@@ -6262,9 +6264,10 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0280  (640)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
-   component.f3 = 21 (0x0015)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
+   component.f3 = 46 (0x002e)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 648 (0x0288)
@@ -6276,13 +6279,13 @@ GLYPH ATTRIBUTE VALUES
    component.f3.bottom = -900 (0xfc7c)
    component.f3.left = 1296 (0x0510)
    component.f3.right = 1944 (0x0798)
-   breakweight = 30 (0x001e)
 
 
 0x0281  (641)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
-   component.f3 = 21 (0x0015)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
+   component.f3 = 46 (0x002e)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 648 (0x0288)
@@ -6294,7 +6297,6 @@ GLYPH ATTRIBUTE VALUES
    component.f3.bottom = -900 (0xfc7c)
    component.f3.left = 1296 (0x0510)
    component.f3.right = 1944 (0x0798)
-   breakweight = 30 (0x001e)
 
 
 0x0282  (642)
@@ -6303,8 +6305,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0283  (643)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 667 (0x029b)
@@ -6312,12 +6315,12 @@ GLYPH ATTRIBUTE VALUES
    component.f2.bottom = -900 (0xfc7c)
    component.f2.left = 667 (0x029b)
    component.f2.right = 1335 (0x0537)
-   breakweight = 30 (0x001e)
 
 
 0x0284  (644)
-   component.f1 = 13 (0x000d)
-   component.f2 = 17 (0x0011)
+   breakweight = 30 (0x001e)
+   component.f1 = 38 (0x0026)
+   component.f2 = 42 (0x002a)
    component.f1.top = 2450 (0x0992)
    component.f1.bottom = -900 (0xfc7c)
    component.f1.right = 667 (0x029b)
@@ -6325,7 +6328,6 @@ GLYPH ATTRIBUTE VALUES
    component.f2.bottom = -900 (0xfc7c)
    component.f2.left = 667 (0x029b)
    component.f2.right = 1335 (0x0537)
-   breakweight = 30 (0x001e)
 
 
 0x0285  (645)
@@ -19690,8 +19692,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0915  (2325)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19699,12 +19702,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0916  (2326)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19712,12 +19715,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0917  (2327)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19725,12 +19728,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0918  (2328)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19738,12 +19741,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0919  (2329)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19751,12 +19754,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x091a  (2330)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19764,12 +19767,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x091b  (2331)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19777,12 +19780,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x091c  (2332)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19790,12 +19793,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x091d  (2333)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19803,7 +19806,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x091e  (2334)
@@ -19812,8 +19814,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x091f  (2335)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19821,12 +19824,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0920  (2336)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19834,12 +19837,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0921  (2337)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19847,12 +19850,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0922  (2338)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19860,12 +19863,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0923  (2339)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19873,12 +19876,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0924  (2340)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19886,12 +19889,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0925  (2341)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19899,12 +19902,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0926  (2342)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19912,12 +19915,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0927  (2343)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19925,7 +19928,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0928  (2344)
@@ -19934,8 +19936,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0929  (2345)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19943,12 +19946,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x092a  (2346)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19956,12 +19959,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x092b  (2347)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19969,12 +19972,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x092c  (2348)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19982,12 +19985,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x092d  (2349)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -19995,12 +19998,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x092e  (2350)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20008,12 +20011,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x092f  (2351)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20021,12 +20024,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0930  (2352)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20034,12 +20037,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0931  (2353)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20047,7 +20050,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0932  (2354)
@@ -20056,8 +20058,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0933  (2355)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20065,12 +20068,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0934  (2356)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20078,12 +20081,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0935  (2357)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20091,12 +20094,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0936  (2358)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20104,12 +20107,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0937  (2359)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20117,12 +20120,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0938  (2360)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20130,12 +20133,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0939  (2361)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20143,12 +20146,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x093a  (2362)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20156,12 +20159,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x093b  (2363)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20169,7 +20172,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x093c  (2364)
@@ -20178,8 +20180,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x093d  (2365)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20187,12 +20190,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x093e  (2366)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20200,12 +20203,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x093f  (2367)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20213,12 +20216,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0940  (2368)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20226,12 +20229,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0941  (2369)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20239,12 +20242,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0942  (2370)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20252,12 +20255,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0943  (2371)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20265,12 +20268,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0944  (2372)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20278,12 +20281,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0945  (2373)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20291,7 +20294,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0946  (2374)
@@ -20300,8 +20302,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0947  (2375)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20309,12 +20312,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0948  (2376)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20322,12 +20325,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0949  (2377)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20335,12 +20338,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x094a  (2378)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20348,12 +20351,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x094b  (2379)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20361,12 +20364,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x094c  (2380)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20374,12 +20377,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x094d  (2381)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20387,12 +20390,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x094e  (2382)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20400,12 +20403,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x094f  (2383)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20413,7 +20416,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0950  (2384)
@@ -20422,8 +20424,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0951  (2385)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20431,12 +20434,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0952  (2386)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20444,12 +20447,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0953  (2387)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20457,12 +20460,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0954  (2388)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20470,12 +20473,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0955  (2389)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20483,12 +20486,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0956  (2390)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20496,12 +20499,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0957  (2391)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20509,12 +20512,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0958  (2392)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20522,12 +20525,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0959  (2393)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20535,7 +20538,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x095a  (2394)
@@ -20544,8 +20546,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x095b  (2395)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20553,12 +20556,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x095c  (2396)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20566,12 +20569,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x095d  (2397)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20579,12 +20582,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x095e  (2398)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20592,12 +20595,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x095f  (2399)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20605,12 +20608,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0960  (2400)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20618,12 +20621,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0961  (2401)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20631,12 +20634,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0962  (2402)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20644,12 +20647,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0963  (2403)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20657,7 +20660,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0964  (2404)
@@ -20666,8 +20668,9 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0965  (2405)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 300 (0x012c)
@@ -20675,12 +20678,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 300 (0x012c)
    component.p2.right = 600 (0x0258)
-   breakweight = 30 (0x001e)
 
 
 0x0966  (2406)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20688,12 +20691,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0967  (2407)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20701,12 +20704,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0968  (2408)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20714,12 +20717,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0969  (2409)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20727,12 +20730,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x096a  (2410)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20740,12 +20743,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x096b  (2411)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20753,12 +20756,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x096c  (2412)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20766,12 +20769,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x096d  (2413)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20779,12 +20782,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x096e  (2414)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20792,12 +20795,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x096f  (2415)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20805,12 +20808,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0970  (2416)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20818,12 +20821,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0971  (2417)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20831,12 +20834,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0972  (2418)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20844,12 +20847,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0973  (2419)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20857,12 +20860,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0974  (2420)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20870,12 +20873,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0975  (2421)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20883,12 +20886,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0976  (2422)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20896,12 +20899,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0977  (2423)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20909,12 +20912,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0978  (2424)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20922,12 +20925,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0979  (2425)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20935,12 +20938,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x097a  (2426)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20948,12 +20951,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x097b  (2427)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20961,12 +20964,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x097c  (2428)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20974,12 +20977,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x097d  (2429)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -20987,12 +20990,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x097e  (2430)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21000,12 +21003,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x097f  (2431)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21013,12 +21016,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0980  (2432)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21026,12 +21029,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0981  (2433)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21039,12 +21042,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0982  (2434)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21052,12 +21055,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0983  (2435)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21065,12 +21068,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0984  (2436)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21078,12 +21081,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0985  (2437)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21091,12 +21094,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0986  (2438)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21104,12 +21107,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0987  (2439)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21117,12 +21120,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0988  (2440)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21130,12 +21133,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0989  (2441)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21143,12 +21146,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x098a  (2442)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21156,12 +21159,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x098b  (2443)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21169,12 +21172,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x098c  (2444)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21182,12 +21185,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x098d  (2445)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21195,12 +21198,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x098e  (2446)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21208,12 +21211,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x098f  (2447)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21221,12 +21224,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0990  (2448)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21234,12 +21237,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0991  (2449)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21247,12 +21250,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0992  (2450)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21260,12 +21263,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0993  (2451)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21273,12 +21276,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0994  (2452)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21286,12 +21289,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0995  (2453)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21299,12 +21302,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0996  (2454)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21312,12 +21315,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0997  (2455)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21325,12 +21328,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0998  (2456)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21338,12 +21341,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x0999  (2457)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21351,12 +21354,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x099a  (2458)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21364,12 +21367,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x099b  (2459)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21377,12 +21380,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x099c  (2460)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21390,12 +21393,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x099d  (2461)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21403,12 +21406,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x099e  (2462)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21416,12 +21419,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x099f  (2463)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21429,12 +21432,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a0  (2464)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21442,12 +21445,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a1  (2465)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21455,12 +21458,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a2  (2466)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21468,12 +21471,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a3  (2467)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21481,12 +21484,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a4  (2468)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21494,12 +21497,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a5  (2469)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21507,12 +21510,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a6  (2470)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21520,12 +21523,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a7  (2471)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21533,12 +21536,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a8  (2472)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21546,12 +21549,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09a9  (2473)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21559,12 +21562,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09aa  (2474)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21572,12 +21575,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09ab  (2475)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21585,12 +21588,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09ac  (2476)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21598,12 +21601,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09ad  (2477)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21611,12 +21614,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09ae  (2478)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21624,12 +21627,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09af  (2479)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21637,12 +21640,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b0  (2480)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21650,12 +21653,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b1  (2481)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21663,12 +21666,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b2  (2482)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21676,12 +21679,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b3  (2483)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21689,12 +21692,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b4  (2484)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21702,12 +21705,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b5  (2485)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21715,12 +21718,12 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b6  (2486)
-   component.p1 = 5
-   component.p2 = 9
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -21728,7 +21731,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   breakweight = 30 (0x001e)
 
 
 0x09b7  (2487)
@@ -23681,8 +23683,10 @@ GLYPH ATTRIBUTE VALUES
 
 
 0x0a74  (2676)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2324 (0x0914)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23690,13 +23694,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2324 (0x0914)
-   breakweight = 30 (0x001e)
 
 
 0x0a75  (2677)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2334 (0x091e)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23704,13 +23708,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2334 (0x091e)
-   breakweight = 30 (0x001e)
 
 
 0x0a76  (2678)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2344 (0x0928)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23718,13 +23722,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2344 (0x0928)
-   breakweight = 30 (0x001e)
 
 
 0x0a77  (2679)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2354 (0x0932)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23732,13 +23736,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2354 (0x0932)
-   breakweight = 30 (0x001e)
 
 
 0x0a78  (2680)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2364 (0x093c)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23746,13 +23750,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2364 (0x093c)
-   breakweight = 30 (0x001e)
 
 
 0x0a79  (2681)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2374 (0x0946)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23760,13 +23764,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2374 (0x0946)
-   breakweight = 30 (0x001e)
 
 
 0x0a7a  (2682)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2384 (0x0950)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23774,13 +23778,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2384 (0x0950)
-   breakweight = 30 (0x001e)
 
 
 0x0a7b  (2683)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2394 (0x095a)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23788,13 +23792,13 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2394 (0x095a)
-   breakweight = 30 (0x001e)
 
 
 0x0a7c  (2684)
-   component.p1 = 5
-   component.p2 = 9
+   *actualForPseudo* = 2404 (0x0964)
+   breakweight = 30 (0x001e)
+   component.p1 = 30 (0x001e)
+   component.p2 = 34 (0x0022)
    component.p1.top = 2450 (0x0992)
    component.p1.bottom = -900 (0xfc7c)
    component.p1.right = 540 (0x021c)
@@ -23802,8 +23806,6 @@ GLYPH ATTRIBUTE VALUES
    component.p2.bottom = -900 (0xfc7c)
    component.p2.left = 540 (0x021c)
    component.p2.right = 1080 (0x0438)
-   *actualForPseudo* = 2404 (0x0964)
-   breakweight = 30 (0x001e)
 
 
 0x0a7d  (2685)
