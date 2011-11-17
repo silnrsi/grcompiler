@@ -44,7 +44,7 @@ error checking:
 		GdlGlyphDefn
 		GdlGlyphClassDefn
 
-compilation:	highest error: 5101 / highest warning: 5503
+compilation:	highest error: 5101 / highest warning: 5505
 		OutputToFont
 
 test and debug: highest error: 6106 / highest warning: none (start at: 6500)

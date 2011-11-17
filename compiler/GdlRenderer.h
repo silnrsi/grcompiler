@@ -191,7 +191,8 @@ public:
 	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses);
 
 	//	Output:
-	void OutputReplacementClasses(std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
+	void OutputReplacementClasses(int fxdSilfVersion,
+		std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
 		GrcBinaryStream * pbstrm);
 	void CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);

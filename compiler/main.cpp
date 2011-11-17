@@ -18,6 +18,7 @@ Compiler versions:
 	4.0		- pass constraints (Silf table 3.1)
 			- large set (> 256) of replacement classes
 	4.1		- mirror glyph attributes (Silf table 2.1 or 3.2)
+	5.0		- large number of glyphs (> 64K) in replacement classes (Silf table 4.0)
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -615,7 +616,7 @@ bool LooksLikeFontFamily(char * pch)
 }
 
 /*----------------------------------------------------------------------------------------------
-    Generate a string containing the version number.
+    Generate a string containing the version number, eg: 0x00030002 -> "3.2"
 ----------------------------------------------------------------------------------------------*/
 std::string VersionString(int fxdVersion)
 {
