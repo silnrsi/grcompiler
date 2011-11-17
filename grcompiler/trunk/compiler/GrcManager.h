@@ -82,10 +82,10 @@ public:
 	{
 		return m_fxdSilfTableVersion;
 	}
-	void SetSilfTableVersion(int fxd, bool f)
+	void SetSilfTableVersion(int fxd, bool fUserSpec)
 	{
 		m_fxdSilfTableVersion = fxd;
-		m_fUserSpecifiedVersion = f;
+		m_fUserSpecifiedVersion = fUserSpec;
 	}
 	int MaxSilfVersion()
 	{
@@ -143,6 +143,7 @@ public:
 		case 0x00030000:	m_fxdCompilerVersion = 0x00030000;		break;
 		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
 		case 0x00030002:	m_fxdCompilerVersion = 0x00040001;		break;
+		case 0x00040000:	m_fxdCompilerVersion = 0x00050000;		break;
 		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
 	}
@@ -150,6 +151,7 @@ public:
 	int VersionForTable(int ti);
 	int VersionForTable(int ti, int fxdRequestedVersion);
 	int VersionForRules();
+	int SilfVersionForClassMap(int fxdSpecVersion);
 
 	void SetNameTableStart(int n)
 	{

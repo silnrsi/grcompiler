@@ -1909,6 +1909,81 @@ int GrcManager::VersionForRules()
 }
 
 /*----------------------------------------------------------------------------------------------
+	Set and return the version of the Silf table that is needed to handle the size of
+	the class map (replacement class data).
+----------------------------------------------------------------------------------------------*/
+int GrcManager::SilfVersionForClassMap(int fxdSilfSpecVersion)
+{
+	
+	int cbSpaceNeeded;	// # of bytes needed = max offset
+
+	//	number of classes
+	cbSpaceNeeded = 4;
+
+	//	the offsets to classes themselves, assuming short ints
+	cbSpaceNeeded += (m_vpglfcReplcmtClasses.size() + 1) * 2;
+
+	//	Space needed for the class glyph lists
+
+	for (int ipglfc = 0; ipglfc < m_cpglfcLinear; ipglfc++)
+	{
+		GdlGlyphClassDefn * pglfc = m_vpglfcReplcmtClasses[ipglfc];
+
+		Assert(pglfc->ReplcmtOutputClass() || pglfc->GlyphIDCount() <= 1);
+		//Assert(pglfc->ReplcmtOutputID() == cTmp);
+
+		std::vector<utf16> vwGlyphs;
+		pglfc->GenerateOutputGlyphList(vwGlyphs);
+
+		cbSpaceNeeded += vwGlyphs.size() * 2;
+	}
+
+	//	indexed classes (input)
+	for (int ipglfc = m_cpglfcLinear; ipglfc < signed(m_vpglfcReplcmtClasses.size()); ipglfc++)
+	{
+		GdlGlyphClassDefn * pglfc = m_vpglfcReplcmtClasses[ipglfc];
+
+		Assert(pglfc->ReplcmtInputClass());
+		//Assert(pglfc->ReplcmtInputID() == cTmp);
+
+		std::vector<utf16> vwGlyphs;
+		std::vector<int> vnIndices;
+		pglfc->GenerateInputGlyphList(vwGlyphs, vnIndices);
+		int n = signed(vwGlyphs.size());
+		cbSpaceNeeded += 8;	// search constants
+		cbSpaceNeeded += vwGlyphs.size() * 4;
+	}
+
+	if (cbSpaceNeeded > 0xFFFF)
+	{
+		// Offsets won't all fit in short ints; we need long ints.
+		SetSilfTableVersion(0x00040000, false);
+		if (fxdSilfSpecVersion != 0x00040000)
+		{
+			if (UserSpecifiedVersion())
+				g_errorList.AddWarning(5504, NULL,
+					"Version ",
+					VersionString(fxdSilfSpecVersion),
+					" of the Silf table is inadequate for your specification; version ",
+					VersionString(0x00040000),
+					" will be generated instead.");
+			else
+				g_errorList.AddWarning(5505, NULL,
+					"Version ",
+					VersionString(0x00040000),
+					" of the Silf table will be generated.");
+
+		}
+		return 0x00040000;
+	}
+	else
+	{
+		return fxdSilfSpecVersion;
+	}
+
+}
+
+/*----------------------------------------------------------------------------------------------
 	Split any really large stretch values into two 16-bit words. Store the high word in the
 	stretchHW attribute. These are guaranteed to follow the list of stretch attributes (see
 	GrcSymbolTable::AssignInternalGlyphAttrIDs).
@@ -1958,6 +2033,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	*pnSilfOffset = pbstrm->Position();
 
 	int fxdSilfVersion = VersionForTable(ktiSilf);
+	fxdSilfVersion = SilfVersionForClassMap(fxdSilfVersion);
 	SetTableVersion(ktiSilf, fxdSilfVersion);
 
 	//	version number
@@ -2169,7 +2245,8 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	}
 
 	//	replacement classes
-	m_prndr->OutputReplacementClasses(m_vpglfcReplcmtClasses, m_cpglfcLinear, pbstrm);
+	m_prndr->OutputReplacementClasses(fxdSilfVersion, m_vpglfcReplcmtClasses, m_cpglfcLinear,
+		pbstrm);
 
 	//	passes
 	std::vector<int> vnPassOffsets;
@@ -2205,11 +2282,12 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	by glyph ID and need a map to get the index. Note that some classes may serve as both
 	input and output classes and are written twice.
 	Arguments:
+		fxdSilfVersion	- if >= 4.0, output long offsets
 		vpglfc			- list of replacement classes (previously generated)
 		cpgflcLinear	- number of classes that can be in linear format
 		pbstrm			- output stream
 ----------------------------------------------------------------------------------------------*/
-void GdlRenderer::OutputReplacementClasses(
+void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 	std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear,
 	GrcBinaryStream * pbstrm)
 {
@@ -2225,7 +2303,12 @@ void GdlRenderer::OutputReplacementClasses(
 	long lOffsetPos = pbstrm->Position();
 	int ipglfc;
 	for (ipglfc = 0; ipglfc <= signed(vpglfcReplcmt.size()); ipglfc++)
-		pbstrm->WriteShort(0);
+	{
+		if (fxdSilfVersion < 0x00040000)
+			pbstrm->WriteShort(0);
+		else
+			pbstrm->WriteInt(0);
+	}
 
 	//	linear classes (output)
 	int cTmp = 0;
@@ -2294,7 +2377,12 @@ void GdlRenderer::OutputReplacementClasses(
 
 	pbstrm->SetPosition(lOffsetPos);
 	for (size_t i = 0; i < vnClassOffsets.size(); i++)
-		pbstrm->WriteShort(vnClassOffsets[i]);
+	{
+		if (fxdSilfVersion < 0x00040000)
+			pbstrm->WriteShort(vnClassOffsets[i]);
+		else
+			pbstrm->WriteInt(vnClassOffsets[i]);
+	}
 
 	pbstrm->SetPosition(lSavePos);
 }
