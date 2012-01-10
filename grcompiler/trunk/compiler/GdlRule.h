@@ -112,9 +112,9 @@ private:
 
 public:
 	//	debuggers:
-	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut,
+	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs);
-	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut);
+	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml);
 
 protected:
 	//	Instance variables:
@@ -289,12 +289,13 @@ private:
 public:
 	//	debuggers:
 	virtual void LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
-	virtual void ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fSpace = false);
+		std::ostream & strmOut, bool fXml);
+	virtual void ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml, bool fSpace = false);
+
 	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
 	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
 	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
@@ -372,7 +373,7 @@ protected:
 public:
 	//	debuggers:
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
 
 };	//	end of GdlLineBreakItem
@@ -481,13 +482,14 @@ public:
 
 	//	debuggers:
 	virtual void LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
+
 	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
 	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
 	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
@@ -606,9 +608,9 @@ protected:
 public:
 	//	debuggers:
 	virtual void LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-		std::ostream & strmOut);
+		std::ostream & strmOut, bool fXml);
 	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
 	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
 
@@ -863,7 +865,7 @@ public:
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	static void DebugEngineCode(std::vector<byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
-	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut);
+	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml);
 	static std::string SlotAttributeDebugString(int slat);
 	static std::string GlyphMetricDebugString(int gmet);
 	static std::string EngineCodeDebugString(int op);

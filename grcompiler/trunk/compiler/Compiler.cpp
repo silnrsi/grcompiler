@@ -838,7 +838,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 		m_vprule[viruleSorted[iirule]]->LineAndFile().WriteToStream(strmOut, true);
 		strmOut << ":  ";
 
-		m_vprule[viruleSorted[iirule]]->RulePrettyPrint(pcman, strmOut);
+		m_vprule[viruleSorted[iirule]]->RulePrettyPrint(pcman, strmOut, false);
 		strmOut << "\n\n";
 	}
 }
@@ -926,7 +926,7 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 		m_vprule[iprul]->LineAndFile().WriteToStream(strmOut, true);
 		strmOut << ":  ";
 
-		m_vprule[iprul]->RulePrettyPrint(pcman, strmOut);
+		m_vprule[iprul]->RulePrettyPrint(pcman, strmOut, false);
 		strmOut << "\n";
 		m_vprule[iprul]->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 	}
@@ -1451,13 +1451,13 @@ void GrcSymbolTable::GlyphAttrList(std::vector<Symbol> & vpsym)
 /*----------------------------------------------------------------------------------------------
 	Generate a pretty-print description of the rule (similar to the original syntax).
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
+void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml)
 {
 	size_t cEndif = 0;
 	for (size_t iexp = 0; iexp < m_vpexpConstraints.size(); iexp++)
 	{
 		strmOut << "if (";
-		m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut);
+		m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, fXml);
 		strmOut << ") ";
 		cEndif++;
 	}
@@ -1484,14 +1484,17 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 	{
 		for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
 		{
-			m_vprit[irit]->LhsPrettyPrint(pcman, this, irit, strmOut);
+			m_vprit[irit]->LhsPrettyPrint(pcman, this, irit, strmOut, fXml);
 		}
-		strmOut << ">  ";
+		if (fXml)
+			strmOut << "&gt;  ";
+		else
+			strmOut << ">  ";
 	}
 
 	for (irit = 0; irit < signed(m_vprit.size()) ; irit++)
 	{
-		m_vprit[irit]->RhsPrettyPrint(pcman, this, irit, strmOut);
+		m_vprit[irit]->RhsPrettyPrint(pcman, this, irit, strmOut, fXml);
 	}
 
 	if (fContext)
@@ -1501,7 +1504,7 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 		{
 			if (m_nScanAdvance == irit)
 				strmOut << "^  ";
-			m_vprit[irit]->ContextPrettyPrint(pcman, this, irit, strmOut);
+			m_vprit[irit]->ContextPrettyPrint(pcman, this, irit, strmOut, fXml);
 		}
 	}
 
@@ -1513,20 +1516,20 @@ void GdlRule::RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut)
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & /*strmOut*/)
+	std::ostream & /*strmOut*/, bool /*fXml*/)
 {
 	//	Do nothing.
 }
 
 void GdlSetAttrItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool /*fXml*/)
 {
 	strmOut << m_psymInput->FullAbbrev();
 	strmOut << "  ";
 }
 
 void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool /*fXml*/)
 {
 	strmOut << m_psymInput->FullAbbrev();
 	strmOut << "  ";
@@ -1534,21 +1537,21 @@ void GdlSubstitutionItem::LhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*pru
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::RhsPrettyPrint(GrcManager * /*pcman*/, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & /*strmOut*/)
+	std::ostream & /*strmOut*/, bool /*fXml*/)
 {
 	//	Do nothing.
 }
 
 void GdlSetAttrItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool fXml)
 {
 	strmOut << m_psymInput->FullAbbrev();
-	AttrSetterPrettyPrint(pcman, prule, irit, strmOut);
+	AttrSetterPrettyPrint(pcman, prule, irit, strmOut, fXml);
 	strmOut << "  ";
 }
 
 void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool fXml)
 {
 	strmOut << m_psymOutput->FullAbbrev();
 
@@ -1571,50 +1574,51 @@ void GdlSubstitutionItem::RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, in
 		if (m_vpexpAssocs.size() > 1)
 			strmOut << ")";
 	}
-	AttrSetterPrettyPrint(pcman, prule, irit, strmOut);
+	AttrSetterPrettyPrint(pcman, prule, irit, strmOut, fXml);
 	strmOut << "  ";
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool fXml)
 {
 	strmOut << m_psymInput->FullAbbrev();
-	ConstraintPrettyPrint(pcman, strmOut, true);
+	ConstraintPrettyPrint(pcman, strmOut, true, fXml);
 	strmOut << "  ";
 }
 
 void GdlLineBreakItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool fXml)
 {
 	strmOut << "#";
-	ConstraintPrettyPrint(pcman, strmOut, true);
+	ConstraintPrettyPrint(pcman, strmOut, true, fXml);
 	strmOut << "  ";
 }
 
 void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool fXml)
 {
 	strmOut << "_";
-	ConstraintPrettyPrint(pcman, strmOut, true);
+	ConstraintPrettyPrint(pcman, strmOut, true, fXml);
 	strmOut << "  ";
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fSpace)
+void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fSpace,
+	bool fXml)
 {
 	if (m_pexpConstraint)
 	{
 		if (fSpace) strmOut << " ";
 		strmOut << "{ ";
-		m_pexpConstraint->PrettyPrint(pcman, strmOut);
+		m_pexpConstraint->PrettyPrint(pcman, strmOut, fXml);
 		strmOut << " }";
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/, int /*irit*/,
-	std::ostream & strmOut)
+	std::ostream & strmOut, bool fXml)
 {
 	if (m_vpavs.size() > 0)
 	{
@@ -1636,7 +1640,7 @@ void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule
 			for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 			{
 				if (m_vpavs[iavs]->m_psymName->IsAttachment())
-					m_vpavs[iavs]->PrettyPrintAttach(pcman, strmOut);
+					m_vpavs[iavs]->PrettyPrintAttach(pcman, strmOut, fXml);
 			}
 			strmOut << "} ";
 		}
@@ -1645,13 +1649,13 @@ void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule
 		for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 		{
 			if (!m_vpavs[iavs]->m_psymName->IsAttachment())
-				m_vpavs[iavs]->PrettyPrint(pcman, strmOut, &fAtt, &fAttAt, &fAttWith, m_vpavs.size());
+				m_vpavs[iavs]->PrettyPrint(pcman, strmOut, fXml, &fAtt, &fAttAt, &fAttWith, m_vpavs.size());
 		}
 		strmOut << " }";
 	}
 }
 
-void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut)
+void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml)
 {
 	if (m_fFlattened
 		&& (m_psymName->IsAttachAtField() || m_psymName->IsAttachWithField()))
@@ -1673,7 +1677,7 @@ void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strm
 			}
 			else
 				// strange...
-				m_pexpValue->PrettyPrint(pcman, strmOut);
+				m_pexpValue->PrettyPrint(pcman, strmOut, fXml);
 			strmOut << "; ";
 		}
 		return;
@@ -1689,11 +1693,11 @@ void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strm
 
 	strmOut << m_psymName->FullAbbrevOmit("attach");
 	strmOut << " " << m_psymOperator->FullAbbrev() << " ";
-	m_pexpValue->PrettyPrint(pcman, strmOut);
+	m_pexpValue->PrettyPrint(pcman, strmOut, fXml);
 	strmOut << "; ";
 }
 
-void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut,
+void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 	bool * /*pfAtt*/, bool * /*pfAttAt*/, bool * /*pfAttWith*/, int /*cpavs*/)
 {
 	//if (cpavs > 6 && m_psymName->IsAttachment())
@@ -1726,7 +1730,7 @@ void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut,
 	
 	strmOut << m_psymName->FullAbbrev();
 	strmOut << " " << m_psymOperator->FullAbbrev() << " ";
-	m_pexpValue->PrettyPrint(pcman, strmOut);
+	m_pexpValue->PrettyPrint(pcman, strmOut, fXml);
 	strmOut << "; ";
 }
 
@@ -2542,7 +2546,7 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 		{
 			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
 			strmOut << "          <passConstraint gdl=\"{ ";
-			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut);
+			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
 			strmOut << " }\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
 		}
 		strmOut << "        </passConstraints>\n";
@@ -2563,7 +2567,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 		<< "\" inFile=\"" << LineAndFile().File()
 		<< "\" atLine=\"" << LineAndFile().OriginalLine()
 		<< "\"\n            prettyPrint=\"";
-	this->RulePrettyPrint(pcman, strmOut);
+	this->RulePrettyPrint(pcman, strmOut, true);
 	strmOut << "\" >\n";
 
 	if (m_vpexpConstraints.size() > 0)
@@ -2573,7 +2577,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 		{
 			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
 			strmOut << "          <ruleConstraint gdl=\"{ ";
-			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut);
+			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
 			strmOut << " }\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
 		}
 		strmOut << "        </ruleConstraints>\n";
@@ -2663,7 +2667,7 @@ void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
 	if (m_vpavs.size() > 0)
 	{
 		strmOut << "\" assignmentGdl=\"";
-		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut);	// NULL and 0 are bogus but not used
+		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut, true);	// NULL and 0 are bogus but not used
 	}
 	strmOut << "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
 }
@@ -2687,7 +2691,7 @@ void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOu
 	if (m_vpavs.size() > 0)
 	{
 		strmOut << "\" assignmentGdl=\"";
-		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut);	// NULL and 0 are bogus but not used
+		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut, true);	// NULL and 0 are bogus but not used
 	}
 	strmOut << "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
 
@@ -2700,8 +2704,8 @@ void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, i
 	if (this->m_pexpConstraint)
 	{
 		strmOut << " >\n            <constraint gdl=\"";
-		ConstraintPrettyPrint(pcman, strmOut);
-		strmOut << "\">\n          </contextSlot>\n";
+		ConstraintPrettyPrint(pcman, strmOut, true);
+		strmOut << "\" />\n          </contextSlot>\n";
 	}
 	else
 		strmOut << " />\n";
@@ -2716,8 +2720,8 @@ void GdlSetAttrItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut
 	if (this->m_pexpConstraint)
 	{
 		strmOut << " >\n            <constraint gdl=\"";
-		ConstraintPrettyPrint(pcman, strmOut);
-		strmOut << "\">\n          </contextSlot>\n";
+		ConstraintPrettyPrint(pcman, strmOut, true);
+		strmOut << "\" />\n          </contextSlot>\n";
 	}
 	else
 		strmOut << " />\n";
@@ -2728,7 +2732,7 @@ void GdlRuleItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut
 	if (m_pexpConstraint)
 	{
 		strmOut << "        <constraint gdl=\"";
-		m_pexpConstraint->PrettyPrint(pcman, strmOut);
+		m_pexpConstraint->PrettyPrint(pcman, strmOut, true);
 		strmOut << "\" />\n";
 	}
 }
@@ -2736,7 +2740,7 @@ void GdlRuleItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut
 void GdlLineBreakItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut)
 {
 	strmOut << "          <contextSlot className=\"#\"";
-	ConstraintPrettyPrint(pcman, strmOut);
+	ConstraintPrettyPrint(pcman, strmOut, true);
 	strmOut << "\" />\n";
 
 }

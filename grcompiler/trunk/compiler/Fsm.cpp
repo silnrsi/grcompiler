@@ -1142,7 +1142,7 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 		strmOut << "RULE " << nPassNum << "." << irule << ", ";
 		m_vprule[irule]->LineAndFile().WriteToStream(strmOut, true);
 		strmOut << ":  ";
-		m_vprule[irule]->RulePrettyPrint(pcman, strmOut);
+		m_vprule[irule]->RulePrettyPrint(pcman, strmOut, false);
 		strmOut << "\n\n";
 	}
 	strmOut << "\n";
