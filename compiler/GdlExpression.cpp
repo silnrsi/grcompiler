@@ -3105,61 +3105,79 @@ void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector
 		strmOut		- Stream on which to generate the results
 		fParens		- Put parens around binary expression
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
+void GdlUnaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
+	bool /*fParens*/)
 {
 	strmOut << m_psymOperator->FullName().data() << "(";
-	m_pexpOperand->PrettyPrint(pcman, strmOut, false);
+	m_pexpOperand->PrettyPrint(pcman, strmOut, fXml, false);
 	strmOut << ")";
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fParens)
+void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
+	bool fParens)
 {
 	if (fParens)
 		strmOut << "(";
-	m_pexpOperand1->PrettyPrint(pcman, strmOut, true);
-	strmOut << " " << m_psymOperator->FullName().data() << " ";
-	m_pexpOperand2->PrettyPrint(pcman, strmOut, true);
+	m_pexpOperand1->PrettyPrint(pcman, strmOut, fXml, true);
+	if (strcmp(m_psymOperator->FullName().data(), "&&"))
+		strmOut << " &amp;&amp; ";
+	else if (strcmp(m_psymOperator->FullName().data(), "<"))
+		strmOut << " &lt; ";
+	else if (strcmp(m_psymOperator->FullName().data(), "<="))
+		strmOut << " &lt;= ";
+	else if (strcmp(m_psymOperator->FullName().data(), ">"))
+		strmOut << " &gt; ";
+	else if (strcmp(m_psymOperator->FullName().data(), ">="))
+		strmOut << " &gt;= ";
+	else
+		strmOut << " " << m_psymOperator->FullName().data() << " ";
+	m_pexpOperand2->PrettyPrint(pcman, strmOut, fXml, true);
 	if (fParens)
 		strmOut << ")";
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
+void GdlCondExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
+	bool /*fParens*/)
 {
 	strmOut << "(";
-	m_pexpTest->PrettyPrint(pcman, strmOut, true);
+	m_pexpTest->PrettyPrint(pcman, strmOut, fXml, true);
 	strmOut << ") ? ";
-	m_pexpTrue->PrettyPrint(pcman, strmOut, true);
+	m_pexpTrue->PrettyPrint(pcman, strmOut, fXml, true);
 	strmOut << " : ";
-	m_pexpFalse->PrettyPrint(pcman, strmOut, true);
+	m_pexpFalse->PrettyPrint(pcman, strmOut, fXml, true);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool /*fParens*/)
+void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
+	bool /*fParens*/)
 {
 	if (m_pexpSelector)
 	{
-		m_pexpSelector->PrettyPrint(pcman, strmOut, true);
+		m_pexpSelector->PrettyPrint(pcman, strmOut, fXml, true);
 		strmOut << ".";
 	}
 	strmOut << m_psymName->FullAbbrev().data();
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/)
+void GdlNumericExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut,
+	bool /*fXml*/, bool /*fParens*/)
 {
 	strmOut << m_nValue;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/)
+void GdlSlotRefExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut,
+	bool /*fXml*/, bool /*fParens*/)
 {
 	strmOut << "@" << m_srNumber;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut, bool /*fParens*/)
+void GdlStringExpression::PrettyPrint(GrcManager * /*pcman*/, std::ostream & strmOut,
+	bool /*fXml*/, bool /*fParens*/)
 {
 	strmOut << m_staValue;
 }
