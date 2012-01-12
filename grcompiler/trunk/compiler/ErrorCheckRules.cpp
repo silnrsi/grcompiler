@@ -1806,12 +1806,18 @@ bool GdlGlyphDefn::HasOverlapWith(GdlGlyphClassMember * pglfdLeft, GrcFont * pfo
 				utf16 w1 = this->m_vwGlyphIDs[iw1];
 				if (w1 == kBadGlyph)
 					continue;
+				utf16 nActual = g_cman.ActualForPseudo(w1);
+				if (nActual != 0)
+					w1 = nActual;
 				int nLsb = pfont->GetGlyphMetric(w1, kgmetLsb, this);
 				for (size_t iw2 = 0; iw2 < pglfLeft->m_vwGlyphIDs.size(); iw2++)
 				{
 					utf16 w2 = pglfLeft->m_vwGlyphIDs[iw2];
 					if (w2 == kBadGlyph)
 						continue;
+					utf16 nActual = g_cman.ActualForPseudo(w2);
+					if (nActual != 0)
+						w2 = nActual;
 					int nRsb = pfont->GetGlyphMetric(w2, kgmetRsb, pglfLeft);
 					if (nLsb + nRsb < 0)
 						return true;
