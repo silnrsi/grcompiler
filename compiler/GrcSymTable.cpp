@@ -1318,6 +1318,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		}
 	}
 
+	else if (staField0 == "segsplit")
+		return kslatSegSplit;
+
 	else if (IsUserDefinableSlotAttr())
 	{
 		return kslatUserDefn;
@@ -1666,6 +1669,8 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("justify", "0", "step"),		kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("justify", "0", "weight"),	kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("justify", "0", "width"),		kst, kexptMeas);
+
+	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
 }
 
 /*--------------------------------------------------------------------------------------------*/

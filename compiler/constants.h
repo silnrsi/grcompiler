@@ -222,6 +222,7 @@ enum SlotAttrName {
 	kslatUserDefnV1, // version 1.0
 	kslatMeasureSol,	kslatMeasureEol,
 	kslatJStretch,		kslatJShrink,		kslatJStep,		kslatJWeight,	kslatJWidth,
+	kslatSegSplit = kslatJStretch + 29,
 	// this must be last:
 	kslatUserDefn = kslatJStretch + 30
 };
