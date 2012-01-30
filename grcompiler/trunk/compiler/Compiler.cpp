@@ -1190,6 +1190,7 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 	case kslatJStep:			return "justify_step";
 	case kslatJWeight:			return "justify_weight";
 	case kslatJWidth:			return "justify_width";
+	case kslatSegSplit:			return "segsplit";
 	default:
 		Assert(false);
 		char rgch[20];
