@@ -27,7 +27,7 @@ DEFINE_THIS_FILE
 	Forward declarations
 ***********************************************************************************************/
 static DWORD PadLong(DWORD ul); // 
-static unsigned long CalcCheckSum(const void  * pluTable, size_t cluSize);
+static unsigned int CalcCheckSum(const void  * pluTable, size_t cluSize);
 static int CompareDirEntries(const void *,  const void *); // compare fn for qsort()
 
 using namespace TtfUtil;
@@ -3360,7 +3360,7 @@ int CompareDirEntries(const void * ptr1, const void * ptr2)
 	padding. The table is treated as a sequence of longs which are summed together.
 ----------------------------------------------------------------------------------------------*/
 
-unsigned long CalcCheckSum(const void * pluTable, size_t cluSize)
+unsigned int CalcCheckSum(const void * pluTable, size_t cluSize)
 {
 	Assert(!(cluSize & 0x00000003));
 	unsigned long  luCheckSum = 0;
