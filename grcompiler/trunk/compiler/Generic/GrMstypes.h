@@ -69,7 +69,7 @@ typedef unsigned char	byte;
 
 typedef unsigned short  WORD;
 typedef unsigned int 	UINT;
-typedef unsigned long 	DWORD;
+typedef unsigned int 	DWORD;
 
 typedef signed long	    HRESULT;
 typedef DWORD 			COLORREF;
