@@ -77,6 +77,7 @@ foreach $f (@fonts)
         system($opts{compiler}, @gopts, $t, $f, $r);
         if (-f $r)      # assume it passes if it gives a result
         {
+            my ($failed) = 0;
             unlink 'grcregtest.log';
             foreach $i (@icudirs)
             {
@@ -94,6 +95,7 @@ foreach $f (@fonts)
             {
                 print "Failed to run $opts{testengine} because $!\n";
                 $errors++;
+                $failed = 1;
             }
             my ($logf) = IO::File->new("grcregtest.log");
             if ($logf)
@@ -107,8 +109,9 @@ foreach $f (@fonts)
                 $res >>= 8;
                 print "job error $res\n";
                 $errors += $res;
+                $failed = 1;
             }
-            unlink $r unless ($opts{'keep'});
+            unlink $r unless ($opts{'keep'} || $failed);
         }
         else
         {

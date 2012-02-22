@@ -379,7 +379,7 @@ protected:
 		bool * pfNeed310);
 	int OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom31);
 	void OutputSileTable(GrcBinaryStream * pbstrm,
-		utf16 * pchStrFontFamily, char * pchSrcFileName, long luMasterChecksum,
+		utf16 * pchStrFontFamily, char * pchSrcFileName, unsigned int luMasterChecksum,
 		unsigned int * pnCreateTime, unsigned int * pnModifyTime,
 		int * pibOffset, int * pcbSize);
 	void OutputGlatAndGloc(GrcBinaryStream * pbstrm, int * pnGlocOffset, int * pnGlocSize,
