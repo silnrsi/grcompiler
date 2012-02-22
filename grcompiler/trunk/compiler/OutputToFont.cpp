@@ -1595,7 +1595,7 @@ int GrcManager::OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbst
 	Write the Sile table onto the stream.
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
-	 utf16 * pchSrcFontFamily, char * pchSrcFileName, long luMasterChecksum,
+	 utf16 * pchSrcFontFamily, char * pchSrcFileName, unsigned int luMasterChecksum,
 	 unsigned int * pnCreateTime, unsigned int * pnModifyTime,
 	 int * pibOffset, int * pcbSize)
 {
@@ -3349,8 +3349,8 @@ DWORD PadLong(DWORD ul)
 ----------------------------------------------------------------------------------------------*/
 int CompareDirEntries(const void * ptr1, const void * ptr2)
 {
-	long lTmp1 = read(((OffsetSubTable::Entry *)ptr1)->tag);
-	long lTmp2 = read(((OffsetSubTable::Entry *)ptr2)->tag);
+	unsigned int lTmp1 = read(((OffsetSubTable::Entry *)ptr1)->tag);
+	unsigned int lTmp2 = read(((OffsetSubTable::Entry *)ptr2)->tag);
 	return (lTmp1 - lTmp2);
 }
 
@@ -3363,7 +3363,7 @@ int CompareDirEntries(const void * ptr1, const void * ptr2)
 unsigned int CalcCheckSum(const void * pluTable, size_t cluSize)
 {
 	Assert(!(cluSize & 0x00000003));
-	unsigned long  luCheckSum = 0;
+	unsigned int  luCheckSum = 0;
     const DWORD *        element = static_cast<const DWORD *>(pluTable);
 	const DWORD *const   end = element + cluSize / sizeof(DWORD);
     for (;element != end; ++element)
