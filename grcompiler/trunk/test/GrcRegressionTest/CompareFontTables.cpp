@@ -511,7 +511,16 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 		OutputError(ec, ptcase, "ERROR: Silf table - post LB context");
 
 	//	actual glyph ID for pseudo-glyph (ID of bogus attribute)
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+long posB; grstrmB.GetPositionInFont(&posB);
+WriteToLog("benchmark position = ", posB, "; ");
+long posT; grstrmT.GetPositionInFont(&posT);
+WriteToLog("test font position = ", posT, "; ");
+gr::byte tempB = grstrmB.ReadByteFromFont();
+WriteToLog("next byte B = ", tempB, "; ");
+gr::byte tempT = grstrmT.ReadByteFromFont();
+WriteToLog("next byte T = ", tempT, "\n");
+if (tempB != tempT)
+	////if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
 		OutputError(ec, ptcase, "ERROR: Silf table - actual-for-pseudo attr");
 	//	breakweight
 	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
