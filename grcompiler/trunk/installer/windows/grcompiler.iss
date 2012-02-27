@@ -8,7 +8,7 @@ AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
 AppUpdatesURL=http://graphite.sil.org/
-DefaultDirName={pf}\Graphite Compiler
+DefaultDirName=C:Program Files\Graphite Compiler
 ; Start Menu item name:
 DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
@@ -53,4 +53,26 @@ Name: "{group}\Read-Me"; Filename: "{app}\readme.txt"
 Name: "{group}\GDL documentation"; Filename: "{app}\doc\GDL.pdf"
 Name: "{group}\Compiler Debug Files Doc"; Filename: "{app}\doc\CompilerDebugFiles.pdf"
 Name: "{commondesktop}\Graphite Compiler"; Filename: "{app}\GrCompiler.exe"; Tasks: desktopicon
+
+[Registry]
+Root:HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "GDLPP_PREFS"; ValueData: "-I{code:GetShortName|{app}}"
+
+[Messages]
+ClickFinish=Click Finish to exit Setup.
+
+[Code]
+function SendMessage(const Wnd: HWND; const Msg, WParam: LongInt; LParam: AnsiString): Longint; external 'SendMessageA@user32.dll stdcall'; 
+
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  Log('CurStepChanged(' + IntToStr(Ord(CurStep)) + ') called');
+  if CurStep = ssPostInstall then
+  begin
+    { Inform all windows that the enviroment has changed (ie, via the registry). Note that 26 = x1A.
+      Above we redefine the SendMessage function because a call with "Environment" needs to have that argument
+      interpreted as a string. }
+    SendMessage(-1, 26, 0, 'Environment');
+  end;
+end;
+
 
