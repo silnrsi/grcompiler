@@ -29,7 +29,9 @@ After running the installer program, all the program files will be located in th
 
 If you choose to put the gdlpp.exe file in a different folder from GrCompiler.exe, you need to set the GDLPP environment variable to indicate where this utility is, for instance: "c:\graphite_extras\gdlpp.exe". Note that the variable must include the name of the program as well as well as the path.
 
-The GDLPP_PREFS environment variable is used to indicate where the Graphite compiler will find #included files. The value consists of "-I" followed by the path or paths to files of interest, for instance, "-Ic:\graphite". At the very least, you will want to be able to #include "stddef.gdh", which is the standard include file that contains all the standard GDL abbrevations. If it is located in a different folder than the original two files, you will need to put its path in the GDLPP_PREFS environment variable.
+The GDLPP_PREFS environment variable is used to indicate where the Graphite compiler will find #included files. The value consists of "-I" followed by the path or paths to files of interest, for instance, "-Ic:\graphite". At the very least, you will want to be able to #include "stddef.gdh", which is the standard include file that contains all the standard GDL abbrevations. If it is located in a different folder than the original two files (GDL and TTF), you will need to put its path in the GDLPP_PREFS environment variable.
+
+NOTE: GDLPP_PREFS must not contain directory names with spaces. If there are spaces in your path, you will need to use 8-character directory names. So if, for instance, your "stddef.gdh" file is located in C:\Program Files\Graphite Compiler, GDLPP_PREFS should be set to "-IC:\Progra~1\Graphi~1" (without quotes). If the compiler is having trouble finding the stddef.gdh file (ie, standard definitions are not recognized), check your GDLPP_PREFS environment variable and change it to use short names if necessary.
 
 
 RUNNING THE COMPILER
