@@ -55,7 +55,9 @@ Name: "{group}\Compiler Debug Files Doc"; Filename: "{app}\doc\CompilerDebugFile
 Name: "{commondesktop}\Graphite Compiler"; Filename: "{app}\GrCompiler.exe"; Tasks: desktopicon
 
 [Registry]
-Root:HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "GDLPP_PREFS"; ValueData: "-I{code:GetShortName|{app}}"
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "GDLPP_PREFS"; ValueData: "-I{code:GetShortName|{app}}"
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Check: NeedsAddPath('{app}')
+
 
 [Messages]
 ClickFinish=Click Finish to exit Setup.
@@ -68,11 +70,26 @@ begin
   Log('CurStepChanged(' + IntToStr(Ord(CurStep)) + ') called');
   if CurStep = ssPostInstall then
   begin
-    { Inform all windows that the enviroment has changed (ie, via the registry). Note that 26 = x1A.
-      Above we redefine the SendMessage function because a call with "Environment" needs to have that argument
-      interpreted as a string. }
+    // Inform all windows that the enviroment has changed (ie, via the registry). Note that 26 = x1A.
+    // Above we redefine the SendMessage function because a call with "Environment" needs to have that argument
+    // interpreted as a string.
     SendMessage(-1, 26, 0, 'Environment');
   end;
 end;
 
+// This check does not seem to be working (as of 2/28/2012):
+function NeedsAddPath(NewDir: string): boolean;
+var
+  OrigPath: string;
+begin
+  if not RegQueryStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
+    'Path', OrigPath)
+  then
+    Result := True  // Didn't find any path.
+  else
+    // Look for the directory to add, with leading and trailing semicolon.
+    // Pos() returns 0 if not found.
+    Result := (Pos(';' + NewDir + ';', ';' + OrigPath + ';') = 0);
+end;
 
