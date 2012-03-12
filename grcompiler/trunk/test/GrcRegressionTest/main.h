@@ -47,19 +47,19 @@ Description:
 ////using std::max;
 ////using std::min;
 
-#include "graphite/GrCommon.h"
-#include "graphite/GrPlatform.h"
+#include "Generic/GrCommon.h"
+#include "Generic/GrPlatform.h"
 
 ////////#include "LgCharPropsStub.h"
 
-#include "graphite/GrConstants.h"
+#include "Generic/GrConstants.h"
 #include "TtfUtil.h"
 // #include "graphite/Tt.h"
 
-#include "graphite/GrClient.h"
-#include "graphite/IGrEngine.h"
+//#include "graphite/GrClient.h"
+//#include "graphite/IGrEngine.h"
 #include "FileInput.h"
-#include "graphite/Font.h"
+//#include "graphite/Font.h"
 #include "GrcRtFileFont.h"
 
 //#include "Segment.h"

@@ -4,9 +4,9 @@ AUTOMAKE_OPTIONS = 1.6
 
 noinst_PROGRAMS = GrcRegressionTest
 
-AM_CPPFLAGS = -I$(top_srcdir)/compiler $(GR2_CFLAGS)
+AM_CPPFLAGS = -I$(top_srcdir)/../../compiler
 
-GrcRegressionTest_LDFLAGS = $(GR2_LIBS)
+@ GrcRegressionTest_LDFLAGS = $(GR2_LIBS)
 
 GrcRegressionTest_SOURCES = \
         main.h \
