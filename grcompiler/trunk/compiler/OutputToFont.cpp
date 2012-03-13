@@ -1027,6 +1027,41 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 			pNewRecord[irec].name_id = read(vnNameTblIds[istring]);
 			uint16 cbStr = vstuExtNames[istring].length() * ppec->cbBytesPerChar;
 
+			// Convert the language IDs appropriately for the platform.
+			uint16 platform_id = pNewRecord[irec].platform_id;
+			uint16 specific_id = pNewRecord[irec].platform_specific_id;
+			uint16 language_id = pNewRecord[irec].language_id;
+#if !WORDS_BIGENDIAN
+			platform_id = rev16(platform_id);
+			specific_id = rev16(specific_id);
+			language_id = rev16(language_id);
+#endif
+			if (platform_id == NameRecord::Macintosh && specific_id == 0) // Roman
+			{
+				// TODO: Convert common Windows language codes to Macintosh
+				if (language_id != LG_USENG)
+				{
+					char rgch[20];
+					itoa(language_id, rgch, 10);
+					g_errorList.AddWarning(9999, NULL,
+						"Windows language ID ", rgch,
+						" cannot be converted to Macintosh; 0 (English) will be used");
+				}
+				pNewRecord[irec].language_id = 0;	// Macintosh English
+			}
+			else if (platform_id == 0 && specific_id == 3) // Unicode, >= 2.0
+			{
+				if (language_id != LG_USENG)
+				{
+					char rgch[20];
+					itoa(language_id, rgch, 10);
+					g_errorList.AddWarning(9999, NULL,
+						"Windows language ID ", rgch,
+						" cannot be translated to Unicode 2.0; language 0 will be used");
+				}
+				pNewRecord[irec].language_id = 0;	// whatever, this is our best guess
+			}
+
 			// Convert from wchar_t to 16-bit chars.
 			std::wstring stuWchar = vstuExtNames[istring];
 			int cchw = stuWchar.length();
