@@ -3,6 +3,7 @@ AM_CPPFLAGS = -DGR_NAMESPACE
 noinst_LIBRARIES = libgeneric.a
 noinst_HEADERS = \
 	GrCommon.h \
+	GrConstants.h \
 	GrMstypes.h \
 	GrDebug.h \
 	GrPlatform.h \
