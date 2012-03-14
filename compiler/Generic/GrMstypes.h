@@ -65,8 +65,6 @@ typedef wchar_t  OLECHAR;
 typedef const OLECHAR	*LPCOLESTR;
 typedef OLECHAR			*BSTR;
 
-typedef unsigned char	byte;
-
 typedef unsigned short  WORD;
 typedef unsigned int 	UINT;
 typedef unsigned int 	DWORD;
