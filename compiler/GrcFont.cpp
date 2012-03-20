@@ -145,7 +145,7 @@ int GrcFont::Init(GrcManager * pcman)
 	
 	// read the offset table
 	size_t lnOffset, lnSize;
-	byte * pHdr, * pTableDir;
+	gr::byte * pHdr, * pTableDir;
 	if (!TtfUtil::GetHeaderInfo(lnOffset, lnSize))
 		return 2;
 	if (!ReadData(&pHdr, lnOffset, lnSize))
@@ -297,7 +297,7 @@ void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
 
 	int cchw = (lSize / isizeof(utf16)) + 1;
 	cchw = min(cchw, cchMax);
-	memcpy(rgchwName, (byte *)m_pName + lOffset, lSize);
+	memcpy(rgchwName, (gr::byte *)m_pName + lOffset, lSize);
 	rgchwName[cchw - 1] = 0;  // zero terminate
 	TtfUtil::SwapWString(rgchwName, cchw - 1);
 }
@@ -827,9 +827,9 @@ int GrcFont::CloseFile()
 	Read a data from the font storing the data in ppData.
 	Return true if successful, otherwise false.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::ReadData(byte ** ppData, long lnOffset, long lnSize)
+int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
 {
-	*ppData = new byte[lnSize];
+	*ppData = new gr::byte[lnSize];
 	if (!*ppData)
 	{
 		g_errorList.AddError(125, NULL, 
@@ -856,7 +856,7 @@ int GrcFont::ReadData(byte ** ppData, long lnOffset, long lnSize)
 	Return true if successful, otherwise false. On false, also generate an error message.
 ----------------------------------------------------------------------------------------------*/
 int GrcFont::ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, 
-					   byte ** ppTable, long * plnSize)
+	gr::byte ** ppTable, long * plnSize)
 {
 	size_t lnOffset, lnSize;
 

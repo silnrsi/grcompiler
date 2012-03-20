@@ -120,7 +120,7 @@ public:
 	{
 		return m_nGlobalID + m_nPreBidiPass + 1;
 	}
-	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, std::vector<byte> & vbConstraints);
+	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
 	void GenerateFsmMachineClasses(GrcManager * pcman);
 	void GenerateFsmTable(GrcManager * pcman);

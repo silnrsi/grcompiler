@@ -149,9 +149,9 @@ public:
 protected:
 	int OpenFile(void);
 	int CloseFile(void);
-	int ReadData(byte ** ppData, long lnOffset, long lnSize);
-	int ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, byte ** ppTable, long * plnSize);
-	int ReadTable(byte*& pTable);
+	int ReadData(gr::byte ** ppData, long lnOffset, long lnSize);
+	int ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, gr::byte ** ppTable, long * plnSize);
+	int ReadTable(gr::byte*& pTable);
 
 	bool IsGraphiteFont(void * pHdr, void * pTableDir);
 	int ScanGlyfIds(void);
@@ -165,25 +165,25 @@ protected:
 	char *m_pchFileName; // Review: should this use a string class
 	FILE *m_pFile;
 	
-	byte * m_pCmap;
+	gr::byte * m_pCmap;
 	long m_cCmap;
-	byte * m_pGlyf;
+	gr::byte * m_pGlyf;
 	long m_cGlyf;
-	byte * m_pHead;
+	gr::byte * m_pHead;
 	long m_cHead;
-	byte * m_pHhea;
+	gr::byte * m_pHhea;
 	long m_cHhea;
-	byte * m_pHmtx;
+	gr::byte * m_pHmtx;
 	long m_cHmtx;
-	byte * m_pLoca;
+	gr::byte * m_pLoca;
 	long m_cLoca;
-	byte * m_pMaxp;
+	gr::byte * m_pMaxp;
 	long m_cMaxp;
-	byte * m_pOs2;
+	gr::byte * m_pOs2;
 	long m_cOs2;
-	byte * m_pPost;
+	gr::byte * m_pPost;
 	long m_cPost;
-	byte * m_pName;
+	gr::byte * m_pName;
 	long m_cName;
 
 	// point to MS cmap subtables within m_pCmap for MS data

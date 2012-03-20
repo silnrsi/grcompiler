@@ -155,6 +155,8 @@ int main(int argc, char * argv[])
 		return 2;
 	}
 
+	bool fFatalErr = false;
+
 	SetGdlAndFontFileNames(argv[1 + cargExtra], (argc > 2 + cargExtra) ? argv[2 + cargExtra] : NULL,
 		&pchGdlFile, &pchFontFile);
 
@@ -260,140 +262,167 @@ int main(int argc, char * argv[])
 					<< ": " << staVersion << "\n\n";
 	}
 	// simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
-	byte bFirst, bSecond, bThird;
-	bool fEncodingErr = false;
+	gr::byte bFirst, bSecond, bThird;
 	std::ifstream strmGdl;
 	strmGdl.open(pchGdlFile, std::ios_base::in | std::ios_base::binary);
-	strmGdl >> bFirst >> bSecond >> bThird;
-	strmGdl.close();
-
-	if ((bFirst == 0xFF && bSecond == 0xFE) || (bFirst == 0xFE && bSecond == 0xFF))
+	if (strmGdl.fail())
 	{
-	    fEncodingErr = true;
-	    g_errorList.AddError(130, NULL, "Illegal encoding in GDL file - probably UTF-16 encoding.");
+		fFatalErr = true;
+		g_errorList.AddError(1105, NULL,
+			"File ",
+			pchGdlFile,
+			" does not exist--compilation aborted");
 	}
-	else if (bFirst == 0xEF && bSecond == 0xBB && bThird == 0xBF)
+	
+	bool fEncodingErr = false;
+	if (!fFatalErr)
 	{
-	    fEncodingErr = true;
-	    g_errorList.AddError(131, NULL, "Illegal encoding in GDL file - probably UTF-8 encoding.");
-	}
-	else if (bFirst & 0x80 || bSecond & 0x80 || bThird & 0x80)
-	{ // not really a UTF check but might as well test for illegal values here
-	    fEncodingErr = true;
-	    g_errorList.AddError(132, NULL, "Illegal encoding in GDL file - only 7 bit characters are legal.");
+		strmGdl >> bFirst >> bSecond >> bThird;
+		strmGdl.close();
+
+		if ((bFirst == 0xFF && bSecond == 0xFE) || (bFirst == 0xFE && bSecond == 0xFF))
+		{
+			fEncodingErr = true;
+			g_errorList.AddError(130, NULL, "Illegal encoding in GDL file - probably UTF-16 encoding.");
+		}
+		else if (bFirst == 0xEF && bSecond == 0xBB && bThird == 0xBF)
+		{
+			fEncodingErr = true;
+			g_errorList.AddError(131, NULL, "Illegal encoding in GDL file - probably UTF-8 encoding.");
+		}
+		else if (bFirst & 0x80 || bSecond & 0x80 || bThird & 0x80)
+		{ // not really a UTF check but might as well test for illegal values here
+			fEncodingErr = true;
+			g_errorList.AddError(132, NULL, "Illegal encoding in GDL file - only 7 bit characters are legal.");
+		}
+		if (fEncodingErr)
+		{
+			fFatalErr = true;
+			std::cout << "Illegal encoding in GDL file.\n";
+			g_errorList.AddError(140, NULL,
+				"Illegal encoding in GDL file");
+		}
 	}
 
-	// Calculate the length of the path part of the output file name.
-	int cchOutputPath = strlen(rgchOutputFile);
-	while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\')
-		cchOutputPath--;
-	char rgchOutputPath[128];
-	memset(rgchOutputPath, 0, isizeof(char) * 128);
-	memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); /* don't include \ */
-
-	if (!fEncodingErr)
+	if (!fFatalErr)
 	{
+		// Calculate the length of the path part of the output file name.
+		int cchOutputPath = strlen(rgchOutputFile);
+		while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\')
+			cchOutputPath--;
+		char rgchOutputPath[128];
+		memset(rgchOutputPath, 0, isizeof(char) * 128);
+		memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); /* don't include \ */
+
 		if (g_cman.IsVerbose())
 			std::cout << "Parsing file " << pchGdlFile << "...\n";
-		if (g_cman.Parse(pchGdlFile, staGdlppFile, rgchOutputPath))
-		{
-			if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
-			if (g_cman.PostParse())
-			{
-				if (nFontError == 0)
-				{
-					if (g_cman.IsVerbose()) std::cout << "Checking for errors...\n";
 
-					if (g_cman.SilfTableVersion() > g_cman.MaxSilfVersion())
-					{
-						g_errorList.AddError(133, NULL,
-							"Invalid font table version: ",
-							VersionString(g_cman.SilfTableVersion()));
-					}
-					if (g_cman.NameTableStart() != -1
-						&& (g_cman.NameTableStart() < g_cman.NameTableStartMin()
-							|| g_cman.NameTableStart() > 32767))
-					{
-						char rgch[20];
-						itoa(g_cman.NameTableStart(), rgch, 10);
-						g_errorList.AddError(134, NULL,
-							"Invalid name table start ID: ", rgch,
-							"; must be in range 256 - 32767.");
-					}
-
-					if (g_cman.PreCompile(pfont) && !g_errorList.AnyFatalErrors())
-					{
-						if (g_cman.IsVerbose()) std::cout << "Compiling...\n";
-						g_cman.Compile(pfont);
-						if (g_cman.OutputDebugFiles())
-						{
-							g_cman.DebugEngineCode();
-							g_cman.DebugRulePrecedence();
-							g_cman.DebugGlyphAttributes();
-							g_cman.DebugClasses();
-							//g_cman.DebugOutput();
-							g_cman.DebugCmap(pfont);
-							g_cman.DebugXml(rgchOutputFile);
-							if (g_cman.IsVerbose())
-								std::cout << "Debug files generated.\n";
-						}
-						int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile,
-							rgchwOutputFontFamily, fModFontName, rgchwInputFontFamily);
-						if (nRet == 0)
-						{
-							if (g_cman.IsVerbose())
-								std::cout << "Compilation successful!\n";
-						}
-						else
-						{
-							std::cout << "ERROR IN WRITING FONT FILE.\n";
-							char rgch[20];
-							itoa(nRet, rgch, 10);
-							g_errorList.AddError(135, NULL,
-								"Error in writing font file--error code = ", rgch);
-						}
-					}
-					else
-					{
-						std::cout << "Compilation failed.\n";
-						g_errorList.AddError(136, NULL,
-							"Compilation failed");
-					}
-				}
-				else
-				{
-					if (nFontError == 7)
-					{	// special case - want to avoid font copyright violations
-						std::cout << "Font already contains Graphite table(s).\n";
-						std::cout << "Please recompile with original (non-Graphite) font.\n";
-						// similar error msg already in g_errorList
-					}
-					std::cout << "Could not open font--error code = " << nFontError << "\n";
-					char rgch[20];
-					itoa(nFontError, rgch, 10);
-					g_errorList.AddError(137, NULL,
-						"Could not open font--error code = ", rgch);
-				}
-			}
-			else
-			{
-				std::cout << "Initial processing failed.\n";
-				g_errorList.AddError(138, NULL,
-					"Initial processing failed");
-			}
-		}
-		else
+		if (!g_cman.Parse(pchGdlFile, staGdlppFile, rgchOutputPath))
 		{
+			fFatalErr = true;
 			std::cout << "Parsing failed.\n";
 			g_errorList.AddError(139, NULL,
 				"Parsing failed");
 		}
 	}
-	else
+
+	if (!fFatalErr)
 	{
-		std::cout << "Illegal encoding in GDL file.\n";
-		g_errorList.AddError(140, NULL,
-			"Illegal encoding in GDL file");
+		if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
+		if (!g_cman.PostParse())
+		{
+			fFatalErr = true;
+			std::cout << "Initial processing failed.\n";
+			g_errorList.AddError(138, NULL,
+				"Initial processing failed");
+		}
+	}
+
+	if (!fFatalErr)
+	{
+		if (nFontError != 0)
+		{
+			fFatalErr = true;
+			if (nFontError == 7)
+			{	// special case - want to avoid font copyright violations
+				std::cout << "Font already contains Graphite table(s).\n";
+				std::cout << "Please recompile with original (non-Graphite) font.\n";
+				// similar error msg already in g_errorList
+			}
+			std::cout << "Could not open font--error code = " << nFontError << "\n";
+			char rgch[20];
+			itoa(nFontError, rgch, 10);
+			g_errorList.AddError(137, NULL,
+				"Could not open font--error code = ", rgch);
+		}
+	}
+
+	if (!fFatalErr)
+	{
+		if (g_cman.IsVerbose())
+			std::cout << "Checking for errors...\n";
+
+		if (g_cman.SilfTableVersion() > g_cman.MaxSilfVersion())
+		{
+			g_errorList.AddError(133, NULL,
+				"Invalid font table version: ",
+				VersionString(g_cman.SilfTableVersion()));
+		}
+		if (g_cman.NameTableStart() != -1
+			&& (g_cman.NameTableStart() < g_cman.NameTableStartMin()
+				|| g_cman.NameTableStart() > 32767))
+		{
+			char rgch[20];
+			itoa(g_cman.NameTableStart(), rgch, 10);
+			g_errorList.AddError(134, NULL,
+				"Invalid name table start ID: ", rgch,
+				"; must be in range 256 - 32767.");
+		}
+		fFatalErr = g_errorList.AnyFatalErrors();
+	}
+
+	if (!fFatalErr)
+	{
+		fFatalErr = (!g_cman.PreCompile(pfont) && !g_errorList.AnyFatalErrors());
+		if (fFatalErr)
+		{
+			std::cout << "Compilation failed.\n";
+			g_errorList.AddError(136, NULL,
+				"Compilation failed");
+		}
+	}
+
+	if (!fFatalErr)
+	{
+		if (g_cman.IsVerbose()) std::cout << "Compiling...\n";
+		g_cman.Compile(pfont);
+		if (g_cman.OutputDebugFiles())
+		{
+			g_cman.DebugEngineCode();
+			g_cman.DebugRulePrecedence();
+			g_cman.DebugGlyphAttributes();
+			g_cman.DebugClasses();
+			//g_cman.DebugOutput();
+			g_cman.DebugCmap(pfont);
+			g_cman.DebugXml(rgchOutputFile);
+			if (g_cman.IsVerbose())
+				std::cout << "Debug files generated.\n";
+		}
+		int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile,
+		rgchwOutputFontFamily, fModFontName, rgchwInputFontFamily);
+		if (nRet == 0)
+		{
+			if (g_cman.IsVerbose())
+				std::cout << "Compilation successful!\n";
+		}
+		else
+		{
+			std::cout << "ERROR IN WRITING FONT FILE.\n";
+			char rgch[20];
+			itoa(nRet, rgch, 10);
+			g_errorList.AddError(135, NULL,
+				"Error in writing font file--error code = ", rgch);
+		}
 	}
 
 	g_errorList.SortErrors();
@@ -505,7 +534,7 @@ void HandleCompilerOptions(char * arg)
 void SetGdlAndFontFileNames(char * pchFile1, char * pchFile2,
 	char ** ppchGdlFile, char ** ppchFontFile)
 {
-	byte bFirst, bSecond, bThird, bFourth;
+	gr::byte bFirst, bSecond, bThird, bFourth;
 	std::ifstream strm1;
 	strm1.open(pchFile1, std::ios_base::in | std::ios_base::binary);
 	strm1 >> bFirst >> bSecond >> bThird >> bFourth;

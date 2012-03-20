@@ -1257,7 +1257,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 			g_errorList.AddWarning(2520, this,
 				"Possibly invalid language ID--4-byte string expected");
 		}
-		byte b1, b2, b3, b4;
+		gr::byte b1, b2, b3, b4;
 		b1 = (cb > 0) ? m_staValue[0] : 0;
 		b2 = (cb > 1) ? m_staValue[1] : 0;
 		b3 = (cb > 2) ? m_staValue[2] : 0;
@@ -2782,7 +2782,7 @@ bool GdlStringExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxd
 							needs to decide how to handle the accompanying insert = false;
 							only slot references need to worry about it
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -2803,7 +2803,7 @@ void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * /*pnValue*/)
 {
@@ -2852,7 +2852,7 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -2867,7 +2867,7 @@ void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte>
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byte> & vbOutput,
+void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -3032,13 +3032,13 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<byt
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & vbOutput,
+void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
 	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 {
 	//	Output most-significant byte first.
 
-	byte b4 = m_nValue & 0x000000FF;
+	gr::byte b4 = m_nValue & 0x000000FF;
 	if ((m_nValue & 0xFFFFFF80) == 0 || (m_nValue & 0xFFFFFF80) == 0xFFFFFF80)
 	{
 		vbOutput.push_back(kopPushByte);
@@ -3046,7 +3046,7 @@ void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 	}
 	else
 	{
-		byte b3 = (m_nValue & 0x0000FF00) >> 8;
+		gr::byte b3 = (m_nValue & 0x0000FF00) >> 8;
 		if ((m_nValue & 0xFFFF8000) == 0 || (m_nValue & 0xFFFF8000) == 0xFFFF8000)
 		{
 			vbOutput.push_back(kopPushShort);
@@ -3055,8 +3055,8 @@ void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 		}
 		else
 		{
-			byte b1 = (m_nValue & 0xFF000000) >> 24;
-			byte b2 = (m_nValue & 0x00FF0000) >> 16;
+			gr::byte b1 = (m_nValue & 0xFF000000) >> 24;
+			gr::byte b2 = (m_nValue & 0x00FF0000) >> 16;
 
 			vbOutput.push_back(kopPushLong);
 			vbOutput.push_back(b1);
@@ -3068,7 +3068,7 @@ void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & vbOutput,
+void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * pnValue)
 {
@@ -3090,7 +3090,7 @@ void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<byte> & /*vbOutput*/,
+void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & /*vbOutput*/,
 	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 {
