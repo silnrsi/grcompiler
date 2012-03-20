@@ -54,7 +54,9 @@ bool GrcManager::Parse(std::string staFileName, std::string staGdlppFile,
 {
 	std::string staFilePreProc;
 	if (!RunPreProcessor(staFileName, &staFilePreProc, staGdlppFile, staOutputPath))
+	{
 		return false;
+	}
 
 	std::ifstream strmIn;
 	strmIn.open(staFilePreProc.c_str());
@@ -747,7 +749,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 					"Unexpected script tag value--should be a 4-byte string",
 					LineAndFile(astValue));
 
-			byte b1, b2, b3, b4;
+			gr::byte b1, b2, b3, b4;
 			b1 = (cb > 0) ? sta[0] : 0;
 			b2 = (cb > 1) ? sta[1] : 0;
 			b3 = (cb > 2) ? sta[2] : 0;

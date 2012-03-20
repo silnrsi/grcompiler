@@ -166,9 +166,19 @@ public:
 	//	Compiler:
 	void GenerateFsms(GrcManager * pcman);
 	void CalculateContextOffsets();
-	bool LineBreakFlag()
+
+	int LineBreakFlags()
 	{
-		return m_fLineBreak;
+		// Bit 0: ON means there is at least one rule that uses line-end contextuals.
+		int nBitmap = (int)(m_fLineBreak);
+
+		// Bit 1: ON means NO line-breaks occur before the justification pass; ie, it is safe
+		// to optimize by not rerunning the substitution pass.
+		// OFF means the entire substitution pass must be rerun to handle line-end contextuals.
+		if (!m_fLineBreakB4Just)
+			nBitmap += 2;	// ie, safe to optimize
+
+		return nBitmap;
 	}
 	int PreXlbContext()
 	{
@@ -223,6 +233,8 @@ protected:
 	GdlNumericExpression * m_pexpXDescent;
 	//	true if any line-breaks are relevant to rendering:
 	bool m_fLineBreak;
+	//	true if any line-breaks are relevant to rendering before the justification table:
+	bool m_fLineBreakB4Just;
 	//	limits on cross-line-boundary contextualization:
 	int m_critPreXlbContext;
 	int m_critPostXlbContext;

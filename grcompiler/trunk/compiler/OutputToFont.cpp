@@ -2150,8 +2150,8 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	index of bidi pass
 	pbstrm->WriteByte(ipassBidi);
 
-	//	line-break flag
-	pbstrm->WriteByte(m_prndr->LineBreakFlag());
+	//	line-break flags
+	pbstrm->WriteByte(m_prndr->LineBreakFlags());
 	//	ranges for cross-line-boundary contextualization
 	pbstrm->WriteByte(m_prndr->PreXlbContext());
 	pbstrm->WriteByte(m_prndr->PostXlbContext());
@@ -2220,8 +2220,8 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteByte(m_prndr->NumLigComponents());
 
 	//	directions supported
-	byte  grfsdc = m_prndr->ScriptDirections();
-	grfsdc = (grfsdc == 0) ? static_cast<byte>(kfsdcHorizLtr) : grfsdc;	// supply default--left-to-right
+	gr::byte  grfsdc = m_prndr->ScriptDirections();
+	grfsdc = (grfsdc == 0) ? static_cast<gr::byte>(kfsdcHorizLtr) : grfsdc;	// supply default--left-to-right
 	pbstrm->WriteByte(grfsdc);
 	//	reserved (pad bytes)
 	pbstrm->WriteByte(0);
@@ -2775,7 +2775,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 		pbstrm->WriteByte(0);
 
 		nOffsetToPConstraint = pbstrm->Position() - lTableStart;
-		std::vector<byte> vbPassConstr;
+		std::vector<gr::byte> vbPassConstr;
 		this->GenerateEngineCode(pcman, fxdRuleVersion, vbPassConstr);
 		for (ib = 0; ib < vbPassConstr.size(); ib++)
 			pbstrm->WriteByte(vbPassConstr[ib]);
@@ -2796,8 +2796,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	because we are using zero as a indicator that there are no constraints.
 	pbstrm->WriteByte(0);
 
-	std::vector<byte> vbConstraints;
-	std::vector<byte> vbActions;
+	std::vector<gr::byte> vbConstraints;
+	std::vector<gr::byte> vbActions;
 	int irule;
 	for (irule = 0; irule < signed(m_vprule.size()); irule++)
 	{

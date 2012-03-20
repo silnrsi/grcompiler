@@ -79,7 +79,7 @@ bool GrcManager::Compile(GrcFont * /*pfont*/)
 	Generate the engine code for the constraints and actions of a rule.
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	std::vector<byte> & vbActions, std::vector<byte> & vbConstraints)
+	std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints)
 {
 	GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints);
 	//	Save the size of the rule constraints from the -if- statements.
@@ -170,7 +170,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	minus the final pop-and-return command.
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
-	std::vector<byte> & vbOutput)
+	std::vector<gr::byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
 	{
@@ -200,7 +200,7 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVe
 		irit				- index of item
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
-	std::vector<byte> & vbOutput,
+	std::vector<gr::byte> & vbOutput,
 	int irit, std::vector<int> & viritInput, int iritFirstModItem)
 {
 	if (!m_pexpConstraint)
@@ -238,7 +238,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRu
 	Generate the engine code for the constraints of a pass.
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
-	std::vector<byte> & vbOutput)
+	std::vector<gr::byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
 	{
@@ -263,7 +263,7 @@ void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
 	Generate engine code to perform the actions for a given item.
 ----------------------------------------------------------------------------------------------*/
 void GdlRuleItem::GenerateActionEngineCode(GrcManager * /*pcman*/, int /*fxdRuleVersion*/,
-	std::vector<byte> & vbOutput,
+	std::vector<gr::byte> & vbOutput,
 	GdlRule * /*prule*/, int /*irit*/, bool * pfSetInsertToFalse)
 {
 	if (*pfSetInsertToFalse)
@@ -281,7 +281,7 @@ void GdlRuleItem::GenerateActionEngineCode(GrcManager * /*pcman*/, int /*fxdRule
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	std::vector<byte> & vbOutput,
+	std::vector<gr::byte> & vbOutput,
 	GdlRule * /*prule*/, int irit, bool * pfSetInsertToFalse)
 {
 	if (m_vpavs.size() == 0 && !*pfSetInsertToFalse)
@@ -303,7 +303,7 @@ void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVer
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
-	std::vector<byte> & vbOutput,
+	std::vector<gr::byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
 	bool fInserting = (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore));
@@ -452,7 +452,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	insert = false on the following item (because this item makes a forward attachment).
 ----------------------------------------------------------------------------------------------*/
 bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
-	std::vector<byte> & vbOutput,
+	std::vector<gr::byte> & vbOutput,
 	int irit, int nIIndex)
 {
 	bool fAttachForward = false;
@@ -469,7 +469,7 @@ bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVers
 
 /*--------------------------------------------------------------------------------------------*/
 bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
-	std::vector<byte> & vbOutput,
+	std::vector<gr::byte> & vbOutput,
 	int irit, int nIIndex, int iritAttachTo)
 {
 	bool fAttachForward = false;
@@ -567,7 +567,7 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 /*----------------------------------------------------------------------------------------------
 	Generate the extra "insert = false" for attachments.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateInsertEqualsFalse(std::vector<byte> & vbOutput)
+void GdlRuleItem::GenerateInsertEqualsFalse(std::vector<gr::byte> & vbOutput)
 {
 	vbOutput.push_back(kopPushByte);
 	vbOutput.push_back(0);	// false;
@@ -620,6 +620,7 @@ void GrcManager::CalculateContextOffsets()
 void GdlRenderer::CalculateContextOffsets()
 {
 	m_fLineBreak = false;
+	m_fLineBreakB4Just = false;
 	m_critPreXlbContext = 0;
 	m_critPostXlbContext = 0;
 
@@ -633,6 +634,8 @@ void GdlRenderer::CalculateContextOffsets()
 	if (prultblSub)
 		prultblSub->CalculateContextOffsets(&m_critPreXlbContext, &m_critPostXlbContext,
 			&m_fLineBreak, false, NULL, NULL);
+
+	m_fLineBreakB4Just = m_fLineBreak;
 
 	if (prultblJust)
 		prultblJust->CalculateContextOffsets(&m_critPreXlbContext, &m_critPostXlbContext,
@@ -908,7 +911,7 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 	int nPassNum = PassDebuggerNumber();
 	strmOut << "\nPASS: " << nPassNum << "\n";
 
-	std::vector<byte> vbPassConstraints;
+	std::vector<gr::byte> vbPassConstraints;
 	GenerateEngineCode(pcman, fxdRuleVersion, vbPassConstraints);
 	if (vbPassConstraints.size() == 0)
 	{
@@ -935,8 +938,8 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
 {
-	std::vector<byte> vbActions;
-	std::vector<byte> vbConstraints;
+	std::vector<gr::byte> vbActions;
+	std::vector<gr::byte> vbConstraints;
 
 	GenerateEngineCode(pcman, fxdRuleVersion, vbActions, vbConstraints);
 
@@ -954,7 +957,7 @@ void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 	}
 }
 
-void GdlRule::DebugEngineCode(std::vector<byte> & vb, int /*fxdRuleVersion*/, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/, std::ostream & strmOut)
 {
 	int ib = 0;
 	while (ib < signed(vb.size()))
