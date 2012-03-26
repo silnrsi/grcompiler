@@ -14,7 +14,6 @@ GrcRegressionTest_SOURCES = \
         TestCase.h \
         CompareFontTables.cpp \
 		FileInput.cpp \
-        FontStub.cpp \
         GrcRtFileFont.h \
         GrcRtFileFont.cpp \
         GrcRegressionTest.cpp \
@@ -25,6 +24,8 @@ GrcRegressionTest_SOURCES = \
 	TtfTypes.h \
     fonts \
     regtest
+
+# FontStubb.cpp
 
 check-local: GrcRegressionTest
 	$(top_srcdir)/regtest -v -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest -d . $(top_srcdir)/fonts
