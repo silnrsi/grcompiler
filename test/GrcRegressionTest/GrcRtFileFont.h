@@ -10,12 +10,11 @@ Responsibility: Sharon Correll
 Description:
     The GrcRtFileFont class is based roughly on the FileFont class, but there is no table cache.
 -------------------------------------------------------------------------------*//*:End Ignore*/
-#include "graphite/GrCommon.h"
-#include "graphite/GrData.h"
+#include "Generic/GrCommon.h"
 #ifndef _WIN32
-#include "graphite/GrMstypes.h"
+#include "Generic/GrMstypes.h"
 #endif
-#include "graphite/GrDebug.h"
+#include "Generic/GrDebug.h"
 
 #include <fstream>
 #include <iostream>
@@ -27,10 +26,10 @@ Description:
 // particularly those that won't be caught when loading the tables.
 #define gAssert(x) Assert(x)
 
-#include "graphite/GrResult.h"
-#include "graphite/GrAppData.h"
+//#include "graphite/GrResult.h"
+//#include "graphite/GrAppData.h"
 #include "TtfUtil.h"
-#include "graphite/Font.h"
+//#include "graphite/Font.h"
 
 #ifdef _MSC_VER
 #pragma once
@@ -42,14 +41,14 @@ Description:
 
 using namespace gr;
 
-class GrcRtFileFont : public Font
+class GrcRtFileFont // : public Font
 {
 public:
 	GrcRtFileFont(std::string fileName, float pointSize,
 		unsigned int dpiX, unsigned int dpiY);
 	~GrcRtFileFont();
 
-	Font * copyThis();
+	GrcRtFileFont * copyThis();
 	virtual bool bold()		{ return false; }
 	virtual bool italic()	{ return false; }
 	virtual float ascent()	{ return m_ascent; }

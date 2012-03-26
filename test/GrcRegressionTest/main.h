@@ -49,12 +49,29 @@ Description:
 
 #include "Generic/GrCommon.h"
 #include "Generic/GrPlatform.h"
+typedef unsigned int featid;
+#define THROW(x) throw(x)
 
 ////////#include "LgCharPropsStub.h"
 
 #include "Generic/GrConstants.h"
 #include "TtfUtil.h"
 // #include "graphite/Tt.h"
+
+/* These are return values for the main interface methods to indicate various kinds of          */
+/* error conditions. To facilitate COM compatibiliy, they match the standard COM HRESULT codes. */
+enum GrResult
+{
+        kresOk = 0,                     // S_OK
+        kresFalse = 1,                  // S_FALSE
+        kresFail = 0x80004005L,         // E_FAIL
+        kresOutOfMemory = 0x8007000EL,  // E_OUTOFMEMORY
+        kresInvalidArg = 0x80000002L,   // E_INVALIDARG
+        kresReadFault = 0x80000001L,    // STG_E_READFAULT
+        kresUnexpected = 0x80000003L,   // E_UNEXPECTED
+        kresNotImpl = 0x80000004L,      // E_NOTIMPL
+        kresPointer = 0x80004003L//,       // E_POINTER
+};
 
 //#include "graphite/GrClient.h"
 //#include "graphite/IGrEngine.h"

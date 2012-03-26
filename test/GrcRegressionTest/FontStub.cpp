@@ -4,11 +4,11 @@ Copyright (C) 1999, 2001, 2005 SIL International. All rights reserved.
 Distributable under the terms of either the Common Public License or the
 GNU Lesser General Public License, as specified in the LICENSING.txt file.
 
-File: FontStub.cpp
+File: GrcRtFileFontStub.cpp
 Responsibility: Sharon Correll
 
 Description:
-	Stub definition of the Font class, just enough to get rid of link errors.
+	Stub definition of the GrcRtFileFont class, just enough to get rid of link errors.
 ----------------------------------------------------------------------------------------------*/
 
 #include "GrcRtFileFont.h"
@@ -22,7 +22,7 @@ namespace gr
 	Return uniquely identifying information that will be used a the key for this font
 	in the font cache. This includes the font face name and the bold and italic flags.
 ----------------------------------------------------------------------------------------------*/
-void Font::UniqueCacheInfo(std::wstring & stuFace, bool & fBold, bool & fItalic)
+void GrcRtFileFont::UniqueCacheInfo(std::wstring & stuFace, bool & fBold, bool & fItalic)
 {
 	size_t cbSize;
 	const byte * pNameTbl = static_cast<const byte *>(getTable(TtfUtil::TableIdTag(ktiName), &cbSize));
@@ -43,7 +43,7 @@ void Font::UniqueCacheInfo(std::wstring & stuFace, bool & fBold, bool & fItalic)
 	stuFace.assign(rgchwFace, rgchwFace + cchw);
 
 	const void * pOs2Tbl = getTable(TtfUtil::TableIdTag(ktiOs2), &cbSize);
-	TtfUtil::FontOs2Style(pOs2Tbl, fBold, fItalic);
+	TtfUtil::GrcRtFileFontOs2Style(pOs2Tbl, fBold, fItalic);
 	// Do we need to compare the results from the OS2 table with the italic flag in the
 	// head table? (There is no requirement that they be consistent!)
 }
@@ -51,7 +51,7 @@ void Font::UniqueCacheInfo(std::wstring & stuFace, bool & fBold, bool & fItalic)
 /*----------------------------------------------------------------------------------------------
 	A default unhinted implmentation of getGlyphPoint(..)
 ----------------------------------------------------------------------------------------------*/
-void Font::getGlyphPoint(gid16 glyphID, unsigned int pointNum, Point & pointReturn)
+void GrcRtFileFont::getGlyphPoint(gid16 glyphID, unsigned int pointNum, Point & pointReturn)
 {
 	Assert(false);	// should not be called
 	
@@ -81,7 +81,7 @@ void Font::getGlyphPoint(gid16 glyphID, unsigned int pointNum, Point & pointRetu
 		prgnX, prgnY, rgfOnCurve, cnPoints))
 	{
 		float nPixEmSquare;
-		getFontMetrics(0, 0, &nPixEmSquare);
+		getGrcRtFileFontMetrics(0, 0, &nPixEmSquare);
 
 		const float nDesignUnitsPerPixel =  float(TtfUtil::DesignUnits(pHead)) / nPixEmSquare;
 		pointReturn.x = prgnX[pointNum] / nDesignUnitsPerPixel;
@@ -93,7 +93,7 @@ void Font::getGlyphPoint(gid16 glyphID, unsigned int pointNum, Point & pointRetu
 /*----------------------------------------------------------------------------------------------
 	A default unhinted implmentation of getGlyphMetrics(..)
 ----------------------------------------------------------------------------------------------*/
-void Font::getGlyphMetrics(gid16 glyphID, gr::Rect & boundingBox, gr::Point & advances)
+void GrcRtFileFont::getGlyphMetrics(gid16 glyphID, gr::Rect & boundingBox, gr::Point & advances)
 {
 	Assert(false);	// should not be called
 	
@@ -115,7 +115,7 @@ void Font::getGlyphMetrics(gid16 glyphID, gr::Rect & boundingBox, gr::Point & ad
 
 	// Calculate the number of design units per pixel.
 	float pixelEmSquare;
-	getFontMetrics(0, 0, &pixelEmSquare);
+	getGrcRtFileFontMetrics(0, 0, &pixelEmSquare);
 	const float designUnitsPerPixel = 
 		float(TtfUtil::DesignUnits(pHead)) / pixelEmSquare;
 
@@ -156,7 +156,7 @@ void Font::getGlyphMetrics(gid16 glyphID, gr::Rect & boundingBox, gr::Point & ad
 /*----------------------------------------------------------------------------------------------
 	Copy constructor.
 ----------------------------------------------------------------------------------------------*/
-Font::Font(const Font & fontSrc)
+GrcRtFileFont::GrcRtFileFont(const GrcRtFileFont & fontSrc)
 {
 	Assert(false);	// not implemented
 }
@@ -164,7 +164,7 @@ Font::Font(const Font & fontSrc)
 /*----------------------------------------------------------------------------------------------
 	Destructor.
 ----------------------------------------------------------------------------------------------*/
-Font::~Font()
+GrcRtFileFont::~GrcRtFileFont()
 {
 }
 

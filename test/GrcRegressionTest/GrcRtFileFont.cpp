@@ -23,7 +23,7 @@ Description:
 
 /*
 GrcRtFileFont::GrcRtFileFont()
-	: Font(),
+	: 
 	m_file(NULL),
 	m_pTableCache(NULL),
 	m_ascent(0),
@@ -47,7 +47,7 @@ GrcRtFileFont::GrcRtFileFont()
 
 GrcRtFileFont::GrcRtFileFont(FILE * file, float pointSize, 
 				   unsigned int dpiX, unsigned int dpiY)
-	: Font(),
+	: 
 	m_file(file),
 	m_pTableCache(NULL),
 	m_ascent(0),
@@ -69,7 +69,7 @@ GrcRtFileFont::GrcRtFileFont(FILE * file, float pointSize,
 
 GrcRtFileFont::GrcRtFileFont(char * fileName, float pointSize, 
 				   unsigned int dpiX, unsigned int dpiY)
-	: Font(),
+	: 
 	m_file(NULL),
 	m_pTableCache(NULL),
 	m_ascent(0),
@@ -93,7 +93,7 @@ GrcRtFileFont::GrcRtFileFont(char * fileName, float pointSize,
 
 GrcRtFileFont::GrcRtFileFont(std::string fileName, float pointSize, 
 				   unsigned int dpiX, unsigned int dpiY)
-	: Font(),
+	: 
 	m_file(NULL),
 	////m_pTableCache(NULL),
 	m_ascent(0),
@@ -293,7 +293,7 @@ GrcRtFileFont::~GrcRtFileFont()
 	// note the DecFontCount(); is done in the Font base class
 }
 
-Font * GrcRtFileFont::copyThis()
+GrcRtFileFont * GrcRtFileFont::copyThis()
 {
 	GrcRtFileFont * copy = new GrcRtFileFont(*this);
 	return copy;
