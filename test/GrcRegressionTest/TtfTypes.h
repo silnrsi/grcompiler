@@ -16,7 +16,7 @@ Provides types required to represent the TTF basic types.
 //**********************************************************************************************
 //	Include files
 //**********************************************************************************************
-#include "graphite/GrPlatform.h"
+#include "Generic/GrPlatform.h"
 
 namespace TtfUtil
 {
