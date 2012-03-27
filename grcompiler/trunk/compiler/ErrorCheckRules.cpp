@@ -685,15 +685,15 @@ void GdlRuleTable::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfon
 	int grfrco = kfrcoNone;
 
 	if (m_psymName->LastFieldIs("linebreak"))
-		grfrco = kfrcoSetBreak | kfrcoSetDir | kfrcoPreBidi;
+		grfrco = (kfrcoSetBreak | kfrcoSetDir | kfrcoPreBidi);
 	else if (m_psymName->LastFieldIs("substitution"))
-		grfrco = kfrcoLb | kfrcoSubst | kfrcoSetCompRef | kfrcoSetDir |
-					kfrcoSetInsert | kfrcoPreBidi;
+		grfrco = (kfrcoLb | kfrcoSubst | kfrcoSetCompRef | kfrcoSetDir |
+					kfrcoSetInsert | kfrcoPreBidi);
 	else if (m_psymName->LastFieldIs("justification"))
-		grfrco = kfrcoNeedJust | kfrcoLb | kfrcoSubst | kfrcoSetCompRef |
-					kfrcoSetInsert;
+		grfrco = (kfrcoNeedJust | kfrcoLb | kfrcoSubst | kfrcoSetCompRef |
+					kfrcoSetInsert);
 	else if (m_psymName->LastFieldIs("positioning"))
-		grfrco = kfrcoLb | kfrcoSetInsert | kfrcoSetPos;
+		grfrco = (kfrcoLb | kfrcoSetInsert | kfrcoSetPos);
 	else
 	{
 		Assert(false);
@@ -861,6 +861,7 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 				else
 					delete pexpNew;
 			}
+			pexpNew->CheckAttachToLookup();
 		}
 	}
 
