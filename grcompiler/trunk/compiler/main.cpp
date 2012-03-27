@@ -387,8 +387,9 @@ int main(int argc, char * argv[])
 		if (fFatalErr)
 		{
 			std::cout << "Compilation failed.\n";
-			g_errorList.AddError(136, NULL,
-				"Compilation failed");
+			if (g_errorList.NumberOfErrors() == 0)
+				// Make sure some error message comes out.
+				g_errorList.AddError(136, NULL, "Compilation failed");
 		}
 	}
 
