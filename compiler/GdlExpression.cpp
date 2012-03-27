@@ -2758,6 +2758,27 @@ bool GdlStringExpression::CompatibleWithVersion(int /*fxdVersion*/, int * /*pfxd
 	return true;
 }
 
+/*----------------------------------------------------------------------------------------------
+	Generate an error if they are looking up the value of the attach.to attribute and it is
+	testing for anything other than zero.
+----------------------------------------------------------------------------------------------*/
+bool GdlBinaryExpression::CheckAttachToLookup()
+{
+	// Assumes SimplifyAndUnscale has already been called.
+	GdlLookupExpression * pexpLookupOp1 = dynamic_cast<GdlLookupExpression *>(m_pexpOperand1);
+	GdlNumericExpression * pexpNumOp2 = dynamic_cast<GdlNumericExpression *>(m_pexpOperand2);
+	if (pexpLookupOp1 && pexpLookupOp1->m_psymName->IsAttachTo())
+	{
+		if (!pexpNumOp2 || pexpNumOp2->m_nValue != 0)
+		{
+			g_errorList.AddError(3161, this,
+				"Illegal use of attach.to attribute; can only test equality with 0");
+			return false;
+		}
+	}
+	return true;
+}
+
 
 /***********************************************************************************************
 	Methods: Compiler

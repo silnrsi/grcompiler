@@ -125,6 +125,11 @@ public:
 	virtual void MaxJustificationLevel(int * pnLevel) = 0;
 	virtual bool TestsJustification() = 0;
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded) = 0;
+	virtual bool CheckAttachToLookup()
+	{
+		return true;	// only implemented for GdlBinaryExpression
+	}
+
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
@@ -766,6 +771,7 @@ public:
 	virtual void MaxJustificationLevel(int * pnLevel);
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
+	virtual bool CheckAttachToLookup();
 
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
