@@ -315,8 +315,9 @@ bool CheckTable(TableId ktiTableId, const void * pTable, size_t lTableSize)
 			if (sizeof(Sfnt::Compatibility2) <= lTableSize)
 				return true;
 		}
-		else if (read(pOs2->version) == 3 || read(pOs2->version) == 4)
+		else if (read(pOs2->version) >= 3)
 		{ // OS/2 table version 4 size - version 4 changed the meaning of some fields which we don't use
+		  // Using >= 3 assumes that the stuff we use will not change from here on to eternity.
 			if (sizeof(Sfnt::Compatibility3) <= lTableSize)
 				return true;
 		}
