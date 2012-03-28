@@ -255,6 +255,7 @@ return snArg;
 #endif
 }
 
+#ifndef _WIN32
 size_t utf16len(const utf16 *s)
 {
         // assumes NULL terminated strings
@@ -263,6 +264,7 @@ size_t utf16len(const utf16 *s)
         
         return s - start;
 }
+#endif
 
 } //namespace gr
 

@@ -27,7 +27,9 @@ int swapb(int nArg);
 unsigned int swapb(unsigned int nArg);
 utf16 swapb(utf16 chwArg);
 short swapb(short snArg);
+#ifndef _WIN32
 size_t utf16len(const utf16 *s);
+#endif
 
 //	Most significant byte first (converting from least-sig-first):
 inline int msbf(int nArg)					{ return swapb(nArg); }
