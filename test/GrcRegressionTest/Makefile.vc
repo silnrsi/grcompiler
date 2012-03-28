@@ -79,7 +79,6 @@ LINK32_OBJS= \
       "$(INTDIR)\GrcRegressionTest.obj" \
       "$(INTDIR)\CompareFontTables.obj" \
       "$(INTDIR)\GrcRtFileFont.obj" \
-      "$(INTDIR)\FontStub.obj" \
       "$(INTDIR)\TtfUtil.obj" \
       "$(INTDIR)\FileInput.obj" \
       "$(INTDIR)\Platform.obj" \
@@ -96,7 +95,6 @@ BSC32_SBRS= \
       "$(INTDIR)\GrcRegressionTest.sbr" \
       "$(INTDIR)\CompareFontTables.sbr" \
       "$(INTDIR)\GrcRtFileFont.sbr" \
-      "$(INTDIR)\FontStub.sbr" \
       "$(INTDIR)\TtfUtil.sbr" \
       "$(INTDIR)\FileInput.sbr" \
       "$(INTDIR)\Platform.sbr" \
@@ -110,7 +108,6 @@ BSC32_SBRS= \
 "$(INTDIR)\GrcRegressionTest.obj"  "$(INTDIR)\GrcRegressionTest.sbr" : "$(REGT_SRC)\GrcRegressionTest.cpp" "$(INTDIR)"
 "$(INTDIR)\CompareFontTables.obj"  "$(INTDIR)\CompareFontTables.sbr" : "$(REGT_SRC)\CompareFontTables.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcRtFileFont.obj"  "$(INTDIR)\GrcRtFileFont.sbr" : "$(REGT_SRC)\GrcRtFileFont.cpp" "$(INTDIR)"
-"$(INTDIR)\FontStub.obj"  "$(INTDIR)\FontStub.sbr" : "$(REGT_SRC)\FontStub.cpp" "$(INTDIR)"
 "$(INTDIR)\TtfUtil.obj"  "$(INTDIR)\TtfUtil.sbr" : "$(REGT_SRC)\TtfUtil.cpp" "$(INTDIR)"
 "$(INTDIR)\FileInput.obj"  "$(INTDIR)\FileInput.sbr" : "$(REGT_SRC)\FileInput.cpp" "$(INTDIR)"
 "$(INTDIR)\Platform.obj"  "$(INTDIR)\Platform.sbr" : "$(GENERIC_DIR)\Platform.cpp" "$(INTDIR)"
