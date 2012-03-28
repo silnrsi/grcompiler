@@ -68,6 +68,16 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
    $(CPP_PROJ) $< 
 <<
 
+{$(GENERIC_DIR)}.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+{$(GENERIC_DIR)}.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
 
 
 CPP=cl.exe
