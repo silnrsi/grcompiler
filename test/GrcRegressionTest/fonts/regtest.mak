@@ -16,27 +16,27 @@ TEST_FONTS =\
 all : deleteTestFonts $(GRCEXE)\grcompiler.exe $(TEST_FONTS) grcregtest.log
 	
 deleteTestFonts :
-	- delete $(FONTS)\SchTest.ttf
-	- delete $(FONTS)\CharisTest.ttf
-	- delete $(FONTS)\PigLatinTest_v2.ttf
-	- delete $(FONTS)\PigLatinTest_v3.ttf
-	- delete $(FONTS)\PadaukTest.ttf
-	- delete .\grcregtest.log
+	- del $(FONTS)\SchTest.ttf
+	- del $(FONTS)\CharisTest.ttf
+	- del $(FONTS)\PigLatinTest_v2.ttf
+	- del $(FONTS)\PigLatinTest_v3.ttf
+	- del $(FONTS)\PadaukTest.ttf
+	- del .\grcregtest.log
 	
 $(FONTS)\SchTest.ttf :
-	grcompiler -v2 $(FONTS)\SchMain.gdl $(FONTS)\SchInput.ttf $(FONTS)\SchTest.ttf
+	$(GRCEXE)\grcompiler -v2 $(FONTS)\SchMain.gdl $(FONTS)\SchInput.ttf $(FONTS)\SchTest.ttf
     
 $(FONTS)\CharisTest.ttf :
-	grcompiler -v2 $(FONTS)\CharisMain.gdl $(FONTS)\CharisInput.ttf $(FONTS)\CharisTest.ttf
+	$(GRCEXE)\grcompiler -v2 $(FONTS)\CharisMain.gdl $(FONTS)\CharisInput.ttf $(FONTS)\CharisTest.ttf
     
 $(FONTS)\PigLatinTest_v2.ttf :
-	grcompiler -v2 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v2.ttf
+	$(GRCEXE)\grcompiler -v2 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v2.ttf
     
 $(FONTS)\PigLatinTest_v3.ttf :
-	grcompiler -v3 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v3.ttf
+	$(GRCEXE)\grcompiler -v3 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v3.ttf
     
 $(FONTS)\PadaukTest.ttf :
-	grcompiler -v3 $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
+	$(GRCEXE)\grcompiler -v3 $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
 
 grcregtest.log :
 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\SchBenchmark.ttf $(FONTS)\SchTest.ttf
