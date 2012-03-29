@@ -140,6 +140,7 @@ CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 2
 CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 3 and 4; attachment may be needed
 CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 4 and 5; attachment may be needed
 CharisRules.gdh(649) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
+CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
 CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -152,6 +153,7 @@ CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 5
 CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
 CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
 CharisRules.gdh(668) : warning(3521): Vertical overlap between glyphs in items 7 and 8; attachment may be needed
+CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
 CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -163,6 +165,7 @@ CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 4
 CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
 CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 5 and 7; attachment may be needed
 CharisRules.gdh(672) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 1 and 6; attachment may be needed
 CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -173,6 +176,7 @@ CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 4
 CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 4 and 6; attachment may be needed
 CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 5 and 6; attachment may be needed
 CharisRules.gdh(674) : warning(3521): Vertical overlap between glyphs in items 6 and 7; attachment may be needed
+CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 1 and 1; attachment may be needed
 CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 1 and 2; attachment may be needed
 CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 1 and 7; attachment may be needed
 CharisRules.gdh(684) : warning(3521): Vertical overlap between glyphs in items 2 and 3; attachment may be needed
@@ -235,4 +239,4 @@ Minimal compiler version required: 2.0
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 212 warnings
+Compilation succeeded - 0 errors, 216 warnings
