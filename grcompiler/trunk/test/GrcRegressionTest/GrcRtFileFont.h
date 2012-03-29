@@ -39,7 +39,7 @@ Description:
 
 #define NO_EXCEPTIONS 1
 
-using namespace gr;
+///using namespace gr;
 
 class GrcRtFileFont // : public Font
 {
@@ -59,6 +59,8 @@ public:
 
 	const void * getTable(fontTableId32 tableID, size_t * pcbSize);
 	void getFontMetrics(float * pAscent, float * pDescent, float * pEmSquare);
+
+	void UniqueCacheInfo(std::wstring & stuFace, bool & fBold, bool & fItalic);
 
 protected:
 	void initializeFromFace();

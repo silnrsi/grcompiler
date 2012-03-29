@@ -222,9 +222,9 @@ Final Table:                 0     1
 
                           - - - - - - 
 
-RULE 3.0, SchMain.gdl(157):  if (shaddaKasra == 0) if (selectDiac) absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLigatures:(1 2) { comp.shadda.ref = @1; comp.kasra.ref = @2;  }  ; endif;  endif; 
+RULE 3.0, SchMain.gdl(157):  if (shaddaKasra &amp;&amp; 0) if (selectDiac) absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLigatures:(1 2) { comp.shadda.ref = @1; comp.kasra.ref = @2;  }  ; endif;  endif; 
 
-RULE 3.1, SchMain.gdl(160):  if (shaddaKasra == 0) if (!(selectDiac)) absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLigatures:(1 2)  ; endif;  endif; 
+RULE 3.1, SchMain.gdl(160):  if (shaddaKasra &amp;&amp; 0) if (!(selectDiac)) absShadda  cShaddaKasraMarks  >  _  cShaddaKasraLigatures:(1 2)  ; endif;  endif; 
 
 
 
@@ -792,31 +792,31 @@ RULE 5.1, SchMain.gdl(217):  if (selectDiac) cNeedsLoweredHamza  absHamzaAbove  
 
 RULE 5.2, SchMain.gdl(220):  if (!(selectDiac)) cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3)  _   /  ANY  _  _  ; endif; 
 
-RULE 5.3, SchMain.gdl(226):  if (meemAlt == 1) cno_Meem  >  cMeemSindhi   /  ANY  _  ; endif; 
+RULE 5.3, SchMain.gdl(226):  if (meemAlt &amp;&amp; 1) cno_Meem  >  cMeemSindhi   /  ANY  _  ; endif; 
 
-RULE 5.4, SchMain.gdl(230):  if (hehAlt == 1) cno_Heh  >  cHehKurdish   /  ANY  _  ; endif; 
+RULE 5.4, SchMain.gdl(230):  if (hehAlt &amp;&amp; 1) cno_Heh  >  cHehKurdish   /  ANY  _  ; endif; 
 
-RULE 5.5, SchMain.gdl(233):  if (hehAlt == 2) cno_Heh  >  cHehSindhi   /  ANY  _  ; endif; 
+RULE 5.5, SchMain.gdl(233):  if (hehAlt &amp;&amp; 2) cno_Heh  >  cHehSindhi   /  ANY  _  ; endif; 
 
-RULE 5.6, SchMain.gdl(236):  if (hehAlt == 3) cno_Heh  >  cHehUrdu   /  ANY  _  ; endif; 
+RULE 5.6, SchMain.gdl(236):  if (hehAlt &amp;&amp; 3) cno_Heh  >  cHehUrdu   /  ANY  _  ; endif; 
 
-RULE 5.7, SchMain.gdl(240):  if (easternDigits == 1) cEasternDigit  >  cEasternDigitSindhi   /  ANY  _  ; endif; 
+RULE 5.7, SchMain.gdl(240):  if (easternDigits &amp;&amp; 1) cEasternDigit  >  cEasternDigitSindhi   /  ANY  _  ; endif; 
 
-RULE 5.8, SchMain.gdl(243):  if (easternDigits == 2) cEasternDigit  >  cEasternDigitUrdu   /  ANY  _  ; endif; 
+RULE 5.8, SchMain.gdl(243):  if (easternDigits &amp;&amp; 2) cEasternDigit  >  cEasternDigitUrdu   /  ANY  _  ; endif; 
 
-RULE 5.9, SchMain.gdl(247):  if (sukunAlt == 1) cno_Sukun  >  cSukunDownOpen   /  ANY  _  ; endif; 
+RULE 5.9, SchMain.gdl(247):  if (sukunAlt &amp;&amp; 1) cno_Sukun  >  cSukunDownOpen   /  ANY  _  ; endif; 
 
-RULE 5.10, SchMain.gdl(250):  if (sukunAlt == 2) cno_Sukun  >  cSukunLeftOpen   /  ANY  _  ; endif; 
+RULE 5.10, SchMain.gdl(250):  if (sukunAlt &amp;&amp; 2) cno_Sukun  >  cSukunLeftOpen   /  ANY  _  ; endif; 
 
-RULE 5.11, SchMain.gdl(254):  if (headOfKhahAlt == 1) cno_OpenLeft  >  cOpenLeft   /  ANY  _  ; endif; 
+RULE 5.11, SchMain.gdl(254):  if (headOfKhahAlt &amp;&amp; 1) cno_OpenLeft  >  cOpenLeft   /  ANY  _  ; endif; 
 
 RULE 5.12, SchMain.gdl(258):  if (commaAlt) cno_Downward  >  cDownward   /  ANY  _  ; endif; 
 
 RULE 5.13, SchMain.gdl(262):  if (dammatanAlt) cno_SixNine  >  cSixNine   /  ANY  _  ; endif; 
 
-RULE 5.14, SchMain.gdl(266):  if (endOfAyah == 1) cEndOfAyah  >  cEndOfAyahCircle   /  ANY  _  ; endif; 
+RULE 5.14, SchMain.gdl(266):  if (endOfAyah &amp;&amp; 1) cEndOfAyah  >  cEndOfAyahCircle   /  ANY  _  ; endif; 
 
-RULE 5.15, SchMain.gdl(269):  if (endOfAyah == 2) cEndOfAyah  >  cEndOfAyahSquare   /  ANY  _  ; endif; 
+RULE 5.15, SchMain.gdl(269):  if (endOfAyah &amp;&amp; 2) cEndOfAyah  >  cEndOfAyahSquare   /  ANY  _  ; endif; 
 
 RULE 5.16, SchMain.gdl(275):  if (!(invis)) cInvisible  >  zeroWidthSpace { dir = @2.dir;  }   /  ANY  _  ; endif; 
 
@@ -1522,33 +1522,33 @@ Final Table:                 0     1     2     3     4     5     6     7     8  
 
                           - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-RULE 8.0, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
+RULE 8.0, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 &amp;&amp; 0 }  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
 
-RULE 8.1, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
+RULE 8.1, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 &amp;&amp; 0 }  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
 
-RULE 8.2, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  cAnyMarks  _  ;
+RULE 8.2, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 &amp;&amp; 0 }  cAnyMarks  cAnyMarks  _  ;
 
-RULE 8.3, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  _  ;
+RULE 8.3, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 &amp;&amp; 0 }  cAnyMarks  _  ;
 
-RULE 8.4, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  _  ;
+RULE 8.4, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 &amp;&amp; 0 }  _  ;
 
 RULE 8.5, SchMain.gdl(298):  cHasAlef  cMatchesAlef {  attach {to = @1; at = alef; with = alef_; } insert = 1;  }   /  _  ^  _  ;
 
-RULE 8.6, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 8.6, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
-RULE 8.7, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 8.7, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
-RULE 8.8, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
+RULE 8.8, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
 
-RULE 8.9, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 8.9, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
 
-RULE 8.10, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 8.10, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x &amp;&amp; 40; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
-RULE 8.11, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 8.11, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x &amp;&amp; 40; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
-RULE 8.12, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
+RULE 8.12, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x &amp;&amp; 40; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
 
-RULE 8.13, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 8.13, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x &amp;&amp; 40; at.y = diaA.y &amp;&amp; 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
 
 RULE 8.14, SchMain.gdl(314):  cTakesDiaDigitA  cDiaDigitAbove {  attach {to = @1; at = diaDigitA; with = diaDigitA_; }  }   /  _  ^  _  ;
 
@@ -3681,45 +3681,45 @@ Final Table:                 0     1     2     3     4     5     6     7     8  
 
                           - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-RULE 10.0, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.0, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  absRnoonMed { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.1, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.1, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  absRnoonMed { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.2, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.2, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  absRnoonMed { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.3, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;
+RULE 10.3, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  absRnoonMed { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.4, SchMain.gdl(416):  cKafLikeIniMed  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;
+RULE 10.4, SchMain.gdl(416):  cKafLikeIniMed  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  absRnoonMed { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  ;
 
-RULE 10.5, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.5, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  *GC10* { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.6, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.6, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  *GC10* { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.7, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.7, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  *GC10* { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.8, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;
+RULE 10.8, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  *GC10* { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.9, SchMain.gdl(419):  absFarsiYehIni  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;
+RULE 10.9, SchMain.gdl(419):  absFarsiYehIni  absAutoKashida { shift.x = -30; advance.x = aw &amp;&amp; -30;  }  *GC10* { shift.x = -30; advance.x = aw &amp;&amp; -30;  }   /  ANY  _  _  _  ;
 
-RULE 10.10, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.10, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw &amp;&amp; -40;  }  absRrehFin { shift.x = -40; advance.x = aw &amp;&amp; -40;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.11, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.11, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw &amp;&amp; -40;  }  absRrehFin { shift.x = -40; advance.x = aw &amp;&amp; -40;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.12, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.12, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw &amp;&amp; -40;  }  absRrehFin { shift.x = -40; advance.x = aw &amp;&amp; -40;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.13, SchMain.gdl(422):  *GC11*  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  ;
+RULE 10.13, SchMain.gdl(422):  *GC11*  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw &amp;&amp; -40;  }  absRrehFin { shift.x = -40; advance.x = aw &amp;&amp; -40;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.14, SchMain.gdl(422):  *GC11*  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  ;
+RULE 10.14, SchMain.gdl(422):  *GC11*  absAutoKashida { shift.x = -40; advance.x = aw &amp;&amp; -40;  }  absRrehFin { shift.x = -40; advance.x = aw &amp;&amp; -40;  }   /  ANY  _  _  _  ;
 
-RULE 10.15, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.15, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.16, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.16, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.17, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
+RULE 10.17, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.18, SchMain.gdl(428):  absAlef  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 10.18, SchMain.gdl(428):  absAlef  cAnyMarks  absRreh { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  ;
 
-RULE 10.19, SchMain.gdl(428):  absAlef  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
+RULE 10.19, SchMain.gdl(428):  absAlef  absRreh { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  ;
 
 RULE 10.20, SchMain.gdl(431):  *GC12*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  _  ;
 
@@ -3745,13 +3745,13 @@ RULE 10.30, SchMain.gdl(441):  cNoonGhunna  *GC17* { shift.y = -75;  }   /  *GC1
 
 RULE 10.31, SchMain.gdl(443):  cNoonGhunna  *GC18* { shift.y = -150;  }   /  ANY  _  _  ;
 
-RULE 10.32, SchMain.gdl(447):  if (kasraTcheh == 2) cBehLikeIniMed  absKasra { shift.x = -60; shift.y = 125;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 10.32, SchMain.gdl(447):  if (kasraTcheh &amp;&amp; 2) cBehLikeIniMed  absKasra { shift.x = -60; shift.y = 125;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
-RULE 10.33, SchMain.gdl(448):  if (kasraTcheh == 2) cBehLikeIniMed  absKasratan { shift.x = -100; shift.y = 30;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 10.33, SchMain.gdl(448):  if (kasraTcheh &amp;&amp; 2) cBehLikeIniMed  absKasratan { shift.x = -100; shift.y = 30;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
-RULE 10.34, SchMain.gdl(451):  if (kasraTcheh == 1) cBehLikeIniMed  absKasra { shift.x = -40; shift.y = -200;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 10.34, SchMain.gdl(451):  if (kasraTcheh &amp;&amp; 1) cBehLikeIniMed  absKasra { shift.x = -40; shift.y = -200;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
-RULE 10.35, SchMain.gdl(452):  if (kasraTcheh == 1) cBehLikeIniMed  absKasratan { shift.x = -60; shift.y = -130;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 10.35, SchMain.gdl(452):  if (kasraTcheh &amp;&amp; 1) cBehLikeIniMed  absKasratan { shift.x = -60; shift.y = -130;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
 RULE 10.36, SchMain.gdl(454):  cPehLikeIniMed  absKasra { shift.y = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;
 
@@ -3759,88 +3759,88 @@ RULE 10.37, SchMain.gdl(455):  cPehLikeIniMed  absKasratan { shift.x = -50;  }  
 
 RULE 10.38, SchMain.gdl(456):  cTehLikeIniMed  absKasratan { shift.x = -80;  }  cTchehLikeFin   /  ANY  _  _  _  ;
 
-RULE 10.39, SchMain.gdl(459):  absAlef  absMaddahAbove { shift.x = -130;  }  absGaf { shift.x = 30; advance.x = aw + 30;  }   /  ANY  _  _  _  ;
+RULE 10.39, SchMain.gdl(459):  absAlef  absMaddahAbove { shift.x = -130;  }  absGaf { shift.x = 30; advance.x = aw &amp;&amp; 30;  }   /  ANY  _  _  _  ;
 
-RULE 10.40, SchMain.gdl(460):  absAlef  absMaddahAbove { shift.x = -120;  }  absGafIni { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 10.40, SchMain.gdl(460):  absAlef  absMaddahAbove { shift.x = -120;  }  absGafIni { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  ;
 
-RULE 10.41, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.41, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw &amp;&amp; 50;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.42, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.42, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw &amp;&amp; 50;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.43, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  ;
+RULE 10.43, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw &amp;&amp; 50;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.44, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  ;
+RULE 10.44, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw &amp;&amp; 50;  }   /  ANY  _  _  _  ;
 
-RULE 10.45, SchMain.gdl(463):  cBehLikeIniMed  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  ;
+RULE 10.45, SchMain.gdl(463):  cBehLikeIniMed  absRehBarFin { shift.x = 50; advance.x = aw &amp;&amp; 50;  }   /  ANY  _  _  ;
 
-RULE 10.46, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.46, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.47, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.47, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.48, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
+RULE 10.48, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.49, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 10.49, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  ;
 
-RULE 10.50, SchMain.gdl(464):  cPehLikeIniMed  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
+RULE 10.50, SchMain.gdl(464):  cPehLikeIniMed  absRehBarFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  ;
 
-RULE 10.51, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  _  ;
+RULE 10.51, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  _  ;
 
-RULE 10.52, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
+RULE 10.52, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
 
-RULE 10.53, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
+RULE 10.53, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
 
-RULE 10.54, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 10.54, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
-RULE 10.55, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.55, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.56, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
+RULE 10.56, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
 
-RULE 10.57, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
+RULE 10.57, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
 
-RULE 10.58, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 10.58, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
-RULE 10.59, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.59, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.60, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.60, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.61, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
+RULE 10.61, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
 
-RULE 10.62, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 10.62, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
-RULE 10.63, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.63, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.64, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.64, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.65, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.65, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.66, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 10.66, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
-RULE 10.67, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.67, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.68, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.68, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.69, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.69, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.70, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;
+RULE 10.70, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.71, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 10.71, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
-RULE 10.72, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.72, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.73, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.73, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.74, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;
+RULE 10.74, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.75, SchMain.gdl(467):  *GC19*  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  ;
+RULE 10.75, SchMain.gdl(467):  *GC19*  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw &amp;&amp; 65;  }   /  ANY  _  _  _  ;
 
-RULE 10.76, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 10.76, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  _  _  ;
 
-RULE 10.77, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
+RULE 10.77, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  _  ;
 
-RULE 10.78, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
+RULE 10.78, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  _  ;
 
-RULE 10.79, SchMain.gdl(470):  *GC20*  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 10.79, SchMain.gdl(470):  *GC20*  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  _  ;
 
-RULE 10.80, SchMain.gdl(470):  *GC20*  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
+RULE 10.80, SchMain.gdl(470):  *GC20*  cKehehLikeFin { shift.x = 70; advance.x = aw &amp;&amp; 70;  }   /  ANY  _  _  ;
 
 

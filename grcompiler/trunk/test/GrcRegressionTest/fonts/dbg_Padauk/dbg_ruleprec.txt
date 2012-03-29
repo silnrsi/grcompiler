@@ -329,13 +329,13 @@ PASS: 2
 
 PASS: 3
 
-0 - RULE 3.0, PadaukMain.gdl(534):  ANYGlyph  >  @3   /  cCons  g103a  ^  _ { order > 1 }  ;
+0 - RULE 3.0, PadaukMain.gdl(534):  ANYGlyph  >  @3   /  cCons  g103a  ^  _ { order &amp;&amp; 1 }  ;
 
 
-1 - RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph { (order > 1) && (order <= @2.order) }  ;
+1 - RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph { (order &amp;&amp; 1) &lt; (order &amp;&amp; @2.order) }  ;
 
 
-2 - RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph { order == 0 }  _  ^  ANYGlyph { order > 1 }  ;
+2 - RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph { order &amp;&amp; 0 }  _  ^  ANYGlyph { order &amp;&amp; 1 }  ;
 
 
 PASS: 4
@@ -605,157 +605,157 @@ TABLE: positioning
 
 PASS: 5
 
-0 - RULE 5.5, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 == 0 }  ;
+0 - RULE 5.5, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-1 - RULE 5.9, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 == 0 }  ;
+1 - RULE 5.9, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-2 - RULE 5.15, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _ { user1 == 0 }  ;
+2 - RULE 5.15, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _ { user1 &amp;&amp; 0 }  ;
 
 
-3 - RULE 5.6, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 == 0 }  ;
+3 - RULE 5.6, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 &amp;&amp; 0 }  ;
 
 
-4 - RULE 5.7, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _ { user1 == 0 }  ;
+4 - RULE 5.7, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-5 - RULE 5.10, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 == 0 }  ;
+5 - RULE 5.10, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 &amp;&amp; 0 }  ;
 
 
-6 - RULE 5.11, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _ { user1 == 0 }  ;
+6 - RULE 5.11, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-7 - RULE 5.16, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _ { user1 == 0 }  ;
+7 - RULE 5.16, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _ { user1 &amp;&amp; 0 }  ;
 
 
-8 - RULE 5.17, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _ { user1 == 0 }  ;
+8 - RULE 5.17, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _ { user1 &amp;&amp; 0 }  ;
 
 
-9 - RULE 5.19, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _ { user1 == 0 }  ;
+9 - RULE 5.19, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _ { user1 &amp;&amp; 0 }  ;
 
 
-10 - RULE 5.23, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _ { user1 == 0 }  ;
+10 - RULE 5.23, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _ { user1 &amp;&amp; 0 }  ;
 
 
-11 - RULE 5.30, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @6; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 == 0 }  _  ;
+11 - RULE 5.30, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @6; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 &amp;&amp; 0 }  _  ;
 
 
-12 - RULE 5.43, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _ { user1 == 0 }  ;
+12 - RULE 5.43, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-13 - RULE 5.1, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  cUDia  _ { user1 == 0 }  ;
+13 - RULE 5.1, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-14 - RULE 5.8, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  _ { user1 == 0 }  ;
+14 - RULE 5.8, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  _ { user1 &amp;&amp; 0 }  ;
 
 
-15 - RULE 5.12, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _ { user1 == 0 }  ;
+15 - RULE 5.12, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _ { user1 &amp;&amp; 0 }  ;
 
 
-16 - RULE 5.13, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _ { user1 == 0 }  ;
+16 - RULE 5.13, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-17 - RULE 5.18, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  _ { user1 == 0 }  ;
+17 - RULE 5.18, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  _ { user1 &amp;&amp; 0 }  ;
 
 
-18 - RULE 5.20, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _ { user1 == 0 }  ;
+18 - RULE 5.20, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _ { user1 &amp;&amp; 0 }  ;
 
 
-19 - RULE 5.21, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  c1036  _ { user1 == 0 }  ;
+19 - RULE 5.21, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  c1036  _ { user1 &amp;&amp; 0 }  ;
 
 
-20 - RULE 5.24, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _ { user1 == 0 }  ;
+20 - RULE 5.24, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _ { user1 &amp;&amp; 0 }  ;
 
 
-21 - RULE 5.25, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  c1036  _ { user1 == 0 }  ;
+21 - RULE 5.25, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  c1036  _ { user1 &amp;&amp; 0 }  ;
 
 
-22 - RULE 5.31, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @5; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _ { user1 == 0 }  _  ;
+22 - RULE 5.31, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @5; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _ { user1 &amp;&amp; 0 }  _  ;
 
 
-23 - RULE 5.39, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 == 0 }  ;
+23 - RULE 5.39, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-24 - RULE 5.44, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _ { user1 == 0 }  ;
+24 - RULE 5.44, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-25 - RULE 5.47, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  g103a  _ { user1 == 0 }  ;
+25 - RULE 5.47, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  g103a  _ { user1 &amp;&amp; 0 }  ;
 
 
-26 - RULE 5.2, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  _ { user1 == 0 }  ;
+26 - RULE 5.2, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-27 - RULE 5.3, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 == 0 }  ;
+27 - RULE 5.3, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-28 - RULE 5.14, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  _ { user1 == 0 }  ;
+28 - RULE 5.14, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  _ { user1 &amp;&amp; 0 }  ;
 
 
-29 - RULE 5.22, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  _ { user1 == 0 }  ;
+29 - RULE 5.22, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  _ { user1 &amp;&amp; 0 }  ;
 
 
-30 - RULE 5.26, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  _ { user1 == 0 }  ;
+30 - RULE 5.26, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  _ { user1 &amp;&amp; 0 }  ;
 
 
-31 - RULE 5.27, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 == 0 }  ;
+31 - RULE 5.27, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-32 - RULE 5.32, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @4; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  _ { user1 == 0 }  _  ;
+32 - RULE 5.32, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @4; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  _  ;
 
 
-33 - RULE 5.33, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 == 0 }  ;
+33 - RULE 5.33, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-34 - RULE 5.35, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBDDia  _ { user1 == 0 }  ;
+34 - RULE 5.35, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBDDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-35 - RULE 5.37, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 == 0 }  ;
+35 - RULE 5.37, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-36 - RULE 5.40, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  _ { user1 == 0 }  ;
+36 - RULE 5.40, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-37 - RULE 5.45, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  _ { user1 == 0 }  ;
+37 - RULE 5.45, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  _ { user1 &amp;&amp; 0 }  ;
 
 
-38 - RULE 5.48, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  _ { user1 == 0 }  ;
+38 - RULE 5.48, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  _ { user1 &amp;&amp; 0 }  ;
 
 
-39 - RULE 5.49, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  g103a  _ { user1 == 0 }  ;
+39 - RULE 5.49, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  g103a  _ { user1 &amp;&amp; 0 }  ;
 
 
-40 - RULE 5.4, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+40 - RULE 5.4, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-41 - RULE 5.28, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+41 - RULE 5.28, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-42 - RULE 5.29, PadaukMain.gdl(720):  cLeftLDot  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+42 - RULE 5.29, PadaukMain.gdl(720):  cLeftLDot  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-43 - RULE 5.34, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+43 - RULE 5.34, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-44 - RULE 5.36, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+44 - RULE 5.36, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-45 - RULE 5.38, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+45 - RULE 5.38, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-46 - RULE 5.41, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+46 - RULE 5.41, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-47 - RULE 5.42, PadaukMain.gdl(751):  cTakesRDia  cRDia {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+47 - RULE 5.42, PadaukMain.gdl(751):  cTakesRDia  cRDia {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-48 - RULE 5.46, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+48 - RULE 5.46, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-49 - RULE 5.50, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;
+49 - RULE 5.50, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  _ { user1 &amp;&amp; 0 }  ;
 
 
-50 - RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x = advx; user2 = 1;  }   /  ANY  ^  _ { user2 == 0 }  ;
+50 - RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x = advx; user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  ;
 
 
 PASS: 6
@@ -766,19 +766,19 @@ PASS: 6
 1 - RULE 6.3, PadaukMain.gdl(794):  cConsNar   /  g102b_103a  _  cUDia  ;
 
 
-2 - RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }  cHasRkern { shift.x = -(rkern);  }   /  ANY  _  _  ;
+2 - RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x = @3.rkern &amp;&amp; 10; advance.x = aw &amp;&amp; (@3.rkern &amp;&amp; 10);  }  cHasRkern { shift.x = -(rkern);  }   /  ANY  _  _  ;
 
 
-3 - RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }   /  cUDia  _  ;
+3 - RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x = xkern &amp;&amp; 2; advance.x = aw &amp;&amp; (xkern &amp;&amp; 2);  }   /  cUDia  _  ;
 
 
-4 - RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
+4 - RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x = -(@1.xkern); advance.x = aw &amp;&amp; -(@1.xkern);  }   /  g102b_103a  _  ;
 
 
-5 - RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
+5 - RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x = -(@1.xkern); advance.x = aw &amp;&amp; -(@1.xkern);  }   /  g102b_103a  _  ;
 
 
-6 - RULE 6.6, PadaukMain.gdl(797):  cRDia { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }   /  cTakesRDia  _  ;
+6 - RULE 6.6, PadaukMain.gdl(797):  cRDia { shift.x = ((((@1.aw &amp;&amp; @1.advance.x) &amp;&amp; advance.x) &amp;&amp; 2) &amp;&amp; @1.position.x) &amp;&amp; position.x;  }   /  cTakesRDia  _  ;
 
 
 7 - RULE 6.7, PadaukMain.gdl(798):  cUVowel { advance.x = 0;  }   /  c103b  _  ;
