@@ -25,7 +25,7 @@ CFG=RELEASE
 OUTDIR=.\release
 INTDIR=.\release_temp
 
-all : "$(OUTDIR)\$(TARGET).exe"
+all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET2).exe"
 	- copy $(ICU_BIN)\icuuc36.dll $(OUTDIR)\icuuc36.dll
 	- copy $(ICU_BIN)\icudt36.dll $(OUTDIR)\icudt36.dll
 
