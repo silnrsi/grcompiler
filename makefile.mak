@@ -5,6 +5,7 @@ NULL=nul
 !ENDIF 
 
 TARGET=GrCompiler
+TARGET2=gdlpp
 GRC_SRC=.\compiler
 GRC_GRMR_SRC=.\compiler\Grammar
 GRC_ANTLR_SRC=.\compiler\Grammar\Antlr
@@ -12,6 +13,7 @@ GRC_RES=.\compiler
 GRC_GEN_SRC=.\compiler\Generic
 GRC_LIB_SRC=.\compiler
 TTF_LIB_SRC=.\compiler
+PP_SRC=.\preprocessor
 ICU_BIN=.\icu\bin
 
 !IF "$(CFG)" == ""
@@ -34,6 +36,7 @@ realclean : clean
     @- rd /s/q $(OUTDIR)
 
 CPP_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/source/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+CPP2_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./preprocessor" /D "GDLPP" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "NDEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib icuuc.lib /nologo /subsystem:console /incremental:no /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" /LIBPATH:".\icu\lib\"
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
@@ -43,7 +46,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
 OUTDIR=.\debug
 INTDIR=.\debug_temp
 
-all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
+all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc" "$(OUTDIR)\$(TARGET2).exe"
 	- copy $(ICU_BIN)\icuuc36d.dll $(OUTDIR)\icuuc36d.dll
 	- copy $(ICU_BIN)\icudt36.dll $(OUTDIR)\icudt36.dll
 
@@ -54,6 +57,7 @@ realclean : clean
     @- rd /s/q $(OUTDIR)
 
 CPP_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/source/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+CPP2_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./preprocessor" /D "GDLPP" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "_DEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib icuucd.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET).pdb" /debug /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" /pdbtype:sept /LIBPATH:".\icu\lib\"
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
@@ -112,6 +116,11 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
 <<
 
 {$(TTF_LIB_SRC)}.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+{$(PP_SRC)}.c{$(INTDIR)}.obj::
    $(CPP) @<<
    $(CPP_PROJ) $< 
 <<
@@ -180,6 +189,21 @@ LINK32_OBJS= \
 "$(OUTDIR)\$(TARGET).exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
+
+LINKPP_OBJS= \
+		 "$(INTDIR)\cpp1.obj" \
+		 "$(INTDIR)\cpp2.obj" \
+		 "$(INTDIR)\cpp3.obj" \
+		 "$(INTDIR)\cpp4.obj" \
+		 "$(INTDIR)\cpp5.obj" \
+		 "$(INTDIR)\cpp6.obj" \
+		 "$(INTDIR)\memory.obj" \
+		 "$(INTDIR)\usecpp.obj"
+
+"$(OUTDIR)\$(TARGET2).exe" : "$(OUTDIR)" $(DEF_FILE) $(LINKPP_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINKPP_OBJS)
 <<
 
 BSC32_SBRS= \
