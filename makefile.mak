@@ -128,7 +128,7 @@ LINK32_PP_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib adva
 
 {$(PP_SRC)}.c{$(INTDIR)}.obj::
    $(CPP) @<<
-   $(CPP_PROJ) $< 
+   $(CPP_PP_PROJ) $< 
 <<
 
 
