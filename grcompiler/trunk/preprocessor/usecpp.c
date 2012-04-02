@@ -169,6 +169,8 @@ int main(int argc, char **argv)
   tagptr->data = "INCLUDE:";
 #elif defined (OS9)
   tagptr->data = "/dd/defs/";
+#elif defined (WIN32)
+  tagptr->data = "";
 #else
   tagptr->data = PKGDATADIR;
 #endif
