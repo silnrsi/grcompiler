@@ -5,7 +5,7 @@ NULL=nul
 !ENDIF 
 
 TARGET=GrCompiler
-TARGET2=gdlpp
+TARGET_PP=gdlpp
 GRC_SRC=.\compiler
 GRC_GRMR_SRC=.\compiler\Grammar
 GRC_ANTLR_SRC=.\compiler\Grammar\Antlr
@@ -25,7 +25,7 @@ CFG=RELEASE
 OUTDIR=.\release
 INTDIR=.\release_temp
 
-all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET2).exe"
+all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET_PP).exe"
 	- copy $(ICU_BIN)\icuuc36.dll $(OUTDIR)\icuuc36.dll
 	- copy $(ICU_BIN)\icudt36.dll $(OUTDIR)\icudt36.dll
 
@@ -36,17 +36,20 @@ realclean : clean
     @- rd /s/q $(OUTDIR)
 
 CPP_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/source/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
-CPP2_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./preprocessor" /D "GDLPP" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "NDEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib icuuc.lib /nologo /subsystem:console /incremental:no /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" /LIBPATH:".\icu\lib\"
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
+
+CPP_PP_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./preprocessor" /D "GDLPP" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+LINK32_PP_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:no /machine:I386 /out:"$(OUTDIR)\$(TARGET_PP).exe"
+
 
 !ELSEIF "$(CFG)" == "DEBUG"
 
 OUTDIR=.\debug
 INTDIR=.\debug_temp
 
-all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc" "$(OUTDIR)\$(TARGET2).exe"
+all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc" "$(OUTDIR)\$(TARGET_PP).exe"
 	- copy $(ICU_BIN)\icuuc36d.dll $(OUTDIR)\icuuc36d.dll
 	- copy $(ICU_BIN)\icudt36.dll $(OUTDIR)\icudt36.dll
 
@@ -57,10 +60,13 @@ realclean : clean
     @- rd /s/q $(OUTDIR)
 
 CPP_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/source/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
-CPP2_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./preprocessor" /D "GDLPP" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "_DEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib icuucd.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET).pdb" /debug /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" /pdbtype:sept /LIBPATH:".\icu\lib\"
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
+
+CPP_PP_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./preprocessor" /D "GDLPP" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+LINK32_PP_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET_PP).pdb" /debug /machine:I386 /out:"$(OUTDIR)\$(TARGET_PP).exe" /pdbtype:sept
+
 
 !ENDIF
 
@@ -191,7 +197,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-LINKPP_OBJS= \
+LINK_PP_OBJS= \
 		 "$(INTDIR)\cpp1.obj" \
 		 "$(INTDIR)\cpp2.obj" \
 		 "$(INTDIR)\cpp3.obj" \
@@ -201,9 +207,9 @@ LINKPP_OBJS= \
 		 "$(INTDIR)\memory.obj" \
 		 "$(INTDIR)\usecpp.obj"
 
-"$(OUTDIR)\$(TARGET2).exe" : "$(OUTDIR)" $(DEF_FILE) $(LINKPP_OBJS)
+"$(OUTDIR)\$(TARGET_PP).exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK_PP_OBJS)
     $(LINK32) @<<
-  $(LINK32_FLAGS) $(LINKPP_OBJS)
+  $(LINK32_PP_FLAGS) $(LINK_PP_OBJS)
 <<
 
 BSC32_SBRS= \
