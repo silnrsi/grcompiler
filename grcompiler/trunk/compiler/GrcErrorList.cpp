@@ -370,6 +370,15 @@ void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
 }
 
 /*----------------------------------------------------------------------------------------------
+	Remove all indications of any warnings that should be ignored in the output.
+----------------------------------------------------------------------------------------------*/
+void GrcErrorList::ClearIgnoreWarnings()
+{
+	m_vnIgnoreWarnings.clear();
+}
+
+
+/*----------------------------------------------------------------------------------------------
 	Store or remove an indication that the given warning should be ignored in the output.
 ----------------------------------------------------------------------------------------------*/
 bool GrcErrorList::IgnoreWarning(int nWarning)

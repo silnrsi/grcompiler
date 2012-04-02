@@ -279,6 +279,7 @@ public:
 
 	void SetIgnoreWarning(int nID, bool f = true);
 	bool IgnoreWarning(int nID);
+	void ClearIgnoreWarnings();
 
 	void SetLastMsgIncludesFatality(bool f)
 	{
