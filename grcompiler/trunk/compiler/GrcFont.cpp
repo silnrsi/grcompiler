@@ -450,7 +450,6 @@ utf16 GrcFont::GlyphFromPostscript(std::string staPostscriptName, GdlObject * pg
 	Given the number of a path used to define the glyph, answer the point number of the
 	first point on the path. Normally this path will only have one point.
 	Return -1 if the path is invalid.
-	TODO AlanW: Still need to handle multi-level composite glyphs.
 ----------------------------------------------------------------------------------------------*/
 int GrcFont::ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * pgdlobj)
 {
@@ -1036,9 +1035,10 @@ int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
 		return false;
 
 	int * rgnEndPt = new int[cContours];
+	size_t cTmpCnt = cContours;
 
 	if (!TtfUtil::GlyfContourEndPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, 
-		rgnEndPt, cContours))
+		rgnEndPt, cTmpCnt))
 	{
 		delete[] rgnEndPt;
 		return false;
@@ -1088,14 +1088,15 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	bool rgfOnCurveBuf[POINT_BUF_SIZE];
 	int rgnXBuf[POINT_BUF_SIZE];
 	int rgnYBuf[POINT_BUF_SIZE];
-    bool * prgfOnCurve = NULL;
-    int * prgnX = NULL, *prgnY = NULL;
+	bool * prgfOnCurve = NULL;
+	int * prgnX = NULL, *prgnY = NULL;
 
 	int * prgnEndPt = (cContours > CONTOUR_BUF_SIZE) ? new int[cContours] : rgnEndPtBuf;
 	int fRet = false;
+	size_t cTmpCnt = cContours;
 
 	if (!TtfUtil::GlyfContourEndPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, 
-		prgnEndPt, cContours))
+		prgnEndPt, cTmpCnt))
 	{
 		goto LLeave;
 	}
@@ -1105,9 +1106,10 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	prgfOnCurve = (cPoints > POINT_BUF_SIZE) ? new bool[cPoints] : rgfOnCurveBuf;
 	prgnX = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnXBuf;
 	prgnY = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnYBuf;
+	size_t cTmpPts = cPoints;
 
 	if (!TtfUtil::GlyfPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, prgnEndPt,
-		cContours, prgnX, prgnY, prgfOnCurve, cPoints))
+		cContours, prgnX, prgnY, prgfOnCurve, cTmpPts))
 	{
 		goto LLeave;
 	}
