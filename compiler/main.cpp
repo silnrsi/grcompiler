@@ -115,6 +115,10 @@ int main(int argc, char * argv[])
 	g_cman.SetSeparateControlFile(false);
 	g_cman.SetVerbose(true);
 
+	// Ignore these warnings by default:
+	g_errorList.SetIgnoreWarning(510);	// Cannot find point number for coordinates...
+	g_errorList.SetIgnoreWarning(3521);	// Vertical overlap between
+
 	// on linux systems an argument starting with a / may be a path
 	// so use - for options. On Windows allow both / or -
 #ifdef _WIN32 
@@ -150,8 +154,7 @@ int main(int argc, char * argv[])
 		std::cout << "   -q     - quiet mode (no messages except on error)\n";
 		std::cout << "   -vN    - set Silf table version number\n";
 		std::cout << "   -wNNNN - ignore warning with the given number\n";
-		//std::cout << "\nPress Enter...";
-		//char ch; std::cin.get(ch);
+		std::cout << "   -wall  - display all warnings\n";
 		return 2;
 	}
 
@@ -489,11 +492,16 @@ void HandleCompilerOptions(char * arg)
 	{
 		g_cman.SetIgnoreBadGlyphs(true);
 	}
+	else if ( arg[1] == 'w' && arg[2] == 'a' && arg[3] == 'l' && arg[4] == 'l' )
+	{
+		g_errorList.ClearIgnoreWarnings();
+	}
 	else if (arg[1] == 'n' || arg[1] == 'v' || arg[1] == 'w')
 	{
 		int nValue = 0;
 		char rgch[20];
 		int i = 2;
+
 		while (arg[i] >= '0' && arg[i] <= '9')
 		{
 			rgch[i - 2] = arg[i];
@@ -508,7 +516,7 @@ void HandleCompilerOptions(char * arg)
 		}
 		else if (arg[1] == 'v')
 		{
-            int fxdVersion = nValue << 16; // put in "fixed" format
+			int fxdVersion = nValue << 16; // put in "fixed" format
 
 			// Give an error later if the version is invalid.
 
