@@ -8,24 +8,22 @@ CFG=RELEASE
 !IF  "$(CFG)" == "RELEASE"
 
 OUTDIR=..\release
-BASDIR=..\release_temp
-INTDIR=$(BASDIR)\release_temp_gdlp
+INTDIR=..\release_temp
 
 all : "$(OUTDIR)\$(TARGET).exe"
 
-CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "NDEBUG" /D "WIN32" /D "UNIX" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "NDEBUG" /D "WIN32" /D "UNIX" /D "unix" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:no /pdb:"$(OUTDIR)\$(TARGET).pdb" /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" 
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
 	
 !ELSEIF  "$(CFG)" == "DEBUG"
 
 OUTDIR=..\debug
-BASDIR=..\debug_temp
-INTDIR=$(BASDIR)\debug_temp_gdlpp
+INTDIR=..\debug_temp
 
 all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
 
-CPP_PROJ=/nologo /MLd /W3 /GX /Gm /ZI /Od /D "_DEBUG" /D "WIN32" /D "UNIX" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FR"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MLd /W3 /GX /Gm /ZI /Od /D "_DEBUG" /D "WIN32" /D "UNIX" /D "unix" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FR"$(INTDIR)\\" /FD /GZ /c 
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET).pdb" /debug /pdbtype:sept /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" 
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
 
@@ -40,10 +38,7 @@ realclean : clean
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-"$(BASDIR)"	:
-    if not exist "$(BASDIR)/$(NULL)" mkdir "$(BASDIR)"
-
-"$(INTDIR)" : "$(BASDIR)"
+"$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
 {$(GDLPP_SRC)}.c{$(INTDIR)}.obj::
