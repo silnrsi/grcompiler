@@ -1,17 +1,17 @@
 Source: grcompiler
-Build-Depends: autotools-dev, cdbs (>= 0.4.27), debhelper (>= 7.0), docbook2x, pkg-config, libicu-dev (>= 3.6)
+Build-Depends: autotools-dev, cdbs (>= 0.4.27), debhelper (>= 7.0), docbook2x, pkg-config, libicu-dev (>= 4.2)
 Build-Conflicts: libgtkhtml3.2-dev, libgtkhtml3.6-dev
 Section: devel
 Priority: optional
 Maintainer: Daniel Glassey <wdg@debian.org>
 Uploaders: Martin Hosken <martin_hosken@sil.org>
-Standards-Version: 3.8.4
+Standards-Version: 3.9.3.1
 
 Package: grcompiler
 Architecture: any
 Section: devel
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: libgraphite3, pango-graphite
+Suggests: libgraphite2-2.0.0, pango-graphite, iceweasel (>= 11.0) | firefox (>= 11.0), libreoffice
 Description: Compiler of smart (graphite) fonts
  SILGraphite is a system that can be used to create and use "smart
  fonts" capable of displaying writing systems with various complex
