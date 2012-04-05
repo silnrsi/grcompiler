@@ -1,14 +1,10 @@
 #!/usr/bin/make -f
 
-#DEB_AUTO_UPDATE_DEBIAN_CONTROL:=yes
+%:
+	dh $@
 
-#DEB_TAR_SRCDIR := grcompiler-2.4.5
+override_dh_compress:
+	dh_compress -X.pdf
 
-#include /usr/share/cdbs/1/rules/tarball.mk
-
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/autotools.mk
-
-DEB_COMPRESS := .pdf
 
 
