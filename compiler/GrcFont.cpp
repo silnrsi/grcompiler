@@ -1094,6 +1094,7 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	int * prgnEndPt = (cContours > CONTOUR_BUF_SIZE) ? new int[cContours] : rgnEndPtBuf;
 	int fRet = false;
 	size_t cTmpCnt = cContours;
+	size_t cTmpPts = 0;
 
 	if (!TtfUtil::GlyfContourEndPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, 
 		prgnEndPt, cTmpCnt))
@@ -1106,7 +1107,7 @@ int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt,
 	prgfOnCurve = (cPoints > POINT_BUF_SIZE) ? new bool[cPoints] : rgfOnCurveBuf;
 	prgnX = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnXBuf;
 	prgnY = (cPoints > POINT_BUF_SIZE) ? new int[cPoints] : rgnYBuf;
-	size_t cTmpPts = cPoints;
+	cTmpPts = cPoints;
 
 	if (!TtfUtil::GlyfPoints(wGlyphID, m_pGlyf, m_pLoca, m_cLoca, m_pHead, prgnEndPt,
 		cContours, prgnX, prgnY, prgfOnCurve, cTmpPts))
