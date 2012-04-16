@@ -3399,8 +3399,8 @@ unsigned int CalcCheckSum(const void * pluTable, size_t cluSize)
 {
 	Assert(!(cluSize & 0x00000003));
 	unsigned int  luCheckSum = 0;
-    const DWORD *        element = static_cast<const DWORD *>(pluTable);
-	const DWORD *const   end = element + cluSize / sizeof(DWORD);
+    const uint32 *        element = static_cast<const uint32 *>(pluTable);
+	const uint32 *const   end = element + cluSize / sizeof(uint32);
     for (;element != end; ++element)
 		luCheckSum += read(*element);
 
