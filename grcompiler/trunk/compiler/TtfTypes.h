@@ -61,7 +61,8 @@ enum
 		return r;
 	}
 
-	// This is the generic read function which does the swapping
+	// This is the generic read function which does the swapping if needed.
+	// It needs to be overridden for little-endian systems.
 	template<typename T> inline T read(const T d) {
 		return d;
 	}
@@ -81,6 +82,10 @@ enum
 	
 	template<> inline int32 read(const int32 d) {
 		return rev32(d);
+	}
+
+	template<> inline DWORD read(const DWORD d) {
+		return (DWORD)rev32((int32)d);
 	}
 #endif
 
