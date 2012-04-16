@@ -28,7 +28,7 @@ GrcRegressionTest_SOURCES = \
 # FontStubb.cpp
 
 check-local: GrcRegressionTest
-	$(top_srcdir)/regtest -v -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest -d . $(top_srcdir)/fonts
+	$(top_srcdir)/regtest -k -v -g ../../compiler/grcompiler -p ../../preprocessor/gdlpp -r ./GrcRegressionTest -d . $(top_srcdir)/fonts
 
 dist-hook:
 	rm -f regtest.log gdlerr.txt grcregtest.log
