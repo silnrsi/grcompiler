@@ -2,6 +2,7 @@
 
 use IO::File;
 use Getopt::Long;
+use File::Compare;
 
 my (%opts);
 GetOptions(\%opts, 'dir|d=s', 'compiler|g=s', 'help|h|?', 'icu|i', 'keep|k', 'output|o=s', 'preprocessor|p=s', 'verbose|v', 'testengine|r=s', 'version=i', 'warning|w=i@');
@@ -110,6 +111,12 @@ foreach $f (@fonts)
                 print "job error $res\n";
                 $errors += $res;
                 $failed = 1;
+            }
+            else
+            {
+                print "Comparing $r and $b\n";
+                $failed = compare($r, $b);
+                print "comparison error in $f\n" if ($failed);
             }
             unlink $r unless ($opts{'keep'} || $failed);
         }
