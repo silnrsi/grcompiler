@@ -47,6 +47,11 @@ grcregtest.log :
  	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v2.ttf $(FONTS)\PigLatinTest_v2.ttf
  	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v3.ttf $(FONTS)\PigLatinTest_v3.ttf
  	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PadaukBenchmark_v3.ttf $(FONTS)\PadaukTest.ttf
+	- cmp --verbose $(FONTS)/SchBenchmark.ttf $(FONTS)/SchTest.ttf
+	- cmp --verbose $(FONTS)/CharisBenchmark.ttf $(FONTS)/CharisTest.ttf
+	- cmp --verbose $(FONTS)/PigLatinBenchmark_v2.ttf $(FONTS)/PigLatinTest_v2.ttf
+	- cmp --verbose $(FONTS)/PigLatinBenchmark_v3.ttf $(FONTS)/PigLatinTest_v3.ttf
+	- cmp --verbose $(FONTS)/PadaukBenchmark_v3.ttf $(FONTS)/PadaukTest.ttf
 
 regtest.log :
 	$(RTEXE)\GrcRegressionTest.exe -l regtest.log $(FONTS)\SchBenchmark.ttf $(FONTS)\SchTest.ttf
