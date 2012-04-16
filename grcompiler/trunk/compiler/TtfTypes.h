@@ -83,10 +83,6 @@ enum
 	template<> inline int32 read(const int32 d) {
 		return rev32(d);
 	}
-
-	template<> inline DWORD read(const DWORD d) {
-		return (DWORD)rev32((int32)d);
-	}
 #endif
 
 	template <int R, typename T>
