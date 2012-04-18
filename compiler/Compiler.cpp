@@ -1389,10 +1389,9 @@ void GrcManager::DebugGlyphAttributes()
 
 				if (fAnyNonZero == false)
 				{
+					strmOut << wGlyphID << "  [";
 					DebugHex(strmOut, wGlyphID);
-//					if (wGlyphID < 0x0100)
-//						strmOut << " '" << (char)wGlyphID << "'";
-					strmOut << "  (" << wGlyphID << ")" << "\n";
+					strmOut << "]\n";
 				}
 
 				fAnyNonZero = true;
@@ -1408,7 +1407,11 @@ void GrcManager::DebugGlyphAttributes()
 				{
 					strmOut  << nValue;
 					if (nValue > 9 || nValue < 0)
-						strmOut << " (0x" << GdlGlyphDefn::GlyphIDString(nValue) << ")";
+					{
+						strmOut << " [";
+						DebugHex(strmOut, nValue);
+						strmOut << "]";
+					}
 					strmOut << "\n";
 				}
 

@@ -521,7 +521,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 						{
 							g_errorList.AddWarning(4503, this,
 								"Unicode character U+",
-								GlyphIDString(nUnicode),
+								UsvString(nUnicode),
 								" (ie, codepoint '",
 								rgchCdPt,
 								"' in codepage ",
@@ -532,7 +532,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 						else
 							g_errorList.AddError(4112, this,
 								"Unicode character U+",
-								GlyphIDString(nUnicode),
+								UsvString(nUnicode),
 								" (ie, codepoint '",
 								rgchCdPt,
 								"' in codepage ",
@@ -559,7 +559,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 				if (nUnicode == 0)
 					g_errorList.AddError(4114, this,
 						"Codepoint 0x",
-						GlyphIDString(w),
+						UsvString(w),
 						" not valid for codepage ",
 						rgchCdPg);
 				else
@@ -571,9 +571,9 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 						{
 							g_errorList.AddWarning(4504, this,
 								"Unicode character U+",
-								GlyphIDString(nUnicode),
+								UsvString(nUnicode),
 								" (ie, codepoint 0x",
-								GlyphIDString(w),
+								UsvString(w),
 								" in codepage ",
 								rgchCdPg,
 								") not present in cmap; definition will be ignored");
@@ -582,9 +582,9 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLi
 						else
 							g_errorList.AddError(4115, this,
 								"Unicode character U+",
-								GlyphIDString(nUnicode),
+								UsvString(nUnicode),
 								" (ie, codepoint 0x",
-								GlyphIDString(w),
+								UsvString(w),
 								" in codepage ",
 								rgchCdPg,
 								") not present in cmap");
@@ -1581,7 +1581,7 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 	{
 		g_errorList.AddWarning(4510, NULL,
 			"Default Unicode bidi char type for 0x",
-			GdlGlyphDefn::GlyphIDString(wUnicode), " = ", staCode,
+			GdlGlyphDefn::UsvString(wUnicode), " = ", staCode,
 			", which is not handled; char will be treated as neutral (ON)");
 	}
 	// otherwise the issue is irrelevant; don't bother with the warning
@@ -1678,7 +1678,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 							char rgch[20];
 							itoa(nGPointValue, rgch, 10);
 							g_errorList.AddWarning(4512, NULL,
-								"Invalid path for glyph 0x",
+								"Invalid path for glyph ",
 								GdlGlyphDefn::GlyphIDString(wGlyphID),
 								": ",
 								rgch,
@@ -1850,7 +1850,7 @@ void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
 						g_errorList.AddWarning(4513, pexpGpoint,
 							"Both x/y coordinates and gpoint are defined for ",
 							psymBasePt->FullName(),
-							" for glyph 0x",
+							" for glyph ",
 							GdlGlyphDefn::GlyphIDString(wGlyphID),
 							"; only gpoint will be used");
 					}
@@ -2457,7 +2457,7 @@ void GdlGlyphDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 			g_errorList.AddError(4138, pgdlAvsOrExp,
 				"Glyph attribute '",
 				psymGlyphAttr->FullName(),
-				"' is not defined for glyph 0x",
+				"' is not defined for glyph ",
 				GlyphIDString(wGlyphID));
 		}
 	}
@@ -2566,7 +2566,7 @@ void GdlGlyphDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 //				g_errorList.AddWarning(4516, pgdlAvsOrExp,
 //					"Both x/y coordinates and gpoint are defined for ",
 //					psymGlyphAttr->FullName(),
-//					" for glyph 0x",
+//					" for glyph ",
 //					GlyphIDString(wGlyphID),
 //					"; only gpoint will be used");
 //			}
@@ -2595,7 +2595,7 @@ void GdlGlyphDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 			g_errorList.AddWarning(4517, pgdlAvsOrExp,
 				"Point '",
 				psymGlyphAttr->FullName(),
-				"' not completely defined for glyph 0x",
+				"' not completely defined for glyph ",
 				GlyphIDString(wGlyphID));
 		}
 	}
@@ -2652,7 +2652,7 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 			g_errorList.AddError(4139, pgdlSetAttrItem,
 				"Top of box for ",
 				psymCompRef->FullName(),
-				" not defined for glyph 0x",
+				" not defined for glyph ",
 				GlyphIDString(wGlyphID));
 		}
 		if (!psymBottom || !pgax->Defined(wGlyphID, psymBottom->InternalID()))
@@ -2660,7 +2660,7 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 			g_errorList.AddError(4140, pgdlSetAttrItem,
 				"Bottom of box for ",
 				psymCompRef->FullName(),
-				" not defined for glyph 0x",
+				" not defined for glyph ",
 				GlyphIDString(wGlyphID));
 		}
 		if (!psymLeft || !pgax->Defined(wGlyphID, psymLeft->InternalID()))
@@ -2668,7 +2668,7 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 			g_errorList.AddError(4141, pgdlSetAttrItem,
 				"Left of box for ",
 				psymCompRef->FullName(),
-				" not defined for glyph 0x",
+				" not defined for glyph ",
 				GlyphIDString(wGlyphID));
 		}
 		if (!psymRight || !pgax->Defined(wGlyphID, psymRight->InternalID()))
@@ -2676,7 +2676,7 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 			g_errorList.AddError(4142, pgdlSetAttrItem,
 				"Right of box for ",
 				psymCompRef->FullName(),
-				" not defined for glyph 0x",
+				" not defined for glyph ",
 				GlyphIDString(wGlyphID));
 		}
 	}
@@ -2799,7 +2799,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 						g_errorList.AddError(4143, pexp,
 							"Could not resolve definition of glyph attribute ",
 							m_vpsymGlyphAttrs[iAttrID]->FullName(),
-							" for glyph 0x",
+							" for glyph ",
 							GdlGlyphDefn::GlyphIDString(wGlyphID));
 					}
 					else if (n <= nMinValue)
@@ -2811,7 +2811,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 						g_errorList.AddError(4144, pexp,
 							"Value of glyph attribute ",
 							m_vpsymGlyphAttrs[iAttrID]->FullName(),
-							" for glyph 0x",
+							" for glyph ",
 							GdlGlyphDefn::GlyphIDString(wGlyphID),
 							" = ", rgch1,
 							"; minimum is ",
@@ -2826,7 +2826,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 						g_errorList.AddError(4145, pexp,
 							"Value of glyph attribute ",
 							m_vpsymGlyphAttrs[iAttrID]->FullName(),
-							" for glyph 0x",
+							" for glyph ",
 							GdlGlyphDefn::GlyphIDString(wGlyphID),
 							" = ", rgch1,
 							"; maximum is ",
