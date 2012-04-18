@@ -386,7 +386,8 @@ int main(int argc, char * argv[])
 
 	if (!fFatalErr)
 	{
-		fFatalErr = (!g_cman.PreCompile(pfont) && !g_errorList.AnyFatalErrors());
+		fFatalErr = !g_cman.PreCompile(pfont);
+		fFatalErr = fFatalErr || g_errorList.AnyFatalErrors();
 		if (fFatalErr)
 		{
 			std::cout << "Compilation failed.\n";
