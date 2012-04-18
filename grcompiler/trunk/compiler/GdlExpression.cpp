@@ -1721,7 +1721,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 			g_errorList.AddError(2129, this,
 				"The glyph attribute ",
 				m_psymName->FullName(),
-				" is not defined for glyph 0x",
+				" is not defined for glyph ",
 				GdlGlyphDefn::GlyphIDString(wGlyphID));
 			return NULL;
 		}
@@ -1730,7 +1730,7 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 			g_errorList.AddError(2130, this,
 				"Circular definition of glyph attribute ",
 				m_psymName->FullName(),
-				" for glyph 0x",
+				" for glyph ",
 				GdlGlyphDefn::GlyphIDString(wGlyphID));
 			return NULL;
 		}

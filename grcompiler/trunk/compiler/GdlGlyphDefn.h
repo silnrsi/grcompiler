@@ -244,7 +244,25 @@ public:
 	static std::string GlyphIDString(utf16 wGlyphID)
 	{
 		char rgch[20];
-		itoa(int(wGlyphID), rgch, 16);
+		itoa(int(wGlyphID), rgch, 10);
+		std::string staRet(rgch);
+		staRet += " [0x";
+
+		char rgchHex[20];
+		itoa(int(wGlyphID), rgchHex, 16);
+		std::string staHex(rgchHex);
+		for (int ich = staHex.size(); ich < 4; ich++)
+			staRet += "0";
+		staRet += staHex;
+		staRet += "]";
+
+		return staRet;
+	}
+
+	static std::string UsvString(utf16 wUsv)
+	{
+		char rgch[20];
+		itoa(int(wUsv), rgch, 16);
 		std::string staNum(rgch);
 		std::string staRet;
 		for (int ich = staNum.size(); ich < 4; ich++)

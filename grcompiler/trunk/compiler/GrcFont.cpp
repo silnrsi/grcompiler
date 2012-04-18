@@ -479,7 +479,7 @@ int GrcFont::ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * p
 	g_errorList.AddError(119, pgdlobj,
 		"Cannot find point number for path number ",
 		rgch,
-		" in glyph 0x",
+		" in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return -1;
 }
@@ -550,7 +550,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 		if (!TtfUtil::HorMetrics(wGlyphID, m_pHmtx, m_cHmtx, m_pHhea, nLsb, nAdvWid))
 		{
 			g_errorList.AddError(120, pgdlobj, 
-				"Unable to get horizontal metrics for glyph 0x", 
+				"Unable to get horizontal metrics for glyph ", 
 				GdlGlyphDefn::GlyphIDString(wGlyphID));
 			return INT_MIN;
 		}
@@ -573,7 +573,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 			return nAdvWid; // for space. RSB same as adv width to agree with compiler
 
 		g_errorList.AddWarning(509, pgdlobj, 
-			"Requesting bounding box metric for white space glyph 0x", 
+			"Requesting bounding box metric for white space glyph ", 
 			GdlGlyphDefn::GlyphIDString(wGlyphID), 
 			"; 0 will be used");
 		return 0; // for space, all BB metrics are zero
@@ -651,7 +651,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	}
 
 	g_errorList.AddError(121, pgdlobj, 
-		"Unable to get bounding box for glyph 0x", 
+		"Unable to get bounding box for glyph ", 
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return INT_MIN;
 }
@@ -698,7 +698,7 @@ bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj
 	g_errorList.AddError(122, pgdlobj,
 		"Cannot find contour for point number ",
 		rgch,
-		" in glyph 0x",
+		" in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return true; // safest fallback value
 }
@@ -728,7 +728,7 @@ int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY,
 	g_errorList.AddError(123, pgdlobj,
 		"Cannot find coordinates for point number ",
 		rgch,
-		" in glyph 0x",
+		" in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return false;
 }
@@ -776,7 +776,7 @@ int GrcFont::GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlO
 	g_errorList.AddWarning(510, pgdlobj,
 		"Cannot find point number for coordinates (",
 		rgch1, ", ", rgch2,
-		") in glyph 0x",
+		") in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	
 	//	For testing:
