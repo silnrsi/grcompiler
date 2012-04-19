@@ -18,7 +18,8 @@ Compiler versions:
 	4.0		- pass constraints (Silf table 3.1)
 			- large set (> 256) of replacement classes
 	4.1		- mirror glyph attributes (Silf table 2.1 or 3.2)
-	5.0		- large number of glyphs (> 64K) in replacement classes (Silf table 4.0)
+	4.2		- large number of glyphs (> 64K) in replacement classes (Silf table 4.0);
+				segsplit and extra LB flag
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************

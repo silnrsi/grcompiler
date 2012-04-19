@@ -1,5 +1,20 @@
 This is the changelog for the SIL Graphite Compiler project
 
+19 Apr 2012  Daniel Glassey
+	Version 4.2
+	
+2 Apr 2012  Sharon Correll
+	Added -wall option.
+	
+20 Mar 2012  Sharon Correll
+	Added line-break flag for Graphite2 optimization.
+
+30 Jan 2012  Sharon Correll
+	Added segsplit split attribute.
+	
+17 Nov 2012  Sharon Correll
+	Silf version 4.0 - large number of glyphs in replacement classes.
+
 3 Oct 2011  Sharon Correll
 	Support mirroing glyph attributes.
 	
