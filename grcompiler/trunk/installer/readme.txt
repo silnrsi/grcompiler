@@ -58,6 +58,8 @@ Options:
 
 -wNNNN - ignore warning with the given number.
 
+-wall - show all warnings (warnings can be hidden by adding subsequent -wNNNN options).
+
 
 TESTING THE INSTALLATION
 
@@ -67,6 +69,21 @@ The file "allcaps.gdl" is a very simple program that you can try to compile. It 
 UNINSTALLING THE PROGRAM
 
 To uninstall, run "unins000.exe".
+
+
+CHANGES SINCE VERSION 4.1
+
+* Handle a large number of glyphs in replacement classes; this will produce Silf table v 4.0.
+
+* Ensure that requesting the metrics of a pseudo-glyph will return the metrics of the corresponding actual glyph.
+
+* Error messages and debugger files use decimal for glyph IDs.
+
+* Add the segsplit slot attribute, to be used by the Graphite2 engine for caching optimization.
+
+* Added a line-break flag to permit optimization in Graphite2.
+
+* Fixed problems with Macintosh strings in the name table.
 
 
 CHANGES SINCE VERSION 2.4
@@ -144,8 +161,6 @@ KNOWN BUGS AND INFELICITIES
 
 The following are known bugs and unexpected behaviors in the Graphite compiler:
 
-* If you try to compile a GDL program that does not exist, you may get a very unhelpful error message.
-
 * Using "bb" as part of a glyph name can be problematic, because the #include mechanism replaces it with "boundingbox". Workaround: for Unicode values, use BB instead.
 
 * Postscript names: some problems have been reported with the handling of Postscript names by the compiler. The development team is unsure as to the extent of the problem.
@@ -153,3 +168,5 @@ The following are known bugs and unexpected behaviors in the Graphite compiler:
 * The Graphite compiler may occasionally give spurious warnings about inconsistent or inappropriate glyph attribute types. These may usually be safely ignored.
 
 * There is an obscure bug with embedded tables and passes. Workaround: avoid embedding passes in other passes.
+
+* If you try to compile a GDL program that does not exist, you may get a very unhelpful error message.
