@@ -3141,15 +3141,15 @@ void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut
 	if (fParens)
 		strmOut << "(";
 	m_pexpOperand1->PrettyPrint(pcman, strmOut, fXml, true);
-	if (strcmp(m_psymOperator->FullName().data(), "&&"))
+	if (fXml && strcmp(m_psymOperator->FullName().data(), "&&") == 0)
 		strmOut << " &amp;&amp; ";
-	else if (strcmp(m_psymOperator->FullName().data(), "<"))
+	else if (fXml && strcmp(m_psymOperator->FullName().data(), "<") == 0)
 		strmOut << " &lt; ";
-	else if (strcmp(m_psymOperator->FullName().data(), "<="))
+	else if (fXml && strcmp(m_psymOperator->FullName().data(), "<=") == 0)
 		strmOut << " &lt;= ";
-	else if (strcmp(m_psymOperator->FullName().data(), ">"))
+	else if (fXml && strcmp(m_psymOperator->FullName().data(), ">") == 0)
 		strmOut << " &gt; ";
-	else if (strcmp(m_psymOperator->FullName().data(), ">="))
+	else if (fXml && strcmp(m_psymOperator->FullName().data(), ">=") == 0)
 		strmOut << " &gt;= ";
 	else
 		strmOut << " " << m_psymOperator->FullName().data() << " ";
