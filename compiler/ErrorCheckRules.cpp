@@ -821,11 +821,16 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 /*--------------------------------------------------------------------------------------------*/
 bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	GdlRenderer * prndr, GdlRule * /*prule*/, Symbol /*psymTable*/,
-	int /*grfrco*/, int /*irit*/, bool /*fAnyAssocs*/,
+	int /*grfrco*/, int irit, bool /*fAnyAssocs*/,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & /*vcwClassSizes*/ )
+	std::vector<int> & vcwClassSizes )
 {
 	bool fOkay = true;
+
+	if (vcwClassSizes[irit] == 0)
+	{
+		g_errorList.AddError(3162, this, "Empty class for item ", PosString());
+	}
 
 	//	Check constraint.
 	if (m_pexpConstraint)
