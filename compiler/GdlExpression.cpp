@@ -2767,7 +2767,8 @@ bool GdlBinaryExpression::CheckAttachToLookup()
 	// Assumes SimplifyAndUnscale has already been called.
 	GdlLookupExpression * pexpLookupOp1 = dynamic_cast<GdlLookupExpression *>(m_pexpOperand1);
 	GdlNumericExpression * pexpNumOp2 = dynamic_cast<GdlNumericExpression *>(m_pexpOperand2);
-	if (pexpLookupOp1 && pexpLookupOp1->m_psymName->IsAttachTo())
+	if (pexpLookupOp1 && pexpLookupOp1->m_psymName->FitsSymbolType(ksymtSlotAttr) 
+		&& pexpLookupOp1->m_psymName->IsAttachTo())
 	{
 		if (!pexpNumOp2 || pexpNumOp2->m_nValue != 0)
 		{
