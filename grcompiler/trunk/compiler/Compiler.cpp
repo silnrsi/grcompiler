@@ -1611,8 +1611,8 @@ void GdlSetAttrItem::ContextPrettyPrint(GrcManager * pcman, GdlRule * /*prule*/,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fSpace,
-	bool fXml)
+void GdlRuleItem::ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
+	bool fSpace)
 {
 	if (m_pexpConstraint)
 	{
