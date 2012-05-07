@@ -68,9 +68,22 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	{
 		if (fFixPassConstraints && fxdRequested <= 0x00030000 && fxdVersionNeeded > 0x00030000)
 		{
-			// Converting pass constraints to rule constraints should take care of the
-			// incompatibility.
-			m_prndr->MovePassConstraintsToRules(fxdRequested);
+			if (UserSpecifiedVersion())
+			{
+				// Converting pass constraints to rule constraints should take care of the
+				// incompatibility.
+				m_prndr->MovePassConstraintsToRules(fxdRequested);
+			}
+			else
+			{
+				g_errorList.AddWarning(3501, NULL,
+					"Version ",
+					VersionString(fxdRequested),
+					" of the Silf table is inadequate to handle pass constraints; version ",
+					VersionString(fxdVersionNeeded),
+					" will be generated.");
+				SetSilfTableVersion(fxdVersionNeeded, false);
+			}
 		}
 		else 
 		{
