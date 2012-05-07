@@ -1,6 +1,12 @@
-grcompiler (4.2-1~palaso1) UNRELEASED; urgency=low
+grcompiler (4.2~pre2-1~palaso2) UNRELEASED; urgency=low
 
-  * New upstream version 4.2
+  * debian/copyright machine readable format
+
+ -- Daniel Glassey <wdg@debian.org>  Mon, 07 May 2012 12:11:55 +0700
+
+grcompiler (4.2~pre1-1~palaso1) UNRELEASED; urgency=low
+
+  * New upstream version 4.2 prerelease
   * updated dependencies to suggest iceweasel/firefox and libreoffice
       in versions that have graphite support
 
