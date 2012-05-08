@@ -55,11 +55,11 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	std::ifstream strmSrc(pchSrcFileName, std::ios::binary);
 	GrcBinaryStream bstrmDst(pchDstFileName); // this deletes pre-existing file
 
-	OffsetSubTable OffsetTableSrc;
+	OffsetSubTable offsetTableSrc;
 
-	OffsetSubTable OffsetTableMin;
+	OffsetSubTable offsetTableMin;
 	uint8* pDirEntryMin;
-	uint16 cTableMin;
+	uint16 cTableMinOut;
 
 	uint16 cTableCopy;
 	std::ifstream * pstrmCopy;
@@ -80,14 +80,41 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
     OffsetSubTable::Entry *pDirEntrySrc;
 
     if (!GetHeaderInfo(lOffset, lSize)) return 1;
-    strmSrc.read((char *)&OffsetTableSrc, lSize + lOffset);
-    if (!GetTableDirInfo(&OffsetTableSrc, lOffset, lSize)) return 1;
-    uint16 cTableSrc = read(OffsetTableSrc.num_tables);
+    strmSrc.read((char *)&offsetTableSrc, lSize + lOffset);
+    if (!GetTableDirInfo(&offsetTableSrc, lOffset, lSize)) return 1;
+    uint16 cTableSrc = read(offsetTableSrc.num_tables);
     pDirEntrySrc = (OffsetSubTable::Entry *)new uint8[lSize];
     strmSrc.read((char *)pDirEntrySrc, lSize);
-    if (!GetTableInfo(ktiCmap, &OffsetTableSrc, pDirEntrySrc, iTableCmapSrc, iTableCmapLen)) return 2;
-    if (!GetTableInfo(ktiOs2, &OffsetTableSrc, pDirEntrySrc, iTableOS2Src, iTableOS2Len)) return 2;
-    if (!GetTableInfo(ktiHead, &OffsetTableSrc, pDirEntrySrc, iTableHeadSrc, iTableHeadLen)) return 2;
+    if (!GetTableInfo(ktiCmap, &offsetTableSrc, pDirEntrySrc, iTableCmapSrc, iTableCmapLen)) return 2;
+    if (!GetTableInfo(ktiOs2, &offsetTableSrc, pDirEntrySrc, iTableOS2Src, iTableOS2Len)) return 2;
+    if (!GetTableInfo(ktiHead, &offsetTableSrc, pDirEntrySrc, iTableHeadSrc, iTableHeadLen)) return 2;
+
+	// Read features from input font, if any. This is so we can avoid duplicating existing
+	// feature strings in the name table.
+	size_t iTableFeatSrc, iTableFeatLen;
+	if (GetTableInfo(ktiFeat, &offsetTableSrc, pDirEntrySrc, iTableFeatSrc, iTableFeatLen))
+	{
+		size_t iTableNameSrc, iTableNameLen;
+		GetTableInfo(ktiName, &offsetTableSrc, pDirEntrySrc, iTableNameSrc, iTableNameLen);
+		ReadSourceFontFeatures(strmSrc, iTableFeatSrc, iTableFeatLen,
+			iTableNameSrc, iTableNameLen);
+	}
+
+	// Count up the number of existing Graphite tables.
+	int cOldGraphiteTables = 0;
+	uint32 tagSilf = TableIdTag(ktiSilf);
+	uint32 tagGloc = TableIdTag(ktiGloc);
+	uint32 tagGlat = TableIdTag(ktiGlat);
+	uint32 tagFeat = TableIdTag(ktiFeat);
+	uint32 tagSill = TableIdTag(ktiSill);
+	uint32 tagSile = TableIdTag(ktiSile);
+	for (int iTable = 0; iTable < cTableSrc; iTable++)
+	{
+		uint32 tag = read(pDirEntrySrc[iTable].tag);
+		if (tag == tagSilf || tag == tagGloc || tag == tagGlat || tag == tagFeat || tag == tagSill
+				|| tag == tagSile)
+			cOldGraphiteTables++;
+	}
 
 	// Do the same for the minimal control file.
 	const char * rgchEnvVarName = "GDLPP_PREFS";
@@ -112,11 +139,11 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
         size_t lOffset, lSize;
 
         if (!GetHeaderInfo(lOffset, lSize)) return 3;
-		strmMin.read((char *)&OffsetTableMin, lOffset + lSize);
-		if (read(OffsetTableMin.scaler_type) != OneFix)
+		strmMin.read((char *)&offsetTableMin, lOffset + lSize);
+		if (read(offsetTableMin.scaler_type) != OneFix)
 			return 3;
-        cTableMin = read(OffsetTableMin.num_tables);
-        if (!GetTableDirInfo(&OffsetTableSrc, lOffset, lSize)) return 3;
+        int cTableIn = read(offsetTableMin.num_tables);
+        if (!GetTableDirInfo(&offsetTableSrc, lOffset, lSize)) return 3;
         pDirEntryMin = new uint8[lSize];
         strmSrc.read((char *)&pDirEntryMin, lSize);
 
@@ -129,20 +156,22 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		TtfUtil::HeadTableModifyTime(pbTableHeadSrc, &rgnModifyTime[0], &rgnModifyTime[1]);
 		delete[] pbTableHeadSrc;
 
-		cTableOut = cTableMin + kcExtraTables + 1; // Six extra tables: Sile, Silf, Feat, Gloc, Glat, Sill
+		cTableOut = cTableIn - cOldGraphiteTables + kcExtraTables + 1; // Six extra tables: Sile, Silf, Feat, Gloc, Glat, Sill
 		// This is the file we're really copying.
-		pOffsetTableOut = &OffsetTableMin;
-		cTableCopy = cTableMin;
+		pOffsetTableOut = &offsetTableMin;
+		cTableCopy = cTableIn - cOldGraphiteTables;	// number we actually copy
+		cTableMinOut = cTableCopy;		// index of first Graphite table
 		pstrmCopy = &strmMin;
 		pDirEntryCopy = (OffsetSubTable::Entry *)pDirEntryMin;
 	}
 	else
 	{
 		//	We'll output a copy of the base font, glyphs and all.
-		cTableOut = cTableSrc + kcExtraTables; // Five extra tables: Silf, Feat, Gloc, Glat, Sill
-		cTableMin = cTableSrc;
-		pOffsetTableOut = &OffsetTableSrc;
-		cTableCopy = cTableSrc;
+		cTableOut = cTableSrc - cOldGraphiteTables + kcExtraTables; // Five extra tables: Silf, Feat, Gloc, Glat, Sill
+		cTableMinOut = cTableSrc - cOldGraphiteTables;
+		pOffsetTableOut = &offsetTableSrc;
+		cTableCopy = cTableSrc - cOldGraphiteTables;	// number we actually copy
+		cTableMinOut = cTableCopy;		// index of first Graphite table
 		pstrmCopy = &strmSrc;
 		pDirEntryCopy = pDirEntrySrc;
 	}
@@ -150,7 +179,20 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	OffsetSubTable::Entry * pDirEntryOut;
 	if (!(pDirEntryOut = new OffsetSubTable::Entry[cTableOut]))
 		return 6;
-	memcpy(pDirEntryOut, pDirEntryCopy, cTableSrc * sizeof(OffsetSubTable::Entry));
+	int iTableOut = 0;
+	for (int iTable = 0; iTable < cTableSrc; iTable++)
+	{
+		uint32 tag = read(pDirEntrySrc[iTable].tag);
+		if (tag == tagSilf || tag == tagGloc || tag == tagGlat || tag == tagFeat || tag == tagSill
+				|| tag == tagSile)
+		{}
+		else
+		{
+			memcpy(pDirEntryOut + iTableOut, pDirEntryCopy + iTable, sizeof(OffsetSubTable::Entry));
+			iTableOut++;
+		}
+	}
+	////memcpy(pDirEntryOut, pDirEntryCopy, cTableSrc * sizeof(OffsetSubTable::Entry));
 
 	// Offset table: adjust for extra tables and output.
 	int nP2, nLog;
@@ -177,21 +219,32 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	ibTableOffset = PadLong(offsetof(OffsetSubTable, table_directory) + cTableOut * sizeof(OffsetSubTable::Entry));
 //	bstrmDst.SetPosition(ibTableOffset);
     bstrmDst.Write((char *)pDirEntryOut, cTableOut * sizeof(OffsetSubTable::Entry));
-	for (int i = 0; i < cTableCopy; i++)
+	int iOut = 0;
+	for (int iSrc = 0; iSrc < cTableCopy + cOldGraphiteTables; iSrc++)
 	{
 		// read table
 		uint32 ibOffset, cbSize;
-		cbSize = read(pDirEntryCopy[i].length); // dir entries are word aligned already
-		ibOffset = read(pDirEntryCopy[i].offset);
+		cbSize = read(pDirEntryCopy[iSrc].length); // dir entries are word aligned already
+		ibOffset = read(pDirEntryCopy[iSrc].offset);
 		if (!(pbTable = new uint8[cbSize]))
 			return 7;
 		pstrmCopy->seekg(ibOffset);
 		pstrmCopy->read((char *)pbTable, cbSize);
 
-		// merge the OS/2 tables from the minimal and source fonts
-		if (SeparateControlFile() && TableIdTag(ktiOs2) == read(pDirEntryCopy[i].tag))
+		uint32 tag = read(pDirEntryCopy[iSrc].tag);
+
+		if (tag == tagSilf || tag == tagGloc || tag == tagGlat || tag == tagFeat || tag == tagSill
+				|| tag == tagSile)
 		{
-			iOS2Tbl = i;
+			// Old Graphite table--ignore.
+			delete [] pbTable;
+			continue;
+		}
+		
+		else if (SeparateControlFile() && TableIdTag(ktiOs2) == tag)
+		{
+			// merge the OS/2 tables from the minimal and source fonts
+			iOS2Tbl = iOut;
 			uint8 * pbTableSrc;
 			int cbSizeSrc = read(pDirEntrySrc[iTableOS2Src].length);
 			int ibOffsetSrc = read(pDirEntrySrc[iTableOS2Src].offset);
@@ -203,14 +256,15 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			bstrmDst.SetPosition(ibTableOffset);
 			if (!OutputOS2Table(pbTableSrc, cbSizeSrc, pbTable, cbSize, &bstrmDst, &cbSize))
 				return 9;
-			pDirEntryOut[i].length = read(cbSize);
+			pDirEntryOut[iOut].length = read(cbSize);
 
 			delete[] pbTableSrc;
 		}
-		// generate a new cmap
-		else if (SeparateControlFile() && TableIdTag(ktiCmap) == read(pDirEntryCopy[i].tag))
+		
+		else if (SeparateControlFile() && TableIdTag(ktiCmap) == tag)
 		{
-			iCmapTbl = i;
+			// generate a new cmap
+			iCmapTbl = iOut;
 			uint8 * pbTableSrc;
 			int cbSizeSrc = read(pDirEntrySrc[iTableCmapSrc].length);
 			int ibOffsetSrc = read(pDirEntrySrc[iTableCmapSrc].offset);
@@ -221,23 +275,23 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 
 			bstrmDst.SetPosition(ibTableOffset);
 			OutputCmapTable(pbTableSrc, cbSizeSrc, &bstrmDst, &cbSize);
-			pDirEntryOut[i].length = read(cbSize);
+			pDirEntryOut[iOut].length = read(cbSize);
 
 			delete[] pbTableSrc;
 		}
 		else
 		{
 			// add the feature names and change the font name in the name table
-			if (TableIdTag(ktiName) == read(pDirEntryCopy[i].tag))
+			if (TableIdTag(ktiName) == tag)
 			{
-				iNameTbl = i;
+				iNameTbl = iOut;
 				if (!AddFeatsModFamily((fModFontName ? pchDstFontFamily : NULL), &pbTable, &cbSize))
 					return 11;
-				pDirEntryOut[i].length = read(cbSize);
+				pDirEntryOut[iOut].length = read(cbSize);
 			}
 
 			// remember offset and size of head table to adjust the file checksum later
-			if (TableIdTag(ktiHead) == read(pDirEntryCopy[i].tag))
+			if (TableIdTag(ktiHead) == tag)
 			{
 				ibHeadOffset = ibTableOffset;
 				cbHeadSize = cbSize;
@@ -249,18 +303,19 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		}
 
 		// adjust table's directory entry, offset will change since table directory is bigger
-		pDirEntryOut[i].offset = read(ibTableOffset);
+		pDirEntryOut[iOut].offset = read(ibTableOffset);
+		iOut++;
 
 		ibTableOffset = bstrmDst.SeekPadLong(ibTableOffset + cbSize);
 		delete [] pbTable;
 	}
 
-	// output our tables - Output*() methods handle 4 byte table alignment
-	// create directory entries for our tables
-	// can't set checksum because can't read table from GrcBinaryStream class (write only)
+	// Output our tables - Output*() methods handle 4 byte table alignment.
+	// Create directory entries for our tables.
+	// We can't set checksum because can't read table from GrcBinaryStream class (write only).
 	uint32 ibOffset,ibOffset2;
 	uint32 cbSize, cbSize2;
-	int nCurTable = cTableMin;
+	int nCurTable = cTableMinOut;
 	bstrmDst.SetPosition(ibTableOffset);
 
 	// Gloc
@@ -313,29 +368,29 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 
 	Assert(nCurTable == cTableOut);
 
-	// fix up file checksums in table directory for our tables and any we modified
+	// Fix up file checksums in table directory for our tables and any we modified.
 	uint32 luCheckSum;
-	for (int i = 0; i < cTableOut; i++)
+	for (int iOut = 0; iOut < cTableOut; iOut++)
 	{
-		if (i >= cTableCopy // one of our new Graphite tables
-			|| i == iNameTbl || i == iOS2Tbl || i == iCmapTbl)
-		{ // iterate over our tables
-			cbSize = PadLong(read(pDirEntryOut[i].length)); // find table size (tables are padded)
+		if (iOut >= cTableCopy // one of our new Graphite tables
+			|| iOut == iNameTbl || iOut == iOS2Tbl || iOut == iCmapTbl)
+		{	// iterate over our tables
+			cbSize = PadLong(read(pDirEntryOut[iOut].length)); // find table size (tables are padded)
 			if (!(pbTable = new uint8[cbSize]))
 				return 12;
-			bstrmDst.seekg(read(pDirEntryOut[i].offset));
+			bstrmDst.seekg(read(pDirEntryOut[iOut].offset));
 			bstrmDst.read((char *)pbTable, cbSize);
 			luCheckSum = CalcCheckSum(pbTable, cbSize);
-			pDirEntryOut[i].checksum = read(luCheckSum);
+			pDirEntryOut[iOut].checksum = read(luCheckSum);
 			delete [] pbTable;
 		}
 	}
 
 	// calc file checksum
 	luCheckSum = 0;
-	for (int i = 0; i < cTableOut; i++)
+	for (int iOut = 0; iOut < cTableOut; iOut++)
 	{
-		luCheckSum += read(pDirEntryOut[i].checksum);
+		luCheckSum += read(pDirEntryOut[iOut].checksum);
 	}
 	luCheckSum += CalcCheckSum(pDirEntryOut, sizeof(OffsetSubTable::Entry) * cTableOut);
 	luCheckSum += CalcCheckSum(pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
@@ -367,6 +422,66 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	delete[] pDirEntryOut;
 
 	return 0;
+}
+
+
+/*----------------------------------------------------------------------------------------------
+	Create a shadow version of the features based on what was in the original font (if any).
+	The purpose of this is to be able to compare existing feature label strings with what is
+	already in the name table and avoid unnecessary duplication.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::ReadSourceFontFeatures(std::ifstream & strmSrc,
+	size_t iTableFeatSrc, size_t iTableFeatLen, size_t iTableNameSrc, size_t iTableNameLen)
+{
+	// Get the contents of the name table.
+	uint8 * pNameTbl = new uint8[iTableNameLen];
+	strmSrc.seekg(iTableNameSrc);
+	strmSrc.read((char *)pNameTbl, iTableNameLen);
+
+	// Get and parse the contents of the Feat table.
+	uint8 * pFeatTbl = new uint8[iTableFeatLen];
+	strmSrc.seekg(iTableFeatSrc);
+    strmSrc.read((char *)pFeatTbl, iTableFeatLen);
+
+	uint8 * p = pFeatTbl;
+	int version = read(*((uint32*)p));	p += 4;
+	int cfeat = read(*((uint16*)p));	p +=2;
+	// reserved
+	uint16 tmp16 = read(*((uint16*)p));	p +=2;
+	uint32 tmp32 = read(*((uint32*)p));	p += 4;
+
+	std::vector<int> vncfset;
+	int ifeat;
+	for (ifeat = 0; ifeat < cfeat; ifeat++)
+	{
+		GdlFeatureDefn * pfeat = new GdlFeatureDefn();
+		m_vpfeatInput.push_back(pfeat);
+
+		pfeat->SetID(read(*((uint32*)p)));	p += 4;
+		int cfset = read(*((uint16*)p));	p +=2;
+		tmp16 = read(*((uint16*)p));		p +=2;	// reserved
+		int offset = read(*((uint32*)p));	p += 4;
+		int flags = read(*((uint16*)p));	p +=2;
+		int nNameID = read(*((uint16*)p));	p +=2;
+
+		pfeat->SetLabelFromNameTable(nNameID, 1033, pNameTbl);
+		vncfset.push_back(cfset);	// remember number of settings
+	}
+
+	// feature settings
+	for (ifeat = 0; ifeat < cfeat; ifeat++)
+	{
+		GdlFeatureDefn * pfeat = m_vpfeatInput[ifeat];
+		for (int ifset = 0; ifset < vncfset[ifeat]; ifset++)
+		{
+			GdlFeatureSetting * pfset = new GdlFeatureSetting();
+			pfeat->PushFeatureSetting(pfset);
+			
+			pfset->SetValue(read(*((uint16*)p)));	p +=2;
+			int nNameID = (read(*((uint16*)p)));	p +=2;
+			pfset->SetLabelFromNameTable(nNameID, 1033, pNameTbl);
+		}
+	}
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -479,13 +594,16 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			"Feature strings must start at ", rgch, " in the name table");
 	}
 	nNameTblId = max(nNameTblId, m_nNameTblStart);
+	int nNameTblMinNew = nNameTblId;
 
 	std::vector<std::wstring> vstuExtNames;
 	std::vector<uint16> vnLangIds;
 	std::vector<uint16> vnNameTblIds;
 
 	size_t cchwFeatStringData = 0;
-	if (!AssignFeatTableNameIds(nNameTblId, vstuExtNames, vnLangIds, vnNameTblIds, cchwFeatStringData))
+	if (!AssignFeatTableNameIds(nNameTblId, nNameTblMinNew,
+		vstuExtNames, vnLangIds, vnNameTblIds,
+		cchwFeatStringData, *ppNameTbl))
 	{
 		g_errorList.AddError(5101, NULL,
 			"Insufficient space available for feature strings in name table.");
@@ -612,7 +730,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	// modify font name and add feature names.
 	if (!AddFeatsModFamilyAux((uint8 *)pTblOld, cbTblOld, pTblNew, cbTblNew, 
 		vstuExtNames, vnLangIds, vnNameTblIds, 
-		pchwFamilyNameNew, cchwFamilyName, vpecToChange))
+		pchwFamilyNameNew, cchwFamilyName, vpecToChange, nNameTblMinNew))
 	{
 		return false;
 	}
@@ -687,12 +805,12 @@ bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords,
 				uint16 nameID = read(pRecord->name_id);
 				switch (nameID)
 				{
-				case n_family:		*piFamily = i; break;
-				case n_subfamily:	*piSubFamily = i; break;
+				case n_family:			*piFamily = i; break;
+				case n_subfamily:		*piSubFamily = i; break;
 				case n_fullname:		*piFullName = i; break;
-				case n_vendor:		*piVendor = i; break;
-				case n_postscript:	*piPSName = i; break;
-				case n_uniquename:	*piUniqueName = i; break;
+				case n_vendor:			*piVendor = i; break;
+				case n_postscript:		*piPSName = i; break;
+				case n_uniquename:		*piUniqueName = i; break;
 				case n_preferredfamily: *piPrefFamily = i; break;
 				case n_compatiblefull:  *piCompatibleFull = i; break;
 				default:
@@ -858,7 +976,8 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 	uint8 * pTblNew, uint32 /*cbTblNew*/,
 	std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 	std::vector<uint16> & vnNameTblIds, 
-	uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec)
+	uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec,
+	int nNameTblMinNew)
 {
     #pragma pack(1)
 	// Struct used to store data from directory entries that need to be sorted.
@@ -3001,13 +3120,13 @@ void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 /*----------------------------------------------------------------------------------------------
 	Convenient wrapper to call the same method in GdlRenderer.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId,
+bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
 	std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds,
 	std::vector<utf16> & vwNameTblIds,
-	size_t & cchwStringData)
+	size_t & cchwStringData, uint8 * pNameTbl)
 {
-	return m_prndr->AssignFeatTableNameIds(wFirstNameId, vstuExtNames, vwLangIds, 
-		vwNameTblIds, cchwStringData);
+	return m_prndr->AssignFeatTableNameIds(wFirstNameId, wNameIdMinNew,
+		vstuExtNames, vwLangIds, vwNameTblIds, cchwStringData, pNameTbl, m_vpfeatInput);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -3020,19 +3139,28 @@ bool GrcManager::AssignFeatTableNameIds(utf16 wFirstNameId,
 	The vectors are parallel. Elements numbered n contains the name string, lang ID, and 
 	name table ID for a given feature or setting.
 ----------------------------------------------------------------------------------------------*/
-bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId,
+bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
 	std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds,
-	std::vector<utf16> &vwNameTblIds,
-	size_t & cchwStringData)
+	std::vector<utf16> & vwNameTblIds,
+	size_t & cchwStringData, uint8 * pNameTbl, std::vector<GdlFeatureDefn *> & vpfeatInput)
 {
-	if (wFirstNameId > 32767) return false; // max allowed value
+	if (wFirstNameId > 32767)
+		return false; // max allowed value
+
+	int nNameIdNoName = -1;
+	int nPlatId, nEncId, nLangId;
+	char * rgchNoName = "NoName";
+	TtfUtil::GetNameIdForString(pNameTbl, nPlatId, nEncId, nLangId, nNameIdNoName,
+		rgchNoName, 6);
+
 	utf16 wNameTblId = wFirstNameId;
 	for (size_t ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
-		wNameTblId = m_vpfeat[ifeat]->SetNameTblIds(wNameTblId);
+		wNameTblId = m_vpfeat[ifeat]->SetNameTblIds(wNameTblId, pNameTbl, vpfeatInput);
 		if (wNameTblId > 32767)
 			return false;
-		m_vpfeat[ifeat]->NameTblInfo(vstuExtNames, vwLangIds, vwNameTblIds, cchwStringData);
+		m_vpfeat[ifeat]->NameTblInfo(vstuExtNames, vwLangIds, vwNameTblIds, cchwStringData,
+			wNameIdMinNew, nNameIdNoName);
 	}
 	return true;	
 }

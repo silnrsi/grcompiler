@@ -111,7 +111,7 @@ int main(int argc, char * argv[])
 	int cargExtra = 0;
 	bool fModFontName = false;
 
-	g_cman.SetOutputDebugFiles(false);
+	g_cman.SetOutputDebugFiles(false, false);
 	g_cman.SetSilfTableVersion(g_cman.DefaultSilfVersion(), false);
 	g_cman.SetSeparateControlFile(false);
 	g_cman.SetVerbose(true);
@@ -200,6 +200,12 @@ int main(int argc, char * argv[])
 		//		rgchOutputFile[0] = 0;
 		//	}
 		//}
+	}
+
+	if (strcmp(rgchOutputFile, pchFontFile) == 0)
+	{
+		g_errorList.AddError(142, NULL, "Input and output font files cannot be the same.");
+		fFatalErr = true;
 	}
 
 	if (rgchOutputFile[0] == 0)
@@ -410,10 +416,16 @@ int main(int argc, char * argv[])
 			g_cman.DebugClasses();
 			//g_cman.DebugOutput();
 			g_cman.DebugCmap(pfont);
-			g_cman.DebugXml(rgchOutputFile);
 			if (g_cman.IsVerbose())
 				std::cout << "Debug files generated.\n";
 		}
+		if (g_cman.OutputDebugXml())
+		{
+			g_cman.DebugXml(rgchOutputFile);
+			if ( g_cman.IsVerbose())
+				std::cout << "Debugger XML file generated.\n";
+		}
+
 		int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile,
 		rgchwOutputFontFamily, fModFontName, rgchwInputFontFamily);
 		if (nRet == 0)
@@ -488,7 +500,11 @@ void HandleCompilerOptions(char * arg)
 {
 	if (arg[1] == 'd')
 	{
-		g_cman.SetOutputDebugFiles(true);
+		g_cman.SetOutputDebugFiles(true, false);
+	}
+	else if (arg[1] == 'D')
+	{
+		g_cman.SetOutputDebugFiles(true, true);
 	}
 	else if (arg[1] == 'g')
 	{

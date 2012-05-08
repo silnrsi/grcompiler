@@ -170,12 +170,12 @@ int GrcFont::Init(GrcManager * pcman)
 		return 6;
 	}
 
-	if (IsGraphiteFont(pHdr, pTableDir))
-	{
-		g_errorList.AddError(111, NULL, 
-			"Font already has Graphite table(s) present.");
-		return 7;
-	}
+	//if (IsGraphiteFont(pHdr, pTableDir))
+	//{
+	//	g_errorList.AddError(111, NULL, 
+	//		"Font already has Graphite table(s) present.");
+	//	return 7;
+	//}
 
 	// cmap
 	if (!ReadTable(ktiCmap, pHdr, pTableDir, &m_pCmap, &m_cCmap))

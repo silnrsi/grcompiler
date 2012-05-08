@@ -194,7 +194,12 @@ public:
 	}
 
 	bool OutputDebugFiles()				{ return m_fOutputDebugFiles; }
-	void SetOutputDebugFiles(bool f)	{ m_fOutputDebugFiles = f; }
+	bool OutputDebugXml()				{ return m_fOutputDebugXml; }
+	void SetOutputDebugFiles(bool fXml, bool fOther)
+	{
+		m_fOutputDebugXml = fXml;
+		m_fOutputDebugFiles = fOther;
+	}
 	bool IgnoreBadGlyphs()				{ return m_fIgnoreBadGlyphs; }
 	void SetIgnoreBadGlyphs(bool f)		{ m_fIgnoreBadGlyphs = f; }
 	bool IsVerbose()					{ return m_verbose; }
@@ -347,10 +352,10 @@ public:
 	void CalculateContextOffsets();
 
 	//	Output:
-	bool AssignFeatTableNameIds(utf16 wFirstNameId,
+	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
 		std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds,
 		std::vector<utf16> & vwNameTblIds,
-		size_t & cchwStringData);
+		size_t & cchwStringData, uint8 * pNameTbl);
 	int OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		utf16 * pchDstFontFamily, bool fModFontName, utf16 * pchSrcFontFamily);
 	int FinalAttrValue(utf16 wGlyphID, int nAttrID);
@@ -370,7 +375,8 @@ protected:
 	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
 		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 		std::vector<uint16> & vnNameTblIds, 
-		uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec);
+		uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec,
+		int nNameTblMinNew);
 	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
 	bool OutputCmapTable(uint8 * pCmapTblSrc, uint32 cbCmapTblSrc,
@@ -388,6 +394,9 @@ protected:
 	void OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, int * pnFeatSize);
 	void OutputSileTable(GrcBinaryStream * pbstrm, utf16 * pchwFontName, long nChecksum);
 	void OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, int * pnSillSize);
+
+	void ReadSourceFontFeatures(std::ifstream & strmSrc, size_t iTableFeatSrc, size_t iTableFeatLen,
+		size_t iTableNameSrc, size_t iTableNameLen);
 
 public:
 
@@ -465,6 +474,7 @@ protected:
 	std::vector<GdlExpression *> m_vpexpPassConstraints;
 
 	bool m_fOutputDebugFiles;
+	bool m_fOutputDebugXml;
 
 	//	For compiler use:
 
@@ -527,6 +537,9 @@ protected:
 	int cReplcmntClasses;
 
 	bool m_verbose;
+	
+	// compiler
+	std::vector<GdlFeatureDefn *> m_vpfeatInput;	// features defined in the input font, if any
 
 public:
 	//	For test procedures:

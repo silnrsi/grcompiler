@@ -65,6 +65,7 @@ void GrcManager::Init()
 	m_prgvpglfcFsmClasses = NULL;
 
 	m_fOutputDebugFiles = false;
+	m_fOutputDebugXml = false;
 	m_fBasicJust = false;
 
 	m_nNameTblStart = -1;
@@ -116,6 +117,9 @@ void GrcManager::Clear()
 	for (i = 0; i < this->m_vplcls.size(); i++)
 		delete m_vplcls[i];
 	m_vplcls.clear();
+
+	for (i = 0; i < m_vpfeatInput.size(); ++i)
+		delete m_vpfeatInput[i];
 }
 
 

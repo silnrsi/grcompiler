@@ -12,7 +12,7 @@ Description:
 
 Here are how the error and warning IDs are assigned:
 
-global - highest error: 141 / highest warning: 511
+global - highest error: 142 / highest warning: 511
 		main.cpp
 		GrpParser.g
 		GrpLexer
