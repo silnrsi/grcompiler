@@ -77,6 +77,8 @@ namespace TtfUtil
 	bool GetNameInfo(const void * pName, int nPlatformId, int nEncodingId,
 		int nLangId, int nNameId, size_t & lOffset, size_t & lSize);
 	//size_t NameTableLength(const gr::byte * pTable);
+	bool GetNameIdForString(const void * pNameTblArg, int & nPlatformId, int & nEncodingId,
+		int & nLangId, int & nNameId, char * pBufIn, size_t lSizeIn);
 	int GetLangsForNames(const void * pName, int nPlatformId, int nEncodingId,
 		int *nameIdList, int cNameIds, short *langIdList);
 	void SwapWString(void * pWStr, size_t nSize = 0) throw (std::invalid_argument);

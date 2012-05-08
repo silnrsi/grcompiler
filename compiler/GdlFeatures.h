@@ -27,6 +27,9 @@ Hungarian: extname
 
 class GdlExtName : public GdlObject
 {
+	friend class GdlFeatureDefn;
+	friend class GdlFeatureSetting;
+
 public:
 	//	Constructors:
 	GdlExtName()
@@ -79,6 +82,7 @@ public:
 	//	Setters:
 	void SetName(std::string sta)	{ m_staName = sta; }
 	void SetValue(int n)			{ m_nValue = n; m_fHasValue = true; }
+	void SetNameTblId(int nID)		{ m_wNameTblId = nID; }
 	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
 		m_vextname.push_back(GdlExtName(stu, wLangID));
@@ -92,6 +96,12 @@ public:
 		m_vextname.push_back(GdlExtName(stu, wLangID));
 	}
 	void SetNameTblId(utf16 w)		{ m_wNameTblId = w; }
+
+	// compiler:
+	void SetLabelFromNameTable(int nNameID, int nLangID, uint8 * pNameTbl);
+
+	std::wstring FindBasicExtName(); 
+	bool HasExtName(std::wstring stuName);
 
 	// Debuggers:
 	void DebugXmlFeatures(std::ofstream & strmOut);
@@ -155,6 +165,7 @@ public:
 	void SetName(std::string sta)	{ m_staName = sta; }
 	void SetID(unsigned int n)		{ m_nID = n; m_fIDSet = true; }
 	void SetDefault(int n)			{ m_nDefault = n; m_fDefaultSet = true; }
+	void SetNameTblId(int nID)		{ m_wNameTblId = nID; }
 	void AddExtName(utf16 wLangID, std::wstring stu)
 	{
 		m_vextname.push_back(GdlExtName(stu, wLangID));
@@ -172,7 +183,9 @@ public:
 		m_fStdLang = true;
 		m_nID = kfidStdLang;
 	}
-	utf16 SetNameTblIds(utf16 wFirst); // return next id to use
+
+	utf16 SetNameTblIds(utf16 wFirst, uint8 * pNameTbl, // return next id to use
+		std::vector<GdlFeatureDefn *> & vpfeatInput);
 
 	//	Getters:
 	std::string Name()
@@ -193,7 +206,8 @@ public:
 	}
 	utf16 NameTblId()	{ return m_wNameTblId; }
 	bool NameTblInfo(std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
-		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData);
+		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,
+		int nNameTblIdMinNew, int nNameIdNoName);
 
 	GdlFeatureSetting * FindSetting(std::string sta);
 	GdlFeatureSetting * FindOrAddSetting(std::string, GrpLineAndFile & lnf);
@@ -219,6 +233,17 @@ public:
 	}
 
 	void OutputSettings(GrcBinaryStream * pbstrm);
+
+	void PushFeatureSetting(GdlFeatureSetting * pfset)
+	{
+		m_vpfset.push_back(pfset);
+	}
+
+	void SetLabelFromNameTable(int nNameID, int nLangID, uint8 * pNameTbl);
+	static std::wstring GetLabelFromNameTable(int nNameID, int nLangID, uint8 * pNameTbl);
+
+	std::wstring FindBasicExtName();
+	bool HasExtName(std::wstring stuName);
 
 	// Debuggers
 	void DebugXmlFeatures(std::ofstream & strmOut);

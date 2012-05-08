@@ -264,15 +264,56 @@ void GdlFeatureDefn::CalculateDefault()
 	unique id which starts with nFirst and is incremented.
 	Return the id that should be used next.
 ----------------------------------------------------------------------------------------------*/
-utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst)
+utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst, uint8 * pNameTbl,
+	std::vector<GdlFeatureDefn *> & vpfeatInput)
 {
 	utf16 wNameTblId = wFirst;
-	m_wNameTblId = wNameTblId++;
+
+	std::wstring stuBasic = FindBasicExtName();
+	m_wNameTblId = 0;
+
+	// Look for an existing name string that matches.
+	GdlFeatureDefn * pfeatInput = NULL;
+	std::vector<GdlFeatureSetting *> vpfsetInput;
+	for (size_t ifeat = 0; ifeat < vpfeatInput.size(); ifeat++)
+	{
+		pfeatInput = vpfeatInput[ifeat];
+		vpfsetInput = pfeatInput->m_vpfset;
+		if (pfeatInput->ID() == this->ID() && pfeatInput->HasExtName(stuBasic))
+		{
+			m_wNameTblId = pfeatInput->m_wNameTblId; // found it
+			break;
+		}
+	}
+	std::vector<GdlFeatureSetting *> vpfsetEmpty; // emtpy
+	if (m_wNameTblId == 0)
+	{
+		m_wNameTblId = wNameTblId;	// give it a new ID
+		wNameTblId++;
+		pfeatInput = NULL;
+		vpfsetInput = vpfsetEmpty;
+	}
 
 	size_t cnFeatSet = m_vpfset.size();
-	for (size_t i = 0; i < cnFeatSet; i++)
+	for (size_t ifset = 0; ifset < cnFeatSet; ifset++)
 	{
-		m_vpfset[i]->SetNameTblId(wNameTblId++);
+		GdlFeatureSetting * pfset = m_vpfset[ifset];
+		stuBasic = pfset->FindBasicExtName();
+		pfset->SetNameTblId(0);
+		// Look for an existing name string that matches.
+		for (size_t ifsetInput = 0; ifsetInput < vpfsetInput.size(); ifsetInput++)
+		{
+			GdlFeatureSetting * pfsetInput = vpfsetInput[ifsetInput];
+			if (pfsetInput->Value() == pfset->Value() && pfsetInput->HasExtName(stuBasic))
+			{
+				pfset->SetNameTblId(pfsetInput->m_wNameTblId); // found it
+				break;
+			}
+		}
+		if (pfset->NameTblId() == 0)
+		{
+			pfset->SetNameTblId(wNameTblId++); // give it a new ID
+		}
 	}
 
 	return wNameTblId;
@@ -281,60 +322,203 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst)
 std::wstring GdlExtName::s_stuNoName(L"NoName"); // static
 
 /*----------------------------------------------------------------------------------------------
+	Set the label string to the string from the old name table.
+----------------------------------------------------------------------------------------------*/
+void GdlFeatureDefn::SetLabelFromNameTable(int nNameID, int nLangID, uint8 * pNameTbl)
+{
+	std::wstring stuName = GdlFeatureDefn::GetLabelFromNameTable(nNameID, nLangID, pNameTbl);
+	if (stuName.length() != 0)
+	{
+		AddExtName(nLangID, stuName);
+		m_wNameTblId = nNameID;
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlFeatureSetting::SetLabelFromNameTable(int nNameID, int nLangID, uint8 * pNameTbl)
+{
+	std::wstring stuName = GdlFeatureDefn::GetLabelFromNameTable(nNameID, nLangID, pNameTbl);
+	if (stuName.length() != 0)
+	{
+		AddExtName(nLangID, stuName);
+		m_wNameTblId = nNameID;
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Search the old name table for the given string.
+----------------------------------------------------------------------------------------------*/
+std::wstring GdlFeatureDefn::GetLabelFromNameTable(int nNameID, int nLangID, uint8 * pNameTbl)
+{
+	std::wstring stuName;
+	stuName.erase();
+	size_t lOffset = 0;
+	size_t lSize = 0;
+
+	// The Graphite compiler stores our names in either 
+	// the MS (platform id = 3) Unicode (writing system id = 1) table
+	// or the MS Symbol (writing system id = 0) table. Try MS Unicode first.
+	// lOffset & lSize are in bytes.
+	// new interface:
+	if (!TtfUtil::GetNameInfo(pNameTbl, 3, 1, nLangID, nNameID, lOffset, lSize))
+	{
+		if (!TtfUtil::GetNameInfo(pNameTbl, 3, 0, nLangID, nNameID, lOffset, lSize))
+		{
+			return stuName;	// no name found, return empty string
+		}
+	}
+
+	size_t cchw = (unsigned(lSize) / sizeof(utf16));
+	utf16 * pchwName = new utf16[cchw+1]; // lSize - byte count for Uni str
+	const utf16 * pchwSrcName = reinterpret_cast<const utf16*>(pNameTbl + lOffset);
+
+//	if (ppec->cbBytesPerChar == sizeof(utf16))
+//	{
+		utf16ncpy(pchwName, pchwSrcName, cchw);
+		TtfUtil::SwapWString(pchwName, cchw); // make big endian
+//	}
+//	else
+//	{
+//		// TODO: properly handle Macintosh encoding
+//		Platform_UnicodeToANSI((utf16 *)pbStr, cchwStr, (char *)pbNextString, cchwStr);
+//	}
+
+///    std::transform(pchwSrcName, pchwSrcName + cchw, pchwName, std::ptr_fun<utf16,utf16>(lsbf));
+	pchwName[cchw] = 0;  // zero terminate
+	#ifdef _WIN32
+		stuName.assign((const wchar_t*)pchwName, cchw);
+	#else
+		wchar_t * pchwName32 = new wchar_t[cchw+1]; // lSize - byte count for Uni str
+		for (int i = 0; i <= signed(cchw); i++) {
+			pchwName32[i] = pchwName[i];
+		}
+		stuName.assign(pchwName32, cchw);
+		delete [] pchwName32;
+	#endif
+
+	return stuName;
+}
+
+/*----------------------------------------------------------------------------------------------
 	Push onto the argument vectors information for the feature itself and all its settings.
 	The three arrays must remain parallel. Retrieve all the external names and their 
 	corresponding language ids and the name table ids (assigned in SetNameTblIds().
 	While we're at it, keep a total of the length of the all the string data.
 ----------------------------------------------------------------------------------------------*/
 bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
-	std::vector<utf16> & vwLangIds, std::vector<utf16> & vwNameTblIds, size_t & cchwStringData)
+	std::vector<utf16> & vwLangIds, std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,
+	int nNameTblIdMinNew, int nNameIdNoName)
 {
-	// store data for the feature itself
-	size_t cnExtNames = m_vextname.size();
-	if (cnExtNames <= 0)
+	size_t cnExtNames;
+
+	// Store data for the feature itself.
+	if (NameTblId() >= nNameTblIdMinNew)
 	{
-		vstuExtNames.push_back(GdlExtName::s_stuNoName);
-		cchwStringData += GdlExtName::s_stuNoName.length();
-		vwLangIds.push_back(LG_USENG);
-		vwNameTblIds.push_back(m_wNameTblId);
-	}
-	else
-	{
-		for (size_t i = 0; i < cnExtNames; i++)
+		cnExtNames = m_vextname.size();
+		if (cnExtNames <= 0)
 		{
-			vstuExtNames.push_back(m_vextname[i].Name());
-			cchwStringData += m_vextname[i].Name().length();
-			vwLangIds.push_back(m_vextname[i].LanguageID());
-			vwNameTblIds.push_back(m_wNameTblId);
+			if (nNameIdNoName == -1)	// "NoName" is not in the name table already
+			{
+				vstuExtNames.push_back(GdlExtName::s_stuNoName);
+				cchwStringData += GdlExtName::s_stuNoName.length();
+				vwLangIds.push_back(LG_USENG);
+				vwNameTblIds.push_back(m_wNameTblId);
+			}
+		}
+		else
+		{
+			for (size_t i = 0; i < cnExtNames; i++)
+			{
+				vstuExtNames.push_back(m_vextname[i].Name());
+				cchwStringData += m_vextname[i].Name().length();
+				vwLangIds.push_back(m_vextname[i].LanguageID());
+				vwNameTblIds.push_back(m_wNameTblId);
+			}
 		}
 	}
 
-	// store data for all settings
+	// Store data for all settings.
 	size_t cnSettings = m_vpfset.size();
 	for (size_t i = 0; i < cnSettings; i++)
 	{
 		GdlFeatureSetting * pFeatSet = m_vpfset[i];
-		cnExtNames = pFeatSet->m_vextname.size();
-		if (cnExtNames <= 0)
+		if (pFeatSet->NameTblId() >= nNameTblIdMinNew)
 		{
-			vstuExtNames.push_back(GdlExtName::s_stuNoName);
-			cchwStringData += GdlExtName::s_stuNoName.length();
-			vwLangIds.push_back(LG_USENG);
-			vwNameTblIds.push_back(pFeatSet->NameTblId());
-		}
-		else
-		{
-			for (size_t j = 0; j < cnExtNames; j++)
+			cnExtNames = pFeatSet->m_vextname.size();
+			if (cnExtNames <= 0)
 			{
-				vstuExtNames.push_back(pFeatSet->m_vextname[j].Name());
-				cchwStringData += pFeatSet->m_vextname[j].Name().length();
-				vwLangIds.push_back(pFeatSet->m_vextname[j].LanguageID());
-				vwNameTblIds.push_back(pFeatSet->NameTblId());
+				if (nNameIdNoName == -1)	// "NoName" is not in the name table already
+				{
+					vstuExtNames.push_back(GdlExtName::s_stuNoName);
+					cchwStringData += GdlExtName::s_stuNoName.length();
+					vwLangIds.push_back(LG_USENG);
+					vwNameTblIds.push_back(pFeatSet->NameTblId());
+				}
+			}
+			else
+			{
+				for (size_t j = 0; j < cnExtNames; j++)
+				{
+					vstuExtNames.push_back(pFeatSet->m_vextname[j].Name());
+					cchwStringData += pFeatSet->m_vextname[j].Name().length();
+					vwLangIds.push_back(pFeatSet->m_vextname[j].LanguageID());
+					vwNameTblIds.push_back(pFeatSet->NameTblId());
+				}
 			}
 		}
 	}
 	
 	return true;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Find an English or language-neutral label.
+----------------------------------------------------------------------------------------------*/
+std::wstring GdlFeatureDefn::FindBasicExtName()
+{
+	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	{
+		if (m_vextname[iextname].m_wLanguageID == 1033
+				|| m_vextname[iextname].m_wLanguageID == 0)
+			return m_vextname[iextname].m_stuName;
+	}
+	std::wstring stuEmpty;
+	return stuEmpty;
+}
+
+std::wstring GdlFeatureSetting::FindBasicExtName() // find an English or language-neutral label
+{
+	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	{
+		if (m_vextname[iextname].m_wLanguageID == 1033
+				|| m_vextname[iextname].m_wLanguageID == 0)
+			return m_vextname[iextname].m_stuName;
+	}
+	std::wstring stuEmpty;
+	return stuEmpty;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return true if the feature/setting has the given label.
+----------------------------------------------------------------------------------------------*/
+bool GdlFeatureDefn::HasExtName(std::wstring stuName)
+{
+	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	{
+		if (m_vextname[iextname].m_stuName == stuName)
+			return true;
+	}
+	return false;
+}
+
+bool GdlFeatureSetting::HasExtName(std::wstring stuName)
+{
+	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	{
+		if (m_vextname[iextname].m_stuName == stuName)
+			return true;
+	}
+	return false;
 }
 
 /*----------------------------------------------------------------------------------------------

@@ -190,7 +190,7 @@ bool GetTableDirInfo(const void * pHdr, size_t & lOffset, size_t & lSize)
 	Return true if successful, false otherwise. On false, offset and size will be 0.
 ----------------------------------------------------------------------------------------------*/
 bool GetTableInfo(TableId ktiTableId, const void * pHdr, const void * pTableDir, 
-						   size_t & lOffset, size_t & lSize)
+	size_t & lOffset, size_t & lSize)
 {
 	gr::fontTableId32 lTableTag = TableIdTag(ktiTableId);
 	if (!lTableTag)
@@ -508,13 +508,13 @@ bool FontOs2Style(const void *pOs2, bool & fBold, bool & fItalic)
 /*----------------------------------------------------------------------------------------------
 	Method for searching name table.
 ----------------------------------------------------------------------------------------------*/
-bool GetNameInfo(const void * pName, int nPlatformId, int nEncodingId,
+bool GetNameInfo(const void * pNameTblArg, int nPlatformId, int nEncodingId,
 		int nLangId, int nNameId, size_t & lOffset, size_t & lSize)
 {
 	lOffset = 0;
 	lSize = 0;
 
-	const Sfnt::FontNames * pTable = reinterpret_cast<const Sfnt::FontNames *>(pName);
+	const Sfnt::FontNames * pTable = reinterpret_cast<const Sfnt::FontNames *>(pNameTblArg);
 	uint16 cRecord = read(pTable->count);
 	uint16 nRecordOffset = read(pTable->string_offset);
 	const Sfnt::NameRecord * pRecord = reinterpret_cast<const Sfnt::NameRecord *>(pTable + 1);
@@ -530,6 +530,56 @@ bool GetNameInfo(const void * pName, int nPlatformId, int nEncodingId,
 			lSize = read(pRecord->length);
 			return true;
 		}
+		pRecord++;
+	}
+
+	return false;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Given a string, return the name ID and other indices that can be used to find it in the
+	name table.
+----------------------------------------------------------------------------------------------*/
+bool GetNameIdForString(const void * pNameTblArg, int & nPlatformId, int & nEncodingId,
+	int & nLangId, int & nNameId, char * pBufIn, size_t lSizeIn)
+{
+	const Sfnt::FontNames * pTable = reinterpret_cast<const Sfnt::FontNames *>(pNameTblArg);
+	uint16 cRecord = read(pTable->count);
+	uint16 nRecordOffset = read(pTable->string_offset);
+	const Sfnt::NameRecord * pRecord = reinterpret_cast<const Sfnt::NameRecord *>(pTable + 1);
+
+	for (int i = 0; i < cRecord; ++i)
+	{
+		int lOffsetTable = read(pRecord->offset) + nRecordOffset;
+		size_t lSizeTable = read(pRecord->length);
+		char * pBufTable = (char *)pNameTblArg + lOffsetTable;
+		if (lSizeTable == lSizeIn)
+		{
+			bool fMatch = false;
+			if (read(pRecord->platform_id) == Sfnt::NameRecord::Macintosh)
+			{
+				char * pBufTmp = new char[lSizeTable+1];
+				memcpy(pBufTmp, pBufTable, lSizeTable * sizeof(char));
+				pBufTmp[lSizeTable] = 0; // zero-terminate
+				fMatch = (strcmp(pBufTmp, pBufIn) == 0);
+			}
+			//else - for now we only handle 8-bit
+			//{
+			//	wchar_t * pBufTable = new wchar_t[lSizeTable+1];
+			//	memcpy(pBufTable, pTable + lOffsetTable, lSizeTable * sizeof(wchar_t));
+			//	pBufTable[lSizeTable + 1] = 0;
+			//	bool fMatch = wcscmp(pBufTable, pBufIn);
+			//}
+			if (fMatch)
+			{
+				nPlatformId = read(pRecord->platform_id);
+				nEncodingId = read(pRecord->platform_specific_id);
+				nLangId = read(pRecord->language_id);
+				nNameId = read(pRecord->name_id);
+				return true;
+			}
+		}
+
 		pRecord++;
 	}
 
@@ -647,8 +697,7 @@ bool Get30EngFullFontInfo(const void * pName, size_t & lOffset, size_t & lSize)
 
 	Note: this method is not currently used by the Graphite engine.
 ----------------------------------------------------------------------------------------------*/
-int PostLookup(const void * pPost, size_t lPostSize, const void * pMaxp, 
-						const char * pPostName)
+int PostLookup(const void * pPost, size_t lPostSize, const void * pMaxp, const char * pPostName)
 {
 	using namespace Sfnt;
 	
