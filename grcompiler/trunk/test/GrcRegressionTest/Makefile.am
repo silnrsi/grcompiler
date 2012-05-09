@@ -34,3 +34,5 @@ dist-hook:
 	rm -f regtest.log gdlerr.txt grcregtest.log
 	find $(distdir) -name "dbg_*" | xargs rm -rf
 	rm -f *Test*.ttf
+
+CLEANFILES=regtest.log gdlerr.txt grcregtest.log *Test*.ttf
