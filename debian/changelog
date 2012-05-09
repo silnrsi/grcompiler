@@ -1,3 +1,9 @@
+grcompiler (4.2~pre3-1~palaso2ubuntu1) UNRELEASED; urgency=low
+
+  * Upload to Debian (Closes: #614754)
+
+ -- Daniel Glassey <wdg@debian.org>  Wed, 09 May 2012 13:23:52 +0700
+
 grcompiler (4.2~pre2-1~palaso2) UNRELEASED; urgency=low
 
   * debian/copyright machine readable format
