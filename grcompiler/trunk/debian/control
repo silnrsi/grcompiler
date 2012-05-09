@@ -1,5 +1,5 @@
 Source: grcompiler
-Build-Depends: autotools-dev, cdbs (>= 0.4.27), debhelper (>= 7.0), docbook2x, pkg-config, libicu-dev (>= 4.2)
+Build-Depends: autotools-dev, debhelper (>= 7.0.50~), docbook2x, pkg-config, libicu-dev (>= 4.2)
 Build-Conflicts: libgtkhtml3.2-dev, libgtkhtml3.6-dev
 Section: devel
 Priority: optional
@@ -9,7 +9,6 @@ Standards-Version: 3.9.3.1
 
 Package: grcompiler
 Architecture: any
-Section: devel
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: libgraphite2-2.0.0, pango-graphite, iceweasel (>= 11.0) | firefox (>= 11.0), libreoffice
 Description: Compiler of smart (graphite) fonts
