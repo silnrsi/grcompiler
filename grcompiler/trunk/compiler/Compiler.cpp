@@ -1870,46 +1870,13 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 	{
 		int cnUni = pfont->NumUnicode();
 		utf16 * rgchwUniToGlyphID = new utf16[cnUni];
-		memset(rgchwUniToGlyphID, 0, (cnUni * isizeof(utf16)));
-
 		unsigned int * rgnGlyphIDToUni = new unsigned int[0x10000];
-		memset(rgnGlyphIDToUni, 0, (0x10000 * isizeof(int)));
-
-		pfont->GetGlyphsFromCmap(rgchwUniToGlyphID);
-		//m_prndr->DebugCmap(pfont, rgchwUniToGlyphID, rgnGlyphIDToUni);
 
 		std::vector<unsigned int> vnXUniForPsd;
 		std::vector<utf16> vwXPsdForUni;
 
-		// Generate the inverse cmap. Also overwrite the glyph IDs for any pseudos.
-		int iUni;
-		GrcFont::iterator fit(pfont);
-		int iUniPsd = 0;
-		for (iUni = 0, fit = pfont->Begin();
-			fit != pfont->End();
-			++fit, ++iUni)
-		{
-			unsigned int nUni = *fit;
-
-			// Handle pseudos.
-			while (iUniPsd < signed(m_vnUnicodeForPseudo.size()) && nUni > m_vnUnicodeForPseudo[iUniPsd])
-			{
-				// Put any Unicode -> pseudo mappings where the Unicode is not in the cmap into 
-				// a separate list.
-				vnXUniForPsd.push_back(m_vnUnicodeForPseudo[iUniPsd]);
-				vwXPsdForUni.push_back(m_vwPseudoForUnicode[iUniPsd]);
-				iUniPsd++;
-			}
-			if (iUniPsd < signed(m_vnUnicodeForPseudo.size()) && m_vnUnicodeForPseudo[iUniPsd] == nUni)
-			{
-				// Pseudo: overwrite glyph ID.
-				rgchwUniToGlyphID[iUni] = m_vwPseudoForUnicode[iUniPsd];
-				iUniPsd++;
-			}
-			utf16 wGlyph = rgchwUniToGlyphID[iUni];
-			rgnGlyphIDToUni[wGlyph] = nUni;
-		}
-		Assert(iUni == cnUni);
+		CmapAndInverse(pfont, cnUni, rgchwUniToGlyphID, rgnGlyphIDToUni,
+			vnXUniForPsd, vwXPsdForUni);
 
 		unsigned int nUni;
 		utf16 wGlyphID;
@@ -1917,6 +1884,8 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 		strmOut << "UNICODE => GLYPH ID MAPPINGS\n\n";
 
 		int iXPsd = 0; // extra pseudos
+		GrcFont::iterator fit(pfont);
+		int iUni;
 		for (iUni = 0, fit = pfont->Begin();
 			fit != pfont->End();
 			++fit, ++iUni)
@@ -2174,9 +2143,52 @@ void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 }
 
 /*----------------------------------------------------------------------------------------------
+	Generate the cmap and inverse cmap. Used by the debugger output routines.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::CmapAndInverse(GrcFont * pfont, 
+	int cnUni, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni,
+	std::vector<unsigned int> & vnXUniForPsd, std::vector<utf16> & vwXPsdForUni)
+{
+	memset(rgchwUniToGlyphID, 0, (cnUni * isizeof(utf16)));
+	memset(rgnGlyphIDToUni, 0, (0x10000 * isizeof(int)));
+
+	pfont->GetGlyphsFromCmap(rgchwUniToGlyphID);
+
+	// Generate the inverse cmap. Also overwrite the glyph IDs for any pseudos.
+	int iUni;
+	GrcFont::iterator fit(pfont);
+	int iUniPsd = 0;
+	for (iUni = 0, fit = pfont->Begin();
+		fit != pfont->End();
+		++fit, ++iUni)
+	{
+		unsigned int nUni = *fit;
+
+		// Handle pseudos.
+		while (iUniPsd < signed(m_vnUnicodeForPseudo.size()) && nUni > m_vnUnicodeForPseudo[iUniPsd])
+		{
+			// Put any Unicode -> pseudo mappings where the Unicode is not in the cmap into 
+			// a separate list.
+			vnXUniForPsd.push_back(m_vnUnicodeForPseudo[iUniPsd]);
+			vwXPsdForUni.push_back(m_vwPseudoForUnicode[iUniPsd]);
+			iUniPsd++;
+		}
+		if (iUniPsd < signed(m_vnUnicodeForPseudo.size()) && m_vnUnicodeForPseudo[iUniPsd] == nUni)
+		{
+			// Pseudo: overwrite glyph ID.
+			rgchwUniToGlyphID[iUni] = m_vwPseudoForUnicode[iUniPsd];
+			iUniPsd++;
+		}
+		utf16 wGlyph = rgchwUniToGlyphID[iUni];
+		rgnGlyphIDToUni[wGlyph] = nUni;
+	}
+	Assert(iUni == cnUni);
+}
+
+/*----------------------------------------------------------------------------------------------
 	Output XML to be used by the engine debugger.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugXml(char * pchOutputFilename)
+void GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename)
 {
 	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
 	// a .gdx extension.
@@ -2210,7 +2222,7 @@ void GrcManager::DebugXml(char * pchOutputFilename)
 			<< "<graphite>\n\n";
 
 		// Glyphs and glyph attributes
-		this->DebugXmlGlyphs(strmOut);
+		this->DebugXmlGlyphs(pfont, strmOut);
 
 		// Classes and members
 		this->m_prndr->DebugXmlClasses(strmOut);
@@ -2228,7 +2240,7 @@ void GrcManager::DebugXml(char * pchOutputFilename)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
+void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut)
 {
 	// Glyph attribute definitions
 
@@ -2279,6 +2291,15 @@ void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
 
 	// Glyphs and their attribute values
 
+	// Generate the cmap.
+	int cnUni = pfont->NumUnicode();
+	utf16 * rgchwUniToGlyphID = new utf16[cnUni];
+	unsigned int * rgnGlyphIDToUni = new unsigned int[0x10000];
+	std::vector<unsigned int> vnXUniForPsd;
+	std::vector<utf16> vwXPsdForUni;
+	CmapAndInverse(pfont, cnUni, rgchwUniToGlyphID, rgnGlyphIDToUni,
+		vnXUniForPsd, vwXPsdForUni);
+
 	strmOut << "  <glyphs>\n";
 
 	std::vector<std::string> vstaSingleMemberClasses;
@@ -2295,6 +2316,11 @@ void GrcManager::DebugXmlGlyphs(std::ofstream & strmOut)
 		strmOut << "    <glyph glyphid=\"" << wGlyphID;
 		if (vstaSingleMemberClasses.size() > (unsigned)wGlyphID && vstaSingleMemberClasses[wGlyphID] != "")
 			strmOut << "\" className=\"" << vstaSingleMemberClasses[wGlyphID];
+		if (rgnGlyphIDToUni[wGlyphID] != 0)
+		{
+			strmOut << "\" usv=\""; 
+			DebugUnicode(strmOut, rgnGlyphIDToUni[wGlyphID], false);
+		}
 		strmOut<< "\"" << ">\n";
 	
 		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
