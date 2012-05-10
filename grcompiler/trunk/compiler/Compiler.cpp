@@ -1926,13 +1926,13 @@ void GrcManager::DebugCmap(GrcFont * pfont)
 		{
 			if (wGlyphID == m_wLineBreak)
 			{
-				DebugHex(strmOut, wGlyphID);
+				strmOut << wGlyphID;
 				if (fSuppPlaneChars) strmOut << "    ";
 				strmOut << "                 [line-break]\n";
 			}
 			else if (wGlyphID == m_wPhantom)
 			{
-				DebugHex(strmOut, wGlyphID);
+				strmOut << wGlyphID;
 				if (fSuppPlaneChars) strmOut << "    ";
 				strmOut << "                 [phantom]\n";
 			}
@@ -1972,10 +1972,15 @@ void GrcManager::WriteCmapItem(std::ofstream & strmOut,
 //		else
 //			strmOut << "    ";
 
-		strmOut << " => ";
+		strmOut << "  => ";
 
+		if (wGlyphID < 10)		strmOut << " ";
+		if (wGlyphID < 100)		strmOut << " ";
+		if (wGlyphID < 1000)	strmOut << " ";
+		if (wGlyphID < 10000)	strmOut << " ";
+		strmOut << wGlyphID << "  (";
 		DebugHex(strmOut, wGlyphID);
-		strmOut << "  (" << wGlyphID << ")";
+		strmOut << ")";
 
 		if (fPseudo)
 		{
@@ -1992,11 +1997,14 @@ void GrcManager::WriteCmapItem(std::ofstream & strmOut,
 
 		strmOut << "\n";
 	}
-	else
+	else	// glyph to Unicode
 	{
-		DebugHex(strmOut, wGlyphID);
-
-		strmOut << " => ";
+		strmOut << wGlyphID;	//DebugHex(strmOut, wGlyphID);
+		if (wGlyphID < 10)		strmOut << " ";
+		if (wGlyphID < 100)		strmOut << " ";
+		if (wGlyphID < 1000)	strmOut << " ";
+		if (wGlyphID < 10000)	strmOut << " ";
+		strmOut << " =>  ";
 
 		DebugUnicode(strmOut, nUnicode, fSuppPlaneChars);
 		if (nUnicode < 0x0100)
@@ -2799,6 +2807,14 @@ void GrcManager::DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit)
 {
 	char rgch[20];
 	itoa(nUnicode, rgch, 16);
+	for (int ich = 0; ich < 20; ich++)
+	{
+		if ('a' <= rgch[ich] && rgch[ich] <= 'f')
+			rgch[ich] -= 'a' - 'A';	// uppercase
+		if (rgch[ich] == 0)
+			break;
+	}
+
 	strmOut << "U+";
 	if (f32bit)
 	{
