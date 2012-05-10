@@ -421,7 +421,7 @@ int main(int argc, char * argv[])
 		}
 		if (g_cman.OutputDebugXml())
 		{
-			g_cman.DebugXml(rgchOutputFile);
+			g_cman.DebugXml(pfont, rgchOutputFile);
 			if ( g_cman.IsVerbose())
 				std::cout << "Debugger XML file generated.\n";
 		}
