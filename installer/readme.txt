@@ -73,6 +73,12 @@ To uninstall, run "unins000.exe".
 
 CHANGES SINCE VERSION 4.1
 
+* Allow a font with Graphite tables to serve as input.
+
+* Changed -d option to -D, -d option now generates XML file only.
+
+* Output decimal numbers for glyph IDs in debugger files.
+
 * Handle a large number of glyphs in replacement classes; this will produce Silf table v 4.0.
 
 * Ensure that requesting the metrics of a pseudo-glyph will return the metrics of the corresponding actual glyph.

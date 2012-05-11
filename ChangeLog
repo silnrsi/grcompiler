@@ -1,5 +1,11 @@
 This is the changelog for the SIL Graphite Compiler project
 
+10 May 2012  Sharon Correll
+	More changes for version 4.2:
+	* Allow a font with Graphite tables to serve as input.
+	* Changed -d option to -D, -d option now generates XML file only.
+	* Output decimal numbers for glyph IDs in debugger files.
+
 19 Apr 2012  Daniel Glassey
 	Version 4.2
 	Changes since 4.1:
@@ -12,7 +18,7 @@ This is the changelog for the SIL Graphite Compiler project
 		engine for caching optimization.
 	* Added a line-break flag to permit optimization in Graphite2.
 	* Fixed problems with Macintosh strings in the name table.
-	
+
 2 Apr 2012  Sharon Correll
 	Added -wall option.
 	
