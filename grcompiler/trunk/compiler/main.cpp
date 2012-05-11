@@ -149,7 +149,8 @@ int main(int argc, char * argv[])
 	{
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
-		std::cout << "   -d     - output debugger files\n";
+		std::cout << "   -d     - output XML debugger file\n";
+		std::cout << "   -D     - output all debugger files\n";
 		std::cout << "   -g     - permit and ignore invalid glyph definitions\n";
 		std::cout << "   -nNNNN - set name table start location\n";
 		std::cout << "   -q     - quiet mode (no messages except on error)\n";
