@@ -1,3 +1,9 @@
+grcompiler (4.2~pre5-1~palaso1) UNRELEASED; urgency=low
+
+  * new upstream changes
+
+ -- Daniel Glassey <wdg@debian.org>  Mon, 21 May 2012 10:17:46 +0700
+
 grcompiler (4.2~pre4-1~palaso1) UNRELEASED; urgency=low
 
   * Fix lintian warnings
