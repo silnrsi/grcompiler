@@ -175,7 +175,7 @@ public:
 		// Bit 1: ON means NO line-breaks occur before the justification pass; ie, it is safe
 		// to optimize by not rerunning the substitution pass.
 		// OFF means the entire substitution pass must be rerun to handle line-end contextuals.
-		if (!m_fLineBreakB4Just)
+		if (m_fLineBreak && !m_fLineBreakB4Just)
 			nBitmap += 2;	// ie, safe to optimize
 
 		return nBitmap;
