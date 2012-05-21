@@ -2270,7 +2270,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteByte(ipassBidi);
 
 	//	line-break flags
-	pbstrm->WriteByte(m_prndr->LineBreakFlags() & (fxdSilfVersion < 0x00030000 ? 1 : 3));
+	pbstrm->WriteByte(m_prndr->LineBreakFlags());
 	//	ranges for cross-line-boundary contextualization
 	pbstrm->WriteByte(m_prndr->PreXlbContext());
 	pbstrm->WriteByte(m_prndr->PostXlbContext());
