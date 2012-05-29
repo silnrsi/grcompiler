@@ -67,7 +67,7 @@ private:
 
 public:
 #ifndef NO_STATIC_CONSTS
-	static const char EOF_CHAR = EOF;
+	static const int EOF_CHAR = EOF;
 #else
 	enum {
 		EOF_CHAR = EOF
@@ -192,7 +192,7 @@ public:
 	virtual int testLiteralsTable(int ttype) const;
 
 	// Override this method to get more specific case handling
-	virtual char toLower(char c) const;
+	virtual int toLower(int c) const;
 
 protected:
 	class Tracer {
