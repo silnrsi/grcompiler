@@ -3,9 +3,9 @@
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <refentry>
   <refentryinfo>
-    <releaseinfo>$Revision: 1.0 $</releaseinfo>
+    <releaseinfo>$Revision: 4.2 $</releaseinfo>
 
-    <date>$Date: 2007-11-03 15:40:50 $</date>
+    <date>$Date: 2012-05-29 11:36:50 $</date>
   </refentryinfo>
 
   <refmeta>
@@ -26,11 +26,17 @@
 
       <arg><option>-d</option></arg>
 
+      <arg><option>-D</option></arg>
+
       <arg><option>-g</option></arg>
 
       <arg><option>-n</option> <replaceable>number</replaceable></arg>
 
       <arg><option>-v </option><replaceable>number</replaceable></arg>
+
+      <arg><option>-w </option><replaceable>number</replaceable></arg>
+
+      <arg><option>-wall</option></arg>
 
       <arg><option>-q</option></arg>
 
@@ -56,7 +62,15 @@
         <term><option>-d</option></term>
 
         <listitem>
-          <para>Generate debugger files</para>
+          <para>Generate XML debugger file.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-D</option></term>
+
+        <listitem>
+          <para>Generate all debugger files.</para>
         </listitem>
       </varlistentry>
 
@@ -64,7 +78,7 @@
         <term><option>-g</option></term>
 
         <listitem>
-          <para>permit and ignore invalid glyph definitions</para>
+          <para>Permit and ignore invalid glyph definitions.</para>
         </listitem>
       </varlistentry>
 
@@ -72,7 +86,7 @@
         <term><option>-n</option><parameter>number</parameter></term>
 
         <listitem>
-          <para>Set name table start location</para>
+          <para>Set name table start location.</para>
         </listitem>
       </varlistentry>
 
@@ -80,7 +94,7 @@
         <term><option>-q</option></term>
 
         <listitem>
-          <para>Quiet mode (no messages except on error)</para>
+          <para>Quiet mode (no messages except on error).</para>
         </listitem>
       </varlistentry>
 
@@ -88,7 +102,7 @@
         <term><option>-v<parameter>number</parameter></option></term>
 
         <listitem>
-          <para>Set Silf table version number</para>
+          <para>Set Silf table version number.</para>
         </listitem>
       </varlistentry>
 
@@ -100,6 +114,15 @@
           repeated.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term><option>-wall</option></term>
+
+        <listitem>
+          <para>Display all warnings.</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 
