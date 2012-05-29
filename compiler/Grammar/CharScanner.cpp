@@ -316,7 +316,7 @@ int CharScanner::testLiteralsTable(int ttype) const
 }
 
 // Override this method to get more specific case handling
-char CharScanner::toLower(char c) const
+int CharScanner::toLower(int c) const
 {
 	return tolower(c);
 }
@@ -345,5 +345,5 @@ const char* CharScanner::charName(int ch)
 
 #ifndef NO_STATIC_CONSTS
 const char CharScanner::NO_CHAR;
-const char CharScanner::EOF_CHAR;
+const int CharScanner::EOF_CHAR;
 #endif
