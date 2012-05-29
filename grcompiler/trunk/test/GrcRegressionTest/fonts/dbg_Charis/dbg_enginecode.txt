@@ -209,7 +209,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.12, CharisRules.gdh(269):  if (chinantec_tone &amp;&amp; 1) cno_ChinantecTn  >  cChinantecTn   /  ANY  ANY  _  ; endif; 
+RULE 1.12, CharisRules.gdh(269):  if (chinantec_tone == 1) cno_ChinantecTn  >  cChinantecTn   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 165 14
@@ -222,7 +222,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.13, CharisRules.gdh(271):  if (!(chinantec_tone &amp;&amp; 1)) cChinantecTn  >  cno_ChinantecTn   /  ANY  ANY  _  ; endif; 
+RULE 1.13, CharisRules.gdh(271):  if (!(chinantec_tone == 1)) cChinantecTn  >  cno_ChinantecTn   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 138 68
@@ -456,7 +456,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 1.29, CharisRules.gdh(292):  if (viet &amp;&amp; 1) _  c_aStack_noLit  >  g_a_sng_story:4  c_diacComb_vN   /  ANY  ANY  _  _ { literacy &amp;&amp; 1 }  ; endif; 
+RULE 1.29, CharisRules.gdh(292):  if (viet == 1) _  c_aStack_noLit  >  g_a_sng_story:4  c_diacComb_vN   /  ANY  ANY  _  _{ literacy == 1 }  ; endif; 
 
 ACTIONS:
 Insert
@@ -478,7 +478,7 @@ Equal
 And
 PopRet
 
-RULE 1.30, CharisRules.gdh(294):  if (viet &amp;&amp; 1) g0302  cDiacComb  >  c_g0302DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ; endif; 
+RULE 1.30, CharisRules.gdh(294):  if (viet == 1) g0302  cDiacComb  >  c_g0302DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 5 140 57
@@ -498,7 +498,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.31, CharisRules.gdh(294):  if (viet &amp;&amp; 1) g0302  cDiacComb  >  c_g0302DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ; endif; 
+RULE 1.31, CharisRules.gdh(294):  if (viet == 1) g0302  cDiacComb  >  c_g0302DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 4 140 57
@@ -517,7 +517,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.32, CharisRules.gdh(294):  if (viet &amp;&amp; 1) g0302  cDiacComb  >  c_g0302DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ; endif; 
+RULE 1.32, CharisRules.gdh(294):  if (viet == 1) g0302  cDiacComb  >  c_g0302DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 3 140 57
@@ -535,7 +535,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.33, CharisRules.gdh(294):  if (viet &amp;&amp; 1) g0302  cDiacComb  >  c_g0302DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ; endif; 
+RULE 1.33, CharisRules.gdh(294):  if (viet == 1) g0302  cDiacComb  >  c_g0302DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 2 140 57
@@ -552,7 +552,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.34, CharisRules.gdh(294):  if (viet &amp;&amp; 1) g0302  cDiacComb  >  c_g0302DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ; endif; 
+RULE 1.34, CharisRules.gdh(294):  if (viet == 1) g0302  cDiacComb  >  c_g0302DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 140 57
@@ -568,7 +568,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.35, CharisRules.gdh(295):  if (viet &amp;&amp; 1) g0306  cDiacComb  >  c_g0306DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ; endif; 
+RULE 1.35, CharisRules.gdh(295):  if (viet == 1) g0306  cDiacComb  >  c_g0306DiacComb$8:(3 8)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 5 140 58
@@ -588,7 +588,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.36, CharisRules.gdh(295):  if (viet &amp;&amp; 1) g0306  cDiacComb  >  c_g0306DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ; endif; 
+RULE 1.36, CharisRules.gdh(295):  if (viet == 1) g0306  cDiacComb  >  c_g0306DiacComb$7:(3 7)  _   /  ANY  ANY  _  cnUDia  cnUDia  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 4 140 58
@@ -607,7 +607,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.37, CharisRules.gdh(295):  if (viet &amp;&amp; 1) g0306  cDiacComb  >  c_g0306DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ; endif; 
+RULE 1.37, CharisRules.gdh(295):  if (viet == 1) g0306  cDiacComb  >  c_g0306DiacComb$6:(3 6)  _   /  ANY  ANY  _  cnUDia  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 3 140 58
@@ -625,7 +625,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.38, CharisRules.gdh(295):  if (viet &amp;&amp; 1) g0306  cDiacComb  >  c_g0306DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ; endif; 
+RULE 1.38, CharisRules.gdh(295):  if (viet == 1) g0306  cDiacComb  >  c_g0306DiacComb$5:(3 5)  _   /  ANY  ANY  _  cnUDia  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 2 140 58
@@ -642,7 +642,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.39, CharisRules.gdh(295):  if (viet &amp;&amp; 1) g0306  cDiacComb  >  c_g0306DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ; endif; 
+RULE 1.39, CharisRules.gdh(295):  if (viet == 1) g0306  cDiacComb  >  c_g0306DiacComb$4:(3 4)  _   /  ANY  ANY  _  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 140 58
@@ -658,7 +658,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.40, CharisRules.gdh(296):  if (viet &amp;&amp; 1) cno_VN  >  cVN   /  ANY  ANY  _  ; endif; 
+RULE 1.40, CharisRules.gdh(296):  if (viet == 1) cno_VN  >  cVN   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 179 54
@@ -671,7 +671,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.41, CharisRules.gdh(298):  if (!(viet &amp;&amp; 1)) cVN  >  cno_VN   /  ANY  ANY  _  ; endif; 
+RULE 1.41, CharisRules.gdh(298):  if (!(viet == 1)) cVN  >  cno_VN   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 159 83
@@ -949,7 +949,7 @@ CONSTRAINTS:
 PushFeat 6 0
 PopRet
 
-RULE 1.66, CharisRules.gdh(350):  if (eng &amp;&amp; 0) *GC0*  >  g__eng   /  ANY  ANY  _  ; endif; 
+RULE 1.66, CharisRules.gdh(350):  if (eng == 0) *GC0*  >  g__eng   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 111
@@ -962,7 +962,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 1.67, CharisRules.gdh(354):  if (eng &amp;&amp; 1) *GC1*  >  cBaselineHook   /  ANY  ANY  _  ; endif; 
+RULE 1.67, CharisRules.gdh(354):  if (eng == 1) *GC1*  >  cBaselineHook   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 11
@@ -975,7 +975,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.68, CharisRules.gdh(358):  if (eng &amp;&amp; 2) *GC2*  >  g__eng_u_c_style   /  ANY  ANY  _  ; endif; 
+RULE 1.68, CharisRules.gdh(358):  if (eng == 2) *GC2*  >  g__eng_u_c_style   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 112
@@ -988,7 +988,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 1.69, CharisRules.gdh(362):  if (eng &amp;&amp; 3) *GC3*  >  cKom   /  ANY  ANY  _  ; endif; 
+RULE 1.69, CharisRules.gdh(362):  if (eng == 3) *GC3*  >  cKom   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 19
@@ -1001,7 +1001,7 @@ PushByte 3
 Equal
 PopRet
 
-RULE 1.70, CharisRules.gdh(368):  if (ramshorn &amp;&amp; 0) *GC4*  >  g0264   /  ANY  ANY  _  ; endif; 
+RULE 1.70, CharisRules.gdh(368):  if (ramshorn == 0) *GC4*  >  g0264   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 92
@@ -1014,7 +1014,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 1.71, CharisRules.gdh(372):  if (ramshorn &amp;&amp; 1) *GC5*  >  g0264_lrgBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.71, CharisRules.gdh(372):  if (ramshorn == 1) *GC5*  >  g0264_lrgBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 94
@@ -1027,7 +1027,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.72, CharisRules.gdh(376):  if (ramshorn &amp;&amp; 2) *GC6*  >  g0264_gammaStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.72, CharisRules.gdh(376):  if (ramshorn == 2) *GC6*  >  g0264_gammaStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 93
@@ -1040,7 +1040,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 1.73, CharisRules.gdh(382):  if (mongol_e &amp;&amp; 1) cno_MongolStyle  >  cMongolStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.73, CharisRules.gdh(382):  if (mongol_e == 1) cno_MongolStyle  >  cMongolStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 170 30
@@ -1053,7 +1053,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.74, CharisRules.gdh(384):  if (!(mongol_e &amp;&amp; 1)) cMongolStyle  >  cno_MongolStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.74, CharisRules.gdh(384):  if (!(mongol_e == 1)) cMongolStyle  >  cno_MongolStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 146 72
@@ -1067,7 +1067,7 @@ Equal
 Not
 PopRet
 
-RULE 1.75, CharisRules.gdh(398):  if (short_breve &amp;&amp; 1) cno_CyShortMrkAlt  >  cCyShortMrkAlt   /  ANY  ANY  _  ; endif; 
+RULE 1.75, CharisRules.gdh(398):  if (short_breve == 1) cno_CyShortMrkAlt  >  cCyShortMrkAlt   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 16
@@ -1080,7 +1080,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.76, CharisRules.gdh(400):  if (!(short_breve &amp;&amp; 1)) cCyShortMrkAlt  >  cno_CyShortMrkAlt   /  ANY  ANY  _  ; endif; 
+RULE 1.76, CharisRules.gdh(400):  if (!(short_breve == 1)) cCyShortMrkAlt  >  cno_CyShortMrkAlt   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 70
@@ -1094,7 +1094,7 @@ Equal
 Not
 PopRet
 
-RULE 1.77, CharisRules.gdh(406):  if (invis &amp;&amp; 1) cno_ShowInv  >  cShowInv   /  ANY  ANY  _  ; endif; 
+RULE 1.77, CharisRules.gdh(406):  if (invis == 1) cno_ShowInv  >  cShowInv   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 174 43
@@ -1107,7 +1107,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.78, CharisRules.gdh(420):  if (literacy &amp;&amp; 1) cno_SngBowl  >  cSngBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.78, CharisRules.gdh(420):  if (literacy == 1) cno_SngBowl  >  cSngBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 176 46
@@ -1120,7 +1120,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.79, CharisRules.gdh(421):  if (literacy &amp;&amp; 1) cno_SngStory  >  cSngStory   /  ANY  ANY  _  ; endif; 
+RULE 1.79, CharisRules.gdh(421):  if (literacy == 1) cno_SngStory  >  cSngStory   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 177 47
@@ -1133,7 +1133,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.80, CharisRules.gdh(422):  if (literacy &amp;&amp; 1) g01E5  >  g01E5_barBowl_sngBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.80, CharisRules.gdh(422):  if (literacy == 1) g01E5  >  g01E5_barBowl_sngBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 91
@@ -1146,7 +1146,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.81, CharisRules.gdh(424):  if (!(literacy &amp;&amp; 1)) cSngBowl  >  cno_SngBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.81, CharisRules.gdh(424):  if (!(literacy == 1)) cSngBowl  >  cno_SngBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 155 78
@@ -1160,7 +1160,7 @@ Equal
 Not
 PopRet
 
-RULE 1.82, CharisRules.gdh(425):  if (!(literacy &amp;&amp; 1)) cSngStory  >  cno_SngStory   /  ANY  ANY  _  ; endif; 
+RULE 1.82, CharisRules.gdh(425):  if (!(literacy == 1)) cSngStory  >  cno_SngStory   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 156 79
@@ -1174,7 +1174,7 @@ Equal
 Not
 PopRet
 
-RULE 1.83, CharisRules.gdh(433):  if (slant_italic &amp;&amp; 1) g_f  cfLigC2  >  g_f_slant_italic  cfLigC2_slantItalic   /  ANY  ANY  _  _  cDia  ; endif; 
+RULE 1.83, CharisRules.gdh(433):  if (slant_italic == 1) g_f  cfLigC2  >  g_f_slant_italic  cfLigC2_slantItalic   /  ANY  ANY  _  _  cDia  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 114
@@ -1189,7 +1189,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.84, CharisRules.gdh(434):  if (slant_italic &amp;&amp; 1) g_f  cfLigC2  >  _  cfLig_slantItalic:(3 4) { comp.f1.ref = @3; comp.f2.ref = @4;  }   /  ANY  ANY  _  _  ; endif; 
+RULE 1.84, CharisRules.gdh(434):  if (slant_italic == 1) g_f  cfLigC2  >  _  cfLig_slantItalic:(3 4) { comp.f1.ref = @3; comp.f2.ref = @4;  }   /  ANY  ANY  _  _  ; endif; 
 
 ACTIONS:
 Delete
@@ -1209,7 +1209,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.85, CharisRules.gdh(436):  if (slant_italic &amp;&amp; 1) g_f  g_f  cffLigC3  >  g_f_slant_italic  g_f_slant_italic  cffLigC3_slantItalic   /  ANY  ANY  _  _  _  cDia  ; endif; 
+RULE 1.85, CharisRules.gdh(436):  if (slant_italic == 1) g_f  g_f  cffLigC3  >  g_f_slant_italic  g_f_slant_italic  cffLigC3_slantItalic   /  ANY  ANY  _  _  _  cDia  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 114
@@ -1226,7 +1226,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.86, CharisRules.gdh(437):  if (slant_italic &amp;&amp; 1) g_f  g_f  cffLigC3  >  _  _  cffLig_slantItalic:(3 4 5) { comp.f1.ref = @3; comp.f2.ref = @4; comp.f3.ref = @5;  }   /  ANY  ANY  _  _  _  ; endif; 
+RULE 1.86, CharisRules.gdh(437):  if (slant_italic == 1) g_f  g_f  cffLigC3  >  _  _  cffLig_slantItalic:(3 4 5) { comp.f1.ref = @3; comp.f2.ref = @4; comp.f3.ref = @5;  }   /  ANY  ANY  _  _  _  ; endif; 
 
 ACTIONS:
 Delete
@@ -1250,7 +1250,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.87, CharisRules.gdh(439):  if (slant_italic &amp;&amp; 1) cno_SlantItalic  >  cSlantItalic   /  ANY  ANY  _  ; endif; 
+RULE 1.87, CharisRules.gdh(439):  if (slant_italic == 1) cno_SlantItalic  >  cSlantItalic   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 175 44
@@ -1263,7 +1263,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.88, CharisRules.gdh(440):  if (slant_italic &amp;&amp; 1) cno_2StorySlantItalic  >  c2StorySlantItalic   /  ANY  ANY  _  ; endif; 
+RULE 1.88, CharisRules.gdh(440):  if (slant_italic == 1) cno_2StorySlantItalic  >  c2StorySlantItalic   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 163 0
@@ -1276,7 +1276,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.89, CharisRules.gdh(444):  if (!(slant_italic &amp;&amp; 1)) g_f  cfLigC2  >  @3  @4   /  ANY  ANY  _  _  cDia  ; endif; 
+RULE 1.89, CharisRules.gdh(444):  if (!(slant_italic == 1)) g_f  cfLigC2  >  @3  @4   /  ANY  ANY  _  _  cDia  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -1292,7 +1292,7 @@ Equal
 Not
 PopRet
 
-RULE 1.90, CharisRules.gdh(445):  if (!(slant_italic &amp;&amp; 1)) g_f  cfLigC2  >  _  cfLig:(3 4) { comp.f1.ref = @3; comp.f2.ref = @4;  }   /  ANY  ANY  _  _  ; endif; 
+RULE 1.90, CharisRules.gdh(445):  if (!(slant_italic == 1)) g_f  cfLigC2  >  _  cfLig:(3 4) { comp.f1.ref = @3; comp.f2.ref = @4;  }   /  ANY  ANY  _  _  ; endif; 
 
 ACTIONS:
 Delete
@@ -1313,7 +1313,7 @@ Equal
 Not
 PopRet
 
-RULE 1.91, CharisRules.gdh(447):  if (!(slant_italic &amp;&amp; 1)) g_f  g_f  cffLigC3  >  @3  @4  @5   /  ANY  ANY  _  _  _  cDia  ; endif; 
+RULE 1.91, CharisRules.gdh(447):  if (!(slant_italic == 1)) g_f  g_f  cffLigC3  >  @3  @4  @5   /  ANY  ANY  _  _  _  cDia  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -1331,7 +1331,7 @@ Equal
 Not
 PopRet
 
-RULE 1.92, CharisRules.gdh(448):  if (!(slant_italic &amp;&amp; 1)) g_f  g_f  cffLigC3  >  _  _  cffLig:(3 4 5) { comp.f1.ref = @3; comp.f2.ref = @4; comp.f3.ref = @5;  }   /  ANY  ANY  _  _  _  ; endif; 
+RULE 1.92, CharisRules.gdh(448):  if (!(slant_italic == 1)) g_f  g_f  cffLigC3  >  _  _  cffLig:(3 4 5) { comp.f1.ref = @3; comp.f2.ref = @4; comp.f3.ref = @5;  }   /  ANY  ANY  _  _  _  ; endif; 
 
 ACTIONS:
 Delete
@@ -1356,7 +1356,7 @@ Equal
 Not
 PopRet
 
-RULE 1.93, CharisRules.gdh(451):  if (!(slant_italic &amp;&amp; 1)) cSlantItalic  >  cno_SlantItalic   /  ANY  ANY  _  ; endif; 
+RULE 1.93, CharisRules.gdh(451):  if (!(slant_italic == 1)) cSlantItalic  >  cno_SlantItalic   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 154 76
@@ -1370,7 +1370,7 @@ Equal
 Not
 PopRet
 
-RULE 1.94, CharisRules.gdh(452):  if (!(slant_italic &amp;&amp; 1)) c2StorySlantItalic  >  cno_2StorySlantItalic   /  ANY  ANY  _  ; endif; 
+RULE 1.94, CharisRules.gdh(452):  if (!(slant_italic == 1)) c2StorySlantItalic  >  cno_2StorySlantItalic   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 134 65
@@ -1384,7 +1384,7 @@ Equal
 Not
 PopRet
 
-RULE 1.95, CharisRules.gdh(459):  if (barred_bowl &amp;&amp; 1) cno_BarBowl  >  cBarBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.95, CharisRules.gdh(459):  if (barred_bowl == 1) cno_BarBowl  >  cBarBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 164 10
@@ -1397,7 +1397,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.96, CharisRules.gdh(463):  if (!(barred_bowl &amp;&amp; 1)) cBarBowl  >  cno_BarBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.96, CharisRules.gdh(463):  if (!(barred_bowl == 1)) cBarBowl  >  cno_BarBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 136 66
@@ -1411,7 +1411,7 @@ Equal
 Not
 PopRet
 
-RULE 1.97, CharisRules.gdh(468):  if (ltnjstroke &amp;&amp; 1) cno_TopSerifJStroke  >  cTopSerifJStroke   /  ANY  ANY  _  ; endif; 
+RULE 1.97, CharisRules.gdh(468):  if (ltnjstroke == 1) cno_TopSerifJStroke  >  cTopSerifJStroke   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 52
@@ -1424,7 +1424,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.98, CharisRules.gdh(470):  if (!(ltnjstroke &amp;&amp; 1)) cTopSerifJStroke  >  cno_TopSerifJStroke   /  ANY  ANY  _  ; endif; 
+RULE 1.98, CharisRules.gdh(470):  if (!(ltnjstroke == 1)) cTopSerifJStroke  >  cno_TopSerifJStroke   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 81
@@ -1438,7 +1438,7 @@ Equal
 Not
 PopRet
 
-RULE 1.99, CharisRules.gdh(474):  if (open_o &amp;&amp; 1) cno_TopSerifOpenO  >  cTopSerifOpenO   /  ANY  ANY  _  ; endif; 
+RULE 1.99, CharisRules.gdh(474):  if (open_o == 1) cno_TopSerifOpenO  >  cTopSerifOpenO   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 178 53
@@ -1451,7 +1451,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.100, CharisRules.gdh(476):  if (!(open_o &amp;&amp; 1)) cTopSerifOpenO  >  cno_TopSerifOpenO   /  ANY  ANY  _  ; endif; 
+RULE 1.100, CharisRules.gdh(476):  if (!(open_o == 1)) cTopSerifOpenO  >  cno_TopSerifOpenO   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 158 82
@@ -1465,7 +1465,7 @@ Equal
 Not
 PopRet
 
-RULE 1.101, CharisRules.gdh(480):  if (v_hook &amp;&amp; 1) cno_StraightLft  >  cStraightLft   /  ANY  ANY  _  ; endif; 
+RULE 1.101, CharisRules.gdh(480):  if (v_hook == 1) cno_StraightLft  >  cStraightLft   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 49
@@ -1478,7 +1478,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.102, CharisRules.gdh(482):  if (!(v_hook &amp;&amp; 1)) cStraightLft  >  cno_StraightLft   /  ANY  ANY  _  ; endif; 
+RULE 1.102, CharisRules.gdh(482):  if (!(v_hook == 1)) cStraightLft  >  cno_StraightLft   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 80
@@ -1492,7 +1492,7 @@ Equal
 Not
 PopRet
 
-RULE 1.103, CharisRules.gdh(486):  if (y_hook &amp;&amp; 1) g01B3  >  g01B3_rtHook   /  ANY  ANY  _  ; endif; 
+RULE 1.103, CharisRules.gdh(486):  if (y_hook == 1) g01B3  >  g01B3_rtHook   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 90
@@ -1505,7 +1505,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.104, CharisRules.gdh(488):  if (!(y_hook &amp;&amp; 1)) g01B3_rtHook  >  g01B3   /  ANY  ANY  _  ; endif; 
+RULE 1.104, CharisRules.gdh(488):  if (!(y_hook == 1)) g01B3_rtHook  >  g01B3   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 89
@@ -1519,7 +1519,7 @@ Equal
 Not
 PopRet
 
-RULE 1.105, CharisRules.gdh(492):  if (n_hook &amp;&amp; 1) g019D  >  g019D_lCStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.105, CharisRules.gdh(492):  if (n_hook == 1) g019D  >  g019D_lCStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 86
@@ -1532,7 +1532,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.106, CharisRules.gdh(494):  if (!(n_hook &amp;&amp; 1)) g019D_lCStyle  >  g019D   /  ANY  ANY  _  ; endif; 
+RULE 1.106, CharisRules.gdh(494):  if (!(n_hook == 1)) g019D_lCStyle  >  g019D   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 85
@@ -1546,7 +1546,7 @@ Equal
 Not
 PopRet
 
-RULE 1.107, CharisRules.gdh(498):  if (ezh_curl &amp;&amp; 1) g0293  >  g0293_lrgBowl   /  ANY  ANY  _  ; endif; 
+RULE 1.107, CharisRules.gdh(498):  if (ezh_curl == 1) g0293  >  g0293_lrgBowl   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 96
@@ -1559,7 +1559,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.108, CharisRules.gdh(500):  if (!(ezh_curl &amp;&amp; 1)) g0293_lrgBowl  >  g0293   /  ANY  ANY  _  ; endif; 
+RULE 1.108, CharisRules.gdh(500):  if (!(ezh_curl == 1)) g0293_lrgBowl  >  g0293   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 95
@@ -1573,7 +1573,7 @@ Equal
 Not
 PopRet
 
-RULE 1.109, CharisRules.gdh(504):  if (t_hook &amp;&amp; 1) g01AC  >  g01AC_rtHook   /  ANY  ANY  _  ; endif; 
+RULE 1.109, CharisRules.gdh(504):  if (t_hook == 1) g01AC  >  g01AC_rtHook   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 88
@@ -1586,7 +1586,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.110, CharisRules.gdh(506):  if (!(t_hook &amp;&amp; 1)) g01AC_rtHook  >  g01AC   /  ANY  ANY  _  ; endif; 
+RULE 1.110, CharisRules.gdh(506):  if (!(t_hook == 1)) g01AC_rtHook  >  g01AC   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 87
@@ -1600,7 +1600,7 @@ Equal
 Not
 PopRet
 
-RULE 1.111, CharisRules.gdh(510):  if (h_stroke &amp;&amp; 1) cno_VertStrk  >  cVertStrk   /  ANY  ANY  _  ; endif; 
+RULE 1.111, CharisRules.gdh(510):  if (h_stroke == 1) cno_VertStrk  >  cVertStrk   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 55
@@ -1613,7 +1613,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.112, CharisRules.gdh(512):  if (!(h_stroke &amp;&amp; 1)) cVertStrk  >  cno_VertStrk   /  ANY  ANY  _  ; endif; 
+RULE 1.112, CharisRules.gdh(512):  if (!(h_stroke == 1)) cVertStrk  >  cno_VertStrk   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 84
@@ -1627,7 +1627,7 @@ Equal
 Not
 PopRet
 
-RULE 1.113, CharisRules.gdh(516):  if (r_tail &amp;&amp; 1) g2C64  >  g2C64_lCStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.113, CharisRules.gdh(516):  if (r_tail == 1) g2C64  >  g2C64_lCStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 108
@@ -1640,7 +1640,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.114, CharisRules.gdh(518):  if (!(r_tail &amp;&amp; 1)) g2C64_lCStyle  >  g2C64   /  ANY  ANY  _  ; endif; 
+RULE 1.114, CharisRules.gdh(518):  if (!(r_tail == 1)) g2C64_lCStyle  >  g2C64   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 107
@@ -1654,7 +1654,7 @@ Equal
 Not
 PopRet
 
-RULE 1.115, CharisRules.gdh(522):  if (p_hook &amp;&amp; 1) cno_BowlHook  >  cBowlHook   /  ANY  ANY  _  ; endif; 
+RULE 1.115, CharisRules.gdh(522):  if (p_hook == 1) cno_BowlHook  >  cBowlHook   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 12
@@ -1667,7 +1667,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.116, CharisRules.gdh(524):  if (!(p_hook &amp;&amp; 1)) cBowlHook  >  cno_BowlHook   /  ANY  ANY  _  ; endif; 
+RULE 1.116, CharisRules.gdh(524):  if (!(p_hook == 1)) cBowlHook  >  cno_BowlHook   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 67
@@ -1681,7 +1681,7 @@ Equal
 Not
 PopRet
 
-RULE 1.117, CharisRules.gdh(528):  if (rom &amp;&amp; 1) cno_CommaStyle  >  cCommaStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.117, CharisRules.gdh(528):  if (rom == 1) cno_CommaStyle  >  cCommaStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 166 15
@@ -1694,7 +1694,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.118, CharisRules.gdh(530):  if (!(rom &amp;&amp; 1)) cCommaStyle  >  cno_CommaStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.118, CharisRules.gdh(530):  if (!(rom == 1)) cCommaStyle  >  cno_CommaStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 139 69
@@ -1708,7 +1708,7 @@ Equal
 Not
 PopRet
 
-RULE 1.119, CharisRules.gdh(534):  if (ezh &amp;&amp; 1) cno_RevSigmaStyle  >  cRevSigmaStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.119, CharisRules.gdh(534):  if (ezh == 1) cno_RevSigmaStyle  >  cRevSigmaStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 173 34
@@ -1721,7 +1721,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.120, CharisRules.gdh(536):  if (!(ezh &amp;&amp; 1)) cRevSigmaStyle  >  cno_RevSigmaStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.120, CharisRules.gdh(536):  if (!(ezh == 1)) cRevSigmaStyle  >  cno_RevSigmaStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 150 75
@@ -1735,7 +1735,7 @@ Equal
 Not
 PopRet
 
-RULE 1.121, CharisRules.gdh(542):  if (apostrophe &amp;&amp; 1) cno_Lrg  >  cLrg   /  ANY  ANY  _  ; endif; 
+RULE 1.121, CharisRules.gdh(542):  if (apostrophe == 1) cno_Lrg  >  cLrg   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 169 29
@@ -1748,7 +1748,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.122, CharisRules.gdh(544):  if (!(apostrophe &amp;&amp; 1)) cLrg  >  cno_Lrg   /  ANY  ANY  _  ; endif; 
+RULE 1.122, CharisRules.gdh(544):  if (!(apostrophe == 1)) cLrg  >  cno_Lrg   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 145 71
@@ -1762,7 +1762,7 @@ Equal
 Not
 PopRet
 
-RULE 1.123, CharisRules.gdh(548):  if (ou &amp;&amp; 1) cno_OpenTop  >  cOpenTop   /  ANY  ANY  _  ; endif; 
+RULE 1.123, CharisRules.gdh(548):  if (ou == 1) cno_OpenTop  >  cOpenTop   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 171 32
@@ -1775,7 +1775,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.124, CharisRules.gdh(550):  if (!(ou &amp;&amp; 1)) cOpenTop  >  cno_OpenTop   /  ANY  ANY  _  ; endif; 
+RULE 1.124, CharisRules.gdh(550):  if (!(ou == 1)) cOpenTop  >  cno_OpenTop   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 148 73
@@ -1789,7 +1789,7 @@ Equal
 Not
 PopRet
 
-RULE 1.125, CharisRules.gdh(554):  if (emptyset &amp;&amp; 1) cno_SlashZero  >  cSlashZero   /  ANY  ANY  _  ; endif; 
+RULE 1.125, CharisRules.gdh(554):  if (emptyset == 1) cno_SlashZero  >  cSlashZero   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 45
@@ -1802,7 +1802,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.126, CharisRules.gdh(556):  if (!(emptyset &amp;&amp; 1)) cSlashZero  >  cno_SlashZero   /  ANY  ANY  _  ; endif; 
+RULE 1.126, CharisRules.gdh(556):  if (!(emptyset == 1)) cSlashZero  >  cno_SlashZero   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 77
@@ -1816,7 +1816,7 @@ Equal
 Not
 PopRet
 
-RULE 1.127, CharisRules.gdh(560):  if (modlowcolon &amp;&amp; 1) gF1E9  >  gF1E9_wide   /  ANY  ANY  _  ; endif; 
+RULE 1.127, CharisRules.gdh(560):  if (modlowcolon == 1) gF1E9  >  gF1E9_wide   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 110
@@ -1829,7 +1829,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.128, CharisRules.gdh(562):  if (!(modlowcolon &amp;&amp; 1)) gF1E9_wide  >  gF1E9   /  ANY  ANY  _  ; endif; 
+RULE 1.128, CharisRules.gdh(562):  if (!(modlowcolon == 1)) gF1E9_wide  >  gF1E9   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 109
@@ -1843,7 +1843,7 @@ Equal
 Not
 PopRet
 
-RULE 1.129, CharisRules.gdh(575):  if (cyrillic_shha &amp;&amp; 1) g04BB  >  g04BB_uCStyle   /  ANY  ANY  _  ; endif; 
+RULE 1.129, CharisRules.gdh(575):  if (cyrillic_shha == 1) g04BB  >  g04BB_uCStyle   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 106
@@ -1856,7 +1856,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 1.130, CharisRules.gdh(577):  if (!(cyrillic_shha &amp;&amp; 1)) g04BB_uCStyle  >  g04BB   /  ANY  ANY  _  ; endif; 
+RULE 1.130, CharisRules.gdh(577):  if (!(cyrillic_shha == 1)) g04BB_uCStyle  >  g04BB   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 105
@@ -1892,7 +1892,7 @@ CONSTRAINTS:
 PushFeat 0 0
 PopRet
 
-RULE 1.133, CharisPitches.gdh(237):  if (!(supernum) &lt; hide_tone_staff) cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff_no$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.133, CharisPitches.gdh(237):  if (!(supernum) && hide_tone_staff) cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff_no$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 37
@@ -1920,7 +1920,7 @@ PushFeat 1 0
 And
 PopRet
 
-RULE 1.134, CharisPitches.gdh(238):  if (!(supernum) &lt; hide_tone_staff) cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff_no$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.134, CharisPitches.gdh(238):  if (!(supernum) && hide_tone_staff) cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff_no$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 38
@@ -1948,7 +1948,7 @@ PushFeat 1 0
 And
 PopRet
 
-RULE 1.135, CharisPitches.gdh(239):  if (!(supernum) &lt; hide_tone_staff) cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff_no$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.135, CharisPitches.gdh(239):  if (!(supernum) && hide_tone_staff) cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff_no$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 39
@@ -1976,7 +1976,7 @@ PushFeat 1 0
 And
 PopRet
 
-RULE 1.136, CharisPitches.gdh(240):  if (!(supernum) &lt; hide_tone_staff) cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff_no$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.136, CharisPitches.gdh(240):  if (!(supernum) && hide_tone_staff) cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff_no$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 40
@@ -2004,7 +2004,7 @@ PushFeat 1 0
 And
 PopRet
 
-RULE 1.137, CharisPitches.gdh(241):  if (!(supernum) &lt; hide_tone_staff) cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff_no$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.137, CharisPitches.gdh(241):  if (!(supernum) && hide_tone_staff) cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff_no$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 41
@@ -2032,7 +2032,7 @@ PushFeat 1 0
 And
 PopRet
 
-RULE 1.138, CharisPitches.gdh(245):  if (!(supernum) &lt; !(hide_tone_staff)) cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.138, CharisPitches.gdh(245):  if (!(supernum) && !(hide_tone_staff)) cRightTone1  cRightTone  >  cRightTone1Contour$4  cRightStaff$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 37
@@ -2061,7 +2061,7 @@ Not
 And
 PopRet
 
-RULE 1.139, CharisPitches.gdh(246):  if (!(supernum) &lt; !(hide_tone_staff)) cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.139, CharisPitches.gdh(246):  if (!(supernum) && !(hide_tone_staff)) cRightTone2  cRightTone  >  cRightTone2Contour$4  cRightStaff$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 38
@@ -2090,7 +2090,7 @@ Not
 And
 PopRet
 
-RULE 1.140, CharisPitches.gdh(247):  if (!(supernum) &lt; !(hide_tone_staff)) cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.140, CharisPitches.gdh(247):  if (!(supernum) && !(hide_tone_staff)) cRightTone3  cRightTone  >  cRightTone3Contour$4  cRightStaff$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 39
@@ -2119,7 +2119,7 @@ Not
 And
 PopRet
 
-RULE 1.141, CharisPitches.gdh(248):  if (!(supernum) &lt; !(hide_tone_staff)) cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.141, CharisPitches.gdh(248):  if (!(supernum) && !(hide_tone_staff)) cRightTone4  cRightTone  >  cRightTone4Contour$4  cRightStaff$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 40
@@ -2148,7 +2148,7 @@ Not
 And
 PopRet
 
-RULE 1.142, CharisPitches.gdh(249):  if (!(supernum) &lt; !(hide_tone_staff)) cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.142, CharisPitches.gdh(249):  if (!(supernum) && !(hide_tone_staff)) cRightTone5  cRightTone  >  cRightTone5Contour$4  cRightStaff$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 1 153 41
@@ -2177,7 +2177,7 @@ Not
 And
 PopRet
 
-RULE 1.143, CharisPitches.gdh(255):  if (!(supernum) &lt; hide_tone_staff) cLeftTone  >  cLeftStaff_no$3   /  ANY  ANY  ^  _  cLeftTone  ; endif; 
+RULE 1.143, CharisPitches.gdh(255):  if (!(supernum) && hide_tone_staff) cLeftTone  >  cLeftStaff_no$3   /  ANY  ANY  ^  _  cLeftTone  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 144 21
@@ -2192,7 +2192,7 @@ PushFeat 1 0
 And
 PopRet
 
-RULE 1.144, CharisPitches.gdh(258):  if (!(supernum) &lt; !(hide_tone_staff)) cLeftTone  >  cLeftStaff$3   /  ANY  ANY  ^  _  cLeftTone  ; endif; 
+RULE 1.144, CharisPitches.gdh(258):  if (!(supernum) && !(hide_tone_staff)) cLeftTone  >  cLeftStaff$3   /  ANY  ANY  ^  _  cLeftTone  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 144 20
@@ -2208,7 +2208,7 @@ Not
 And
 PopRet
 
-RULE 1.145, CharisPitches.gdh(263):  cLeftContourOrStaff1  cLeftTone  >  @3  cLeftTone1Contour$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
+RULE 1.145, CharisPitches.gdh(263):  cLeftContourOrStaff1  cLeftTone  >  @3  cLeftTone1Contour$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -2231,7 +2231,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.146, CharisPitches.gdh(264):  cLeftContourOrStaff2  cLeftTone  >  @3  cLeftTone2Contour$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
+RULE 1.146, CharisPitches.gdh(264):  cLeftContourOrStaff2  cLeftTone  >  @3  cLeftTone2Contour$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -2254,7 +2254,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.147, CharisPitches.gdh(265):  cLeftContourOrStaff3  cLeftTone  >  @3  cLeftTone3Contour$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
+RULE 1.147, CharisPitches.gdh(265):  cLeftContourOrStaff3  cLeftTone  >  @3  cLeftTone3Contour$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -2277,7 +2277,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.148, CharisPitches.gdh(266):  cLeftContourOrStaff4  cLeftTone  >  @3  cLeftTone4Contour$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
+RULE 1.148, CharisPitches.gdh(266):  cLeftContourOrStaff4  cLeftTone  >  @3  cLeftTone4Contour$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -2300,7 +2300,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.149, CharisPitches.gdh(267):  cLeftContourOrStaff5  cLeftTone  >  @3  cLeftTone5Contour$4 { user1 = (((@3.tone &amp;&amp; @4.tone) &lt; (@3.user1 &amp;&amp; 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
+RULE 1.149, CharisPitches.gdh(267):  cLeftContourOrStaff5  cLeftTone  >  @3  cLeftTone5Contour$4 { user1 = (((@3.tone == @4.tone) && (@3.user1 != 2))) ? 1 : 2;  }   /  ANY  ANY  _  ^  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -2323,7 +2323,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 1.150, CharisPitches.gdh(602):  if (pitch9 &amp;&amp; 2) g_space  >  g_pitchSpace   /  ANY  *GC8*  _  *GC9*  ; endif; 
+RULE 1.150, CharisPitches.gdh(602):  if (pitch9 < 2) g_space  >  g_pitchSpace   /  ANY  *GC8*  _  *GC9*  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 117
@@ -2336,7 +2336,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.151, CharisPitches.gdh(605):  if (pitch9 &amp;&amp; 2) g_pitchSpace  >  @3   /  ANY  ANY  _  cno_LinesXXX  ; endif; 
+RULE 1.151, CharisPitches.gdh(605):  if (pitch9 < 2) g_pitchSpace  >  @3   /  ANY  ANY  _  cno_LinesXXX  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2349,7 +2349,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.152, CharisPitches.gdh(607):  if (pitch9 &amp;&amp; 2) *GC10*  >  g_noPitchSpace   /  ANY  ^  g_pitchSpace  _  ; endif; 
+RULE 1.152, CharisPitches.gdh(607):  if (pitch9 < 2) *GC10*  >  g_noPitchSpace   /  ANY  ^  g_pitchSpace  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 116
@@ -2363,7 +2363,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.153, CharisPitches.gdh(609):  if (pitch9 &amp;&amp; 2) g_pitchSpace  >  g_noPitchSpace   /  ANY  ANY  _  ; endif; 
+RULE 1.153, CharisPitches.gdh(609):  if (pitch9 < 2) g_pitchSpace  >  g_noPitchSpace   /  ANY  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 116
@@ -2376,7 +2376,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.154, CharisPitches.gdh(617):  if (pitch9 &amp;&amp; 2) *GC11*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch1X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.154, CharisPitches.gdh(617):  if (pitch9 < 2) *GC11*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch1X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2394,7 +2394,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.155, CharisPitches.gdh(618):  if (pitch9 &amp;&amp; 2) *GC12*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch2X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.155, CharisPitches.gdh(618):  if (pitch9 < 2) *GC12*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch2X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2412,7 +2412,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.156, CharisPitches.gdh(619):  if (pitch9 &amp;&amp; 2) *GC13*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch3X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.156, CharisPitches.gdh(619):  if (pitch9 < 2) *GC13*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch3X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2430,7 +2430,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.157, CharisPitches.gdh(620):  if (pitch9 &amp;&amp; 2) *GC14*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch4X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.157, CharisPitches.gdh(620):  if (pitch9 < 2) *GC14*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch4X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2448,7 +2448,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.158, CharisPitches.gdh(621):  if (pitch9 &amp;&amp; 2) *GC15*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch5X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.158, CharisPitches.gdh(621):  if (pitch9 < 2) *GC15*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch5X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2466,7 +2466,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.159, CharisPitches.gdh(622):  if (pitch9 &amp;&amp; 2) *GC16*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch6X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.159, CharisPitches.gdh(622):  if (pitch9 < 2) *GC16*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch6X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2484,7 +2484,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.160, CharisPitches.gdh(623):  if (pitch9 &amp;&amp; 2) *GC17*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch7X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.160, CharisPitches.gdh(623):  if (pitch9 < 2) *GC17*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch7X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2502,7 +2502,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.161, CharisPitches.gdh(624):  if (pitch9 &amp;&amp; 2) *GC18*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch8X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.161, CharisPitches.gdh(624):  if (pitch9 < 2) *GC18*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch8X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2520,7 +2520,7 @@ PushByte 2
 Less
 PopRet
 
-RULE 1.162, CharisPitches.gdh(625):  if (pitch9 &amp;&amp; 2) *GC19*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch9X   /  ANY  ANY  _  ^  _  ; endif; 
+RULE 1.162, CharisPitches.gdh(625):  if (pitch9 < 2) *GC19*  c9PitchX  >  @3 { user1 = 1;  }  c9Pitch9X   /  ANY  ANY  _  ^  _  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2652,7 +2652,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 2.10, CharisRules.gdh(595):  if (ogonek &amp;&amp; 1) cno_RetroHookStyle  >  cRetroHookStyle   /  ANY  _  ; endif; 
+RULE 2.10, CharisRules.gdh(595):  if (ogonek == 1) cno_RetroHookStyle  >  cRetroHookStyle   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 172 33
@@ -2665,7 +2665,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 2.11, CharisRules.gdh(597):  if (!(ogonek &amp;&amp; 1)) cRetroHookStyle  >  cno_RetroHookStyle   /  ANY  _  ; endif; 
+RULE 2.11, CharisRules.gdh(597):  if (!(ogonek == 1)) cRetroHookStyle  >  cno_RetroHookStyle   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 149 74
@@ -2688,7 +2688,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 2.13, CharisPitches.gdh(276):  _  cRightStaff  >  cRightToneHoriz$3:3  @3   /  ANY  _  _ { user1 &amp;&amp; 1 }  ;
+RULE 2.13, CharisPitches.gdh(276):  _  cRightStaff  >  cRightToneHoriz$3:3  @3   /  ANY  _  _{ user1 == 1 }  ;
 
 ACTIONS:
 Insert
@@ -2706,7 +2706,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 2.14, CharisPitches.gdh(277):  _  cRightStaff_no  >  cRightToneHoriz$3:3  @3   /  ANY  _  _ { user1 &amp;&amp; 1 }  ;
+RULE 2.14, CharisPitches.gdh(277):  _  cRightStaff_no  >  cRightToneHoriz$3:3  @3   /  ANY  _  _{ user1 == 1 }  ;
 
 ACTIONS:
 Insert
@@ -2724,7 +2724,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 2.15, CharisPitches.gdh(286):  cLeftContourOrStaff { user2 = 1;  }   /  ANY  _ { user2 &amp;&amp; 0 }  cLeftContour { user2 &amp;&amp; 0 }  ;
+RULE 2.15, CharisPitches.gdh(286):  cLeftContourOrStaff { user2 = 1;  }   /  ANY  _{ user2 == 0 }  cLeftContour{ user2 == 0 }  ;
 
 ACTIONS:
 PutCopy 0
@@ -2745,7 +2745,7 @@ Equal
 And
 PopRet
 
-RULE 2.16, CharisPitches.gdh(289):  cLeftContour { user2 = 2;  }   /  ^  cLeftContourOrStaff { user2 &amp;&amp; 1 }  _ { user1 &amp;&amp; 1 }  ;
+RULE 2.16, CharisPitches.gdh(289):  cLeftContour { user2 = 2;  }   /  ^  cLeftContourOrStaff{ user2 == 1 }  _{ user1 == 1 }  ;
 
 ACTIONS:
 PutCopy 0
@@ -2767,7 +2767,7 @@ Equal
 And
 PopRet
 
-RULE 2.17, CharisPitches.gdh(294):  cLeftStaff  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour { (user2 &amp;&amp; 2) &lt; (user1 &amp;&amp; 1) }  ;
+RULE 2.17, CharisPitches.gdh(294):  cLeftStaff  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour{ (user2 == 2) &amp;&amp; (user1 == 1) }  ;
 
 ACTIONS:
 PutCopy 0
@@ -2789,7 +2789,7 @@ Equal
 And
 PopRet
 
-RULE 2.18, CharisPitches.gdh(296):  cLeftStaff_no  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour { (user2 &amp;&amp; 2) &lt; (user1 &amp;&amp; 1) }  ;
+RULE 2.18, CharisPitches.gdh(296):  cLeftStaff_no  _  >  @2  cLeftToneHoriz$2:2   /  ANY  _  _  cLeftContour{ (user2 == 2) &amp;&amp; (user1 == 1) }  ;
 
 ACTIONS:
 PutCopy 0
@@ -2811,7 +2811,7 @@ Equal
 And
 PopRet
 
-RULE 2.19, CharisPitches.gdh(639):  if (pitch9 &amp;&amp; 2) c9PitchX  >  @2 { user2 = 1;  }   /  ANY  ^  _ { (user2 &amp;&amp; 0) &lt; (user1 &amp;&amp; 0) }  ; endif; 
+RULE 2.19, CharisPitches.gdh(639):  if (pitch9 < 2) c9PitchX  >  @2 { user2 = 1;  }   /  ANY  ^  _{ (user2 == 0) &amp;&amp; (user1 == 0) }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2836,7 +2836,7 @@ And
 And
 PopRet
 
-RULE 2.20, CharisPitches.gdh(644):  if (pitch9 &amp;&amp; 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch11  g9Pitch11  g9Pitch11  g9Pitch11 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.20, CharisPitches.gdh(644):  if (pitch9 < 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch11  g9Pitch11  g9Pitch11  g9Pitch11{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2862,7 +2862,7 @@ Equal
 And
 PopRet
 
-RULE 2.21, CharisPitches.gdh(644):  if (pitch9 &amp;&amp; 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch11  g9Pitch11  g9Pitch11 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.21, CharisPitches.gdh(644):  if (pitch9 < 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch11  g9Pitch11  g9Pitch11{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2888,7 +2888,7 @@ Equal
 And
 PopRet
 
-RULE 2.22, CharisPitches.gdh(644):  if (pitch9 &amp;&amp; 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch11  g9Pitch11 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.22, CharisPitches.gdh(644):  if (pitch9 < 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch11  g9Pitch11{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2914,7 +2914,7 @@ Equal
 And
 PopRet
 
-RULE 2.23, CharisPitches.gdh(644):  if (pitch9 &amp;&amp; 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch11 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.23, CharisPitches.gdh(644):  if (pitch9 < 2) g9Pitch1  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch11{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2940,7 +2940,7 @@ Equal
 And
 PopRet
 
-RULE 2.24, CharisPitches.gdh(645):  if (pitch9 &amp;&amp; 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch22  g9Pitch22  g9Pitch22  g9Pitch22 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.24, CharisPitches.gdh(645):  if (pitch9 < 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch22  g9Pitch22  g9Pitch22  g9Pitch22{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2966,7 +2966,7 @@ Equal
 And
 PopRet
 
-RULE 2.25, CharisPitches.gdh(645):  if (pitch9 &amp;&amp; 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch22  g9Pitch22  g9Pitch22 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.25, CharisPitches.gdh(645):  if (pitch9 < 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch22  g9Pitch22  g9Pitch22{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -2992,7 +2992,7 @@ Equal
 And
 PopRet
 
-RULE 2.26, CharisPitches.gdh(645):  if (pitch9 &amp;&amp; 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch22  g9Pitch22 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.26, CharisPitches.gdh(645):  if (pitch9 < 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch22  g9Pitch22{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3018,7 +3018,7 @@ Equal
 And
 PopRet
 
-RULE 2.27, CharisPitches.gdh(645):  if (pitch9 &amp;&amp; 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch22 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.27, CharisPitches.gdh(645):  if (pitch9 < 2) g9Pitch2  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch22{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3044,7 +3044,7 @@ Equal
 And
 PopRet
 
-RULE 2.28, CharisPitches.gdh(646):  if (pitch9 &amp;&amp; 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch33  g9Pitch33  g9Pitch33  g9Pitch33 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.28, CharisPitches.gdh(646):  if (pitch9 < 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch33  g9Pitch33  g9Pitch33  g9Pitch33{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3070,7 +3070,7 @@ Equal
 And
 PopRet
 
-RULE 2.29, CharisPitches.gdh(646):  if (pitch9 &amp;&amp; 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch33  g9Pitch33  g9Pitch33 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.29, CharisPitches.gdh(646):  if (pitch9 < 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch33  g9Pitch33  g9Pitch33{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3096,7 +3096,7 @@ Equal
 And
 PopRet
 
-RULE 2.30, CharisPitches.gdh(646):  if (pitch9 &amp;&amp; 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch33  g9Pitch33 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.30, CharisPitches.gdh(646):  if (pitch9 < 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch33  g9Pitch33{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3122,7 +3122,7 @@ Equal
 And
 PopRet
 
-RULE 2.31, CharisPitches.gdh(646):  if (pitch9 &amp;&amp; 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch33 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.31, CharisPitches.gdh(646):  if (pitch9 < 2) g9Pitch3  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch33{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3148,7 +3148,7 @@ Equal
 And
 PopRet
 
-RULE 2.32, CharisPitches.gdh(647):  if (pitch9 &amp;&amp; 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch44  g9Pitch44  g9Pitch44  g9Pitch44 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.32, CharisPitches.gdh(647):  if (pitch9 < 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch44  g9Pitch44  g9Pitch44  g9Pitch44{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3174,7 +3174,7 @@ Equal
 And
 PopRet
 
-RULE 2.33, CharisPitches.gdh(647):  if (pitch9 &amp;&amp; 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch44  g9Pitch44  g9Pitch44 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.33, CharisPitches.gdh(647):  if (pitch9 < 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch44  g9Pitch44  g9Pitch44{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3200,7 +3200,7 @@ Equal
 And
 PopRet
 
-RULE 2.34, CharisPitches.gdh(647):  if (pitch9 &amp;&amp; 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch44  g9Pitch44 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.34, CharisPitches.gdh(647):  if (pitch9 < 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch44  g9Pitch44{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3226,7 +3226,7 @@ Equal
 And
 PopRet
 
-RULE 2.35, CharisPitches.gdh(647):  if (pitch9 &amp;&amp; 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch44 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.35, CharisPitches.gdh(647):  if (pitch9 < 2) g9Pitch4  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch44{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3252,7 +3252,7 @@ Equal
 And
 PopRet
 
-RULE 2.36, CharisPitches.gdh(648):  if (pitch9 &amp;&amp; 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch55  g9Pitch55  g9Pitch55  g9Pitch55 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.36, CharisPitches.gdh(648):  if (pitch9 < 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch55  g9Pitch55  g9Pitch55  g9Pitch55{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3278,7 +3278,7 @@ Equal
 And
 PopRet
 
-RULE 2.37, CharisPitches.gdh(648):  if (pitch9 &amp;&amp; 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch55  g9Pitch55  g9Pitch55 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.37, CharisPitches.gdh(648):  if (pitch9 < 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch55  g9Pitch55  g9Pitch55{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3304,7 +3304,7 @@ Equal
 And
 PopRet
 
-RULE 2.38, CharisPitches.gdh(648):  if (pitch9 &amp;&amp; 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch55  g9Pitch55 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.38, CharisPitches.gdh(648):  if (pitch9 < 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch55  g9Pitch55{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3330,7 +3330,7 @@ Equal
 And
 PopRet
 
-RULE 2.39, CharisPitches.gdh(648):  if (pitch9 &amp;&amp; 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch55 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.39, CharisPitches.gdh(648):  if (pitch9 < 2) g9Pitch5  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch55{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3356,7 +3356,7 @@ Equal
 And
 PopRet
 
-RULE 2.40, CharisPitches.gdh(649):  if (pitch9 &amp;&amp; 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch66  g9Pitch66  g9Pitch66  g9Pitch66 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.40, CharisPitches.gdh(649):  if (pitch9 < 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch66  g9Pitch66  g9Pitch66  g9Pitch66{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3382,7 +3382,7 @@ Equal
 And
 PopRet
 
-RULE 2.41, CharisPitches.gdh(649):  if (pitch9 &amp;&amp; 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch66  g9Pitch66  g9Pitch66 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.41, CharisPitches.gdh(649):  if (pitch9 < 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch66  g9Pitch66  g9Pitch66{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3408,7 +3408,7 @@ Equal
 And
 PopRet
 
-RULE 2.42, CharisPitches.gdh(649):  if (pitch9 &amp;&amp; 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch66  g9Pitch66 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.42, CharisPitches.gdh(649):  if (pitch9 < 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch66  g9Pitch66{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3434,7 +3434,7 @@ Equal
 And
 PopRet
 
-RULE 2.43, CharisPitches.gdh(649):  if (pitch9 &amp;&amp; 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch66 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.43, CharisPitches.gdh(649):  if (pitch9 < 2) g9Pitch6  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch66{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3460,7 +3460,7 @@ Equal
 And
 PopRet
 
-RULE 2.44, CharisPitches.gdh(650):  if (pitch9 &amp;&amp; 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch77  g9Pitch77  g9Pitch77  g9Pitch77 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.44, CharisPitches.gdh(650):  if (pitch9 < 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch77  g9Pitch77  g9Pitch77  g9Pitch77{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3486,7 +3486,7 @@ Equal
 And
 PopRet
 
-RULE 2.45, CharisPitches.gdh(650):  if (pitch9 &amp;&amp; 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch77  g9Pitch77  g9Pitch77 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.45, CharisPitches.gdh(650):  if (pitch9 < 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch77  g9Pitch77  g9Pitch77{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3512,7 +3512,7 @@ Equal
 And
 PopRet
 
-RULE 2.46, CharisPitches.gdh(650):  if (pitch9 &amp;&amp; 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch77  g9Pitch77 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.46, CharisPitches.gdh(650):  if (pitch9 < 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch77  g9Pitch77{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3538,7 +3538,7 @@ Equal
 And
 PopRet
 
-RULE 2.47, CharisPitches.gdh(650):  if (pitch9 &amp;&amp; 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch77 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.47, CharisPitches.gdh(650):  if (pitch9 < 2) g9Pitch7  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch77{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3564,7 +3564,7 @@ Equal
 And
 PopRet
 
-RULE 2.48, CharisPitches.gdh(651):  if (pitch9 &amp;&amp; 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch88  g9Pitch88  g9Pitch88  g9Pitch88 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.48, CharisPitches.gdh(651):  if (pitch9 < 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch88  g9Pitch88  g9Pitch88  g9Pitch88{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3590,7 +3590,7 @@ Equal
 And
 PopRet
 
-RULE 2.49, CharisPitches.gdh(651):  if (pitch9 &amp;&amp; 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch88  g9Pitch88  g9Pitch88 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.49, CharisPitches.gdh(651):  if (pitch9 < 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch88  g9Pitch88  g9Pitch88{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3616,7 +3616,7 @@ Equal
 And
 PopRet
 
-RULE 2.50, CharisPitches.gdh(651):  if (pitch9 &amp;&amp; 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch88  g9Pitch88 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.50, CharisPitches.gdh(651):  if (pitch9 < 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch88  g9Pitch88{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3642,7 +3642,7 @@ Equal
 And
 PopRet
 
-RULE 2.51, CharisPitches.gdh(651):  if (pitch9 &amp;&amp; 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch88 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.51, CharisPitches.gdh(651):  if (pitch9 < 2) g9Pitch8  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch88{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3668,7 +3668,7 @@ Equal
 And
 PopRet
 
-RULE 2.52, CharisPitches.gdh(652):  if (pitch9 &amp;&amp; 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch99  g9Pitch99  g9Pitch99  g9Pitch99 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.52, CharisPitches.gdh(652):  if (pitch9 < 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch99  g9Pitch99  g9Pitch99  g9Pitch99{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3694,7 +3694,7 @@ Equal
 And
 PopRet
 
-RULE 2.53, CharisPitches.gdh(652):  if (pitch9 &amp;&amp; 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch99  g9Pitch99  g9Pitch99 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.53, CharisPitches.gdh(652):  if (pitch9 < 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch99  g9Pitch99  g9Pitch99{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3720,7 +3720,7 @@ Equal
 And
 PopRet
 
-RULE 2.54, CharisPitches.gdh(652):  if (pitch9 &amp;&amp; 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch99  g9Pitch99 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.54, CharisPitches.gdh(652):  if (pitch9 < 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch99  g9Pitch99{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3746,7 +3746,7 @@ Equal
 And
 PopRet
 
-RULE 2.55, CharisPitches.gdh(652):  if (pitch9 &amp;&amp; 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _ { user2 &amp;&amp; 0 }  g9Pitch99 { user1 &amp;&amp; 0 }  ; endif; 
+RULE 2.55, CharisPitches.gdh(652):  if (pitch9 < 2) g9Pitch9  >  @2 { user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  g9Pitch99{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 PutCopy 0
@@ -3772,7 +3772,7 @@ Equal
 And
 PopRet
 
-RULE 2.56, CharisPitches.gdh(655):  if (pitch9 &amp;&amp; 2) c9PitchX  c9PitchXX  >  _  @3:(2 3) { comp.p1.ref = @2; comp.p2.ref = @3;  }   /  ANY  _ { user2 &amp;&amp; 1 }  ^  _  ; endif; 
+RULE 2.56, CharisPitches.gdh(655):  if (pitch9 < 2) c9PitchX  c9PitchXX  >  _  @3:(2 3) { comp.p1.ref = @2; comp.p2.ref = @3;  }   /  ANY  _{ user2 != 1 }  ^  _  ; endif; 
 
 ACTIONS:
 Delete
@@ -3798,7 +3798,7 @@ NotEq
 And
 PopRet
 
-RULE 2.57, CharisPitches.gdh(662):  if ((pitch9 &amp;&amp; 1) &amp;&amp; (pitch9 &amp;&amp; 3)) cno_LinesXXX  >  cLinesXXX   /  ANY  _  ; endif; 
+RULE 2.57, CharisPitches.gdh(662):  if ((pitch9 == 1) || (pitch9 == 3)) cno_LinesXXX  >  cLinesXXX   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 168 28
@@ -3896,7 +3896,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 3.2, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.2, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -3944,7 +3944,7 @@ Equal
 And
 PopRet
 
-RULE 3.3, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.3, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -3991,7 +3991,7 @@ Equal
 And
 PopRet
 
-RULE 3.4, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.4, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4037,7 +4037,7 @@ Equal
 And
 PopRet
 
-RULE 3.5, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.5, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4082,7 +4082,7 @@ Equal
 And
 PopRet
 
-RULE 3.6, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.6, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4126,7 +4126,7 @@ Equal
 And
 PopRet
 
-RULE 3.7, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.7, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4172,7 +4172,7 @@ Equal
 And
 PopRet
 
-RULE 3.8, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.8, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4217,7 +4217,7 @@ Equal
 And
 PopRet
 
-RULE 3.9, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.9, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4261,7 +4261,7 @@ Equal
 And
 PopRet
 
-RULE 3.10, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.10, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4304,7 +4304,7 @@ Equal
 And
 PopRet
 
-RULE 3.11, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.11, CharisRules.gdh(640):  if (select_diac) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } insert = 1; user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4346,7 +4346,7 @@ Equal
 And
 PopRet
 
-RULE 3.12, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.12, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4394,7 +4394,7 @@ Equal
 And
 PopRet
 
-RULE 3.13, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.13, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4441,7 +4441,7 @@ Equal
 And
 PopRet
 
-RULE 3.14, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.14, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4487,7 +4487,7 @@ Equal
 And
 PopRet
 
-RULE 3.15, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.15, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4532,7 +4532,7 @@ Equal
 And
 PopRet
 
-RULE 3.16, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.16, CharisRules.gdh(641):  if (select_diac) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } insert = 1; user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4576,7 +4576,7 @@ Equal
 And
 PopRet
 
-RULE 3.17, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.17, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4622,7 +4622,7 @@ Equal
 And
 PopRet
 
-RULE 3.18, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.18, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4667,7 +4667,7 @@ Equal
 And
 PopRet
 
-RULE 3.19, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.19, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4711,7 +4711,7 @@ Equal
 And
 PopRet
 
-RULE 3.20, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.20, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4754,7 +4754,7 @@ Equal
 And
 PopRet
 
-RULE 3.21, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.21, CharisRules.gdh(642):  if (select_diac) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } insert = 1; user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4796,7 +4796,7 @@ Equal
 And
 PopRet
 
-RULE 3.22, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.22, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4844,7 +4844,7 @@ Equal
 And
 PopRet
 
-RULE 3.23, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.23, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4891,7 +4891,7 @@ Equal
 And
 PopRet
 
-RULE 3.24, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.24, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4937,7 +4937,7 @@ Equal
 And
 PopRet
 
-RULE 3.25, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.25, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -4982,7 +4982,7 @@ Equal
 And
 PopRet
 
-RULE 3.26, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.26, CharisRules.gdh(643):  if (select_diac) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } insert = 1; user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5026,7 +5026,7 @@ Equal
 And
 PopRet
 
-RULE 3.27, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.27, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5073,7 +5073,7 @@ Equal
 And
 PopRet
 
-RULE 3.28, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.28, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5119,7 +5119,7 @@ Equal
 And
 PopRet
 
-RULE 3.29, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.29, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5164,7 +5164,7 @@ Equal
 And
 PopRet
 
-RULE 3.30, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.30, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  cnHDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5208,7 +5208,7 @@ Equal
 And
 PopRet
 
-RULE 3.31, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.31, CharisRules.gdh(645):  if (!(select_diac)) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5251,7 +5251,7 @@ Equal
 And
 PopRet
 
-RULE 3.32, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.32, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5296,7 +5296,7 @@ Equal
 And
 PopRet
 
-RULE 3.33, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.33, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  cnLDia  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5340,7 +5340,7 @@ Equal
 And
 PopRet
 
-RULE 3.34, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.34, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5383,7 +5383,7 @@ Equal
 And
 PopRet
 
-RULE 3.35, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.35, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  cnLDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5425,7 +5425,7 @@ Equal
 And
 PopRet
 
-RULE 3.36, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.36, CharisRules.gdh(646):  if (!(select_diac)) cTakesLDia  cLDia {  attach {to = @1; at = L; with = LM; } user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5466,7 +5466,7 @@ Equal
 And
 PopRet
 
-RULE 3.37, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.37, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5513,7 +5513,7 @@ Equal
 And
 PopRet
 
-RULE 3.38, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.38, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  cnODia  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5559,7 +5559,7 @@ Equal
 And
 PopRet
 
-RULE 3.39, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.39, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5604,7 +5604,7 @@ Equal
 And
 PopRet
 
-RULE 3.40, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.40, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  cnODia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5648,7 +5648,7 @@ Equal
 And
 PopRet
 
-RULE 3.41, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.41, CharisRules.gdh(647):  if (!(select_diac)) cTakesODia  cODia {  attach {to = @1; at = O; with = OM; } user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5691,7 +5691,7 @@ Equal
 And
 PopRet
 
-RULE 3.42, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.42, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5736,7 +5736,7 @@ Equal
 And
 PopRet
 
-RULE 3.43, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.43, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  cnRDia  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5780,7 +5780,7 @@ Equal
 And
 PopRet
 
-RULE 3.44, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.44, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5823,7 +5823,7 @@ Equal
 And
 PopRet
 
-RULE 3.45, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.45, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  cnRDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5865,7 +5865,7 @@ Equal
 And
 PopRet
 
-RULE 3.46, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.46, CharisRules.gdh(648):  if (!(select_diac)) cTakesRDia  cRDia {  attach {to = @1; at = R; with = RM; } user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5906,7 +5906,7 @@ Equal
 And
 PopRet
 
-RULE 3.47, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.47, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5953,7 +5953,7 @@ Equal
 And
 PopRet
 
-RULE 3.48, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.48, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  cnUDia  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -5999,7 +5999,7 @@ Equal
 And
 PopRet
 
-RULE 3.49, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.49, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -6044,7 +6044,7 @@ Equal
 And
 PopRet
 
-RULE 3.50, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.50, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  cnUDia  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -6088,7 +6088,7 @@ Equal
 And
 PopRet
 
-RULE 3.51, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  _ { user1 &amp;&amp; 0 }  ; endif; 
+RULE 3.51, CharisRules.gdh(649):  if (!(select_diac)) cTakesUDia  cUDia {  attach {to = @1; at = U; with = UM; } user1 = 1;  }   /  ^  _  _{ user1 == 0 }  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -6146,7 +6146,7 @@ PASS: 4
 
 PASS CONSTRAINTS: none
 
-RULE 4.0, CharisRules.gdh(668):  cUDblDia { shift.y = ((@1.bb.top &amp;&amp; @8.bb.top) &amp;&amp; @7.bb.bottom) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @1.bb.width) &amp;&amp; 2; insert = 1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.0, CharisRules.gdh(668):  cUDblDia { shift.y = ((@1.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @1.bb.width) / 2; insert = 1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6171,7 +6171,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.1, CharisRules.gdh(668):  cUDblDia { shift.y = ((@2.bb.top &amp;&amp; @8.bb.top) &amp;&amp; @7.bb.bottom) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @2.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.1, CharisRules.gdh(668):  cUDblDia { shift.y = ((@2.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @2.bb.width) / 2; insert = 1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6196,7 +6196,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.2, CharisRules.gdh(668):  cUDblDia { shift.y = ((@3.bb.top &amp;&amp; @8.bb.top) &amp;&amp; @7.bb.bottom) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @3.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.2, CharisRules.gdh(668):  cUDblDia { shift.y = ((@3.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @3.bb.width) / 2; insert = 1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6221,7 +6221,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.3, CharisRules.gdh(668):  cUDblDia { shift.y = ((@4.bb.top &amp;&amp; @8.bb.top) &amp;&amp; @7.bb.bottom) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @4.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.3, CharisRules.gdh(668):  cUDblDia { shift.y = ((@4.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @4.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6246,7 +6246,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.4, CharisRules.gdh(668):  cUDblDia { shift.y = ((@5.bb.top &amp;&amp; @8.bb.top) &amp;&amp; @7.bb.bottom) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @5.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  cTakesUDia  ;
+RULE 4.4, CharisRules.gdh(668):  cUDblDia { shift.y = ((@5.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @5.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6271,7 +6271,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.5, CharisRules.gdh(668):  cUDblDia { shift.y = ((@6.bb.top &amp;&amp; @8.bb.top) &amp;&amp; @7.bb.bottom) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @6.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  cTakesUDia  ;
+RULE 4.5, CharisRules.gdh(668):  cUDblDia { shift.y = ((@6.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @6.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6296,7 +6296,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.6, CharisRules.gdh(672):  cUDblDia { shift.y = (@1.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
+RULE 4.6, CharisRules.gdh(672):  cUDblDia { shift.y = (@1.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6313,7 +6313,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.7, CharisRules.gdh(672):  cUDblDia { shift.y = (@2.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
+RULE 4.7, CharisRules.gdh(672):  cUDblDia { shift.y = (@2.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  cTakesUDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6330,7 +6330,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.8, CharisRules.gdh(672):  cUDblDia { shift.y = (@3.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  ;
+RULE 4.8, CharisRules.gdh(672):  cUDblDia { shift.y = (@3.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  cTakesUDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6347,7 +6347,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.9, CharisRules.gdh(672):  cUDblDia { shift.y = (@4.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  ;
+RULE 4.9, CharisRules.gdh(672):  cUDblDia { shift.y = (@4.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  cTakesUDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6364,7 +6364,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.10, CharisRules.gdh(672):  cUDblDia { shift.y = (@5.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  ;
+RULE 4.10, CharisRules.gdh(672):  cUDblDia { shift.y = (@5.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesUDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6381,7 +6381,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.11, CharisRules.gdh(672):  cUDblDia { shift.y = (@6.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  ;
+RULE 4.11, CharisRules.gdh(672):  cUDblDia { shift.y = (@6.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesUDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6398,7 +6398,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.12, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.12, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6415,7 +6415,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.13, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.13, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6432,7 +6432,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.14, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesUDia  ;
+RULE 4.14, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6449,7 +6449,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.15, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesUDia  ;
+RULE 4.15, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6466,7 +6466,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.16, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesUDia  ;
+RULE 4.16, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6483,7 +6483,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.17, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top &amp;&amp; @7.bb.bottom) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesUDia  ;
+RULE 4.17, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesUDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6504,7 +6504,7 @@ PASS: 5
 
 PASS CONSTRAINTS: none
 
-RULE 5.0, CharisRules.gdh(684):  g035F { shift.y = ((@1.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @1.bb.width) &amp;&amp; 2; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.0, CharisRules.gdh(684):  g035F { shift.y = ((@1.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @1.bb.width) / 2; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6529,7 +6529,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.1, CharisRules.gdh(684):  g035F { shift.y = ((@2.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @2.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.1, CharisRules.gdh(684):  g035F { shift.y = ((@2.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @2.bb.width) / 2; insert = 1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6554,7 +6554,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.2, CharisRules.gdh(684):  g035F { shift.y = ((@3.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @3.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.2, CharisRules.gdh(684):  g035F { shift.y = ((@3.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @3.bb.width) / 2; insert = 1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6579,7 +6579,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.3, CharisRules.gdh(684):  g035F { shift.y = ((@4.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @4.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.3, CharisRules.gdh(684):  g035F { shift.y = ((@4.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @4.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6604,7 +6604,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.4, CharisRules.gdh(684):  g035F { shift.y = ((@5.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @5.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
+RULE 5.4, CharisRules.gdh(684):  g035F { shift.y = ((@5.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @5.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6629,7 +6629,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.5, CharisRules.gdh(684):  g035F { shift.y = ((@6.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @6.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
+RULE 5.5, CharisRules.gdh(684):  g035F { shift.y = ((@6.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @6.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6654,7 +6654,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.6, CharisRules.gdh(687):  cLDblDia { shift.y = ((@1.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @1.bb.width) &amp;&amp; 2; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.6, CharisRules.gdh(687):  cLDblDia { shift.y = ((@1.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @1.bb.width) / 2; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6679,7 +6679,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.7, CharisRules.gdh(687):  cLDblDia { shift.y = ((@2.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @2.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.7, CharisRules.gdh(687):  cLDblDia { shift.y = ((@2.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @2.bb.width) / 2; insert = 1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6704,7 +6704,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.8, CharisRules.gdh(687):  cLDblDia { shift.y = ((@3.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @3.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.8, CharisRules.gdh(687):  cLDblDia { shift.y = ((@3.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @3.bb.width) / 2; insert = 1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6729,7 +6729,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.9, CharisRules.gdh(687):  cLDblDia { shift.y = ((@4.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @4.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.9, CharisRules.gdh(687):  cLDblDia { shift.y = ((@4.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @4.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6754,7 +6754,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.10, CharisRules.gdh(687):  cLDblDia { shift.y = ((@5.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @5.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
+RULE 5.10, CharisRules.gdh(687):  cLDblDia { shift.y = ((@5.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @5.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6779,7 +6779,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.11, CharisRules.gdh(687):  cLDblDia { shift.y = ((@6.bb.bottom &amp;&amp; @8.bb.bottom) &amp;&amp; @7.bb.top) &amp;&amp; 205; shift.x = (@8.bb.width &amp;&amp; @6.bb.width) &amp;&amp; 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
+RULE 5.11, CharisRules.gdh(687):  cLDblDia { shift.y = ((@6.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @6.bb.width) / 2; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6804,7 +6804,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.12, CharisRules.gdh(690):  cLDblDia { shift.y = (@1.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  ;
+RULE 5.12, CharisRules.gdh(690):  cLDblDia { shift.y = (@1.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6821,7 +6821,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.13, CharisRules.gdh(690):  cLDblDia { shift.y = (@2.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  ;
+RULE 5.13, CharisRules.gdh(690):  cLDblDia { shift.y = (@2.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  cTakesLDia  cDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6838,7 +6838,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.14, CharisRules.gdh(690):  cLDblDia { shift.y = (@3.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  ;
+RULE 5.14, CharisRules.gdh(690):  cLDblDia { shift.y = (@3.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  cTakesLDia  cDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6855,7 +6855,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.15, CharisRules.gdh(690):  cLDblDia { shift.y = (@4.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  ;
+RULE 5.15, CharisRules.gdh(690):  cLDblDia { shift.y = (@4.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  cTakesLDia  cDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6872,7 +6872,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.16, CharisRules.gdh(690):  cLDblDia { shift.y = (@5.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  ;
+RULE 5.16, CharisRules.gdh(690):  cLDblDia { shift.y = (@5.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cTakesLDia  cDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6889,7 +6889,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.17, CharisRules.gdh(690):  cLDblDia { shift.y = (@6.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  ;
+RULE 5.17, CharisRules.gdh(690):  cLDblDia { shift.y = (@6.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cTakesLDia  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -6906,7 +6906,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.18, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.18, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6923,7 +6923,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.19, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.19, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6940,7 +6940,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.20, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesLDia  ;
+RULE 5.20, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  cDia  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6957,7 +6957,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.21, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesLDia  ;
+RULE 5.21, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  cDia  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6974,7 +6974,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.22, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesLDia  ;
+RULE 5.22, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  cDia  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0
@@ -6991,7 +6991,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.23, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom &amp;&amp; @7.bb.top) &amp;&amp; 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesLDia  ;
+RULE 5.23, CharisRules.gdh(691):  cLDblDia { shift.y = (@8.bb.bottom - @7.bb.top) - 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesLDia  ;
 
 ACTIONS:
 PutCopy 0

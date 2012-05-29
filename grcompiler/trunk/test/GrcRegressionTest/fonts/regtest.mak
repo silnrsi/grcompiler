@@ -42,6 +42,10 @@ $(FONTS)\PadaukTest.ttf :
 	$(GRCEXE)\grcompiler -v3 $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
 
 grcregtest.log :
+  - @echo -----  
+  - @echo -----
+  - @echo ----- RUNNING TESTS -----
+  - @echo -----
 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\SchBenchmark.ttf $(FONTS)\SchTest.ttf
 	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\CharisBenchmark.ttf $(FONTS)\CharisTest.ttf
  	- $(RTEXE)\GrcRegressionTest.exe $(FONTS)\PigLatinBenchmark_v2.ttf $(FONTS)\PigLatinTest_v2.ttf
