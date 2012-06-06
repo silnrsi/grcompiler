@@ -57,8 +57,7 @@ AC_LANG(C++)
 if test "$ICU_CONFIG" == no; then
     AC_MSG_FAILURE([Could not find icu-config])
 else
-    CXXFLAGS="$CXXFLAGS `$ICU_CONFIG --cxxflags`"
-    LIBS="$LIBS `$ICU_CONFIG --ldflags`"
+    LDFLAGS="$LDFLAGS `$ICU_CONFIG --ldflags-libsonly`"
 fi
 
 # Checks for header files.
