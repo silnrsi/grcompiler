@@ -543,8 +543,16 @@ void GrcManager::AddToFsmClasses(GdlGlyphClassDefn * pglfc, int nPassID)
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::MarkFsmClass(int nPassID, int nClassID)
 {
-	m_vfFsm.resize(nPassID + 1, false);
-	m_vnFsmID.resize(nPassID + 1, -1);
+	if (m_vfFsm.size() >= unsigned(nPassID + 1))
+	{
+		// Once it's set it shouldn't be changed.
+		Assert(!m_vfFsm[nPassID] || m_vnFsmID[nPassID] == nClassID);
+	}
+	else
+	{
+		m_vfFsm.resize(nPassID + 1, false);
+		m_vnFsmID.resize(nPassID + 1, -1);
+	}
 
 	m_vfFsm[nPassID] = true;
 	m_vnFsmID[nPassID] = nClassID;
