@@ -3,9 +3,9 @@ Build-Depends: autotools-dev, debhelper (>= 7.0.50~), docbook2x, pkg-config, lib
 Build-Conflicts: libgtkhtml3.2-dev, libgtkhtml3.6-dev
 Section: devel
 Priority: optional
-Maintainer: Daniel Glassey <wdg@debian.org>
-Uploaders: Martin Hosken <martin_hosken@sil.org>
-Standards-Version: 3.9.3.1
+Maintainer: Debian Fonts Task Force <pkg-fonts-devel@lists.alioth.debian.org>
+Uploaders: Daniel Glassey <wdg@debian.org>, Martin Hosken <martin_hosken@sil.org>
+Standards-Version: 3.9.3
 
 Package: grcompiler
 Architecture: any
