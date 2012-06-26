@@ -1,0 +1,1 @@
+This directory contains the debugger files that were generated in the process of compiling the CharisBenchmark.ttf font.

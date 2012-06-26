@@ -1,0 +1,97 @@
+This is the changelog for the SIL Graphite Compiler project
+
+10 May 2012  Sharon Correll
+	More changes for version 4.2:
+	* Allow a font with Graphite tables to serve as input.
+	* Changed -d option to -D, -d option now generates XML file only.
+	* Output decimal numbers for glyph IDs in debugger files.
+
+19 Apr 2012  Daniel Glassey
+	Version 4.2
+	Changes since 4.1:
+	* Handle a large number of glyphs in replacement classes; 
+		this will produce Silf table v 4.0.
+	* Ensure that requesting the metrics of a pseudo-glyph will 
+		return the metrics of the corresponding actual glyph.
+	* Error messages and debugger files use decimal for glyph IDs.
+	* Add the segsplit slot attribute, to be used by the Graphite2 
+		engine for caching optimization.
+	* Added a line-break flag to permit optimization in Graphite2.
+	* Fixed problems with Macintosh strings in the name table.
+
+2 Apr 2012  Sharon Correll
+	Added -wall option.
+	
+20 Mar 2012  Sharon Correll
+	Added line-break flag for Graphite2 optimization.
+
+30 Jan 2012  Sharon Correll
+	Added segsplit split attribute.
+	
+17 Nov 2012  Sharon Correll
+	Silf version 4.0 - large number of glyphs in replacement classes.
+
+3 Oct 2011  Sharon Correll
+	Support mirroing glyph attributes.
+	
+9 Aug 2011
+	Version 4.1.0
+	
+5 April 2011  Sharon Correll
+	Automatically create associations for insertions and deletions when they are unambiguous.
+	
+28 Feb 2010
+	Version 2.0 of Glat table
+	  
+21 May 2010  Sharon Correll
+	Version 4.0
+	
+30 May 2009  Martin Hosken
+	Version 2.4.2
+	
+5 Feb 2009  Martin Hosken
+	Version 2.4.1
+	
+8 Nov 2007  Martin Hosken
+	Added grcompiler man page.
+	
+13 Sept 2007
+	Version 2.4
+	
+7 Sept 2007
+	Bidi defaults to false
+	
+May 2007  Sharon Correll
+	Regression tests.
+	
+20 April 2007  Sharon Correll
+	Use ICU to look up glyph attributes.
+	
+1 Aug 2006  Sharon Correll
+	Horizontally overlapping non-attached glyph warning.
+	
+9 Feb 2006  Sharon Correll
+	Allow feature IDs to be 4-char strings.
+	
+1 Feb 2006  Sharon Correll
+	add table(language) syntax
+	
+24 Jan 2006  Sharon Correll
+	Version 3 of Silf table
+	
+6 Jan 2006	Tim Eves
+	Added Iconv support to the configure.in scripts so it can find the
+	iconv library on Mac OS X.
+	Restructured some of the template classes in generic to allow:
+	  * Removal of explicit_instatiations.cpp.
+	  * To make them more portable to other compilers.
+	  
+3 Jan 2006	Tim Eves
+	Restructured project:
+	 * Moved generic and the grammer sub-projects into their own
+	   static libs.
+	 * Moved gdlpp into a separate independant of the compiler.
+
+1 Jan 2006	Tim Eves
+	Create initial version separated from the Graphite engine project.
+------------------------
