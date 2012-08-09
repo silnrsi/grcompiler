@@ -350,6 +350,7 @@ public:
 	////void InitializeFsmArrays();
 	std::vector<GdlGlyphClassDefn *> * FsmClassesForPass(int nPassID);
 	void CalculateContextOffsets();
+	void CalculateGlatVersion();
 
 	//	Output:
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,

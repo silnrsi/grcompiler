@@ -1805,14 +1805,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	//	Output the Glat table, recording the offsets in the array.
 
 	*pnGlatOffset = pbstrm->Position();
-	int fxdGlatVersion = VersionForTable(ktiGlat);
-	//	The version of the Glat table really just depends on the number of glyph attributes defined.
-	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrsGlat1 && fxdGlatVersion < 0x00020000)
-	{
-		g_errorList.AddWarning(3531, NULL, "Version 2.0 of the Glat table will be generated.");
-		fxdGlatVersion = 0x00020000;
-	}
-	SetTableVersion(ktiGlat, fxdGlatVersion);
+	int fxdGlatVersion = TableVersion(ktiGlat);
 	pbstrm->WriteInt(fxdGlatVersion);	// version number
 
 	int cbOutput = 4;	// first glyph starts after the version number
@@ -2059,7 +2052,14 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::VersionForRules()
 {
-	return VersionForTable(ktiSilf); // somebody these may be different
+	int fxdRules = VersionForTable(ktiSilf);
+	if (this->TableVersion(ktiGlat) > 0x00010000)
+	{
+		// If we have a large number of glyph attributes, we must use a later version of
+		// the rule action code that will generate the appropriate versions of PushGlyphAttr.
+		fxdRules = max(fxdRules, 0x00030000);
+	}
+	return fxdRules;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2744,7 +2744,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	long lPassStart = pbstrm->Position();
 
 	int fxdSilfVersion = pcman->VersionForTable(ktiSilf);
-	int fxdRuleVersion = fxdSilfVersion; // someday these may be different
+	int fxdRuleVersion = pcman->VersionForRules();
 
 	int nOffsetToPConstraint = 0;
 	long lOffsetToPConstraintPos = 0;

@@ -223,6 +223,7 @@ void GrcErrorList::WriteErrorsToFile(std::string staFileName,
 
 	WriteErrorsToStream(strmOut, staGdlFile, staInputFontFile, staOutputFile, staOutputFamily,
 		staVersion, fSepCtrlFile);
+	strmOut << "\n";
 	strmOut.close();
 }
 
