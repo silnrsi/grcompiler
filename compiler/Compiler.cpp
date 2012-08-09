@@ -71,9 +71,25 @@ bool GrcManager::Compile(GrcFont * /*pfont*/)
 {
 	GenerateFsms();
 	CalculateContextOffsets(); // after max-rule-context has been set
+	CalculateGlatVersion();	// before outputting debug files
 	return false;
 }
 
+
+/*----------------------------------------------------------------------------------------------
+	Determine what version of the Glat table is needed.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::CalculateGlatVersion()
+{
+	int fxdGlatVersion = VersionForTable(ktiGlat);
+	//	The version of the Glat table really just depends on the number of glyph attributes defined.
+	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrsGlat1 && fxdGlatVersion < 0x00020000)
+	{
+		g_errorList.AddWarning(3531, NULL, "Version 2.0 of the Glat table will be generated.");
+		fxdGlatVersion = 0x00020000;
+	}
+	SetTableVersion(ktiGlat, fxdGlatVersion);
+}
 
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints and actions of a rule.
