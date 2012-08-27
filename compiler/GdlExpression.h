@@ -488,6 +488,11 @@ public:
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
+	int AdjustedIndex()
+	{
+		return m_nIOIndex;
+	}
+
 	//	debuggers:
 	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 		bool fParens = false);
@@ -500,7 +505,7 @@ protected:
 
 	//	for compiler use:
 	int m_nIOIndex;		// adjusted input index or output index (which ever is relevant
-						// for the context)
+						// for the context) - 0-based
 };
 
 

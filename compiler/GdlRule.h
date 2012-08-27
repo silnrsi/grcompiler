@@ -115,6 +115,7 @@ public:
 	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs);
 	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml);
+	void DebugXml(GrcManager * pcman, std::ostream & strmOut);
 
 protected:
 	//	Instance variables:
