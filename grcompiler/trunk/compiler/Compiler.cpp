@@ -2623,6 +2623,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 	strmOut << "      <rule id=\"" << nPassNum << "." << nRuleNum
 		<< "\" inFile=\"" << LineAndFile().File()
 		<< "\" atLine=\"" << LineAndFile().OriginalLine()
+		<< "\" preAnys=\"" << m_critPrependedAnys
 		<< "\"\n            prettyPrint=\"";
 	this->RulePrettyPrint(pcman, strmOut, true);
 	strmOut << "\" >\n";
@@ -2726,7 +2727,32 @@ void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
 		strmOut << "\" assignmentGdl=\"";
 		AttrSetterPrettyPrint(pcman, NULL, 0, strmOut, true);	// NULL and 0 are bogus but not used
 	}
-	strmOut << "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
+
+	strmOut << "\" slotIndex=\"" << m_iritContextPos + 1 << "\"";
+
+	bool fNeedSlotAttrs = false;
+	for (unsigned ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+	{
+		// For now, we only need attachment slot attributes.
+		if (m_vpavs[ipavs]->m_psymName->IsAttachment())
+		{
+			fNeedSlotAttrs = true;
+			break;
+		}
+	}
+	if (fNeedSlotAttrs)
+	{
+		strmOut << ">\n            <slotAttrs";
+		for (unsigned ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+		{
+			m_vpavs[ipavs]->DebugXml(pcman, strmOut);
+		}
+		strmOut << " />\n          </rhsSlot>\n";
+	}
+	else
+	{
+		strmOut << "/>\n";
+	}
 }
 
 void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
@@ -2800,6 +2826,52 @@ void GdlLineBreakItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & st
 	ConstraintPrettyPrint(pcman, strmOut, true);
 	strmOut << "\" />\n";
 
+}
+
+void GdlAttrValueSpec::DebugXml(GrcManager * pcman, std::ostream & strmOut)
+{
+	// For now, only output the attach attributes.
+	if (m_psymName->IsAttachment())
+	{
+		if (m_fFlattened
+			&& (m_psymName->IsAttachAtField() || m_psymName->IsAttachWithField()))
+		{
+			// A single statement like "attach.at = apt" has been translated into
+			// "attach.at.x = apt.x, attach.at.y = apt.y, attach.at.xoffset = apt.xoffset,
+			// attach.at.yoffset = apt.yoffset". Just print out one of these, say, the x.
+			if (m_psymName->IsAttachXField())
+			{
+				if (m_psymName->IsAttachAtField())
+					strmOut << " attachAt=\"";
+				else
+					strmOut << " attachWith=\"";
+				GdlLookupExpression * pexpLookupValue = dynamic_cast<GdlLookupExpression *>(m_pexpValue);
+				if (pexpLookupValue)
+				{
+					Symbol psym = pexpLookupValue->Name()->ParentSymbol();	// glyph attr
+					strmOut << psym->LastField();
+				}
+				else
+					// strange...
+					m_pexpValue->PrettyPrint(pcman, strmOut, true);
+
+				strmOut << "\"";
+			}
+		}
+		else if (m_psymName->IsAttachTo())
+		{
+
+			strmOut << " attachTo=\"";
+			GdlSlotRefExpression * pexpSlotValue = dynamic_cast<GdlSlotRefExpression *>(m_pexpValue);
+			if (pexpSlotValue)
+				strmOut << pexpSlotValue->AdjustedIndex() + 1;
+			else
+				// strange...
+				m_pexpValue->PrettyPrint(pcman, strmOut, true);
+
+			strmOut << "\"";
+		}
+	}
 }
 
 /*----------------------------------------------------------------------------------------------
