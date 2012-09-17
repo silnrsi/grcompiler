@@ -144,6 +144,7 @@ public:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
+	void CalculateSpaceContextuals(GrcFont * pfont);
 
 	void SetNumUserDefn(int c);
 	//{

@@ -38,6 +38,9 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	if (!m_prndr->CheckTablesAndPasses(this, &cpassValid))
 		return false;
 
+	// Before prepending ANYs, calculate the space contextual flags.
+	m_prndr->CalculateSpaceContextuals(pfont);
+
 	//	Fix up the rules that have items in the context before the first modified item.
 	Symbol psymAnyClass = m_psymtbl->FindSymbol("ANY");
 	if (!m_prndr->FixRulePreContexts(psymAnyClass))
@@ -2491,3 +2494,153 @@ int GdlRule::FindSubstitutionItem(int iritDel)
 	}
 	return -1;
 }
+
+
+/*----------------------------------------------------------------------------------------------
+	Calculate the space-contextual values for each pass, indicating the kind of situations in
+	which we have spaces in rules. This is needed to allow applications that render on a 
+	word-by-word basis to adjust their behavior to take these kinds of rules into account.
+----------------------------------------------------------------------------------------------*/
+void GdlRenderer::CalculateSpaceContextuals(GrcFont * pfont)
+{
+	// Add the glyph IDs of all characters that are considered spaces.
+	std::vector<utf16> vwSpaceGlyphs;
+	utf16 w = pfont->GlyphFromCmap(0x0020, this);	// standard space
+	vwSpaceGlyphs.push_back(w);
+	// add any other space characters
+
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
+	{
+		m_vprultbl[iprultbl]->CalculateSpaceContextuals(vwSpaceGlyphs);
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleTable::CalculateSpaceContextuals(std::vector<utf16> & vwSpaceGlyphs)
+{
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
+	{
+		m_vppass[ippass]->CalculateSpaceContextuals(vwSpaceGlyphs);
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlPass::CalculateSpaceContextuals(std::vector<utf16> & vwSpaceGlyphs)
+{
+	m_spcon = kspconNone;
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
+	{
+		m_vprule[iprule]->CalculateSpaceContextuals(&m_spcon, vwSpaceGlyphs);
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRule::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
+		std::vector<utf16> & vwSpaceGlyphs)
+{
+	if (*pspconSoFar == kspconAnywhere)
+		return;	// most lenient setting possible
+
+	if (m_vprit.size() == 1)
+	{
+		// Single space slot.
+		if (m_vprit[0]->IsSpaceItem(vwSpaceGlyphs))
+		{
+			if ((int)(*pspconSoFar) <= (int)kspconNone)
+				*pspconSoFar = kspconSingleOnly;
+		}
+		// else no change
+	}
+	else
+	{
+		bool fFirst = false;
+		bool fLast = false;
+		bool fOther = false;
+		if (m_vprit[0]->IsSpaceItem(vwSpaceGlyphs))
+			fFirst = true;
+		if (m_vprit[m_vprit.size() - 1]->IsSpaceItem(vwSpaceGlyphs))
+			fLast = true;
+
+		for (size_t iprit = 1; iprit < m_vprit.size() - 1; iprit++)
+		{
+			if (m_vprit[iprit]->IsSpaceItem(vwSpaceGlyphs))
+			{
+				fOther = true;
+				break;
+			}
+		}
+
+		if (fOther)
+			*pspconSoFar = kspconAnywhere;
+
+		else if (*pspconSoFar == kspconEdgeOnly)
+		{}	// no change
+
+		else if (fFirst && fLast)
+			*pspconSoFar = kspconEdgeOnly;
+
+		else if ((fFirst && *pspconSoFar == kspconLastOnly)
+				|| (fLast && *pspconSoFar == kspconFirstOnly))
+			*pspconSoFar = kspconEdgeOnly;
+
+		else if (fFirst)
+			*pspconSoFar = kspconFirstOnly;
+
+		else if (fLast)
+			*pspconSoFar = kspconLastOnly;
+
+		// else no change
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlRuleItem::IsSpaceItem(std::vector<utf16> & vwSpaceGlyphs)
+{
+	GdlGlyphClassDefn * pglfc = m_psymInput->GlyphClassDefnData();
+	if (pglfc)
+		return pglfc->IsSpaceGlyph(vwSpaceGlyphs);
+	else
+		return false;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs)
+{
+	if (m_fIsSpaceGlyph == -1)
+	{
+		for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+		{
+			if (m_vpglfdMembers[iglfd]->IsSpaceGlyph(vwSpaceGlyphs))
+			{
+				m_fIsSpaceGlyph = 1;
+				return true;
+				// break;
+			}
+		}
+		m_fIsSpaceGlyph = 0;
+	}
+	return (bool)m_fIsSpaceGlyph;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphDefn::IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs)
+{
+	if (m_fIsSpaceGlyph == -1)
+	{
+		for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
+		{
+			for (size_t iwSp = 0; iwSp < vwSpaceGlyphs.size(); iwSp++)
+			{
+				if (m_vwGlyphIDs[iw] == vwSpaceGlyphs[iwSp])
+				{
+					m_fIsSpaceGlyph = 1;
+					return true;
+					//break;
+				}
+			}
+		}
+		m_fIsSpaceGlyph = 0;
+	}
+	return (bool)m_fIsSpaceGlyph;
+}
+

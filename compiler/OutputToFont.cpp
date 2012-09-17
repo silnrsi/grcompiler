@@ -2759,7 +2759,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	long lOffsetToDebugArraysPos = 0;
 
 	//	flags; TODO SharonC: figure out what should be in here
-	pbstrm->WriteByte(0);
+	pbstrm->WriteByte(this->m_spcon);
 	//	MaxRuleLoop
 	pbstrm->WriteByte(m_nMaxRuleLoop);
 	//	max rule context

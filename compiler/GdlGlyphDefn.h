@@ -34,7 +34,8 @@ public:
 	//	Constructors:
 	//	unicode(0x1234), glyphid(0x3333)
 	GdlGlyphDefn(GlyphType glft, int nFirst) 
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(nFirst),
 			m_nLast(nFirst),
 			m_wCodePage(0),
@@ -49,7 +50,8 @@ public:
 
 	//	unicode(0x1234..1237), glyphid(0x3333..03335), codepage(0x1234, 1252);
 	GdlGlyphDefn(GlyphType glft, int nFirst, int nLast)
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(nFirst),
 			m_nLast(nLast),
 			m_wCodePage(0),
@@ -69,7 +71,8 @@ public:
 
 	//	codepoint(1..2, 0x2222)
 	GdlGlyphDefn(GlyphType glft, int nFirst, int nLast, utf16 wCodePage)
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(nFirst),
 			m_nLast(nLast),
 			m_wCodePage(wCodePage),
@@ -82,7 +85,8 @@ public:
 
 	//	postscript("Ccedilla")
 	GdlGlyphDefn(GlyphType glft, std::string sta)
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
@@ -96,7 +100,8 @@ public:
 
 	//	codepoint("abc", 0x04e4)
 	GdlGlyphDefn(GlyphType glft, std::string sta, utf16 wCodePage)
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(wCodePage),
@@ -110,7 +115,8 @@ public:
 
 	//	pseudo(unicode(0x3344))
 	GdlGlyphDefn(GlyphType glft, GdlGlyphDefn * pglf)
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
@@ -124,7 +130,8 @@ public:
 
 	//	pseudo(unicode(0x3344), 0xf123)
 	GdlGlyphDefn(GlyphType glft, GdlGlyphDefn * pglf, int nInput)
-		:	m_glft(glft),
+		:	GdlGlyphClassMember(),
+			m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
@@ -315,6 +322,8 @@ public:
 			vgidFlattened.push_back(m_vwGlyphIDs[igid]);
 		}
 	}
+
+	virtual bool IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs);
 
 public:
 	//	Compiler:

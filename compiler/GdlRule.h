@@ -273,6 +273,7 @@ public:
 	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
+	bool IsSpaceItem(std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
@@ -851,6 +852,8 @@ public:
 	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);
 	int ItemCountOriginal();
 	int FindSubstitutionItem(int iritDel);
+	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
+		std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
