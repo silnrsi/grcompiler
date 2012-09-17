@@ -58,6 +58,8 @@ Hungarian: cman
 ----------------------------------------------------------------------------------------------*/
 class GrcManager
 {
+	typedef std::map<std::string, Symbol> SymbolTableMap;
+
 public:
 	//	Constructor & destructor:
 	GrcManager();
@@ -324,6 +326,7 @@ protected:
 		int cJLevels, int nAttrIDJStr, int nAttrIDJShr, int nAttrIDJStep, int nAttrIDJWeight,
 		int * pnMin, int * pnMax);
 	bool StorePseudoToActualAsGlyphAttr();
+	bool CheckForEmptyClasses();
 
 public:
 	int PseudoForUnicode(int nUnicode);

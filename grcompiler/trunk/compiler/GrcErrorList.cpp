@@ -38,7 +38,7 @@ error checking:
 		GdlRule
 		GdlTablePass
 		Fsm
-	classes - highest error: 4147 / highest warning: 4517
+	classes - highest error: 4147 / highest warning: 4518
 		ErrorCheckClass
 		GrcGlyphAttrMatrix
 		GdlGlyphDefn

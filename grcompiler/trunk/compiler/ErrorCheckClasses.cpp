@@ -76,6 +76,8 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 	if (!StorePseudoToActualAsGlyphAttr())
 		return false;
 
+	CheckForEmptyClasses();
+
 	return true;
 }
 
@@ -2966,3 +2968,33 @@ unsigned int GdlGlyphDefn::FirstGlyphInClass(bool * pfMoreThanOne)
 	return 0; // pathological?
 }
 
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Give a warning about any empty classes.
+----------------------------------------------------------------------------------------------*/
+bool GrcManager::CheckForEmptyClasses()
+{
+	for (SymbolTableMap::iterator it = m_psymtbl->EntriesBegin();
+		it != m_psymtbl->EntriesEnd();
+		++it)
+	{
+		Symbol psym = it->second; // GetValue();
+		//Symbol psym = it.GetValue();
+
+		//if (psym->m_psymtblSubTable)
+		//	psym->m_psymtblSubTable->CheckForEmptyClasses();
+
+		if (psym->FitsSymbolType(ksymtClass) && psym->HasData())
+		{
+			GdlGlyphClassDefn * pglfc = psym->GlyphClassDefnData();
+			int cglf = pglfc->GlyphIDCount();
+			if (cglf == 0)
+				g_errorList.AddWarning(4518, pglfc,
+					"Empty class definition: ",
+					psym->FullName());
+		}
+	}
+
+	return true;
+}
