@@ -2356,6 +2356,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut)
 
 			if ((m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() || nAttrID == nAttrIdDir)
 					&& !m_prndr->Bidi())
+				// Ignore mirror and directionality attribute for non-bidi.
 				continue;
 
 			// Get the original expression where this attribute was set.
@@ -2368,7 +2369,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut)
 				&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
 
 			if (m_vpsymGlyphAttrs[nAttrID]->IsUserDefined() && !m_pgax->Defined(wGlyphID, nAttrID))
-				// attribute not defined for this glyph
+				// Attribute not defined for this glyph.
 				continue;
 
 			strmOut << "      <glyphAttrValue name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName()
