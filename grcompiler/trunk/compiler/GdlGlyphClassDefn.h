@@ -71,6 +71,10 @@ Hungarian: glfd
 class GdlGlyphClassMember : public GdlDefn
 {
 public:
+	GdlGlyphClassMember()
+		: m_fIsSpaceGlyph(-1)
+	{
+	};
 	virtual ~GdlGlyphClassMember()
 	{
 	};
@@ -101,6 +105,7 @@ public:
 	virtual bool WarnAboutBadGlyphs(bool fTop) = 0;
 	virtual bool DeleteBadGlyphs() = 0;
 	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened) = 0;
+	virtual bool IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs) = 0;
 
 public:
 	//	Compiler:
@@ -117,6 +122,11 @@ public:
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni) = 0;
 	virtual void DebugXmlClassMembers(std::ofstream & strmOut, 
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs) = 0;
+
+protected:
+	int m_fIsSpaceGlyph;	// Probably mistakenly I thought the CalculateSpaceContextuals routine
+							// was slow, hence the value is cached. It's probably not needed.
+
 };
 
 
@@ -133,7 +143,9 @@ class GdlGlyphClassDefn : public GdlGlyphClassMember
 public:
 	//	Constructors & destructors:
 	GdlGlyphClassDefn()
+		: GdlGlyphClassMember()
 	{
+		
 		m_fReplcmtIn = false;
 		m_fReplcmtOut = false;
 		m_nReplcmtInID = -1;
@@ -235,6 +247,7 @@ public:
 	virtual bool HasBadGlyph();
 	virtual bool WarnAboutBadGlyphs(bool fTop);
 	virtual bool DeleteBadGlyphs();
+	virtual bool IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs);
 
 public:
 	//	Compiler:

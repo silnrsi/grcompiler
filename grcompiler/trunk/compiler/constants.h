@@ -328,3 +328,13 @@ enum JustifyModes
 	kjmodJustify	= 2
 };
 
+enum SpaceContextuals
+{
+	kspconUnknown		= 0,
+	kspconNone			= 1,
+	kspconFirstOnly		= 2,	// only as first slot in rule
+	kspconLastOnly		= 3,	// only as last slot in rule
+	kspconSingleOnly	= 4,	// only as the single slot in rule
+	kspconEdgeOnly		= 5,	// only as first or last slot, never in the middle of the rules
+	kspconAnywhere		= 6		// middle of a rule
+};
