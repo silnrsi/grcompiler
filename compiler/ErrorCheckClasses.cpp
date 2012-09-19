@@ -691,6 +691,7 @@ int GdlGlyphDefn::GlyphIDCount()
 /*----------------------------------------------------------------------------------------------
 	Calculate the highest justification level used. If justification is not referenced at all,
 	the result = -2; -1 means only non-leveled attributes are used (justify.stretch, etc).
+	Return false if they have used too high a level.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::MaxJustificationLevel(int * pnJLevel)
 {
@@ -698,7 +699,7 @@ bool GrcManager::MaxJustificationLevel(int * pnJLevel)
 
 	m_prndr->MaxJustificationLevel(&m_nMaxJLevel);
 	m_fBasicJust = (m_nMaxJLevel == -2);
-	return true;
+	return (m_nMaxJLevel <= kMaxJustLevel);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -708,12 +709,14 @@ void GdlRenderer::MaxJustificationLevel(int * pnJLevel)
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		m_vpglfc[ipglfc]->MaxJustificationLevel(pnJLevel);
+		if (*pnJLevel >= kMaxJustLevel)
+			return;
 	}
 	//	Rules:
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->MaxJustificationLevel(pnJLevel);
-		if (*pnJLevel >= 3)
+		if (*pnJLevel >= kMaxJustLevel)
 			return;
 	}
 }
@@ -726,9 +729,13 @@ void GdlGlyphClassDefn::MaxJustificationLevel(int * pnJLevel)
 	{
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		int n = psym->JustificationLevel();
-		if (n > 3)
-			g_errorList.AddError(4119, this,
-				"Only 3 levels of justification are supported.");
+		if (n > kMaxJustLevel)
+		{
+			char rgch[10];
+			itoa(kMaxJustLevel, rgch, 10);
+			g_errorList.AddError(4122, this,
+				"Highest justification level permitted = ", rgch);
+		}
 		*pnJLevel = max(*pnJLevel, n);
 	}
 }
@@ -769,9 +776,13 @@ void GdlRuleItem::MaxJustificationLevel(int * pnJLevel)
 	{
 		int n = -2;
 		m_pexpConstraint->MaxJustificationLevel(&n);
-		if (n > 3)
-			g_errorList.AddError(4120, this,
-				"Only 3 levels of justification are supported.");
+		if (n > kMaxJustLevel)
+		{
+			char rgch[10];
+			itoa(kMaxJustLevel, rgch, 10);
+			g_errorList.AddError(4122, this,
+				"Highest justification level permitted = ", rgch);
+		}
 		*pnJLevel = max(*pnJLevel, n);
 	}
 }
@@ -785,9 +796,13 @@ void GdlSetAttrItem::MaxJustificationLevel(int * pnJLevel)
 	{
 		int n = -2;
 		m_vpavs[ipavs]->MaxJustificationLevel(&n);
-		if (n > 3)
-			g_errorList.AddError(4121, this,
-				"Only 3 levels of justification are supported.");
+		if (n > kMaxJustLevel)
+		{
+			char rgch[10];
+			itoa(kMaxJustLevel, rgch, 10);
+			g_errorList.AddError(4122, this,
+				"Highest justification level permitted = ", rgch);
+		}
 		*pnJLevel = max(*pnJLevel, n);
 	}
 }
@@ -796,9 +811,13 @@ void GdlSetAttrItem::MaxJustificationLevel(int * pnJLevel)
 void GdlAttrValueSpec::MaxJustificationLevel(int * pnJLevel)
 {
 	int n = m_psymName->JustificationLevel();
-	if (n > 3)
+	if (n > kMaxJustLevel)
+	{
+		char rgch[10];
+		itoa(kMaxJustLevel, rgch, 10);
 		g_errorList.AddError(4122, this,
-			"Only 3 levels of justification are supported.");
+			"Highest justification level permitted = ", rgch);
+	}
 	*pnJLevel = max(*pnJLevel, n);
 }
 
@@ -844,7 +863,7 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1);
 	m_cpsymBuiltIn = m_vpsymGlyphAttrs.size();
 
-	//	Assign the first batch of IDs to component bases (ie, component.X).
+	//	Assign the next batch of IDs to component bases (ie, component.X).
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1);
 	m_cpsymComponents = m_vpsymGlyphAttrs.size() - m_cpsymBuiltIn;
 
@@ -944,7 +963,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 	}
 
 	// Make a separate list of symbols to process, because the iterators get confused when you are
-	// changing the hash-map underneath it the same time.
+	// changing the hash-map underneath it at the same time.
 	std::vector<Symbol> vpsymToProcess;
 	for (SymbolTableMap::iterator it = EntriesBegin();
 		it != EntriesEnd();

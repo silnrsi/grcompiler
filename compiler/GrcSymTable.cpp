@@ -1286,27 +1286,39 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 	else if (staField0 == "justify")	// TODO: handle all the levels
 	{
 		if (staField1 == "stretch")
-			return kslatJStretch;
+			return kslatJ0Stretch;
 		else if (staField1 == "shrink")
-			return kslatJShrink;
+			return kslatJ0Shrink;
 		else if (staField1 == "step")
-			return kslatJStep;
+			return kslatJ0Step;
 		else if (staField1 == "weight")
-			return kslatJWeight;
+			return kslatJ0Weight;
 		else if (staField1 == "width")
-			return kslatJWidth;
-		else if (staField1 == "0")
+			return kslatJ0Width;
+		else if (staField1 == "0" || staField1 == "1" || staField1 == "2" || staField1 == "3")
 		{
+			int slatStretch = kslatJ0Stretch;
+			if (staField1 == "0")
+				slatStretch = kslatJ0Stretch;
+			else if (staField1 == "1")
+				slatStretch = kslatJ1Stretch;
+			else if (staField1 == "2")
+				slatStretch = kslatJ2Stretch;
+			else if (staField1 == "3")
+				slatStretch = kslatJ3Stretch;
+			else
+				Assert(false);
+
 			if (staField2 == "stretch")
-				return kslatJStretch;
+				return slatStretch;
 			else if (staField2 == "shrink")
-				return kslatJShrink;
+				return slatStretch + (kslatJ0Shrink - kslatJ0Stretch);
 			else if (staField2 == "step")
-				return kslatJStep;
+				return slatStretch + (kslatJ0Step - kslatJ0Stretch);
 			else if (staField2 == "weight")
-				return kslatJWeight;
+				return slatStretch + (kslatJ0Weight - kslatJ0Stretch);
 			else if (staField2 == "width")
-				return kslatJWidth;
+				return slatStretch + (kslatJ0Width - kslatJ0Stretch);
 			else
 			{
 				Assert(false);
@@ -1655,7 +1667,6 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("measure", "startofline"),kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("measure", "endofline"),	kst, kexptMeas);
 
-	//	TODO: handle all the levels.
 	PreDefineSymbol(GrcStructName("justify", "stretch"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("justify", "stretchHW"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("justify", "shrink"),		kst, kexptMeas);
@@ -1663,12 +1674,17 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("justify", "weight"),		kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("justify", "width"),		kst, kexptMeas);
 
-	PreDefineSymbol(GrcStructName("justify", "0", "stretch"),	kst, kexptMeas);
-	PreDefineSymbol(GrcStructName("justify", "0", "stretchHW"),	kst, kexptMeas);
-	PreDefineSymbol(GrcStructName("justify", "0", "shrink"),	kst, kexptMeas);
-	PreDefineSymbol(GrcStructName("justify", "0", "step"),		kst, kexptMeas);
-	PreDefineSymbol(GrcStructName("justify", "0", "weight"),	kst, kexptNumber);
-	PreDefineSymbol(GrcStructName("justify", "0", "width"),		kst, kexptMeas);
+	char rgchLevel[10];
+	for (int iLevel = 0; iLevel <= kMaxJustLevel; iLevel++)
+	{
+		itoa(iLevel, rgchLevel, 10);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel, "stretch"),	kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel,"stretchHW"),kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel, "shrink"),	kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel, "step"),	kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel, "weight"),	kst, kexptNumber);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel, "width"),	kst, kexptMeas);
+	}
 
 	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
 }
@@ -1686,7 +1702,6 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("breakweight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
-	//	TODO: handle all the levels
 	psym = AddType2(GrcStructName("justify", "stretch"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("justify", "shrink"), ksymtGlyphAttr);
@@ -1696,14 +1711,19 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("justify", "weight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
-	psym = AddType2(GrcStructName("justify", "0", "stretch"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "0", "shrink"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "0", "step"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("justify", "0", "weight"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
+	char rgchLevel[10];
+	for (int iLevel = 0; iLevel <= kMaxJustLevel; iLevel++)
+	{
+		itoa(iLevel, rgchLevel, 10);
+		psym = AddType2(GrcStructName("justify", rgchLevel, "stretch"), ksymtGlyphAttr);
+		psym->m_fGeneric = true;
+		psym = AddType2(GrcStructName("justify", rgchLevel, "shrink"), ksymtGlyphAttr);
+		psym->m_fGeneric = true;
+		psym = AddType2(GrcStructName("justify", rgchLevel, "step"), ksymtGlyphAttr);
+		psym->m_fGeneric = true;
+		psym = AddType2(GrcStructName("justify", rgchLevel, "weight"), ksymtGlyphAttr);
+		psym->m_fGeneric = true;
+	}
 
 	//	A fake glyph attribute that is used to store the actual glyph ID for pseudo-glyphs.
 	psym = PreDefineSymbol(GrcStructName("*actualForPseudo*"), ksymtGlyphAttr, kexptNumber);

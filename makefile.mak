@@ -24,8 +24,8 @@ OUTDIR=.\release
 INTDIR=.\release_temp
 
 all : "$(OUTDIR)\$(TARGET).exe"
-	- copy $(ICU_BIN)\icuuc36.dll $(OUTDIR)\icuuc36.dll
-	- copy $(ICU_BIN)\icudt36.dll $(OUTDIR)\icudt36.dll
+	- copy $(ICU_BIN)\icuuc49.dll $(OUTDIR)\icuuc49.dll
+	- copy $(ICU_BIN)\icudt49.dll $(OUTDIR)\icudt49.dll
 
 clean :
     @- rd /s/q $(INTDIR)
@@ -44,8 +44,8 @@ OUTDIR=.\debug
 INTDIR=.\debug_temp
 
 all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
-	- copy $(ICU_BIN)\icuuc36d.dll $(OUTDIR)\icuuc36d.dll
-	- copy $(ICU_BIN)\icudt36.dll $(OUTDIR)\icudt36.dll
+	- copy $(ICU_BIN)\icuuc49d.dll $(OUTDIR)\icuuc49d.dll
+	- copy $(ICU_BIN)\icudt49.dll $(OUTDIR)\icudt49.dll
 
 clean :
     @- rd /s/q $(INTDIR)

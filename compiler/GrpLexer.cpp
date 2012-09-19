@@ -8,8 +8,8 @@
 
 #include "GrpLexer.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "Antlr/ScannerException.hpp"
-#include "Antlr/CharBuffer.hpp"
+#include "antlr/ScannerException.hpp"
+#include "antlr/CharBuffer.hpp"
 
 
 
@@ -57,14 +57,15 @@ GrpLexer::GrpLexer(const LexerSharedInputState& state)
 void GrpLexer::initLiterals()
 {
 	literals["positioning"] = 56;
-	literals["min"] = 76;
+	literals["min"] = 77;
 	literals["name"] = 16;
 	literals["endenvironment"] = 10;
 	literals["endtable"] = 15;
-	literals["false"] = 74;
-	literals["true"] = 73;
+	literals["false"] = 75;
+	literals["true"] = 74;
 	literals["glyph"] = 23;
 	literals["codepoint"] = 26;
+	literals["justify"] = 59;
 	literals["pass"] = 36;
 	literals["table"] = 14;
 	literals["substitution"] = 35;
@@ -78,7 +79,7 @@ void GrpLexer::initLiterals()
 	literals["languages"] = 34;
 	literals["elseif"] = 42;
 	literals["feature"] = 32;
-	literals["max"] = 75;
+	literals["max"] = 76;
 	literals["postscript"] = 28;
 	literals["unicode"] = 29;
 	literals["if"] = 38;
@@ -430,11 +431,11 @@ void GrpLexer::mCOMMENT_SL(bool _createToken) {
 			}
 		}
 		else {
-			goto _loop422;
+			goto _loop429;
 		}
 		
 	} while (true);
-	_loop422:;
+	_loop429:;
 	}
 	_ttype = Token::SKIP;
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -724,11 +725,11 @@ void GrpLexer::mCOMMENT_ML(bool _createToken) {
 				match(static_cast<unsigned char>('*'));
 			}
 		else {
-			goto _loop426;
+			goto _loop433;
 		}
 		}
 	} while (true);
-	_loop426:;
+	_loop433:;
 	}
 	match("*/");
 	_ttype = Token::SKIP;
@@ -749,35 +750,35 @@ void GrpLexer::mLIT_INT(bool _createToken) {
 		{
 		match("0x");
 		{
-		int _cnt433=0;
+		int _cnt440=0;
 		do {
 			if ((_tokenSet_3.member(LA(1)))) {
 				mXDIGIT(false);
 			}
 			else {
-				if ( _cnt433>=1 ) { goto _loop433; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+				if ( _cnt440>=1 ) { goto _loop440; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 			}
 			
-			_cnt433++;
+			_cnt440++;
 		} while (true);
-		_loop433:;
+		_loop440:;
 		}
 		}
 	}
 	else if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
 		{
-		int _cnt430=0;
+		int _cnt437=0;
 		do {
 			if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
 				mDIGIT(false);
 			}
 			else {
-				if ( _cnt430>=1 ) { goto _loop430; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+				if ( _cnt437>=1 ) { goto _loop437; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 			}
 			
-			_cnt430++;
+			_cnt437++;
 		} while (true);
-		_loop430:;
+		_loop437:;
 		}
 	}
 	else {
@@ -881,18 +882,18 @@ void GrpLexer::mLIT_UHEX(bool _createToken) {
 	
 	match("U+");
 	{
-	int _cnt437=0;
+	int _cnt444=0;
 	do {
 		if ((_tokenSet_3.member(LA(1)))) {
 			mXDIGIT(false);
 		}
 		else {
-			if ( _cnt437>=1 ) { goto _loop437; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+			if ( _cnt444>=1 ) { goto _loop444; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 		}
 		
-		_cnt437++;
+		_cnt444++;
 	} while (true);
-	_loop437:;
+	_loop444:;
 	}
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
 	   _token = makeToken(_ttype);
@@ -1048,11 +1049,11 @@ void GrpLexer::mLIT_STRING(bool _createToken) {
 			}
 		}
 		else {
-			goto _loop444;
+			goto _loop451;
 		}
 		
 	} while (true);
-	_loop444:;
+	_loop451:;
 	}
 	_saveIndex=text.length();
 	mDQUOTE(false);
@@ -1737,11 +1738,11 @@ void GrpLexer::mIDENT(bool _createToken) {
 		}
 		default:
 		{
-			goto _loop493;
+			goto _loop500;
 		}
 		}
 	} while (true);
-	_loop493:;
+	_loop500:;
 	}
 	_ttype = testLiteralsTable(_ttype);
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1922,11 +1923,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 			}
 			default:
 			{
-				goto _loop499;
+				goto _loop506;
 			}
 			}
 		} while (true);
-		_loop499:;
+		_loop506:;
 		}
 	}
 	else {
@@ -1936,11 +1937,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 				matchRange(static_cast<unsigned char>('0'),static_cast<unsigned char>('9'));
 			}
 			else {
-				goto _loop501;
+				goto _loop508;
 			}
 			
 		} while (true);
-		_loop501:;
+		_loop508:;
 		}
 	}
 	
