@@ -730,7 +730,6 @@ GLYPH ATTRIBUTE VALUES
 
 100  [0x0064]
    breakweight = 30 [0x001e]
-   mirror.isEncoded = 1
 
 
 101  [0x0065]
@@ -740,7 +739,6 @@ GLYPH ATTRIBUTE VALUES
 
 102  [0x0066]
    breakweight = 30 [0x001e]
-   mirror.isEncoded = 1
 
 
 103  [0x0067]
@@ -795,26 +793,18 @@ GLYPH ATTRIBUTE VALUES
 
 113  [0x0071]
    breakweight = 30 [0x001e]
-   mirror.glyph = 114 [0x0072]
-   mirror.isEncoded = 1
 
 
 114  [0x0072]
    breakweight = 30 [0x001e]
-   mirror.glyph = 113 [0x0071]
-   mirror.isEncoded = 1
 
 
 115  [0x0073]
    breakweight = 30 [0x001e]
-   mirror.glyph = 116 [0x0074]
-   mirror.isEncoded = 1
 
 
 116  [0x0074]
    breakweight = 30 [0x001e]
-   mirror.glyph = 115 [0x0073]
-   mirror.isEncoded = 1
 
 
 117  [0x0075]
@@ -8963,7 +8953,7 @@ GLYPH ATTRIBUTE VALUES
 
 970  [0x03ca]
    breakweight = 30 [0x001e]
-   directionality = 3
+   directionality = 7
    digit.x = 465 [0x01d1]
 
 
@@ -8979,7 +8969,6 @@ GLYPH ATTRIBUTE VALUES
 
 973  [0x03cd]
    breakweight = 30 [0x001e]
-   directionality = 16 [0x0010]
 
 
 974  [0x03ce]

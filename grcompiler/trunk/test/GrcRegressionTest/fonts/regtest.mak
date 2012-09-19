@@ -58,7 +58,7 @@ grcregtest.log :
 	- cmp --verbose $(FONTS)/PadaukBenchmark_v3.ttf $(FONTS)/PadaukTest.ttf
 
 regtest.log :
-	$(RTEXE)\GrcRegressionTest.exe -l regtest.log $(FONTS)\SchBenchmark.ttf $(FONTS)\SchTest.ttf
+#	$(RTEXE)\GrcRegressionTest.exe -l regtest.log $(FONTS)\SchBenchmark.ttf $(FONTS)\SchTest.ttf
 	$(RTEXE)\GrcRegressionTest.exe -l regtest.log  $(FONTS)\CharisBenchmark.ttf $(FONTS)\CharisTest.ttf
  	$(RTEXE)\GrcRegressionTest.exe -l regtest.log  $(FONTS)\PigLatinBenchmark_v2.ttf $(FONTS)\PigLatinTest_v2.ttf
  	$(RTEXE)\GrcRegressionTest.exe -l regtest.log  $(FONTS)\PigLatinBenchmark_v3.ttf $(FONTS)\PigLatinTest_v3.ttf

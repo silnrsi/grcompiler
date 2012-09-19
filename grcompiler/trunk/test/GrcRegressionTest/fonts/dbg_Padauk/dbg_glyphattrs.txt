@@ -1721,7 +1721,7 @@ GLYPH ATTRIBUTE VALUES
 
 197  [0x00c5]
    breakweight = -30 [0xffe2]
-   directionality = 1
+   directionality = 16 [0x0010]
    BSS.x = 144 [0x0090]
    BSS.y = -53 [0xffcb]
    LS.x = 144 [0x0090]
@@ -1819,7 +1819,7 @@ GLYPH ATTRIBUTE VALUES
 
 205  [0x00cd]
    breakweight = -30 [0xffe2]
-   directionality = 1
+   directionality = 16 [0x0010]
    BSS.x = 144 [0x0090]
    BSS.y = -53 [0xffcb]
    LS.x = 144 [0x0090]
@@ -2125,7 +2125,7 @@ GLYPH ATTRIBUTE VALUES
 
 232  [0x00e8]
    breakweight = -50 [0xffce]
-   directionality = 1
+   directionality = 16 [0x0010]
    order = 8
    UM.x = -179 [0xff4d]
    UM.y = 495 [0x01ef]
@@ -2133,7 +2133,7 @@ GLYPH ATTRIBUTE VALUES
 
 233  [0x00e9]
    breakweight = -50 [0xffce]
-   directionality = 1
+   directionality = 16 [0x0010]
    order = 8
    UM.x = -138 [0xff76]
    UM.y = 532 [0x0214]
@@ -2163,7 +2163,7 @@ GLYPH ATTRIBUTE VALUES
 
 237  [0x00ed]
    breakweight = -50 [0xffce]
-   directionality = 1
+   directionality = 16 [0x0010]
    order = 12 [0x000c]
    UM.x = -231 [0xff19]
    UM.y = 477 [0x01dd]
@@ -2422,7 +2422,7 @@ GLYPH ATTRIBUTE VALUES
 
 262  [0x0106]
    breakweight = -30 [0xffe2]
-   directionality = 1
+   directionality = 16 [0x0010]
    BSS.x = 144 [0x0090]
    BSS.y = -53 [0xffcb]
    LS.x = 144 [0x0090]
@@ -2436,7 +2436,7 @@ GLYPH ATTRIBUTE VALUES
 
 263  [0x0107]
    breakweight = -30 [0xffe2]
-   directionality = 1
+   directionality = 16 [0x0010]
    BSS.x = 144 [0x0090]
    BSS.y = -53 [0xffcb]
    LS.x = 144 [0x0090]
@@ -2450,7 +2450,7 @@ GLYPH ATTRIBUTE VALUES
 
 264  [0x0108]
    breakweight = -30 [0xffe2]
-   directionality = 1
+   directionality = 16 [0x0010]
    order = 2
    LM.x = -180 [0xff4c]
    LM.y = -63 [0xffc1]

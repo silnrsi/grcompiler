@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphite>
+
+  <glyphAttrs>
+    <glyphAttr name="*actualForPseudo*" attrId="0" type="gid" />
+    <glyphAttr name="breakweight" attrId="1" type="bw" />
+    <glyphAttr name="directionality" attrId="2" type="dircode" />
+    <glyphAttr name="mirror.glyph" attrId="3" type="gid" />
+    <glyphAttr name="mirror.isEncoded" attrId="4" type="boolean" />
+  </glyphAttrs>
+
+  <glyphs>
+    <glyph glyphid="0">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="2" usv="U+0020">
+      <glyphAttrValue name="breakweight" value="15" />
+    </glyph>
+    <glyph glyphid="3" usv="U+0021">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="4" usv="U+0022">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="5" usv="U+0023">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="6" usv="U+0024">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="7" usv="U+0025">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="8" usv="U+0026">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="9" usv="U+0027">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="10" usv="U+0028">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="11" usv="U+0029">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="12" usv="U+002A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="13" usv="U+002B">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="14" usv="U+002C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="15" usv="U+002D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="16" usv="U+002E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="17" usv="U+002F">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="18" usv="U+0030">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="19" usv="U+0031">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="20" usv="U+0032">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="21" usv="U+0033">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="22" usv="U+0034">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="23" usv="U+0035">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="24" usv="U+0036">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="25" usv="U+0037">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="26" usv="U+0038">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="27" usv="U+0039">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="28" usv="U+003A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="29" usv="U+003B">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="30" usv="U+003C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="31" usv="U+003D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="32" usv="U+003E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="33" usv="U+003F">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="34" usv="U+0040">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="35" usv="U+0041">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="36" usv="U+0042">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="37" usv="U+0043">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="38" usv="U+0044">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="39" usv="U+0045">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="40" usv="U+0046">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="41" usv="U+0047">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="42" usv="U+0048">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="43" usv="U+0049">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="44" usv="U+004A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="45" usv="U+004B">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="46" usv="U+004C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="47" usv="U+004D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="48" usv="U+004E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="49" usv="U+004F">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="50" usv="U+0050">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="51" usv="U+0051">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="52" usv="U+0052">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="53" usv="U+0053">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="54" usv="U+0054">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="55" usv="U+0055">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="56" usv="U+0056">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="57" usv="U+0057">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="58" usv="U+0058">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="59" usv="U+0059">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="60" usv="U+005A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="61" usv="U+005B">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="62" usv="U+005C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="63" usv="U+005D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="64" usv="U+005E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="65" usv="U+005F">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="66" usv="U+0060">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="67" className="g_aIns" usv="U+0061">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="68" usv="U+0062">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="69" usv="U+0063">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="70" usv="U+0064">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="71" usv="U+0065">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="72" usv="U+0066">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="73" usv="U+0067">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="74" usv="U+0068">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="75" usv="U+0069">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="76" usv="U+006A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="77" usv="U+006B">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="78" usv="U+006C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="79" usv="U+006D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="80" usv="U+006E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="81" usv="U+006F">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="82" usv="U+0070">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="83" usv="U+0071">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="84" usv="U+0072">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="85" usv="U+0073">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="86" usv="U+0074">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="87" usv="U+0075">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="88" usv="U+0076">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="89" usv="U+0077">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="90" usv="U+0078">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="91" className="g_yIns" usv="U+0079">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="92" usv="U+007A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="93" usv="U+007B">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="94" usv="U+007C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="95" usv="U+007D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="96" usv="U+007E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="97" usv="U+00A0">
+      <glyphAttrValue name="breakweight" value="15" />
+    </glyph>
+    <glyph glyphid="98" usv="U+00A1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="99" usv="U+00A2">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="100" usv="U+00A3">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="101" usv="U+00A4">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="102" usv="U+00A5">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="103" usv="U+00A6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="104" usv="U+00A7">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="105" usv="U+00A8">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="106" usv="U+00A9">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="107" usv="U+00AA">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="108" usv="U+00AB">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="109" usv="U+00AC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="110" usv="U+00AD">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="111" usv="U+00AE">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="112" usv="U+00AF">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="113" usv="U+00B0">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="114" usv="U+00B1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="115" usv="U+00B2">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="116" usv="U+00B3">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="117" usv="U+00B4">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="118" usv="U+00B5">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="119" usv="U+00B6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="120" usv="U+00B8">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="121" usv="U+00B9">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="122" usv="U+00BA">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="123" usv="U+00BB">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="124" usv="U+00BC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="125" usv="U+00BD">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="126" usv="U+00BE">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="127" usv="U+00BF">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="128" usv="U+00C0">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="129" usv="U+00C1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="130" usv="U+00C2">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="131" usv="U+00C3">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="132" usv="U+00C4">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="133" usv="U+00C5">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="134" usv="U+00C6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="135" usv="U+00C7">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="136" usv="U+00C8">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="137" usv="U+00C9">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="138" usv="U+00CA">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="139" usv="U+00CB">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="140" usv="U+00CC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="141" usv="U+00CD">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="142" usv="U+00CE">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="143" usv="U+00CF">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="144" usv="U+00D0">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="145" usv="U+00D1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="146" usv="U+00D2">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="147" usv="U+00D3">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="148" usv="U+00D4">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="149" usv="U+00D5">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="150" usv="U+00D6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="151" usv="U+00D7">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="152" usv="U+00D8">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="153" usv="U+00D9">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="154" usv="U+00DA">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="155" usv="U+00DB">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="156" usv="U+00DC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="157" usv="U+00DD">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="158" usv="U+00DE">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="159" usv="U+00DF">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="160" usv="U+00E0">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="161" usv="U+00E1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="162" usv="U+00E2">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="163" usv="U+00E3">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="164" usv="U+00E4">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="165" usv="U+00E5">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="166" usv="U+00E6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="167" usv="U+00E7">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="168" usv="U+00E8">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="169" usv="U+00E9">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="170" usv="U+00EA">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="171" usv="U+00EB">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="172" usv="U+00EC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="173" usv="U+00ED">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="174" usv="U+00EE">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="175" usv="U+00EF">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="176" usv="U+00F0">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="177" usv="U+00F1">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="178" usv="U+00F2">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="179" usv="U+00F3">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="180" usv="U+00F4">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="181" usv="U+00F5">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="182" usv="U+00F6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="183" usv="U+00F7">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="184" usv="U+00F8">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="185" usv="U+00F9">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="186" usv="U+00FA">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="187" usv="U+00FB">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="188" usv="U+00FC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="189" usv="U+00FD">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="190" usv="U+00FE">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="191" usv="U+00FF">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="192" usv="U+0152">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="193" usv="U+0153">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="194" usv="U+0160">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="195" usv="U+0161">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="196" usv="U+0178">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="197" usv="U+0192">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="198" usv="U+02C6">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="199" usv="U+02DC">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="200" usv="U+2013">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="201" usv="U+2014">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="202" usv="U+2018">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="203" usv="U+2019">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="204" usv="U+201A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="205" usv="U+201C">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="206" usv="U+201D">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="207" usv="U+201E">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="208" usv="U+2020">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="209" usv="U+2021">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="210" usv="U+2022">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="211" usv="U+2026">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="212" usv="U+2030">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="213" usv="U+2039">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="214" usv="U+203A">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="215" usv="U+2122">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="216" usv="U+2219">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="217" className="*GC0*">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+    <glyph glyphid="218">
+      <glyphAttrValue name="breakweight" value="30" />
+    </glyph>
+  </glyphs>
+
+  <classes>
+    <class name="clsVowelUC">
+      <member glyphid="35" index="0" inFile="PigLatinMain.gdl" atLine="20" />
+      <member glyphid="39" index="1" inFile="PigLatinMain.gdl" atLine="20" />
+      <member glyphid="43" index="2" inFile="PigLatinMain.gdl" atLine="20" />
+      <member glyphid="49" index="3" inFile="PigLatinMain.gdl" atLine="20" />
+      <member glyphid="55" index="4" inFile="PigLatinMain.gdl" atLine="20" />
+    </class>
+    <class name="clsVowelLC">
+      <member glyphid="67" index="0" inFile="PigLatinMain.gdl" atLine="21" />
+      <member glyphid="71" index="1" inFile="PigLatinMain.gdl" atLine="21" />
+      <member glyphid="75" index="2" inFile="PigLatinMain.gdl" atLine="21" />
+      <member glyphid="81" index="3" inFile="PigLatinMain.gdl" atLine="21" />
+      <member glyphid="87" index="4" inFile="PigLatinMain.gdl" atLine="21" />
+    </class>
+    <class name="clsVowel">
+      <member glyphid="35" index="0" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="39" index="1" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="43" index="2" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="49" index="3" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="55" index="4" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="67" index="5" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="71" index="6" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="75" index="7" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="81" index="8" inFile="PigLatinMain.gdl" atLine="22" />
+      <member glyphid="87" index="9" inFile="PigLatinMain.gdl" atLine="22" />
+    </class>
+    <class name="clsConsUC" subClassIndexLhs="4">
+      <member glyphid="36" index="0" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="37" index="1" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="38" index="2" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="40" index="3" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="41" index="4" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="42" index="5" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="44" index="6" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="45" index="7" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="46" index="8" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="47" index="9" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="48" index="10" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="50" index="11" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="51" index="12" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="52" index="13" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="53" index="14" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="54" index="15" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="56" index="16" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="57" index="17" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="58" index="18" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="59" index="19" inFile="PigLatinMain.gdl" atLine="24" />
+      <member glyphid="60" index="20" inFile="PigLatinMain.gdl" atLine="24" />
+    </class>
+    <class name="clsConsLC" subClassIndexRhs="0">
+      <member glyphid="68" index="0" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="69" index="1" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="70" index="2" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="72" index="3" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="73" index="4" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="74" index="5" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="76" index="6" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="77" index="7" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="78" index="8" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="79" index="9" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="80" index="10" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="82" index="11" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="83" index="12" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="84" index="13" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="85" index="14" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="86" index="15" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="88" index="16" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="89" index="17" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="90" index="18" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="91" index="19" inFile="PigLatinMain.gdl" atLine="25" />
+      <member glyphid="92" index="20" inFile="PigLatinMain.gdl" atLine="25" />
+    </class>
+    <class name="clsCons">
+      <member glyphid="36" index="0" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="37" index="1" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="38" index="2" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="40" index="3" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="41" index="4" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="42" index="5" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="44" index="6" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="45" index="7" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="46" index="8" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="47" index="9" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="48" index="10" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="50" index="11" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="51" index="12" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="52" index="13" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="53" index="14" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="54" index="15" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="56" index="16" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="57" index="17" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="58" index="18" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="59" index="19" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="60" index="20" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="68" index="21" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="69" index="22" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="70" index="23" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="72" index="24" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="73" index="25" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="74" index="26" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="76" index="27" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="77" index="28" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="78" index="29" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="79" index="30" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="80" index="31" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="82" index="32" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="83" index="33" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="84" index="34" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="85" index="35" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="86" index="36" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="88" index="37" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="89" index="38" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="90" index="39" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="91" index="40" inFile="PigLatinMain.gdl" atLine="26" />
+      <member glyphid="92" index="41" inFile="PigLatinMain.gdl" atLine="26" />
+    </class>
+    <class name="clsWfUC" subClassIndexRhs="1">
+      <member glyphid="35" index="0" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="39" index="1" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="43" index="2" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="49" index="3" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="55" index="4" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="36" index="5" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="37" index="6" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="38" index="7" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="40" index="8" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="41" index="9" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="42" index="10" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="44" index="11" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="45" index="12" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="46" index="13" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="47" index="14" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="48" index="15" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="50" index="16" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="51" index="17" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="52" index="18" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="53" index="19" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="54" index="20" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="56" index="21" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="57" index="22" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="58" index="23" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="59" index="24" inFile="PigLatinMain.gdl" atLine="29" />
+      <member glyphid="60" index="25" inFile="PigLatinMain.gdl" atLine="29" />
+    </class>
+    <class name="clsWfLC" subClassIndexLhs="5">
+      <member glyphid="67" index="0" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="71" index="1" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="75" index="2" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="81" index="3" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="87" index="4" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="68" index="5" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="69" index="6" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="70" index="7" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="72" index="8" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="73" index="9" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="74" index="10" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="76" index="11" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="77" index="12" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="78" index="13" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="79" index="14" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="80" index="15" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="82" index="16" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="83" index="17" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="84" index="18" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="85" index="19" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="86" index="20" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="88" index="21" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="89" index="22" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="90" index="23" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="91" index="24" inFile="PigLatinMain.gdl" atLine="30" />
+      <member glyphid="92" index="25" inFile="PigLatinMain.gdl" atLine="30" />
+    </class>
+    <class name="clsWf">
+      <member glyphid="35" index="0" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="39" index="1" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="43" index="2" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="49" index="3" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="55" index="4" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="36" index="5" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="37" index="6" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="38" index="7" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="40" index="8" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="41" index="9" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="42" index="10" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="44" index="11" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="45" index="12" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="46" index="13" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="47" index="14" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="48" index="15" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="50" index="16" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="51" index="17" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="52" index="18" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="53" index="19" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="54" index="20" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="56" index="21" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="57" index="22" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="58" index="23" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="59" index="24" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="60" index="25" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="67" index="26" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="71" index="27" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="75" index="28" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="81" index="29" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="87" index="30" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="68" index="31" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="69" index="32" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="70" index="33" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="72" index="34" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="73" index="35" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="74" index="36" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="76" index="37" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="77" index="38" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="78" index="39" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="79" index="40" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="80" index="41" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="82" index="42" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="83" index="43" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="84" index="44" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="85" index="45" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="86" index="46" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="88" index="47" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="89" index="48" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="90" index="49" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="91" index="50" inFile="PigLatinMain.gdl" atLine="31" />
+      <member glyphid="92" index="51" inFile="PigLatinMain.gdl" atLine="31" />
+    </class>
+    <class name="g_aIns" subClassIndexRhs="2">
+      <member glyphid="67" index="0" inFile="PigLatinMain.gdl" atLine="34" />
+    </class>
+    <class name="g_yIns" subClassIndexRhs="3">
+      <member glyphid="91" index="0" inFile="PigLatinMain.gdl" atLine="35" />
+    </class>
+    <class name="*GC0*">
+      <member glyphid="217" index="0" />
+    </class>
+  </classes>
+
+  <features>
+    <feature name="lang" featureID="1" index="0" >
+    </feature>
+  </features>
+
+  <rules>
+    <pass table="substitution" index="1" >
+      <rule id="1.0" inFile="PigLatinMain.gdl" atLine="46"
+            prettyPrint="clsConsUC  clsCons  clsCons  clsWfLC  &gt;  clsWfUC$4:4  clsConsLC$1:1 { user1 = 1;  }  @2 { user1 = 1;  }  @3 { user1 = 1;  }   /  _ { user1 == 0 }  ^  _ { user1 == @1.user1 }  _ { user1 == @1.user1 }  _  ;" >
+        <lhs>
+          <lhsSlot className="clsConsUC" slotIndex="1" />
+          <lhsSlot className="clsCons" slotIndex="2" />
+          <lhsSlot className="clsCons" slotIndex="3" />
+          <lhsSlot className="clsWfLC" slotIndex="4" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="clsWfUC" selectorIndex="4" associations="4" slotIndex="1" />
+          <rhsSlot className="clsConsLC" selectorIndex="1" associations="1" assignmentGdl=" { user1 = 1;  }" slotIndex="2" />
+          <rhsSlot className="@" selectorIndex="2" assignmentGdl=" { user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="@" selectorIndex="3" assignmentGdl=" { user1 = 1;  }" slotIndex="4" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" >
+            <constraint gdl="{ user1 == 0 }" />
+          </contextSlot>
+          <caret />
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == @1.user1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="3" >
+            <constraint gdl="{ user1 == @1.user1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="4" />
+        </context>
+      </rule>
+      <rule id="1.1" inFile="PigLatinMain.gdl" atLine="49"
+            prettyPrint="clsConsUC  clsCons  clsWfLC  &gt;  clsWfUC$3:3  clsConsLC$1:1 { user1 = 1;  }  @2 { user1 = 1;  }   /  _ { user1 == 0 }  ^  _ { user1 == @1.user1 }  _  ;" >
+        <lhs>
+          <lhsSlot className="clsConsUC" slotIndex="1" />
+          <lhsSlot className="clsCons" slotIndex="2" />
+          <lhsSlot className="clsWfLC" slotIndex="3" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="clsWfUC" selectorIndex="3" associations="3" slotIndex="1" />
+          <rhsSlot className="clsConsLC" selectorIndex="1" associations="1" assignmentGdl=" { user1 = 1;  }" slotIndex="2" />
+          <rhsSlot className="@" selectorIndex="2" assignmentGdl=" { user1 = 1;  }" slotIndex="3" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" >
+            <constraint gdl="{ user1 == 0 }" />
+          </contextSlot>
+          <caret />
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == @1.user1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="3" />
+        </context>
+      </rule>
+      <rule id="1.2" inFile="PigLatinMain.gdl" atLine="52"
+            prettyPrint="clsConsUC  clsWfLC  &gt;  clsWfUC$2:2  clsConsLC$1:1 { user1 = 1;  }   /  _ { user1 == 0 }  ^  _  ;" >
+        <lhs>
+          <lhsSlot className="clsConsUC" slotIndex="1" />
+          <lhsSlot className="clsWfLC" slotIndex="2" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="clsWfUC" selectorIndex="2" associations="2" slotIndex="1" />
+          <rhsSlot className="clsConsLC" selectorIndex="1" associations="1" assignmentGdl=" { user1 = 1;  }" slotIndex="2" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" >
+            <constraint gdl="{ user1 == 0 }" />
+          </contextSlot>
+          <caret />
+          <contextSlot type="place-holder" rhsIndex="2" />
+        </context>
+      </rule>
+      <rule id="1.3" inFile="PigLatinMain.gdl" atLine="58"
+            prettyPrint="clsCons  clsCons  clsCons  clsWf  &gt;  @4  @1 { user1 = 1;  }  @2 { user1 = 1;  }  @3 { user1 = 1;  }   /  _  ^  _ { user1 == @1.user1 }  _ { user1 == @1.user1 }  _ { user1 == 0 }  ;" >
+        <lhs>
+          <lhsSlot className="clsCons" slotIndex="1" />
+          <lhsSlot className="clsCons" slotIndex="2" />
+          <lhsSlot className="clsCons" slotIndex="3" />
+          <lhsSlot className="clsWf" slotIndex="4" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="@" selectorIndex="4" slotIndex="1" />
+          <rhsSlot className="@" selectorIndex="1" assignmentGdl=" { user1 = 1;  }" slotIndex="2" />
+          <rhsSlot className="@" selectorIndex="2" assignmentGdl=" { user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="@" selectorIndex="3" assignmentGdl=" { user1 = 1;  }" slotIndex="4" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" />
+          <caret />
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == @1.user1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="3" >
+            <constraint gdl="{ user1 == @1.user1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="4" >
+            <constraint gdl="{ user1 == 0 }" />
+          </contextSlot>
+        </context>
+      </rule>
+      <rule id="1.4" inFile="PigLatinMain.gdl" atLine="61"
+            prettyPrint="clsCons  clsCons  clsWf  &gt;  @3  @1 { user1 = 1;  }  @2 { user1 = 1;  }   /  _  ^  _ { user1 == @1.user1 }  _ { user1 == 0 }  ;" >
+        <lhs>
+          <lhsSlot className="clsCons" slotIndex="1" />
+          <lhsSlot className="clsCons" slotIndex="2" />
+          <lhsSlot className="clsWf" slotIndex="3" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="@" selectorIndex="3" slotIndex="1" />
+          <rhsSlot className="@" selectorIndex="1" assignmentGdl=" { user1 = 1;  }" slotIndex="2" />
+          <rhsSlot className="@" selectorIndex="2" assignmentGdl=" { user1 = 1;  }" slotIndex="3" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" />
+          <caret />
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == @1.user1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="3" >
+            <constraint gdl="{ user1 == 0 }" />
+          </contextSlot>
+        </context>
+      </rule>
+      <rule id="1.5" inFile="PigLatinMain.gdl" atLine="64"
+            prettyPrint="clsCons  clsWf  &gt;  @2  @1 { user1 = 1;  }   /  _  ^  _ { user1 == 0 }  ;" >
+        <lhs>
+          <lhsSlot className="clsCons" slotIndex="1" />
+          <lhsSlot className="clsWf" slotIndex="2" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="@" selectorIndex="2" slotIndex="1" />
+          <rhsSlot className="@" selectorIndex="1" assignmentGdl=" { user1 = 1;  }" slotIndex="2" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" />
+          <caret />
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == 0 }" />
+          </contextSlot>
+        </context>
+      </rule>
+      <rule id="1.6" inFile="PigLatinMain.gdl" atLine="68"
+            prettyPrint="clsCons  clsCons  clsCons  _  _  &gt;  @1  @2  @3  g_aIns:3  g_yIns:3   /  _ { user1 == 1 }  _ { user1 == 1 }  _ { user1 == 1 }  _  _  ;" >
+        <lhs>
+          <lhsSlot className="clsCons" slotIndex="1" />
+          <lhsSlot className="clsCons" slotIndex="2" />
+          <lhsSlot className="clsCons" slotIndex="3" />
+          <lhsSlot className="_" slotIndex="4" />
+          <lhsSlot className="_" slotIndex="5" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="@" selectorIndex="1" slotIndex="1" />
+          <rhsSlot className="@" selectorIndex="2" slotIndex="2" />
+          <rhsSlot className="@" selectorIndex="3" slotIndex="3" />
+          <rhsSlot className="g_aIns" associations="3" slotIndex="4" />
+          <rhsSlot className="g_yIns" associations="3" slotIndex="5" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" >
+            <constraint gdl="{ user1 == 1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == 1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="3" >
+            <constraint gdl="{ user1 == 1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="4" />
+          <contextSlot type="place-holder" rhsIndex="5" />
+        </context>
+      </rule>
+      <rule id="1.7" inFile="PigLatinMain.gdl" atLine="70"
+            prettyPrint="clsCons  clsCons  _  _  &gt;  @1  @2  g_aIns:2  g_yIns:2   /  _ { user1 == 1 }  _ { user1 == 1 }  _  _  ;" >
+        <lhs>
+          <lhsSlot className="clsCons" slotIndex="1" />
+          <lhsSlot className="clsCons" slotIndex="2" />
+          <lhsSlot className="_" slotIndex="3" />
+          <lhsSlot className="_" slotIndex="4" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="@" selectorIndex="1" slotIndex="1" />
+          <rhsSlot className="@" selectorIndex="2" slotIndex="2" />
+          <rhsSlot className="g_aIns" associations="2" slotIndex="3" />
+          <rhsSlot className="g_yIns" associations="2" slotIndex="4" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" >
+            <constraint gdl="{ user1 == 1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="2" >
+            <constraint gdl="{ user1 == 1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="3" />
+          <contextSlot type="place-holder" rhsIndex="4" />
+        </context>
+      </rule>
+      <rule id="1.8" inFile="PigLatinMain.gdl" atLine="72"
+            prettyPrint="clsCons  _  _  &gt;  @1  g_aIns:1  g_yIns:1   /  _ { user1 == 1 }  _  _  ;" >
+        <lhs>
+          <lhsSlot className="clsCons" slotIndex="1" />
+          <lhsSlot className="_" slotIndex="2" />
+          <lhsSlot className="_" slotIndex="3" />
+        </lhs>
+        <rhs>
+          <rhsSlot className="@" selectorIndex="1" slotIndex="1" />
+          <rhsSlot className="g_aIns" associations="1" slotIndex="2" />
+          <rhsSlot className="g_yIns" associations="1" slotIndex="3" />
+        </rhs>
+        <context>
+          <contextSlot type="place-holder" rhsIndex="1" >
+            <constraint gdl="{ user1 == 1 }" />
+          </contextSlot>
+          <contextSlot type="place-holder" rhsIndex="2" />
+          <contextSlot type="place-holder" rhsIndex="3" />
+        </context>
+      </rule>
+    </pass>  <!-- pass 1 (substitution table) -->
+
+  </rules>
+
+</graphite>
