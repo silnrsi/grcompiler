@@ -449,18 +449,20 @@ protected:
 	//	Are we creating a separate control file?
 	bool m_fSepCtrlFile;
 
-	//	Basic justification: true if no justify attributes are present.
+	//	Basic justification: true if no justify attributes are present
 	bool m_fBasicJust;
-	//	Highest justification level used.
+	//	Highest justification level used
 	int m_nMaxJLevel;
+	//	Space contextual flags
+	SpaceContextuals m_spcon;
 
-	//	Where to start the feature names in the name table.
+	//	Where to start the feature names in the name table
 	int m_nNameTblStart;
 
 	//	Ignore nonexistent glyphs?
 	bool m_fIgnoreBadGlyphs;
 
-	//	The top-level object representing the GDL program.
+	//	The top-level object representing the GDL program
 	GdlRenderer * m_prndr;
 
 	GrcSymbolTable * m_psymtbl;

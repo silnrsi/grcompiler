@@ -95,7 +95,8 @@ public:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
-	void CalculateSpaceContextuals(std::vector<utf16> & vwSpaceGlyphs);
+	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
+		std::vector<utf16> & vwSpaceGlyphs);
 
 	void AssignGlobalID(int nID)
 	{
@@ -182,9 +183,6 @@ protected:
 	int m_critPreLB;	// max number of slots before a LB slot
 	int m_critPostLB;	// max number of slots after a LB slot
 	bool m_fReproc;		// true if this pass has reprocessing happening in any of its rules
-
-	SpaceContextuals m_spcon;
-
 
 	//	Finite State Machine construction:
 
@@ -285,7 +283,8 @@ public:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
-	void CalculateSpaceContextuals(std::vector<utf16> & vwSpaceGlyphs);
+	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
+		std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
 	void GenerateFsms(GrcManager * pcman);
