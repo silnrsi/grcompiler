@@ -2269,8 +2269,9 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	index of bidi pass
 	pbstrm->WriteByte(ipassBidi);
 
-	//	line-break flags
-	pbstrm->WriteByte(m_prndr->LineBreakFlags());
+	//	flags: line-break and space contextuals
+	int nFlags = m_prndr->LineBreakFlags() | m_prndr->SpaceContextualFlags();
+	pbstrm->WriteByte(nFlags);
 	//	ranges for cross-line-boundary contextualization
 	pbstrm->WriteByte(m_prndr->PreXlbContext());
 	pbstrm->WriteByte(m_prndr->PostXlbContext());
@@ -2758,8 +2759,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int nOffsetToDebugArrays = 0;
 	long lOffsetToDebugArraysPos = 0;
 
-	//	flags; TODO SharonC: figure out what should be in here
-	pbstrm->WriteByte(this->m_spcon);
+	//	flags--not used
+	pbstrm->WriteByte(0);
 	//	MaxRuleLoop
 	pbstrm->WriteByte(m_nMaxRuleLoop);
 	//	max rule context

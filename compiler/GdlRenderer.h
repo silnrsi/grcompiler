@@ -181,6 +181,10 @@ public:
 
 		return nBitmap;
 	}
+	int SpaceContextualFlags()	// shifted for putting in flag byte
+	{
+		return ((int)(m_spcon)) << 1;
+	}
 	int PreXlbContext()
 	{
 		return m_critPreXlbContext;
@@ -241,6 +245,8 @@ protected:
 	//	limits on cross-line-boundary contextualization:
 	int m_critPreXlbContext;
 	int m_critPostXlbContext;
+	//	space contextuals:
+	SpaceContextuals m_spcon;
 
 	int m_cnUserDefn;	// number of user-defined slot attributes
 	int m_cnComponents;	// max number of components per ligature

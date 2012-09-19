@@ -2509,28 +2509,30 @@ void GdlRenderer::CalculateSpaceContextuals(GrcFont * pfont)
 	vwSpaceGlyphs.push_back(w);
 	// add any other space characters
 
+	m_spcon = kspconNone;
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		m_vprultbl[iprultbl]->CalculateSpaceContextuals(vwSpaceGlyphs);
+		m_vprultbl[iprultbl]->CalculateSpaceContextuals(&m_spcon, vwSpaceGlyphs);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::CalculateSpaceContextuals(std::vector<utf16> & vwSpaceGlyphs)
+void GdlRuleTable::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
+		std::vector<utf16> & vwSpaceGlyphs)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		m_vppass[ippass]->CalculateSpaceContextuals(vwSpaceGlyphs);
+		m_vppass[ippass]->CalculateSpaceContextuals(pspconSoFar, vwSpaceGlyphs);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlPass::CalculateSpaceContextuals(std::vector<utf16> & vwSpaceGlyphs)
+void GdlPass::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
+		std::vector<utf16> & vwSpaceGlyphs)
 {
-	m_spcon = kspconNone;
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
-		m_vprule[iprule]->CalculateSpaceContextuals(&m_spcon, vwSpaceGlyphs);
+		m_vprule[iprule]->CalculateSpaceContextuals(pspconSoFar, vwSpaceGlyphs);
 	}
 }
 
