@@ -183,7 +183,7 @@ public:
 	}
 	int SpaceContextualFlags()	// shifted for putting in flag byte
 	{
-		return ((int)(m_spcon)) << 1;
+		return ((int)(m_spcon)) << 2;
 	}
 	int PreXlbContext()
 	{
