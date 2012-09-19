@@ -240,7 +240,6 @@ class GrcSymbolTable
 
 	typedef std::pair<std::string, Symbol> SymbolTablePair;
 	typedef std::map<std::string, Symbol> SymbolTableMap;
-	//typedef HashMap<StrAnsi, Symbol, HashStrAnsi, EqlStrAnsi> SymbolTableMap;
 
 public:
 	//	Constructor and destructor:

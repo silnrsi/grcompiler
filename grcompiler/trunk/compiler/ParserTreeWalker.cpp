@@ -480,6 +480,7 @@ void GrcManager::WalkParseTree(RefAST ast)
 	if (OutputDebugFiles())
 		DebugParseTree(ast);
 
+int temp = ast->getType();
 	Assert(ast->getType() == Ztop);
 	if (ast->getType() != Ztop)
 		return;

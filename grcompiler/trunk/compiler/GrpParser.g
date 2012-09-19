@@ -669,26 +669,31 @@ attrItemList	:	( attrItemStruct | attrItemFlat )
 					(OP_SEMI! attrItemList)?
 ;
 
-attrItemStruct!	:	(I1:IDENT | I2:LIT_INT | I3:"glyph") OP_LBRACE! (X:attrItemList)? (OP_SEMI!)? OP_RBRACE!
-						{ #attrItemStruct = #([ZdotStruct], I1, I2, I3, X); }
+attrItemStruct!	:	(I:attrName) OP_LBRACE! (X:attrItemList)? (OP_SEMI!)? OP_RBRACE!
+						{ #attrItemStruct = #([ZdotStruct], I, X); }
 ;
 
-//attrItemFlatTop! :	(	S:attrSel OP_DOT X3:attrItemFlatTop
+//attrItemFlatTop! :(	S:attrSel OP_DOT X3:attrItemFlatTop
 //							{ #attrItemFlatTop = #([OP_DOT], S, X3); }
 //					|	X:attrItemFlat
 //							{ #attrItemFlatTop = X; }
 //					)
 //;
 
-attrItemFlat!	:	(I1:IDENT | I2:LIT_INT | I3:"glyph")
+attrItemFlat!	:	(I:attrName)
 					(	D:OP_DOT! ( X1:attrItemFlat | X2:attrItemStruct )
-							{ #attrItemFlat = #(D, I1, I2, I3, X1, X2); }
+							{ #attrItemFlat = #(D, I, X1, X2); }
 
 					|	E:attrAssignOp
 						(V1:function | V2:expr)
-							{ #attrItemFlat = #(E, I1, I2, I3, V1, V2); }
+							{ #attrItemFlat = #(E, I, V1, V2); }
 					)
 ;
+
+// "glyph" and "justify" are treated as unique tokens because of their special processing needs:
+// "glyph" is also the name of a table, and the "justify" attribute values need special
+// handling due to ambiguity between the level numbers and cluster numbers (see lookupExpr, etc.)
+attrName		:	( IDENT | LIT_INT | "glyph" | "justify" );
 
 attrAssignOp	:	(	OP_EQ
 					|	OP_PLUSEQUAL
@@ -753,6 +758,8 @@ lookupExpr!			:	(	S:selectorExpr
 									{ #lookupExpr = #([Zlookup], S, I1, C1); }
 							|	{ #lookupExpr = #S; }
 							)
+						|	I3:justifyIdentDot
+								{ #lookupExpr = #([Zlookup], I3); }
 						|	I2:identDot (C2:clusterExpr)?
 								{ #lookupExpr = #([Zlookup], I2, C2); }
 						)
@@ -764,10 +771,20 @@ clusterExpr!		:	OP_DOT C:LIT_INT
 							{ #clusterExpr = #([Zcluster], C); }
 ;
 
-signedInt			:	("true" | "false" | (OP_PLUS! | OP_MINUS^)? LIT_INT);
+signedInt			:	( "true" | "false" | (OP_PLUS! | OP_MINUS^)? LIT_INT );
 
 identDot			:	(	( IDENT | "position" ) OP_DOT^ identDot
 						|	( IDENT | "position" )
+						)
+;
+
+// We create a separate rule to handle "justify.2...." because of the ambiguity between the integer as
+// a level and the integer as a cluster indicator.
+justifyIdentDot		:	"justify" OP_DOT^ justifyIdentDotAux;
+
+
+justifyIdentDotAux	:	(	( IDENT | LIT_INT ) OP_DOT^ identDot
+						|	( IDENT | LIT_INT )
 						)
 ;
 
@@ -837,6 +854,7 @@ tokens {
 	"glyphid";
 	"if";
 	"justification";
+	"justify";
 	"linebreak";
 	"max";
 	"min";

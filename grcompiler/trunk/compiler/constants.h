@@ -159,7 +159,8 @@ enum {
 enum {
 	//	Maxima imposed by the binary tables = 256
 	kMaxUserDefinableSlotAttrs	= 64,
-	kMaxComponentsPerGlyph		= 32
+	kMaxComponentsPerGlyph		= 32,
+	kMaxJustLevel				= 3	// ie, justify.0-3.xxx are permitted, justify.4.xxx is not
 };
 
 
@@ -221,10 +222,13 @@ enum SlotAttrName {
 	kslatShiftX,		kslatShiftY,
 	kslatUserDefnV1, // version 1.0
 	kslatMeasureSol,	kslatMeasureEol,
-	kslatJStretch,		kslatJShrink,		kslatJStep,		kslatJWeight,	kslatJWidth,
-	kslatSegSplit = kslatJStretch + 29,
+	kslatJ0Stretch,		kslatJ0Shrink,		kslatJ0Step,	kslatJ0Weight,	kslatJ0Width,
+	kslatJ1Stretch,		kslatJ1Shrink,		kslatJ1Step,	kslatJ1Weight,	kslatJ1Width,
+	kslatJ2Stretch,		kslatJ2Shrink,		kslatJ2Step,	kslatJ2Weight,	kslatJ2Width,
+	kslatJ3Stretch,		kslatJ3Shrink,		kslatJ3Step,	kslatJ3Weight,	kslatJ3Width,
+	kslatSegSplit = kslatJ0Stretch + 29,
 	// this must be last:
-	kslatUserDefn = kslatJStretch + 30
+	kslatUserDefn = kslatJ0Stretch + 30
 };
 
 
@@ -306,6 +310,17 @@ enum BreakWeightsV2
 	klbv2ClipBreak		= 40
 };
 
+enum SpaceContextuals
+{
+	kspconUnknown		= 0,
+	kspconNone			= 1,
+	kspconFirstOnly		= 2,	// only as first slot in rule
+	kspconLastOnly		= 3,	// only as last slot in rule
+	kspconSingleOnly	= 4,	// only as the single slot in rule
+	kspconEdgeOnly		= 5,	// only as first or last slot, never in the middle of the rules
+	kspconAnywhere		= 6		// middle of a rule
+};
+
 //	Gpoint = zero value. This code MUST match that used by the engine.
 //	Most unset attributes have a default value of zero, but gpoint attributes need something
 //	to distinguish between an actual value of zero and nothing. (This is a somewhat arbitrary
@@ -328,13 +343,3 @@ enum JustifyModes
 	kjmodJustify	= 2
 };
 
-enum SpaceContextuals
-{
-	kspconUnknown		= 0,
-	kspconNone			= 1,
-	kspconFirstOnly		= 2,	// only as first slot in rule
-	kspconLastOnly		= 3,	// only as last slot in rule
-	kspconSingleOnly	= 4,	// only as the single slot in rule
-	kspconEdgeOnly		= 5,	// only as first or last slot, never in the middle of the rules
-	kspconAnywhere		= 6		// middle of a rule
-};
