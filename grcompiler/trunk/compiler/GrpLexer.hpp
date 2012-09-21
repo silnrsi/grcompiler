@@ -1,7 +1,7 @@
 #ifndef INC_GrpLexer_hpp_
 #define INC_GrpLexer_hpp_
 
-#include "antlr/config.hpp"
+#include "Antlr/config.hpp"
 /*
  * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
@@ -10,10 +10,10 @@
  * ANTLR Version 2.6.0; 1996-1999
  */
 
-#include "antlr/CommonToken.hpp"
-#include "antlr/InputBuffer.hpp"
-#include "antlr/BitSet.hpp"
-#include "antlr/CharScanner.hpp"
+#include "Antlr/CommonToken.hpp"
+#include "Antlr/InputBuffer.hpp"
+#include "Antlr/BitSet.hpp"
+#include "Antlr/CharScanner.hpp"
 
 //	Header stuff here
 void AddGlobalError(bool, int nID, std::string, int nLine);

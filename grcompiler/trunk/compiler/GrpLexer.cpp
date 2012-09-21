@@ -8,8 +8,8 @@
 
 #include "GrpLexer.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "antlr/ScannerException.hpp"
-#include "antlr/CharBuffer.hpp"
+#include "Antlr/ScannerException.hpp"
+#include "Antlr/CharBuffer.hpp"
 
 
 
