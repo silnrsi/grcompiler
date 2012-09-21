@@ -1,6 +1,6 @@
 PARSE TREE
 
-Ztop(95)
+Ztop(96)
    OP_EQ(4): '='  [line #3]
       IDENT(13): 'ScriptDirection'  [line #3]
       IDENT(13): 'ScriptDirection'  [line #3]

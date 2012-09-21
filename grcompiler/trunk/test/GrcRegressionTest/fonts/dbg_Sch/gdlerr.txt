@@ -24,4 +24,4 @@ Minimal compiler version required: 2.0
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 1 warning (134 warnings ignored)
+Compilation succeeded - 0 errors, 1 warning (136 warnings ignored)

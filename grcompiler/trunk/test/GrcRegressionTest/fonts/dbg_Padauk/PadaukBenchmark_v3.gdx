@@ -6811,10 +6811,10 @@
 
   <rules>
     <pass table="linebreak" index="1" >
-      <rule id="1.0" inFile="PadaukMain.gdl" atLine="407"
+      <rule id="1.0" inFile="PadaukMain.gdl" atLine="407" preAnys="1"
             prettyPrint="cSection { break = 10;  }   /  ANY  _  ^  cCons  ;" >
         <rhs>
-          <rhsSlot className="cSection" assignmentGdl=" { break = 10;  }" slotIndex="2" />
+          <rhsSlot className="cSection" assignmentGdl=" { break = 10;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6823,10 +6823,10 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="1.1" inFile="PadaukMain.gdl" atLine="408"
+      <rule id="1.1" inFile="PadaukMain.gdl" atLine="408" preAnys="1"
             prettyPrint="g_space { break = 10;  }   /  ANY  _  ^  cCons  ;" >
         <rhs>
-          <rhsSlot className="g_space" assignmentGdl=" { break = 10;  }" slotIndex="2" />
+          <rhsSlot className="g_space" assignmentGdl=" { break = 10;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6835,11 +6835,11 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="1.2" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.2" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="9" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="9"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6854,11 +6854,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.3" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.3" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="8" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6872,11 +6872,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.4" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.4" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="7" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6889,11 +6889,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.5" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.5" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="6" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6905,11 +6905,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.6" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.6" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="5" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6920,11 +6920,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.7" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.7" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="7" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6937,11 +6937,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.8" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.8" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="6" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6953,11 +6953,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.9" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.9" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="5" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6968,11 +6968,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.10" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.10" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  cnTakesUDia  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="4" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6982,11 +6982,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.11" inFile="PadaukMain.gdl" atLine="411"
+      <rule id="1.11" inFile="PadaukMain.gdl" atLine="411" preAnys="1"
             prettyPrint="cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="3" />
+          <rhsSlot className="cTakesUDia" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="g103a" assignmentGdl=" { break = -50;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -6995,11 +6995,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.12" inFile="PadaukMain.gdl" atLine="416"
+      <rule id="1.12" inFile="PadaukMain.gdl" atLine="416" preAnys="1"
             prettyPrint="cCons { break = -30;  }  cMedBase { break = -50;  }   /  ANY  _  g1039  _  ;" >
         <rhs>
-          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="cMedBase" assignmentGdl=" { break = -50;  }" slotIndex="4" />
+          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="cMedBase" assignmentGdl=" { break = -50;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -7008,11 +7008,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.13" inFile="PadaukMain.gdl" atLine="417"
+      <rule id="1.13" inFile="PadaukMain.gdl" atLine="417" preAnys="1"
             prettyPrint="cCons { break = -30;  }  cClusMed { break = -50;  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2" />
-          <rhsSlot className="cClusMed" assignmentGdl=" { break = -50;  }" slotIndex="3" />
+          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
+          <rhsSlot className="cClusMed" assignmentGdl=" { break = -50;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -7020,40 +7020,40 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="1.14" inFile="PadaukMain.gdl" atLine="420"
+      <rule id="1.14" inFile="PadaukMain.gdl" atLine="420" preAnys="0"
             prettyPrint="cCons { break = -50;  }   /  g1039  _  ;" >
         <rhs>
-          <rhsSlot className="cCons" assignmentGdl=" { break = -50;  }" slotIndex="2" />
+          <rhsSlot className="cCons" assignmentGdl=" { break = -50;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g1039" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="1.15" inFile="PadaukMain.gdl" atLine="423"
+      <rule id="1.15" inFile="PadaukMain.gdl" atLine="423" preAnys="0"
             prettyPrint="cCons { break = -30;  }   /  g2060  _  ;" >
         <rhs>
-          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2" />
+          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g2060" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="1.16" inFile="PadaukMain.gdl" atLine="426"
+      <rule id="1.16" inFile="PadaukMain.gdl" atLine="426" preAnys="0"
             prettyPrint="cCons { break = -30;  }   /  g1021  _  ;" >
         <rhs>
-          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2" />
+          <rhsSlot className="cCons" assignmentGdl=" { break = -30;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g1021" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="1.17" inFile="PadaukMain.gdl" atLine="429"
+      <rule id="1.17" inFile="PadaukMain.gdl" atLine="429" preAnys="0"
             prettyPrint="ANYGlyph { break = 40;  }   /  cLQuote  ^  _  ;" >
         <rhs>
-          <rhsSlot className="ANYGlyph" assignmentGdl=" { break = 40;  }" slotIndex="2" />
+          <rhsSlot className="ANYGlyph" assignmentGdl=" { break = 40;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="cLQuote" />
@@ -7061,10 +7061,10 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="1.18" inFile="PadaukMain.gdl" atLine="430"
+      <rule id="1.18" inFile="PadaukMain.gdl" atLine="430" preAnys="1"
             prettyPrint="ANYGlyph { break = -40;  }   /  ANY  _  ^  cRQuote  ;" >
         <rhs>
-          <rhsSlot className="ANYGlyph" assignmentGdl=" { break = -40;  }" slotIndex="2" />
+          <rhsSlot className="ANYGlyph" assignmentGdl=" { break = -40;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -7073,10 +7073,10 @@
           <contextSlot type="class" className="cRQuote" />
         </context>
       </rule>
-      <rule id="1.19" inFile="PadaukMain.gdl" atLine="433"
+      <rule id="1.19" inFile="PadaukMain.gdl" atLine="433" preAnys="1"
             prettyPrint="cSection { break = 30;  }   /  ANY  _  cNum  ;" >
         <rhs>
-          <rhsSlot className="cSection" assignmentGdl=" { break = 30;  }" slotIndex="2" />
+          <rhsSlot className="cSection" assignmentGdl=" { break = 30;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -7084,30 +7084,30 @@
           <contextSlot type="class" className="cNum" />
         </context>
       </rule>
-      <rule id="1.20" inFile="PadaukMain.gdl" atLine="435"
+      <rule id="1.20" inFile="PadaukMain.gdl" atLine="435" preAnys="0"
             prettyPrint="cNum { break = -15;  }   /  cCons  _  ;" >
         <rhs>
-          <rhsSlot className="cNum" assignmentGdl=" { break = -15;  }" slotIndex="2" />
+          <rhsSlot className="cNum" assignmentGdl=" { break = -15;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="cCons" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="1.21" inFile="PadaukMain.gdl" atLine="436"
+      <rule id="1.21" inFile="PadaukMain.gdl" atLine="436" preAnys="0"
             prettyPrint="cSigns { break = -15;  }   /  cSection  _  ;" >
         <rhs>
-          <rhsSlot className="cSigns" assignmentGdl=" { break = -15;  }" slotIndex="2" />
+          <rhsSlot className="cSigns" assignmentGdl=" { break = -15;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="cSection" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="1.22" inFile="PadaukMain.gdl" atLine="439"
+      <rule id="1.22" inFile="PadaukMain.gdl" atLine="439" preAnys="1"
             prettyPrint="cSigns { break = 40;  }   /  ANY  _  cSection  ;" >
         <rhs>
-          <rhsSlot className="cSigns" assignmentGdl=" { break = 40;  }" slotIndex="2" />
+          <rhsSlot className="cSigns" assignmentGdl=" { break = 40;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -7118,7 +7118,7 @@
     </pass>  <!-- pass 1 (linebreak table) -->
 
     <pass table="substitution" index="2" >
-      <rule id="2.0" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.0" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7149,7 +7149,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.1" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.1" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7179,7 +7179,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.2" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.2" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7209,7 +7209,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.3" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.3" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7238,7 +7238,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.4" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.4" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7267,7 +7267,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.5" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.5" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7295,7 +7295,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.6" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.6" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7323,7 +7323,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.7" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.7" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7350,7 +7350,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.8" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.8" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7377,7 +7377,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.9" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.9" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1039  cMedBase  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7403,7 +7403,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.10" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.10" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7432,7 +7432,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.11" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.11" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7460,7 +7460,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.12" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.12" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7488,7 +7488,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.13" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.13" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7515,7 +7515,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.14" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.14" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7542,7 +7542,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.15" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.15" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7568,7 +7568,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.16" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.16" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7594,7 +7594,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.17" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.17" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7619,7 +7619,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.18" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.18" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7644,7 +7644,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.19" inFile="PadaukMain.gdl" atLine="462"
+      <rule id="2.19" inFile="PadaukMain.gdl" atLine="462" preAnys="1"
             prettyPrint="g1004  g103a  g1039  _  &gt;  _  _  _  g1004_med:(2 3 4)   /  ANY  _  _  _  ^  *GC0*  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7668,7 +7668,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.20" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.20" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7699,7 +7699,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.21" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.21" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7729,7 +7729,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.22" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.22" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7759,7 +7759,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.23" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.23" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7788,7 +7788,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.24" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.24" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7817,7 +7817,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.25" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.25" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7845,7 +7845,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.26" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.26" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7873,7 +7873,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.27" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.27" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7900,7 +7900,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.28" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.28" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7927,7 +7927,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.29" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.29" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7953,7 +7953,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.30" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.30" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -7982,7 +7982,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.31" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.31" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8010,7 +8010,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.32" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.32" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8038,7 +8038,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.33" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.33" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8065,7 +8065,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.34" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.34" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8092,7 +8092,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.35" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.35" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8118,7 +8118,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.36" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.36" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8144,7 +8144,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.37" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.37" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  cClusMed  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8169,7 +8169,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.38" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.38" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8194,7 +8194,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.39" inFile="PadaukMain.gdl" atLine="464"
+      <rule id="2.39" inFile="PadaukMain.gdl" atLine="464" preAnys="1"
             prettyPrint="g1004  g103a  g1039  cUVowelNga  &gt;  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  _  ;" >
         <lhs>
           <lhsSlot className="g1004" slotIndex="2" />
@@ -8218,7 +8218,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.40" inFile="PadaukMain.gdl" atLine="466"
+      <rule id="2.40" inFile="PadaukMain.gdl" atLine="466" preAnys="1"
             prettyPrint="g1039  cMedBase  &gt;  _  cMed:(1 2)   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g1039" slotIndex="2" />
@@ -8234,7 +8234,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.41" inFile="PadaukMain.gdl" atLine="470"
+      <rule id="2.41" inFile="PadaukMain.gdl" atLine="470" preAnys="1"
             prettyPrint="g1039  g1010  g103d  &gt;  g1010_103d_med:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g1039" slotIndex="2" />
@@ -8253,7 +8253,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.42" inFile="PadaukMain.gdl" atLine="471"
+      <rule id="2.42" inFile="PadaukMain.gdl" atLine="471" preAnys="1"
             prettyPrint="g100b  g1039  g100b  &gt;  g100b_100b:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g100b" slotIndex="2" />
@@ -8272,7 +8272,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.43" inFile="PadaukMain.gdl" atLine="472"
+      <rule id="2.43" inFile="PadaukMain.gdl" atLine="472" preAnys="1"
             prettyPrint="g100b  g1039  g100c  &gt;  g100b_100c:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g100b" slotIndex="2" />
@@ -8291,7 +8291,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.44" inFile="PadaukMain.gdl" atLine="473"
+      <rule id="2.44" inFile="PadaukMain.gdl" atLine="473" preAnys="1"
             prettyPrint="g100d  g1039  g100d  &gt;  g100d_100d:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g100d" slotIndex="2" />
@@ -8310,7 +8310,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.45" inFile="PadaukMain.gdl" atLine="474"
+      <rule id="2.45" inFile="PadaukMain.gdl" atLine="474" preAnys="1"
             prettyPrint="g100e  g1039  g100d  &gt;  g100d_100e:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g100e" slotIndex="2" />
@@ -8329,7 +8329,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.46" inFile="PadaukMain.gdl" atLine="475"
+      <rule id="2.46" inFile="PadaukMain.gdl" atLine="475" preAnys="1"
             prettyPrint="g100f  g1039  g100b  &gt;  g100f_100b:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g100f" slotIndex="2" />
@@ -8348,7 +8348,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.47" inFile="PadaukMain.gdl" atLine="476"
+      <rule id="2.47" inFile="PadaukMain.gdl" atLine="476" preAnys="1"
             prettyPrint="g100f  g1039  g100d  &gt;  g100f_100d:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g100f" slotIndex="2" />
@@ -8367,7 +8367,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.48" inFile="PadaukMain.gdl" atLine="477"
+      <rule id="2.48" inFile="PadaukMain.gdl" atLine="477" preAnys="1"
             prettyPrint="g1014  g1039  g1010  g103c  &gt;  g1014_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g1014" slotIndex="2" />
@@ -8389,7 +8389,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.49" inFile="PadaukMain.gdl" atLine="478"
+      <rule id="2.49" inFile="PadaukMain.gdl" atLine="478" preAnys="1"
             prettyPrint="g1014  g1039  g1010  g103c  &gt;  g1014_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g1014" slotIndex="2" />
@@ -8411,7 +8411,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.50" inFile="PadaukMain.gdl" atLine="479"
+      <rule id="2.50" inFile="PadaukMain.gdl" atLine="479" preAnys="1"
             prettyPrint="g101e  g1039  g1010  g103c  &gt;  g101e_1010_103c:(2 3 4 5)  _  _  _   /  ANY  _  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g101e" slotIndex="2" />
@@ -8433,7 +8433,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.51" inFile="PadaukMain.gdl" atLine="480"
+      <rule id="2.51" inFile="PadaukMain.gdl" atLine="480" preAnys="1"
             prettyPrint="g103b  g103d  g103e  &gt;  g103b_103d_103e:(2 3 4)  _  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g103b" slotIndex="2" />
@@ -8452,7 +8452,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.52" inFile="PadaukMain.gdl" atLine="481"
+      <rule id="2.52" inFile="PadaukMain.gdl" atLine="481" preAnys="1"
             prettyPrint="g103b  g103e  &gt;  g103b_103e:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103b" slotIndex="2" />
@@ -8468,7 +8468,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.53" inFile="PadaukMain.gdl" atLine="482"
+      <rule id="2.53" inFile="PadaukMain.gdl" atLine="482" preAnys="1"
             prettyPrint="g103c  g103d  g103e  &gt;  @2  g103d_103e  _   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8487,7 +8487,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.54" inFile="PadaukMain.gdl" atLine="483"
+      <rule id="2.54" inFile="PadaukMain.gdl" atLine="483" preAnys="1"
             prettyPrint="g103c  g103d  &gt;  g103c_103d_narr:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8503,7 +8503,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.55" inFile="PadaukMain.gdl" atLine="484"
+      <rule id="2.55" inFile="PadaukMain.gdl" atLine="484" preAnys="0"
             prettyPrint="g103d  g103e  &gt;  g103d_103e_small:(2 3)  _   /  g103c  _  _  ;" >
         <lhs>
           <lhsSlot className="g103d" slotIndex="2" />
@@ -8519,7 +8519,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.56" inFile="PadaukMain.gdl" atLine="485"
+      <rule id="2.56" inFile="PadaukMain.gdl" atLine="485" preAnys="1"
             prettyPrint="g103d  g103e  &gt;  g103d_103e:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103d" slotIndex="2" />
@@ -8535,7 +8535,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.57" inFile="PadaukMain.gdl" atLine="486"
+      <rule id="2.57" inFile="PadaukMain.gdl" atLine="486" preAnys="1"
             prettyPrint="g103b  g103d  &gt;  g103b_103d:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103b" slotIndex="2" />
@@ -8551,7 +8551,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.58" inFile="PadaukMain.gdl" atLine="487"
+      <rule id="2.58" inFile="PadaukMain.gdl" atLine="487" preAnys="1"
             prettyPrint="g1039  cMedBase  g103c  g102f  &gt;  _  cMed  @4  @7   /  ANY  _  _  _  g1031  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g1039" slotIndex="2" />
@@ -8575,7 +8575,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.59" inFile="PadaukMain.gdl" atLine="487"
+      <rule id="2.59" inFile="PadaukMain.gdl" atLine="487" preAnys="1"
             prettyPrint="g1039  cMedBase  g103c  g102f  &gt;  _  cMed  @4  @6   /  ANY  _  _  _  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g1039" slotIndex="2" />
@@ -8598,7 +8598,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.60" inFile="PadaukMain.gdl" atLine="487"
+      <rule id="2.60" inFile="PadaukMain.gdl" atLine="487" preAnys="1"
             prettyPrint="g1039  cMedBase  g103c  g102f  &gt;  _  cMed  @4  @6   /  ANY  _  _  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g1039" slotIndex="2" />
@@ -8621,7 +8621,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.61" inFile="PadaukMain.gdl" atLine="487"
+      <rule id="2.61" inFile="PadaukMain.gdl" atLine="487" preAnys="1"
             prettyPrint="g1039  cMedBase  g103c  g102f  &gt;  _  cMed  @4  @5   /  ANY  _  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g1039" slotIndex="2" />
@@ -8643,7 +8643,7 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="2.62" inFile="PadaukMain.gdl" atLine="488"
+      <rule id="2.62" inFile="PadaukMain.gdl" atLine="488" preAnys="1"
             prettyPrint="g103c  g103e  g102f  &gt;  @2  @3  @6   /  ANY  _  _  g1031  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8664,7 +8664,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.63" inFile="PadaukMain.gdl" atLine="488"
+      <rule id="2.63" inFile="PadaukMain.gdl" atLine="488" preAnys="1"
             prettyPrint="g103c  g103e  g102f  &gt;  @2  @3  @5   /  ANY  _  _  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8684,7 +8684,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.64" inFile="PadaukMain.gdl" atLine="488"
+      <rule id="2.64" inFile="PadaukMain.gdl" atLine="488" preAnys="1"
             prettyPrint="g103c  g103e  g102f  &gt;  @2  @3  @5   /  ANY  _  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8704,7 +8704,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.65" inFile="PadaukMain.gdl" atLine="488"
+      <rule id="2.65" inFile="PadaukMain.gdl" atLine="488" preAnys="1"
             prettyPrint="g103c  g103e  g102f  &gt;  @2  @3  @4   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8723,7 +8723,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.66" inFile="PadaukMain.gdl" atLine="489"
+      <rule id="2.66" inFile="PadaukMain.gdl" atLine="489" preAnys="1"
             prettyPrint="g103c  g103e  g1030  &gt;  @2  @3  @6   /  ANY  _  _  g1031  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8744,7 +8744,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.67" inFile="PadaukMain.gdl" atLine="489"
+      <rule id="2.67" inFile="PadaukMain.gdl" atLine="489" preAnys="1"
             prettyPrint="g103c  g103e  g1030  &gt;  @2  @3  @5   /  ANY  _  _  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8764,7 +8764,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.68" inFile="PadaukMain.gdl" atLine="489"
+      <rule id="2.68" inFile="PadaukMain.gdl" atLine="489" preAnys="1"
             prettyPrint="g103c  g103e  g1030  &gt;  @2  @3  @5   /  ANY  _  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8784,7 +8784,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.69" inFile="PadaukMain.gdl" atLine="489"
+      <rule id="2.69" inFile="PadaukMain.gdl" atLine="489" preAnys="1"
             prettyPrint="g103c  g103e  g1030  &gt;  @2  @3  @4   /  ANY  _  _  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8803,7 +8803,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.70" inFile="PadaukMain.gdl" atLine="490"
+      <rule id="2.70" inFile="PadaukMain.gdl" atLine="490" preAnys="1"
             prettyPrint="g103c  g102f  &gt;  g103c_102f_narr:(2 5)  _   /  ANY  _  g1031  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8821,7 +8821,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.71" inFile="PadaukMain.gdl" atLine="490"
+      <rule id="2.71" inFile="PadaukMain.gdl" atLine="490" preAnys="1"
             prettyPrint="g103c  g102f  &gt;  g103c_102f_narr:(2 4)  _   /  ANY  _  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8838,7 +8838,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.72" inFile="PadaukMain.gdl" atLine="490"
+      <rule id="2.72" inFile="PadaukMain.gdl" atLine="490" preAnys="1"
             prettyPrint="g103c  g102f  &gt;  g103c_102f_narr:(2 4)  _   /  ANY  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8855,7 +8855,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.73" inFile="PadaukMain.gdl" atLine="490"
+      <rule id="2.73" inFile="PadaukMain.gdl" atLine="490" preAnys="1"
             prettyPrint="g103c  g102f  &gt;  g103c_102f_narr:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103c" slotIndex="2" />
@@ -8871,7 +8871,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.74" inFile="PadaukMain.gdl" atLine="491"
+      <rule id="2.74" inFile="PadaukMain.gdl" atLine="491" preAnys="1"
             prettyPrint="g103e  g102f  &gt;  g103e_102f:(2 5)  _   /  ANY  _  g1031  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="2" />
@@ -8889,7 +8889,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.75" inFile="PadaukMain.gdl" atLine="491"
+      <rule id="2.75" inFile="PadaukMain.gdl" atLine="491" preAnys="1"
             prettyPrint="g103e  g102f  &gt;  g103e_102f:(2 4)  _   /  ANY  _  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="2" />
@@ -8906,7 +8906,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.76" inFile="PadaukMain.gdl" atLine="491"
+      <rule id="2.76" inFile="PadaukMain.gdl" atLine="491" preAnys="1"
             prettyPrint="g103e  g102f  &gt;  g103e_102f:(2 4)  _   /  ANY  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="2" />
@@ -8923,7 +8923,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.77" inFile="PadaukMain.gdl" atLine="491"
+      <rule id="2.77" inFile="PadaukMain.gdl" atLine="491" preAnys="1"
             prettyPrint="g103e  g102f  &gt;  g103e_102f:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="2" />
@@ -8939,7 +8939,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.78" inFile="PadaukMain.gdl" atLine="492"
+      <rule id="2.78" inFile="PadaukMain.gdl" atLine="492" preAnys="1"
             prettyPrint="g103e  g1030  &gt;  g103e_1030:(2 4)  _   /  ANY  _  g1031  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="2" />
@@ -8956,7 +8956,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.79" inFile="PadaukMain.gdl" atLine="492"
+      <rule id="2.79" inFile="PadaukMain.gdl" atLine="492" preAnys="1"
             prettyPrint="g103e  g1030  &gt;  g103e_1030:(2 3)  _   /  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="2" />
@@ -8972,7 +8972,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="2.80" inFile="PadaukMain.gdl" atLine="497"
+      <rule id="2.80" inFile="PadaukMain.gdl" atLine="497" preAnys="1"
             prettyPrint="g200c  &gt;  _   /  ANY  _  ;" >
         <lhs>
           <lhsSlot className="g200c" slotIndex="2" />
@@ -8985,7 +8985,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="2.81" inFile="PadaukMain.gdl" atLine="498"
+      <rule id="2.81" inFile="PadaukMain.gdl" atLine="498" preAnys="1"
             prettyPrint="g200d  &gt;  _   /  ANY  _  ;" >
         <lhs>
           <lhsSlot className="g200d" slotIndex="2" />
@@ -8998,7 +8998,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="2.82" inFile="PadaukMain.gdl" atLine="499"
+      <rule id="2.82" inFile="PadaukMain.gdl" atLine="499" preAnys="1"
             prettyPrint="g2060  &gt;  _   /  ANY  _  ;" >
         <lhs>
           <lhsSlot className="g2060" slotIndex="2" />
@@ -9014,7 +9014,7 @@
     </pass>  <!-- pass 2 (substitution table) -->
 
     <pass table="substitution" index="3" >
-      <rule id="3.0" inFile="PadaukMain.gdl" atLine="534"
+      <rule id="3.0" inFile="PadaukMain.gdl" atLine="534" preAnys="0"
             prettyPrint="ANYGlyph  &gt;  @3   /  cCons  g103a  ^  _ { order &gt; 1 }  ;" >
         <lhs>
           <lhsSlot className="ANYGlyph" slotIndex="3" />
@@ -9031,7 +9031,7 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="3.1" inFile="PadaukMain.gdl" atLine="538"
+      <rule id="3.1" inFile="PadaukMain.gdl" atLine="538" preAnys="1"
             prettyPrint="_  &gt;  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph { (order &gt; 1) &amp;&amp; (order &lt;= @2.order) }  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="3" />
@@ -9049,7 +9049,7 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="3.2" inFile="PadaukMain.gdl" atLine="539"
+      <rule id="3.2" inFile="PadaukMain.gdl" atLine="539" preAnys="1"
             prettyPrint="_  &gt;  g_circledash:2   /  ANY  ANYGlyph { order == 0 }  _  ^  ANYGlyph { order &gt; 1 }  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="3" />
@@ -9072,7 +9072,7 @@
     </pass>  <!-- pass 3 (substitution table) -->
 
     <pass table="substitution" index="4" >
-      <rule id="4.0" inFile="PadaukMain.gdl" atLine="560"
+      <rule id="4.0" inFile="PadaukMain.gdl" atLine="560" preAnys="2"
             prettyPrint="g1014  &gt;  g1014_alt   /  ANY  ANY  *GC2*  _  ;" >
         <lhs>
           <lhsSlot className="g1014" slotIndex="4" />
@@ -9087,7 +9087,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.1" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.1" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @12:12  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9113,7 +9113,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.2" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.2" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9138,7 +9138,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.3" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.3" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9162,7 +9162,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.4" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.4" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9185,7 +9185,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.5" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.5" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9207,7 +9207,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.6" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.6" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9232,7 +9232,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.7" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.7" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9256,7 +9256,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.8" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.8" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9279,7 +9279,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.9" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.9" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9301,7 +9301,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.10" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.10" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @7:7  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9322,7 +9322,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.11" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.11" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @11:11  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9347,7 +9347,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.12" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.12" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9371,7 +9371,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.13" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.13" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9394,7 +9394,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.14" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.14" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9416,7 +9416,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.15" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.15" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9437,7 +9437,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.16" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.16" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9461,7 +9461,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.17" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.17" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9484,7 +9484,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.18" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.18" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9506,7 +9506,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.19" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.19" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9527,7 +9527,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.20" inFile="PadaukMain.gdl" atLine="567"
+      <rule id="4.20" inFile="PadaukMain.gdl" atLine="567" preAnys="3"
             prettyPrint="_  g1031  &gt;  @6:6  _   /  ANY  ANY  ANY  _  ^  cCons  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9547,7 +9547,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.21" inFile="PadaukMain.gdl" atLine="578"
+      <rule id="4.21" inFile="PadaukMain.gdl" atLine="578" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  c103b  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9569,7 +9569,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.22" inFile="PadaukMain.gdl" atLine="578"
+      <rule id="4.22" inFile="PadaukMain.gdl" atLine="578" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9590,7 +9590,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.23" inFile="PadaukMain.gdl" atLine="578"
+      <rule id="4.23" inFile="PadaukMain.gdl" atLine="578" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  c103b  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9611,7 +9611,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.24" inFile="PadaukMain.gdl" atLine="578"
+      <rule id="4.24" inFile="PadaukMain.gdl" atLine="578" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9631,7 +9631,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.25" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.25" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9655,7 +9655,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.26" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.26" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9678,7 +9678,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.27" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.27" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9701,7 +9701,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.28" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.28" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9723,7 +9723,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.29" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.29" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9746,7 +9746,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.30" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.30" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9768,7 +9768,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.31" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.31" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9790,7 +9790,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.32" inFile="PadaukMain.gdl" atLine="579"
+      <rule id="4.32" inFile="PadaukMain.gdl" atLine="579" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9811,7 +9811,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.33" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.33" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9835,7 +9835,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.34" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.34" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9858,7 +9858,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.35" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.35" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9881,7 +9881,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.36" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.36" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9903,7 +9903,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.37" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.37" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9926,7 +9926,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.38" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.38" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9948,7 +9948,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.39" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.39" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103e  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9970,7 +9970,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.40" inFile="PadaukMain.gdl" atLine="580"
+      <rule id="4.40" inFile="PadaukMain.gdl" atLine="580" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  cUSpace  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -9991,7 +9991,7 @@
           <contextSlot type="class" className="cUSpace" />
         </context>
       </rule>
-      <rule id="4.41" inFile="PadaukMain.gdl" atLine="581"
+      <rule id="4.41" inFile="PadaukMain.gdl" atLine="581" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  cMedNar  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10013,7 +10013,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.42" inFile="PadaukMain.gdl" atLine="581"
+      <rule id="4.42" inFile="PadaukMain.gdl" atLine="581" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10034,7 +10034,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.43" inFile="PadaukMain.gdl" atLine="582"
+      <rule id="4.43" inFile="PadaukMain.gdl" atLine="582" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  cMed  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10056,7 +10056,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.44" inFile="PadaukMain.gdl" atLine="582"
+      <rule id="4.44" inFile="PadaukMain.gdl" atLine="582" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10077,7 +10077,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.45" inFile="PadaukMain.gdl" atLine="583"
+      <rule id="4.45" inFile="PadaukMain.gdl" atLine="583" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  @8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  c103b  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10099,7 +10099,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.46" inFile="PadaukMain.gdl" atLine="583"
+      <rule id="4.46" inFile="PadaukMain.gdl" atLine="583" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10120,7 +10120,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.47" inFile="PadaukMain.gdl" atLine="583"
+      <rule id="4.47" inFile="PadaukMain.gdl" atLine="583" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10141,7 +10141,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.48" inFile="PadaukMain.gdl" atLine="583"
+      <rule id="4.48" inFile="PadaukMain.gdl" atLine="583" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  @6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10161,7 +10161,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.49" inFile="PadaukMain.gdl" atLine="584"
+      <rule id="4.49" inFile="PadaukMain.gdl" atLine="584" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  c103b  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10183,7 +10183,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.50" inFile="PadaukMain.gdl" atLine="584"
+      <rule id="4.50" inFile="PadaukMain.gdl" atLine="584" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10204,7 +10204,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.51" inFile="PadaukMain.gdl" atLine="584"
+      <rule id="4.51" inFile="PadaukMain.gdl" atLine="584" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10225,7 +10225,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.52" inFile="PadaukMain.gdl" atLine="584"
+      <rule id="4.52" inFile="PadaukMain.gdl" atLine="584" preAnys="3"
             prettyPrint="_  c103c_nar  &gt;  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="4" />
@@ -10245,7 +10245,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.53" inFile="PadaukMain.gdl" atLine="591"
+      <rule id="4.53" inFile="PadaukMain.gdl" atLine="591" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cLVowelAll  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10264,7 +10264,7 @@
           <contextSlot type="class" className="cLVowelAll" />
         </context>
       </rule>
-      <rule id="4.54" inFile="PadaukMain.gdl" atLine="591"
+      <rule id="4.54" inFile="PadaukMain.gdl" atLine="591" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cLVowelAll  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10282,7 +10282,7 @@
           <contextSlot type="class" className="cLVowelAll" />
         </context>
       </rule>
-      <rule id="4.55" inFile="PadaukMain.gdl" atLine="591"
+      <rule id="4.55" inFile="PadaukMain.gdl" atLine="591" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_alt   /  ANY  ANY  ANY  ^  _  cUVowel  cLVowelAll  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10300,7 +10300,7 @@
           <contextSlot type="class" className="cLVowelAll" />
         </context>
       </rule>
-      <rule id="4.56" inFile="PadaukMain.gdl" atLine="591"
+      <rule id="4.56" inFile="PadaukMain.gdl" atLine="591" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_alt   /  ANY  ANY  ANY  ^  _  cLVowelAll  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10317,7 +10317,7 @@
           <contextSlot type="class" className="cLVowelAll" />
         </context>
       </rule>
-      <rule id="4.57" inFile="PadaukMain.gdl" atLine="592"
+      <rule id="4.57" inFile="PadaukMain.gdl" atLine="592" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_alt   /  ANY  ANY  ANY  ^  _  c103d  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10334,7 +10334,7 @@
           <contextSlot type="class" className="c103d" />
         </context>
       </rule>
-      <rule id="4.58" inFile="PadaukMain.gdl" atLine="593"
+      <rule id="4.58" inFile="PadaukMain.gdl" atLine="593" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_alt   /  ANY  ANY  ANY  ^  _  c103b  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10351,7 +10351,7 @@
           <contextSlot type="class" className="c103b" />
         </context>
       </rule>
-      <rule id="4.59" inFile="PadaukMain.gdl" atLine="594"
+      <rule id="4.59" inFile="PadaukMain.gdl" atLine="594" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_long   /  ANY  ANY  ANY  ^  _  g103e  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10368,7 +10368,7 @@
           <contextSlot type="class" className="g103e" />
         </context>
       </rule>
-      <rule id="4.60" inFile="PadaukMain.gdl" atLine="595"
+      <rule id="4.60" inFile="PadaukMain.gdl" atLine="595" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cUVowel  cLVowel  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10387,7 +10387,7 @@
           <contextSlot type="class" className="cLVowel" />
         </context>
       </rule>
-      <rule id="4.61" inFile="PadaukMain.gdl" atLine="595"
+      <rule id="4.61" inFile="PadaukMain.gdl" atLine="595" preAnys="3"
             prettyPrint="g101b  &gt;  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cLVowel  ;" >
         <lhs>
           <lhsSlot className="g101b" slotIndex="4" />
@@ -10405,7 +10405,7 @@
           <contextSlot type="class" className="cLVowel" />
         </context>
       </rule>
-      <rule id="4.62" inFile="PadaukMain.gdl" atLine="604"
+      <rule id="4.62" inFile="PadaukMain.gdl" atLine="604" preAnys="0"
             prettyPrint="g1030  &gt;  @4   /  c103c_only  cConsSVowel  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g1030" slotIndex="4" />
@@ -10420,7 +10420,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.63" inFile="PadaukMain.gdl" atLine="604"
+      <rule id="4.63" inFile="PadaukMain.gdl" atLine="604" preAnys="1"
             prettyPrint="g1030  &gt;  @4   /  ANY  c103c_only  cConsSVowel  _  ;" >
         <lhs>
           <lhsSlot className="g1030" slotIndex="4" />
@@ -10435,7 +10435,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.64" inFile="PadaukMain.gdl" atLine="605"
+      <rule id="4.64" inFile="PadaukMain.gdl" atLine="605" preAnys="1"
             prettyPrint="cLVowel  &gt;  cLVowelM   /  ANY  ^  cConsSVowel  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="cLVowel" slotIndex="4" />
@@ -10451,7 +10451,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.65" inFile="PadaukMain.gdl" atLine="605"
+      <rule id="4.65" inFile="PadaukMain.gdl" atLine="605" preAnys="2"
             prettyPrint="cLVowel  &gt;  cLVowelM   /  ANY  ANY  ^  cConsSVowel  _  ;" >
         <lhs>
           <lhsSlot className="cLVowel" slotIndex="4" />
@@ -10467,7 +10467,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.66" inFile="PadaukMain.gdl" atLine="606"
+      <rule id="4.66" inFile="PadaukMain.gdl" atLine="606" preAnys="3"
             prettyPrint="g1014  cLVowel  &gt;  g1014_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g1014" slotIndex="4" />
@@ -10487,7 +10487,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.67" inFile="PadaukMain.gdl" atLine="606"
+      <rule id="4.67" inFile="PadaukMain.gdl" atLine="606" preAnys="3"
             prettyPrint="g1014  cLVowel  &gt;  g1014_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;" >
         <lhs>
           <lhsSlot className="g1014" slotIndex="4" />
@@ -10506,7 +10506,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.68" inFile="PadaukMain.gdl" atLine="607"
+      <rule id="4.68" inFile="PadaukMain.gdl" atLine="607" preAnys="3"
             prettyPrint="g100a  cLVowel  &gt;  g100a_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;" >
         <lhs>
           <lhsSlot className="g100a" slotIndex="4" />
@@ -10526,7 +10526,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.69" inFile="PadaukMain.gdl" atLine="607"
+      <rule id="4.69" inFile="PadaukMain.gdl" atLine="607" preAnys="3"
             prettyPrint="g100a  cLVowel  &gt;  g100a_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;" >
         <lhs>
           <lhsSlot className="g100a" slotIndex="4" />
@@ -10545,7 +10545,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.70" inFile="PadaukMain.gdl" atLine="608"
+      <rule id="4.70" inFile="PadaukMain.gdl" atLine="608" preAnys="1"
             prettyPrint="g103d_103e  &gt;  g103d_103e_small   /  ANY  c103c  cCons  _  ;" >
         <lhs>
           <lhsSlot className="g103d_103e" slotIndex="4" />
@@ -10560,7 +10560,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.71" inFile="PadaukMain.gdl" atLine="609"
+      <rule id="4.71" inFile="PadaukMain.gdl" atLine="609" preAnys="3"
             prettyPrint="cUTakesMa  g1036  &gt;  cUWithMa:(4 6)  _   /  ANY  ANY  ANY  _  cLVowel  _  ;" >
         <lhs>
           <lhsSlot className="cUTakesMa" slotIndex="4" />
@@ -10579,7 +10579,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.72" inFile="PadaukMain.gdl" atLine="609"
+      <rule id="4.72" inFile="PadaukMain.gdl" atLine="609" preAnys="3"
             prettyPrint="cUTakesMa  g1036  &gt;  cUWithMa:(4 5)  _   /  ANY  ANY  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="cUTakesMa" slotIndex="4" />
@@ -10597,7 +10597,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.73" inFile="PadaukMain.gdl" atLine="615"
+      <rule id="4.73" inFile="PadaukMain.gdl" atLine="615" preAnys="3"
             prettyPrint="g1014  &gt;  g1014_alt   /  ANY  ANY  ANY  ^  _  t1014  ;" >
         <lhs>
           <lhsSlot className="g1014" slotIndex="4" />
@@ -10614,7 +10614,7 @@
           <contextSlot type="class" className="t1014" />
         </context>
       </rule>
-      <rule id="4.74" inFile="PadaukMain.gdl" atLine="616"
+      <rule id="4.74" inFile="PadaukMain.gdl" atLine="616" preAnys="3"
             prettyPrint="g100a  &gt;  g100a_alt   /  ANY  ANY  ANY  ^  _  t100a  ;" >
         <lhs>
           <lhsSlot className="g100a" slotIndex="4" />
@@ -10631,7 +10631,7 @@
           <contextSlot type="class" className="t100a" />
         </context>
       </rule>
-      <rule id="4.75" inFile="PadaukMain.gdl" atLine="617"
+      <rule id="4.75" inFile="PadaukMain.gdl" atLine="617" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  g103a  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10648,7 +10648,7 @@
           <contextSlot type="class" className="g103a" />
         </context>
       </rule>
-      <rule id="4.76" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.76" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cUVowel  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10668,7 +10668,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.77" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.77" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10687,7 +10687,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.78" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.78" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10706,7 +10706,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.79" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.79" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  c103e  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10724,7 +10724,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.80" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.80" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  g1031  cUVowel  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10743,7 +10743,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.81" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.81" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  g1031  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10761,7 +10761,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.82" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.82" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  cUVowel  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10779,7 +10779,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.83" inFile="PadaukMain.gdl" atLine="618"
+      <rule id="4.83" inFile="PadaukMain.gdl" atLine="618" preAnys="3"
             prettyPrint="g1009  &gt;  g1025   /  ANY  ANY  ANY  ^  _  cCons  ;" >
         <lhs>
           <lhsSlot className="g1009" slotIndex="4" />
@@ -10796,7 +10796,7 @@
           <contextSlot type="class" className="cCons" />
         </context>
       </rule>
-      <rule id="4.84" inFile="PadaukMain.gdl" atLine="624"
+      <rule id="4.84" inFile="PadaukMain.gdl" atLine="624" preAnys="1"
             prettyPrint="g103e  &gt;  g103e_alt   /  ANY  ^  c103c  cConsSVowel  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="4" />
@@ -10812,7 +10812,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.85" inFile="PadaukMain.gdl" atLine="625"
+      <rule id="4.85" inFile="PadaukMain.gdl" atLine="625" preAnys="2"
             prettyPrint="g103e  &gt;  g103e_alt   /  ANY  ANY  cConsSlantH  _  ;" >
         <lhs>
           <lhsSlot className="g103e" slotIndex="4" />
@@ -10827,7 +10827,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="4.86" inFile="PadaukMain.gdl" atLine="631"
+      <rule id="4.86" inFile="PadaukMain.gdl" atLine="631" preAnys="3"
             prettyPrint="g102b  g103a  &gt;  g102b_103a:(4 5)  _   /  ANY  ANY  ANY  _  _  ;" >
         <lhs>
           <lhsSlot className="g102b" slotIndex="4" />
@@ -10848,10 +10848,10 @@
     </pass>  <!-- pass 4 (substitution table) -->
 
     <pass table="positioning" index="5" >
-      <rule id="5.0" inFile="PadaukMain.gdl" atLine="696"
+      <rule id="5.0" inFile="PadaukMain.gdl" atLine="696" preAnys="1"
             prettyPrint="c103c { advance.x = advx; user2 = 1;  }   /  ANY  ^  _ { user2 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" assignmentGdl=" { advance.x = advx; user2 = 1;  }" slotIndex="2" />
+          <rhsSlot className="c103c" assignmentGdl=" { advance.x = advx; user2 = 1;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10861,11 +10861,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.1" inFile="PadaukMain.gdl" atLine="706"
+      <rule id="5.1" inFile="PadaukMain.gdl" atLine="706" preAnys="0"
             prettyPrint="cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cConsSVowel" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cConsSVowel" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -10877,11 +10879,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.2" inFile="PadaukMain.gdl" atLine="706"
+      <rule id="5.2" inFile="PadaukMain.gdl" atLine="706" preAnys="0"
             prettyPrint="cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cConsSVowel" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cConsSVowel" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -10892,11 +10896,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.3" inFile="PadaukMain.gdl" atLine="706"
+      <rule id="5.3" inFile="PadaukMain.gdl" atLine="706" preAnys="1"
             prettyPrint="cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cConsSVowel" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cConsSVowel" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10908,11 +10914,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.4" inFile="PadaukMain.gdl" atLine="706"
+      <rule id="5.4" inFile="PadaukMain.gdl" atLine="706" preAnys="1"
             prettyPrint="cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cConsSVowel" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cConsSVowel" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10923,11 +10931,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.5" inFile="PadaukMain.gdl" atLine="708"
+      <rule id="5.5" inFile="PadaukMain.gdl" atLine="708" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="7" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="7">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10942,11 +10952,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.6" inFile="PadaukMain.gdl" atLine="708"
+      <rule id="5.6" inFile="PadaukMain.gdl" atLine="708" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10960,11 +10972,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.7" inFile="PadaukMain.gdl" atLine="708"
+      <rule id="5.7" inFile="PadaukMain.gdl" atLine="708" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10978,11 +10992,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.8" inFile="PadaukMain.gdl" atLine="708"
+      <rule id="5.8" inFile="PadaukMain.gdl" atLine="708" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -10995,11 +11011,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.9" inFile="PadaukMain.gdl" atLine="710"
+      <rule id="5.9" inFile="PadaukMain.gdl" atLine="710" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="7" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="7">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11014,11 +11032,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.10" inFile="PadaukMain.gdl" atLine="710"
+      <rule id="5.10" inFile="PadaukMain.gdl" atLine="710" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11032,11 +11052,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.11" inFile="PadaukMain.gdl" atLine="710"
+      <rule id="5.11" inFile="PadaukMain.gdl" atLine="710" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11050,11 +11072,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.12" inFile="PadaukMain.gdl" atLine="710"
+      <rule id="5.12" inFile="PadaukMain.gdl" atLine="710" preAnys="1"
             prettyPrint="c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c103c" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11067,11 +11091,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.13" inFile="PadaukMain.gdl" atLine="712"
+      <rule id="5.13" inFile="PadaukMain.gdl" atLine="712" preAnys="1"
             prettyPrint="c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c_mix" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c103c_mix" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11084,11 +11110,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.14" inFile="PadaukMain.gdl" atLine="712"
+      <rule id="5.14" inFile="PadaukMain.gdl" atLine="712" preAnys="1"
             prettyPrint="c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c103c_mix" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="c103c_mix" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11100,11 +11128,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.15" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.15" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="7" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="7">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11119,11 +11149,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.16" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.16" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11137,11 +11169,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.17" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.17" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11155,11 +11189,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.18" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.18" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11172,11 +11208,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.19" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.19" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11190,11 +11228,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.20" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.20" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11207,11 +11247,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.21" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.21" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  c1036  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11224,11 +11266,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.22" inFile="PadaukMain.gdl" atLine="714"
+      <rule id="5.22" inFile="PadaukMain.gdl" atLine="714" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11240,11 +11284,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.23" inFile="PadaukMain.gdl" atLine="716"
+      <rule id="5.23" inFile="PadaukMain.gdl" atLine="716" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11258,11 +11304,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.24" inFile="PadaukMain.gdl" atLine="716"
+      <rule id="5.24" inFile="PadaukMain.gdl" atLine="716" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11275,11 +11323,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.25" inFile="PadaukMain.gdl" atLine="716"
+      <rule id="5.25" inFile="PadaukMain.gdl" atLine="716" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  c1036  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11292,11 +11342,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.26" inFile="PadaukMain.gdl" atLine="716"
+      <rule id="5.26" inFile="PadaukMain.gdl" atLine="716" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11308,11 +11360,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.27" inFile="PadaukMain.gdl" atLine="718"
+      <rule id="5.27" inFile="PadaukMain.gdl" atLine="718" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LLS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11324,11 +11378,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.28" inFile="PadaukMain.gdl" atLine="718"
+      <rule id="5.28" inFile="PadaukMain.gdl" atLine="718" preAnys="1"
             prettyPrint="c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="c101b" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="c101b" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="LLS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11339,11 +11395,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.29" inFile="PadaukMain.gdl" atLine="720"
+      <rule id="5.29" inFile="PadaukMain.gdl" atLine="720" preAnys="1"
             prettyPrint="cLeftLDot  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cLeftLDot" slotIndex="2" />
-          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cLeftLDot" slotIndex="2"/>
+          <rhsSlot className="g1037" assignmentGdl=" {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="LLS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11354,12 +11412,14 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.30" inFile="PadaukMain.gdl" atLine="727"
+      <rule id="5.30" inFile="PadaukMain.gdl" atLine="727" preAnys="1"
             prettyPrint="cTakesUDia  cUDia {  attach {to = @6; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 == 0 }  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" slotIndex="2" />
-          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @6; at = US; with = UM; } user1 = 1;  }" slotIndex="5" />
-          <rhsSlot className="cLVowel" slotIndex="6" />
+          <rhsSlot className="cTakesUDia" slotIndex="2"/>
+          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @6; at = US; with = UM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="6" attachAt="US" attachWith="UM" />
+          </rhsSlot>
+          <rhsSlot className="cLVowel" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11373,12 +11433,14 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="5.31" inFile="PadaukMain.gdl" atLine="727"
+      <rule id="5.31" inFile="PadaukMain.gdl" atLine="727" preAnys="1"
             prettyPrint="cTakesUDia  cUDia {  attach {to = @5; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _ { user1 == 0 }  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" slotIndex="2" />
-          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @5; at = US; with = UM; } user1 = 1;  }" slotIndex="4" />
-          <rhsSlot className="cLVowel" slotIndex="5" />
+          <rhsSlot className="cTakesUDia" slotIndex="2"/>
+          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @5; at = US; with = UM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="5" attachAt="US" attachWith="UM" />
+          </rhsSlot>
+          <rhsSlot className="cLVowel" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11391,12 +11453,14 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="5.32" inFile="PadaukMain.gdl" atLine="727"
+      <rule id="5.32" inFile="PadaukMain.gdl" atLine="727" preAnys="1"
             prettyPrint="cTakesUDia  cUDia {  attach {to = @4; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  _ { user1 == 0 }  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" slotIndex="2" />
-          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @4; at = US; with = UM; } user1 = 1;  }" slotIndex="3" />
-          <rhsSlot className="cLVowel" slotIndex="4" />
+          <rhsSlot className="cTakesUDia" slotIndex="2"/>
+          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @4; at = US; with = UM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="4" attachAt="US" attachWith="UM" />
+          </rhsSlot>
+          <rhsSlot className="cLVowel" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11408,11 +11472,13 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="5.33" inFile="PadaukMain.gdl" atLine="737"
+      <rule id="5.33" inFile="PadaukMain.gdl" atLine="737" preAnys="1"
             prettyPrint="cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesBSDia" slotIndex="2" />
-          <rhsSlot className="cBSDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cTakesBSDia" slotIndex="2"/>
+          <rhsSlot className="cBSDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="BSS" attachWith="BSM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11424,11 +11490,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.34" inFile="PadaukMain.gdl" atLine="737"
+      <rule id="5.34" inFile="PadaukMain.gdl" atLine="737" preAnys="1"
             prettyPrint="cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesBSDia" slotIndex="2" />
-          <rhsSlot className="cBSDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cTakesBSDia" slotIndex="2"/>
+          <rhsSlot className="cBSDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="BSS" attachWith="BSM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11439,11 +11507,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.35" inFile="PadaukMain.gdl" atLine="739"
+      <rule id="5.35" inFile="PadaukMain.gdl" atLine="739" preAnys="1"
             prettyPrint="cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBDDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesBDDia" slotIndex="2" />
-          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cTakesBDDia" slotIndex="2"/>
+          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="BDS" attachWith="BDM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11455,11 +11525,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.36" inFile="PadaukMain.gdl" atLine="739"
+      <rule id="5.36" inFile="PadaukMain.gdl" atLine="739" preAnys="1"
             prettyPrint="cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesBDDia" slotIndex="2" />
-          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cTakesBDDia" slotIndex="2"/>
+          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="BDS" attachWith="BDM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11470,11 +11542,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.37" inFile="PadaukMain.gdl" atLine="741"
+      <rule id="5.37" inFile="PadaukMain.gdl" atLine="741" preAnys="1"
             prettyPrint="cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesBSDia" slotIndex="2" />
-          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cTakesBSDia" slotIndex="2"/>
+          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="BSS" attachWith="BDM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11486,11 +11560,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.38" inFile="PadaukMain.gdl" atLine="741"
+      <rule id="5.38" inFile="PadaukMain.gdl" atLine="741" preAnys="1"
             prettyPrint="cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesBSDia" slotIndex="2" />
-          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cTakesBSDia" slotIndex="2"/>
+          <rhsSlot className="cBDDia" assignmentGdl=" {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="BSS" attachWith="BDM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11501,11 +11577,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.39" inFile="PadaukMain.gdl" atLine="743"
+      <rule id="5.39" inFile="PadaukMain.gdl" atLine="743" preAnys="1"
             prettyPrint="cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" slotIndex="2" />
-          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @2; at = US; with = UM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="cTakesUDia" slotIndex="2"/>
+          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @2; at = US; with = UM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="US" attachWith="UM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11518,11 +11596,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.40" inFile="PadaukMain.gdl" atLine="743"
+      <rule id="5.40" inFile="PadaukMain.gdl" atLine="743" preAnys="1"
             prettyPrint="cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" slotIndex="2" />
-          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @2; at = US; with = UM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cTakesUDia" slotIndex="2"/>
+          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @2; at = US; with = UM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="US" attachWith="UM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11534,11 +11614,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.41" inFile="PadaukMain.gdl" atLine="743"
+      <rule id="5.41" inFile="PadaukMain.gdl" atLine="743" preAnys="1"
             prettyPrint="cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesUDia" slotIndex="2" />
-          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @2; at = US; with = UM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cTakesUDia" slotIndex="2"/>
+          <rhsSlot className="cUDia" assignmentGdl=" {  attach {to = @2; at = US; with = UM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="US" attachWith="UM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11549,11 +11631,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.42" inFile="PadaukMain.gdl" atLine="751"
+      <rule id="5.42" inFile="PadaukMain.gdl" atLine="751" preAnys="1"
             prettyPrint="cTakesRDia  cRDia {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesRDia" slotIndex="2" />
-          <rhsSlot className="cRDia" assignmentGdl=" {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }" slotIndex="3" />
+          <rhsSlot className="cTakesRDia" slotIndex="2"/>
+          <rhsSlot className="cRDia" assignmentGdl=" {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="RS" attachWith="RM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11564,11 +11648,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.43" inFile="PadaukMain.gdl" atLine="766"
+      <rule id="5.43" inFile="PadaukMain.gdl" atLine="766" preAnys="1"
             prettyPrint="cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesLDia" slotIndex="2" />
-          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6" />
+          <rhsSlot className="cTakesLDia" slotIndex="2"/>
+          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11582,11 +11668,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.44" inFile="PadaukMain.gdl" atLine="766"
+      <rule id="5.44" inFile="PadaukMain.gdl" atLine="766" preAnys="1"
             prettyPrint="cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesLDia" slotIndex="2" />
-          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="cTakesLDia" slotIndex="2"/>
+          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11599,11 +11687,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.45" inFile="PadaukMain.gdl" atLine="766"
+      <rule id="5.45" inFile="PadaukMain.gdl" atLine="766" preAnys="1"
             prettyPrint="cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesLDia" slotIndex="2" />
-          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cTakesLDia" slotIndex="2"/>
+          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11615,11 +11705,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.46" inFile="PadaukMain.gdl" atLine="766"
+      <rule id="5.46" inFile="PadaukMain.gdl" atLine="766" preAnys="1"
             prettyPrint="cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cTakesLDia" slotIndex="2" />
-          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cTakesLDia" slotIndex="2"/>
+          <rhsSlot className="cLDia" assignmentGdl=" {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" attachAt="LS" attachWith="LM" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11630,11 +11722,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.47" inFile="PadaukMain.gdl" atLine="773"
+      <rule id="5.47" inFile="PadaukMain.gdl" atLine="773" preAnys="1"
             prettyPrint="cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  g103a  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cCons" slotIndex="2" />
-          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="5" />
+          <rhsSlot className="cCons" slotIndex="2"/>
+          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="2" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11647,11 +11741,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.48" inFile="PadaukMain.gdl" atLine="773"
+      <rule id="5.48" inFile="PadaukMain.gdl" atLine="773" preAnys="1"
             prettyPrint="cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cCons" slotIndex="2" />
-          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cCons" slotIndex="2"/>
+          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11663,11 +11759,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.49" inFile="PadaukMain.gdl" atLine="773"
+      <rule id="5.49" inFile="PadaukMain.gdl" atLine="773" preAnys="1"
             prettyPrint="cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  g103a  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cCons" slotIndex="2" />
-          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="4" />
+          <rhsSlot className="cCons" slotIndex="2"/>
+          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="2" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11679,11 +11777,13 @@
           </contextSlot>
         </context>
       </rule>
-      <rule id="5.50" inFile="PadaukMain.gdl" atLine="773"
+      <rule id="5.50" inFile="PadaukMain.gdl" atLine="773" preAnys="1"
             prettyPrint="cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  _ { user1 == 0 }  ;" >
         <rhs>
-          <rhsSlot className="cCons" slotIndex="2" />
-          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="3" />
+          <rhsSlot className="cCons" slotIndex="2"/>
+          <rhsSlot className="cYMed" assignmentGdl=" {  attach {to = @2; } user1 = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="2" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11697,11 +11797,11 @@
     </pass>  <!-- pass 5 (positioning table) -->
 
     <pass table="positioning" index="6" >
-      <rule id="6.0" inFile="PadaukMain.gdl" atLine="791"
+      <rule id="6.0" inFile="PadaukMain.gdl" atLine="791" preAnys="1"
             prettyPrint="g101b_alt { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }  cHasRkern { shift.x = -(rkern);  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="g101b_alt" assignmentGdl=" { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }" slotIndex="2" />
-          <rhsSlot className="cHasRkern" assignmentGdl=" { shift.x = -(rkern);  }" slotIndex="3" />
+          <rhsSlot className="g101b_alt" assignmentGdl=" { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }" slotIndex="2"/>
+          <rhsSlot className="cHasRkern" assignmentGdl=" { shift.x = -(rkern);  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -11709,20 +11809,20 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="6.1" inFile="PadaukMain.gdl" atLine="793"
+      <rule id="6.1" inFile="PadaukMain.gdl" atLine="793" preAnys="0"
             prettyPrint="c102b { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }   /  cUDia  _  ;" >
         <rhs>
-          <rhsSlot className="c102b" assignmentGdl=" { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }" slotIndex="2" />
+          <rhsSlot className="c102b" assignmentGdl=" { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="cUDia" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="6.2" inFile="PadaukMain.gdl" atLine="794"
+      <rule id="6.2" inFile="PadaukMain.gdl" atLine="794" preAnys="0"
             prettyPrint="cConsNar   /  g102b_103a  _  cLowDia  cUDia  ;" >
         <rhs>
-          <rhsSlot className="cConsNar" slotIndex="2" />
+          <rhsSlot className="cConsNar" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g102b_103a" />
@@ -11731,10 +11831,10 @@
           <contextSlot type="class" className="cUDia" />
         </context>
       </rule>
-      <rule id="6.3" inFile="PadaukMain.gdl" atLine="794"
+      <rule id="6.3" inFile="PadaukMain.gdl" atLine="794" preAnys="0"
             prettyPrint="cConsNar   /  g102b_103a  _  cUDia  ;" >
         <rhs>
-          <rhsSlot className="cConsNar" slotIndex="2" />
+          <rhsSlot className="cConsNar" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g102b_103a" />
@@ -11742,40 +11842,40 @@
           <contextSlot type="class" className="cUDia" />
         </context>
       </rule>
-      <rule id="6.4" inFile="PadaukMain.gdl" atLine="795"
+      <rule id="6.4" inFile="PadaukMain.gdl" atLine="795" preAnys="0"
             prettyPrint="cCons { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;" >
         <rhs>
-          <rhsSlot className="cCons" assignmentGdl=" { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }" slotIndex="2" />
+          <rhsSlot className="cCons" assignmentGdl=" { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g102b_103a" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="6.5" inFile="PadaukMain.gdl" atLine="796"
+      <rule id="6.5" inFile="PadaukMain.gdl" atLine="796" preAnys="0"
             prettyPrint="g1031 { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;" >
         <rhs>
-          <rhsSlot className="g1031" assignmentGdl=" { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }" slotIndex="2" />
+          <rhsSlot className="g1031" assignmentGdl=" { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="g102b_103a" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="6.6" inFile="PadaukMain.gdl" atLine="797"
+      <rule id="6.6" inFile="PadaukMain.gdl" atLine="797" preAnys="0"
             prettyPrint="cRDia { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }   /  cTakesRDia  _  ;" >
         <rhs>
-          <rhsSlot className="cRDia" assignmentGdl=" { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }" slotIndex="2" />
+          <rhsSlot className="cRDia" assignmentGdl=" { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="cTakesRDia" />
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="6.7" inFile="PadaukMain.gdl" atLine="798"
+      <rule id="6.7" inFile="PadaukMain.gdl" atLine="798" preAnys="0"
             prettyPrint="cUVowel { advance.x = 0;  }   /  c103b  _  ;" >
         <rhs>
-          <rhsSlot className="cUVowel" assignmentGdl=" { advance.x = 0;  }" slotIndex="2" />
+          <rhsSlot className="cUVowel" assignmentGdl=" { advance.x = 0;  }" slotIndex="2"/>
         </rhs>
         <context>
           <contextSlot type="class" className="c103b" />
