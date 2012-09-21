@@ -25500,7 +25500,7 @@
 
   <rules>
     <pass table="substitution" index="1" >
-      <rule id="1.0" inFile="SchMain.gdl" atLine="119"
+      <rule id="1.0" inFile="SchMain.gdl" atLine="119" preAnys="0"
             prettyPrint="cUnencodedChar  &gt;  cUnencodedGlyph  ;" >
         <lhs>
           <lhsSlot className="cUnencodedChar" slotIndex="1" />
@@ -25509,7 +25509,7 @@
           <rhsSlot className="cUnencodedGlyph" slotIndex="1" />
         </rhs>
       </rule>
-      <rule id="1.1" inFile="SchMain.gdl" atLine="122"
+      <rule id="1.1" inFile="SchMain.gdl" atLine="122" preAnys="0"
             prettyPrint="cUnencodedChar2Parts  _  &gt;  cUnencodedGlyphPart1  cUnencodedGlyphPart2$1:1  ;" >
         <lhs>
           <lhsSlot className="cUnencodedChar2Parts" slotIndex="1" />
@@ -25520,7 +25520,7 @@
           <rhsSlot className="cUnencodedGlyphPart2" selectorIndex="1" associations="1" slotIndex="2" />
         </rhs>
       </rule>
-      <rule id="1.2" inFile="SchMain.gdl" atLine="126"
+      <rule id="1.2" inFile="SchMain.gdl" atLine="126" preAnys="0"
             prettyPrint="_  cAlefPlusMark  &gt;  absAlef:2  cAlefMark  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25531,7 +25531,7 @@
           <rhsSlot className="cAlefMark" slotIndex="2" />
         </rhs>
       </rule>
-      <rule id="1.3" inFile="SchMain.gdl" atLine="128"
+      <rule id="1.3" inFile="SchMain.gdl" atLine="128" preAnys="0"
             prettyPrint="*GC1*  &gt;  *GC0*  ;" >
         <lhs>
           <lhsSlot className="*GC1*" slotIndex="1" />
@@ -25543,7 +25543,7 @@
     </pass>  <!-- pass 1 (substitution table) -->
 
     <pass table="substitution" index="2" >
-      <rule id="2.0" inFile="SchMain.gdl" atLine="143"
+      <rule id="2.0" inFile="SchMain.gdl" atLine="143" preAnys="0"
             prettyPrint="_  cMark234  cMark1  &gt;  @5:5  @2  _   /  _  _  ^  cMark234  cMark234  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25564,7 +25564,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.1" inFile="SchMain.gdl" atLine="143"
+      <rule id="2.1" inFile="SchMain.gdl" atLine="143" preAnys="0"
             prettyPrint="_  cMark234  cMark1  &gt;  @4:4  @2  _   /  _  _  ^  cMark234  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25584,7 +25584,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.2" inFile="SchMain.gdl" atLine="143"
+      <rule id="2.2" inFile="SchMain.gdl" atLine="143" preAnys="0"
             prettyPrint="_  cMark234  cMark1  &gt;  @3:3  @2  _   /  _  _  ^  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25603,7 +25603,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.3" inFile="SchMain.gdl" atLine="144"
+      <rule id="2.3" inFile="SchMain.gdl" atLine="144" preAnys="0"
             prettyPrint="_  cMark34  cMark2  &gt;  @5:5  @2  _   /  _  _  ^  cMark34  cMark34  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25624,7 +25624,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.4" inFile="SchMain.gdl" atLine="144"
+      <rule id="2.4" inFile="SchMain.gdl" atLine="144" preAnys="0"
             prettyPrint="_  cMark34  cMark2  &gt;  @4:4  @2  _   /  _  _  ^  cMark34  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25644,7 +25644,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.5" inFile="SchMain.gdl" atLine="144"
+      <rule id="2.5" inFile="SchMain.gdl" atLine="144" preAnys="0"
             prettyPrint="_  cMark34  cMark2  &gt;  @3:3  @2  _   /  _  _  ^  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25663,7 +25663,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.6" inFile="SchMain.gdl" atLine="145"
+      <rule id="2.6" inFile="SchMain.gdl" atLine="145" preAnys="0"
             prettyPrint="_  cMark4  cMark3  &gt;  @5:5  @2  _   /  _  _  ^  cMark4  cMark4  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25684,7 +25684,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.7" inFile="SchMain.gdl" atLine="145"
+      <rule id="2.7" inFile="SchMain.gdl" atLine="145" preAnys="0"
             prettyPrint="_  cMark4  cMark3  &gt;  @4:4  @2  _   /  _  _  ^  cMark4  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25704,7 +25704,7 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="2.8" inFile="SchMain.gdl" atLine="145"
+      <rule id="2.8" inFile="SchMain.gdl" atLine="145" preAnys="0"
             prettyPrint="_  cMark4  cMark3  &gt;  @3:3  @2  _   /  _  _  ^  _  ;" >
         <lhs>
           <lhsSlot className="_" slotIndex="1" />
@@ -25726,7 +25726,7 @@
     </pass>  <!-- pass 2 (substitution table) -->
 
     <pass table="substitution" index="3" >
-      <rule id="3.0" inFile="SchMain.gdl" atLine="157"
+      <rule id="3.0" inFile="SchMain.gdl" atLine="157" preAnys="0"
             prettyPrint="if (shaddaKasra == 0) if (selectDiac) absShadda  cShaddaKasraMarks  &gt;  _  cShaddaKasraLigatures:(1 2) { comp.shadda.ref = @1; comp.kasra.ref = @2;  }  ; endif;  endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ shaddaKasra == 0 }" inFile="SchMain.gdl" atLine="155" />
@@ -25741,7 +25741,7 @@
           <rhsSlot className="cShaddaKasraLigatures" associations="1 2" assignmentGdl=" { comp.shadda.ref = @1; comp.kasra.ref = @2;  }" slotIndex="2" />
         </rhs>
       </rule>
-      <rule id="3.1" inFile="SchMain.gdl" atLine="160"
+      <rule id="3.1" inFile="SchMain.gdl" atLine="160" preAnys="0"
             prettyPrint="if (shaddaKasra == 0) if (!(selectDiac)) absShadda  cShaddaKasraMarks  &gt;  _  cShaddaKasraLigatures:(1 2)  ; endif;  endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ shaddaKasra == 0 }" inFile="SchMain.gdl" atLine="155" />
@@ -25759,7 +25759,7 @@
     </pass>  <!-- pass 3 (substitution table) -->
 
     <pass table="substitution" index="4" >
-      <rule id="4.0" inFile="SchMain.gdl" atLine="182"
+      <rule id="4.0" inFile="SchMain.gdl" atLine="182" preAnys="0"
             prettyPrint="cLamIso  cAlefIso  &gt;  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamIso" slotIndex="1" />
@@ -25779,7 +25779,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.1" inFile="SchMain.gdl" atLine="182"
+      <rule id="4.1" inFile="SchMain.gdl" atLine="182" preAnys="0"
             prettyPrint="cLamIso  cAlefIso  &gt;  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamIso" slotIndex="1" />
@@ -25798,7 +25798,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.2" inFile="SchMain.gdl" atLine="182"
+      <rule id="4.2" inFile="SchMain.gdl" atLine="182" preAnys="0"
             prettyPrint="cLamIso  cAlefIso  &gt;  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamIso" slotIndex="1" />
@@ -25816,7 +25816,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.3" inFile="SchMain.gdl" atLine="182"
+      <rule id="4.3" inFile="SchMain.gdl" atLine="182" preAnys="0"
             prettyPrint="cLamIso  cAlefIso  &gt;  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamIso" slotIndex="1" />
@@ -25833,7 +25833,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.4" inFile="SchMain.gdl" atLine="182"
+      <rule id="4.4" inFile="SchMain.gdl" atLine="182" preAnys="0"
             prettyPrint="cLamIso  cAlefIso  &gt;  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamIso" slotIndex="1" />
@@ -25849,7 +25849,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.5" inFile="SchMain.gdl" atLine="183"
+      <rule id="4.5" inFile="SchMain.gdl" atLine="183" preAnys="0"
             prettyPrint="cLamFin  cAlefIso  &gt;  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamFin" slotIndex="1" />
@@ -25869,7 +25869,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.6" inFile="SchMain.gdl" atLine="183"
+      <rule id="4.6" inFile="SchMain.gdl" atLine="183" preAnys="0"
             prettyPrint="cLamFin  cAlefIso  &gt;  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamFin" slotIndex="1" />
@@ -25888,7 +25888,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.7" inFile="SchMain.gdl" atLine="183"
+      <rule id="4.7" inFile="SchMain.gdl" atLine="183" preAnys="0"
             prettyPrint="cLamFin  cAlefIso  &gt;  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamFin" slotIndex="1" />
@@ -25906,7 +25906,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.8" inFile="SchMain.gdl" atLine="183"
+      <rule id="4.8" inFile="SchMain.gdl" atLine="183" preAnys="0"
             prettyPrint="cLamFin  cAlefIso  &gt;  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamFin" slotIndex="1" />
@@ -25923,7 +25923,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.9" inFile="SchMain.gdl" atLine="183"
+      <rule id="4.9" inFile="SchMain.gdl" atLine="183" preAnys="0"
             prettyPrint="cLamFin  cAlefIso  &gt;  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  ^  _  ;" >
         <lhs>
           <lhsSlot className="cLamFin" slotIndex="1" />
@@ -25939,7 +25939,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.10" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.10" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -25960,7 +25960,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.11" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.11" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -25980,7 +25980,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.12" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.12" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -25999,7 +25999,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.13" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.13" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26017,7 +26017,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.14" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.14" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cDiaDigit  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26034,7 +26034,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.15" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.15" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26054,7 +26054,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.16" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.16" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26073,7 +26073,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.17" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.17" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26091,7 +26091,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.18" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.18" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  cAnyMarks  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26108,7 +26108,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.19" inFile="SchMain.gdl" atLine="188"
+      <rule id="4.19" inFile="SchMain.gdl" atLine="188" preAnys="0"
             prettyPrint="*GC4*  *GC5*  &gt;  *GC2*  *GC3*   /  _  ^  _  ;" >
         <lhs>
           <lhsSlot className="*GC4*" slotIndex="1" />
@@ -26124,7 +26124,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="4.20" inFile="SchMain.gdl" atLine="195"
+      <rule id="4.20" inFile="SchMain.gdl" atLine="195" preAnys="0"
             prettyPrint="cSignTakes4  cDigitNormal  cDigitNormal  cDigitNormal  cDigitNormal  &gt;  cSign4  cDigitMedium  cDigitMedium  cDigitMedium  cDigitMedium  ;" >
         <lhs>
           <lhsSlot className="cSignTakes4" slotIndex="1" />
@@ -26141,7 +26141,7 @@
           <rhsSlot className="cDigitMedium" slotIndex="5" />
         </rhs>
       </rule>
-      <rule id="4.21" inFile="SchMain.gdl" atLine="198"
+      <rule id="4.21" inFile="SchMain.gdl" atLine="198" preAnys="0"
             prettyPrint="cSignTakes3Medium  cDigitNormal  cDigitNormal  cDigitNormal  &gt;  cSign3Medium  cDigitMedium  cDigitMedium  cDigitMedium  ;" >
         <lhs>
           <lhsSlot className="cSignTakes3Medium" slotIndex="1" />
@@ -26156,7 +26156,7 @@
           <rhsSlot className="cDigitMedium" slotIndex="4" />
         </rhs>
       </rule>
-      <rule id="4.22" inFile="SchMain.gdl" atLine="201"
+      <rule id="4.22" inFile="SchMain.gdl" atLine="201" preAnys="0"
             prettyPrint="cSignTakes3Small  cDigitNormal  cDigitNormal  cDigitNormal  &gt;  cSign3Small  cDigitSmall  cDigitSmall  cDigitSmall  ;" >
         <lhs>
           <lhsSlot className="cSignTakes3Small" slotIndex="1" />
@@ -26171,7 +26171,7 @@
           <rhsSlot className="cDigitSmall" slotIndex="4" />
         </rhs>
       </rule>
-      <rule id="4.23" inFile="SchMain.gdl" atLine="204"
+      <rule id="4.23" inFile="SchMain.gdl" atLine="204" preAnys="0"
             prettyPrint="cSignTakes2  cDigitNormal  cDigitNormal  &gt;  cSign2  cDigitMedium  cDigitMedium  ;" >
         <lhs>
           <lhsSlot className="cSignTakes2" slotIndex="1" />
@@ -26184,7 +26184,7 @@
           <rhsSlot className="cDigitMedium" slotIndex="3" />
         </rhs>
       </rule>
-      <rule id="4.24" inFile="SchMain.gdl" atLine="207"
+      <rule id="4.24" inFile="SchMain.gdl" atLine="207" preAnys="0"
             prettyPrint="cSignTakes1  cDigitNormal  &gt;  cSign1  cDigitMedium  ;" >
         <lhs>
           <lhsSlot className="cSignTakes1" slotIndex="1" />
@@ -26198,7 +26198,7 @@
     </pass>  <!-- pass 4 (substitution table) -->
 
     <pass table="substitution" index="5" >
-      <rule id="5.0" inFile="SchMain.gdl" atLine="214"
+      <rule id="5.0" inFile="SchMain.gdl" atLine="214" preAnys="0"
             prettyPrint="absSuperscriptAlef  &gt;  absSuperscriptAlef__large   /  cNeedsLargeDaggerAlef  _  ;" >
         <lhs>
           <lhsSlot className="absSuperscriptAlef" slotIndex="2" />
@@ -26211,7 +26211,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.1" inFile="SchMain.gdl" atLine="217"
+      <rule id="5.1" inFile="SchMain.gdl" atLine="217" preAnys="1"
             prettyPrint="if (selectDiac) cNeedsLoweredHamza  absHamzaAbove  &gt;  cWithLoweredHamza:(2 3) { comp.base.ref = @2; comp.hamza.ref = @3;  }  _   /  ANY  _  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ selectDiac }" inFile="SchMain.gdl" atLine="216" />
@@ -26230,7 +26230,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="5.2" inFile="SchMain.gdl" atLine="220"
+      <rule id="5.2" inFile="SchMain.gdl" atLine="220" preAnys="1"
             prettyPrint="if (!(selectDiac)) cNeedsLoweredHamza  absHamzaAbove  &gt;  cWithLoweredHamza:(2 3)  _   /  ANY  _  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ !(selectDiac) }" inFile="" atLine="0" />
@@ -26249,7 +26249,7 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="5.3" inFile="SchMain.gdl" atLine="226"
+      <rule id="5.3" inFile="SchMain.gdl" atLine="226" preAnys="1"
             prettyPrint="if (meemAlt == 1) cno_Meem  &gt;  cMeemSindhi   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ meemAlt == 1 }" inFile="SchMain.gdl" atLine="225" />
@@ -26265,7 +26265,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.4" inFile="SchMain.gdl" atLine="230"
+      <rule id="5.4" inFile="SchMain.gdl" atLine="230" preAnys="1"
             prettyPrint="if (hehAlt == 1) cno_Heh  &gt;  cHehKurdish   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ hehAlt == 1 }" inFile="SchMain.gdl" atLine="229" />
@@ -26281,7 +26281,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.5" inFile="SchMain.gdl" atLine="233"
+      <rule id="5.5" inFile="SchMain.gdl" atLine="233" preAnys="1"
             prettyPrint="if (hehAlt == 2) cno_Heh  &gt;  cHehSindhi   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ hehAlt == 2 }" inFile="SchMain.gdl" atLine="232" />
@@ -26297,7 +26297,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.6" inFile="SchMain.gdl" atLine="236"
+      <rule id="5.6" inFile="SchMain.gdl" atLine="236" preAnys="1"
             prettyPrint="if (hehAlt == 3) cno_Heh  &gt;  cHehUrdu   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ hehAlt == 3 }" inFile="SchMain.gdl" atLine="235" />
@@ -26313,7 +26313,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.7" inFile="SchMain.gdl" atLine="240"
+      <rule id="5.7" inFile="SchMain.gdl" atLine="240" preAnys="1"
             prettyPrint="if (easternDigits == 1) cEasternDigit  &gt;  cEasternDigitSindhi   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ easternDigits == 1 }" inFile="SchMain.gdl" atLine="239" />
@@ -26329,7 +26329,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.8" inFile="SchMain.gdl" atLine="243"
+      <rule id="5.8" inFile="SchMain.gdl" atLine="243" preAnys="1"
             prettyPrint="if (easternDigits == 2) cEasternDigit  &gt;  cEasternDigitUrdu   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ easternDigits == 2 }" inFile="SchMain.gdl" atLine="242" />
@@ -26345,7 +26345,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.9" inFile="SchMain.gdl" atLine="247"
+      <rule id="5.9" inFile="SchMain.gdl" atLine="247" preAnys="1"
             prettyPrint="if (sukunAlt == 1) cno_Sukun  &gt;  cSukunDownOpen   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ sukunAlt == 1 }" inFile="SchMain.gdl" atLine="246" />
@@ -26361,7 +26361,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.10" inFile="SchMain.gdl" atLine="250"
+      <rule id="5.10" inFile="SchMain.gdl" atLine="250" preAnys="1"
             prettyPrint="if (sukunAlt == 2) cno_Sukun  &gt;  cSukunLeftOpen   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ sukunAlt == 2 }" inFile="SchMain.gdl" atLine="249" />
@@ -26377,7 +26377,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.11" inFile="SchMain.gdl" atLine="254"
+      <rule id="5.11" inFile="SchMain.gdl" atLine="254" preAnys="1"
             prettyPrint="if (headOfKhahAlt == 1) cno_OpenLeft  &gt;  cOpenLeft   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ headOfKhahAlt == 1 }" inFile="SchMain.gdl" atLine="253" />
@@ -26393,7 +26393,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.12" inFile="SchMain.gdl" atLine="258"
+      <rule id="5.12" inFile="SchMain.gdl" atLine="258" preAnys="1"
             prettyPrint="if (commaAlt) cno_Downward  &gt;  cDownward   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ commaAlt }" inFile="SchMain.gdl" atLine="257" />
@@ -26409,7 +26409,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.13" inFile="SchMain.gdl" atLine="262"
+      <rule id="5.13" inFile="SchMain.gdl" atLine="262" preAnys="1"
             prettyPrint="if (dammatanAlt) cno_SixNine  &gt;  cSixNine   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ dammatanAlt }" inFile="SchMain.gdl" atLine="261" />
@@ -26425,7 +26425,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.14" inFile="SchMain.gdl" atLine="266"
+      <rule id="5.14" inFile="SchMain.gdl" atLine="266" preAnys="1"
             prettyPrint="if (endOfAyah == 1) cEndOfAyah  &gt;  cEndOfAyahCircle   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ endOfAyah == 1 }" inFile="SchMain.gdl" atLine="265" />
@@ -26441,7 +26441,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.15" inFile="SchMain.gdl" atLine="269"
+      <rule id="5.15" inFile="SchMain.gdl" atLine="269" preAnys="1"
             prettyPrint="if (endOfAyah == 2) cEndOfAyah  &gt;  cEndOfAyahSquare   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ endOfAyah == 2 }" inFile="SchMain.gdl" atLine="268" />
@@ -26457,7 +26457,7 @@
           <contextSlot type="place-holder" rhsIndex="1" />
         </context>
       </rule>
-      <rule id="5.16" inFile="SchMain.gdl" atLine="275"
+      <rule id="5.16" inFile="SchMain.gdl" atLine="275" preAnys="1"
             prettyPrint="if (!(invis)) cInvisible  &gt;  zeroWidthSpace { dir = @2.dir;  }   /  ANY  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ !(invis) }" inFile="SchMain.gdl" atLine="272" />
@@ -26476,7 +26476,7 @@
     </pass>  <!-- pass 5 (substitution table) -->
 
     <pass table="substitution" index="6" >
-      <rule id="6.0" inFile="SchMain.gdl" atLine="398"
+      <rule id="6.0" inFile="SchMain.gdl" atLine="398" preAnys="0"
             prettyPrint="cKafLikeIniMed  _  &gt;  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  absRnoonMed  ;" >
         <lhs>
           <lhsSlot className="cKafLikeIniMed" slotIndex="1" />
@@ -26496,7 +26496,7 @@
           <contextSlot type="class" className="absRnoonMed" />
         </context>
       </rule>
-      <rule id="6.1" inFile="SchMain.gdl" atLine="398"
+      <rule id="6.1" inFile="SchMain.gdl" atLine="398" preAnys="0"
             prettyPrint="cKafLikeIniMed  _  &gt;  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  absRnoonMed  ;" >
         <lhs>
           <lhsSlot className="cKafLikeIniMed" slotIndex="1" />
@@ -26515,7 +26515,7 @@
           <contextSlot type="class" className="absRnoonMed" />
         </context>
       </rule>
-      <rule id="6.2" inFile="SchMain.gdl" atLine="398"
+      <rule id="6.2" inFile="SchMain.gdl" atLine="398" preAnys="0"
             prettyPrint="cKafLikeIniMed  _  &gt;  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  absRnoonMed  ;" >
         <lhs>
           <lhsSlot className="cKafLikeIniMed" slotIndex="1" />
@@ -26533,7 +26533,7 @@
           <contextSlot type="class" className="absRnoonMed" />
         </context>
       </rule>
-      <rule id="6.3" inFile="SchMain.gdl" atLine="398"
+      <rule id="6.3" inFile="SchMain.gdl" atLine="398" preAnys="0"
             prettyPrint="cKafLikeIniMed  _  &gt;  @1  absAutoKashida:4   /  _  cAnyMarks  _  absRnoonMed  ;" >
         <lhs>
           <lhsSlot className="cKafLikeIniMed" slotIndex="1" />
@@ -26550,7 +26550,7 @@
           <contextSlot type="class" className="absRnoonMed" />
         </context>
       </rule>
-      <rule id="6.4" inFile="SchMain.gdl" atLine="398"
+      <rule id="6.4" inFile="SchMain.gdl" atLine="398" preAnys="0"
             prettyPrint="cKafLikeIniMed  _  &gt;  @1  absAutoKashida:3   /  _  _  absRnoonMed  ;" >
         <lhs>
           <lhsSlot className="cKafLikeIniMed" slotIndex="1" />
@@ -26566,7 +26566,7 @@
           <contextSlot type="class" className="absRnoonMed" />
         </context>
       </rule>
-      <rule id="6.5" inFile="SchMain.gdl" atLine="399"
+      <rule id="6.5" inFile="SchMain.gdl" atLine="399" preAnys="0"
             prettyPrint="absFarsiYehIni  _  &gt;  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  *GC8*  ;" >
         <lhs>
           <lhsSlot className="absFarsiYehIni" slotIndex="1" />
@@ -26586,7 +26586,7 @@
           <contextSlot type="class" className="*GC8*" />
         </context>
       </rule>
-      <rule id="6.6" inFile="SchMain.gdl" atLine="399"
+      <rule id="6.6" inFile="SchMain.gdl" atLine="399" preAnys="0"
             prettyPrint="absFarsiYehIni  _  &gt;  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  *GC8*  ;" >
         <lhs>
           <lhsSlot className="absFarsiYehIni" slotIndex="1" />
@@ -26605,7 +26605,7 @@
           <contextSlot type="class" className="*GC8*" />
         </context>
       </rule>
-      <rule id="6.7" inFile="SchMain.gdl" atLine="399"
+      <rule id="6.7" inFile="SchMain.gdl" atLine="399" preAnys="0"
             prettyPrint="absFarsiYehIni  _  &gt;  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  *GC8*  ;" >
         <lhs>
           <lhsSlot className="absFarsiYehIni" slotIndex="1" />
@@ -26623,7 +26623,7 @@
           <contextSlot type="class" className="*GC8*" />
         </context>
       </rule>
-      <rule id="6.8" inFile="SchMain.gdl" atLine="399"
+      <rule id="6.8" inFile="SchMain.gdl" atLine="399" preAnys="0"
             prettyPrint="absFarsiYehIni  _  &gt;  @1  absAutoKashida:4   /  _  cAnyMarks  _  *GC8*  ;" >
         <lhs>
           <lhsSlot className="absFarsiYehIni" slotIndex="1" />
@@ -26640,7 +26640,7 @@
           <contextSlot type="class" className="*GC8*" />
         </context>
       </rule>
-      <rule id="6.9" inFile="SchMain.gdl" atLine="399"
+      <rule id="6.9" inFile="SchMain.gdl" atLine="399" preAnys="0"
             prettyPrint="absFarsiYehIni  _  &gt;  @1  absAutoKashida:3   /  _  _  *GC8*  ;" >
         <lhs>
           <lhsSlot className="absFarsiYehIni" slotIndex="1" />
@@ -26656,7 +26656,7 @@
           <contextSlot type="class" className="*GC8*" />
         </context>
       </rule>
-      <rule id="6.10" inFile="SchMain.gdl" atLine="400"
+      <rule id="6.10" inFile="SchMain.gdl" atLine="400" preAnys="0"
             prettyPrint="*GC9*  _  &gt;  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  absRrehFin  ;" >
         <lhs>
           <lhsSlot className="*GC9*" slotIndex="1" />
@@ -26676,7 +26676,7 @@
           <contextSlot type="class" className="absRrehFin" />
         </context>
       </rule>
-      <rule id="6.11" inFile="SchMain.gdl" atLine="400"
+      <rule id="6.11" inFile="SchMain.gdl" atLine="400" preAnys="0"
             prettyPrint="*GC9*  _  &gt;  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  absRrehFin  ;" >
         <lhs>
           <lhsSlot className="*GC9*" slotIndex="1" />
@@ -26695,7 +26695,7 @@
           <contextSlot type="class" className="absRrehFin" />
         </context>
       </rule>
-      <rule id="6.12" inFile="SchMain.gdl" atLine="400"
+      <rule id="6.12" inFile="SchMain.gdl" atLine="400" preAnys="0"
             prettyPrint="*GC9*  _  &gt;  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  absRrehFin  ;" >
         <lhs>
           <lhsSlot className="*GC9*" slotIndex="1" />
@@ -26713,7 +26713,7 @@
           <contextSlot type="class" className="absRrehFin" />
         </context>
       </rule>
-      <rule id="6.13" inFile="SchMain.gdl" atLine="400"
+      <rule id="6.13" inFile="SchMain.gdl" atLine="400" preAnys="0"
             prettyPrint="*GC9*  _  &gt;  @1  absAutoKashida:4   /  _  cAnyMarks  _  absRrehFin  ;" >
         <lhs>
           <lhsSlot className="*GC9*" slotIndex="1" />
@@ -26730,7 +26730,7 @@
           <contextSlot type="class" className="absRrehFin" />
         </context>
       </rule>
-      <rule id="6.14" inFile="SchMain.gdl" atLine="400"
+      <rule id="6.14" inFile="SchMain.gdl" atLine="400" preAnys="0"
             prettyPrint="*GC9*  _  &gt;  @1  absAutoKashida:3   /  _  _  absRrehFin  ;" >
         <lhs>
           <lhsSlot className="*GC9*" slotIndex="1" />
@@ -26750,11 +26750,13 @@
 
     <pass table="bidi" index="7" />
     <pass table="positioning" index="8" >
-      <rule id="8.0" inFile="SchMain.gdl" atLine="291"
+      <rule id="8.0" inFile="SchMain.gdl" atLine="291" preAnys="0"
             prettyPrint="cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  ;" >
         <rhs>
-          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1" />
-          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="6" />
+          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1"/>
+          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="6">
+            <slotAttrs attachTo="1" attachAt="exit" attachWith="entry" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -26768,11 +26770,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.1" inFile="SchMain.gdl" atLine="291"
+      <rule id="8.1" inFile="SchMain.gdl" atLine="291" preAnys="0"
             prettyPrint="cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  _  ;" >
         <rhs>
-          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1" />
-          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="5" />
+          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1"/>
+          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="1" attachAt="exit" attachWith="entry" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -26785,11 +26789,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.2" inFile="SchMain.gdl" atLine="291"
+      <rule id="8.2" inFile="SchMain.gdl" atLine="291" preAnys="0"
             prettyPrint="cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  cAnyMarks  _  ;" >
         <rhs>
-          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1" />
-          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="4" />
+          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1"/>
+          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="1" attachAt="exit" attachWith="entry" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -26801,11 +26807,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.3" inFile="SchMain.gdl" atLine="291"
+      <rule id="8.3" inFile="SchMain.gdl" atLine="291" preAnys="0"
             prettyPrint="cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  cAnyMarks  _  ;" >
         <rhs>
-          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1" />
-          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="3" />
+          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1"/>
+          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="1" attachAt="exit" attachWith="entry" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -26816,11 +26824,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.4" inFile="SchMain.gdl" atLine="291"
+      <rule id="8.4" inFile="SchMain.gdl" atLine="291" preAnys="0"
             prettyPrint="cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _ { user1 == 0 }  _  ;" >
         <rhs>
-          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1" />
-          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="2" />
+          <rhsSlot className="cHasExit" assignmentGdl=" { user1 = 1;  }" slotIndex="1"/>
+          <rhsSlot className="cHasEntry" assignmentGdl=" {  attach {to = @1; at = exit; with = entry; } insert = 1;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="exit" attachWith="entry" />
+          </rhsSlot>
         </rhs>
         <context>
           <caret />
@@ -26830,11 +26840,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.5" inFile="SchMain.gdl" atLine="298"
+      <rule id="8.5" inFile="SchMain.gdl" atLine="298" preAnys="0"
             prettyPrint="cHasAlef  cMatchesAlef {  attach {to = @1; at = alef; with = alef_; } insert = 1;  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cHasAlef" slotIndex="1" />
-          <rhsSlot className="cMatchesAlef" assignmentGdl=" {  attach {to = @1; at = alef; with = alef_; } insert = 1;  }" slotIndex="2" />
+          <rhsSlot className="cHasAlef" slotIndex="1"/>
+          <rhsSlot className="cMatchesAlef" assignmentGdl=" {  attach {to = @1; at = alef; with = alef_; } insert = 1;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="alef" attachWith="alef_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26842,11 +26854,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.6" inFile="SchMain.gdl" atLine="301"
+      <rule id="8.6" inFile="SchMain.gdl" atLine="301" preAnys="0"
             prettyPrint="absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="absShadda" slotIndex="1" />
-          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="5" />
+          <rhsSlot className="absShadda" slotIndex="1"/>
+          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="5">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26857,11 +26871,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.7" inFile="SchMain.gdl" atLine="301"
+      <rule id="8.7" inFile="SchMain.gdl" atLine="301" preAnys="0"
             prettyPrint="absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="absShadda" slotIndex="1" />
-          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="4" />
+          <rhsSlot className="absShadda" slotIndex="1"/>
+          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="4">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26871,11 +26887,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.8" inFile="SchMain.gdl" atLine="301"
+      <rule id="8.8" inFile="SchMain.gdl" atLine="301" preAnys="0"
             prettyPrint="absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="absShadda" slotIndex="1" />
-          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="3" />
+          <rhsSlot className="absShadda" slotIndex="1"/>
+          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="3">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26884,11 +26902,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.9" inFile="SchMain.gdl" atLine="301"
+      <rule id="8.9" inFile="SchMain.gdl" atLine="301" preAnys="0"
             prettyPrint="absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="absShadda" slotIndex="1" />
-          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="2" />
+          <rhsSlot className="absShadda" slotIndex="1"/>
+          <rhsSlot className="*GC6*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26896,11 +26916,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.10" inFile="SchMain.gdl" atLine="306"
+      <rule id="8.10" inFile="SchMain.gdl" atLine="306" preAnys="0"
             prettyPrint="absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="absHamzaAbove" slotIndex="1" />
-          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="5" />
+          <rhsSlot className="absHamzaAbove" slotIndex="1"/>
+          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="5">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26911,11 +26933,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.11" inFile="SchMain.gdl" atLine="306"
+      <rule id="8.11" inFile="SchMain.gdl" atLine="306" preAnys="0"
             prettyPrint="absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="absHamzaAbove" slotIndex="1" />
-          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="4" />
+          <rhsSlot className="absHamzaAbove" slotIndex="1"/>
+          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="4">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26925,11 +26949,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.12" inFile="SchMain.gdl" atLine="306"
+      <rule id="8.12" inFile="SchMain.gdl" atLine="306" preAnys="0"
             prettyPrint="absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="absHamzaAbove" slotIndex="1" />
-          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="3" />
+          <rhsSlot className="absHamzaAbove" slotIndex="1"/>
+          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="3">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26938,11 +26964,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.13" inFile="SchMain.gdl" atLine="306"
+      <rule id="8.13" inFile="SchMain.gdl" atLine="306" preAnys="0"
             prettyPrint="absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="absHamzaAbove" slotIndex="1" />
-          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="2" />
+          <rhsSlot className="absHamzaAbove" slotIndex="1"/>
+          <rhsSlot className="*GC7*" assignmentGdl=" {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26950,11 +26978,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.14" inFile="SchMain.gdl" atLine="314"
+      <rule id="8.14" inFile="SchMain.gdl" atLine="314" preAnys="0"
             prettyPrint="cTakesDiaDigitA  cDiaDigitAbove {  attach {to = @1; at = diaDigitA; with = diaDigitA_; }  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesDiaDigitA" slotIndex="1" />
-          <rhsSlot className="cDiaDigitAbove" assignmentGdl=" {  attach {to = @1; at = diaDigitA; with = diaDigitA_; }  }" slotIndex="2" />
+          <rhsSlot className="cTakesDiaDigitA" slotIndex="1"/>
+          <rhsSlot className="cDiaDigitAbove" assignmentGdl=" {  attach {to = @1; at = diaDigitA; with = diaDigitA_; }  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="diaDigitA" attachWith="diaDigitA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26962,11 +26992,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.15" inFile="SchMain.gdl" atLine="319"
+      <rule id="8.15" inFile="SchMain.gdl" atLine="319" preAnys="0"
             prettyPrint="cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaA" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="5" />
+          <rhsSlot className="cHasDiaA" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="5">
+            <slotAttrs attachTo="1" attachAt="diaA" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26977,11 +27009,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.16" inFile="SchMain.gdl" atLine="319"
+      <rule id="8.16" inFile="SchMain.gdl" atLine="319" preAnys="0"
             prettyPrint="cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaA" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="4" />
+          <rhsSlot className="cHasDiaA" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="4">
+            <slotAttrs attachTo="1" attachAt="diaA" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -26991,11 +27025,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.17" inFile="SchMain.gdl" atLine="319"
+      <rule id="8.17" inFile="SchMain.gdl" atLine="319" preAnys="0"
             prettyPrint="cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaA" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="3" />
+          <rhsSlot className="cHasDiaA" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="3">
+            <slotAttrs attachTo="1" attachAt="diaA" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27004,11 +27040,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.18" inFile="SchMain.gdl" atLine="319"
+      <rule id="8.18" inFile="SchMain.gdl" atLine="319" preAnys="0"
             prettyPrint="cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaA" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="2" />
+          <rhsSlot className="cHasDiaA" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaA" assignmentGdl=" {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="diaA" attachWith="diaA_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27016,48 +27054,70 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="8.19" inFile="SchMain.gdl" atLine="326"
+      <rule id="8.19" inFile="SchMain.gdl" atLine="326" preAnys="0"
             prettyPrint="cSign4  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @5; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;" >
         <rhs>
-          <rhsSlot className="cSign4" slotIndex="1" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }" slotIndex="2" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }" slotIndex="3" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @5; at = digit; with = digit_; } insert = 1;  }" slotIndex="4" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="5" />
+          <rhsSlot className="cSign4" slotIndex="1"/>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }" slotIndex="2">
+            <slotAttrs attachTo="3" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="4" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @5; at = digit; with = digit_; } insert = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="5" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="5">
+            <slotAttrs attachTo="1" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
         </rhs>
       </rule>
-      <rule id="8.20" inFile="SchMain.gdl" atLine="332"
+      <rule id="8.20" inFile="SchMain.gdl" atLine="332" preAnys="0"
             prettyPrint="cSign3  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;" >
         <rhs>
-          <rhsSlot className="cSign3" slotIndex="1" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }" slotIndex="2" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }" slotIndex="3" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="4" />
+          <rhsSlot className="cSign3" slotIndex="1"/>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }" slotIndex="2">
+            <slotAttrs attachTo="3" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="4" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="4">
+            <slotAttrs attachTo="1" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
         </rhs>
       </rule>
-      <rule id="8.21" inFile="SchMain.gdl" atLine="337"
+      <rule id="8.21" inFile="SchMain.gdl" atLine="337" preAnys="0"
             prettyPrint="cSign2  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;" >
         <rhs>
-          <rhsSlot className="cSign2" slotIndex="1" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }" slotIndex="2" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="3" />
+          <rhsSlot className="cSign2" slotIndex="1"/>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }" slotIndex="2">
+            <slotAttrs attachTo="3" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="3">
+            <slotAttrs attachTo="1" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
         </rhs>
       </rule>
-      <rule id="8.22" inFile="SchMain.gdl" atLine="341"
+      <rule id="8.22" inFile="SchMain.gdl" atLine="341" preAnys="0"
             prettyPrint="cSign1  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;" >
         <rhs>
-          <rhsSlot className="cSign1" slotIndex="1" />
-          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="2" />
+          <rhsSlot className="cSign1" slotIndex="1"/>
+          <rhsSlot className="cSignDigit" assignmentGdl=" {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="digit" attachWith="digit_" />
+          </rhsSlot>
         </rhs>
       </rule>
     </pass>  <!-- pass 8 (positioning table) -->
 
     <pass table="positioning" index="9" >
-      <rule id="9.0" inFile="SchMain.gdl" atLine="350"
+      <rule id="9.0" inFile="SchMain.gdl" atLine="350" preAnys="0"
             prettyPrint="cHasDia2B  cMatchesDia2B {  attach {to = @1; at = dia2B; with = dia2B_; } insert = selectDiac;  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDia2B" slotIndex="1" />
-          <rhsSlot className="cMatchesDia2B" assignmentGdl=" {  attach {to = @1; at = dia2B; with = dia2B_; } insert = selectDiac;  }" slotIndex="2" />
+          <rhsSlot className="cHasDia2B" slotIndex="1"/>
+          <rhsSlot className="cMatchesDia2B" assignmentGdl=" {  attach {to = @1; at = dia2B; with = dia2B_; } insert = selectDiac;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="dia2B" attachWith="dia2B_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27065,11 +27125,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="9.1" inFile="SchMain.gdl" atLine="356"
+      <rule id="9.1" inFile="SchMain.gdl" atLine="356" preAnys="0"
             prettyPrint="cTakesDiaDigitB  cDiaDigitBelow {  attach {to = @1; at = diaDigitB; with = diaDigitB_; }  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cTakesDiaDigitB" slotIndex="1" />
-          <rhsSlot className="cDiaDigitBelow" assignmentGdl=" {  attach {to = @1; at = diaDigitB; with = diaDigitB_; }  }" slotIndex="2" />
+          <rhsSlot className="cTakesDiaDigitB" slotIndex="1"/>
+          <rhsSlot className="cDiaDigitBelow" assignmentGdl=" {  attach {to = @1; at = diaDigitB; with = diaDigitB_; }  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="diaDigitB" attachWith="diaDigitB_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27077,11 +27139,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="9.2" inFile="SchMain.gdl" atLine="361"
+      <rule id="9.2" inFile="SchMain.gdl" atLine="361" preAnys="0"
             prettyPrint="cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  cAnyMarksAbove  cAnyMarksAbove  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaB" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="5" />
+          <rhsSlot className="cHasDiaB" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="5">
+            <slotAttrs attachTo="1" attachAt="diaB" attachWith="diaB_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27092,11 +27156,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="9.3" inFile="SchMain.gdl" atLine="361"
+      <rule id="9.3" inFile="SchMain.gdl" atLine="361" preAnys="0"
             prettyPrint="cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  cAnyMarksAbove  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaB" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="4" />
+          <rhsSlot className="cHasDiaB" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="4">
+            <slotAttrs attachTo="1" attachAt="diaB" attachWith="diaB_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27106,11 +27172,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="9.4" inFile="SchMain.gdl" atLine="361"
+      <rule id="9.4" inFile="SchMain.gdl" atLine="361" preAnys="0"
             prettyPrint="cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaB" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="3" />
+          <rhsSlot className="cHasDiaB" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="3">
+            <slotAttrs attachTo="1" attachAt="diaB" attachWith="diaB_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27119,11 +27187,13 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="9.5" inFile="SchMain.gdl" atLine="361"
+      <rule id="9.5" inFile="SchMain.gdl" atLine="361" preAnys="0"
             prettyPrint="cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  _  ;" >
         <rhs>
-          <rhsSlot className="cHasDiaB" slotIndex="1" />
-          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="2" />
+          <rhsSlot className="cHasDiaB" slotIndex="1"/>
+          <rhsSlot className="cMatchesDiaB" assignmentGdl=" {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }" slotIndex="2">
+            <slotAttrs attachTo="1" attachAt="diaB" attachWith="diaB_" />
+          </rhsSlot>
         </rhs>
         <context>
           <contextSlot type="place-holder" rhsIndex="1" />
@@ -27134,16 +27204,16 @@
     </pass>  <!-- pass 9 (positioning table) -->
 
     <pass table="positioning" index="10" >
-      <rule id="10.0" inFile="SchMain.gdl" atLine="416"
+      <rule id="10.0" inFile="SchMain.gdl" atLine="416" preAnys="1"
             prettyPrint="cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cKafLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7" />
-          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="8" />
+          <rhsSlot className="cKafLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7"/>
+          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27156,15 +27226,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.1" inFile="SchMain.gdl" atLine="416"
+      <rule id="10.1" inFile="SchMain.gdl" atLine="416" preAnys="1"
             prettyPrint="cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cKafLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6" />
-          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7" />
+          <rhsSlot className="cKafLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6"/>
+          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27176,14 +27246,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.2" inFile="SchMain.gdl" atLine="416"
+      <rule id="10.2" inFile="SchMain.gdl" atLine="416" preAnys="1"
             prettyPrint="cKafLikeIniMed  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cKafLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5" />
-          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6" />
+          <rhsSlot className="cKafLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5"/>
+          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27194,13 +27264,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.3" inFile="SchMain.gdl" atLine="416"
+      <rule id="10.3" inFile="SchMain.gdl" atLine="416" preAnys="1"
             prettyPrint="cKafLikeIniMed  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cKafLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4" />
-          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5" />
+          <rhsSlot className="cKafLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4"/>
+          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27210,12 +27280,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.4" inFile="SchMain.gdl" atLine="416"
+      <rule id="10.4" inFile="SchMain.gdl" atLine="416" preAnys="1"
             prettyPrint="cKafLikeIniMed  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cKafLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="3" />
-          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4" />
+          <rhsSlot className="cKafLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="3"/>
+          <rhsSlot className="absRnoonMed" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27224,16 +27294,16 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.5" inFile="SchMain.gdl" atLine="419"
+      <rule id="10.5" inFile="SchMain.gdl" atLine="419" preAnys="1"
             prettyPrint="absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absFarsiYehIni" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7" />
-          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="8" />
+          <rhsSlot className="absFarsiYehIni" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7"/>
+          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27246,15 +27316,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.6" inFile="SchMain.gdl" atLine="419"
+      <rule id="10.6" inFile="SchMain.gdl" atLine="419" preAnys="1"
             prettyPrint="absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absFarsiYehIni" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6" />
-          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7" />
+          <rhsSlot className="absFarsiYehIni" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6"/>
+          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27266,14 +27336,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.7" inFile="SchMain.gdl" atLine="419"
+      <rule id="10.7" inFile="SchMain.gdl" atLine="419" preAnys="1"
             prettyPrint="absFarsiYehIni  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absFarsiYehIni" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5" />
-          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6" />
+          <rhsSlot className="absFarsiYehIni" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5"/>
+          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27284,13 +27354,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.8" inFile="SchMain.gdl" atLine="419"
+      <rule id="10.8" inFile="SchMain.gdl" atLine="419" preAnys="1"
             prettyPrint="absFarsiYehIni  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absFarsiYehIni" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4" />
-          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5" />
+          <rhsSlot className="absFarsiYehIni" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4"/>
+          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27300,12 +27370,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.9" inFile="SchMain.gdl" atLine="419"
+      <rule id="10.9" inFile="SchMain.gdl" atLine="419" preAnys="1"
             prettyPrint="absFarsiYehIni  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absFarsiYehIni" slotIndex="2" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="3" />
-          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4" />
+          <rhsSlot className="absFarsiYehIni" slotIndex="2"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="3"/>
+          <rhsSlot className="*GC10*" assignmentGdl=" { shift.x = -30; advance.x = aw + -30;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27314,16 +27384,16 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.10" inFile="SchMain.gdl" atLine="422"
+      <rule id="10.10" inFile="SchMain.gdl" atLine="422" preAnys="1"
             prettyPrint="*GC11*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC11*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="7" />
-          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="8" />
+          <rhsSlot className="*GC11*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="7"/>
+          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27336,15 +27406,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.11" inFile="SchMain.gdl" atLine="422"
+      <rule id="10.11" inFile="SchMain.gdl" atLine="422" preAnys="1"
             prettyPrint="*GC11*  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC11*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="6" />
-          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="7" />
+          <rhsSlot className="*GC11*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="6"/>
+          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27356,14 +27426,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.12" inFile="SchMain.gdl" atLine="422"
+      <rule id="10.12" inFile="SchMain.gdl" atLine="422" preAnys="1"
             prettyPrint="*GC11*  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC11*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="5" />
-          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="6" />
+          <rhsSlot className="*GC11*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="5"/>
+          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27374,13 +27444,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.13" inFile="SchMain.gdl" atLine="422"
+      <rule id="10.13" inFile="SchMain.gdl" atLine="422" preAnys="1"
             prettyPrint="*GC11*  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC11*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="4" />
-          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="5" />
+          <rhsSlot className="*GC11*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="4"/>
+          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27390,12 +27460,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.14" inFile="SchMain.gdl" atLine="422"
+      <rule id="10.14" inFile="SchMain.gdl" atLine="422" preAnys="1"
             prettyPrint="*GC11*  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC11*" slotIndex="2" />
-          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="3" />
-          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="4" />
+          <rhsSlot className="*GC11*" slotIndex="2"/>
+          <rhsSlot className="absAutoKashida" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="3"/>
+          <rhsSlot className="absRrehFin" assignmentGdl=" { shift.x = -40; advance.x = aw + -40;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27404,15 +27474,15 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.15" inFile="SchMain.gdl" atLine="428"
+      <rule id="10.15" inFile="SchMain.gdl" atLine="428" preAnys="1"
             prettyPrint="absAlef  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="7" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27424,14 +27494,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.16" inFile="SchMain.gdl" atLine="428"
+      <rule id="10.16" inFile="SchMain.gdl" atLine="428" preAnys="1"
             prettyPrint="absAlef  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="6" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27442,13 +27512,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.17" inFile="SchMain.gdl" atLine="428"
+      <rule id="10.17" inFile="SchMain.gdl" atLine="428" preAnys="1"
             prettyPrint="absAlef  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="5" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27458,12 +27528,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.18" inFile="SchMain.gdl" atLine="428"
+      <rule id="10.18" inFile="SchMain.gdl" atLine="428" preAnys="1"
             prettyPrint="absAlef  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27472,11 +27542,11 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.19" inFile="SchMain.gdl" atLine="428"
+      <rule id="10.19" inFile="SchMain.gdl" atLine="428" preAnys="1"
             prettyPrint="absAlef  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="3" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="absRreh" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27484,16 +27554,16 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="10.20" inFile="SchMain.gdl" atLine="431"
+      <rule id="10.20" inFile="SchMain.gdl" atLine="431" preAnys="1"
             prettyPrint="*GC12*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC12*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="*GC13*" slotIndex="7" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="8" />
+          <rhsSlot className="*GC12*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="*GC13*" slotIndex="7"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27506,15 +27576,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.21" inFile="SchMain.gdl" atLine="431"
+      <rule id="10.21" inFile="SchMain.gdl" atLine="431" preAnys="1"
             prettyPrint="*GC12*  cAnyMarks  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC12*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="*GC13*" slotIndex="6" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="7" />
+          <rhsSlot className="*GC12*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="*GC13*" slotIndex="6"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27526,14 +27596,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.22" inFile="SchMain.gdl" atLine="431"
+      <rule id="10.22" inFile="SchMain.gdl" atLine="431" preAnys="1"
             prettyPrint="*GC12*  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC12*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="*GC13*" slotIndex="5" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="6" />
+          <rhsSlot className="*GC12*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="*GC13*" slotIndex="5"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27544,13 +27614,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.23" inFile="SchMain.gdl" atLine="431"
+      <rule id="10.23" inFile="SchMain.gdl" atLine="431" preAnys="1"
             prettyPrint="*GC12*  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC12*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="*GC13*" slotIndex="4" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="5" />
+          <rhsSlot className="*GC12*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="*GC13*" slotIndex="4"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27560,12 +27630,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.24" inFile="SchMain.gdl" atLine="431"
+      <rule id="10.24" inFile="SchMain.gdl" atLine="431" preAnys="1"
             prettyPrint="*GC12*  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC12*" slotIndex="2" />
-          <rhsSlot className="*GC13*" slotIndex="3" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="4" />
+          <rhsSlot className="*GC12*" slotIndex="2"/>
+          <rhsSlot className="*GC13*" slotIndex="3"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.y = 220;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27574,17 +27644,17 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.25" inFile="SchMain.gdl" atLine="436"
+      <rule id="10.25" inFile="SchMain.gdl" atLine="436" preAnys="1"
             prettyPrint="*GC14*  cDiaDigitAbove  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC14*" slotIndex="2" />
-          <rhsSlot className="cDiaDigitAbove" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="*GC15*" slotIndex="8" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="9" />
+          <rhsSlot className="*GC14*" slotIndex="2"/>
+          <rhsSlot className="cDiaDigitAbove" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="*GC15*" slotIndex="8"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="9"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27598,16 +27668,16 @@
           <contextSlot type="place-holder" rhsIndex="8" />
         </context>
       </rule>
-      <rule id="10.26" inFile="SchMain.gdl" atLine="436"
+      <rule id="10.26" inFile="SchMain.gdl" atLine="436" preAnys="1"
             prettyPrint="*GC14*  cDiaDigitAbove  cAnyMarks  cAnyMarks  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC14*" slotIndex="2" />
-          <rhsSlot className="cDiaDigitAbove" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="*GC15*" slotIndex="7" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="8" />
+          <rhsSlot className="*GC14*" slotIndex="2"/>
+          <rhsSlot className="cDiaDigitAbove" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="*GC15*" slotIndex="7"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27620,15 +27690,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.27" inFile="SchMain.gdl" atLine="436"
+      <rule id="10.27" inFile="SchMain.gdl" atLine="436" preAnys="1"
             prettyPrint="*GC14*  cDiaDigitAbove  cAnyMarks  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC14*" slotIndex="2" />
-          <rhsSlot className="cDiaDigitAbove" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="*GC15*" slotIndex="6" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="7" />
+          <rhsSlot className="*GC14*" slotIndex="2"/>
+          <rhsSlot className="cDiaDigitAbove" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="*GC15*" slotIndex="6"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27640,14 +27710,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.28" inFile="SchMain.gdl" atLine="436"
+      <rule id="10.28" inFile="SchMain.gdl" atLine="436" preAnys="1"
             prettyPrint="*GC14*  cDiaDigitAbove  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC14*" slotIndex="2" />
-          <rhsSlot className="cDiaDigitAbove" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="*GC15*" slotIndex="5" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="6" />
+          <rhsSlot className="*GC14*" slotIndex="2"/>
+          <rhsSlot className="cDiaDigitAbove" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="*GC15*" slotIndex="5"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27658,13 +27728,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.29" inFile="SchMain.gdl" atLine="436"
+      <rule id="10.29" inFile="SchMain.gdl" atLine="436" preAnys="1"
             prettyPrint="*GC14*  cDiaDigitAbove  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC14*" slotIndex="2" />
-          <rhsSlot className="cDiaDigitAbove" slotIndex="3" />
-          <rhsSlot className="*GC15*" slotIndex="4" />
-          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="5" />
+          <rhsSlot className="*GC14*" slotIndex="2"/>
+          <rhsSlot className="cDiaDigitAbove" slotIndex="3"/>
+          <rhsSlot className="*GC15*" slotIndex="4"/>
+          <rhsSlot className="absNameMarker" assignmentGdl=" { shift.x = 275;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27674,11 +27744,11 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.30" inFile="SchMain.gdl" atLine="441"
+      <rule id="10.30" inFile="SchMain.gdl" atLine="441" preAnys="0"
             prettyPrint="cNoonGhunna  *GC17* { shift.y = -75;  }   /  *GC16*  _  _  ;" >
         <rhs>
-          <rhsSlot className="cNoonGhunna" slotIndex="2" />
-          <rhsSlot className="*GC17*" assignmentGdl=" { shift.y = -75;  }" slotIndex="3" />
+          <rhsSlot className="cNoonGhunna" slotIndex="2"/>
+          <rhsSlot className="*GC17*" assignmentGdl=" { shift.y = -75;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="*GC16*" />
@@ -27686,11 +27756,11 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="10.31" inFile="SchMain.gdl" atLine="443"
+      <rule id="10.31" inFile="SchMain.gdl" atLine="443" preAnys="1"
             prettyPrint="cNoonGhunna  *GC18* { shift.y = -150;  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="cNoonGhunna" slotIndex="2" />
-          <rhsSlot className="*GC18*" assignmentGdl=" { shift.y = -150;  }" slotIndex="3" />
+          <rhsSlot className="cNoonGhunna" slotIndex="2"/>
+          <rhsSlot className="*GC18*" assignmentGdl=" { shift.y = -150;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27698,15 +27768,15 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="10.32" inFile="SchMain.gdl" atLine="447"
+      <rule id="10.32" inFile="SchMain.gdl" atLine="447" preAnys="1"
             prettyPrint="if (kasraTcheh == 2) cBehLikeIniMed  absKasra { shift.x = -60; shift.y = 125;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ kasraTcheh == 2 }" inFile="SchMain.gdl" atLine="446" />
         </ruleConstraints>
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasra" assignmentGdl=" { shift.x = -60; shift.y = 125;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasra" assignmentGdl=" { shift.x = -60; shift.y = 125;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27715,15 +27785,15 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.33" inFile="SchMain.gdl" atLine="448"
+      <rule id="10.33" inFile="SchMain.gdl" atLine="448" preAnys="1"
             prettyPrint="if (kasraTcheh == 2) cBehLikeIniMed  absKasratan { shift.x = -100; shift.y = 30;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ kasraTcheh == 2 }" inFile="SchMain.gdl" atLine="446" />
         </ruleConstraints>
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -100; shift.y = 30;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -100; shift.y = 30;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27732,15 +27802,15 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.34" inFile="SchMain.gdl" atLine="451"
+      <rule id="10.34" inFile="SchMain.gdl" atLine="451" preAnys="1"
             prettyPrint="if (kasraTcheh == 1) cBehLikeIniMed  absKasra { shift.x = -40; shift.y = -200;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ kasraTcheh == 1 }" inFile="SchMain.gdl" atLine="450" />
         </ruleConstraints>
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasra" assignmentGdl=" { shift.x = -40; shift.y = -200;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasra" assignmentGdl=" { shift.x = -40; shift.y = -200;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27749,15 +27819,15 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.35" inFile="SchMain.gdl" atLine="452"
+      <rule id="10.35" inFile="SchMain.gdl" atLine="452" preAnys="1"
             prettyPrint="if (kasraTcheh == 1) cBehLikeIniMed  absKasratan { shift.x = -60; shift.y = -130;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; " >
         <ruleConstraints>
           <ruleConstraint gdl="{ kasraTcheh == 1 }" inFile="SchMain.gdl" atLine="450" />
         </ruleConstraints>
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -60; shift.y = -130;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -60; shift.y = -130;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27766,12 +27836,12 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.36" inFile="SchMain.gdl" atLine="454"
+      <rule id="10.36" inFile="SchMain.gdl" atLine="454" preAnys="1"
             prettyPrint="cPehLikeIniMed  absKasra { shift.y = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasra" assignmentGdl=" { shift.y = -50;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasra" assignmentGdl=" { shift.y = -50;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27780,12 +27850,12 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.37" inFile="SchMain.gdl" atLine="455"
+      <rule id="10.37" inFile="SchMain.gdl" atLine="455" preAnys="1"
             prettyPrint="cPehLikeIniMed  absKasratan { shift.x = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -50;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -50;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27794,12 +27864,12 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.38" inFile="SchMain.gdl" atLine="456"
+      <rule id="10.38" inFile="SchMain.gdl" atLine="456" preAnys="1"
             prettyPrint="cTehLikeIniMed  absKasratan { shift.x = -80;  }  cTchehLikeFin   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cTehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -80;  }" slotIndex="3" />
-          <rhsSlot className="cTchehLikeFin" slotIndex="4" />
+          <rhsSlot className="cTehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absKasratan" assignmentGdl=" { shift.x = -80;  }" slotIndex="3"/>
+          <rhsSlot className="cTchehLikeFin" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27808,12 +27878,12 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.39" inFile="SchMain.gdl" atLine="459"
+      <rule id="10.39" inFile="SchMain.gdl" atLine="459" preAnys="1"
             prettyPrint="absAlef  absMaddahAbove { shift.x = -130;  }  absGaf { shift.x = 30; advance.x = aw + 30;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="absMaddahAbove" assignmentGdl=" { shift.x = -130;  }" slotIndex="3" />
-          <rhsSlot className="absGaf" assignmentGdl=" { shift.x = 30; advance.x = aw + 30;  }" slotIndex="4" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="absMaddahAbove" assignmentGdl=" { shift.x = -130;  }" slotIndex="3"/>
+          <rhsSlot className="absGaf" assignmentGdl=" { shift.x = 30; advance.x = aw + 30;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27822,12 +27892,12 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.40" inFile="SchMain.gdl" atLine="460"
+      <rule id="10.40" inFile="SchMain.gdl" atLine="460" preAnys="1"
             prettyPrint="absAlef  absMaddahAbove { shift.x = -120;  }  absGafIni { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="absAlef" slotIndex="2" />
-          <rhsSlot className="absMaddahAbove" assignmentGdl=" { shift.x = -120;  }" slotIndex="3" />
-          <rhsSlot className="absGafIni" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4" />
+          <rhsSlot className="absAlef" slotIndex="2"/>
+          <rhsSlot className="absMaddahAbove" assignmentGdl=" { shift.x = -120;  }" slotIndex="3"/>
+          <rhsSlot className="absGafIni" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27836,15 +27906,15 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.41" inFile="SchMain.gdl" atLine="463"
+      <rule id="10.41" inFile="SchMain.gdl" atLine="463" preAnys="1"
             prettyPrint="cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="7" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27856,14 +27926,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.42" inFile="SchMain.gdl" atLine="463"
+      <rule id="10.42" inFile="SchMain.gdl" atLine="463" preAnys="1"
             prettyPrint="cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="6" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27874,13 +27944,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.43" inFile="SchMain.gdl" atLine="463"
+      <rule id="10.43" inFile="SchMain.gdl" atLine="463" preAnys="1"
             prettyPrint="cBehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="5" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27890,12 +27960,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.44" inFile="SchMain.gdl" atLine="463"
+      <rule id="10.44" inFile="SchMain.gdl" atLine="463" preAnys="1"
             prettyPrint="cBehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="4" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27904,11 +27974,11 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.45" inFile="SchMain.gdl" atLine="463"
+      <rule id="10.45" inFile="SchMain.gdl" atLine="463" preAnys="1"
             prettyPrint="cBehLikeIniMed  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="cBehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="3" />
+          <rhsSlot className="cBehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 50; advance.x = aw + 50;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27916,15 +27986,15 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="10.46" inFile="SchMain.gdl" atLine="464"
+      <rule id="10.46" inFile="SchMain.gdl" atLine="464" preAnys="1"
             prettyPrint="cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="7" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27936,14 +28006,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.47" inFile="SchMain.gdl" atLine="464"
+      <rule id="10.47" inFile="SchMain.gdl" atLine="464" preAnys="1"
             prettyPrint="cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="6" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27954,13 +28024,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.48" inFile="SchMain.gdl" atLine="464"
+      <rule id="10.48" inFile="SchMain.gdl" atLine="464" preAnys="1"
             prettyPrint="cPehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="5" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27970,12 +28040,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.49" inFile="SchMain.gdl" atLine="464"
+      <rule id="10.49" inFile="SchMain.gdl" atLine="464" preAnys="1"
             prettyPrint="cPehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27984,11 +28054,11 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.50" inFile="SchMain.gdl" atLine="464"
+      <rule id="10.50" inFile="SchMain.gdl" atLine="464" preAnys="1"
             prettyPrint="cPehLikeIniMed  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="cPehLikeIniMed" slotIndex="2" />
-          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="3" />
+          <rhsSlot className="cPehLikeIniMed" slotIndex="2"/>
+          <rhsSlot className="absRehBarFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -27996,20 +28066,20 @@
           <contextSlot type="place-holder" rhsIndex="2" />
         </context>
       </rule>
-      <rule id="10.51" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.51" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cMark2Above" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="cAnyMarks" slotIndex="9" />
-          <rhsSlot className="cAnyMarks" slotIndex="10" />
-          <rhsSlot className="cAnyMarks" slotIndex="11" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="12" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cMark2Above" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="cAnyMarks" slotIndex="9"/>
+          <rhsSlot className="cAnyMarks" slotIndex="10"/>
+          <rhsSlot className="cAnyMarks" slotIndex="11"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="12"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28026,19 +28096,19 @@
           <contextSlot type="place-holder" rhsIndex="11" />
         </context>
       </rule>
-      <rule id="10.52" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.52" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cMark2Above" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="cAnyMarks" slotIndex="9" />
-          <rhsSlot className="cAnyMarks" slotIndex="10" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="11" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cMark2Above" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="cAnyMarks" slotIndex="9"/>
+          <rhsSlot className="cAnyMarks" slotIndex="10"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="11"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28054,18 +28124,18 @@
           <contextSlot type="place-holder" rhsIndex="10" />
         </context>
       </rule>
-      <rule id="10.53" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.53" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cMark2Above" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="cAnyMarks" slotIndex="9" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="10" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cMark2Above" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="cAnyMarks" slotIndex="9"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="10"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28080,17 +28150,17 @@
           <contextSlot type="place-holder" rhsIndex="9" />
         </context>
       </rule>
-      <rule id="10.54" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.54" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cMark2Above" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cMark2Above" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28104,16 +28174,16 @@
           <contextSlot type="place-holder" rhsIndex="8" />
         </context>
       </rule>
-      <rule id="10.55" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.55" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cMark2Above" slotIndex="7" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cMark2Above" slotIndex="7"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28126,19 +28196,19 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.56" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.56" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cMark2Above" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="cAnyMarks" slotIndex="9" />
-          <rhsSlot className="cAnyMarks" slotIndex="10" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="11" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cMark2Above" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="cAnyMarks" slotIndex="9"/>
+          <rhsSlot className="cAnyMarks" slotIndex="10"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="11"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28154,18 +28224,18 @@
           <contextSlot type="place-holder" rhsIndex="10" />
         </context>
       </rule>
-      <rule id="10.57" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.57" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cMark2Above" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="cAnyMarks" slotIndex="9" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="10" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cMark2Above" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="cAnyMarks" slotIndex="9"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="10"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28180,17 +28250,17 @@
           <contextSlot type="place-holder" rhsIndex="9" />
         </context>
       </rule>
-      <rule id="10.58" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.58" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cMark2Above" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cMark2Above" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28204,16 +28274,16 @@
           <contextSlot type="place-holder" rhsIndex="8" />
         </context>
       </rule>
-      <rule id="10.59" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.59" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cMark2Above" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cMark2Above" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28226,15 +28296,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.60" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.60" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cMark2Above" slotIndex="6" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cMark2Above" slotIndex="6"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28246,18 +28316,18 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.61" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.61" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cMark2Above" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="cAnyMarks" slotIndex="9" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="10" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cMark2Above" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="cAnyMarks" slotIndex="9"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="10"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28272,17 +28342,17 @@
           <contextSlot type="place-holder" rhsIndex="9" />
         </context>
       </rule>
-      <rule id="10.62" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.62" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cMark2Above" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cMark2Above" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28296,16 +28366,16 @@
           <contextSlot type="place-holder" rhsIndex="8" />
         </context>
       </rule>
-      <rule id="10.63" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.63" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cMark2Above" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cMark2Above" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28318,15 +28388,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.64" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.64" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cMark2Above" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cMark2Above" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28338,14 +28408,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.65" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.65" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cMark2Above" slotIndex="5" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="6" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cMark2Above" slotIndex="5"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28356,17 +28426,17 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.66" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.66" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cMark2Above" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="cAnyMarks" slotIndex="8" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cMark2Above" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="cAnyMarks" slotIndex="8"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="9"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28380,16 +28450,16 @@
           <contextSlot type="place-holder" rhsIndex="8" />
         </context>
       </rule>
-      <rule id="10.67" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.67" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cMark2Above" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cMark2Above" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28402,15 +28472,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.68" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.68" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cMark2Above" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cMark2Above" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28422,14 +28492,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.69" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.69" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cMark2Above" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="6" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cMark2Above" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28440,13 +28510,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.70" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.70" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cMark2Above" slotIndex="4" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="5" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cMark2Above" slotIndex="4"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28456,16 +28526,16 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.71" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.71" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cMark2Above" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cAnyMarks" slotIndex="7" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cMark2Above" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cAnyMarks" slotIndex="7"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="8"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28478,15 +28548,15 @@
           <contextSlot type="place-holder" rhsIndex="7" />
         </context>
       </rule>
-      <rule id="10.72" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.72" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cMark2Above" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cMark2Above" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28498,14 +28568,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.73" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.73" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cMark2Above" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="6" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cMark2Above" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28516,13 +28586,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.74" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.74" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cMark2Above" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="5" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cMark2Above" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28532,12 +28602,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.75" inFile="SchMain.gdl" atLine="467"
+      <rule id="10.75" inFile="SchMain.gdl" atLine="467" preAnys="1"
             prettyPrint="*GC19*  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC19*" slotIndex="2" />
-          <rhsSlot className="cMark2Above" slotIndex="3" />
-          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="4" />
+          <rhsSlot className="*GC19*" slotIndex="2"/>
+          <rhsSlot className="cMark2Above" slotIndex="3"/>
+          <rhsSlot className="absJehRetro1Fin" assignmentGdl=" { shift.x = 65; advance.x = aw + 65;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28546,15 +28616,15 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.76" inFile="SchMain.gdl" atLine="470"
+      <rule id="10.76" inFile="SchMain.gdl" atLine="470" preAnys="1"
             prettyPrint="*GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC20*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cAnyMarks" slotIndex="6" />
-          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="7" />
+          <rhsSlot className="*GC20*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cAnyMarks" slotIndex="6"/>
+          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="7"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28566,14 +28636,14 @@
           <contextSlot type="place-holder" rhsIndex="6" />
         </context>
       </rule>
-      <rule id="10.77" inFile="SchMain.gdl" atLine="470"
+      <rule id="10.77" inFile="SchMain.gdl" atLine="470" preAnys="1"
             prettyPrint="*GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC20*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cAnyMarks" slotIndex="5" />
-          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="6" />
+          <rhsSlot className="*GC20*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cAnyMarks" slotIndex="5"/>
+          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="6"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28584,13 +28654,13 @@
           <contextSlot type="place-holder" rhsIndex="5" />
         </context>
       </rule>
-      <rule id="10.78" inFile="SchMain.gdl" atLine="470"
+      <rule id="10.78" inFile="SchMain.gdl" atLine="470" preAnys="1"
             prettyPrint="*GC20*  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC20*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cAnyMarks" slotIndex="4" />
-          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="5" />
+          <rhsSlot className="*GC20*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cAnyMarks" slotIndex="4"/>
+          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="5"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28600,12 +28670,12 @@
           <contextSlot type="place-holder" rhsIndex="4" />
         </context>
       </rule>
-      <rule id="10.79" inFile="SchMain.gdl" atLine="470"
+      <rule id="10.79" inFile="SchMain.gdl" atLine="470" preAnys="1"
             prettyPrint="*GC20*  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC20*" slotIndex="2" />
-          <rhsSlot className="cAnyMarks" slotIndex="3" />
-          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4" />
+          <rhsSlot className="*GC20*" slotIndex="2"/>
+          <rhsSlot className="cAnyMarks" slotIndex="3"/>
+          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="4"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
@@ -28614,11 +28684,11 @@
           <contextSlot type="place-holder" rhsIndex="3" />
         </context>
       </rule>
-      <rule id="10.80" inFile="SchMain.gdl" atLine="470"
+      <rule id="10.80" inFile="SchMain.gdl" atLine="470" preAnys="1"
             prettyPrint="*GC20*  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;" >
         <rhs>
-          <rhsSlot className="*GC20*" slotIndex="2" />
-          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="3" />
+          <rhsSlot className="*GC20*" slotIndex="2"/>
+          <rhsSlot className="cKehehLikeFin" assignmentGdl=" { shift.x = 70; advance.x = aw + 70;  }" slotIndex="3"/>
         </rhs>
         <context>
           <contextSlot type="class" className="ANY" />
