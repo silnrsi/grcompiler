@@ -3150,9 +3150,9 @@ bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew
 
 	int nNameIdNoName = -1;
 	int nPlatId, nEncId, nLangId;
-	char * rgchNoName = "NoName";
+	const char * rgchNoName = "NoName";
 	TtfUtil::GetNameIdForString(pNameTbl, nPlatId, nEncId, nLangId, nNameIdNoName,
-		rgchNoName, 6);
+		const_cast<char *>(rgchNoName), 6);
 
 	utf16 wNameTblId = wFirstNameId;
 	for (size_t ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
