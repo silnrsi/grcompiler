@@ -2234,8 +2234,20 @@ void GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename)
 	char * pchOut = pchOutputFilename;
 	char rgchDbgXmlFile[128];
 	char * pchXml = rgchDbgXmlFile;
-	while (*pchOut != '.' && *pchOut != 0)
-		*pchXml++ = *pchOut++;
+	int ichBase = -1;
+	while (*pchOut != 0)
+	{
+		if (*pchOut == '/' || *pchOut == '\\')
+		{
+			pchXml = rgchDbgXmlFile;
+			pchOut++;
+		}
+		else
+			*pchXml++ = *pchOut++;
+	}
+	pchXml--;
+	while (*pchXml != '.')
+		pchXml--;
 
 	*pchXml++ = '.';
 	*pchXml++ = 'g';
