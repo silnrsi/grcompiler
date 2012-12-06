@@ -101,6 +101,9 @@ int main(int argc, char * argv[])
     }
 #endif
 
+	//char rgchCurWkDir[128];
+	//_getcwd(rgchCurWkDir, 128);	// may need this to calculate paths for the GDX file
+
 	char * pchGdlFile = NULL;
 	char * pchFontFile = NULL;
 	char rgchOutputFile[128];
@@ -134,7 +137,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 4.2";
+		std::cout << "Graphite Compiler Version 4.3";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else

@@ -1,7 +1,7 @@
 #ifndef INC_GrpParser_hpp_
 #define INC_GrpParser_hpp_
 
-#include "Antlr/config.hpp"
+#include "antlr/config.hpp"
 /*
  * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
@@ -10,9 +10,9 @@
  * ANTLR Version 2.6.0; 1996-1999
  */
 
-#include "Antlr/TokenStream.hpp"
-#include "Antlr/TokenBuffer.hpp"
-#include "Antlr/LLkParser.hpp"
+#include "antlr/TokenStream.hpp"
+#include "antlr/TokenBuffer.hpp"
+#include "antlr/LLkParser.hpp"
 
 
 //	Header stuff here
@@ -341,6 +341,8 @@ private:
 	static const BitSet _tokenSet_86;
 	static const unsigned long _tokenSet_87_data_[];
 	static const BitSet _tokenSet_87;
+	static const unsigned long _tokenSet_88_data_[];
+	static const BitSet _tokenSet_88;
 };
 
 #endif /*INC_GrpParser_hpp_*/

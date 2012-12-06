@@ -231,7 +231,7 @@ glyphEntry		:	( glyphContents | glyphAttrs ) (OP_SEMI!)?;
 
 
 glyphContents	:	IDENT
-					( (OP_EQ^ | OP_PLUSEQUAL^) glyphSpec )
+					( (OP_EQ^ | OP_PLUSEQUAL^ | OP_ANDEQUAL^ | OP_MINUSEQUAL^) glyphSpec )
 					(attributes)?
 ;
 
@@ -1038,6 +1038,7 @@ OP_MULT			:	'*';
 OP_MULTEQUAL	:	"*=";
 OP_DIV			:	'/';
 OP_DIVEQUAL		:	"/=";
+OP_ANDEQUAL		:	"&=";
 OP_COMMA		:	',';
 //OP_AT			:	'@';	// see AT_IDENT below
 OP_DOLLAR		:	'$';

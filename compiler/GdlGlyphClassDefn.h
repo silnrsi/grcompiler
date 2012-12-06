@@ -163,6 +163,8 @@ public:
 	//	Setters:
 	void SetName(std::string sta)		{ m_staName = sta; }
 
+	void AddElement(GdlGlyphClassMember * pglfdElement, GrpLineAndFile const& lnf,
+	   GlyphClassType glfct);
 	void AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
 
 	void AddGlyphAttr(Symbol, GdlAssignment * pasgn);
@@ -192,9 +194,14 @@ public:
 		GdlGlyphClassDefn * pglfcMember);
 
 	//	Pre-compiler:
+	virtual void ComputeMembers()
+	{	
+		// Overridden by intersection and difference classes to do something interesting.
+	}
+
 	virtual void ExplicitPseudos(PseudoSet & setpglf);
 	virtual int ActualForPseudo(utf16 wPseudo);
-	void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
 	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo,
@@ -350,6 +357,78 @@ protected:
 	}
 
 };	// end of class GdlGlyphClassDefn
+
+
+/*----------------------------------------------------------------------------------------------
+Class: GdlGlyphIntersectionClassDefn
+Description: A class of glyphs and glyph attribute settings that is calculated via an
+	intersection of two other classes.
+Hungarian: glfci
+----------------------------------------------------------------------------------------------*/
+class GdlGlyphIntersectionClassDefn : public GdlGlyphClassDefn
+{
+public:
+	GdlGlyphIntersectionClassDefn()
+		: GdlGlyphClassDefn()
+	{
+	};
+	virtual ~GdlGlyphIntersectionClassDefn()
+	{
+	};
+	void DeleteGlyphDefns();
+
+	void AddSet(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
+
+	// Pre-compiler:
+	virtual void AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+		std::map<utf16, utf16> & hmActualForPseudo);
+	virtual void ComputeMembers();
+
+protected:
+	// These sets are intersected to create the list of members:
+	std::vector<GdlGlyphClassMember*>	m_vpglfdSets;
+	std::vector<GrpLineAndFile>			m_vlnfSets;		// where each set was added, for debugger file
+};
+
+
+/*----------------------------------------------------------------------------------------------
+Class: GdlGlyphDifferenceClassDefn
+Description: A class of glyphs and glyph attribute settings that is calculated using the
+	difference of two other classes.
+Hungarian: glfcd
+----------------------------------------------------------------------------------------------*/
+class GdlGlyphDifferenceClassDefn : public GdlGlyphClassDefn
+{
+public:
+	GdlGlyphDifferenceClassDefn()
+		: GdlGlyphClassDefn()
+	{
+	};
+	virtual ~GdlGlyphDifferenceClassDefn()
+	{
+	};
+	void DeleteGlyphDefns();
+
+	void AddMinuend(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
+	void AddSubtrahend(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
+	bool HasMinuend()
+	{
+		return (m_pglfdMinuend != NULL);
+	}
+
+	// Pre-compiler:
+	virtual void AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+		std::map<utf16, utf16> & hmActualForPseudo);
+	virtual void ComputeMembers();
+
+protected:
+	// The subtrahend is subtracted from the minuend to create the list of members:
+	GdlGlyphClassMember *	m_pglfdMinuend;
+	GrpLineAndFile			m_lnfMinuend;		// where minuend was added, for debugger file
+
+	GdlGlyphClassMember *	m_pglfdSubtrahend;
+	GrpLineAndFile			m_lnfSubtrahend;	// where subtrahend was added, for debugger file
+};
 
 
 // Functor class for set manipulation.

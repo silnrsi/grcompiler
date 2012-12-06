@@ -227,7 +227,7 @@ protected:
 	void WalkTableElement(RefAST ast, TableType tblt, GdlRuleTable * prultbl, GdlPass * ppass);
 	void WalkGlyphTableTree(RefAST ast);
 	void WalkGlyphTableElement(RefAST ast);
-	void WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc);
+	void WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc, GlyphClassType glfct);
 	void WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta);
 	void WalkFeatureTableTree(RefAST ast);
 	void WalkFeatureTableElement(RefAST ast);
@@ -248,7 +248,7 @@ protected:
 	GdlExpression * WalkExpressionTree(RefAST ast);
 
 	void ProcessGlobalSetting(RefAST);
-	void ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
+	void ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc, GlyphClassType glfct,
 		GdlGlyphDefn ** ppglfRet);
 	GdlGlyphDefn * ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCodePage = -1);
 	void ProcessFunction(RefAST ast, std::vector<std::string> & vsta,
@@ -266,6 +266,10 @@ protected:
 	std::string ProcessAnonymousClass(RefAST ast, RefAST * pastNext);
 	void ProcessSlotIndicator(RefAST ast, GdlAlias * palias);
 	void ProcessAssociations(RefAST ast, GdlRuleTable * prultbl, GdlRuleItem * prit, int lrc);
+	GdlGlyphClassDefn * ConvertClassToIntersection(Symbol psymClass, GdlGlyphClassDefn * pglfc,
+		GrpLineAndFile & lnf);
+	GdlGlyphClassDefn * ConvertClassToDifference(Symbol psymClass, GdlGlyphClassDefn * pglfc,
+		GrpLineAndFile & lnf);
 
 	GrpLineAndFile LineAndFile(RefAST);
 	int NumericValue(RefAST);

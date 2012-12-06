@@ -372,7 +372,7 @@ bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 {
 	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
-
+		
 	return true;
 }
 
@@ -385,6 +385,28 @@ void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 		m_vpglfdMembers[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
 			hmActualForPseudo);
 	}
+}
+
+void GdlGlyphIntersectionClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+	std::map<utf16, utf16> & hmActualForPseudo)
+{
+	for (size_t iglfd = 0; iglfd < m_vpglfdSets.size(); iglfd++)
+	{
+		m_vpglfdSets[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
+			hmActualForPseudo);
+	}
+	ComputeMembers();
+}
+
+void GdlGlyphDifferenceClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+	std::map<utf16, utf16> & hmActualForPseudo)
+{
+	m_pglfdMinuend->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
+		hmActualForPseudo);
+	m_pglfdSubtrahend->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
+		hmActualForPseudo);
+
+	ComputeMembers();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -685,6 +707,82 @@ int GdlGlyphDefn::GlyphIDCount()
 			cGlyph++;
 	}
 	return cGlyph;
+}
+
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Compute the members of the classes that are more complicated than a simple union.
+----------------------------------------------------------------------------------------------*/
+void GdlGlyphIntersectionClassDefn::ComputeMembers()
+{
+	std::vector<utf16> vgidResult;
+
+	std::vector<utf16> vgid1;
+	m_vpglfdSets[0]->FlattenGlyphList(vgid1);
+
+	for (size_t iglfc = 1; iglfc < this->m_vpglfdSets.size(); iglfc++)
+	{
+		vgidResult.clear();
+		std::vector<utf16> vgid2;
+		m_vpglfdSets[iglfc]->FlattenGlyphList(vgid2);
+		for (size_t igid1 = 0; igid1 < vgid1.size(); igid1++)
+		{
+			bool fFound = false;
+			for (size_t igid2 = 0; igid2 < vgid2.size(); igid2++)
+			{
+				if (vgid2[igid2] == vgid1[igid1])
+				{
+					fFound = true;
+					break;
+				}
+			}
+			if (fFound)
+				vgidResult.push_back(vgid1[igid1]);
+
+		}
+		vgid1.assign(vgidResult.begin(), vgidResult.end());
+	}
+
+	// Fake a simple class definition that contains these glyphs.
+	GrpLineAndFile lnf = this->LineAndFile();
+	for (size_t igid = 0; igid < vgidResult.size(); igid++)
+	{
+		GdlGlyphDefn * pglfd = new GdlGlyphDefn(kglftGlyphID, vgidResult[igid]);
+		pglfd->AddGlyphID(vgidResult[igid]);
+		this->AddMember(pglfd, lnf);
+	}
+}
+
+
+void GdlGlyphDifferenceClassDefn::ComputeMembers()
+{
+	std::vector<utf16> vgidResult;
+	m_pglfdMinuend->FlattenGlyphList(vgidResult);
+
+	std::vector<utf16> vgid2;
+	m_pglfdSubtrahend->FlattenGlyphList(vgid2);
+
+	for (size_t igid2 = 0; igid2 < vgid2.size(); igid2++)
+	{
+		for (size_t igid1 = 0; igid1 < vgidResult.size(); igid1++)
+		{
+			if (vgidResult[igid1] == vgid2[igid2])
+			{
+				vgidResult.erase(vgidResult.begin() + igid1);
+				break;
+			}
+		}
+	}
+
+	// Fake a simple class definition that contains these glyphs.
+	GrpLineAndFile lnf = this->LineAndFile();
+	for (size_t igid = 0; igid < vgidResult.size(); igid++)
+	{
+		GdlGlyphDefn * pglfd = new GdlGlyphDefn(kglftGlyphID, vgidResult[igid]);
+		pglfd->AddGlyphID(vgidResult[igid]);
+		this->AddMember(pglfd, lnf);
+	}
 }
 
 /**********************************************************************************************/

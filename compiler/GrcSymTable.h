@@ -334,7 +334,8 @@ public:
 	//	General:
 	Symbol AddSymbol(const GrcStructName & xns, SymbolType symt, GrpLineAndFile const&);
 
-	Symbol AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const&);
+	Symbol AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const&,
+		GlyphClassType nodetyp = kglfctUnion);
 	Symbol AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFile const&);
 	Symbol AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf);
 	Symbol AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndFile const&,
