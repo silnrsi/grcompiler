@@ -213,6 +213,11 @@ public:
 		m_fNoRangeCheck = true;
 	}
 
+	void AddGlyphID(utf16 w)
+	{
+		m_vwGlyphIDs.push_back(w);
+	}
+
 public:
 	//	Pre-compiler:
 	virtual void ExplicitPseudos(PseudoSet & setpglf);

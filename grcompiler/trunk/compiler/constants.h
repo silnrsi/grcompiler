@@ -59,6 +59,13 @@ typedef enum GlyphType {	// hungarian: glft
 } GlyphType;
 
 
+typedef enum GlyphClassType {	// hungarian: glfct
+	kglfctUnion = 0,
+	kglfctIntersect,
+	kglfctDifference
+} GlyphClassType;
+
+
 //	Symbol types
 typedef enum SymbolType {	// hungarian: symt
 	ksymtNone,

@@ -92,6 +92,18 @@ public:
 	{
 		m_vpglfc.push_back(pglfc);
 	}
+	// currently not used:
+	void RemoveGlyphClass(GdlGlyphClassDefn * pglfc) // assumes it is only present once
+	{
+		for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
+		{
+			if (m_vpglfc[iglfc] == pglfc)
+			{
+				m_vpglfc.erase(m_vpglfc.begin() + iglfc);
+				break;
+			}
+		}
+	}
 	void AddFeature(GdlFeatureDefn * pfeat)
 	{
 		m_vpfeat.push_back(pfeat);

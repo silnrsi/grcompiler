@@ -8,8 +8,8 @@
 
 #include "GrpLexer.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "Antlr/ScannerException.hpp"
-#include "Antlr/CharBuffer.hpp"
+#include "antlr/ScannerException.hpp"
+#include "antlr/CharBuffer.hpp"
 
 
 
@@ -56,37 +56,37 @@ GrpLexer::GrpLexer(const LexerSharedInputState& state)
 
 void GrpLexer::initLiterals()
 {
-	literals["positioning"] = 56;
-	literals["min"] = 77;
+	literals["positioning"] = 58;
+	literals["min"] = 78;
 	literals["name"] = 16;
 	literals["endenvironment"] = 10;
 	literals["endtable"] = 15;
-	literals["false"] = 75;
-	literals["true"] = 74;
+	literals["false"] = 76;
+	literals["true"] = 75;
 	literals["glyph"] = 23;
-	literals["codepoint"] = 26;
-	literals["justify"] = 59;
-	literals["pass"] = 36;
+	literals["codepoint"] = 28;
+	literals["justify"] = 61;
+	literals["pass"] = 38;
 	literals["table"] = 14;
-	literals["substitution"] = 35;
+	literals["substitution"] = 37;
 	literals["string"] = 22;
 	literals["environment"] = 9;
-	literals["glyphid"] = 27;
-	literals["justification"] = 54;
-	literals["pseudo"] = 24;
-	literals["position"] = 55;
-	literals["endif"] = 40;
-	literals["languages"] = 34;
-	literals["elseif"] = 42;
-	literals["feature"] = 32;
-	literals["max"] = 76;
-	literals["postscript"] = 28;
-	literals["unicode"] = 29;
-	literals["if"] = 38;
-	literals["linebreak"] = 57;
-	literals["else"] = 39;
-	literals["endpass"] = 37;
-	literals["language"] = 33;
+	literals["glyphid"] = 29;
+	literals["justification"] = 56;
+	literals["pseudo"] = 26;
+	literals["position"] = 57;
+	literals["endif"] = 42;
+	literals["languages"] = 36;
+	literals["elseif"] = 44;
+	literals["feature"] = 34;
+	literals["max"] = 77;
+	literals["postscript"] = 30;
+	literals["unicode"] = 31;
+	literals["if"] = 40;
+	literals["linebreak"] = 59;
+	literals["else"] = 41;
+	literals["endpass"] = 39;
+	literals["language"] = 35;
 }
 bool GrpLexer::getCaseSensitiveLiterals() const
 {
@@ -203,12 +203,6 @@ RefToken GrpLexer::nextToken()
 				_rettoken=_returnToken;
 				break;
 			}
-			case static_cast<unsigned char>('&'):
-			{
-				mOP_AND(true);
-				_rettoken=_returnToken;
-				break;
-			}
 			case static_cast<unsigned char>('|'):
 			{
 				mOP_OR(true);
@@ -294,8 +288,16 @@ RefToken GrpLexer::nextToken()
 					mOP_DIVEQUAL(true);
 					_rettoken=_returnToken;
 				}
+				else if ((LA(1)==static_cast<unsigned char>('&')) && (LA(2)==static_cast<unsigned char>('='))) {
+					mOP_ANDEQUAL(true);
+					_rettoken=_returnToken;
+				}
 				else if ((LA(1)==static_cast<unsigned char>('#')) && (LA(2)==static_cast<unsigned char>('l'))) {
 					mOP_LINEMARKER(true);
+					_rettoken=_returnToken;
+				}
+				else if ((LA(1)==static_cast<unsigned char>('&')) && (LA(2)==static_cast<unsigned char>('&'))) {
+					mOP_AND(true);
 					_rettoken=_returnToken;
 				}
 				else if ((LA(1)==static_cast<unsigned char>('.'))) {
@@ -1451,6 +1453,19 @@ void GrpLexer::mOP_DIVEQUAL(bool _createToken) {
 	_returnToken = _token;
 }
 
+void GrpLexer::mOP_ANDEQUAL(bool _createToken) {
+	int _ttype; RefToken _token; int _begin=text.length();
+	_ttype = OP_ANDEQUAL;
+	int _saveIndex;
+	
+	match("&=");
+	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
+	   _token = makeToken(_ttype);
+	   _token->setText(text.substr(_begin, text.length()-_begin));
+	}
+	_returnToken = _token;
+}
+
 void GrpLexer::mOP_COMMA(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_COMMA;
@@ -1738,11 +1753,11 @@ void GrpLexer::mIDENT(bool _createToken) {
 		}
 		default:
 		{
-			goto _loop500;
+			goto _loop501;
 		}
 		}
 	} while (true);
-	_loop500:;
+	_loop501:;
 	}
 	_ttype = testLiteralsTable(_ttype);
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1923,11 +1938,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 			}
 			default:
 			{
-				goto _loop506;
+				goto _loop507;
 			}
 			}
 		} while (true);
-		_loop506:;
+		_loop507:;
 		}
 	}
 	else {
@@ -1937,11 +1952,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 				matchRange(static_cast<unsigned char>('0'),static_cast<unsigned char>('9'));
 			}
 			else {
-				goto _loop508;
+				goto _loop509;
 			}
 			
 		} while (true);
-		_loop508:;
+		_loop509:;
 		}
 	}
 	

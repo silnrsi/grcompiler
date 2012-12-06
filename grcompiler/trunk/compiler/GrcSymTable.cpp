@@ -74,7 +74,8 @@ Symbol GrcSymbolTable::AddSymbol(const GrcStructName & xns, SymbolType symt,
     Add a symbol that is the name of a class to the main symbol table (if it is not already
 	there). Also, ensure that it has an GdlGlyphClassDefn as its data.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcSymbolTable::AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf)
+Symbol GrcSymbolTable::AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf,
+	GlyphClassType glfct)
 {
 	Assert(m_cLevel == 0);
 	Assert(xns.NumFields() == 1);
@@ -82,7 +83,29 @@ Symbol GrcSymbolTable::AddClassSymbol(const GrcStructName & xns, GrpLineAndFile 
 	Symbol psymAdded = AddSymbolAux(xns, ksymtClass, ksymtInvalid, lnf);
 	if (!psymAdded->HasData())
 	{
-		GdlGlyphClassDefn * pglfc = new GdlGlyphClassDefn();
+		GdlGlyphClassDefn * pglfc;
+		GdlGlyphIntersectionClassDefn * pglfci;
+		GdlGlyphDifferenceClassDefn * pglfcd;
+		switch (glfct)
+		{
+		case kglfctUnion:
+			pglfc = new GdlGlyphClassDefn();
+			break;
+		// These two options are not used; currently the only way to create an intersection
+		// or difference is by converting an existing class as a result of the
+		// 'classA &= classB' syntax.
+		case kglfctIntersect:
+			pglfci = new GdlGlyphIntersectionClassDefn();
+			pglfc = dynamic_cast<GdlGlyphClassDefn *>(pglfci);
+			break;
+		case kglfctDifference:
+			pglfcd = new GdlGlyphDifferenceClassDefn();
+			pglfc = dynamic_cast<GdlGlyphClassDefn *>(pglfcd);
+			break;
+		default:
+			break;
+		}
+
 		pglfc->SetLineAndFile(lnf);
 		psymAdded->SetData(pglfc);
 	}
@@ -111,7 +134,6 @@ Symbol GrcSymbolTable::AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFil
 
 	return psymAdded;
 }
-
 
 /*----------------------------------------------------------------------------------------------
     Add a symbol that is the name of a feature to the main symbol table (if it is not already
