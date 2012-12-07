@@ -38,6 +38,7 @@ using std::min;
 #include "GrPlatform.h"
 #else
 #include <cstring>
+#include <direct.h>	// needed for _getcwd
 #include "GrCommon.h"
 #include "GrPlatform.h"
 #endif

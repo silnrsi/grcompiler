@@ -414,7 +414,7 @@ public:
 	void DebugGlyphAttributes();
 	void DebugClasses();
 	void DebugFsm();
-	void DebugXml(GrcFont * pfont, char * pchOutputFilename);
+	bool DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGdlFilePaths);
 	////void WalkFsmMachineClasses();
 	void DebugOutput();
 	void DebugCmap(GrcFont * pfont);
@@ -425,11 +425,13 @@ public:
 	static void DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit);
 	static std::string ExpressionDebugString(ExpressionType expt);
 protected:
-	void DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut);
+	void DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut, std::string staPathToCur);
 	void CmapAndInverse(GrcFont * pfont, 
 		int cnUni, utf16 * rgnUniToGlyphID, unsigned int * rgnGlyphIDToUni,
 		std::vector<unsigned int> & vnXUniForPsd, std::vector<utf16> & vwXPsdForUni);
 
+	std::string pathFromOutputToCurrent(char * rgchCurDir, char * rgchOutputPath);
+	char splitPath(char * rgchPath, std::vector<std::string> & vstaResult);
 
 protected:
 	//	Instance variables:

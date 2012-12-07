@@ -343,7 +343,7 @@ public:
 	//	debugger
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
-	virtual void DebugXmlClassMembers(std::ofstream & strmOut,
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs);
 
 

@@ -120,7 +120,7 @@ public:
 	//	debuggers
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni) = 0;
-	virtual void DebugXmlClassMembers(std::ofstream & strmOut, 
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs) = 0;
 
 protected:
@@ -274,8 +274,8 @@ public:
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
-	void DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs);
-	virtual void DebugXmlClassMembers(std::ofstream & strmOut,
+	void DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs, std::string staPathToCur);
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs);
 	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses);
 

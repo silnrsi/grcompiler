@@ -212,9 +212,9 @@ public:
 	void DebugCmap(GrcFont * pfont, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	void DebugClasses(std::ostream & strmOut,
 		std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear);
-	void DebugXmlClasses(std::ofstream & strmOut);
-	void DebugXmlFeatures(std::ofstream & strmOut);
-	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut);
+	void DebugXmlClasses(std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses);
 
 	//	Output:

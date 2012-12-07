@@ -157,7 +157,7 @@ public:
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking);
 	void WalkFsmMachineClasses();
-	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
 		Symbol psymTableName);
 
 protected:
@@ -302,7 +302,7 @@ public:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
-	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut);
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 
 protected:
 	//	Instance variables:
