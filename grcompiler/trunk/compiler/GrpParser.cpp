@@ -8,8 +8,8 @@
 
 #include "GrpParser.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "antlr/NoViableAltException.hpp"
-#include "antlr/SemanticException.hpp"
+#include "Antlr/NoViableAltException.hpp"
+#include "Antlr/SemanticException.hpp"
 
 //	Insert at the beginning of the GrpParser.cpp file
 #pragma warning(disable:4101)
