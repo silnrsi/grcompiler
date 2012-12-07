@@ -2227,27 +2227,46 @@ void GrcManager::CmapAndInverse(GrcFont * pfont,
 /*----------------------------------------------------------------------------------------------
 	Output XML to be used by the engine debugger.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename)
+bool GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGdlFilePaths)
 {
+	// Current working directory, for calculating file paths in GDX file:
+	char rgchCurWkDir[128];
+	_getcwd(rgchCurWkDir, 128);
+
 	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
 	// a .gdx extension.
+	int cchLen = strlen(pchOutputFilename);
 	char * pchOut = pchOutputFilename;
 	char rgchDbgXmlFile[128];
-	char * pchXml = rgchDbgXmlFile;
-	int ichBase = -1;
-	while (*pchOut != 0)
-	{
-		if (*pchOut == '/' || *pchOut == '\\')
-		{
+	char rgchOutputPath[128];
+	memset(rgchDbgXmlFile, 0, 128 * sizeof(char));
+	memset(rgchOutputPath, 0, 128 * sizeof(char));
+	memcpy(rgchDbgXmlFile, pchOutputFilename, cchLen * sizeof(char));
+	char * pchXml = rgchDbgXmlFile + cchLen;
+	while (pchXml != rgchDbgXmlFile && *pchXml != '.')	// remove the extension
+		*pchXml-- = 0;
+	*pchXml = 0;	// '.'
+	memcpy(rgchOutputPath, rgchDbgXmlFile, cchLen * sizeof(char));
+
+	// Remove the rest of the filename from the path.
+	char * pchPath = rgchOutputPath + (pchXml - rgchDbgXmlFile);
+	while (pchPath != rgchOutputPath && *pchPath != '/' && *pchPath != '\\')
+		*pchPath-- = 0;
+	*pchPath = 0;
+
+	/*****
+	// Output to the current directory:
+	while (*pchOut != 0) {
+		if (*pchOut == '/' || *pchOut == '\\') {
 			pchXml = rgchDbgXmlFile;
 			pchOut++;
-		}
-		else
+		} else
 			*pchXml++ = *pchOut++;
 	}
 	pchXml--;
 	while (*pchXml != '.')
 		pchXml--;
+	*****/
 
 	*pchXml++ = '.';
 	*pchXml++ = 'g';
@@ -2255,14 +2274,22 @@ void GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename)
 	*pchXml++ = 'x';
 	*pchXml = 0;
 
+	std::string staPathToCur;
+	if (fAbsGdlFilePaths)
+		staPathToCur.assign("");
+	else
+		// Generate the path from the GDX file to the current working directory.
+		// This must be prepended on to the source code file names in the GDX file.
+		staPathToCur = pathFromOutputToCurrent(rgchCurWkDir, rgchOutputPath);
+
 	std::ofstream strmOut;
 	strmOut.open(rgchDbgXmlFile);
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6101, NULL,
 			"Error in writing to file ",
-			"dbg.xml");
-		return;
+			rgchDbgXmlFile);
+		return false;
 	}
 
 	if (g_errorList.AnyFatalErrors())
@@ -2273,25 +2300,27 @@ void GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename)
 			<< "<graphite>\n\n";
 
 		// Glyphs and glyph attributes
-		this->DebugXmlGlyphs(pfont, strmOut);
+		this->DebugXmlGlyphs(pfont, strmOut, staPathToCur);
 
 		// Classes and members
-		this->m_prndr->DebugXmlClasses(strmOut);
+		this->m_prndr->DebugXmlClasses(strmOut, staPathToCur);
 
 		// Features
-		m_prndr->DebugXmlFeatures(strmOut);
+		m_prndr->DebugXmlFeatures(strmOut, staPathToCur);
 		
 		// Rules
-		m_prndr->DebugXmlRules(this, strmOut);
+		m_prndr->DebugXmlRules(this, strmOut, staPathToCur);
 
 		strmOut << "</graphite>\n";
 	}
 
 	strmOut.close();
+	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut)
+void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
+	std::string staPathToCur)
 {
 	// Glyph attribute definitions
 
@@ -2407,7 +2436,8 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut)
 				strmOut  << nValue;
 
 			if (!lnf.NotSet())
-				strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+				strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+					<< "\" atLine=\"" << lnf.OriginalLine();
 
 			strmOut << "\" />\n";
 
@@ -2442,7 +2472,7 @@ void GdlGlyphClassDefn::RecordSingleMemberClasses(std::vector<std::string> & vst
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut)		
+void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut, std::string staPathToCur)		
 {
 	strmOut << "  <classes>\n";
 
@@ -2453,14 +2483,15 @@ void GdlRenderer::DebugXmlClasses(std::ofstream & strmOut)
 			continue;
 
 		cwGlyphIDs = 0;
-		m_vpglfc[ipglfc]->DebugXmlClasses(strmOut, cwGlyphIDs);
+		m_vpglfc[ipglfc]->DebugXmlClasses(strmOut, cwGlyphIDs, staPathToCur);
 	}
 
 	strmOut << "  </classes>\n\n";
 }
 
 
-void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs)
+void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs,
+	std::string staPathToCur)
 {
 	strmOut << "    <class name=\"" << this->Name();
 	if (m_fReplcmtIn)
@@ -2471,24 +2502,24 @@ void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphID
 
 	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
-		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, this, LineAndFileForMember(iglfd),
-			cwGlyphIDs);
+		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, staPathToCur,
+			this, LineAndFileForMember(iglfd), cwGlyphIDs);
 	}
 	strmOut << "    </class>\n";
 }
 
 
-void GdlGlyphClassDefn::DebugXmlClassMembers(std::ofstream & strmOut,
+void GdlGlyphClassDefn::DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
 	GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs)
 {
 	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
-		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, pglfdParent, lnf,
+		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, staPathToCur, pglfdParent, lnf,
 			cwGlyphIDs);
 	}
 }
 
-void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut, 
+void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
 	GdlGlyphClassDefn * /*pglfdParent*/, GrpLineAndFile lnf, int & cwGlyphIDs)
 {
 	for (unsigned int iw = 0; iw < m_vwGlyphIDs.size(); iw++)
@@ -2496,7 +2527,8 @@ void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut,
 		strmOut << "      <member glyphid=\"" << m_vwGlyphIDs[iw] << "\" index=\"" << cwGlyphIDs;
 
 		if (!lnf.NotSet())
-			strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+			strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+				<< "\" atLine=\"" << lnf.OriginalLine();
 
 		strmOut << "\" />\n";
 		cwGlyphIDs++;
@@ -2504,20 +2536,20 @@ void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::DebugXmlFeatures(std::ofstream & strmOut)
+void GdlRenderer::DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur)
 {
 	strmOut << "  <features>\n";
 
 	for (size_t ipfeat = 0; ipfeat < m_vpfeat.size(); ipfeat++)
 	{
 		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
-		pfeat->DebugXmlFeatures(strmOut);
+		pfeat->DebugXmlFeatures(strmOut, staPathToCur);
 	}
 
 	strmOut << "  </features>\n\n";
 }
 
-void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
+void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur)
 {
 	GrpLineAndFile lnf = this->LineAndFile();
 	unsigned int nID = this->ID();
@@ -2555,65 +2587,69 @@ void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut)
 	strmOut << "\" index=\"" << this->InternalID();
 
 	if (!lnf.NotSet() && this->ID() != kfidStdLang)
-		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+		strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+			<< "\" atLine=\"" << lnf.OriginalLine();
 
 	strmOut << "\" >\n";
 
 	for (unsigned int ifset = 0; ifset < m_vpfset.size(); ifset++)
 	{
-		m_vpfset[ifset]->DebugXmlFeatures(strmOut);
+		m_vpfset[ifset]->DebugXmlFeatures(strmOut, staPathToCur);
 	}
 
 	strmOut << "    </feature>\n";
 }
 
-void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut)
+void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur)
 {
 	GrpLineAndFile lnf = this->LineAndFile();
 	strmOut << "      <featureSetting name=\"" << this->Name()
 		<< "\" value=\"" << this->Value();
 
 	if (!lnf.NotSet())
-		strmOut << "\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine();
+		strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+			<< "\" atLine=\"" << lnf.OriginalLine();
 
 	strmOut << "\" />\n";
 }
 
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut)
+void GdlRenderer::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+	std::string staPathToCur)
 {
 	strmOut << "  <rules>\n";
 
 	GdlRuleTable * prultbl;
 
 	if ((prultbl = FindRuleTable("linebreak")) != NULL)
-		prultbl->DebugXmlRules(pcman, strmOut);
+		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
 
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
-		prultbl->DebugXmlRules(pcman, strmOut);
+		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
 
 	if (Bidi())
 		strmOut << "    <pass table=\"bidi\" index=\"" << m_iPassBidi + 1 << "\" />\n";
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
-		prultbl->DebugXmlRules(pcman, strmOut);
+		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
 
 	if ((prultbl = FindRuleTable("positioning")) != NULL)
-		prultbl->DebugXmlRules(pcman, strmOut);
+		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
 
 	strmOut << "  </rules>\n\n";
 }
 
-void GdlRuleTable::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut)
+void GdlRuleTable::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+	std::string staPathToCur)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		m_vppass[ippass]->DebugXmlRules(pcman, strmOut, this->NameSymbol());
+		m_vppass[ippass]->DebugXmlRules(pcman, strmOut, staPathToCur, this->NameSymbol());
 	}
 }
 
-void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
+void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
 	Symbol psymTableName)
 {
 	if (m_vprule.size() == 0)
@@ -2632,21 +2668,23 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
 			strmOut << "          <passConstraint gdl=\"{ ";
 			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
-			strmOut << " }\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
+			strmOut << " }\" inFile=\"" << staPathToCur << lnf.File()
+				<< "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
 		}
 		strmOut << "        </passConstraints>\n";
 	}
 
 	for (size_t irule = 0; irule < m_vprule.size(); irule++)
 	{
-		m_vprule[irule]->DebugXml(pcman, strmOut, PassDebuggerNumber(), irule);
+		m_vprule[irule]->DebugXml(pcman, strmOut, staPathToCur, PassDebuggerNumber(), irule);
 	}
 
 	strmOut << "    </pass>  <!-- pass " << PassDebuggerNumber() 
 				<< " (" << psymTableName->FullName() << " table) -->\n\n";
 }
 
-void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum, int nRuleNum)
+void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
+	int nPassNum, int nRuleNum)
 {
 	strmOut << "      <rule id=\"" << nPassNum << "." << nRuleNum
 		<< "\" inFile=\"" << LineAndFile().File()
@@ -2664,7 +2702,8 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
 			strmOut << "          <ruleConstraint gdl=\"{ ";
 			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
-			strmOut << " }\" inFile=\"" << lnf.File() << "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
+			strmOut << " }\" inFile=\"" << staPathToCur << lnf.File()
+				<< "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
 		}
 		strmOut << "        </ruleConstraints>\n";
 	}
@@ -2693,7 +2732,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 		strmOut << "        <lhs>\n";
 		for (size_t irit = 0; irit < m_vprit.size(); irit++)
 		{
-			m_vprit[irit]->DebugXmlLhs(pcman, strmOut);
+			m_vprit[irit]->DebugXmlLhs(pcman, strmOut, staPathToCur);
 		}
 		strmOut << "        </lhs>\n";
 	}
@@ -2702,7 +2741,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 	strmOut << "        <rhs>\n";
 	for (size_t irit = 0; irit < m_vprit.size(); irit++)
 	{
-		m_vprit[irit]->DebugXmlRhs(pcman, strmOut);
+		m_vprit[irit]->DebugXmlRhs(pcman, strmOut, staPathToCur);
 	}
 	strmOut << "        </rhs>\n";
 
@@ -2716,7 +2755,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 			if (m_nScanAdvance == (signed)irit)
 				strmOut << "          <caret />\n";
 
-			m_vprit[irit]->DebugXmlContext(pcman, strmOut, iritRhs);
+			m_vprit[irit]->DebugXmlContext(pcman, strmOut, staPathToCur, iritRhs);
 		}
 		strmOut << "        </context>\n";
 	}
@@ -2725,29 +2764,34 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNum
 }
 
 
-void GdlRuleItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & /*strmOut*/)
+void GdlRuleItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & /*strmOut*/,
+	std::string /*staPathToCur*/)
 {
 	//	Do nothing.
 }
 
-void GdlSetAttrItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & strmOut)
+void GdlSetAttrItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & strmOut,
+	std::string /*staPathToCur*/)
 {
 	strmOut << "          <lhsSlot className=\"" << m_psymInput->FullAbbrev()
 		<< "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
 }
 
-void GdlSubstitutionItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & strmOut)
+void GdlSubstitutionItem::DebugXmlLhs(GrcManager * /*pcman*/, std::ofstream & strmOut,
+	std::string /*staPathToCur*/)
 {
 	strmOut << "          <lhsSlot className=\"" << m_psymInput->FullAbbrev()
 		<< "\" slotIndex=\"" << m_iritContextPos + 1 << "\" />\n";
 }
 
-void GdlRuleItem::DebugXmlRhs(GrcManager * /*pcman*/, std::ofstream & /*strmOut*/)
+void GdlRuleItem::DebugXmlRhs(GrcManager * /*pcman*/, std::ofstream & /*strmOut*/,
+	std::string /*staPathToCur*/)
 {
 	//	Do nothing.
 }
 
-void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
+void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut,
+	std::string staPathToCur)
 {
 	strmOut << "          <rhsSlot className=\"" << m_psymInput->FullAbbrev();
 	if (m_vpavs.size() > 0)
@@ -2773,7 +2817,7 @@ void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
 		strmOut << ">\n            <slotAttrs";
 		for (unsigned ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 		{
-			m_vpavs[ipavs]->DebugXml(pcman, strmOut);
+			m_vpavs[ipavs]->DebugXml(pcman, strmOut, staPathToCur);
 		}
 		strmOut << " />\n          </rhsSlot>\n";
 	}
@@ -2783,7 +2827,8 @@ void GdlSetAttrItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
 	}
 }
 
-void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut)
+void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut,
+	std::string /*staPathToCur*/)
 {
 	strmOut << "          <rhsSlot className=\"" << m_psymOutput->FullAbbrev();
 	
@@ -2808,7 +2853,8 @@ void GdlSubstitutionItem::DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOu
 
 }
 
-void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & /*iritRhs*/)
+void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut,
+	std::string /*staPathToCur*/, int & /*iritRhs*/)
 {
 	strmOut << "          <contextSlot type=\"class\" className=\"" << m_psymInput->FullAbbrev() 
 		<< "\"";
@@ -2822,7 +2868,8 @@ void GdlRuleItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, i
 		strmOut << " />\n";
 }
 
-void GdlSetAttrItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs)
+void GdlSetAttrItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut,
+	std::string /*staPathToCur*/, int & iritRhs)
 {
 	iritRhs++;
 
@@ -2838,7 +2885,8 @@ void GdlSetAttrItem::DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut
 		strmOut << " />\n";
 }
 
-void GdlRuleItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut)
+void GdlRuleItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut,
+	std::string /*staPathToCur*/)
 {
 	if (m_pexpConstraint)
 	{
@@ -2848,7 +2896,8 @@ void GdlRuleItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut
 	}
 }
 
-void GdlLineBreakItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut)
+void GdlLineBreakItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut,
+	std::string /*staPathToCur*/)
 {
 	strmOut << "          <contextSlot className=\"#\"";
 	ConstraintPrettyPrint(pcman, strmOut, true);
@@ -2856,7 +2905,7 @@ void GdlLineBreakItem::DebugXmlConstraint(GrcManager * pcman, std::ofstream & st
 
 }
 
-void GdlAttrValueSpec::DebugXml(GrcManager * pcman, std::ostream & strmOut)
+void GdlAttrValueSpec::DebugXml(GrcManager * pcman, std::ostream & strmOut, std::string /*staPathToCur*/)
 {
 	// For now, only output the attach attributes.
 	if (m_psymName->IsAttachment())
@@ -2888,7 +2937,6 @@ void GdlAttrValueSpec::DebugXml(GrcManager * pcman, std::ostream & strmOut)
 		}
 		else if (m_psymName->IsAttachTo())
 		{
-
 			strmOut << " attachTo=\"";
 			GdlSlotRefExpression * pexpSlotValue = dynamic_cast<GdlSlotRefExpression *>(m_pexpValue);
 			if (pexpSlotValue)
@@ -2964,4 +3012,112 @@ std::string GrcManager::ExpressionDebugString(ExpressionType expt)
 	case kexptPoint:	return "point";
 	case kexptGlyphID:	return "gid";
 	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return the path from the output directory (where the font and GDX file will go) to
+	the current directory. For instance, if the output directory is "C:/aaa/bbb/ccc/ddd"
+	and the current directory is "C:/aaa/bbb/ccc/eee/fff", the result will be
+	"../eee/fff".
+
+	This is used for modifying the GDL file names that are put in the GDX file; they must be
+	relative to that file.
+----------------------------------------------------------------------------------------------*/
+std::string GrcManager::pathFromOutputToCurrent(char * rgchCurDir, char * rgchOutputPath)
+{
+	std::string staCurDir(rgchCurDir);
+	std::string staOutputPath(rgchOutputPath);
+	std::string staResult;
+
+	std::vector<std::string> vstaCurDir;
+	splitPath(rgchCurDir, vstaCurDir);
+
+	std::vector<std::string> vstaOutputPath;
+	char chSep = splitPath(rgchOutputPath, vstaOutputPath);
+
+	std::vector<std::string> vstaResultRev;
+
+	if (rgchOutputPath[0] == '/' || rgchOutputPath[1] == ':')
+	{
+		// Output path is absolute.
+		while (vstaCurDir.size() > 0 && vstaOutputPath.size() > 0
+			&& stricmp(vstaCurDir[0].data(), vstaOutputPath[0].data()) == 0)
+		{
+			vstaCurDir.erase(vstaCurDir.begin());
+			vstaOutputPath.erase(vstaOutputPath.begin());
+		}
+		size_t ista;
+		for (ista = 0; ista < vstaOutputPath.size(); ista++)
+		{
+			staResult.append("..");
+			staResult.append(&chSep, 1);
+		}
+		for (ista = 0; ista < vstaCurDir.size(); ista++)
+		{
+			staResult.append(vstaCurDir[ista]);
+			staResult.append(&chSep, 1);
+		}
+	}
+	else
+	{
+		int iCWDpath = vstaCurDir.size() - 1;	// index of the current directory in the path
+		for (size_t istaOut = 0; istaOut < vstaOutputPath.size(); istaOut++)
+		{
+			if (strcmp(vstaOutputPath[istaOut].data(), "..") == 0)
+			{
+				if (vstaResultRev.size() > 0
+					&& strcmp(vstaResultRev[vstaResultRev.size()-1].data(), "..") == 0)
+				{
+					// Output path is something like 'aaa/..' - strange situation, but
+					// remove the most recent directory.
+					vstaResultRev.pop_back();
+				}
+				else
+				{
+					vstaResultRev.push_back(vstaCurDir[iCWDpath]);
+					iCWDpath--;
+				}
+			}
+			else
+				vstaResultRev.push_back("..");
+		}
+
+		for (int ista = vstaResultRev.size() - 1; ista >= 0; ista--)
+		{
+			staResult.append(vstaResultRev[ista]);
+			staResult.append(&chSep, 1);
+		}
+	}
+
+	return staResult;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Split path into directory names. Return the character that is used for the separator
+	(/ or \).
+----------------------------------------------------------------------------------------------*/
+char GrcManager::splitPath(char * rgchPath, std::vector<std::string> & vstaResult)
+{
+	char chSep = '/';
+	char * pch = rgchPath;
+	char * pchStart = rgchPath;
+	while (*pch != 0 || pch > pchStart)
+	{
+		if (*pch == 0 || *pch == '/' || *pch == '\\')
+		{
+			if (*pch == '\\')
+				chSep = '\\';
+
+			char rgchBuf[64];
+			memset(rgchBuf, 0, 64);
+			memcpy(rgchBuf, pchStart, (pch - pchStart) * sizeof(char));
+			std::string staBuf(rgchBuf);
+			if (staBuf.length() > 0)
+				vstaResult.push_back(staBuf);
+			pchStart = pch + 1;
+		}
+		if (*pch != 0)
+			pch++;
+	}
+	return chSep;
 }

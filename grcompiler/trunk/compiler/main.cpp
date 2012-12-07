@@ -101,9 +101,6 @@ int main(int argc, char * argv[])
     }
 #endif
 
-	//char rgchCurWkDir[128];
-	//_getcwd(rgchCurWkDir, 128);	// may need this to calculate paths for the GDX file
-
 	char * pchGdlFile = NULL;
 	char * pchFontFile = NULL;
 	char rgchOutputFile[128];
@@ -205,6 +202,9 @@ int main(int argc, char * argv[])
 		//	}
 		//}
 	}
+	
+	// Is GDL file path absolute? So will be paths in GDX.
+	bool fAbsGdlFilePaths = (pchGdlFile[1] == ':' || pchGdlFile[0] == '/' || pchGdlFile[0] == '\\');
 
 	if (strcmp(rgchOutputFile, pchFontFile) == 0)
 	{
@@ -425,9 +425,14 @@ int main(int argc, char * argv[])
 		}
 		if (g_cman.OutputDebugXml())
 		{
-			g_cman.DebugXml(pfont, rgchOutputFile);
+			bool f = g_cman.DebugXml(pfont, rgchOutputFile, fAbsGdlFilePaths);
 			if ( g_cman.IsVerbose())
-				std::cout << "Debugger XML file generated.\n";
+			{
+				if (f)
+					std::cout << "Debugger XML file generated.\n";
+				else
+					std::cout << "Error in generating debugger XML.\n";
+			}
 		}
 
 		int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile,

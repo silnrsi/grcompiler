@@ -115,7 +115,7 @@ public:
 	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs);
 	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml);
-	void DebugXml(GrcManager * pcman, std::ostream & strmOut);
+	void DebugXml(GrcManager * pcman, std::ostream & strmOut, std::string staPathToCur);
 
 protected:
 	//	Instance variables:
@@ -298,10 +298,11 @@ public:
 		std::ostream & strmOut, bool fXml);
 	virtual void ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml, bool fSpace = false);
 
-	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
-	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
-	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
-	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
+		int & iritRhs);
+	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 
 protected:
 	//	Instance variables:
@@ -376,7 +377,7 @@ public:
 	//	debuggers:
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut, bool fXml);
-	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 
 };	//	end of GdlLineBreakItem
 
@@ -492,10 +493,11 @@ public:
 	virtual void AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut, bool fXml);
 
-	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
-	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
-	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
-	//virtual void DebugXmlAttrSetter(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
+		int & iritRhs);
+	//virtual void DebugXmlAttrSetter(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 
 protected:
 	//	Instance variables:
@@ -613,8 +615,8 @@ public:
 		std::ostream & strmOut, bool fXml);
 	virtual void RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut, bool fXml);
-	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
-	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 
 protected:
 	//	Instance variables:
@@ -874,7 +876,8 @@ public:
 	static std::string GlyphMetricDebugString(int gmet);
 	static std::string EngineCodeDebugString(int op);
 	static std::string ProcessStateDebugString(int pstat);
-	void DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNumber, int nRuleNum);
+	void DebugXml(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
+		int nPassNumber, int nRuleNum);
 
 protected:
 	//	Instance variables:
