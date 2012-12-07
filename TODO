@@ -8,4 +8,15 @@ Pre 2.5 (the next number from the Windows release series)
  * Working on mac
  * manpages
 
+4.3 changes
+
+ * Add ability to attach in substitution pass
+ * .gdx file is stored with output .ttf
+ * &= and -= class editing
+ * remove gpoint generation in the glat
+
+Future ideas
+
+ * compress tables (Glat, Gloc, fsms)
+
 
