@@ -3041,7 +3041,12 @@ std::string GrcManager::pathFromOutputToCurrent(char * rgchCurDir, char * rgchOu
 	{
 		// Output path is absolute.
 		while (vstaCurDir.size() > 0 && vstaOutputPath.size() > 0
+#ifdef _WIN32
 			&& stricmp(vstaCurDir[0].data(), vstaOutputPath[0].data()) == 0)
+#else
+		// Paths on Linux are case-sensitive, and stricmp doesn't seem to work anyway.
+			&& strcmp(vstaCurDir[0].data(), vstaOutputPath[0].data()) == 0)
+#endif
 		{
 			vstaCurDir.erase(vstaCurDir.begin());
 			vstaOutputPath.erase(vstaOutputPath.begin());
