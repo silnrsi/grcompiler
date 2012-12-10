@@ -1162,7 +1162,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 				{
 					char rgch[20];
 					itoa(language_id, rgch, 10);
-					g_errorList.AddWarning(9999, NULL,
+					g_errorList.AddWarning(5506, NULL,
 						"Windows language ID ", rgch,
 						" cannot be converted to Macintosh; 0 (English) will be used");
 				}
@@ -1174,7 +1174,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 				{
 					char rgch[20];
 					itoa(language_id, rgch, 10);
-					g_errorList.AddWarning(9999, NULL,
+					g_errorList.AddWarning(5507, NULL,
 						"Windows language ID ", rgch,
 						" cannot be translated to Unicode 2.0; language 0 will be used");
 				}

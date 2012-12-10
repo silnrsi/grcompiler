@@ -37,8 +37,13 @@ using std::max;
 using std::min;
 #include "GrPlatform.h"
 #else
+#ifdef _WIN32
+    #include <direct.h>
+    #define getcwd _getcwd // stupid MSFT "deprecation" warning
+#elif
+    #include <unistd.h>
+#endif
 #include <cstring>
-#include <direct.h>	// needed for _getcwd
 #include "GrCommon.h"
 #include "GrPlatform.h"
 #endif
