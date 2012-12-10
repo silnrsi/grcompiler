@@ -2231,7 +2231,7 @@ bool GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGd
 {
 	// Current working directory, for calculating file paths in GDX file:
 	char rgchCurWkDir[128];
-	getcwd(rgchCurWkDir, 128);
+	char * pchBogus = getcwd(rgchCurWkDir, 128); // Linux requires assignment
 
 	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
 	// a .gdx extension.
