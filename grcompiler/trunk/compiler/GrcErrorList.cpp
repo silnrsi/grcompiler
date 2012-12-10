@@ -19,7 +19,7 @@ global - highest error: 142 / highest warning: 511
 		GrpParser
 		GrcFont
 
-parsing - highest error: 1183 / highest warning: 1513
+parsing - highest error: 1184 / highest warning: 1513
 		ParserTreeWalker
 		PostParser
 
@@ -44,7 +44,7 @@ error checking:
 		GdlGlyphDefn
 		GdlGlyphClassDefn
 
-compilation:	highest error: 5101 / highest warning: 5505
+compilation:	highest error: 5101 / highest warning: 5507
 		OutputToFont
 
 test and debug: highest error: 6106 / highest warning: none (start at: 6500)

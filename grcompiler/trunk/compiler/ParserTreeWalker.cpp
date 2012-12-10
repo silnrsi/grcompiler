@@ -1059,7 +1059,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 
 		if (nodetyp == OP_ANDEQUAL || nodetyp == OP_MINUSEQUAL)
 		{
-			g_errorList.AddError(9999, NULL,
+			g_errorList.AddError(1184, NULL,
 				"Cannot perform set operation on nonexistent class ",
 				staClassName,
 				LineAndFile(ast));
