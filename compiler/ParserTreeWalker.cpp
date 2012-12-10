@@ -1089,11 +1089,13 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 		}
 		else if (nodetyp == OP_ANDEQUAL)
 		{
-			pglfc = ConvertClassToIntersection(psymClass, pglfc, LineAndFile(ast));
+			GrpLineAndFile lnf = LineAndFile(ast);
+			pglfc = ConvertClassToIntersection(psymClass, pglfc, lnf);
 		}
 		else if (nodetyp == OP_MINUSEQUAL)
 		{
-			pglfc = ConvertClassToDifference(psymClass, pglfc, LineAndFile(ast));
+			GrpLineAndFile lnf = LineAndFile(ast);
+			pglfc = ConvertClassToDifference(psymClass, pglfc, lnf);
 		}
 	}
 	WalkGlyphClassTree(ast, pglfc, glfct);
