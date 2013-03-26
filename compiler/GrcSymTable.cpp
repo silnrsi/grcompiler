@@ -497,6 +497,24 @@ Symbol GrcSymbolTable::FindSlotAttr(const GrcStructName & xns, GrpLineAndFile co
 		return psym;
 }
 
+/*----------------------------------------------------------------------------------------------
+    Answer true if the field at the given index is the given string.
+----------------------------------------------------------------------------------------------*/
+void GrcSymbolTableEntry::ReplaceClassData(GdlGlyphClassDefn * pglfc)
+{
+	if (m_pData)
+	{
+		// Empty class is being deleted.
+		GdlGlyphClassDefn * pglfcDelete = dynamic_cast<GdlGlyphClassDefn *>(m_pData);
+		Assert(pglfcDelete);
+		Assert(pglfcDelete->Name() == "");
+		pglfcDelete->ComputeMembers();
+		Assert(pglfcDelete->GlyphIDCount() == 0);
+		delete m_pData;
+	}
+	SetData(pglfc);
+}
+
 
 /*----------------------------------------------------------------------------------------------
     Answer true if the field at the given index is the given string.

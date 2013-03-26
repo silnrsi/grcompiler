@@ -403,8 +403,8 @@ void GdlGlyphDifferenceClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphID
 {
 	m_pglfdMinuend->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
 		hmActualForPseudo);
-	m_pglfdSubtrahend->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
-		hmActualForPseudo);
+	// The subtrahend is not processed at the top level.
+	m_pglfdSubtrahend->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
 
 	ComputeMembers();
 }
@@ -2493,42 +2493,48 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 			pavs->SetFlattened(true);
 			vpavsNew.push_back(pavs);
 		}
+		//if (pexpGpoint)
+		//{
+		//	if (psymGpoint->IsBogusSlotAttr())
+		//		delete pexpGpoint;
+		//	else
+		//	{
+		//		pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
+		//		pavs->CopyLineAndFile(*this);
+		//		pavs->SetFlattened(true);
+		//		vpavsNew.push_back(pavs);
+		//	}
+		//}
+		//if (pexpXoffset)
+		//{
+		//	if (psymXoffset->IsBogusSlotAttr())
+		//		delete pexpXoffset;
+		//	else
+		//	{
+		//		pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
+		//		pavs->CopyLineAndFile(*this);
+		//		pavs->SetFlattened(true);
+		//		vpavsNew.push_back(pavs);
+		//	}
+		//}
+		//if (pexpYoffset)
+		//{
+		//	if (psymYoffset->IsBogusSlotAttr())
+		//		delete pexpYoffset;
+		//	else
+		//	{
+		//		pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
+		//		pavs->CopyLineAndFile(*this);
+		//		pavs->SetFlattened(true);
+		//		vpavsNew.push_back(pavs);
+		//	}
+		//}
 		if (pexpGpoint)
-		{
-			if (psymGpoint->IsBogusSlotAttr())
-				delete pexpGpoint;
-			else
-			{
-				pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
-				pavs->CopyLineAndFile(*this);
-				pavs->SetFlattened(true);
-				vpavsNew.push_back(pavs);
-			}
-		}
+			delete pexpGpoint;
 		if (pexpXoffset)
-		{
-			if (psymXoffset->IsBogusSlotAttr())
-				delete pexpXoffset;
-			else
-			{
-				pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
-				pavs->CopyLineAndFile(*this);
-				pavs->SetFlattened(true);
-				vpavsNew.push_back(pavs);
-			}
-		}
+			delete pexpXoffset;
 		if (pexpYoffset)
-		{
-			if (psymYoffset->IsBogusSlotAttr())
-				delete pexpYoffset;
-			else
-			{
-				pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
-				pavs->CopyLineAndFile(*this);
-				pavs->SetFlattened(true);
-				vpavsNew.push_back(pavs);
-			}
-		}
+			delete pexpYoffset;
 
 		delete this;	// replaced
 	}

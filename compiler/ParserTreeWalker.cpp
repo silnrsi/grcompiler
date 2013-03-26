@@ -1502,7 +1502,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		{
 			pglfT = ProcessGlyph(astItem, glft);
 			if (pglfc)
-				pglfc->AddElement(pglfT, LineAndFile(ast), glfct);
+				pglfc->AddElement(pglfT, LineAndFile(ast), glfct, this);
 			else
 				*ppglfRet = pglfT;	// return for pseudo
 
@@ -1533,7 +1533,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		{
 			pglfT = ProcessGlyph(astItem, kglftCodepoint, nCodePage);
 			if (pglfc)
-				pglfc->AddElement(pglfT, LineAndFile(ast), glfct);
+				pglfc->AddElement(pglfT, LineAndFile(ast), glfct, this);
 			else
 				*ppglfRet = pglfT;	// return for pseudo
 
@@ -1565,7 +1565,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		else
 			pglfT = new GdlGlyphDefn(kglftPseudo, pglfForPseudo);
 		pglfT->SetLineAndFile(LineAndFile(ast));
-		pglfc->AddElement(pglfT, LineAndFile(ast), glfct);
+		pglfc->AddElement(pglfT, LineAndFile(ast), glfct, this);
 
 		break;
 
@@ -1593,7 +1593,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		}
 		pglfcSub = psymSubClass->GlyphClassDefnData();
 		Assert(pglfcSub);
-		pglfc->AddElement(pglfcSub, LineAndFile(ast), glfct);
+		pglfc->AddElement(pglfcSub, LineAndFile(ast), glfct, this);
 
 		break;
 
@@ -2663,7 +2663,7 @@ GdlGlyphClassDefn * GrcManager::ConvertClassToIntersection(Symbol psymClass,
 }
 
 /*----------------------------------------------------------------------------------------------
-    Convert an existing class to a difference class with the original class as
+    Convert an existing class to a difference class with the original class contents as
 	its minuend.
 ----------------------------------------------------------------------------------------------*/
 GdlGlyphClassDefn * GrcManager::ConvertClassToDifference(Symbol psymClass,
@@ -2676,9 +2676,12 @@ GdlGlyphClassDefn * GrcManager::ConvertClassToDifference(Symbol psymClass,
 	Symbol psymAnonClass = SymbolTable()->AddAnonymousClassSymbol(pglfc->LineAndFile());
 	std::string staAnonClassName = psymAnonClass->FullName();
 	pglfc->SetName(staAnonClassName);
+	psymAnonClass->ReplaceClassData(pglfc);
 
 	// Make the original class the minuend of the new difference.
-	pglfcd->AddMinuend(pglfc, lnf);
+	// I.e, "clsA -= clsB" means that the original contents of clsA becomes the minuend
+	// of the difference class, but is now anonymous.
+	pglfcd->SetMinuend(pglfc, lnf);
 	psymClass->SetData(pglfcd);
 
 	GdlGlyphClassDefn * pglfcRet = dynamic_cast<GdlGlyphClassDefn *>(pglfcd);
