@@ -154,7 +154,7 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& l
 	Add an element to the class.
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AddElement(GdlGlyphClassMember * pglfdElement, GrpLineAndFile const& lnf,
-   GlyphClassType glfct)
+   GlyphClassType glfct, GrcManager * pcman)
 {
 	GdlGlyphIntersectionClassDefn * pglfci = dynamic_cast<GdlGlyphIntersectionClassDefn *>(this);
 	GdlGlyphDifferenceClassDefn * pglfcd = dynamic_cast<GdlGlyphDifferenceClassDefn *>(this);
@@ -172,9 +172,25 @@ void GdlGlyphClassDefn::AddElement(GdlGlyphClassMember * pglfdElement, GrpLineAn
 		Assert(pglfcd);
 		Assert(pglfcd->HasMinuend()); // because we only support -= right now
 		if (pglfcd->HasMinuend())
-			pglfcd->AddSubtrahend(pglfdElement, lnf);
+		{
+			if (!pglfcd->HasSubtrahend())
+			{
+				// Create an anonymous class to hold the subtrahends.
+				Symbol psymClassAnon = pcman->SymbolTable()->AddAnonymousClassSymbol(lnf);
+				std::string staClassNameAnon = psymClassAnon->FullName();
+				GdlGlyphClassDefn * pglfcSubtra = psymClassAnon->GlyphClassDefnData();
+				Assert(pglfcSubtra);
+				pglfcSubtra->SetName(staClassNameAnon);
+				pglfcd->SetSubtrahend(pglfcSubtra, lnf);
+			}
+			pglfcd->AddToSubtrahend(pglfdElement, lnf);
+		}
 		else
-			pglfcd->AddMinuend(pglfdElement, lnf);
+		{
+			GdlGlyphClassDefn * pglfd = dynamic_cast<GdlGlyphClassDefn *>(pglfdElement);
+			Assert(pglfd);	// because we only support class -= ... right now
+			pglfcd->SetMinuend(pglfd, lnf);
+		}
 		break;
 	default:
 		Assert(false);
@@ -206,18 +222,25 @@ void GdlGlyphIntersectionClassDefn::AddSet(GdlGlyphClassMember * pglfd, GrpLineA
 /*----------------------------------------------------------------------------------------------
 	Add an element to a difference class.
 ----------------------------------------------------------------------------------------------*/
-void GdlGlyphDifferenceClassDefn::AddMinuend(GdlGlyphClassMember * pglfd,
+void GdlGlyphDifferenceClassDefn::SetMinuend(GdlGlyphClassDefn * pglfd,
 	GrpLineAndFile const& lnf)
 {
 	m_pglfdMinuend = pglfd;
 	m_lnfMinuend = lnf;
 }
 
-void GdlGlyphDifferenceClassDefn::AddSubtrahend(GdlGlyphClassMember * pglfd,
+void GdlGlyphDifferenceClassDefn::SetSubtrahend(GdlGlyphClassDefn * pglfd,
 	GrpLineAndFile const& lnf)
 {
 	m_pglfdSubtrahend = pglfd;
 	m_lnfSubtrahend = lnf;
+}
+
+void GdlGlyphDifferenceClassDefn::AddToSubtrahend(GdlGlyphClassMember * pglfd,
+	GrpLineAndFile const& lnf)
+{
+	Assert(m_pglfdSubtrahend);
+	m_pglfdSubtrahend->AddMember(pglfd, lnf);
 }
 
 /*----------------------------------------------------------------------------------------------

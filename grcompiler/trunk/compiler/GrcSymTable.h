@@ -78,6 +78,9 @@ public:
 	void SetSubTable(GrcSymbolTable * psymtbl)	{ m_psymtblSubTable = psymtbl; }
 	void SetExpType(ExpressionType expt)		{ m_expt = expt; }
 
+	// Used for creating difference classes:
+	void ReplaceClassData(GdlGlyphClassDefn * pglfc);
+
 public:
 	//	General:
 	bool FitsSymbolType(SymbolType symt);

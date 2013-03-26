@@ -164,7 +164,7 @@ public:
 	void SetName(std::string sta)		{ m_staName = sta; }
 
 	void AddElement(GdlGlyphClassMember * pglfdElement, GrpLineAndFile const& lnf,
-	   GlyphClassType glfct);
+	   GlyphClassType glfct, GrcManager * pcman = NULL);
 	void AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
 
 	void AddGlyphAttr(Symbol, GdlAssignment * pasgn);
@@ -401,7 +401,9 @@ class GdlGlyphDifferenceClassDefn : public GdlGlyphClassDefn
 {
 public:
 	GdlGlyphDifferenceClassDefn()
-		: GdlGlyphClassDefn()
+		:	GdlGlyphClassDefn(),
+			m_pglfdMinuend(NULL),
+			m_pglfdSubtrahend(NULL)
 	{
 	};
 	virtual ~GdlGlyphDifferenceClassDefn()
@@ -409,11 +411,16 @@ public:
 	};
 	void DeleteGlyphDefns();
 
-	void AddMinuend(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
-	void AddSubtrahend(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
+	void SetMinuend(GdlGlyphClassDefn * pglfd, GrpLineAndFile const& lnf);
+	void SetSubtrahend(GdlGlyphClassDefn * pglfd, GrpLineAndFile const& lnf);
+	void AddToSubtrahend(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
 	bool HasMinuend()
 	{
 		return (m_pglfdMinuend != NULL);
+	}
+	bool HasSubtrahend()
+	{
+		return (m_pglfdSubtrahend != NULL);
 	}
 
 	// Pre-compiler:
@@ -423,10 +430,10 @@ public:
 
 protected:
 	// The subtrahend is subtracted from the minuend to create the list of members:
-	GdlGlyphClassMember *	m_pglfdMinuend;
+	GdlGlyphClassDefn *	m_pglfdMinuend;
 	GrpLineAndFile			m_lnfMinuend;		// where minuend was added, for debugger file
 
-	GdlGlyphClassMember *	m_pglfdSubtrahend;
+	GdlGlyphClassDefn *	m_pglfdSubtrahend;
 	GrpLineAndFile			m_lnfSubtrahend;	// where subtrahend was added, for debugger file
 };
 
