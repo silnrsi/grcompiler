@@ -33,13 +33,13 @@ $(FONTS)\CharisTest.ttf :
 	$(GRCEXE)\grcompiler -v2 $(FONTS)\CharisMain.gdl $(FONTS)\CharisInput.ttf $(FONTS)\CharisTest.ttf
     
 $(FONTS)\PigLatinTest_v2.ttf :
-	$(GRCEXE)\grcompiler -v2 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v2.ttf
+	$(GRCEXE)\grcompiler -v2 -p $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v2.ttf
     
 $(FONTS)\PigLatinTest_v3.ttf :
 	$(GRCEXE)\grcompiler -v3 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v3.ttf
     
 $(FONTS)\PadaukTest.ttf :
-	$(GRCEXE)\grcompiler -v3 $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
+	$(GRCEXE)\grcompiler -v3 -p $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
 
 grcregtest.log :
   - @echo -----  

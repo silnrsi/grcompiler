@@ -1,6 +1,6 @@
 PARSE TREE
 
-Ztop(96)
+Ztop(97)
    OP_EQ(4): '='  [line #3]
       IDENT(13): 'Bidi'  [line #3]
       IDENT(13): 'Bidi'  [line #3]
