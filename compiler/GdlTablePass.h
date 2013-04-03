@@ -122,6 +122,7 @@ public:
 	{
 		return m_nGlobalID + m_nPreBidiPass + 1;
 	}
+	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
 	void GenerateFsmMachineClasses(GrcManager * pcman);
@@ -287,6 +288,7 @@ public:
 		std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
+	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
 	void GenerateFsms(GrcManager * pcman);
 	void CalculateContextOffsets(int * pcPrevious, int * pcFollowing, bool * pfLineBreak,
 		bool fPos, GdlRuleTable * prultbl1, GdlRuleTable * prultbl2);

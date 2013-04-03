@@ -956,25 +956,27 @@ void GdlAttrValueSpec::MaxJustificationLevel(int * pnJLevel)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignInternalGlyphAttrIDs()
 {
+	int cpass = m_prndr->NumberOfPasses();
+
 	//	Assign the first batch of IDs to the built-in attributes;
 	//	this is an optimization for the Graphite2 engine.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1, cpass);
 	m_cpsymBuiltIn = m_vpsymGlyphAttrs.size();
 
 	//	Assign the next batch of IDs to component bases (ie, component.X).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1, 0);
 	m_cpsymComponents = m_vpsymGlyphAttrs.size() - m_cpsymBuiltIn;
 
 	//	Assign the next batch to component box fields. (ie, component.X.top/bottom/left/right).
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBox,
-		m_cpsymBuiltIn, m_cpsymComponents, -1);
+		m_cpsymBuiltIn, m_cpsymComponents, -1, 0);
 
 	//	Assign the next batch to the justification attributes.
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappJustify, -1, -1,
-		NumJustLevels());
+		NumJustLevels(), 0);
 
 	//	Finally, assign IDs to everything else.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1, 0);
 
 	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
@@ -1005,10 +1007,11 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 		cpsymBuiltIn		- only used on pass 3
 		cpsymComponents		- only used on pass 3
 		cJLevels			- only used on pass 4
+		cpass				- only used in pass 1
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, int cpsymBuiltIn, int cpsymComponents,
-	int cJLevels)
+	int cJLevels, int cpass)
 {
 	if (gapp == kgappJustify)
 	{
@@ -1096,7 +1099,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			}
 			else
 				psym->m_psymtblSubTable->AssignInternalGlyphAttrIDs(psymtblMain,
-					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels);
+					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels, 0);
 		}
 		else if (!psym->IsGeneric() &&
 			psym->FitsSymbolType(ksymtGlyphAttr))
@@ -1200,9 +1203,17 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			&& psym->FieldCount() == 1
 			&& (psym->FieldIs(0, "directionality")
 				|| psym->FieldIs(0, "breakweight")
-				|| psym->FieldIs(0, "*actualForPseudo*")))
+				|| psym->FieldIs(0, "*actualForPseudo*")
+				|| psym->FieldIs(0, "*skipPasses*")))
 		{
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
+			if (psym->FieldIs(0, "*skipPasses*") && cpass > kPassPerSPbitmap)
+			{
+				Symbol psym2 = PreDefineSymbol(GrcStructName("*skipPasses2*"), ksymtGlyphAttr, kexptNumber);
+				psym2->m_fGeneric = true;
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym2);
+				Assert(psym2->InternalID() == psym->InternalID() + 1);
+			}
 		}
 		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
 			&& psym->FieldCount() == 2
@@ -1301,6 +1312,26 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		//	mirror.isEncoded
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("mirror", "isEncoded")));
 		vnSysDefValues.push_back(0);
+	}
+	if (IncludePassOptimizations())
+	{
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("*skipPasses*")));
+		// Default value for the *skipPasses* attributes is a bitmap with 1 set for every pass.
+		int cpass = m_prndr->NumberOfPasses();
+		int cpass1 = (cpass > kPassPerSPbitmap) ? kPassPerSPbitmap : cpass;
+		unsigned int nDefaultSkipP = 0;
+		for (int i = 0; i < cpass1; i++)
+			nDefaultSkipP = (nDefaultSkipP << 1) + 1;
+		vnSysDefValues.push_back(nDefaultSkipP);
+		if (cpass > kPassPerSPbitmap)
+		{
+			vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("*skipPasses2*")));
+			int cpass2 = (cpass > kPassPerSPbitmap * 2) ? kPassPerSPbitmap * 2 : cpass;
+			unsigned int nDefaultSkipP2 = 0;
+			for (int i2 = kPassPerSPbitmap; i2 < cpass2; i2++)
+				nDefaultSkipP2 = (nDefaultSkipP2 << 1) + 1;
+			vnSysDefValues.push_back(nDefaultSkipP2);
+		}
 	}
 	// justify.weight = 1
 	if (NumJustLevels() > 0)
@@ -1574,6 +1605,10 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 						}
 					}
                 }
+				else if (psym->LastFieldIs("*skipPasses*") || psym->LastFieldIs("*skipPasses2*"))
+				{
+					nStdValue = nDefaultValue;
+				}
 				else if (psym->LastFieldIs("glyph") && Bidi())
 				{
 					int nUnicodeMirror = (int)u_charMirror(nUnicode);

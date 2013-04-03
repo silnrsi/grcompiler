@@ -2291,8 +2291,15 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		psym = m_psymtbl->FindSymbol(GrcStructName("mirror", "glyph"));
 		pbstrm->WriteByte(psym->InternalID());
 
-		// reserved (pad byte)
-		pbstrm->WriteByte(0);
+		if (this->IncludePassOptimizations())
+		{
+			// built-in attribute that stores the pass optimization flags
+			psym = m_psymtbl->FindSymbol(GrcStructName("*skipPasses*"));
+			pbstrm->WriteByte(psym->InternalID());
+		}
+		else
+			// reserved (pad byte)
+			pbstrm->WriteByte(0);
 
 		if (m_fBasicJust)
 		{
@@ -2343,6 +2350,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	gr::byte  grfsdc = m_prndr->ScriptDirections();
 	grfsdc = (grfsdc == 0) ? static_cast<gr::byte>(kfsdcHorizLtr) : grfsdc;	// supply default--left-to-right
 	pbstrm->WriteByte(grfsdc);
+
 	//	reserved (pad bytes)
 	pbstrm->WriteByte(0);
 	pbstrm->WriteByte(0);
@@ -2681,7 +2689,6 @@ void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 	else
 		*pipassBidi = -1;
 }
-
 
 /*--------------------------------------------------------------------------------------------*/
 int GdlRuleTable::CountPasses()

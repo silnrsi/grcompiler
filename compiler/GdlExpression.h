@@ -377,6 +377,7 @@ public:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
+	void SetValue(int nValue) { m_nValue = nValue; }
 
 	//	debuggers:
 	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,

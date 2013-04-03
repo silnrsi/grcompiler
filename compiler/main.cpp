@@ -115,6 +115,7 @@ int main(int argc, char * argv[])
 	g_cman.SetSilfTableVersion(g_cman.DefaultSilfVersion(), false);
 	g_cman.SetSeparateControlFile(false);
 	g_cman.SetVerbose(true);
+	g_cman.SetPassOptimizations(true);
 
 	// Ignore these warnings by default:
 	g_errorList.SetIgnoreWarning(510);	// Cannot find point number for coordinates...
@@ -153,6 +154,7 @@ int main(int argc, char * argv[])
 		std::cout << "   -D     - output all debugger files\n";
 		std::cout << "   -g     - permit and ignore invalid glyph definitions\n";
 		std::cout << "   -nNNNN - set name table start location\n";
+		std::cout << "   -p     - omit pass-avoidance optimizations\n";
 		std::cout << "   -q     - quiet mode (no messages except on error)\n";
 		std::cout << "   -vN    - set Silf table version number\n";
 		std::cout << "   -wNNNN - ignore warning with the given number\n";
@@ -342,7 +344,8 @@ int main(int argc, char * argv[])
 
 	if (!fFatalErr)
 	{
-		if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
+		if (g_cman.IsVerbose())
+			std::cout << "Initial processing...\n";
 		if (!g_cman.PostParse())
 		{
 			fFatalErr = true;
@@ -410,7 +413,8 @@ int main(int argc, char * argv[])
 
 	if (!fFatalErr)
 	{
-		if (g_cman.IsVerbose()) std::cout << "Compiling...\n";
+		if (g_cman.IsVerbose())
+			std::cout << "Compiling...\n";
 		g_cman.Compile(pfont);
 		if (g_cman.OutputDebugFiles())
 		{
@@ -507,19 +511,19 @@ int main(int argc, char * argv[])
 ----------------------------------------------------------------------------------------------*/
 void HandleCompilerOptions(char * arg)
 {
-	if (arg[1] == 'd')
+	if (arg[1] == 'd')		// XML debugger file
 	{
 		g_cman.SetOutputDebugFiles(true, false);
 	}
-	else if (arg[1] == 'D')
+	else if (arg[1] == 'D')	// all debugger files
 	{
 		g_cman.SetOutputDebugFiles(true, true);
 	}
-	else if (arg[1] == 'g')
+	else if (arg[1] == 'g')	// ignore bad glyphs
 	{
 		g_cman.SetIgnoreBadGlyphs(true);
 	}
-	else if ( arg[1] == 'w' && arg[2] == 'a' && arg[3] == 'l' && arg[4] == 'l' )
+	else if ( arg[1] == 'w' && arg[2] == 'a' && arg[3] == 'l' && arg[4] == 'l' ) // 
 	{
 		g_errorList.ClearIgnoreWarnings();
 	}
@@ -557,6 +561,10 @@ void HandleCompilerOptions(char * arg)
 	else if (arg[1] == 'q')
 	{
 		g_cman.SetVerbose(false);
+	}
+	else if (arg[1] == 'p')
+	{
+		g_cman.SetPassOptimizations(false);
 	}
 	//else if (arg[1] == 's')
 	//{

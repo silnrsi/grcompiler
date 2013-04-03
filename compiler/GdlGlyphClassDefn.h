@@ -258,6 +258,7 @@ public:
 
 public:
 	//	Compiler:
+	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
 	void RecordInclusionInClass(GdlPass * ppass);
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);
 	virtual void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
