@@ -12,7 +12,7 @@ copy $_temp.gdl dbg_Charis
 copy gdlerr.txt dbg_Charis
 copy dbg_*.txt dbg_Charis
 
-grcompiler -D -v2 PigLatinMain.gdl PigLatinInput.ttf PigLatinBenchmark_v2.ttf
+grcompiler -D -v2 -p PigLatinMain.gdl PigLatinInput.ttf PigLatinBenchmark_v2.ttf
 copy PigLatinBenchmark_v2.ttf dbg_PigLatin_v2
 copy PigLatinBenchmark_v2.gdx dbg_PigLatin_v2
 copy $_temp.gdl dbg_PigLatin_v2
@@ -26,7 +26,7 @@ copy $_temp.gdl dbg_PigLatin_v3
 copy gdlerr.txt dbg_PigLatin_v3
 copy dbg_*.txt dbg_PigLatin_v3
     
-grcompiler -D -v3 PadaukMain.gdl PadaukInput.ttf PadaukBenchmark_v3.ttf
+grcompiler -D -v3 -p PadaukMain.gdl PadaukInput.ttf PadaukBenchmark_v3.ttf
 copy PadaukBenchmark_v3.ttf dbg_Padauk
 copy PadaukBenchmark_v3.gdx dbg_Padauk
 copy $_temp.gdl dbg_Padauk
