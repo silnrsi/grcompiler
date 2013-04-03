@@ -129,18 +129,18 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	wchar_t rgchrFileName[200];
 	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200);
 	std::wstring strCommandLine(L"gdlpp "); // no, use staGdlppFile instead
-	if (m_verbose)
+	if (m_fVerbose)
 		strCommandLine = L"\" -V \"";
 	strCommandLine += rgchrFileName;
 	strCommandLine += L"\"";
 #else
 	std::string strCommandLine(_T("\""));
 	strCommandLine += staGdlppFile;
-	//if (m_verbose)
+	//if (m_fVerbose)
 	//	 strCommandLine += _T("gdlpp -V ");
 	//else
 	//	strCommandLine += _T("gdlpp ");
-	if (m_verbose)
+	if (m_fVerbose)
 		strCommandLine += _T("\" -V \"");
 	else
 		strCommandLine += _T("\" \"");
@@ -228,7 +228,7 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 		exit(-1);
 	case 0 :
 		// In child process
-		if (m_verbose)
+		if (m_fVerbose)
 			testexec = execlp(staGdlppFile.c_str(), staGdlppFile.c_str(),
 				"-V", staFileName.c_str(), tmpgdl, NULL);
 		else

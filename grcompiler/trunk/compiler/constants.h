@@ -25,11 +25,6 @@ enum {
 	kBadGlyph = 65531
 };
 
-//	Kludge to ensure that certain error messages come last:
-enum {
-	kMaxFileLineNumber = 0x1FFFFFFF
-};
-
 // Expected type of result of expression
 typedef enum ExpressionType {	// hungarian: expt
 	kexptUnknown,
@@ -168,6 +163,14 @@ enum {
 	kMaxUserDefinableSlotAttrs	= 64,
 	kMaxComponentsPerGlyph		= 32,
 	kMaxJustLevel				= 3	// ie, justify.0-3.xxx are permitted, justify.4.xxx is not
+};
+
+//	Other constants
+
+enum {
+	kMaxFileLineNumber = 0x1FFFFFFF,	//	kludge to ensure that certain error messages come last
+
+	kPassPerSPbitmap = 16	// *skipPasses* bitmap; 16 = size of glyph attr word
 };
 
 

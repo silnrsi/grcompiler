@@ -69,6 +69,8 @@ bool GrcManager::PreCompile(GrcFont * pfont)
 
 bool GrcManager::Compile(GrcFont * /*pfont*/)
 {
+	if (IncludePassOptimizations())
+		PassOptimizations();
 	GenerateFsms();
 	CalculateContextOffsets(); // after max-rule-context has been set
 	CalculateGlatVersion();	// before outputting debug files
@@ -1380,6 +1382,15 @@ void GrcManager::DebugGlyphAttributes()
 
 	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
 	int nAttrIdBw = psymBw->InternalID();
+
+	Symbol psymSkipP = m_psymtbl->FindSymbol("*skipPasses*");
+	int nAttrIdSkipP = psymSkipP->InternalID();
+	int nAttrIdSkipP2 = 0;
+	Symbol psymSkipP2 = m_psymtbl->FindSymbol("*skipPasses2*");
+	if (psymSkipP2)
+		nAttrIdSkipP2 = psymSkipP2->InternalID();
+	int cpass = this->m_prndr->NumberOfPasses();
+
 	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
 	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
 	int nAttrIdJStr = psymJStr->InternalID();
@@ -1437,7 +1448,32 @@ void GrcManager::DebugGlyphAttributes()
 				else
 				{
 					strmOut  << nValue;
-					if (nValue > 9 || nValue < 0)
+					if (nAttrID == nAttrIdSkipP || nAttrID == nAttrIdSkipP2)
+					{
+						int iStart = 0;
+						int iStop = cpass;
+						if (cpass > kPassPerSPbitmap)
+							iStop = kPassPerSPbitmap;
+						if (nAttrID == nAttrIdSkipP2)
+						{
+							iStart = kPassPerSPbitmap;
+							iStop = cpass;
+						}
+
+						strmOut << " [";
+						DebugHex(strmOut, nValue);
+						strmOut << "  / ";
+						// Print out bits in order of passes (low to high).
+						int tValue = nValue;
+						for (int ipass = iStart; ipass < iStop; ipass++)
+						{
+							int n = int((tValue & 0x0001) != 0);
+							strmOut << " " << n;
+							tValue = tValue >> 1;
+						}
+						strmOut << "]";
+					}
+					else if (nValue > 9 || nValue < 0)
 					{
 						strmOut << " [";
 						DebugHex(strmOut, nValue);
@@ -1445,7 +1481,6 @@ void GrcManager::DebugGlyphAttributes()
 					}
 					strmOut << "\n";
 				}
-
 			}
 
 			if (fAnyNonZero)
@@ -2332,6 +2367,18 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 	unsigned int nAttrIdBw = psymBw->InternalID();
 	Symbol psymDir = m_psymtbl->FindSymbol("directionality");
 	unsigned int nAttrIdDir = psymDir->InternalID();
+	Symbol psymSkipP = NULL;
+	unsigned int nAttrIdSkipP = 0;
+	Symbol psymSkipP2 = NULL;
+	unsigned int nAttrIdSkipP2 = 0;
+	if (this->IncludePassOptimizations())
+	{
+		psymSkipP = m_psymtbl->FindSymbol("*skipPasses*");
+		nAttrIdSkipP = psymSkipP->InternalID();
+		psymSkipP2 = m_psymtbl->FindSymbol("*skipPasses2*");
+		if (psymSkipP2)
+			nAttrIdSkipP2 = psymSkipP2->InternalID();
+	}
 
 	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
 	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
@@ -2354,6 +2401,8 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				staExpType = "dircode";
 			else if (nAttrID == nAttrIdActual)
 				staExpType = "gid";
+			else if (nAttrID == nAttrIdSkipP || nAttrID == nAttrIdSkipP2)
+				staExpType = "bitmap";
 			else if (psymGlyphAttr->IsPointField())
 				staExpType = "point";
 			else if (psymGlyphAttr->IsComponentBoxField())
@@ -3125,4 +3174,117 @@ char GrcManager::splitPath(char * rgchPath, std::vector<std::string> & vstaResul
 			pch++;
 	}
 	return chSep;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Enable the font to skip passes when the stream does not include any of the key glyphs.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::PassOptimizations()
+{
+	// The *skipPasses* bitmap has already been initialized to 1111111... for all glyphs.
+
+	Symbol psymSkipP = m_psymtbl->FindSymbol("*skipPasses*");
+	unsigned int nAttrIdSkipP = psymSkipP->InternalID();
+
+	m_prndr->PassOptimizations(m_pgax, nAttrIdSkipP);
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRenderer::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP)
+{
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
+	{
+		m_vprultbl[iprultbl]->PassOptimizations(pgax, nAttrIdSkipP);
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleTable::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP)
+{
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
+	{
+		m_vppass[ippass]->PassOptimizations(pgax, nAttrIdSkipP);
+	}
+}
+/*--------------------------------------------------------------------------------------------*/
+void GdlPass::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP)
+{
+	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
+	{
+		m_vprule[iprule]->PassOptimizations(pgax, nAttrIdSkipP, this->GlobalID());
+	}
+}
+/*--------------------------------------------------------------------------------------------*/
+void GdlRule::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID)
+{
+	//	Find a "key" slot for this rule: the first slot to be modified via substitution,
+	//	deletion, or attribute setting. For each glyph in the class associated with the slot,
+	//	clear the *skipPasses* bit for this pass, indicating that the presence of that glyph
+	//	requires the pass to be run.
+
+	int iritKey = -1;
+	for (unsigned int irit = 0; irit < m_vprit.size() ; irit++)
+	{
+		if (m_vprit[irit]->CanBeKeySlot())
+		{
+			iritKey = irit;
+			break;
+		}
+	}
+	
+	if (iritKey > -1)
+	{
+		m_vprit[iritKey]->MarkKeyGlyphsForPass(pgax, nAttrIdSkipP, nPassID);
+	}
+	//	Otherwise this rule has no effect. This is possible when a rule has been created
+	//	to preclude another rule being run. Just ignore it for this purpose.
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlRuleItem::MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP,
+	int nPassID)
+{
+	GdlGlyphClassDefn * pglfcKey = m_psymInput->GlyphClassDefnData();
+	pglfcKey->MarkKeyGlyphsForPass(pgax, nAttrIdSkipP, nPassID);
+}
+
+/*--------------------------------------------------------------------------------------------*/
+void GdlGlyphClassDefn::MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP,
+	int nPassID)
+{
+	if (nPassID >= kPassPerSPbitmap)
+	{
+		// Use *skipPasses2*.
+		nPassID -= kPassPerSPbitmap;
+		nAttrIdSkipP++;
+	}
+
+	if (nPassID >= kPassPerSPbitmap)
+	{
+		//	More than 32 passes! - ignore this pass.
+	}
+	else
+	{
+		// Clear the *skipPasses* bit for all the glyphs in this class.
+
+		if (!this->m_fHasFlatList)
+			this->FlattenMyGlyphList();
+
+		// Pass IDs start at 0, so pass 0 uses the lowest bit.
+		unsigned int nClearBit = 0x1 << nPassID;
+		unsigned int nMask = ~nClearBit;
+
+		for (unsigned int igid = 0; igid < m_vgidFlattened.size(); igid++)
+		{
+			GdlExpression * pexp = pgax->GetExpression(m_vgidFlattened[igid], nAttrIdSkipP);
+			Assert(pexp);
+			int nValue;
+			bool f = pexp->ResolveToInteger(&nValue, false);
+			Assert(f); // this better be an integer!
+			nValue = (unsigned int)nValue & nMask;
+			GdlNumericExpression * pexpNum = dynamic_cast<GdlNumericExpression *>(pexp);
+			Assert(pexpNum);
+			pexpNum->SetValue(nValue);
+		}
+	}
 }

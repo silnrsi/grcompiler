@@ -204,10 +204,12 @@ public:
 	}
 	bool IgnoreBadGlyphs()				{ return m_fIgnoreBadGlyphs; }
 	void SetIgnoreBadGlyphs(bool f)		{ m_fIgnoreBadGlyphs = f; }
-	bool IsVerbose()					{ return m_verbose; }
-	void SetVerbose(bool verbose) 		{ m_verbose = verbose; }
+	bool IsVerbose()					{ return m_fVerbose; }
+	void SetVerbose(bool f) 			{ m_fVerbose = f; }
 	int SeparateControlFile()			{ return m_fSepCtrlFile; }
 	void SetSeparateControlFile(bool f)	{ m_fSepCtrlFile = f; }
+	bool IncludePassOptimizations()		{ return m_fPassOptimizations; }
+	void SetPassOptimizations(bool f)	{ m_fPassOptimizations = f; }
 
 public:
 	//	Parser:
@@ -358,6 +360,7 @@ public:
 	std::vector<GdlGlyphClassDefn *> * FsmClassesForPass(int nPassID);
 	void CalculateContextOffsets();
 	void CalculateGlatVersion();
+	void PassOptimizations();
 
 	//	Output:
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
@@ -552,7 +555,9 @@ protected:
 
 	int cReplcmntClasses;
 
-	bool m_verbose;
+	bool m_fVerbose;
+
+	bool m_fPassOptimizations;
 	
 	// compiler
 	std::vector<GdlFeatureDefn *> m_vpfeatInput;	// features defined in the input font, if any

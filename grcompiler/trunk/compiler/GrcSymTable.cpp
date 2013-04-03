@@ -1769,6 +1769,11 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = PreDefineSymbol(GrcStructName("*actualForPseudo*"), ksymtGlyphAttr, kexptNumber);
 	psym->m_fGeneric = true;
 
+	//	A built-in glyph attribute that is hold the pass optimization flags (bitmap indicating
+	//	the passes for which a glyph is not a key glyph).
+	psym = PreDefineSymbol(GrcStructName("*skipPasses*"), ksymtGlyphAttr, kexptNumber);
+	psym->m_fGeneric = true;
+
 	// These are just glyph attributes. These two must be in this order and contiguous,
 	// so that the internal IDs are assigned correctly.
 

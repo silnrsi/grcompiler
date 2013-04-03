@@ -157,6 +157,12 @@ public:
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
 	void CalculateSpaceContextuals(GrcFont * pfont);
+	int NumberOfPasses()
+	{
+		int cpass, cpassLB, cpassSub, cpassPos, cpassJust, ipassBidi;
+		CountPasses(&cpass, &cpassLB, &cpassSub, &cpassJust, &cpassPos, &ipassBidi);
+		return cpass;
+	}
 
 	void SetNumUserDefn(int c);
 	//{
@@ -177,6 +183,7 @@ public:
 	}
 
 	//	Compiler:
+	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
 	void GenerateFsms(GrcManager * pcman);
 	void CalculateContextOffsets();
 
