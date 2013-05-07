@@ -136,8 +136,8 @@ Symbol GrcSymbolTable::AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFil
 }
 
 /*----------------------------------------------------------------------------------------------
-    Add a symbol that is the name of a feature to the main symbol table (if it is not already
-	there). Also, ensure that it has an GdlFeatureDefn as its data.
+    Add a symbol that is the name of a language to the main symbol table (if it is not already
+	there). Also, ensure that it has an GdlLanguageDefn as its data.
 ----------------------------------------------------------------------------------------------*/
 Symbol GrcSymbolTable::AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf)
 {
@@ -1072,6 +1072,18 @@ bool GrcSymbolTableEntry::IsUserDefinableSlotAttr()
 }
 
 /*----------------------------------------------------------------------------------------------
+    Return true if the symbol is a pseudo-slot attribute, used only by the compiler for
+	optimization purposes.
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsPseudoSlotAttr()
+{
+	if (m_staFieldName == "passKeySlot")
+		return true;
+	else
+		return false;
+}
+
+/*----------------------------------------------------------------------------------------------
     Return the number corresponding to the index of the user-definable slot attribute,
 	or -1 if it is something invalid (does not parse to a number).
 ----------------------------------------------------------------------------------------------*/
@@ -1385,6 +1397,10 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		return kslatUserDefn;
 	}
 
+	else if (IsPseudoSlotAttr())
+	{
+		return kslatBogus;
+	}
 	else
 	{
 		Assert(false);
@@ -1727,6 +1743,11 @@ void GrcSymbolTable::InitSlotAttrs()
 	}
 
 	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
+
+	//	A psuedo-attribute that indicates that a given slot serves as the "key" for the pass,
+	//	for optimization purposes.
+	PreDefineSymbol(GrcStructName("passKeySlot"), kst, kexptBoolean);
+
 }
 
 /*--------------------------------------------------------------------------------------------*/

@@ -1228,7 +1228,12 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	bool fOkay = true;
 
-	if (m_psymName->IsReadOnlySlotAttr())
+	if (m_psymName->IsPseudoSlotAttr())
+	{
+		// Ignore
+		int x; x = 3;
+	}
+	else if (m_psymName->IsReadOnlySlotAttr())
 	{
 		g_errorList.AddError(3120, this,
 			"The '",

@@ -217,6 +217,7 @@ enum ActionCommand {
 
 //	Slot attribute internal IDs. These codes MUST match those used by the engine.
 enum SlotAttrName {
+	kslatBogus = -1,	// used for psuedo slot attribute
 	kslatAdvX = 0,		kslatAdvY,
 	kslatAttTo,
 	kslatAttAtX,		kslatAttAtY,		kslatAttAtGpt,
