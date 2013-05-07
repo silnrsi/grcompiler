@@ -288,7 +288,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 16  [0x0010]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 8
    diaA_.x = 193 [0x00c1]
@@ -1736,7 +1736,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 254  [0x00fe]
-   *skipPasses* = 318 [0x013e  /  0 1 1 1 1 1 0 0 1]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 120 [0x0078]
@@ -1746,7 +1746,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 255  [0x00ff]
-   *skipPasses* = 318 [0x013e  /  0 1 1 1 1 1 0 0 1]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 120 [0x0078]
@@ -1756,7 +1756,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 256  [0x0100]
-   *skipPasses* = 318 [0x013e  /  0 1 1 1 1 1 0 0 1]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 120 [0x0078]
@@ -1766,7 +1766,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 257  [0x0101]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 148 [0x0094]
@@ -1782,7 +1782,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 258  [0x0102]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 120 [0x0078]
@@ -1792,7 +1792,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 259  [0x0103]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 120 [0x0078]
@@ -1802,7 +1802,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 260  [0x0104]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 90 [0x005a]
@@ -1812,7 +1812,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 261  [0x0105]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 135 [0x0087]
@@ -1822,7 +1822,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 262  [0x0106]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    component.base = 34 [0x0022]
@@ -1842,7 +1842,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 263  [0x0107]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 384 [0x0180]
@@ -1866,7 +1866,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 264  [0x0108]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 225 [0x00e1]
@@ -1878,7 +1878,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 265  [0x0109]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 258 [0x0102]
@@ -1890,7 +1890,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 266  [0x010a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 363 [0x016b]
@@ -1902,7 +1902,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 267  [0x010b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 359 [0x0167]
@@ -1914,7 +1914,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 268  [0x010c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 355 [0x0163]
@@ -1926,7 +1926,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 269  [0x010d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 363 [0x016b]
@@ -1938,7 +1938,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 270  [0x010e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 348 [0x015c]
@@ -1950,7 +1950,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 271  [0x010f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 355 [0x0163]
@@ -1962,7 +1962,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 272  [0x0110]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 355 [0x0163]
@@ -1974,7 +1974,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 273  [0x0111]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 359 [0x0167]
@@ -1986,7 +1986,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 274  [0x0112]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 359 [0x0167]
@@ -1998,7 +1998,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 275  [0x0113]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 359 [0x0167]
    diaA.y = 687 [0x02af]
@@ -2009,7 +2009,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 276  [0x0114]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 313 [0x0139]
@@ -2027,7 +2027,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 277  [0x0115]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 258 [0x0102]
@@ -2039,7 +2039,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 278  [0x0116]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 234 [0x00ea]
@@ -2051,7 +2051,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 279  [0x0117]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 262 [0x0106]
@@ -2063,7 +2063,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 280  [0x0118]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 262 [0x0106]
@@ -2075,7 +2075,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 281  [0x0119]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 234 [0x00ea]
@@ -2087,7 +2087,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 282  [0x011a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 258 [0x0102]
@@ -2099,7 +2099,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 283  [0x011b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 258 [0x0102]
@@ -2111,7 +2111,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 284  [0x011c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 258 [0x0102]
@@ -2123,7 +2123,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 285  [0x011d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 258 [0x0102]
@@ -2135,7 +2135,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 286  [0x011e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 262 [0x0106]
@@ -2147,7 +2147,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 287  [0x011f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 266 [0x010a]
@@ -2159,7 +2159,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 288  [0x0120]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 234 [0x00ea]
@@ -2171,7 +2171,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 289  [0x0121]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 256 [0x0100]
@@ -2183,7 +2183,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 290  [0x0122]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 375 [0x0177]
@@ -2205,7 +2205,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 291  [0x0123]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -2217,7 +2217,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 292  [0x0124]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 255 [0x00ff  /  1 1 1 1 1 1 1 1 0]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -2229,7 +2229,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 293  [0x0125]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -2241,7 +2241,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 294  [0x0126]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 224 [0x00e0]
@@ -2253,7 +2253,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 295  [0x0127]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 224 [0x00e0]
@@ -2265,7 +2265,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 296  [0x0128]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 224 [0x00e0]
@@ -2277,7 +2277,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 297  [0x0129]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 224 [0x00e0]
@@ -2289,7 +2289,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 298  [0x012a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -2301,7 +2301,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 299  [0x012b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -2313,7 +2313,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 300  [0x012c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -2325,7 +2325,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 301  [0x012d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 280 [0x0118]
@@ -2337,7 +2337,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 302  [0x012e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 280 [0x0118]
@@ -2349,7 +2349,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 303  [0x012f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 231 [0x00e7]
    diaA.y = 1320 [0x0528]
@@ -2360,7 +2360,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 304  [0x0130]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 192 [0x00c0]
    diaA.y = 1487 [0x05cf]
@@ -2371,7 +2371,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 305  [0x0131]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 226 [0x00e2]
    diaA.y = 1115 [0x045b]
@@ -2382,7 +2382,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 306  [0x0132]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 255 [0x00ff]
@@ -2394,7 +2394,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 307  [0x0133]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 224 [0x00e0]
@@ -2406,7 +2406,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 308  [0x0134]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 394 [0x018a]
@@ -2422,7 +2422,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 309  [0x0135]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 329 [0x0149]
@@ -2432,7 +2432,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 310  [0x0136]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    component.base = 34 [0x0022]
@@ -2450,7 +2450,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 311  [0x0137]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 325 [0x0145]
@@ -2460,7 +2460,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 312  [0x0138]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 410 [0x019a]
    above.y = 512 [0x0200]
@@ -2473,7 +2473,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 313  [0x0139]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 179 [0x00b3]
@@ -2483,7 +2483,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 314  [0x013a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 325 [0x0145]
@@ -2497,7 +2497,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 315  [0x013b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 402 [0x0192]
@@ -2507,7 +2507,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 316  [0x013c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 420 [0x01a4]
@@ -2517,7 +2517,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 317  [0x013d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 420 [0x01a4]
@@ -2527,7 +2527,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 318  [0x013e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 389 [0x0185]
@@ -2537,7 +2537,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 319  [0x013f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 495 [0x01ef]
@@ -2547,7 +2547,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 320  [0x0140]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 662 [0x0296]
@@ -2565,7 +2565,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 321  [0x0141]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2577,7 +2577,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 322  [0x0142]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 602 [0x025a]
@@ -2589,7 +2589,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 323  [0x0143]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 598 [0x0256]
@@ -2601,7 +2601,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 324  [0x0144]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 581 [0x0245]
@@ -2613,7 +2613,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 325  [0x0145]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 600 [0x0258]
@@ -2625,7 +2625,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 326  [0x0146]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2637,7 +2637,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 327  [0x0147]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 598 [0x0256]
@@ -2649,7 +2649,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 328  [0x0148]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 600 [0x0258]
@@ -2661,7 +2661,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 329  [0x0149]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2673,7 +2673,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 330  [0x014a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 600 [0x0258]
@@ -2685,7 +2685,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 331  [0x014b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2697,7 +2697,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 332  [0x014c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2709,7 +2709,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 333  [0x014d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 607 [0x025f]
@@ -2721,7 +2721,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 334  [0x014e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2733,7 +2733,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 335  [0x014f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 620 [0x026c]
@@ -2745,7 +2745,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 336  [0x0150]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 624 [0x0270]
@@ -2757,7 +2757,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 337  [0x0151]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 660 [0x0294]
@@ -2769,7 +2769,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 338  [0x0152]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 658 [0x0292]
@@ -2781,7 +2781,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 339  [0x0153]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2793,7 +2793,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 340  [0x0154]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 525 [0x020d]
@@ -2811,7 +2811,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 341  [0x0155]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2823,7 +2823,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 342  [0x0156]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2835,7 +2835,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 343  [0x0157]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2847,7 +2847,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 344  [0x0158]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2859,7 +2859,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 345  [0x0159]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2871,7 +2871,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 346  [0x015a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2883,7 +2883,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 347  [0x015b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2895,7 +2895,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 348  [0x015c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2907,7 +2907,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 349  [0x015d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2919,7 +2919,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 350  [0x015e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 393 [0x0189]
    diaA.y = 1192 [0x04a8]
@@ -2930,7 +2930,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 351  [0x015f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 480 [0x01e0]
    diaA.y = 660 [0x0294]
@@ -2941,7 +2941,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 352  [0x0160]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 480 [0x01e0]
    diaA.y = 660 [0x0294]
@@ -2952,7 +2952,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 353  [0x0161]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 1196 [0x04ac]
@@ -2963,7 +2963,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 354  [0x0162]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 1192 [0x04a8]
@@ -2974,7 +2974,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 355  [0x0163]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 436 [0x01b4]
@@ -2986,7 +2986,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 356  [0x0164]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -2998,7 +2998,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 357  [0x0165]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 927 [0x039f]
@@ -3014,7 +3014,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 358  [0x0166]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 355 [0x0163]
@@ -3024,7 +3024,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 359  [0x0167]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -3034,7 +3034,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 360  [0x0168]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -3044,7 +3044,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 361  [0x0169]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 359 [0x0167]
@@ -3054,7 +3054,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 362  [0x016a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 363 [0x016b]
@@ -3064,7 +3064,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 363  [0x016b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 325 [0x0145]
    diaA.y = 996 [0x03e4]
@@ -3073,7 +3073,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 364  [0x016c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 312 [0x0138]
    diaA.y = 825 [0x0339]
@@ -3082,7 +3082,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 365  [0x016d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 316 [0x013c]
@@ -3092,7 +3092,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 366  [0x016e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 316 [0x013c]
@@ -3102,7 +3102,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 367  [0x016f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 972 [0x03cc]
@@ -3116,7 +3116,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 368  [0x0170]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -3126,7 +3126,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 369  [0x0171]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -3136,7 +3136,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 370  [0x0172]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 400 [0x0190]
@@ -3146,7 +3146,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 371  [0x0173]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 393 [0x0189]
@@ -3156,7 +3156,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 372  [0x0174]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 759 [0x02f7]
@@ -3172,7 +3172,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 373  [0x0175]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 389 [0x0185]
@@ -3184,7 +3184,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 374  [0x0176]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 389 [0x0185]
@@ -3196,7 +3196,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 375  [0x0177]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 294 [0x0126]
@@ -3210,7 +3210,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 376  [0x0178]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 270 [0x010e]
@@ -3220,7 +3220,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 377  [0x0179]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 222 [0x00de]
@@ -3230,7 +3230,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 378  [0x017a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 261 [0x0105]
@@ -3240,7 +3240,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 379  [0x017b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 256 [0x0100]
@@ -3250,7 +3250,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 380  [0x017c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 252 [0x00fc]
@@ -3260,7 +3260,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 381  [0x017d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 252 [0x00fc]
@@ -3270,7 +3270,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 382  [0x017e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 479 [0x01df]
@@ -3282,7 +3282,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 383  [0x017f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 1162 [0x048a]
@@ -3298,7 +3298,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 384  [0x0180]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 480 [0x01e0]
@@ -3310,7 +3310,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 385  [0x0181]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 479 [0x01df]
@@ -3322,7 +3322,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 386  [0x0182]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 480 [0x01e0]
@@ -3334,7 +3334,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 387  [0x0183]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 480 [0x01e0]
@@ -3346,7 +3346,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 388  [0x0184]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 480 [0x01e0]
@@ -3358,7 +3358,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 389  [0x0185]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 480 [0x01e0]
@@ -3370,7 +3370,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 390  [0x0186]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 480 [0x01e0]
@@ -3382,7 +3382,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 391  [0x0187]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 762 [0x02fa]
@@ -3396,7 +3396,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 392  [0x0188]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 330 [0x014a]
@@ -3406,7 +3406,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 393  [0x0189]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 330 [0x014a]
@@ -3416,7 +3416,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 394  [0x018a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 330 [0x014a]
@@ -3426,7 +3426,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 395  [0x018b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 662 [0x0296]
@@ -3442,7 +3442,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 396  [0x018c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 303 [0x012f]
@@ -3454,7 +3454,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 397  [0x018d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 256 [0x0100]
@@ -3466,7 +3466,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 398  [0x018e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 315 [0x013b]
@@ -3478,7 +3478,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 399  [0x018f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 805 [0x0325]
@@ -3496,7 +3496,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 400  [0x0190]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 510 [0x01fe]
@@ -3508,7 +3508,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 401  [0x0191]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 457 [0x01c9]
@@ -3520,7 +3520,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 402  [0x0192]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 457 [0x01c9]
@@ -3532,7 +3532,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 403  [0x0193]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 330 [0x014a]
@@ -3544,7 +3544,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 404  [0x0194]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 457 [0x01c9]
@@ -3556,7 +3556,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 405  [0x0195]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 457 [0x01c9]
@@ -3568,7 +3568,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 406  [0x0196]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 315 [0x013b]
@@ -3580,7 +3580,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 407  [0x0197]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 436 [0x01b4]
@@ -3592,7 +3592,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 408  [0x0198]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 389 [0x0185]
@@ -3604,7 +3604,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 409  [0x0199]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 510 [0x01fe]
@@ -3616,7 +3616,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 410  [0x019a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 390 [0x0186]
@@ -3626,7 +3626,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 411  [0x019b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 597 [0x0255]
@@ -3644,7 +3644,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 412  [0x019c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 538 [0x021a]
@@ -3656,7 +3656,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 413  [0x019d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 453 [0x01c5]
@@ -3668,7 +3668,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 414  [0x019e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 390 [0x0186]
@@ -3680,7 +3680,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 415  [0x019f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 315 [0x013b]
@@ -3692,7 +3692,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 416  [0x01a0]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 436 [0x01b4]
    diaA.y = 1769 [0x06e9]
@@ -3703,7 +3703,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 417  [0x01a1]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 300 [0x012c]
@@ -3715,7 +3715,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 418  [0x01a2]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 297 [0x0129]
@@ -3729,7 +3729,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 419  [0x01a3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 600 [0x0258]
    above.y = 552 [0x0228]
@@ -3742,7 +3742,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 420  [0x01a4]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 188 [0x00bc]
@@ -3752,7 +3752,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 421  [0x01a5]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 188 [0x00bc]
@@ -3762,7 +3762,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 422  [0x01a6]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 251 [0x00fb]
@@ -3772,7 +3772,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 423  [0x01a7]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 299 [0x012b]
@@ -3782,7 +3782,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 424  [0x01a8]
-   *skipPasses* = 55 [0x0037  /  1 1 1 0 1 1 0 0 0]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 407 [0x0197]
@@ -3798,7 +3798,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 425  [0x01a9]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 270 [0x010e]
@@ -3810,7 +3810,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 426  [0x01aa]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 299 [0x012b]
@@ -3820,7 +3820,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 427  [0x01ab]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 285 [0x011d]
@@ -3830,7 +3830,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 428  [0x01ac]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 299 [0x012b]
@@ -3840,7 +3840,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 429  [0x01ad]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 286 [0x011e]
@@ -3852,7 +3852,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 430  [0x01ae]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 360 [0x0168]
@@ -3862,7 +3862,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 431  [0x01af]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 347 [0x015b]
@@ -3876,7 +3876,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 432  [0x01b0]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 330 [0x014a]
@@ -3886,7 +3886,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 433  [0x01b1]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 261 [0x0105]
@@ -3896,7 +3896,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 434  [0x01b2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 360 [0x0168]
    diaA.y = 855 [0x0357]
@@ -3905,7 +3905,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 435  [0x01b3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 256 [0x0100]
@@ -3919,7 +3919,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 436  [0x01b4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -3929,7 +3929,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 437  [0x01b5]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    component.base = 34 [0x0022]
@@ -3947,7 +3947,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 438  [0x01b6]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 261 [0x0105]
@@ -3957,7 +3957,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 439  [0x01b7]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    component.base = 34 [0x0022]
@@ -3975,7 +3975,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 440  [0x01b8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -3985,7 +3985,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 441  [0x01b9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    above.x = 260 [0x0104]
@@ -3999,7 +3999,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 442  [0x01ba]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 210 [0x00d2]
@@ -4009,7 +4009,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 443  [0x01bb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 500 [0x01f4]
@@ -4019,7 +4019,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 444  [0x01bc]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 150 [0x0096]
@@ -4172,7 +4172,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 452  [0x01c4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 100 [0x0064]
    diaA.y = 1395 [0x0573]
@@ -4181,7 +4181,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 453  [0x01c5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 90 [0x005a]
    diaA.y = 1445 [0x05a5]
@@ -4190,7 +4190,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 454  [0x01c6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 100 [0x0064]
    diaA.y = 1175 [0x0497]
@@ -4199,7 +4199,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 455  [0x01c7]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 136 [0x0088]
    above.y = 1043 [0x0413]
@@ -4214,7 +4214,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 456  [0x01c8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 60 [0x003c]
    diaA.y = 1485 [0x05cd]
@@ -4223,7 +4223,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 457  [0x01c9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 75 [0x004b]
    diaA.y = 1185 [0x04a1]
@@ -4232,7 +4232,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 458  [0x01ca]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 105 [0x0069]
    diaA.y = 1365 [0x0555]
@@ -4241,7 +4241,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 459  [0x01cb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 135 [0x0087]
    diaA.y = 1370 [0x055a]
@@ -4250,7 +4250,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 460  [0x01cc]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -4269,7 +4269,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 461  [0x01cd]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 375 [0x0177]
    above.y = 397 [0x018d]
@@ -4292,7 +4292,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 462  [0x01ce]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 269 [0x010d]
    diaA.y = 910 [0x038e]
@@ -4303,7 +4303,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 463  [0x01cf]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 1000 [0x03e8]
@@ -4312,7 +4312,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 464  [0x01d0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 308 [0x0134]
    diaA.y = 684 [0x02ac]
@@ -4323,7 +4323,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 465  [0x01d1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 308 [0x0134]
    diaA.y = 684 [0x02ac]
@@ -4334,7 +4334,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 466  [0x01d2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 308 [0x0134]
    diaA.y = 923 [0x039b]
@@ -4345,7 +4345,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 467  [0x01d3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 303 [0x012f]
    diaA.y = 1038 [0x040e]
@@ -4356,7 +4356,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 468  [0x01d4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 303 [0x012f]
    diaA.y = 978 [0x03d2]
@@ -4367,7 +4367,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 469  [0x01d5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 308 [0x0134]
    diaA.y = 966 [0x03c6]
@@ -4378,7 +4378,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 470  [0x01d6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 308 [0x0134]
    diaA.y = 936 [0x03a8]
@@ -4389,7 +4389,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 471  [0x01d7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 308 [0x0134]
    diaA.y = 1008 [0x03f0]
@@ -4400,7 +4400,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 472  [0x01d8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 303 [0x012f]
    diaA.y = 936 [0x03a8]
@@ -4411,7 +4411,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 473  [0x01d9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 303 [0x012f]
    diaA.y = 684 [0x02ac]
@@ -4422,7 +4422,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 474  [0x01da]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 468 [0x01d4]
    above.y = 814 [0x032e]
@@ -4439,7 +4439,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 475  [0x01db]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1196 [0x04ac]
@@ -4450,7 +4450,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 476  [0x01dc]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1500 [0x05dc]
@@ -4461,7 +4461,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 477  [0x01dd]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1000 [0x03e8]
@@ -4472,7 +4472,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 478  [0x01de]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1000 [0x03e8]
@@ -4483,7 +4483,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 479  [0x01df]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1500 [0x05dc]
@@ -4494,7 +4494,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 480  [0x01e0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1260 [0x04ec]
@@ -4505,7 +4505,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 481  [0x01e1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1000 [0x03e8]
@@ -4516,7 +4516,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 482  [0x01e2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1303 [0x0517]
@@ -4527,7 +4527,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 483  [0x01e3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 1330 [0x0532]
@@ -4538,7 +4538,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 484  [0x01e4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 1300 [0x0514]
@@ -4549,7 +4549,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 485  [0x01e5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 359 [0x0167]
    diaA.y = 1256 [0x04e8]
@@ -4560,7 +4560,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 486  [0x01e6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1500 [0x05dc]
@@ -4571,7 +4571,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 487  [0x01e7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 312 [0x0138]
    diaA.y = 992 [0x03e0]
@@ -4582,7 +4582,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 488  [0x01e8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 349 [0x015d]
    above.y = 242 [0x00f2]
@@ -4602,7 +4602,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 489  [0x01e9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 244 [0x00f4]
    diaA.y = 799 [0x031f]
@@ -4613,7 +4613,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 490  [0x01ea]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 214 [0x00d6]
    diaA.y = 953 [0x03b9]
@@ -4624,7 +4624,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 491  [0x01eb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 248 [0x00f8]
    diaA.y = 855 [0x0357]
@@ -4635,7 +4635,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 492  [0x01ec]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 600 [0x0258]
@@ -4646,7 +4646,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 493  [0x01ed]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 600 [0x0258]
@@ -4657,7 +4657,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 494  [0x01ee]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 600 [0x0258]
@@ -4668,7 +4668,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 495  [0x01ef]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 600 [0x0258]
@@ -4679,7 +4679,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 496  [0x01f0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 800 [0x0320]
@@ -4690,7 +4690,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 497  [0x01f1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 235 [0x00eb]
    diaA.y = 927 [0x039f]
@@ -4701,7 +4701,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 498  [0x01f2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 235 [0x00eb]
    diaA.y = 923 [0x039b]
@@ -4712,7 +4712,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 499  [0x01f3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 261 [0x0105]
    diaA.y = 889 [0x0379]
@@ -4723,7 +4723,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 500  [0x01f4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 239 [0x00ef]
    diaA.y = 859 [0x035b]
@@ -4734,7 +4734,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 501  [0x01f5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 255 [0x00ff  /  1 1 1 1 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 218 [0x00da]
    diaA.y = 1171 [0x0493]
@@ -4745,7 +4745,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 502  [0x01f6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 1346 [0x0542]
@@ -4756,7 +4756,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 503  [0x01f7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 239 [0x00ef]
    diaA.y = 1021 [0x03fd]
@@ -4767,7 +4767,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 504  [0x01f8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 244 [0x00f4]
    diaA.y = 812 [0x032c]
@@ -4778,7 +4778,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 505  [0x01f9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 255 [0x00ff  /  1 1 1 1 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 600 [0x0258]
@@ -4789,7 +4789,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 506  [0x01fa]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 494 [0x01ee]
    above.y = 45 [0x002d]
@@ -4804,7 +4804,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 507  [0x01fb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 410 [0x019a]
    diaA.y = 500 [0x01f4]
@@ -4813,7 +4813,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 508  [0x01fc]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -4830,7 +4830,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 509  [0x01fd]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 389 [0x0185]
    diaA.y = 329 [0x0149]
@@ -4839,7 +4839,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 510  [0x01fe]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 458 [0x01ca]
    above.y = 65 [0x0041]
@@ -4852,7 +4852,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 511  [0x01ff]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 261 [0x0105]
    diaA.y = 329 [0x0149]
@@ -4861,7 +4861,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 512  [0x0200]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 389 [0x0185]
    diaA.y = 329 [0x0149]
@@ -4874,7 +4874,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 513  [0x0201]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 406 [0x0196]
    diaA.y = 564 [0x0234]
@@ -4883,7 +4883,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 514  [0x0202]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 389 [0x0185]
    diaA.y = 329 [0x0149]
@@ -4892,7 +4892,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 515  [0x0203]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 389 [0x0185]
    diaA.y = 329 [0x0149]
@@ -4901,7 +4901,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 516  [0x0204]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 389 [0x0185]
    diaA.y = 329 [0x0149]
@@ -4910,7 +4910,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 517  [0x0205]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 389 [0x0185]
    diaA.y = 329 [0x0149]
@@ -4919,7 +4919,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 518  [0x0206]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 649 [0x0289]
    above.y = 300 [0x012c]
@@ -4936,7 +4936,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 519  [0x0207]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -4947,7 +4947,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 520  [0x0208]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 632 [0x0278]
    diaA.y = 820 [0x0334]
@@ -4958,7 +4958,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 521  [0x0209]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 615 [0x0267]
    diaA.y = 953 [0x03b9]
@@ -4969,7 +4969,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 522  [0x020a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 551 [0x0227]
    diaA.y = 1030 [0x0406]
@@ -4980,7 +4980,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 523  [0x020b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 632 [0x0278]
    diaA.y = 931 [0x03a3]
@@ -4991,7 +4991,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 524  [0x020c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -5002,7 +5002,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 525  [0x020d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 632 [0x0278]
    diaA.y = 833 [0x0341]
@@ -5013,7 +5013,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 526  [0x020e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 628 [0x0274]
    diaA.y = 970 [0x03ca]
@@ -5024,7 +5024,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 527  [0x020f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -5035,7 +5035,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 528  [0x0210]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 624 [0x0270]
    diaA.y = 953 [0x03b9]
@@ -5046,7 +5046,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 529  [0x0211]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -5057,7 +5057,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 530  [0x0212]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -5068,7 +5068,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 531  [0x0213]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 607 [0x025f]
    diaA.y = 927 [0x039f]
@@ -5079,7 +5079,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 532  [0x0214]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -5090,7 +5090,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 533  [0x0215]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 632 [0x0278]
    diaA.y = 833 [0x0341]
@@ -5101,7 +5101,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 534  [0x0216]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 632 [0x0278]
    diaA.y = 808 [0x0328]
@@ -5112,7 +5112,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 535  [0x0217]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 660 [0x0294]
    diaA.y = 585 [0x0249]
@@ -5123,7 +5123,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 536  [0x0218]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 641 [0x0281]
    diaA.y = 833 [0x0341]
@@ -5134,7 +5134,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 537  [0x0219]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -5145,7 +5145,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 538  [0x021a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 522 [0x020a]
    above.y = 439 [0x01b7]
@@ -5162,7 +5162,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 539  [0x021b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 900 [0x0384]
@@ -5173,7 +5173,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 540  [0x021c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 950 [0x03b6]
@@ -5184,7 +5184,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 541  [0x021d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1020 [0x03fc]
@@ -5195,7 +5195,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 542  [0x021e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -5206,7 +5206,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 543  [0x021f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -5217,7 +5217,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 544  [0x0220]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 427 [0x01ab]
    diaA.y = 1034 [0x040a]
@@ -5228,7 +5228,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 545  [0x0221]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -5239,7 +5239,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 546  [0x0222]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -5250,7 +5250,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 547  [0x0223]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 900 [0x0384]
@@ -5261,7 +5261,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 548  [0x0224]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 1171 [0x0493]
@@ -5272,7 +5272,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 549  [0x0225]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 480 [0x01e0]
    diaA.y = 660 [0x0294]
@@ -5283,7 +5283,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 550  [0x0226]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 480 [0x01e0]
    diaA.y = 660 [0x0294]
@@ -5294,7 +5294,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 551  [0x0227]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 397 [0x018d]
    diaA.y = 1166 [0x048e]
@@ -5305,7 +5305,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 552  [0x0228]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 397 [0x018d]
    diaA.y = 1171 [0x0493]
@@ -5316,7 +5316,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 553  [0x0229]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 406 [0x0196]
    diaA.y = 906 [0x038a]
@@ -5327,7 +5327,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 554  [0x022a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -5338,7 +5338,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 555  [0x022b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 969 [0x03c9]
    above.y = 333 [0x014d]
@@ -5353,7 +5353,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 556  [0x022c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 450 [0x01c2]
@@ -5362,7 +5362,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 557  [0x022d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 450 [0x01c2]
@@ -5371,7 +5371,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 558  [0x022e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 450 [0x01c2]
@@ -5380,7 +5380,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 559  [0x022f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 564 [0x0234]
@@ -5389,7 +5389,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 560  [0x0230]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 551 [0x0227]
@@ -5398,7 +5398,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 561  [0x0231]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 375 [0x0177]
    diaA.y = 975 [0x03cf]
@@ -5407,7 +5407,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 562  [0x0232]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 405 [0x0195]
    diaA.y = 855 [0x0357]
@@ -5416,7 +5416,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 563  [0x0233]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 376 [0x0178]
    diaA.y = 564 [0x0234]
@@ -5425,7 +5425,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 564  [0x0234]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 363 [0x016b]
    diaA.y = 568 [0x0238]
@@ -5434,7 +5434,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 565  [0x0235]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 1001 [0x03e9]
    above.y = 429 [0x01ad]
@@ -5447,7 +5447,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 566  [0x0236]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 397 [0x018d]
    diaA.y = 547 [0x0223]
@@ -5456,7 +5456,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 567  [0x0237]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 450 [0x01c2]
@@ -5465,7 +5465,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 568  [0x0238]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 393 [0x0189]
    diaA.y = 662 [0x0296]
@@ -5474,7 +5474,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 569  [0x0239]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 397 [0x018d]
    diaA.y = 547 [0x0223]
@@ -5483,7 +5483,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 570  [0x023a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 743 [0x02e7]
    above.y = 562 [0x0232]
@@ -5498,7 +5498,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 571  [0x023b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 390 [0x0186]
    diaA.y = 1240 [0x04d8]
@@ -5509,7 +5509,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 572  [0x023c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 390 [0x0186]
    diaA.y = 1240 [0x04d8]
@@ -5520,7 +5520,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 573  [0x023d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 375 [0x0177]
    above.y = 507 [0x01fb]
@@ -5532,7 +5532,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 574  [0x023e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 300 [0x012c]
    diaA.y = 955 [0x03bb]
@@ -5541,7 +5541,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 575  [0x023f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 300 [0x012c]
    diaA.y = 1150 [0x047e]
@@ -5550,7 +5550,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 576  [0x0240]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 300 [0x012c]
    diaA.y = 970 [0x03ca]
@@ -5559,7 +5559,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 577  [0x0241]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 961 [0x03c1]
@@ -5568,7 +5568,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 578  [0x0242]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 320 [0x0140]
    diaA.y = 1115 [0x045b]
@@ -5577,7 +5577,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 579  [0x0243]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 312 [0x0138]
    diaA.y = 1107 [0x0453]
@@ -5586,7 +5586,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 580  [0x0244]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 684 [0x02ac]
@@ -5597,7 +5597,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 581  [0x0245]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 1182 [0x049e]
    above.y = 559 [0x022f]
@@ -5612,7 +5612,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 582  [0x0246]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 684 [0x02ac]
@@ -5623,7 +5623,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 583  [0x0247]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 684 [0x02ac]
@@ -5634,7 +5634,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 584  [0x0248]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 773 [0x0305]
@@ -5645,7 +5645,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 585  [0x0249]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 684 [0x02ac]
@@ -5656,7 +5656,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 586  [0x024a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 769 [0x0301]
@@ -5667,7 +5667,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 587  [0x024b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 684 [0x02ac]
@@ -5678,7 +5678,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 588  [0x024c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 496 [0x01f0]
    diaA.y = 684 [0x02ac]
@@ -5689,7 +5689,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 589  [0x024d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 652 [0x028c]
    above.y = 349 [0x015d]
@@ -5702,7 +5702,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 590  [0x024e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 248 [0x00f8]
    diaA.y = 684 [0x02ac]
@@ -5711,7 +5711,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 591  [0x024f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 248 [0x00f8]
    diaA.y = 684 [0x02ac]
@@ -5720,7 +5720,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 592  [0x0250]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 248 [0x00f8]
    diaA.y = 765 [0x02fd]
@@ -5729,7 +5729,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 593  [0x0251]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 1065 [0x0429]
    above.y = 1065 [0x0429]
@@ -5744,7 +5744,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 594  [0x0252]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 466 [0x01d2]
    diaA.y = 1115 [0x045b]
@@ -5755,7 +5755,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 595  [0x0253]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 466 [0x01d2]
    diaA.y = 1282 [0x0502]
@@ -5766,7 +5766,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 596  [0x0254]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 466 [0x01d2]
    diaA.y = 1034 [0x040a]
@@ -5777,7 +5777,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 597  [0x0255]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    above.x = 805 [0x0325]
    above.y = 768 [0x0300]
@@ -5794,7 +5794,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 598  [0x0256]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 510 [0x01fe]
    diaA.y = 800 [0x0320]
@@ -5805,7 +5805,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 599  [0x0257]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 510 [0x01fe]
    diaA.y = 900 [0x0384]
@@ -5816,7 +5816,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 600  [0x0258]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 510 [0x01fe]
    diaA.y = 900 [0x0384]
@@ -5827,7 +5827,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 601  [0x0259]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 414 [0x019e]
    diaA.y = 1282 [0x0502]
@@ -5838,7 +5838,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 602  [0x025a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 510 [0x01fe]
    diaA.y = 900 [0x0384]
@@ -5849,7 +5849,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 603  [0x025b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 510 [0x01fe]
    diaA.y = 900 [0x0384]
@@ -5860,7 +5860,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 604  [0x025c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 325 [0x0145]
    diaA.y = 1282 [0x0502]
@@ -5871,7 +5871,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 605  [0x025d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 466 [0x01d2]
    diaA.y = 983 [0x03d7]
@@ -5882,7 +5882,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 606  [0x025e]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 367 [0x016f]
    diaA.y = 1085 [0x043d]
@@ -5893,7 +5893,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 607  [0x025f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 247 [0x00f7  /  1 1 1 0 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 510 [0x01fe]
    diaA.y = 800 [0x0320]
@@ -5904,7 +5904,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 608  [0x0260]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 390 [0x0186]
    diaA.y = 1000 [0x03e8]
@@ -5913,7 +5913,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 609  [0x0261]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 591 [0x024f]
    above.y = 1023 [0x03ff]
@@ -5930,7 +5930,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 610  [0x0262]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 526 [0x020e]
    diaA.y = 1470 [0x05be]
@@ -5941,7 +5941,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 611  [0x0263]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 508 [0x01fc]
    diaA.y = 1440 [0x05a0]
@@ -5952,7 +5952,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 612  [0x0264]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 440 [0x01b8]
    diaA.y = 1564 [0x061c]
@@ -5963,7 +5963,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 613  [0x0265]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 330 [0x014a]
    diaA.y = 800 [0x0320]
@@ -5974,7 +5974,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 614  [0x0266]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 474 [0x01da]
    diaA.y = 1662 [0x067e]
@@ -5985,7 +5985,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 615  [0x0267]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 330 [0x014a]
    diaA.y = 1005 [0x03ed]
@@ -5996,7 +5996,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 616  [0x0268]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 416 [0x01a0]
    above.y = 339 [0x0153]
@@ -6009,7 +6009,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 617  [0x0269]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 627 [0x0273]
    above.y = 557 [0x022d]
@@ -6022,7 +6022,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 618  [0x026a]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 273 [0x0111]
    diaA.y = 855 [0x0357]
@@ -6031,7 +6031,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 619  [0x026b]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 273 [0x0111]
    diaA.y = 684 [0x02ac]
@@ -6040,7 +6040,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 620  [0x026c]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 342 [0x0156]
    diaA.y = 684 [0x02ac]
@@ -6051,7 +6051,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 621  [0x026d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 342 [0x0156]
    diaA.y = 684 [0x02ac]
@@ -6062,7 +6062,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 622  [0x026e]
-   *skipPasses* = 55 [0x0037  /  1 1 1 0 1 1 0 0 0]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 420 [0x01a4]
    above.y = 125 [0x007d]
@@ -6079,7 +6079,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 623  [0x026f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 299 [0x012b]
    diaA.y = 833 [0x0341]
@@ -6090,7 +6090,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 624  [0x0270]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 342 [0x0156]
    diaA.y = 684 [0x02ac]
@@ -6101,7 +6101,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 625  [0x0271]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 333 [0x014d]
    diaA.y = 782 [0x030e]
@@ -6112,7 +6112,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 626  [0x0272]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 342 [0x0156]
    diaA.y = 684 [0x02ac]
@@ -6123,7 +6123,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 627  [0x0273]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 312 [0x0138]
    diaA.y = 1034 [0x040a]
@@ -6134,7 +6134,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 628  [0x0274]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 359 [0x0167]
    diaA.y = 897 [0x0381]
@@ -6145,7 +6145,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 629  [0x0275]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 553 [0x0229]
    above.y = 559 [0x022f]
@@ -6158,7 +6158,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 630  [0x0276]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 350 [0x015e]
    diaA.y = 961 [0x03c1]
@@ -6167,7 +6167,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 631  [0x0277]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 300 [0x012c]
    diaA.y = 790 [0x0316]
@@ -6176,7 +6176,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 632  [0x0278]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 450 [0x01c2]
    diaA.y = 700 [0x02bc]
@@ -6185,7 +6185,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 633  [0x0279]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 354 [0x0162]
    above.y = 587 [0x024b]
@@ -6198,7 +6198,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 634  [0x027a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 180 [0x00b4]
    diaA.y = 645 [0x0285]
@@ -6207,7 +6207,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 635  [0x027b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 311 [0x0137]
    above.y = 671 [0x029f]
@@ -6220,7 +6220,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 636  [0x027c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 225 [0x00e1]
    diaA.y = 1100 [0x044c]
@@ -6229,7 +6229,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 637  [0x027d]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -6245,7 +6245,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 638  [0x027e]
-   *skipPasses* = 295 [0x0127  /  1 1 1 0 0 1 0 0 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 244 [0x00f4]
    above.y = 298 [0x012a]
@@ -6258,7 +6258,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 639  [0x027f]
-   *skipPasses* = 311 [0x0137  /  1 1 1 0 1 1 0 0 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -6275,7 +6275,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 640  [0x0280]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 192 [0x00c0]
    diaA.y = 790 [0x0316]
@@ -6430,7 +6430,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 648  [0x0288]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -6448,7 +6448,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 649  [0x0289]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6459,7 +6459,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 650  [0x028a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6470,7 +6470,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 651  [0x028b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 158 [0x009e]
    diaA.y = 953 [0x03b9]
@@ -6481,7 +6481,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 652  [0x028c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6496,7 +6496,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 653  [0x028d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 154 [0x009a]
    diaA.y = 863 [0x035f]
@@ -6507,7 +6507,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 654  [0x028e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6518,7 +6518,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 655  [0x028f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6529,7 +6529,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 656  [0x0290]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6540,7 +6540,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 657  [0x0291]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 184 [0x00b8]
    above.y = 306 [0x0132]
@@ -6558,7 +6558,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 658  [0x0292]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6569,7 +6569,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 659  [0x0293]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 855 [0x0357]
@@ -6580,7 +6580,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 660  [0x0294]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 957 [0x03bd]
@@ -6591,7 +6591,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 661  [0x0295]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 103 [0x0067]
    diaA.y = 1094 [0x0446]
@@ -6601,7 +6601,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 662  [0x0296]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 158 [0x009e]
    diaA.y = 957 [0x03bd]
@@ -6612,7 +6612,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 663  [0x0297]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6623,7 +6623,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 664  [0x0298]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 850 [0x0352]
@@ -6634,7 +6634,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 665  [0x0299]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 949 [0x03b5]
@@ -6645,7 +6645,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 666  [0x029a]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6656,7 +6656,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 667  [0x029b]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 171 [0x00ab]
    diaA.y = 974 [0x03ce]
@@ -6667,7 +6667,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 668  [0x029c]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6678,7 +6678,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 669  [0x029d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6689,7 +6689,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 670  [0x029e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 154 [0x009a]
    diaA.y = 936 [0x03a8]
@@ -6700,7 +6700,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 671  [0x029f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6711,7 +6711,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 672  [0x02a0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 846 [0x034e]
@@ -6722,7 +6722,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 673  [0x02a1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 855 [0x0357]
@@ -6733,7 +6733,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 674  [0x02a2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 600 [0x0258]
@@ -6744,7 +6744,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 675  [0x02a3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 859 [0x035b]
@@ -6755,7 +6755,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 676  [0x02a4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6766,7 +6766,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 677  [0x02a5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 522 [0x020a]
    above.y = 505 [0x01f9]
@@ -6783,7 +6783,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 678  [0x02a6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 950 [0x03b6]
@@ -6794,7 +6794,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 679  [0x02a7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1000 [0x03e8]
@@ -6805,7 +6805,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 680  [0x02a8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1100 [0x044c]
@@ -6816,7 +6816,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 681  [0x02a9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6827,7 +6827,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 682  [0x02aa]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6838,7 +6838,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 683  [0x02ab]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1150 [0x047e]
@@ -6849,7 +6849,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 684  [0x02ac]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6860,7 +6860,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 685  [0x02ad]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6871,7 +6871,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 686  [0x02ae]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 950 [0x03b6]
@@ -6882,7 +6882,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 687  [0x02af]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 406 [0x0196]
    diaA.y = 1239 [0x04d7]
@@ -6893,7 +6893,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 688  [0x02b0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 800 [0x0320]
@@ -6904,7 +6904,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 689  [0x02b1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 800 [0x0320]
@@ -6915,7 +6915,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 690  [0x02b2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 414 [0x019e]
    diaA.y = 1239 [0x04d7]
@@ -6926,7 +6926,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 691  [0x02b3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 355 [0x0163]
    diaA.y = 1265 [0x04f1]
@@ -6937,7 +6937,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 692  [0x02b4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6948,7 +6948,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 693  [0x02b5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -6959,7 +6959,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 694  [0x02b6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 509 [0x01fd]
    above.y = 333 [0x014d]
@@ -6976,7 +6976,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 695  [0x02b7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 410 [0x019a]
    diaA.y = 978 [0x03d2]
@@ -6987,7 +6987,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 696  [0x02b8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 480 [0x01e0]
    diaA.y = 800 [0x0320]
@@ -6998,7 +6998,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 697  [0x02b9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 480 [0x01e0]
    diaA.y = 735 [0x02df]
@@ -7009,7 +7009,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 698  [0x02ba]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 414 [0x019e]
    diaA.y = 966 [0x03c6]
@@ -7020,7 +7020,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 699  [0x02bb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 419 [0x01a3]
    diaA.y = 970 [0x03ca]
@@ -7031,7 +7031,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 700  [0x02bc]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 367 [0x016f]
    diaA.y = 1410 [0x0582]
@@ -7042,7 +7042,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 701  [0x02bd]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 376 [0x0178]
    diaA.y = 1222 [0x04c6]
@@ -7053,7 +7053,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 702  [0x02be]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 430 [0x01ae]
    diaA.y = 980 [0x03d4]
@@ -7064,7 +7064,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 703  [0x02bf]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 430 [0x01ae]
    diaA.y = 980 [0x03d4]
@@ -7075,7 +7075,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 704  [0x02c0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 639 [0x027f]
    above.y = 489 [0x01e9]
@@ -7090,7 +7090,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 705  [0x02c1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 900 [0x0384]
@@ -7101,7 +7101,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 706  [0x02c2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 800 [0x0320]
@@ -7112,7 +7112,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 707  [0x02c3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 1050 [0x041a]
@@ -7123,7 +7123,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 708  [0x02c4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 900 [0x0384]
@@ -7134,7 +7134,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 709  [0x02c5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 497 [0x01f1]
    above.y = 559 [0x022f]
@@ -7149,7 +7149,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 710  [0x02c6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 1231 [0x04cf]
@@ -7160,7 +7160,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 711  [0x02c7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 1231 [0x04cf]
@@ -7171,7 +7171,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 712  [0x02c8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 301 [0x012d]
    above.y = 582 [0x0246]
@@ -7184,7 +7184,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 713  [0x02c9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 222 [0x00de]
    diaA.y = 961 [0x03c1]
@@ -7193,7 +7193,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 714  [0x02ca]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 1170 [0x0492]
@@ -7202,7 +7202,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 715  [0x02cb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 222 [0x00de]
    diaA.y = 961 [0x03c1]
@@ -7211,7 +7211,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 716  [0x02cc]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 222 [0x00de]
    diaA.y = 991 [0x03df]
@@ -7220,7 +7220,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 717  [0x02cd]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 231 [0x00e7]
    diaA.y = 1102 [0x044e]
@@ -7229,7 +7229,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 718  [0x02ce]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 248 [0x00f8]
    diaA.y = 1085 [0x043d]
@@ -7238,7 +7238,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 719  [0x02cf]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1034 [0x040a]
@@ -7249,7 +7249,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 720  [0x02d0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 379 [0x017b]
    above.y = 609 [0x0261]
@@ -7264,7 +7264,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 721  [0x02d1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 299 [0x012b]
    diaA.y = 855 [0x0357]
@@ -7275,7 +7275,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 722  [0x02d2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 303 [0x012f]
    diaA.y = 1034 [0x040a]
@@ -7286,7 +7286,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 723  [0x02d3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 282 [0x011a]
    diaA.y = 1196 [0x04ac]
@@ -7297,7 +7297,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 724  [0x02d4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 842 [0x034a]
@@ -7308,7 +7308,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 725  [0x02d5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1213 [0x04bd]
@@ -7319,7 +7319,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 726  [0x02d6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 299 [0x012b]
    diaA.y = 855 [0x0357]
@@ -7330,7 +7330,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 727  [0x02d7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 859 [0x035b]
@@ -7341,7 +7341,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 728  [0x02d8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 859 [0x035b]
@@ -7352,7 +7352,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 729  [0x02d9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1034 [0x040a]
@@ -7363,7 +7363,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 730  [0x02da]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1034 [0x040a]
@@ -7374,7 +7374,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 731  [0x02db]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 295 [0x0127]
    diaA.y = 1213 [0x04bd]
@@ -7385,7 +7385,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 732  [0x02dc]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 100 [0x0064]
    above.y = 852 [0x0354]
@@ -7402,7 +7402,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 733  [0x02dd]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 135 [0x0087]
    diaA.y = 1335 [0x0537]
@@ -7413,7 +7413,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 734  [0x02de]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1485 [0x05cd]
@@ -7424,7 +7424,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 735  [0x02df]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 197 [0x00c5]
    diaA.y = 1192 [0x04a8]
@@ -7435,7 +7435,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 736  [0x02e0]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 205 [0x00cd]
    diaA.y = 1201 [0x04b1]
@@ -7446,7 +7446,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 737  [0x02e1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 201 [0x00c9]
    diaA.y = 1196 [0x04ac]
@@ -7457,7 +7457,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 738  [0x02e2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 162 [0x00a2]
    diaA.y = 1248 [0x04e0]
@@ -7468,7 +7468,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 739  [0x02e3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 162 [0x00a2]
    diaA.y = 1248 [0x04e0]
@@ -7479,7 +7479,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 740  [0x02e4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 90 [0x005a]
    diaA.y = 1500 [0x05dc]
@@ -7490,7 +7490,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 741  [0x02e5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 158 [0x009e]
    diaA.y = 1252 [0x04e4]
@@ -7501,7 +7501,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 742  [0x02e6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 158 [0x009e]
    diaA.y = 1256 [0x04e8]
@@ -7512,7 +7512,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 743  [0x02e7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 30 [0x001e]
    diaA.y = 1650 [0x0672]
@@ -7523,7 +7523,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 744  [0x02e8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 167 [0x00a7]
    diaA.y = 1226 [0x04ca]
@@ -7534,7 +7534,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 745  [0x02e9]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1419 [0x058b]
@@ -7545,7 +7545,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 746  [0x02ea]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 195 [0x00c3]
    diaA.y = 1200 [0x04b0]
@@ -7556,7 +7556,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 747  [0x02eb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 390 [0x0186]
    diaA.y = 1000 [0x03e8]
@@ -7567,7 +7567,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 748  [0x02ec]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 165 [0x00a5]
    above.y = 1075 [0x0433]
@@ -7584,7 +7584,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 749  [0x02ed]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 135 [0x0087]
    diaA.y = 1545 [0x0609]
@@ -7595,7 +7595,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 750  [0x02ee]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 100 [0x0064]
    diaA.y = 1450 [0x05aa]
@@ -7606,7 +7606,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 751  [0x02ef]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 100 [0x0064]
    diaA.y = 1650 [0x0672]
@@ -7617,7 +7617,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 752  [0x02f0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 141 [0x008d]
    diaA.y = 1132 [0x046c]
@@ -7628,7 +7628,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 753  [0x02f1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 60 [0x003c]
    diaA.y = 1675 [0x068b]
@@ -7639,7 +7639,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 754  [0x02f2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1154 [0x0482]
@@ -7650,7 +7650,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 755  [0x02f3]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 368 [0x0170]
    above.y = 394 [0x018a]
@@ -7665,7 +7665,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 756  [0x02f4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 291 [0x0123]
    diaA.y = 825 [0x0339]
@@ -7676,7 +7676,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 757  [0x02f5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 291 [0x0123]
    diaA.y = 684 [0x02ac]
@@ -7687,7 +7687,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 758  [0x02f6]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 846 [0x034e]
@@ -7698,7 +7698,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 759  [0x02f7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 184 [0x00b8]
    diaA.y = 846 [0x034e]
@@ -7709,7 +7709,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 760  [0x02f8]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 850 [0x0352]
@@ -7720,7 +7720,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 761  [0x02f9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 98 [0x0062]
    diaA.y = 1034 [0x040a]
@@ -7730,7 +7730,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 762  [0x02fa]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 850 [0x0352]
@@ -7741,7 +7741,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 763  [0x02fb]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 684 [0x02ac]
@@ -7752,7 +7752,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 764  [0x02fc]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 846 [0x034e]
@@ -7763,7 +7763,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 765  [0x02fd]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 85 [0x0055]
    diaA.y = 1290 [0x050a]
@@ -7773,7 +7773,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 766  [0x02fe]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 145 [0x0091]
    diaA.y = 1098 [0x044a]
@@ -7784,7 +7784,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 767  [0x02ff]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 423 [0x01a7]
    above.y = 559 [0x022f]
@@ -7799,7 +7799,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 768  [0x0300]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 269 [0x010d]
    diaA.y = 1001 [0x03e9]
@@ -7808,7 +7808,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 769  [0x0301]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 350 [0x015e]
    diaA.y = 700 [0x02bc]
@@ -7819,7 +7819,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 770  [0x0302]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 195 [0x00c3]
    diaA.y = 495 [0x01ef]
@@ -7828,7 +7828,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 771  [0x0303]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 294 [0x0126]
    above.y = 635 [0x027b]
@@ -7843,7 +7843,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 772  [0x0304]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -7862,7 +7862,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 773  [0x0305]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 195 [0x00c3]
    diaA.y = 495 [0x01ef]
@@ -7871,7 +7871,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 774  [0x0306]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -7888,7 +7888,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 775  [0x0307]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -7906,7 +7906,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 776  [0x0308]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 684 [0x02ac]
@@ -7917,7 +7917,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 777  [0x0309]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 184 [0x00b8]
    diaA.y = 688 [0x02b0]
@@ -7928,7 +7928,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 778  [0x030a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 77 [0x004d]
    diaA.y = 1034 [0x040a]
@@ -7939,7 +7939,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 779  [0x030b]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 184 [0x00b8]
    diaA.y = 684 [0x02ac]
@@ -7954,7 +7954,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 780  [0x030c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1000 [0x03e8]
@@ -7965,7 +7965,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 781  [0x030d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 684 [0x02ac]
@@ -7976,7 +7976,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 782  [0x030e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 688 [0x02b0]
@@ -7987,7 +7987,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 783  [0x030f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 684 [0x02ac]
@@ -7998,7 +7998,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 784  [0x0310]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 168 [0x00a8]
    above.y = 504 [0x01f8]
@@ -8015,7 +8015,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 785  [0x0311]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 688 [0x02b0]
@@ -8026,7 +8026,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 786  [0x0312]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 950 [0x03b6]
@@ -8037,7 +8037,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 787  [0x0313]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1050 [0x041a]
@@ -8048,7 +8048,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 788  [0x0314]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 107 [0x006b]
    diaA.y = 1248 [0x04e0]
@@ -8059,7 +8059,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 789  [0x0315]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1050 [0x041a]
@@ -8070,7 +8070,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 790  [0x0316]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 688 [0x02b0]
@@ -8081,7 +8081,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 791  [0x0317]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 145 [0x0091]
    diaA.y = 949 [0x03b5]
@@ -8092,7 +8092,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 792  [0x0318]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1064 [0x0428]
@@ -8103,7 +8103,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 793  [0x0319]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 684 [0x02ac]
@@ -8114,7 +8114,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 794  [0x031a]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1100 [0x044c]
@@ -8125,7 +8125,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 795  [0x031b]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 684 [0x02ac]
@@ -8136,7 +8136,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 796  [0x031c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 688 [0x02b0]
@@ -8147,7 +8147,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 797  [0x031d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 1077 [0x0435]
@@ -8158,7 +8158,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 798  [0x031e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 684 [0x02ac]
@@ -8169,7 +8169,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 799  [0x031f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 944 [0x03b0]
@@ -8180,7 +8180,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 800  [0x0320]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 154 [0x009a]
    diaA.y = 936 [0x03a8]
@@ -8191,7 +8191,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 801  [0x0321]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 175 [0x00af]
    diaA.y = 688 [0x02b0]
@@ -8202,7 +8202,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 802  [0x0322]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 145 [0x0091]
    diaA.y = 949 [0x03b5]
@@ -8213,7 +8213,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 803  [0x0323]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -8224,7 +8224,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 804  [0x0324]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 441 [0x01b9]
    above.y = 505 [0x01f9]
@@ -8241,7 +8241,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 805  [0x0325]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 950 [0x03b6]
@@ -8252,7 +8252,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 806  [0x0326]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1000 [0x03e8]
@@ -8263,7 +8263,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 807  [0x0327]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1100 [0x044c]
@@ -8274,7 +8274,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 808  [0x0328]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -8285,7 +8285,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 809  [0x0329]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -8296,7 +8296,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 810  [0x032a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 1150 [0x047e]
@@ -8307,7 +8307,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 811  [0x032b]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -8318,7 +8318,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 812  [0x032c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -8329,7 +8329,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 813  [0x032d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 950 [0x03b6]
@@ -8340,7 +8340,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 814  [0x032e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 355 [0x0163]
    diaA.y = 1265 [0x04f1]
@@ -8351,7 +8351,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 815  [0x032f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 800 [0x0320]
@@ -8362,7 +8362,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 816  [0x0330]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 800 [0x0320]
@@ -8373,7 +8373,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 817  [0x0331]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 355 [0x0163]
    diaA.y = 1265 [0x04f1]
@@ -8384,7 +8384,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 818  [0x0332]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 355 [0x0163]
    diaA.y = 1265 [0x04f1]
@@ -8395,7 +8395,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 819  [0x0333]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 410 [0x019a]
    diaA.y = 949 [0x03b5]
@@ -8406,7 +8406,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 820  [0x0334]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 400 [0x0190]
    diaA.y = 750 [0x02ee]
@@ -8417,7 +8417,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 821  [0x0335]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 500 [0x01f4]
    above.y = 429 [0x01ad]
@@ -8434,7 +8434,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 822  [0x0336]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 420 [0x01a4]
    diaA.y = 1020 [0x03fc]
@@ -8445,7 +8445,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 823  [0x0337]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 450 [0x01c2]
    diaA.y = 800 [0x0320]
@@ -8456,7 +8456,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 824  [0x0338]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 573 [0x023d]
@@ -8467,7 +8467,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 825  [0x0339]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 410 [0x019a]
    diaA.y = 1000 [0x03e8]
@@ -8478,7 +8478,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 826  [0x033a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 410 [0x019a]
    diaA.y = 1000 [0x03e8]
@@ -8489,7 +8489,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 827  [0x033b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 355 [0x0163]
    diaA.y = 1490 [0x05d2]
@@ -8500,7 +8500,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 828  [0x033c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 355 [0x0163]
    diaA.y = 1265 [0x04f1]
@@ -8511,7 +8511,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 829  [0x033d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 983 [0x03d7]
@@ -8522,7 +8522,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 830  [0x033e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 402 [0x0192]
    diaA.y = 974 [0x03ce]
@@ -8533,7 +8533,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 831  [0x033f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 597 [0x0255]
    above.y = 465 [0x01d1]
@@ -8548,7 +8548,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 832  [0x0340]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 900 [0x0384]
@@ -8559,7 +8559,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 833  [0x0341]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 800 [0x0320]
@@ -8570,7 +8570,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 834  [0x0342]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 1050 [0x041a]
@@ -8581,7 +8581,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 835  [0x0343]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 500 [0x01f4]
    diaA.y = 900 [0x0384]
@@ -8592,7 +8592,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 836  [0x0344]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 491 [0x01eb]
    above.y = 575 [0x023f]
@@ -8606,7 +8606,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 837  [0x0345]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 154 [0x009a]
    diaA.y = 1235 [0x04d3]
@@ -8616,7 +8616,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 838  [0x0346]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 154 [0x009a]
    diaA.y = 1235 [0x04d3]
@@ -8626,7 +8626,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 839  [0x0347]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 330 [0x014a]
    above.y = 648 [0x0288]
@@ -8639,7 +8639,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 840  [0x0348]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1085 [0x043d]
@@ -8648,7 +8648,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 841  [0x0349]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 1305 [0x0519]
@@ -8657,7 +8657,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 842  [0x034a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 256 [0x0100]
    diaA.y = 1085 [0x043d]
@@ -8666,7 +8666,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 843  [0x034b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 226 [0x00e2]
    diaA.y = 1094 [0x0446]
@@ -8675,7 +8675,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 844  [0x034c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 235 [0x00eb]
    diaA.y = 1213 [0x04bd]
@@ -8684,7 +8684,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 845  [0x034d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 252 [0x00fc]
    diaA.y = 1205 [0x04b5]
@@ -8693,7 +8693,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 846  [0x034e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 1102 [0x044e]
@@ -8702,7 +8702,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 847  [0x034f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 180 [0x00b4]
    above.y = 634 [0x027a]
@@ -8715,7 +8715,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 848  [0x0350]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 850 [0x0352]
@@ -8724,7 +8724,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 849  [0x0351]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 1102 [0x044e]
@@ -8733,7 +8733,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 850  [0x0352]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1200 [0x04b0]
@@ -8742,7 +8742,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 851  [0x0353]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 850 [0x0352]
@@ -8751,7 +8751,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 852  [0x0354]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1250 [0x04e2]
@@ -8760,7 +8760,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 853  [0x0355]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 850 [0x0352]
@@ -8769,7 +8769,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 854  [0x0356]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 850 [0x0352]
@@ -8778,7 +8778,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 855  [0x0357]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 128 [0x0080]
    diaA.y = 850 [0x0352]
@@ -8787,7 +8787,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 856  [0x0358]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1100 [0x044c]
@@ -8796,7 +8796,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 857  [0x0359]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1100 [0x044c]
@@ -8805,7 +8805,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 858  [0x035a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1200 [0x04b0]
@@ -8814,7 +8814,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 859  [0x035b]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 92 [0x005c]
    above.y = 791 [0x0317]
@@ -8831,7 +8831,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 860  [0x035c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1231 [0x04cf]
@@ -8842,7 +8842,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 861  [0x035d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 141 [0x008d]
    diaA.y = 1393 [0x0571]
@@ -8853,7 +8853,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 862  [0x035e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1050 [0x041a]
@@ -8864,7 +8864,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 863  [0x035f]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 162 [0x00a2]
    diaA.y = 1051 [0x041b]
@@ -8875,7 +8875,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 864  [0x0360]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 1047 [0x0417]
@@ -8886,7 +8886,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 865  [0x0361]
-   *skipPasses* = 31 [0x001f  /  1 1 1 1 1 0 0 0 0]
+   *skipPasses* = 479 [0x01df  /  1 1 1 1 1 0 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 1200 [0x04b0]
@@ -8897,7 +8897,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 866  [0x0362]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 1200 [0x04b0]
@@ -8908,7 +8908,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 867  [0x0363]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 100 [0x0064]
    diaA.y = 1400 [0x0578]
@@ -8919,7 +8919,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 868  [0x0364]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 1200 [0x04b0]
@@ -8930,7 +8930,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 869  [0x0365]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 200 [0x00c8]
    diaA.y = 1200 [0x04b0]
@@ -8941,7 +8941,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 870  [0x0366]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 50 [0x0032]
    diaA.y = 1530 [0x05fa]
@@ -8952,7 +8952,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 871  [0x0367]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 141 [0x008d]
    diaA.y = 1218 [0x04c2]
@@ -8963,7 +8963,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 872  [0x0368]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 103 [0x0067]
    diaA.y = 1372 [0x055c]
@@ -8974,7 +8974,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 873  [0x0369]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1050 [0x041a]
@@ -8985,7 +8985,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 874  [0x036a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 390 [0x0186]
    diaA.y = 1000 [0x03e8]
@@ -8996,7 +8996,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 875  [0x036b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 120 [0x0078]
    above.y = 1111 [0x0457]
@@ -9013,7 +9013,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 876  [0x036c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1545 [0x0609]
@@ -9024,7 +9024,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 877  [0x036d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1530 [0x05fa]
@@ -9035,7 +9035,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 878  [0x036e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1710 [0x06ae]
@@ -9046,7 +9046,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 879  [0x036f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 128 [0x0080]
    diaA.y = 1201 [0x04b1]
@@ -9057,7 +9057,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 880  [0x0370]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 30 [0x001e]
    diaA.y = 1718 [0x06b6]
@@ -9068,7 +9068,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 881  [0x0371]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 132 [0x0084]
    diaA.y = 1213 [0x04bd]
@@ -9079,7 +9079,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 882  [0x0372]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 243 [0x00f3]
    above.y = 509 [0x01fd]
@@ -9093,7 +9093,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 883  [0x0373]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 218 [0x00da]
    diaA.y = 944 [0x03b0]
@@ -9104,7 +9104,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 884  [0x0374]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 248 [0x00f8]
    diaA.y = 684 [0x02ac]
@@ -9115,7 +9115,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 885  [0x0375]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1000 [0x03e8]
@@ -9126,7 +9126,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 886  [0x0376]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1000 [0x03e8]
@@ -9137,7 +9137,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 887  [0x0377]
-   *skipPasses* = 63 [0x003f  /  1 1 1 1 1 1 0 0 0]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1000 [0x03e8]
@@ -9148,7 +9148,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 888  [0x0378]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 94 [0x005e]
    diaA.y = 1248 [0x04e0]
@@ -9159,7 +9159,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 889  [0x0379]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1000 [0x03e8]
@@ -9170,7 +9170,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 890  [0x037a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 167 [0x00a7]
    diaA.y = 846 [0x034e]
@@ -9181,7 +9181,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 891  [0x037b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 120 [0x0078]
    diaA.y = 1000 [0x03e8]
@@ -9192,7 +9192,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 892  [0x037c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 77 [0x004d]
    diaA.y = 1474 [0x05c2]
@@ -9203,7 +9203,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 893  [0x037d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 115 [0x0073]
    diaA.y = 1355 [0x054b]
@@ -9214,7 +9214,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 894  [0x037e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 291 [0x0123]
    above.y = 655 [0x028f]
@@ -9229,7 +9229,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 895  [0x037f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 240 [0x00f0]
    diaA.y = 1050 [0x041a]
@@ -9240,7 +9240,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 896  [0x0380]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 270 [0x010e]
    diaA.y = 840 [0x0348]
@@ -9251,7 +9251,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 897  [0x0381]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 157 [0x009d]
    diaA.y = 684 [0x02ac]
@@ -9262,7 +9262,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 898  [0x0382]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -9280,7 +9280,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 899  [0x0383]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 157 [0x009d]
    diaA.y = 684 [0x02ac]
@@ -9291,7 +9291,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 900  [0x0384]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    component.base = 34 [0x0022]
    component.hamza = 38 [0x0026]
@@ -9310,7 +9310,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 901  [0x0385]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 135 [0x0087]
@@ -9352,7 +9352,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 906  [0x038a]
-   *skipPasses* = 381 [0x017d  /  1 0 1 1 1 1 1 0 1]
+   *skipPasses* = 125 [0x007d  /  1 0 1 1 1 1 1 0 0]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaB.x = 165 [0x00a5]
@@ -9382,7 +9382,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 909  [0x038d]
-   *skipPasses* = 381 [0x017d  /  1 0 1 1 1 1 1 0 1]
+   *skipPasses* = 125 [0x007d  /  1 0 1 1 1 1 1 0 0]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaB.x = 165 [0x00a5]
@@ -9412,7 +9412,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 912  [0x0390]
-   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
+   *skipPasses* = 189 [0x00bd  /  1 0 1 1 1 1 0 1 0]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA.x = 90 [0x005a]
@@ -9464,7 +9464,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 917  [0x0395]
-   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
+   *skipPasses* = 189 [0x00bd  /  1 0 1 1 1 1 0 1 0]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA.x = 160 [0x00a0]
@@ -9496,7 +9496,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 920  [0x0398]
-   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
+   *skipPasses* = 189 [0x00bd  /  1 0 1 1 1 1 0 1 0]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA.x = 209 [0x00d1]
@@ -9557,7 +9557,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 926  [0x039e]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9565,7 +9565,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 927  [0x039f]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9573,7 +9573,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 928  [0x03a0]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9581,7 +9581,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 929  [0x03a1]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9589,7 +9589,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 930  [0x03a2]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9597,7 +9597,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 931  [0x03a3]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9605,7 +9605,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 932  [0x03a4]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9613,7 +9613,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 933  [0x03a5]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9621,7 +9621,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 934  [0x03a6]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9639,7 +9639,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 936  [0x03a8]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9647,7 +9647,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 937  [0x03a9]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 381 [0x017d  /  1 0 1 1 1 1 1 0 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    dia2B_.x = 100 [0x0064]
@@ -9656,7 +9656,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 938  [0x03aa]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9664,7 +9664,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 939  [0x03ab]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9672,7 +9672,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 940  [0x03ac]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9680,7 +9680,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 941  [0x03ad]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 381 [0x017d  /  1 0 1 1 1 1 1 0 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    dia2B_.y = -150 [0xff6a]
@@ -9688,7 +9688,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 942  [0x03ae]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9696,7 +9696,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 943  [0x03af]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = -15 [0xfff1]
@@ -9704,7 +9704,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 944  [0x03b0]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 381 [0x017d  /  1 0 1 1 1 1 1 0 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    dia2B_.y = -150 [0xff6a]
@@ -9712,14 +9712,14 @@ GLYPH ATTRIBUTE VALUES
 
 
 945  [0x03b1]
-   *skipPasses* = 439 [0x01b7  /  1 1 1 0 1 1 0 1 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    digit.x = 425 [0x01a9]
 
 
 946  [0x03b2]
-   *skipPasses* = 439 [0x01b7  /  1 1 1 0 1 1 0 1 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    digit.x = 1278 [0x04fe]
@@ -9727,21 +9727,21 @@ GLYPH ATTRIBUTE VALUES
 
 
 947  [0x03b3]
-   *skipPasses* = 439 [0x01b7  /  1 1 1 0 1 1 0 1 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    digit.x = 700 [0x02bc]
 
 
 948  [0x03b4]
-   *skipPasses* = 439 [0x01b7  /  1 1 1 0 1 1 0 1 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    digit.x = 300 [0x012c]
 
 
 949  [0x03b5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 291 [0x0123]
@@ -9751,7 +9751,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 950  [0x03b6]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 8
    diaA.x = 270 [0x010e]
@@ -9761,7 +9761,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 951  [0x03b7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 275 [0x0113]
    diaA.y = 381 [0x017d]
@@ -9781,7 +9781,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 954  [0x03ba]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 294 [0x0126]
    above.y = 692 [0x02b4]
@@ -9794,7 +9794,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 955  [0x03bb]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = 540 [0x021c]
@@ -9804,7 +9804,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 956  [0x03bc]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = 514 [0x0202]
@@ -9814,7 +9814,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 957  [0x03bd]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = 526 [0x020e]
@@ -9824,7 +9824,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 958  [0x03be]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = 508 [0x01fc]
@@ -9834,7 +9834,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 959  [0x03bf]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 189 [0x00bd  /  1 0 1 1 1 1 0 1 0]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = 270 [0x010e]
@@ -9842,7 +9842,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 960  [0x03c0]
-   *skipPasses* = 509 [0x01fd  /  1 0 1 1 1 1 1 1 1]
+   *skipPasses* = 445 [0x01bd  /  1 0 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    diaA_.x = 301 [0x012d]
@@ -9850,7 +9850,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 961  [0x03c1]
-   *skipPasses* = 303 [0x012f  /  1 1 1 1 0 1 0 0 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 270 [0x010e]
@@ -9860,7 +9860,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 962  [0x03c2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 275 [0x0113]
    diaA.y = 582 [0x0246]
@@ -9875,7 +9875,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 964  [0x03c4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 300 [0x012c]
@@ -9903,7 +9903,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 968  [0x03c8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 435 [0x01b3]
@@ -9913,7 +9913,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 969  [0x03c9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
    diaA.x = 350 [0x015e]
@@ -9923,20 +9923,20 @@ GLYPH ATTRIBUTE VALUES
 
 
 970  [0x03ca]
-   *skipPasses* = 423 [0x01a7  /  1 1 1 0 0 1 0 1 1]
+   *skipPasses* = 487 [0x01e7  /  1 1 1 0 0 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 465 [0x01d1]
 
 
 971  [0x03cb]
-   *skipPasses* = 439 [0x01b7  /  1 1 1 0 1 1 0 1 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 465 [0x01d1]
 
 
 972  [0x03cc]
-   *skipPasses* = 439 [0x01b7  /  1 1 1 0 1 1 0 1 1]
+   *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 465 [0x01d1]
 
@@ -9947,7 +9947,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 974  [0x03ce]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 390 [0x0186]
    diaA.y = 1200 [0x04b0]
@@ -10176,161 +10176,161 @@ GLYPH ATTRIBUTE VALUES
 
 
 1012  [0x03f4]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1013  [0x03f5]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1014  [0x03f6]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1015  [0x03f7]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1016  [0x03f8]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1017  [0x03f9]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1018  [0x03fa]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1019  [0x03fb]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1020  [0x03fc]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1021  [0x03fd]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1022  [0x03fe]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1023  [0x03ff]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1024  [0x0400]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1025  [0x0401]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1026  [0x0402]
-   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1027  [0x0403]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 451 [0x01c3]
 
 
 1028  [0x0404]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1029  [0x0405]
-   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1030  [0x0406]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1031  [0x0407]
-   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1032  [0x0408]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 451 [0x01c3]
 
 
 1033  [0x0409]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
 
 
 1034  [0x040a]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 450 [0x01c2]
@@ -10397,161 +10397,161 @@ GLYPH ATTRIBUTE VALUES
 
 
 1045  [0x0415]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1046  [0x0416]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1047  [0x0417]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1048  [0x0418]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1049  [0x0419]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1050  [0x041a]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1051  [0x041b]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1052  [0x041c]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1053  [0x041d]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1054  [0x041e]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1055  [0x041f]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1056  [0x0420]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1057  [0x0421]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1058  [0x0422]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1059  [0x0423]
-   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1060  [0x0424]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 320 [0x0140]
 
 
 1061  [0x0425]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1062  [0x0426]
-   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1063  [0x0427]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1064  [0x0428]
-   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1065  [0x0429]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 320 [0x0140]
 
 
 1066  [0x042a]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
 
 
 1067  [0x042b]
-   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 7
    digit.x = 319 [0x013f]
@@ -10865,7 +10865,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1116  [0x045c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 255 [0x00ff  /  1 1 1 1 1 1 1 1 0]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 790 [0x0316]
@@ -11056,67 +11056,67 @@ GLYPH ATTRIBUTE VALUES
 
 
 1153  [0x0481]
-   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 245 [0x00f5]
 
 
 1154  [0x0482]
-   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
+   *skipPasses* = 495 [0x01ef  /  1 1 1 1 0 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 206 [0x00ce]
 
 
 1155  [0x0483]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 245 [0x00f5]
 
 
 1156  [0x0484]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 206 [0x00ce]
 
 
 1157  [0x0485]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 245 [0x00f5]
 
 
 1158  [0x0486]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 206 [0x00ce]
 
 
 1159  [0x0487]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 200 [0x00c8]
 
 
 1160  [0x0488]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 200 [0x00c8]
 
 
 1161  [0x0489]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 1050 [0x041a]
 
 
 1162  [0x048a]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 825 [0x0339]
 
 
 1163  [0x048b]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 600 [0x0258]
 
@@ -11128,19 +11128,19 @@ GLYPH ATTRIBUTE VALUES
 
 
 1165  [0x048d]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 75 [0x004b]
 
 
 1166  [0x048e]
-   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    digit.x = 75 [0x004b]
 
 
 1167  [0x048f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    above.x = 156 [0x009c]
    above.y = 1195 [0x04ab]
@@ -11159,7 +11159,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1168  [0x0490]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 154 [0x009a]
    diaA.y = 1569 [0x0621]
@@ -11172,7 +11172,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1169  [0x0491]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 150 [0x0096]
    diaA.y = 1540 [0x0604]
@@ -11185,7 +11185,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1170  [0x0492]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 125 [0x007d]
    diaA.y = 1700 [0x06a4]
@@ -11198,7 +11198,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1171  [0x0493]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 1278 [0x04fe]
@@ -11211,7 +11211,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1172  [0x0494]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 73 [0x0049]
    diaA.y = 1862 [0x0746]
@@ -11224,7 +11224,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1173  [0x0495]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 179 [0x00b3]
    diaA.y = 1278 [0x04fe]
@@ -11237,7 +11237,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1174  [0x0496]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1459 [0x05b3]
    diaB.x = 420 [0x01a4]
@@ -11250,7 +11250,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1175  [0x0497]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1600 [0x0640]
    diaB.x = 420 [0x01a4]
@@ -11263,7 +11263,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1176  [0x0498]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1218 [0x04c2]
    diaB.x = 455 [0x01c7]
@@ -11275,7 +11275,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1177  [0x0499]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 46 [0x002e]
    above.y = 1185 [0x04a1]
@@ -11291,7 +11291,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1178  [0x049a]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1600 [0x0640]
    diaB.x = 420 [0x01a4]
@@ -11304,7 +11304,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1179  [0x049b]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1218 [0x04c2]
    diaB.x = 462 [0x01ce]
@@ -11316,7 +11316,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1180  [0x049c]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 18 [0x0012]
    diaA.y = 1551 [0x060f]
@@ -11330,7 +11330,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1181  [0x049d]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1500 [0x05dc]
    diaB.x = 420 [0x01a4]
@@ -11343,7 +11343,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1182  [0x049e]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    above.x = 230 [0x00e6]
    above.y = 1020 [0x03fc]
@@ -11362,7 +11362,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1183  [0x049f]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 235 [0x00eb]
    diaA.y = 1400 [0x0578]
@@ -11375,7 +11375,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1184  [0x04a0]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 216 [0x00d8]
    diaA.y = 1349 [0x0545]
@@ -11388,7 +11388,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1185  [0x04a1]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 183 [0x00b7]
    diaA.y = 1532 [0x05fc]
@@ -11401,7 +11401,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1186  [0x04a2]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 220 [0x00dc]
    diaA.y = 1035 [0x040b]
@@ -11414,7 +11414,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1187  [0x04a3]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 143 [0x008f]
    diaA.y = 1661 [0x067d]
@@ -11427,7 +11427,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1188  [0x04a4]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 220 [0x00dc]
    diaA.y = 1035 [0x040b]
@@ -11440,7 +11440,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1189  [0x04a5]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 33 [0x0021]
    diaA.y = 1173 [0x0495]
@@ -11455,7 +11455,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1190  [0x04a6]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.y = 1335 [0x0537]
    diaB.x = 420 [0x01a4]
@@ -11469,7 +11469,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1191  [0x04a7]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 47 [0x002f]
    diaA.y = 949 [0x03b5]
@@ -11483,7 +11483,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1192  [0x04a8]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    above.x = 48 [0x0030]
    above.y = 927 [0x039f]
@@ -11501,7 +11501,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1193  [0x04a9]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 26 [0x001a]
    diaA.y = 1316 [0x0524]
@@ -11516,7 +11516,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1194  [0x04aa]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 47 [0x002f]
    diaA.y = 949 [0x03b5]
@@ -11530,7 +11530,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1195  [0x04ab]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 33 [0x0021]
    diaA.y = 1236 [0x04d4]
@@ -11545,7 +11545,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1196  [0x04ac]
-   *skipPasses* = 319 [0x013f  /  1 1 1 1 1 1 0 0 1]
+   *skipPasses* = 511 [0x01ff  /  1 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
    diaA.x = 37 [0x0025]
    diaA.y = 1243 [0x04db]
