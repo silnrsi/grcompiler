@@ -502,7 +502,11 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 	std::string staOp = m_psymOperator->FullName();
 	int slat = m_psymName->SlotAttrEngineCodeOp();
 
-	if (m_psymName->IsIndexedSlotAttr())	// eg, component.XXX.ref, user1
+	if (m_psymName->IsPseudoSlotAttr())
+	{
+		// Ignore
+	}
+	else if (m_psymName->IsIndexedSlotAttr())	// eg, component.XXX.ref, user1
 	{
 		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput,
 			irit, NULL, nIIndex, false, -1, &nBogus);
@@ -3222,13 +3226,29 @@ void GdlRule::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdS
 	//	clear the *skipPasses* bit for this pass, indicating that the presence of that glyph
 	//	requires the pass to be run.
 
+	//	First, look for a slot that is explicitly marked.
 	int iritKey = -1;
 	for (unsigned int irit = 0; irit < m_vprit.size() ; irit++)
 	{
-		if (m_vprit[irit]->CanBeKeySlot())
+		if (m_vprit[irit]->IsMarkedKeySlot())
 		{
-			iritKey = irit;
-			break;
+			if (iritKey == -1)
+				iritKey = irit;
+			else
+				g_errorList.AddWarning(5708, this, "Multiple slots marked as key slot");
+		}
+	}
+
+	if (iritKey == -1)
+	{
+		//	Next, look for the first modified slot.
+		for (unsigned int irit = 0; irit < m_vprit.size() ; irit++)
+		{
+			if (m_vprit[irit]->CanBeKeySlot())
+			{
+				iritKey = irit;
+				break;
+			}
 		}
 	}
 	
@@ -3287,4 +3307,22 @@ void GdlGlyphClassDefn::MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned
 			pexpNum->SetValue(nValue);
 		}
 	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	Return true if the slot attribute settings indicate that this a key slot for a pass.
+----------------------------------------------------------------------------------------------*/
+bool GdlSetAttrItem::IsMarkedKeySlot()
+{
+	for (unsigned int iavs = 0; iavs < m_vpavs.size(); iavs++)
+	{
+		if (m_vpavs[iavs]->IsKeySlotAttr())
+			return true;
+	}
+	return false;
+}
+
+bool GdlAttrValueSpec::IsKeySlotAttr()
+{
+	return (m_psymName->FullName() == "passKeySlot");
 }

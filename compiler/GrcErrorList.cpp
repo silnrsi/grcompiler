@@ -12,7 +12,7 @@ Description:
 
 Here are how the error and warning IDs are assigned:
 
-global - highest error: 142 / highest warning: 511
+global - highest error: 142 / highest warning: 512
 		main.cpp
 		GrpParser.g
 		GrpLexer
@@ -44,7 +44,7 @@ error checking:
 		GdlGlyphDefn
 		GdlGlyphClassDefn
 
-compilation:	highest error: 5101 / highest warning: 5507
+compilation:	highest error: 5101 / highest warning: 5508
 		OutputToFont
 
 test and debug: highest error: 6106 / highest warning: none (start at: 6500)

@@ -20,6 +20,9 @@ Compiler versions:
 	4.1		- mirror glyph attributes (Silf table 2.1 or 3.2)
 	4.2		- large number of glyphs (> 64K) in replacement classes (Silf table 4.0);
 				segsplit and extra LB flag
+	4.3		- handle &= and -= for class definitions; multiple justification levels
+	4.4		- added *skipPasses* glyph attribute and passKeySlot slot attribute for
+				optimization; don't output xoffset, yoffset, or gpoint att fields
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -135,7 +138,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 4.3";
+		std::cout << "Graphite Compiler Version 4.4";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -143,7 +146,7 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (C) 2002-2012, by SIL International.  All rights reserved.\n";
+			<< "Copyright (c) 2002-2013, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
@@ -277,7 +280,8 @@ int main(int argc, char * argv[])
 			<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
 					<< ": " << staVersion << "\n\n";
 	}
-	// simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
+
+	// Simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
 	gr::byte bFirst, bSecond, bThird;
 	std::ifstream strmGdl;
 	strmGdl.open(pchGdlFile, std::ios_base::in | std::ios_base::binary);
@@ -573,28 +577,45 @@ void HandleCompilerOptions(char * arg)
 }
 
 /*----------------------------------------------------------------------------------------------
-    Interpret the compiler options, which are preceded by slashes in the argument list.
+    Try to be clever about the GDL-file and TTF-file arguments.
+	Don't do this for now, because it can confuse the user. Just given a warning.
 ----------------------------------------------------------------------------------------------*/
 void SetGdlAndFontFileNames(char * pchFile1, char * pchFile2,
 	char ** ppchGdlFile, char ** ppchFontFile)
 {
-	gr::byte bFirst, bSecond, bThird, bFourth;
+	gr::byte bFirst1, bSecond1, bThird1, bFourth1, bFirst2, bSecond2;
 	std::ifstream strm1;
 	strm1.open(pchFile1, std::ios_base::in | std::ios_base::binary);
-	strm1 >> bFirst >> bSecond >> bThird >> bFourth;
+	strm1 >> bFirst1 >> bSecond1 >> bThird1 >> bFourth1;
 	strm1.close();
 
-	if (bFirst == 0 && bThird == 0 && bFourth == 0) // && bSecond = 1 -- this can change with the version number
+	std::ifstream strm2;
+	strm2.open(pchFile2, std::ios_base::in | std::ios_base::binary);
+	strm2 >> bFirst2 >> bSecond2;
+	strm2.close();
+
+	//if (bFirst1 == 0 && bThird1 == 0 && bFourth1 == 0 // && bSecond = 1 -- this can change with the version number
+	//	&& bFirst2 != 0 && bSecond2 != 0)
+	//{
+	//	// pchFile1 looks like the beginning of a TTF file, and pchFile2 could be a GDL file.
+	//	// So swap the arguments.
+	//	*ppchFontFile = pchFile1;
+	//	*ppchGdlFile = pchFile2;
+	//}
+	//else
+	//{
+	//	*ppchGdlFile = pchFile1;
+	//	*ppchFontFile = pchFile2;
+	//}
+
+	if (bFirst1 == 0 && bThird1 == 0 && bFourth1 == 0 // && bSecond = 1 -- this can change with the version number
+		&& bFirst2 != 0 && bSecond2 != 0)
 	{
-		// pchFile1 looks like the beginning of a TTF file.
-		*ppchFontFile = pchFile1;
-		*ppchGdlFile = pchFile2;
+		g_errorList.AddWarning(512, NULL, "Did you switch the names of the GDL and TTF files?");
 	}
-	else
-	{
-		*ppchGdlFile = pchFile1;
-		*ppchFontFile = pchFile2;
-	}
+
+	*ppchGdlFile = pchFile1;
+	*ppchFontFile = pchFile2;
 }
 
 /*----------------------------------------------------------------------------------------------

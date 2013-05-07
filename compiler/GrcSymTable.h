@@ -160,6 +160,7 @@ public:
 	bool IsMirrorAttr();
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
+	bool IsPseudoSlotAttr();
 
 	Symbol SubField(std::string);
 	bool HasSubFields()

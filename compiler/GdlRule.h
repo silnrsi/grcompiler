@@ -106,6 +106,7 @@ protected:
 	//	Compiler:
 	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, int nIIndex, int iritAttachTo);
+	bool IsKeySlotAttr();
 
 private:
 	void operator=(GdlAttrValueSpec);	// don't define the assignment operator
@@ -276,7 +277,8 @@ public:
 	bool IsSpaceItem(std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
-	virtual bool CanBeKeySlot() { return false; }	// only slots that perform modifications
+	virtual bool IsMarkedKeySlot() { return false; }	// only slots that perform modifications
+	virtual bool CanBeKeySlot() { return false; }
 	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> & viritInput, int iritFirstModItem);
@@ -479,9 +481,10 @@ protected:
 
 public:
 	//	Compiler:
+	virtual bool IsMarkedKeySlot();
 	virtual bool CanBeKeySlot()
 	{
-		return true;
+		return (m_vpavs.size() > 0);
 	}
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
 		std::vector<gr::byte> & vbOutput,
