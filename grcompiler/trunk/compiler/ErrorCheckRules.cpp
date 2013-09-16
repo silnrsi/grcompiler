@@ -971,13 +971,20 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		//	Deletion
 		if (m_vpavs.size())
 		{
-			g_errorList.AddWarning(3505, this,
-				"Item ", PosString(),
-				": setting attributes of a deleted item");
-			for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
-				delete m_vpavs[ipavs];
-			m_vpavs.clear();
-			fOkay = false;
+			if (m_vpavs.size() == 1 && m_vpavs[0]->AttrName()->IsPassKeySlot())
+			{
+				// Okay to set a deletion slot as a key slot.
+			}
+			else
+			{
+				g_errorList.AddWarning(3505, this,
+					"Item ", PosString(),
+					": setting attributes of a deleted item");
+				for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+					delete m_vpavs[ipavs];
+				m_vpavs.clear();
+				fOkay = false;
+			}
 		}
 
 		if (m_vpexpAssocs.size())
