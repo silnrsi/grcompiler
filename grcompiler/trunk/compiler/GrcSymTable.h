@@ -161,6 +161,8 @@ public:
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
 	bool IsPseudoSlotAttr();
+	bool IsPassKeySlot();
+	bool IsIgnorableOffsetAttr();
 
 	Symbol SubField(std::string);
 	bool HasSubFields()

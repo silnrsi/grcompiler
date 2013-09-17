@@ -71,9 +71,11 @@ bool GrcManager::Compile(GrcFont * /*pfont*/)
 {
 	if (IncludePassOptimizations())
 		PassOptimizations();
+	std::cout << "[Generating FSMs: ";
 	GenerateFsms();
-	CalculateContextOffsets(); // after max-rule-context has been set
-	CalculateGlatVersion();	// before outputting debug files
+	std::cout << "]\n";
+	CalculateContextOffsets();	// after max-rule-context has been set
+	CalculateGlatVersion();		// before outputting debug files
 	return false;
 }
 

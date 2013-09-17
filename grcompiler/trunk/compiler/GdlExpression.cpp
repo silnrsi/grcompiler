@@ -2127,6 +2127,7 @@ bool GdlLookupExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
 	{
 		Symbol psymGpoint = m_psymName->SubField("gpoint");
 		if (psymGpoint && psymGpoint->FitsSymbolType(ksymtGlyphAttr))
+			//&& g_cman.OffsetAttrs()) -- create them anyway and delete them later
 		{
 			GdlLookupExpression * pexpGpoint = new GdlLookupExpression(*this);
 			pexpGpoint->m_psymName = psymGpoint;
@@ -2141,6 +2142,7 @@ bool GdlLookupExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
 	{
 		Symbol psymXoffset = m_psymName->SubField("xoffset");
 		if (psymXoffset && psymXoffset->FitsSymbolType(ksymtGlyphAttr))
+			//&& g_cman.OffsetAttrs())
 		{
 			GdlLookupExpression * pexpXoffset = new GdlLookupExpression(*this);
 			pexpXoffset->m_psymName = psymXoffset;
@@ -2155,6 +2157,7 @@ bool GdlLookupExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
 	{
 		Symbol psymYoffset = m_psymName->SubField("yoffset");
 		if (psymYoffset && psymYoffset->FitsSymbolType(ksymtGlyphAttr))
+			//&& g_cman.OffsetAttrs())
 		{
 			GdlLookupExpression * pexpYoffset = new GdlLookupExpression(*this);
 			pexpYoffset->m_psymName = psymYoffset;

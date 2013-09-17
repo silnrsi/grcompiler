@@ -210,6 +210,8 @@ public:
 	void SetSeparateControlFile(bool f)	{ m_fSepCtrlFile = f; }
 	bool IncludePassOptimizations()		{ return m_fPassOptimizations; }
 	void SetPassOptimizations(bool f)	{ m_fPassOptimizations = f; }
+	bool OffsetAttrs()					{ return m_fOffsetAttrs; }
+	void SetOffsetAttrs(bool f)			{ m_fOffsetAttrs = f; }
 
 public:
 	//	Parser:
@@ -556,8 +558,8 @@ protected:
 	int cReplcmntClasses;
 
 	bool m_fVerbose;
-
 	bool m_fPassOptimizations;
+	bool m_fOffsetAttrs;
 	
 	// compiler
 	std::vector<GdlFeatureDefn *> m_vpfeatInput;	// features defined in the input font, if any

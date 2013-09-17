@@ -21,7 +21,7 @@ Compiler versions:
 	4.2		- large number of glyphs (> 64K) in replacement classes (Silf table 4.0);
 				segsplit and extra LB flag
 	4.3		- handle &= and -= for class definitions; multiple justification levels
-	4.4		- added *skipPasses* glyph attribute and passKeySlot slot attribute for
+	4.3.1	- added *skipPasses* glyph attribute and passKeySlot slot attribute for
 				optimization; don't output xoffset, yoffset, or gpoint att fields
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
@@ -119,6 +119,7 @@ int main(int argc, char * argv[])
 	g_cman.SetSeparateControlFile(false);
 	g_cman.SetVerbose(true);
 	g_cman.SetPassOptimizations(true);
+	g_cman.SetOffsetAttrs(false);
 
 	// Ignore these warnings by default:
 	g_errorList.SetIgnoreWarning(510);	// Cannot find point number for coordinates...
@@ -138,7 +139,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 4.4";
+		std::cout << "Graphite Compiler Version 4.3.1";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -153,15 +154,16 @@ int main(int argc, char * argv[])
 	{
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
-		std::cout << "   -d     - output XML debugger file\n";
-		std::cout << "   -D     - output all debugger files\n";
-		std::cout << "   -g     - permit and ignore invalid glyph definitions\n";
-		std::cout << "   -nNNNN - set name table start location\n";
-		std::cout << "   -p     - omit pass-avoidance optimizations\n";
-		std::cout << "   -q     - quiet mode (no messages except on error)\n";
-		std::cout << "   -vN    - set Silf table version number\n";
-		std::cout << "   -wNNNN - ignore warning with the given number\n";
-		std::cout << "   -wall  - display all warnings\n";
+		std::cout << "   -d       - output XML debugger file\n";
+		std::cout << "   -D       - output all debugger files\n";
+		std::cout << "   -g       - permit and ignore invalid glyph definitions\n";
+		std::cout << "   -nNNNN   - set name table start location\n";
+		std::cout << "   -p       - omit pass-avoidance optimizations\n";
+		std::cout << "   -q       - quiet mode (no messages except on error)\n";
+		std::cout << "   -vN      - set Silf table version number\n";
+		std::cout << "   -wNNNN   - ignore warning with the given number\n";
+		std::cout << "   -wall    - display all warnings\n";
+		std::cout << "   -offsets - generate xoffset, yoffset, and gpoint glyph attributes\n";
 		return 2;
 	}
 
@@ -511,7 +513,8 @@ int main(int argc, char * argv[])
 }
 
 /*----------------------------------------------------------------------------------------------
-    Interpret the compiler options, which are preceded by slashes in the argument list.
+    Interpret the compiler options, which are preceded by slashes  or hyphens
+	in the argument list.
 ----------------------------------------------------------------------------------------------*/
 void HandleCompilerOptions(char * arg)
 {
@@ -527,7 +530,7 @@ void HandleCompilerOptions(char * arg)
 	{
 		g_cman.SetIgnoreBadGlyphs(true);
 	}
-	else if ( arg[1] == 'w' && arg[2] == 'a' && arg[3] == 'l' && arg[4] == 'l' ) // 
+	else if (strcmp(arg+1, "wall") == 0)
 	{
 		g_errorList.ClearIgnoreWarnings();
 	}
@@ -570,6 +573,11 @@ void HandleCompilerOptions(char * arg)
 	{
 		g_cman.SetPassOptimizations(false);
 	}
+	else if (strcmp(arg+1, "offsets") == 0)
+	{
+		g_cman.SetOffsetAttrs(true);
+	}
+
 	//else if (arg[1] == 's')
 	//{
 	//	g_cman.SetSeparateControlFile(true);

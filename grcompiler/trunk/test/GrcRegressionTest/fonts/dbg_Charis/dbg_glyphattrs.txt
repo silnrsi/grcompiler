@@ -33,156 +33,66 @@ GLYPH ATTRIBUTE IDS
 30: component.f3.right
 31: order
 32: H.x
-33: H.gpoint
-34: H.xoffset
-35: H.y
-36: H.yoffset
-37: L.x
-38: L.gpoint
-39: L.xoffset
-40: L.y
-41: L.yoffset
-42: O.x
-43: O.gpoint
-44: O.xoffset
-45: O.y
-46: O.yoffset
-47: R.x
-48: R.gpoint
-49: R.xoffset
-50: R.y
-51: R.yoffset
-52: U.x
-53: U.gpoint
-54: U.xoffset
-55: U.y
-56: U.yoffset
-57: C11.x
-58: C11.gpoint
-59: C11.xoffset
-60: C11.y
-61: C11.yoffset
-62: C12.x
-63: C12.gpoint
-64: C12.xoffset
-65: C12.y
-66: C12.yoffset
-67: C22.x
-68: C22.gpoint
-69: C22.xoffset
-70: C22.y
-71: C22.yoffset
-72: L11.x
-73: L11.gpoint
-74: L11.xoffset
-75: L11.y
-76: L11.yoffset
-77: L12.x
-78: L12.gpoint
-79: L12.xoffset
-80: L12.y
-81: L12.yoffset
-82: L13.x
-83: L13.gpoint
-84: L13.xoffset
-85: L13.y
-86: L13.yoffset
-87: L22.x
-88: L22.gpoint
-89: L22.xoffset
-90: L22.y
-91: L22.yoffset
-92: L23.x
-93: L23.gpoint
-94: L23.xoffset
-95: L23.y
-96: L23.yoffset
-97: L33.x
-98: L33.gpoint
-99: L33.xoffset
-100: L33.y
-101: L33.yoffset
-102: U11.x
-103: U11.gpoint
-104: U11.xoffset
-105: U11.y
-106: U11.yoffset
-107: U12.x
-108: U12.gpoint
-109: U12.xoffset
-110: U12.y
-111: U12.yoffset
-112: U13.x
-113: U13.gpoint
-114: U13.xoffset
-115: U13.y
-116: U13.yoffset
-117: U22.x
-118: U22.gpoint
-119: U22.xoffset
-120: U22.y
-121: U22.yoffset
-122: U23.x
-123: U23.gpoint
-124: U23.xoffset
-125: U23.y
-126: U23.yoffset
-127: U33.x
-128: U33.gpoint
-129: U33.xoffset
-130: U33.y
-131: U33.yoffset
-132: RM.x
-133: RM.gpoint
-134: RM.xoffset
-135: RM.y
-136: RM.yoffset
-137: TL.x
-138: TL.gpoint
-139: TL.xoffset
-140: TL.y
-141: TL.yoffset
-142: TML.x
-143: TML.gpoint
-144: TML.xoffset
-145: TML.y
-146: TML.yoffset
-147: UM.x
-148: UM.gpoint
-149: UM.xoffset
-150: UM.y
-151: UM.yoffset
-152: LM.x
-153: LM.gpoint
-154: LM.xoffset
-155: LM.y
-156: LM.yoffset
-157: HM.x
-158: HM.gpoint
-159: HM.xoffset
-160: HM.y
-161: HM.yoffset
-162: OM.x
-163: OM.gpoint
-164: OM.xoffset
-165: OM.y
-166: OM.yoffset
-167: C13.x
-168: C13.gpoint
-169: C13.xoffset
-170: C13.y
-171: C13.yoffset
-172: C23.x
-173: C23.gpoint
-174: C23.xoffset
-175: C23.y
-176: C23.yoffset
-177: C33.x
-178: C33.gpoint
-179: C33.xoffset
-180: C33.y
-181: C33.yoffset
-182: tone
+33: H.y
+34: L.x
+35: L.y
+36: O.x
+37: O.y
+38: R.x
+39: R.y
+40: U.x
+41: U.y
+42: C11.x
+43: C11.y
+44: C12.x
+45: C12.y
+46: C22.x
+47: C22.y
+48: L11.x
+49: L11.y
+50: L12.x
+51: L12.y
+52: L13.x
+53: L13.y
+54: L22.x
+55: L22.y
+56: L23.x
+57: L23.y
+58: L33.x
+59: L33.y
+60: U11.x
+61: U11.y
+62: U12.x
+63: U12.y
+64: U13.x
+65: U13.y
+66: U22.x
+67: U22.y
+68: U23.x
+69: U23.y
+70: U33.x
+71: U33.y
+72: RM.x
+73: RM.y
+74: TL.x
+75: TL.y
+76: TML.x
+77: TML.y
+78: UM.x
+79: UM.y
+80: LM.x
+81: LM.y
+82: HM.x
+83: HM.y
+84: OM.x
+85: OM.y
+86: C13.x
+87: C13.y
+88: C23.x
+89: C23.y
+90: C33.x
+91: C33.y
+92: tone
 
 
 
@@ -2137,7 +2047,6 @@ GLYPH ATTRIBUTE VALUES
    *skipPasses* = 31 [0x001f  /  1 1 1 1 1]
    breakweight = 30 [0x001e]
    H.x = 533 [0x0215]
-   H.gpoint = 21 [0x0015]
    L.x = 533 [0x0215]
    L.y = -100 [0xff9c]
    O.x = 583 [0x0247]
@@ -2336,9 +2245,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 904 [0x0388]
    R.x = 1042 [0x0412]
    R.y = 1000 [0x03e8]
-   U.x = 511 [0x01ff]
-   U.gpoint = 93 [0x005d]
-   U.y = 1501 [0x05dd]
+   U.x = 510 [0x01fe]
+   U.y = 1500 [0x05dc]
 
 
 232  [0x00e8]
@@ -2442,9 +2350,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 904 [0x0388]
    R.x = 1042 [0x0412]
    R.y = 1000 [0x03e8]
-   U.x = 509 [0x01fd]
-   U.gpoint = 90 [0x005a]
-   U.y = 1901 [0x076d]
+   U.x = 510 [0x01fe]
+   U.y = 1900 [0x076c]
 
 
 240  [0x00f0]
@@ -2591,9 +2498,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 904 [0x0388]
    R.x = 1042 [0x0412]
    R.y = 1000 [0x03e8]
-   U.x = 509 [0x01fd]
-   U.gpoint = 105 [0x0069]
-   U.y = 1901 [0x076d]
+   U.x = 510 [0x01fe]
+   U.y = 1900 [0x076c]
 
 
 251  [0x00fb]
@@ -2605,9 +2511,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 904 [0x0388]
    R.x = 1042 [0x0412]
    R.y = 1000 [0x03e8]
-   U.x = 509 [0x01fd]
-   U.gpoint = 105 [0x0069]
-   U.y = 1718 [0x06b6]
+   U.x = 510 [0x01fe]
+   U.y = 1717 [0x06b5]
 
 
 252  [0x00fc]
@@ -2738,9 +2643,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 904 [0x0388]
    R.x = 1042 [0x0412]
    R.y = 1000 [0x03e8]
-   U.x = 509 [0x01fd]
-   U.gpoint = 83 [0x0053]
-   U.y = 1501 [0x05dd]
+   U.x = 510 [0x01fe]
+   U.y = 1500 [0x05dc]
 
 
 262  [0x0106]
@@ -2953,8 +2857,7 @@ GLYPH ATTRIBUTE VALUES
    R.x = 1155 [0x0483]
    R.y = 1000 [0x03e8]
    U.x = 587 [0x024b]
-   U.gpoint = 73 [0x0049]
-   U.y = 1501 [0x05dd]
+   U.y = 1500 [0x05dc]
 
 
 279  [0x0117]
@@ -3031,9 +2934,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 978 [0x03d2]
    R.x = 1155 [0x0483]
    R.y = 1000 [0x03e8]
-   U.x = 586 [0x024a]
-   U.gpoint = 70 [0x0046]
-   U.y = 1901 [0x076d]
+   U.x = 587 [0x024b]
+   U.y = 1900 [0x076c]
 
 
 285  [0x011d]
@@ -3123,9 +3025,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 978 [0x03d2]
    R.x = 1155 [0x0483]
    R.y = 1000 [0x03e8]
-   U.x = 586 [0x024a]
-   U.gpoint = 85 [0x0055]
-   U.y = 1901 [0x076d]
+   U.x = 587 [0x024b]
+   U.y = 1900 [0x076c]
 
 
 292  [0x0124]
@@ -3267,9 +3168,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 978 [0x03d2]
    R.x = 1155 [0x0483]
    R.y = 1000 [0x03e8]
-   U.x = 586 [0x024a]
-   U.gpoint = 63 [0x003f]
-   U.y = 1501 [0x05dd]
+   U.x = 587 [0x024b]
+   U.y = 1500 [0x05dc]
 
 
 303  [0x012f]
@@ -3511,8 +3411,7 @@ GLYPH ATTRIBUTE VALUES
    L.y = -100 [0xff9c]
    O.x = 1267 [0x04f3]
    U.x = 683 [0x02ab]
-   U.gpoint = 56 [0x0038]
-   U.y = 1901 [0x076d]
+   U.y = 1900 [0x076c]
 
 
 324  [0x0144]
@@ -3588,9 +3487,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 683 [0x02ab]
    L.y = -100 [0xff9c]
    O.x = 1267 [0x04f3]
-   U.x = 682 [0x02aa]
-   U.gpoint = 53 [0x0035]
-   U.y = 2301 [0x08fd]
+   U.x = 683 [0x02ab]
+   U.y = 2300 [0x08fc]
 
 
 331  [0x014b]
@@ -3715,9 +3613,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 683 [0x02ab]
    L.y = -100 [0xff9c]
    O.x = 1267 [0x04f3]
-   U.x = 682 [0x02aa]
-   U.gpoint = 68 [0x0044]
-   U.y = 2301 [0x08fd]
+   U.x = 683 [0x02ab]
+   U.y = 2300 [0x08fc]
 
 
 342  [0x0156]
@@ -3727,9 +3624,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 683 [0x02ab]
    L.y = -100 [0xff9c]
    O.x = 1267 [0x04f3]
-   U.x = 682 [0x02aa]
-   U.gpoint = 68 [0x0044]
-   U.y = 2118 [0x0846]
+   U.x = 683 [0x02ab]
+   U.y = 2117 [0x0845]
 
 
 343  [0x0157]
@@ -3844,9 +3740,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 683 [0x02ab]
    L.y = -100 [0xff9c]
    O.x = 1267 [0x04f3]
-   U.x = 682 [0x02aa]
-   U.gpoint = 46 [0x002e]
-   U.y = 1901 [0x076d]
+   U.x = 683 [0x02ab]
+   U.y = 1900 [0x076c]
 
 
 353  [0x0161]
@@ -5541,8 +5436,7 @@ GLYPH ATTRIBUTE VALUES
    R.x = 1004 [0x03ec]
    R.y = 1000 [0x03e8]
    U.x = 535 [0x0217]
-   U.gpoint = 73 [0x0049]
-   U.y = 1501 [0x05dd]
+   U.y = 1500 [0x05dc]
 
 
 522  [0x020a]
@@ -5632,9 +5526,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 557 [0x022d]
    R.x = 1004 [0x03ec]
    R.y = 1000 [0x03e8]
-   U.x = 534 [0x0216]
-   U.gpoint = 70 [0x0046]
-   U.y = 1901 [0x076d]
+   U.x = 535 [0x0217]
+   U.y = 1900 [0x076c]
 
 
 529  [0x0211]
@@ -5804,9 +5697,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 557 [0x022d]
    R.x = 1004 [0x03ec]
    R.y = 1000 [0x03e8]
-   U.x = 534 [0x0216]
-   U.gpoint = 63 [0x003f]
-   U.y = 1501 [0x05dd]
+   U.x = 535 [0x0217]
+   U.y = 1500 [0x05dc]
 
 
 542  [0x021e]
@@ -6290,8 +6182,7 @@ GLYPH ATTRIBUTE VALUES
    L.y = -100 [0xff9c]
    O.x = 980 [0x03d4]
    U.x = 597 [0x0255]
-   U.gpoint = 68 [0x0044]
-   U.y = 1901 [0x076d]
+   U.y = 1900 [0x076c]
 
 
 586  [0x024a]
@@ -6367,9 +6258,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 597 [0x0255]
    L.y = -100 [0xff9c]
    O.x = 980 [0x03d4]
-   U.x = 596 [0x0254]
-   U.gpoint = 65 [0x0041]
-   U.y = 2301 [0x08fd]
+   U.x = 597 [0x0255]
+   U.y = 2300 [0x08fc]
 
 
 593  [0x0251]
@@ -6517,9 +6407,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 597 [0x0255]
    L.y = -100 [0xff9c]
    O.x = 980 [0x03d4]
-   U.x = 596 [0x0254]
-   U.gpoint = 58 [0x003a]
-   U.y = 1901 [0x076d]
+   U.x = 597 [0x0255]
+   U.y = 1900 [0x076c]
 
 
 606  [0x025e]
@@ -8480,9 +8369,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 467 [0x01d3]
    R.x = 621 [0x026d]
    R.y = 1000 [0x03e8]
-   U.x = 311 [0x0137]
-   U.gpoint = 43 [0x002b]
-   U.y = 1501 [0x05dd]
+   U.x = 310 [0x0136]
+   U.y = 1500 [0x05dc]
 
 
 790  [0x0316]
@@ -8593,9 +8481,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 467 [0x01d3]
    R.x = 621 [0x026d]
    R.y = 1000 [0x03e8]
-   U.x = 309 [0x0135]
-   U.gpoint = 33 [0x0021]
-   U.y = 1501 [0x05dd]
+   U.x = 310 [0x0136]
+   U.y = 1500 [0x05dc]
 
 
 798  [0x031e]
@@ -9026,9 +8913,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 338 [0x0152]
    L.y = -100 [0xff9c]
    O.x = 494 [0x01ee]
-   U.x = 339 [0x0153]
-   U.gpoint = 50 [0x0032]
-   U.y = 1901 [0x076d]
+   U.x = 338 [0x0152]
+   U.y = 1900 [0x076c]
 
 
 836  [0x0344]
@@ -9135,9 +9021,8 @@ GLYPH ATTRIBUTE VALUES
    L.x = 338 [0x0152]
    L.y = -100 [0xff9c]
    O.x = 494 [0x01ee]
-   U.x = 337 [0x0151]
-   U.gpoint = 40 [0x0028]
-   U.y = 1901 [0x076d]
+   U.x = 338 [0x0152]
+   U.y = 1900 [0x076c]
 
 
 845  [0x034d]
@@ -11516,9 +11401,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 783 [0x030f]
    R.x = 1114 [0x045a]
    R.y = 1000 [0x03e8]
-   U.x = 559 [0x022f]
-   U.gpoint = 50 [0x0032]
-   U.y = 1501 [0x05dd]
+   U.x = 557 [0x022d]
+   U.y = 1500 [0x05dc]
 
 
 1078  [0x0436]
@@ -11532,8 +11416,7 @@ GLYPH ATTRIBUTE VALUES
    R.x = 1114 [0x045a]
    R.y = 1000 [0x03e8]
    U.x = 557 [0x022d]
-   U.gpoint = 66 [0x0042]
-   U.y = 1501 [0x05dd]
+   U.y = 1500 [0x05dc]
 
 
 1079  [0x0437]
@@ -11623,9 +11506,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 783 [0x030f]
    R.x = 1114 [0x045a]
    R.y = 1000 [0x03e8]
-   U.x = 556 [0x022c]
-   U.gpoint = 63 [0x003f]
-   U.y = 1901 [0x076d]
+   U.x = 557 [0x022d]
+   U.y = 1900 [0x076c]
 
 
 1086  [0x043e]
@@ -11841,9 +11723,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 783 [0x030f]
    R.x = 1114 [0x045a]
    R.y = 1000 [0x03e8]
-   U.x = 556 [0x022c]
-   U.gpoint = 56 [0x0038]
-   U.y = 1501 [0x05dd]
+   U.x = 557 [0x022d]
+   U.y = 1500 [0x05dc]
 
 
 1102  [0x044e]
@@ -12074,9 +11955,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 554 [0x022a]
    L.y = -100 [0xff9c]
-   U.x = 553 [0x0229]
-   U.gpoint = 85 [0x0055]
-   U.y = 1501 [0x05dd]
+   U.x = 554 [0x022a]
+   U.y = 1500 [0x05dc]
 
 
 1124  [0x0464]
@@ -12258,9 +12138,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 1005 [0x03ed]
    R.x = 1497 [0x05d9]
    R.y = 1000 [0x03e8]
-   U.x = 750 [0x02ee]
-   U.gpoint = 50 [0x0032]
-   U.y = 1901 [0x076d]
+   U.x = 748 [0x02ec]
+   U.y = 1900 [0x076c]
 
 
 1142  [0x0476]
@@ -12274,8 +12153,7 @@ GLYPH ATTRIBUTE VALUES
    R.x = 1497 [0x05d9]
    R.y = 1000 [0x03e8]
    U.x = 748 [0x02ec]
-   U.gpoint = 66 [0x0042]
-   U.y = 1901 [0x076d]
+   U.y = 1900 [0x076c]
 
 
 1143  [0x0477]
@@ -12365,9 +12243,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 1005 [0x03ed]
    R.x = 1497 [0x05d9]
    R.y = 1000 [0x03e8]
-   U.x = 747 [0x02eb]
-   U.gpoint = 63 [0x003f]
-   U.y = 2301 [0x08fd]
+   U.x = 748 [0x02ec]
+   U.y = 2300 [0x08fc]
 
 
 1150  [0x047e]
@@ -12583,9 +12460,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 1005 [0x03ed]
    R.x = 1497 [0x05d9]
    R.y = 1000 [0x03e8]
-   U.x = 747 [0x02eb]
-   U.gpoint = 56 [0x0038]
-   U.y = 1901 [0x076d]
+   U.x = 748 [0x02ec]
+   U.y = 1900 [0x076c]
 
 
 1166  [0x048e]
@@ -12756,9 +12632,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 748 [0x02ec]
    L.y = -100 [0xff9c]
-   U.x = 747 [0x02eb]
-   U.gpoint = 85 [0x0055]
-   U.y = 1901 [0x076d]
+   U.x = 748 [0x02ec]
+   U.y = 1900 [0x076c]
 
 
 1182  [0x049e]
@@ -13335,9 +13210,8 @@ GLYPH ATTRIBUTE VALUES
    H.x = 290 [0x0122]
    L.x = 290 [0x0122]
    L.y = -100 [0xff9c]
-   U.x = 444 [0x01bc]
-   U.gpoint = 62 [0x003e]
-   U.y = 1501 [0x05dd]
+   U.x = 443 [0x01bb]
+   U.y = 1500 [0x05dc]
 
 
 1241  [0x04d9]
@@ -13606,8 +13480,7 @@ GLYPH ATTRIBUTE VALUES
    L.x = 603 [0x025b]
    L.y = -100 [0xff9c]
    U.x = 603 [0x025b]
-   U.gpoint = 101 [0x0065]
-   U.y = 1901 [0x076d]
+   U.y = 1900 [0x076c]
 
 
 1267  [0x04f3]
@@ -14761,9 +14634,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 634 [0x027a]
    R.x = 1165 [0x048d]
    R.y = 1000 [0x03e8]
-   U.x = 584 [0x0248]
-   U.gpoint = 49 [0x0031]
-   U.y = 1501 [0x05dd]
+   U.x = 582 [0x0246]
+   U.y = 1500 [0x05dc]
 
 
 1378  [0x0562]
@@ -14777,8 +14649,7 @@ GLYPH ATTRIBUTE VALUES
    R.x = 1165 [0x048d]
    R.y = 1000 [0x03e8]
    U.x = 582 [0x0246]
-   U.gpoint = 65 [0x0041]
-   U.y = 1501 [0x05dd]
+   U.y = 1500 [0x05dc]
 
 
 1379  [0x0563]
@@ -14959,9 +14830,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 634 [0x027a]
    R.x = 1165 [0x048d]
    R.y = 1000 [0x03e8]
-   U.x = 581 [0x0245]
-   U.gpoint = 55 [0x0037]
-   U.y = 1501 [0x05dd]
+   U.x = 582 [0x0246]
+   U.y = 1500 [0x05dc]
 
 
 1392  [0x0570]
@@ -15036,9 +14906,7 @@ GLYPH ATTRIBUTE VALUES
    H.x = 526 [0x020e]
    L.x = 582 [0x0246]
    L.y = -500 [0xfe0c]
-   O.x = 633 [0x0279]
-   O.gpoint = 51 [0x0033]
-   O.y = 2
+   O.x = 634 [0x027a]
    R.x = 1165 [0x048d]
    R.y = 1000 [0x03e8]
    U.x = 582 [0x0246]
@@ -15125,9 +14993,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 618 [0x026a]
    L.y = -100 [0xff9c]
-   U.x = 617 [0x0269]
-   U.gpoint = 82 [0x0052]
-   U.y = 1501 [0x05dd]
+   U.x = 618 [0x026a]
+   U.y = 1500 [0x05dc]
 
 
 1406  [0x057e]
@@ -15286,9 +15153,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 816 [0x0330]
    R.x = 1458 [0x05b2]
    R.y = 1000 [0x03e8]
-   U.x = 752 [0x02f0]
-   U.gpoint = 54 [0x0036]
-   U.y = 1901 [0x076d]
+   U.x = 750 [0x02ee]
+   U.y = 1900 [0x076c]
 
 
 1421  [0x058d]
@@ -15302,8 +15168,7 @@ GLYPH ATTRIBUTE VALUES
    R.x = 1458 [0x05b2]
    R.y = 1000 [0x03e8]
    U.x = 750 [0x02ee]
-   U.gpoint = 70 [0x0046]
-   U.y = 1901 [0x076d]
+   U.y = 1900 [0x076c]
 
 
 1422  [0x058e]
@@ -15484,9 +15349,8 @@ GLYPH ATTRIBUTE VALUES
    O.x = 816 [0x0330]
    R.x = 1458 [0x05b2]
    R.y = 1000 [0x03e8]
-   U.x = 749 [0x02ed]
-   U.gpoint = 60 [0x003c]
-   U.y = 1901 [0x076d]
+   U.x = 750 [0x02ee]
+   U.y = 1900 [0x076c]
 
 
 1435  [0x059b]
@@ -15647,9 +15511,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 750 [0x02ee]
    L.y = -100 [0xff9c]
-   U.x = 749 [0x02ed]
-   U.gpoint = 87 [0x0057]
-   U.y = 1901 [0x076d]
+   U.x = 750 [0x02ee]
+   U.y = 1900 [0x076c]
 
 
 1449  [0x05a9]
@@ -16541,9 +16404,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 542 [0x021e]
    L.y = -500 [0xfe0c]
-   U.x = 563 [0x0233]
-   U.gpoint = 52 [0x0034]
-   U.y = 1501 [0x05dd]
+   U.x = 561 [0x0231]
+   U.y = 1500 [0x05dc]
 
 
 1539  [0x0603]
@@ -16656,9 +16518,8 @@ GLYPH ATTRIBUTE VALUES
    L.y = -500 [0xfe0c]
    R.x = 1085 [0x043d]
    R.y = 1000 [0x03e8]
-   U.x = 560 [0x0230]
-   U.gpoint = 58 [0x003a]
-   U.y = 1501 [0x05dd]
+   U.x = 561 [0x0231]
+   U.y = 1500 [0x05dc]
 
 
 1549  [0x060d]
@@ -16911,9 +16772,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 641 [0x0281]
    L.y = -100 [0xff9c]
-   U.x = 640 [0x0280]
-   U.gpoint = 49 [0x0031]
-   U.y = 1901 [0x076d]
+   U.x = 641 [0x0281]
+   U.y = 1900 [0x076c]
 
 
 1574  [0x0626]
@@ -16981,9 +16841,8 @@ GLYPH ATTRIBUTE VALUES
    directionality = 1
    L.x = 712 [0x02c8]
    L.y = -100 [0xff9c]
-   U.x = 762 [0x02fa]
-   U.gpoint = 49 [0x0031]
-   U.y = 1901 [0x076d]
+   U.x = 760 [0x02f8]
+   U.y = 1900 [0x076c]
 
 
 1581  [0x062d]
@@ -18405,9 +18264,8 @@ GLYPH ATTRIBUTE VALUES
    *skipPasses* = 27 [0x001b  /  1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
-   U.x = -555 [0xfdd5]
-   U.gpoint = 10 [0x000a]
-   U.y = 1501 [0x05dd]
+   U.x = -557 [0xfdd3]
+   U.y = 1500 [0x05dc]
    UM.x = -557 [0xfdd3]
    UM.y = 1100 [0x044c]
 
@@ -18486,8 +18344,7 @@ GLYPH ATTRIBUTE VALUES
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
    U.x = -557 [0xfdd3]
-   U.gpoint = 26 [0x001a]
-   U.y = 1501 [0x05dd]
+   U.y = 1500 [0x05dc]
    UM.x = -557 [0xfdd3]
    UM.y = 1100 [0x044c]
 
@@ -18689,9 +18546,8 @@ GLYPH ATTRIBUTE VALUES
 1797  [0x0705]
    *skipPasses* = 27 [0x001b  /  1 1 0 1 1]
    breakweight = 30 [0x001e]
-   U.x = 304 [0x0130]
-   U.gpoint = 38 [0x0026]
-   U.y = 1718 [0x06b6]
+   U.x = 305 [0x0131]
+   U.y = 1717 [0x06b5]
    UM.x = 305 [0x0131]
    UM.y = 1100 [0x044c]
 
@@ -19374,9 +19230,8 @@ GLYPH ATTRIBUTE VALUES
    *skipPasses* = 27 [0x001b  /  1 1 0 1 1]
    breakweight = 30 [0x001e]
    directionality = 16 [0x0010]
-   U.x = -558 [0xfdd2]
-   U.gpoint = 16 [0x0010]
-   U.y = 1501 [0x05dd]
+   U.x = -557 [0xfdd3]
+   U.y = 1500 [0x05dc]
    UM.x = -557 [0xfdd3]
    UM.y = 1100 [0x044c]
 
