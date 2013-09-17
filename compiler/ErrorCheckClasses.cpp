@@ -1142,6 +1142,10 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				psymGeneric->SetInternalID(ipsym);
 				psym->SetInternalID(psymGeneric->InternalID());
 			}
+			else if (gapp == kgappOther && psym->IsIgnorableOffsetAttr() && !g_cman.OffsetAttrs())
+			{
+				// Ignore
+			}
 			else if (gapp == kgappOther && !psym->IsComponentBoxField())
 			{
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGeneric);
@@ -1151,7 +1155,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				int iv = psym->FieldIndex("gpath");
 				iv = (iv == -1) ? psym->FieldIndex("x") : iv;
 				iv = (iv == -1) ? psym->FieldIndex("y") : iv;
-				if (iv > -1)
+				if (iv > -1 && g_cman.OffsetAttrs())
 				{
 					//	We are going to convert all 'gpath' attributes to 'gpoint',
 					//	so create that attribute too. And we might convert x/y coordinates
@@ -1414,6 +1418,9 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		Symbol psym = vpglfaAttrs[ipglfa]->GlyphSymbol();
 		Assert(!psym->IsGeneric());
 		int nGlyphAttrID = psym->InternalID();
+
+		if (!g_cman.OffsetAttrs() && psym->IsIgnorableOffsetAttr())
+			continue;
 
 		//	The new attribute assignment:
 		GdlAssignment * pasgnValue = vpglfaAttrs[ipglfa]->Assignment();
@@ -1851,7 +1858,8 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 			}
 		}
 
-		ConvertBetweenXYAndGpoint(pfont, wGlyphID);
+		if (this->OffsetAttrs())
+			ConvertBetweenXYAndGpoint(pfont, wGlyphID);
 
 		// Just in case, since incrementing 0xFFFF will produce zero.
 		if (wGlyphID == 0xFFFF)
@@ -2528,48 +2536,52 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 			pavs->SetFlattened(true);
 			vpavsNew.push_back(pavs);
 		}
-		//if (pexpGpoint)
-		//{
-		//	if (psymGpoint->IsBogusSlotAttr())
-		//		delete pexpGpoint;
-		//	else
-		//	{
-		//		pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
-		//		pavs->CopyLineAndFile(*this);
-		//		pavs->SetFlattened(true);
-		//		vpavsNew.push_back(pavs);
-		//	}
-		//}
-		//if (pexpXoffset)
-		//{
-		//	if (psymXoffset->IsBogusSlotAttr())
-		//		delete pexpXoffset;
-		//	else
-		//	{
-		//		pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
-		//		pavs->CopyLineAndFile(*this);
-		//		pavs->SetFlattened(true);
-		//		vpavsNew.push_back(pavs);
-		//	}
-		//}
-		//if (pexpYoffset)
-		//{
-		//	if (psymYoffset->IsBogusSlotAttr())
-		//		delete pexpYoffset;
-		//	else
-		//	{
-		//		pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
-		//		pavs->CopyLineAndFile(*this);
-		//		pavs->SetFlattened(true);
-		//		vpavsNew.push_back(pavs);
-		//	}
-		//}
-		if (pexpGpoint)
-			delete pexpGpoint;
-		if (pexpXoffset)
-			delete pexpXoffset;
-		if (pexpYoffset)
-			delete pexpYoffset;
+		if (g_cman.OffsetAttrs())
+		{
+			if (pexpGpoint)
+			{
+				if (psymGpoint->IsBogusSlotAttr())
+					delete pexpGpoint;
+				else
+				{
+					pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
+					pavs->CopyLineAndFile(*this);
+					pavs->SetFlattened(true);
+					vpavsNew.push_back(pavs);
+				}
+			}
+			if (pexpXoffset)
+			{
+				if (psymXoffset->IsBogusSlotAttr())
+					delete pexpXoffset;
+				else
+				{
+					pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
+					pavs->CopyLineAndFile(*this);
+					pavs->SetFlattened(true);
+					vpavsNew.push_back(pavs);
+				}
+			}
+			if (pexpYoffset)
+			{
+				if (psymYoffset->IsBogusSlotAttr())
+					delete pexpYoffset;
+				else
+				{
+					pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
+					pavs->CopyLineAndFile(*this);
+					pavs->SetFlattened(true);
+					vpavsNew.push_back(pavs);
+				}
+			}
+		} else {
+			if (pexpGpoint)
+				delete pexpGpoint;
+			if (pexpXoffset)
+				delete pexpXoffset;
+			if (pexpYoffset)
+				delete pexpYoffset;
+		}
 
 		delete this;	// replaced
 	}

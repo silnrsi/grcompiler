@@ -500,14 +500,15 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 	if (ipassReordered1 != grstrmT.ReadByteFromFont())
 		OutputError(ec, ptcase, "ERROR: Silf table - first reordered pass");
 
+	gr::byte bT, bB;
 	//	line-break flag
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
 		OutputError(ec, ptcase, "ERROR: Silf table - line-break flag");
 
 	//	range of possible cross-line-boundary contextualization
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
 		OutputError(ec, ptcase, "ERROR: Silf table - pre LB context");
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
 		OutputError(ec, ptcase, "ERROR: Silf table - post LB context");
 
 	//	actual glyph ID for pseudo-glyph (ID of bogus attribute)
@@ -520,13 +521,13 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 	//gr::byte tempT = grstrmT.ReadByteFromFont();
 	//WriteToLog("next byte T = ", tempT, "\n");
 	//if (tempB != tempT)
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
 		OutputError(ec, ptcase, "ERROR: Silf table - actual-for-pseudo attr");
 	//	breakweight
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
 		OutputError(ec, ptcase, "ERROR: Silf table - breakweight attr");
 	//	directionality
-	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
 		OutputError(ec, ptcase, "ERROR: Silf table - directionality attr");
 
 	if (fxdSilfVersionB >= 0x00020000 && fxdSilfVersionT >= 0x00020000)

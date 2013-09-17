@@ -64,6 +64,10 @@ public:
 	{
 		m_fFlattened = f;
 	}
+	Symbol AttrName()
+	{
+		return m_psymName;
+	}
 
 protected:
 	//	Parser:

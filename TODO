@@ -7,16 +7,16 @@ Pre 2.5 (the next number from the Windows release series)
 
  * Working on mac
  * manpages
+ 
+4.4 changes
 
-4.3 changes
-
- * Add ability to attach in substitution pass
- * .gdx file is stored with output .ttf
- * &= and -= class editing
- * remove gpoint generation in the glat
+ * Add cmap entries for pseudo-glyphs with Unicode input specified; or deprecate feature if it gets too hard
+ * Handle font with no glyf table; give warning if they ask for bounding box data
+ * Automatically create associations for deletion rules
 
 Future ideas
 
- * compress tables (Glat, Gloc, fsms)
+ * Allow attachments in substitution table
+ * Compress tables (Glat, Gloc, fsms)
 
 

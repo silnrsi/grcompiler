@@ -26,7 +26,7 @@ copy $_temp.gdl dbg_PigLatin_v3
 copy gdlerr.txt dbg_PigLatin_v3
 copy dbg_*.txt dbg_PigLatin_v3
     
-grcompiler -D -v3 -p PadaukMain.gdl PadaukInput.ttf PadaukBenchmark_v3.ttf
+grcompiler -D -v3 -p -offsets PadaukMain.gdl PadaukInput.ttf PadaukBenchmark_v3.ttf
 copy PadaukBenchmark_v3.ttf dbg_Padauk
 copy PadaukBenchmark_v3.gdx dbg_Padauk
 copy $_temp.gdl dbg_Padauk

@@ -1084,6 +1084,28 @@ bool GrcSymbolTableEntry::IsPseudoSlotAttr()
 }
 
 /*----------------------------------------------------------------------------------------------
+    Return true if the symbol is the pseudo passKeySlot attribute.
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsPassKeySlot()
+{
+	if (m_staFieldName == "passKeySlot")
+		return true;
+	else
+		return false;
+}
+
+/*----------------------------------------------------------------------------------------------
+    Return true if the symbol is of the form "attach.at/with.gpoint"
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsIgnorableOffsetAttr()
+{
+	Assert(FitsSymbolType(ksymtGlyphAttr));
+	// Symbol psymParent = ParentSymbol();
+	return (m_staFieldName == "gpoint" || m_staFieldName == "xoffset"
+		|| m_staFieldName == "yoffset");
+}
+
+/*----------------------------------------------------------------------------------------------
     Return the number corresponding to the index of the user-definable slot attribute,
 	or -1 if it is something invalid (does not parse to a number).
 ----------------------------------------------------------------------------------------------*/

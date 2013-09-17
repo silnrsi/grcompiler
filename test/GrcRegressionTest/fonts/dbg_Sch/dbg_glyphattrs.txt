@@ -27,172 +27,73 @@ GLYPH ATTRIBUTE IDS
 24: component.shadda.left
 25: component.shadda.right
 26: above.x
-27: above.gpoint
-28: above.xoffset
-29: above.y
-30: above.yoffset
-31: below.x
-32: below.gpoint
-33: below.xoffset
-34: below.y
-35: below.yoffset
-36: diaA.x
-37: diaA.gpoint
-38: diaA.xoffset
-39: diaA.y
-40: diaA.yoffset
-41: diaB.x
-42: diaB.gpoint
-43: diaB.xoffset
-44: diaB.y
-45: diaB.yoffset
-46: diaDigitA.x
-47: diaDigitA.gpoint
-48: diaDigitA.xoffset
-49: diaDigitA.y
-50: diaDigitA.yoffset
-51: alef.x
-52: alef.gpoint
-53: alef.xoffset
-54: alef.y
-55: alef.yoffset
-56: dia2B.x
-57: dia2B.gpoint
-58: dia2B.xoffset
-59: dia2B.y
-60: dia2B.yoffset
-61: entry.x
-62: entry.gpoint
-63: entry.xoffset
-64: entry.y
-65: entry.yoffset
-66: dbgAw
-67: dbgBbW
-68: ring.x
-69: ring.gpoint
-70: ring.xoffset
-71: ring.y
-72: ring.yoffset
-73: diaA_.x
-74: diaA_.gpoint
-75: diaA_.xoffset
-76: diaA_.y
-77: diaA_.yoffset
-78: digit.x
-79: digit.gpoint
-80: digit.xoffset
-81: digit.y
-82: digit.yoffset
-83: digit_.x
-84: digit_.gpoint
-85: digit_.xoffset
-86: digit_.y
-87: digit_.yoffset
-88: dia2B_.x
-89: dia2B_.gpoint
-90: dia2B_.xoffset
-91: dia2B_.y
-92: dia2B_.yoffset
-93: diaB_.x
-94: diaB_.gpoint
-95: diaB_.xoffset
-96: diaB_.y
-97: diaB_.yoffset
-98: diaDigitB.x
-99: diaDigitB.gpoint
-100: diaDigitB.xoffset
-101: diaDigitB.y
-102: diaDigitB.yoffset
-103: center.x
-104: center.gpoint
-105: center.xoffset
-106: center.y
-107: center.yoffset
-108: through.x
-109: through.gpoint
-110: through.xoffset
-111: through.y
-112: through.yoffset
-113: above2.x
-114: above2.gpoint
-115: above2.xoffset
-116: above2.y
-117: above2.yoffset
-118: alef1.x
-119: alef1.gpoint
-120: alef1.xoffset
-121: alef1.y
-122: alef1.yoffset
-123: alef2.x
-124: alef2.gpoint
-125: alef2.xoffset
-126: alef2.y
-127: alef2.yoffset
-128: below2.x
-129: below2.gpoint
-130: below2.xoffset
-131: below2.y
-132: below2.yoffset
-133: dia2B1.x
-134: dia2B1.gpoint
-135: dia2B1.xoffset
-136: dia2B1.y
-137: dia2B1.yoffset
-138: dia2B2.x
-139: dia2B2.gpoint
-140: dia2B2.xoffset
-141: dia2B2.y
-142: dia2B2.yoffset
-143: diaA1.x
-144: diaA1.gpoint
-145: diaA1.xoffset
-146: diaA1.y
-147: diaA1.yoffset
-148: diaA2.x
-149: diaA2.gpoint
-150: diaA2.xoffset
-151: diaA2.y
-152: diaA2.yoffset
-153: diaB1.x
-154: diaB1.gpoint
-155: diaB1.xoffset
-156: diaB1.y
-157: diaB1.yoffset
-158: diaB2.x
-159: diaB2.gpoint
-160: diaB2.xoffset
-161: diaB2.y
-162: diaB2.yoffset
-163: exit.x
-164: exit.gpoint
-165: exit.xoffset
-166: exit.y
-167: exit.yoffset
-168: above_.x
-169: above_.gpoint
-170: above_.xoffset
-171: above_.y
-172: above_.yoffset
-173: alef_.x
-174: alef_.gpoint
-175: alef_.xoffset
-176: alef_.y
-177: alef_.yoffset
-178: diaDigitA_.x
-179: diaDigitA_.gpoint
-180: diaDigitA_.xoffset
-181: diaDigitA_.y
-182: diaDigitA_.yoffset
-183: diaDigitB_.x
-184: diaDigitB_.gpoint
-185: diaDigitB_.xoffset
-186: diaDigitB_.y
-187: diaDigitB_.yoffset
-188: below_.x
-189: below_.gpoint
-190: below_.xoffset
-191: below_.y
-192: below_.yoffset
+27: above.y
+28: below.x
+29: below.y
+30: diaA.x
+31: diaA.y
+32: diaB.x
+33: diaB.y
+34: diaDigitA.x
+35: diaDigitA.y
+36: alef.x
+37: alef.y
+38: dia2B.x
+39: dia2B.y
+40: entry.x
+41: entry.y
+42: dbgAw
+43: dbgBbW
+44: ring.x
+45: ring.y
+46: diaA_.x
+47: diaA_.y
+48: digit.x
+49: digit.y
+50: digit_.x
+51: digit_.y
+52: dia2B_.x
+53: dia2B_.y
+54: diaB_.x
+55: diaB_.y
+56: diaDigitB.x
+57: diaDigitB.y
+58: center.x
+59: center.y
+60: through.x
+61: through.y
+62: above2.x
+63: above2.y
+64: alef1.x
+65: alef1.y
+66: alef2.x
+67: alef2.y
+68: below2.x
+69: below2.y
+70: dia2B1.x
+71: dia2B1.y
+72: dia2B2.x
+73: dia2B2.y
+74: diaA1.x
+75: diaA1.y
+76: diaA2.x
+77: diaA2.y
+78: diaB1.x
+79: diaB1.y
+80: diaB2.x
+81: diaB2.y
+82: exit.x
+83: exit.y
+84: above_.x
+85: above_.y
+86: alef_.x
+87: alef_.y
+88: diaDigitA_.x
+89: diaDigitA_.y
+90: diaDigitB_.x
+91: diaDigitB_.y
+92: below_.x
+93: below_.y
 
 
 
@@ -6553,7 +6454,6 @@ GLYPH ATTRIBUTE VALUES
    alef.x = 60 [0x003c]
    alef.y = 599 [0x0257]
    ring.x = 215 [0x00d7]
-   ring.gpoint = 6
    ring.y = 106 [0x006a]
 
 
@@ -9722,8 +9622,7 @@ GLYPH ATTRIBUTE VALUES
    *skipPasses* = 503 [0x01f7  /  1 1 1 0 1 1 1 1 1]
    breakweight = 30 [0x001e]
    directionality = 3
-   digit.x = 1278 [0x04fe]
-   digit.gpoint = zero
+   digit.x = 1275 [0x04fb]
 
 
 947  [0x03b3]
@@ -11154,8 +11053,6 @@ GLYPH ATTRIBUTE VALUES
    alef.y = 825 [0x0339]
    through.x = 168 [0x00a8]
    through.y = 777 [0x0309]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1168  [0x0490]
@@ -11167,8 +11064,6 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -100 [0xff9c]
    alef.x = 65 [0x0041]
    alef.y = 825 [0x0339]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1169  [0x0491]
@@ -11180,8 +11075,6 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -100 [0xff9c]
    alef.x = 65 [0x0041]
    alef.y = 825 [0x0339]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1170  [0x0492]
@@ -11193,8 +11086,6 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -100 [0xff9c]
    alef.x = 65 [0x0041]
    alef.y = 825 [0x0339]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1171  [0x0493]
@@ -11206,8 +11097,6 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -568 [0xfdc8]
    alef.x = 65 [0x0041]
    alef.y = 825 [0x0339]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1172  [0x0494]
@@ -11219,8 +11108,6 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -100 [0xff9c]
    alef.x = -55 [0xffc9]
    alef.y = 1514 [0x05ea]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1173  [0x0495]
@@ -11232,8 +11119,6 @@ GLYPH ATTRIBUTE VALUES
    diaB.y = -100 [0xff9c]
    alef.x = 66 [0x0042]
    alef.y = 931 [0x03a3]
-   exit.gpoint = zero
-   exit.y = -1 [0xffff]
 
 
 1174  [0x0496]

@@ -39,7 +39,7 @@ $(FONTS)\PigLatinTest_v3.ttf :
 	$(GRCEXE)\grcompiler -v3 $(FONTS)\PigLatinMain.gdl $(FONTS)\PigLatinInput.ttf $(FONTS)\PigLatinTest_v3.ttf
     
 $(FONTS)\PadaukTest.ttf :
-	$(GRCEXE)\grcompiler -v3 -p $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
+	$(GRCEXE)\grcompiler -v3 -offsets -p $(FONTS)\PadaukMain.gdl $(FONTS)\PadaukInput.ttf $(FONTS)\PadaukTest.ttf
 
 grcregtest.log :
   - @echo -----  
