@@ -278,6 +278,9 @@ typedef enum DirCode {  // Hungarian: dirc
 	//	I think we need this too:
 	kdircNSM		= 16,	// non-space mark
 
+	kdircOPP		= 21,	// opening parens
+	kdircCPP		= 22,	// closing parens
+
 	//	Special values for internal use:
 	kdircLlb		= 32,	// left-to-right line-break
 	kdircRlb		= 33,	// right-to-left line-break

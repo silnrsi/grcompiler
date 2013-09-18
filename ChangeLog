@@ -1,7 +1,8 @@
 This is the changelog for the SIL Graphite Compiler project
 
-16 Sept 2013  Sharon Correll
+17 Sept 2013  Sharon Correll
     More changes for version 4.3.1:
+    * Handle bidi bracket codes and defaults
     * Remove gpoint and x/yoffset glyph attributes 
         unless command line switch -offsets is turned on.
     * Don't output space contextual flags, since they break the font
