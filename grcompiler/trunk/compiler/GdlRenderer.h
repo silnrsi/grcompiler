@@ -139,6 +139,7 @@ public:
 		std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 		std::vector<GdlExpression *> & vpexpExtra,
 		std::vector<Symbol> & vpsymGlyphAttrs);
+	DirCode DefaultDirCode(int nUnicode, bool * pfInitFailed);
 	DirCode ConvertBidiCode(UCharDirection diricu, utf16 wUnicode);
 	void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		std::vector<GdlExpression *> & vpexpExtra);

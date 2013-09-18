@@ -1592,24 +1592,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                     }
                     else
 					{
-						switch (nUnicode)
-						{
-						case kchwSpace:			nStdValue = kdircWhiteSpace; break;
-						case kchwLRM:			nStdValue = kdircL; break;
-						case kchwRLM:			nStdValue = kdircR; break;
-						case kchwLRO:			nStdValue = kdircLRO; break;
-						case kchwRLO:			nStdValue = kdircRLO; break;
-						case kchwLRE:			nStdValue = kdircLRE; break;
-						case kchwRLE:			nStdValue = kdircRLE; break;
-						case kchwPDF:			nStdValue = kdircPDF; break;
-						default:
-							if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
-								nStdValue = kdircWhiteSpace;
-							else
-								nStdValue = 0;		// don't know
-								fInitFailed = Bidi();	// we only care about the failure if this is a bidi font
-							break;
-						}
+						nStdValue = (int)this->DefaultDirCode(nUnicode, &fInitFailed);
 					}
                 }
 				else if (psym->LastFieldIs("*skipPasses*") || psym->LastFieldIs("*skipPasses2*"))
@@ -1750,6 +1733,67 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 	return kdircNeutral;
 }
 
+/*----------------------------------------------------------------------------------------------
+	Return the default directionality code for the given USV.
+----------------------------------------------------------------------------------------------*/
+DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
+{
+	DirCode dircDefault;
+
+	switch (nUnicode)
+	{
+	case kchwSpace:		dircDefault = kdircWhiteSpace; break;
+	case kchwLRM:		dircDefault = kdircL; break;
+	case kchwRLM:		dircDefault = kdircR; break;
+	case kchwLRO:		dircDefault = kdircLRO; break;
+	case kchwRLO:		dircDefault = kdircRLO; break;
+	case kchwLRE:		dircDefault = kdircLRE; break;
+	case kchwRLE:		dircDefault = kdircRLE; break;
+	case kchwPDF:		dircDefault = kdircPDF; break;
+
+	// The following matching parentheses come from the Unicode BidiBracket.txt file.
+
+	case 0x0028:	case 0x005B:	case 0x007B:	case 0x0F3A:	case 0x0F3C:
+	case 0x169B:	case 0x2045:	case 0x207D:	case 0x208D:	case 0x2329:
+	case 0x2768:	case 0x276A:	case 0x276C:	case 0x276E:	case 0x2770:
+	case 0x2772:	case 0x2774:	case 0x27C5:	case 0x27E6:	case 0x27E8:
+	case 0x27EA:	case 0x27EC:	case 0x27EE:	case 0x2983:	case 0x2985:
+	case 0x2987:	case 0x2989:	case 0x298B:	case 0x298D:	case 0x298F:
+	case 0x2991:	case 0x2993:	case 0x2995:	case 0x2997:	case 0x29D8:
+	case 0x29DA:	case 0x29FC:	case 0x2E22:	case 0x2E24:	case 0x2E26:
+	case 0x2E28:	case 0x3008:	case 0x300A:	case 0x300C:	case 0x300E:
+	case 0x3010:	case 0x3014:	case 0x3016:	case 0x3018:	case 0x301A:
+	case 0xFE59:	case 0xFE5B:	case 0xFE5D:	case 0xFF08:	case 0xFF3B:
+	case 0xFF5B:	case 0xFF5F:	case 0xFF62:
+		dircDefault = kdircOPP;
+		break;
+
+	case 0x0029:	case 0x005D:	case 0x007D:	case 0x0F3B:	case 0x0F3D:
+	case 0x169C:	case 0x2046:	case 0x207E:	case 0x208E:	case 0x232A:
+	case 0x2769:	case 0x276B:	case 0x276D:	case 0x276F:	case 0x2771:
+	case 0x2773:	case 0x2775:	case 0x27C6:	case 0x27E7:	case 0x27E9:
+	case 0x27EB:	case 0x27ED:	case 0x27EF:	case 0x2984:	case 0x2986:
+	case 0x2988:	case 0x298A:	case 0x298C:	case 0x298E:	case 0x2990:
+	case 0x2992:	case 0x2994:	case 0x2996:	case 0x2998:	case 0x29D9:
+	case 0x29DB:	case 0x29FD:	case 0x2E23:	case 0x2E25:	case 0x2E27:
+	case 0x2E29:	case 0x3009:	case 0x300B:	case 0x300D:	case 0x300F:
+	case 0x3011:	case 0x3015:	case 0x3017:	case 0x3019:	case 0x301B:
+	case 0xFE5A:	case 0xFE5C:	case 0xFE5E:	case 0xFF09:	case 0xFF3D:
+	case 0xFF5D:	case 0xFF60:	case 0xFF63:
+		dircDefault = kdircCPP;
+		break;
+
+	default:
+		if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
+			dircDefault = kdircWhiteSpace;
+		else
+			dircDefault = kdircNeutral;	// don't know
+			*pfInitFailed = Bidi();		// we only care about the failure if this is a bidi font
+		break;
+	}
+
+	return dircDefault;
+}
 
 /**********************************************************************************************/
 
@@ -3168,3 +3212,4 @@ bool GrcManager::CheckForEmptyClasses()
 
 	return true;
 }
+
