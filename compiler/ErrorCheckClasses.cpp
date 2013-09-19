@@ -1583,17 +1583,15 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                 }
                 else if (psym->LastFieldIs("directionality"))
                 {
-					if (fIcuAvailable)
+                    nStdValue = (int)this->DefaultDirCode(nUnicode, &fInitFailed);
+					if (fInitFailed && fIcuAvailable)
                     {
 						UCharDirection diricu = u_charDirection(nUnicode);
 						nStdValue = ConvertBidiCode(diricu, nUnicode);
+                        fInitFailed = 0;
 						//if (!Bidi() && nStdValue == kdircL)
 						//	nStdValue = 0;	// don't bother storing this for non-bidi fonts
                     }
-                    else
-					{
-						nStdValue = (int)this->DefaultDirCode(nUnicode, &fInitFailed);
-					}
                 }
 				else if (psym->LastFieldIs("*skipPasses*") || psym->LastFieldIs("*skipPasses2*"))
 				{
