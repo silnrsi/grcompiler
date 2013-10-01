@@ -39,6 +39,13 @@
 #define DIR_LRE 13
 #define DIR_RLE 14
 #define DIR_PDF 15
+#define DIR_NSM 16
+#define DIR_LRI 17
+#define DIR_RLI 18
+#define DIR_FSI 19
+#define DIR_PDI 20
+#define DIR_OPP 21
+#define DIR_CPP 22
 
 #define BREAK_WHITESPACE 10
 #define BREAK_WORD 15
