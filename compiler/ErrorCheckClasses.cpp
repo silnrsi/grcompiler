@@ -1743,13 +1743,18 @@ DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
 	case kchwSpace:		dircDefault = kdircWhiteSpace; break;
 	case kchwLRM:		dircDefault = kdircL; break;
 	case kchwRLM:		dircDefault = kdircR; break;
+	case kchwALM:		dircDefault = kdircRArab; break;
 	case kchwLRO:		dircDefault = kdircLRO; break;
 	case kchwRLO:		dircDefault = kdircRLO; break;
 	case kchwLRE:		dircDefault = kdircLRE; break;
 	case kchwRLE:		dircDefault = kdircRLE; break;
 	case kchwPDF:		dircDefault = kdircPDF; break;
+	case kchwLRI:		dircDefault = kdircLRI; break;
+	case kchwRLI:		dircDefault = kdircRLI; break;
+	case kchwFSI:		dircDefault = kdircFSI; break;
+	case kchwPDI:		dircDefault = kdircPDI; break;
 
-	// The following matching parentheses come from the Unicode BidiBracket.txt file.
+	// The following matching parentheses come from the Unicode BidiBrackets.txt file.
 
 	case 0x0028:	case 0x005B:	case 0x007B:	case 0x0F3A:	case 0x0F3C:
 	case 0x169B:	case 0x2045:	case 0x207D:	case 0x208D:	case 0x2329:

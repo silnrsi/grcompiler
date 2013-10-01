@@ -278,6 +278,13 @@ typedef enum DirCode {  // Hungarian: dirc
 	//	I think we need this too:
 	kdircNSM		= 16,	// non-space mark
 
+	// Not used by Graphite1:
+	kdircLRI		= 17,	// LTR isolate
+	kdircRLI		= 18,	// RTL isolate
+	kdircFSI		= 19,	// first strong isolate
+	kdircPDI		= 20,	// pop isolate run flag
+
+	// Not used by Graphite1:
 	kdircOPP		= 21,	// opening parens
 	kdircCPP		= 22,	// closing parens
 
@@ -298,12 +305,16 @@ enum DefinedChars {
 
 	kchwLRM		= 0x200E,		// left-to-right mark
 	kchwRLM		= 0x200F,		// right-to-left mark
+	kchwALM		= 0x061C,		// Arabic letter mark
 	kchwLRE		= 0x202A,		// left-to-right embedding
 	kchwRLE		= 0x202B,		// right-to-left embedding
 	kchwPDF		= 0x202C,		// pop directional format
 	kchwLRO		= 0x202D,		// left-to-right override
-	kchwRLO		= 0x202E			// right-to-left override
-
+	kchwRLO		= 0x202E,		// right-to-left override
+	kchwLRI		= 0x2066,		// left-to-right isolate
+	kchwRLI		= 0x2067,		// right-to-left isolate
+	kchwFSI		= 0x2068,		// first strong isolate
+	kchwPDI		= 0x2069		// pop directional isolate
 };
 
 // version 1.0 breakweights
