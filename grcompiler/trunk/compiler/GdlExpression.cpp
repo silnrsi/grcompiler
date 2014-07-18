@@ -2556,8 +2556,7 @@ std::wstring GdlStringExpression::ConvertToUnicode()
 
 
 /*----------------------------------------------------------------------------------------------
-	Return true if the expression is testing the justification status (JustifyLevel or
-	JustifyMode).
+	Return the highest level of justification referenced in the expression.
 ----------------------------------------------------------------------------------------------*/
 void GdlUnaryExpression::MaxJustificationLevel(int * pnLevel)
 {

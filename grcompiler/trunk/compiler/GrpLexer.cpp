@@ -57,12 +57,12 @@ GrpLexer::GrpLexer(const LexerSharedInputState& state)
 void GrpLexer::initLiterals()
 {
 	literals["positioning"] = 58;
-	literals["min"] = 78;
+	literals["min"] = 62;
 	literals["name"] = 16;
 	literals["endenvironment"] = 10;
 	literals["endtable"] = 15;
-	literals["false"] = 76;
-	literals["true"] = 75;
+	literals["false"] = 78;
+	literals["true"] = 77;
 	literals["glyph"] = 23;
 	literals["codepoint"] = 28;
 	literals["justify"] = 61;
@@ -79,7 +79,7 @@ void GrpLexer::initLiterals()
 	literals["languages"] = 36;
 	literals["elseif"] = 44;
 	literals["feature"] = 34;
-	literals["max"] = 77;
+	literals["max"] = 63;
 	literals["postscript"] = 30;
 	literals["unicode"] = 31;
 	literals["if"] = 40;

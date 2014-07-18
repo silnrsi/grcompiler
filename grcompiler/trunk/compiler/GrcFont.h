@@ -60,6 +60,11 @@ public:
 	int GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY, GdlObject * pgdlobj);
 	int GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj);
 
+	bool IsSpace(utf16 wGlyphID)
+	{
+		return TtfUtil::IsSpace(wGlyphID, m_pLoca, m_cLoca, m_pHead);
+	}
+
 	// Class for iterating over the potentially wide range of Unicode codepoints in the cmap.
 	class iterator
 	{
@@ -156,6 +161,8 @@ protected:
 	bool IsGraphiteFont(void * pHdr, void * pTableDir);
 	int ScanGlyfIds(void);
 	int GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt);
+
+public:
 	int GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt, 
 		std::vector<int> * pvnX, std::vector<int> * pvnY, std::vector<bool> * pvfOnCurve);
 

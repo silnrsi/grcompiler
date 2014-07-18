@@ -64,6 +64,9 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 	if (!ProcessGlyphAttributes(pfont))
 		return false;
 
+	if (m_prndr->HasCollisionPass())	// do this after glyph attributes have been processed
+		CalculateCollisionOctoboxes(pfont);
+
 	if (!m_prndr->FixGlyphAttrsInRules(this, pfont))
 		return false;
 
@@ -922,6 +925,72 @@ void GdlAttrValueSpec::MaxJustificationLevel(int * pnJLevel)
 /**********************************************************************************************/
 
 /*----------------------------------------------------------------------------------------------
+	Return true if there is at least one collision-fixing pass.
+----------------------------------------------------------------------------------------------*/
+bool GdlRenderer::HasCollisionPass()
+{
+	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
+	{
+		if (m_vprultbl[iprultbl]->HasCollisionPass())
+			return true;
+	}
+	return false;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlRuleTable::HasCollisionPass()
+{
+	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
+	{
+		if (m_vppass[ippass]->CollisionFix() > 0)
+			return true;
+	}
+	return false;
+}
+
+
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
+	Calculate octoboxes to use in collision fixing.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::CalculateCollisionOctoboxes(GrcFont * pfont)
+{
+	Symbol psymSimple = m_psymtbl->FindSymbol(GrcStructName("collision", "simplebox"));
+	int nAttrIdSimple = psymSimple->InternalID();
+
+	m_vgbdy.resize(m_wGlyphIDLim);
+	for (utf16 wGid = 0; wGid < m_wGlyphIDLim; wGid++)
+	{
+		// Should this be treated as a simple box? Get the collision.simplebox attr.
+		bool fSimple = false;
+		GdlExpression * pexp;
+		int nPR;
+		int munitPR;
+		bool fOverride, fShadow;
+		GrpLineAndFile lnf;
+		m_pgax->Get(wGid, nAttrIdSimple,
+				&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
+		if (!pexp)
+			fSimple = false;
+		else
+		{
+			int n;
+			if (!pexp->ResolveToInteger(&n, false))
+				fSimple = false;
+			else
+				fSimple = (n > 0);
+		}
+
+		m_vgbdy[wGid].Initialize(wGid);
+		m_vgbdy[wGid].OverlayGrid(pfont, fSimple);
+	}
+}
+
+
+/**********************************************************************************************/
+
+/*----------------------------------------------------------------------------------------------
 	Assign an internal ID for each glyph attribute. Specifically, the ID is assigned to the
 	generic form of the glyph attribute, and the class-specific versions make use of it.
 
@@ -1208,6 +1277,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			&& (psym->FieldIs(0, "directionality")
 				|| psym->FieldIs(0, "breakweight")
 				|| psym->FieldIs(0, "*actualForPseudo*")
+				|| psym->FieldIs(0, "collision")
 				|| psym->FieldIs(0, "*skipPasses*")))
 		{
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
@@ -1228,8 +1298,32 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGlyph);
 			Symbol psymIsEnc = psymtblMain->FindSymbol(GrcStructName("mirror", "isEncoded"));
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymIsEnc);
-			Assert(psymGlyph->InternalID() + 1 == psymIsEnc->InternalID());
 			Assert(psymGlyph->InternalID() != 0);
+			Assert(psymGlyph->InternalID() + 1 == psymIsEnc->InternalID());
+		}
+		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
+			&& psym->FieldCount() > 1
+			&& psym->FieldIs(0, "collision"))
+		{
+			//	Put collision.flags first, immediately followed by the others in a specific order.
+			Symbol psymFlags = psymtblMain->FindSymbol(GrcStructName("collision", "flags"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymFlags);
+			Symbol psymMinX = psymtblMain->FindSymbol(GrcStructName("collision", "min", "x"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinX);
+			Symbol psymMaxX = psymtblMain->FindSymbol(GrcStructName("collision", "max", "x"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxX);
+			Symbol psymMinY = psymtblMain->FindSymbol(GrcStructName("collision", "min", "y"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinY);
+			Symbol psymMaxY = psymtblMain->FindSymbol(GrcStructName("collision", "max", "y"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxY);
+			Symbol psymMargin = psymtblMain->FindSymbol(GrcStructName("collision", "margin"));
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMargin);
+			Assert(psymFlags->InternalID() != 0);
+			Assert(psymFlags->InternalID() + 1 == psymMinX->InternalID());
+			Assert(psymFlags->InternalID() + 2 == psymMaxX->InternalID());
+			Assert(psymFlags->InternalID() + 3 == psymMinY->InternalID());
+			Assert(psymFlags->InternalID() + 4 == psymMaxY->InternalID());
+			Assert(psymFlags->InternalID() + 5 == psymMargin->InternalID());
 		}
 	}
 
@@ -1315,6 +1409,24 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vnSysDefValues.push_back(0);
 		//	mirror.isEncoded
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("mirror", "isEncoded")));
+		vnSysDefValues.push_back(0);
+	}
+	if (m_prndr->HasCollisionPass())
+	{
+		//	collision.flags
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "flags")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "min", "x")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "max", "x")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "min", "y")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "max", "y")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "margin")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "simplebox")));
 		vnSysDefValues.push_back(0);
 	}
 	if (IncludePassOptimizations())
@@ -2507,7 +2619,8 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 				m_psymName->FullName());
 		delete this;
 	}
-	else if (m_psymName->FitsSymbolType(ksymtSlotAttrPt))	// attach.at, shift, etc.
+	else if (m_psymName->FitsSymbolType(ksymtSlotAttrPtOff)		// attach.at, shift, etc.
+		|| m_psymName->FitsSymbolType(ksymtSlotAttrPt))			// collision.min/max
 	{
 		if (m_psymName->IsReadOnlySlotAttr())
 		{
@@ -2526,15 +2639,24 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 		}
 
 		Symbol psymX = m_psymName->SubField("x");
-		Assert(psymX);
 		Symbol psymY = m_psymName->SubField("y");
-		Assert(psymY);
 		Symbol psymGpoint = m_psymName->SubField("gpoint");
-		Assert(psymGpoint);
 		Symbol psymXoffset = m_psymName->SubField("xoffset");
-		Assert(psymXoffset);
 		Symbol psymYoffset = m_psymName->SubField("yoffset");
-		Assert(psymYoffset);
+		Assert(psymX);
+		Assert(psymY);
+		if (m_psymName->FitsSymbolType(ksymtSlotAttrPtOff))
+		{
+			Assert(psymGpoint);
+			Assert(psymXoffset);
+			Assert(psymYoffset);
+		}
+		else
+		{
+			Assert(psymGpoint == NULL);
+			Assert(psymXoffset == NULL);
+			Assert(psymYoffset == NULL);
+		}
 
 		GdlExpression * pexpX = NULL;
 		GdlExpression * pexpY = NULL;

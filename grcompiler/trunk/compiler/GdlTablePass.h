@@ -32,6 +32,7 @@ public:
 			m_nMaxRuleLoop(nMaxRuleLoop),
 			m_nMaxBackup(nMaxBackup),
 			m_fBidi(false),
+			m_nCollisionFix(0),
 			m_nGlobalID(-1),
 			m_nPreBidiPass(0),
 			m_pfsm(NULL)
@@ -53,6 +54,7 @@ public:
 
 	int MaxRuleLoop()				{ return m_nMaxRuleLoop; }
 	int MaxBackup()					{ return m_nMaxBackup; }
+	int CollisionFix()				{ return m_nCollisionFix; }
 
 	//	Setters:
 	void SetBidi(bool f)			{ m_fBidi = f; }
@@ -60,6 +62,7 @@ public:
 
 	void SetMaxRuleLoop(int n)		{ m_nMaxRuleLoop = n; }
 	void SetMaxBackup(int n)		{ m_nMaxBackup = n; }
+	void SetCollisionFix(int n)		{ m_nCollisionFix = n; }
 
 public:
 	//	Parser:
@@ -90,7 +93,7 @@ public:
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable, int grfrco);
 	void CheckLBsInRules(Symbol psymTable);
-	void ReplaceKern(GrcManager * pcman);
+	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
@@ -169,6 +172,7 @@ protected:
 	bool m_fBidi;
 	std::vector<GdlRule*> m_vprule;
 	std::vector<GdlExpression *> m_vpexpConstraints; // multiple constraints result from -else if-
+	int m_nCollisionFix;
 
 	int m_critMinPreContext;
 	int m_critMaxPreContext;
@@ -279,8 +283,9 @@ public:
 		ReplacementClassSet & setpglfc);
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont, GdlRenderer * prndr);
 	void CheckLBsInRules();
-	void ReplaceKern(GrcManager * pcman);
+	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
 	void MaxJustificationLevel(int * pnJLevel);
+	bool HasCollisionPass();
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
