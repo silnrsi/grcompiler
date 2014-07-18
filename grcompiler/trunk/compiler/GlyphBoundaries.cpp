@@ -98,7 +98,7 @@ void GlyphBoundaries::NormalizePoint(int mx, int my, float * pdx, float * pdy)
 }
 
 /*----------------------------------------------------------------------------------------------
-	Convert normalized point em-units.
+	Convert normalized points to em-units.
 ----------------------------------------------------------------------------------------------*/
 void GlyphBoundaries::UnnormalizePoint(float dx, float dy, int * pmx, int * pmy)
 {
@@ -117,7 +117,6 @@ void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum
 	*pmSum = int(mx + my);
 	*pmDiff = int(mx - my);
 }
-
 
 /*----------------------------------------------------------------------------------------------
 	 Accumulates a point into a glyph or subglyph structure. We store the actual points, but
@@ -560,17 +559,19 @@ int GlyphBoundaries::OutputToGlat(GrcBinaryStream * pbstrm)
 }
 
 /*----------------------------------------------------------------------------------------------
-	 Scale output for Glat table.
+	 Scale full-glyph octabox coordinates and output into the Glat table.
+	 Note that we don't include the bounding box rectangle since it is stored elsewhere
+	 in the font.
 ----------------------------------------------------------------------------------------------*/
 int GlyphBoundaries::OutputGlatFullDiagonals(GrcBinaryStream * pbstrm)
 {
-	// The possible range for positively sloped diagonals is [-1 .. 1]. Scale them to [0 .. 255].
-	int sDPMin = min(int(((m_gbcellEntire.m_dValues[gbcDPMin] + 1) * 127.5)), 255);
-	int sDPMax = min(int(((m_gbcellEntire.m_dValues[gbcDPMax] + 1) * 127.5)), 255);
-
 	// The possible range for negatively sloped diagonals is [0 .. 2]. Scale them to [0 .. 255].
 	int sDNMin = min(int(m_gbcellEntire.m_dValues[gbcDNMin] * 127.5), 255);
 	int sDNMax = min(int(m_gbcellEntire.m_dValues[gbcDNMax] * 127.5), 255);
+
+	// The possible range for positively sloped diagonals is [-1 .. 1]. Scale them to [0 .. 255].
+	int sDPMin = min(int(((m_gbcellEntire.m_dValues[gbcDPMin] + 1) * 127.5)), 255);
+	int sDPMax = min(int(((m_gbcellEntire.m_dValues[gbcDPMax] + 1) * 127.5)), 255);
 
 	pbstrm->WriteByte(sDNMin);
 	pbstrm->WriteByte(sDNMax);
@@ -581,7 +582,7 @@ int GlyphBoundaries::OutputGlatFullDiagonals(GrcBinaryStream * pbstrm)
 }
 
 /*----------------------------------------------------------------------------------------------
-	 Scale output for Glat table.
+	 Scale octabox sub-box coordinates and output into the Glat table.
 ----------------------------------------------------------------------------------------------*/
 int GlyphBoundaries::OutputGlatSubBox(GrcBinaryStream * pbstrm, int icellX, int icellY)
 {
