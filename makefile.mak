@@ -138,6 +138,7 @@ LINK32_OBJS= \
 		 "$(INTDIR)\GrcErrorList.obj" \
 		 "$(INTDIR)\GrcFont.obj" \
 		 "$(INTDIR)\GrcGlyphAttrMatrix.obj" \
+		 "$(INTDIR)\GlyphBoundaries.obj" \
 		 "$(INTDIR)\GrcManager.obj" \
 		 "$(INTDIR)\GrcMasterTable.obj" \
 		 "$(INTDIR)\GrcSymtable.obj" \
@@ -198,6 +199,7 @@ BSC32_SBRS= \
 		 "$(INTDIR)\GrcErrorList.sbr" \
 		 "$(INTDIR)\GrcFont.sbr" \
 		 "$(INTDIR)\GrcGlyphAttrMatrix.sbr" \
+		 "$(INTDIR)\GlyphBoundaries.sbr" \
 		 "$(INTDIR)\GrcManager.sbr" \
 		 "$(INTDIR)\GrcMasterTable.sbr" \
 		 "$(INTDIR)\GrcSymtable.sbr" \
@@ -256,6 +258,7 @@ BSC32_SBRS= \
 "$(INTDIR)\GrcErrorList.obj" "$(INTDIR)\GrcErrorList.sbr" : "$(GRC_SRC)\GrcErrorList.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcFont.obj" "$(INTDIR)\GrcFont.sbr" : "$(GRC_SRC)\GrcFont.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcGlyphAttrMatrix.obj" "$(INTDIR)\GrcGlyphAttrMatrix.sbr" : "$(GRC_SRC)\GrcGlyphAttrMatrix.cpp" "$(INTDIR)"
+"$(INTDIR)\GlyphBoundaries.obj" "$(INTDIR)\GlyphBoundaries.sbr" : "$(GRC_SRC)\GlyphBoundaries.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcManager.obj" "$(INTDIR)\GrcManager.sbr" : "$(GRC_SRC)\GrcManager.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcMasterTable.obj" "$(INTDIR)\GrcMasterTable.sbr" : "$(GRC_SRC)\GrcMasterTable.cpp" "$(INTDIR)"
 "$(INTDIR)\GrcSymtable.obj" "$(INTDIR)\GrcSymtable.sbr" : "$(GRC_SRC)\GrcSymtable.cpp" "$(INTDIR)"
