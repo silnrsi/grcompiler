@@ -275,7 +275,7 @@ public:
 	virtual int AttachedToSlot();
 	bool OverlapsWith(GdlRuleItem * prit, GrcFont * pfont, int grfsdc);
 ///	void CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
-	virtual void ReplaceKern(GrcManager * pcman);
+	virtual void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
 	virtual void MaxJustificationLevel(int * pnJLevel);
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	bool IsSpaceItem(std::vector<utf16> & vwSpaceGlyphs);
@@ -467,7 +467,9 @@ protected:
 		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
-	virtual void ReplaceKern(GrcManager * pcman);
+	virtual void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
+	void MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfont,
+		int ipavsFlags, int ipavsRange, int ipavsPriority);
 	virtual void MaxJustificationLevel(int * pnJLevel);
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	virtual void SetAttachTo(int n)
@@ -482,6 +484,19 @@ protected:
 
 protected:
 	int AttachToSettingValue();
+	void ReplaceAttrSetting(int ipavs, GdlAttrValueSpec * pavsNew)
+	{	
+		pavsNew->CopyLineAndFile(*m_vpavs[ipavs]);
+		GdlAttrValueSpec * pavsOld = m_vpavs[ipavs];
+		m_vpavs[ipavs] = pavsNew;
+		delete pavsOld;
+	}
+	void EraseAttrSetting(int ipavs)
+	{
+		GdlAttrValueSpec * pavsToDelete = m_vpavs[ipavs];
+		m_vpavs.erase(m_vpavs.begin() + ipavs);
+		delete pavsToDelete;
+	}
 
 public:
 	//	Compiler:
@@ -869,7 +884,7 @@ public:
 	void GiveOverlapWarnings(GrcFont * pfont, int grfsdc);
 	bool CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
 	bool HasReprocessing();
-	void ReplaceKern(GrcManager * pcman);
+	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);

@@ -86,8 +86,15 @@ bool GrcManager::Compile(GrcFont * /*pfont*/)
 void GrcManager::CalculateGlatVersion()
 {
 	int fxdGlatVersion = VersionForTable(ktiGlat);
-	//	The version of the Glat table really just depends on the number of glyph attributes defined.
-	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrsGlat1 && fxdGlatVersion < 0x00020000)
+	//	The version of the Glat table depends on the number of glyph attributes defined
+	//	and whether we include the glyph approximation octoboxes for collision fixing.
+
+	if (m_prndr->HasCollisionPass())
+	{
+		g_errorList.AddWarning(3535, NULL, "Version 3.0 of the Glat table will be generated.");
+		fxdGlatVersion = 0x00030000;
+	}
+	else if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrsGlat1 && fxdGlatVersion < 0x00020000)
 	{
 		g_errorList.AddWarning(3531, NULL, "Version 2.0 of the Glat table will be generated.");
 		fxdGlatVersion = 0x00020000;
@@ -1233,6 +1240,14 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 	case kslatJ3Weight:			return "justify_3_weight";
 	case kslatJ3Width:			return "justify_3_width";
 	case kslatSegSplit:			return "segsplit";
+	case kslatColFlags:			return "col_flags";
+	case kslatColMargin:		return "col_margin";
+	case kslatColMinX:			return "col_min_x";
+	case kslatColMinY:			return "col_min_y";
+	case kslatColMaxX:			return "col_max_x";
+	case kslatColMaxY:			return "col_max_y";
+	case kslatColFixX:			return "col_fix_x";
+	case kslatColFixY:			return "col_fix_y";
 	default:
 		Assert(false);
 		char rgch[20];
@@ -1706,14 +1721,18 @@ void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule
 		bool fAttWith = false;
 		strmOut << " { ";
 
-		// Do attach attributes first. Use the {} structure to take up less room.
+		// Do attach and collision attributes first.
+		// Use embedded {} structure to take up less room.
 		int ciavsAttach = 0;
+		int ciavsCollision = 0;
 		for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 		{
 			if (m_vpavs[iavs]->m_psymName->IsAttachment())
 				ciavsAttach++;
+			if (m_vpavs[iavs]->m_psymName->IsCollisionAttr())
+				ciavsCollision++;
 		}
-		if (ciavsAttach)
+		if (ciavsAttach > 0)
 		{
 			strmOut << " attach {";
 			for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
@@ -1723,11 +1742,27 @@ void GdlSetAttrItem::AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * /*prule
 			}
 			strmOut << "} ";
 		}
+		if (ciavsCollision > 1)
+		{
+			strmOut << " collision {";
+			for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
+			{
+				if (m_vpavs[iavs]->m_psymName->IsCollisionAttr())
+				{
+					strmOut << m_vpavs[iavs]->m_psymName->FullAbbrevOmit("collision");
+					strmOut << " " << m_vpavs[iavs]->m_psymOperator->FullAbbrev() << " ";
+					m_vpavs[iavs]->m_pexpValue->PrettyPrint(pcman, strmOut, fXml);
+					strmOut << "; ";
+				}
+			}
+			strmOut << "} ";
+		}
 
 		// Now do everything else.
 		for (size_t iavs = 0; iavs < m_vpavs.size(); iavs++)
 		{
-			if (!m_vpavs[iavs]->m_psymName->IsAttachment())
+			if (!m_vpavs[iavs]->m_psymName->IsAttachment()
+					&& (!m_vpavs[iavs]->m_psymName->IsCollisionAttr() || ciavsCollision <= 1))
 				m_vpavs[iavs]->PrettyPrint(pcman, strmOut, fXml, &fAtt, &fAttAt, &fAttWith, m_vpavs.size());
 		}
 		strmOut << " }";
@@ -1779,34 +1814,6 @@ void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strm
 void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 	bool * /*pfAtt*/, bool * /*pfAttAt*/, bool * /*pfAttWith*/, int /*cpavs*/)
 {
-	//if (cpavs > 6 && m_psymName->IsAttachment())
-	//{
-	//	if (*pfAtt)
-	//		return;
-	//	*pfAtt = true;
-	//	strmOut << "attach {...} ";
-	//	return;
-	//}
-
-	//if (m_psymName->IsAttachAtField() && m_fFlattened)
-	//{
-	//	if (*pfAttAt)
-	//		return;
-	//	*pfAttAt = true;
-	//	strmOut << "attach.at=...";
-	//	return;
-	//}
-	//else if (m_psymName->IsAttachWithField() && m_fFlattened)
-	//{
-	//	if (*pfAttWith)
-	//		return;
-	//	*pfAttWith = true;
-	//	strmOut << "attach.with=...";
-	//	return;
-	//}
-	//else
-	//	strmOut << m_psymName->FullAbbrev();
-	
 	strmOut << m_psymName->FullAbbrev();
 	strmOut << " " << m_psymOperator->FullAbbrev() << " ";
 	m_pexpValue->PrettyPrint(pcman, strmOut, fXml);

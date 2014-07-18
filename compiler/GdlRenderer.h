@@ -152,8 +152,9 @@ public:
 	void DeleteAllBadGlyphs();
 	bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont);
 	bool CheckLBsInRules();
-	void ReplaceKern(GrcManager * pcman);
+	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
 	void MaxJustificationLevel(int * pnLevel);
+	bool HasCollisionPass();
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);

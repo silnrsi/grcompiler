@@ -1815,6 +1815,15 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	{
 		prgibGlyphOffsets[wGlyphID] = cbOutput;
 
+		if (fxdGlatVersion >= 0x00030000)
+		{
+			// Output glyph-approximation octoboxes.
+			if (wGlyphID < m_wGlyphIDLim)
+				cbOutput += m_vgbdy[wGlyphID].OutputToGlat(pbstrm);
+			else
+				cbOutput += GlyphBoundaries::OutputToGlatNonexistent(pbstrm);
+		}
+
 		//	Convert breakweight values depending on the table version to output.
 		ConvertBwForVersion(wGlyphID, nAttrIdBw);
 
@@ -1925,7 +1934,6 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 
 	delete[] prgibGlyphOffsets;
 }
-
 
 /*----------------------------------------------------------------------------------------------
 	Return the final attribute value, resolved to an integer.
@@ -2066,75 +2074,83 @@ int GrcManager::VersionForRules()
 	Set and return the version of the Silf table that is needed to handle the size of
 	the class map (replacement class data).
 ----------------------------------------------------------------------------------------------*/
-int GrcManager::SilfVersionForClassMap(int fxdSilfSpecVersion)
+int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 {
-	
-	int cbSpaceNeeded;	// # of bytes needed = max offset
+	int fxdResult = fxdSilfSpecVersion;
 
-	//	number of classes
-	cbSpaceNeeded = 4;
+	//if (m_prndr->HasCollisionPass())
+	//{
+	//	fxdResult = 0x00050000;
+	//}
+	//else
+	//{
+		//	Calculate it based on what is needed to handle the size of the class map
+		//	(replacement class data).
+		int cbSpaceNeeded;	// # of bytes needed = max offset
 
-	//	the offsets to classes themselves, assuming short ints
-	cbSpaceNeeded += (m_vpglfcReplcmtClasses.size() + 1) * 2;
+		//	number of classes
+		cbSpaceNeeded = 4;
 
-	//	Space needed for the class glyph lists
+		//	the offsets to classes themselves, assuming short ints
+		cbSpaceNeeded += (m_vpglfcReplcmtClasses.size() + 1) * 2;
 
-	for (int ipglfc = 0; ipglfc < m_cpglfcLinear; ipglfc++)
-	{
-		GdlGlyphClassDefn * pglfc = m_vpglfcReplcmtClasses[ipglfc];
+		//	Space needed for the class glyph lists
 
-		Assert(pglfc->ReplcmtOutputClass() || pglfc->GlyphIDCount() <= 1);
-		//Assert(pglfc->ReplcmtOutputID() == cTmp);
-
-		std::vector<utf16> vwGlyphs;
-		pglfc->GenerateOutputGlyphList(vwGlyphs);
-
-		cbSpaceNeeded += vwGlyphs.size() * 2;
-	}
-
-	//	indexed classes (input)
-	for (int ipglfc = m_cpglfcLinear; ipglfc < signed(m_vpglfcReplcmtClasses.size()); ipglfc++)
-	{
-		GdlGlyphClassDefn * pglfc = m_vpglfcReplcmtClasses[ipglfc];
-
-		Assert(pglfc->ReplcmtInputClass());
-		//Assert(pglfc->ReplcmtInputID() == cTmp);
-
-		std::vector<utf16> vwGlyphs;
-		std::vector<int> vnIndices;
-		pglfc->GenerateInputGlyphList(vwGlyphs, vnIndices);
-		int n = signed(vwGlyphs.size());
-		cbSpaceNeeded += 8;	// search constants
-		cbSpaceNeeded += vwGlyphs.size() * 4;
-	}
-
-	if (cbSpaceNeeded > 0xFFFF)
-	{
-		// Offsets won't all fit in short ints; we need long ints.
-		SetSilfTableVersion(0x00040000, false);
-		if (fxdSilfSpecVersion != 0x00040000)
+		for (int ipglfc = 0; ipglfc < m_cpglfcLinear; ipglfc++)
 		{
-			if (UserSpecifiedVersion())
-				g_errorList.AddWarning(5504, NULL,
-					"Version ",
-					VersionString(fxdSilfSpecVersion),
-					" of the Silf table is inadequate for your specification; version ",
-					VersionString(0x00040000),
-					" will be generated instead.");
-			else
-				g_errorList.AddWarning(5505, NULL,
-					"Version ",
-					VersionString(0x00040000),
-					" of the Silf table will be generated.");
+			GdlGlyphClassDefn * pglfc = m_vpglfcReplcmtClasses[ipglfc];
 
+			Assert(pglfc->ReplcmtOutputClass() || pglfc->GlyphIDCount() <= 1);
+			//Assert(pglfc->ReplcmtOutputID() == cTmp);
+
+			std::vector<utf16> vwGlyphs;
+			pglfc->GenerateOutputGlyphList(vwGlyphs);
+
+			cbSpaceNeeded += vwGlyphs.size() * 2;
 		}
-		return 0x00040000;
-	}
-	else
+
+		//	indexed classes (input)
+		for (int ipglfc = m_cpglfcLinear; ipglfc < signed(m_vpglfcReplcmtClasses.size()); ipglfc++)
+		{
+			GdlGlyphClassDefn * pglfc = m_vpglfcReplcmtClasses[ipglfc];
+
+			Assert(pglfc->ReplcmtInputClass());
+			//Assert(pglfc->ReplcmtInputID() == cTmp);
+
+			std::vector<utf16> vwGlyphs;
+			std::vector<int> vnIndices;
+			pglfc->GenerateInputGlyphList(vwGlyphs, vnIndices);
+			int n = signed(vwGlyphs.size());
+			cbSpaceNeeded += 8;	// search constants
+			cbSpaceNeeded += vwGlyphs.size() * 4;
+		}
+
+		if (cbSpaceNeeded > 0xFFFF)
+		{
+			// Offsets won't all fit in short ints; we need long ints.
+			fxdResult = 0x00040000;
+		}
+//	}
+
+	if (fxdResult > fxdSilfSpecVersion)
 	{
-		return fxdSilfSpecVersion;
+		if (UserSpecifiedVersion())
+			g_errorList.AddWarning(5504, NULL,
+				"Version ",
+				VersionString(fxdSilfSpecVersion),
+				" of the Silf table is inadequate for your specification; version ",
+				VersionString(fxdResult),
+				" will be generated instead.");
+
+		else
+			g_errorList.AddWarning(5505, NULL,
+				"Version ",
+				VersionString(fxdResult),
+				" of the Silf table will be generated.");
 	}
 
+	SetTableVersion(ktiSilf, fxdResult);
+	return fxdResult;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2187,7 +2203,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	*pnSilfOffset = pbstrm->Position();
 
 	int fxdSilfVersion = VersionForTable(ktiSilf);
-	fxdSilfVersion = SilfVersionForClassMap(fxdSilfVersion);
+	fxdSilfVersion = CalculateSilfVersion(fxdSilfVersion);
 	SetTableVersion(ktiSilf, fxdSilfVersion);
 
 	//	version number
@@ -2292,6 +2308,12 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		// mirror attribute ID
 		psym = m_psymtbl->FindSymbol(GrcStructName("mirror", "glyph"));
 		pbstrm->WriteByte(psym->InternalID());
+
+		if (fxdSilfVersion >= 0x00050000)
+		{
+			psym = m_psymtbl->FindSymbol(GrcStructName("collision", "flags"));
+			pbstrm->WriteByte(psym->InternalID());
+		}
 
 		if (this->IncludePassOptimizations())
 		{
@@ -2768,8 +2790,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int nOffsetToDebugArrays = 0;
 	long lOffsetToDebugArraysPos = 0;
 
-	//	flags--not used
-	pbstrm->WriteByte(0);
+	//	flags: bits 0-2 = collision fix
+	pbstrm->WriteByte(m_nCollisionFix);
 	//	MaxRuleLoop
 	pbstrm->WriteByte(m_nMaxRuleLoop);
 	//	max rule context

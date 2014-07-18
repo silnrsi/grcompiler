@@ -145,7 +145,8 @@ public:
 		case 0x00030000:	m_fxdCompilerVersion = 0x00030000;		break;
 		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
 		case 0x00030002:	m_fxdCompilerVersion = 0x00040001;		break;
-		case 0x00040000:	m_fxdCompilerVersion = 0x00050000;		break;
+		case 0x00040000:	m_fxdCompilerVersion = 0x00040002;		break;
+		case 0x00050000:	m_fxdCompilerVersion = 0x00050000;		break;
 		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
 	}
@@ -153,7 +154,7 @@ public:
 	int VersionForTable(int ti);
 	int VersionForTable(int ti, int fxdRequestedVersion);
 	int VersionForRules();
-	int SilfVersionForClassMap(int fxdSpecVersion);
+	int CalculateSilfVersion(int fxdSpecVersion);
 
 	void SetNameTableStart(int n)
 	{
@@ -226,7 +227,7 @@ protected:
 	void WalkParseTree(RefAST ast);
 	void WalkTopTree(RefAST ast);
 	void WalkEnvTree(RefAST ast, TableType tblt, GdlRuleTable *, GdlPass *);
-	void WalkDirectivesTree(RefAST ast);
+	void WalkDirectivesTree(RefAST ast, int * nCollisionFix = NULL);
 	void WalkTableTree(RefAST ast);
 	void WalkTableElement(RefAST ast, TableType tblt, GdlRuleTable * prultbl, GdlPass * ppass);
 	void WalkGlyphTableTree(RefAST ast);
@@ -325,6 +326,7 @@ protected:
 		bool * pfFixPassConstraints);
 
 	bool AssignInternalGlyphAttrIDs();
+	void CalculateCollisionOctoboxes(GrcFont * pfont);
 
 	bool AssignGlyphAttrsToClassMembers(GrcFont * pfont);
 	bool ProcessGlyphAttributes(GrcFont * pfont);
@@ -403,6 +405,7 @@ protected:
 		int * pibOffset, int * pcbSize);
 	void OutputGlatAndGloc(GrcBinaryStream * pbstrm, int * pnGlocOffset, int * pnGlocSize,
 		int * pnGlatOffset, int * pnGlatSize);
+	int OutputGlatOctoboxes(GrcBinaryStream * pbstrm);
 	void OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, int * pnSilfSize);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, int * pnFeatSize);
 	void OutputSileTable(GrcBinaryStream * pbstrm, utf16 * pchwFontName, long nChecksum);
@@ -499,7 +502,7 @@ protected:
 
 	//	For compiler use:
 
-	int m_wGlyphIDLim;	// lim of range of glyph IDs in the font
+	int m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
 	int m_cwGlyphIDs;
 
 	int m_cpsymBuiltIn;		// total number of built-in attributes
@@ -528,6 +531,8 @@ protected:
 	//	The following matrix contains the glyph attribute assignments for
 	//	all of the glyphs in the system. Used by the parser and post-parser.
 	GrcGlyphAttrMatrix * m_pgax;
+
+	std::vector<GlyphBoundaries> m_vgbdy;
 
 	//	The following defines an array containing the ligature component mappings for
 	//	each glyph. For glyphs that are not ligatures, the array contains NULL.
