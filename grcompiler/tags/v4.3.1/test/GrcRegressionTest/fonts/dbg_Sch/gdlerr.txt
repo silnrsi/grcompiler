@@ -1,0 +1,27 @@
+Graphite Compilation Results
+
+GDL file: SchMain.gdl
+Input font file: SchInput.ttf
+Output font file: SchBenchmark.ttf
+Output font family: Scheherazade GrcRegTest
+Silf table version: 2.0
+Create separate control file: no
+
+*******************************************************
+
+warning(4510): Default Unicode bidi char type for 0x0009 = S, which is not handled; char will be treated as neutral (ON)
+
+*******************************************************
+
+Table versions generated:
+  Silf: 2.0
+  Gloc: 1.0
+  Glat: 1.0
+  Feat: 1.0
+  Sill: 1.0
+
+Minimal compiler version required: 2.0
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 1 warning (135 warnings ignored)

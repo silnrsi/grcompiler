@@ -1,0 +1,1221 @@
+GLYPH ATTRIBUTE IDS
+
+0: *actualForPseudo*
+1: *skipPasses*
+2: breakweight
+3: directionality
+4: mirror.glyph
+5: mirror.isEncoded
+
+
+
+GLYPH ATTRIBUTE VALUES
+
+0  [0x0000]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+1  [0x0001]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+2  [0x0002]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 15 [0x000f]
+   directionality = 9
+
+
+3  [0x0003]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+4  [0x0004]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+5  [0x0005]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+6  [0x0006]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+7  [0x0007]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+8  [0x0008]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+9  [0x0009]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+10  [0x000a]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+11  [0x000b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+12  [0x000c]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+13  [0x000d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 5
+
+
+14  [0x000e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 8
+
+
+15  [0x000f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 5
+
+
+16  [0x0010]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 8
+
+
+17  [0x0011]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 8
+
+
+18  [0x0012]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+19  [0x0013]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+20  [0x0014]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+21  [0x0015]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+22  [0x0016]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+23  [0x0017]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+24  [0x0018]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+25  [0x0019]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+26  [0x001a]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+27  [0x001b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+28  [0x001c]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 8
+
+
+29  [0x001d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+30  [0x001e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+31  [0x001f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+32  [0x0020]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+33  [0x0021]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+34  [0x0022]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+35  [0x0023]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+36  [0x0024]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+37  [0x0025]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+38  [0x0026]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+39  [0x0027]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+40  [0x0028]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+41  [0x0029]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+42  [0x002a]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+43  [0x002b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+44  [0x002c]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+45  [0x002d]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+46  [0x002e]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+47  [0x002f]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+48  [0x0030]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+49  [0x0031]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+50  [0x0032]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+51  [0x0033]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+52  [0x0034]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+53  [0x0035]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+54  [0x0036]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+55  [0x0037]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+56  [0x0038]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+57  [0x0039]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+58  [0x003a]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+59  [0x003b]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+60  [0x003c]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+61  [0x003d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+62  [0x003e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+63  [0x003f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+64  [0x0040]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+65  [0x0041]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+66  [0x0042]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+67  [0x0043]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+68  [0x0044]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+69  [0x0045]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+70  [0x0046]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+71  [0x0047]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+72  [0x0048]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+73  [0x0049]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+74  [0x004a]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+75  [0x004b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+76  [0x004c]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+77  [0x004d]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+78  [0x004e]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+79  [0x004f]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+80  [0x0050]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+81  [0x0051]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+82  [0x0052]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+83  [0x0053]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+84  [0x0054]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+85  [0x0055]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+86  [0x0056]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+87  [0x0057]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+88  [0x0058]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+89  [0x0059]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+90  [0x005a]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+91  [0x005b]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+92  [0x005c]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+93  [0x005d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+94  [0x005e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+95  [0x005f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+96  [0x0060]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+97  [0x0061]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 15 [0x000f]
+   directionality = 8
+
+
+98  [0x0062]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+99  [0x0063]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+100  [0x0064]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+101  [0x0065]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+102  [0x0066]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+103  [0x0067]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+104  [0x0068]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+105  [0x0069]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+106  [0x006a]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+107  [0x006b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+108  [0x006c]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+109  [0x006d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+110  [0x006e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 10 [0x000a]
+
+
+111  [0x006f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+112  [0x0070]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+113  [0x0071]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+114  [0x0072]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+115  [0x0073]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+116  [0x0074]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+117  [0x0075]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+118  [0x0076]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+119  [0x0077]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+120  [0x0078]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+121  [0x0079]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 4
+
+
+122  [0x007a]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+123  [0x007b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+124  [0x007c]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+125  [0x007d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+126  [0x007e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+127  [0x007f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+128  [0x0080]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+129  [0x0081]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+130  [0x0082]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+131  [0x0083]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+132  [0x0084]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+133  [0x0085]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+134  [0x0086]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+135  [0x0087]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+136  [0x0088]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+137  [0x0089]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+138  [0x008a]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+139  [0x008b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+140  [0x008c]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+141  [0x008d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+142  [0x008e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+143  [0x008f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+144  [0x0090]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+145  [0x0091]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+146  [0x0092]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+147  [0x0093]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+148  [0x0094]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+149  [0x0095]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+150  [0x0096]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+151  [0x0097]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+152  [0x0098]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+153  [0x0099]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+154  [0x009a]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+155  [0x009b]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+156  [0x009c]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+157  [0x009d]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+158  [0x009e]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+159  [0x009f]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+160  [0x00a0]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+161  [0x00a1]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+162  [0x00a2]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+163  [0x00a3]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+164  [0x00a4]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+165  [0x00a5]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+166  [0x00a6]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+167  [0x00a7]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+168  [0x00a8]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+169  [0x00a9]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+170  [0x00aa]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+171  [0x00ab]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+172  [0x00ac]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+173  [0x00ad]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+174  [0x00ae]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+175  [0x00af]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+176  [0x00b0]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+177  [0x00b1]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+178  [0x00b2]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+179  [0x00b3]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+180  [0x00b4]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+181  [0x00b5]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+182  [0x00b6]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+183  [0x00b7]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+184  [0x00b8]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+185  [0x00b9]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+186  [0x00ba]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+187  [0x00bb]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+188  [0x00bc]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+189  [0x00bd]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+190  [0x00be]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+191  [0x00bf]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+192  [0x00c0]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+193  [0x00c1]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+194  [0x00c2]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+195  [0x00c3]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+196  [0x00c4]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+197  [0x00c5]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 1
+
+
+198  [0x00c6]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+199  [0x00c7]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+200  [0x00c8]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+201  [0x00c9]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+202  [0x00ca]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+203  [0x00cb]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+204  [0x00cc]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+205  [0x00cd]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+206  [0x00ce]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+207  [0x00cf]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+208  [0x00d0]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+209  [0x00d1]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+210  [0x00d2]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+211  [0x00d3]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+212  [0x00d4]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+   directionality = 6
+
+
+213  [0x00d5]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+214  [0x00d6]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+215  [0x00d7]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+216  [0x00d8]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+217  [0x00d9]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
+218  [0x00da]
+   *skipPasses* = 1 [0x0001  /  1]
+   breakweight = 30 [0x001e]
+
+
