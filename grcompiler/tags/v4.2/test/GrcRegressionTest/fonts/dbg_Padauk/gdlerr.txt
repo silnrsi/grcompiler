@@ -1,0 +1,30 @@
+Graphite Compilation Results
+
+GDL file: PadaukMain.gdl
+Input font file: PadaukInput.ttf
+Output font file: PadaukBenchmark_v3.ttf
+Output font family: Padauk GrcRegTest
+Silf table version: 3.0
+Create separate control file: no
+
+*******************************************************
+
+PadaukMain.gdl(466) : warning(3532): Item 1: deleted slot automatically associated with slot 3
+PadaukMain.gdl(497) : warning(3529): Item 1: deleted item was not associated with another slot
+PadaukMain.gdl(498) : warning(3529): Item 1: deleted item was not associated with another slot
+PadaukMain.gdl(499) : warning(3529): Item 1: deleted item was not associated with another slot
+
+*******************************************************
+
+Table versions generated:
+  Silf: 3.0
+  Gloc: 1.0
+  Glat: 1.0
+  Feat: 1.0
+  Sill: 1.0
+
+Minimal compiler version required: 3.0
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 4 warnings (65 warnings ignored)

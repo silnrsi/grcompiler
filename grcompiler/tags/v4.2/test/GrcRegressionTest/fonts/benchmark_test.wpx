@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE WpDoc SYSTEM "WorldPad.dtd">
+<WpDoc wpxVersion="2.0">
+
+<Languages>
+  <LgWritingSystem id="en" language="en" type="ISO-639-1">
+    <Name24>
+      <AUni ws="en">English</AUni>
+    </Name24>
+    <Abbr24>
+      <AUni ws="en">Eng</AUni>
+    </Abbr24>
+    <Locale24><Integer val="1033"/></Locale24>
+    <RightToLeft24><Boolean val="false"/></RightToLeft24>
+    <BodyFontFeatures24><Uni>1051=0</Uni></BodyFontFeatures24>
+    <DefaultSerif24><Uni>Times New Roman</Uni></DefaultSerif24>
+    <DefaultSansSerif24><Uni>Arial</Uni></DefaultSansSerif24>
+    <DefaultBodyFont24><Uni>Charis SIL</Uni></DefaultBodyFont24>
+    <DefaultMonospace24><Uni>Courier New</Uni></DefaultMonospace24>
+    <ValidChars24><Uni>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;  &lt;ValidCharacters&gt;  &lt;WordForming&gt;a￼A￼b￼B￼c￼C￼d￼D￼e￼E￼f￼F￼g￼G￼h￼H￼i￼I￼j￼J￼k￼K￼l￼L￼m￼M￼n￼N￼o￼O￼p￼P￼q￼Q￼r￼R￼s￼S￼t￼T￼u￼U￼v￼V￼w￼W￼x￼X￼y￼Y￼z￼Z￼-￼'&lt;/WordForming&gt;  &lt;Numeric&gt;0￼1￼2￼3￼4￼5￼6￼7￼8￼9&lt;/Numeric&gt;  &lt;Other&gt;U+0020￼–￼,￼;￼:￼!￼?￼.￼‘￼’￼&quot;￼“￼”￼(￼)￼[￼]￼{￼}￼/￼&amp;amp;&lt;/Other&gt;  &lt;/ValidCharacters&gt;</Uni></ValidChars24>
+    <MatchedPairs24><Uni>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;  &lt;MatchedPairs&gt;  &lt;pair open=&quot;(&quot; close=&quot;)&quot; permitParaSpanning=&quot;false&quot; /&gt;  &lt;pair open=&quot;[&quot; close=&quot;]&quot; permitParaSpanning=&quot;true&quot; /&gt;  &lt;pair open=&quot;{&quot; close=&quot;}&quot; permitParaSpanning=&quot;false&quot; /&gt;  &lt;/MatchedPairs&gt;  </Uni></MatchedPairs24>
+    <PunctuationPatterns24><Uni>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;  &lt;PunctuationPatterns&gt;  &lt;pattern value=&quot;, &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;. &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; “&quot; context=&quot;WordInitial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;; &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;&amp;#x27;&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;: &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;? &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ‘&quot; context=&quot;WordInitial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;–&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;! &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;-&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;?” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;,” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; (&quot; context=&quot;WordInitial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.’ &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;– &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; “ &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;!” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;) &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ” &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;,&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;,’ &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; / &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;.”&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?’ &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;&amp;#x27; &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.) &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;); &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;!’ &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ); &quot; context=&quot;Isolated&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.’&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;), &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;/&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; . &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;). &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;;&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ; &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ) &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; , &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;’? &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;’ &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ’ &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ”&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; // &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;,”&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;’?” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;’&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;”; &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ? &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;): &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;”–&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;’–&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;:&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;”? &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;’; &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;?”&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;”– &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;,’&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; –&quot; context=&quot;WordInitial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ’&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;”&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;!”&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ). &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?’&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;)– &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;–“&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; //&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ! &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; – &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;., &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;!&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;’– &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; : &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ?” &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ‘ &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; .” &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?”– &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;....” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.)&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;,, &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;.”) &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;!’&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; ), &quot; context=&quot;Isolated&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ,&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; [&quot; context=&quot;WordInitial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.] &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; ( &quot; context=&quot;Isolated&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;!’: &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;!– &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; )/ &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; “(&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;)–&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;)&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;’!” &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;),&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?”) &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; .&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;–‘&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?”–&quot; context=&quot;WordMedial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;?’– &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;’. &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;!”–&quot; context=&quot;WordMedial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; (“&quot; context=&quot;WordInitial&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;?– &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;- &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; “. &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot; !’ &quot; context=&quot;Isolated&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;?) &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;.)” &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot; &amp;#x27;&quot; context=&quot;WordInitial&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;!”? &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;.)– &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;pattern value=&quot;”), &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;”: &quot; context=&quot;WordFinal&quot; valid=&quot;true&quot; /&gt;  &lt;pattern value=&quot;;) &quot; context=&quot;WordFinal&quot; valid=&quot;false&quot; /&gt;  &lt;/PunctuationPatterns&gt;  </Uni></PunctuationPatterns24>
+    <QuotationMarks24><Uni>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;  &lt;QuotationMarks LangUsedFrom=&quot;en&quot; ContinuationType=&quot;RequireAll&quot; ContinuationMark=&quot;Opening&quot;&gt;  &lt;Levels&gt;  &lt;Pair Opening=&quot;“&quot; Closing=&quot;”&quot; /&gt;  &lt;Pair Opening=&quot;‘&quot; Closing=&quot;’&quot; /&gt;  &lt;/Levels&gt;  &lt;/QuotationMarks&gt;  </Uni></QuotationMarks24>
+    <ICULocale24><Uni>en</Uni></ICULocale24>
+    <SpellCheckDictionary24><Uni>en</Uni></SpellCheckDictionary24>
+    <KeyboardType24><Uni>standard</Uni></KeyboardType24>
+    <Collations24>
+      <LgCollation>
+        <Name30>
+          <AUni ws="en">Default Collation</AUni>
+        </Name30>
+        <WinLCID30><Integer val="1033"/></WinLCID30>
+        <WinCollation30><Uni>Latin1_General_CI_AI</Uni></WinCollation30>
+      </LgCollation>
+    </Collations24>
+  </LgWritingSystem>
+  <LgWritingSystem id="eabs" language="abs" type="SIL">
+    <Locale24><Integer val="1057"/></Locale24>
+    <RightToLeft24><Boolean val="true"/></RightToLeft24>
+    <DefaultSerif24><Uni>Charis SIL</Uni></DefaultSerif24>
+    <DefaultSansSerif24><Uni>Scheherazade Demo</Uni></DefaultSansSerif24>
+    <DefaultBodyFont24><Uni>Charis SIL</Uni></DefaultBodyFont24>
+    <DefaultMonospace24><Uni>Scheherazade Demo</Uni></DefaultMonospace24>
+    <ICULocale24><Uni>eabs</Uni></ICULocale24>
+    <SpellCheckDictionary24><Uni>eabs</Uni></SpellCheckDictionary24>
+    <KeyboardType24><Uni>keyman</Uni></KeyboardType24>
+    <KeymanKeyboard24><Uni>Arabic Demo</Uni></KeymanKeyboard24>
+    <Collations24>
+      <LgCollation>
+        <WinLCID30><Integer val="1033"/></WinLCID30>
+        <WinCollation30><Uni>Latin1_General_CI_AI</Uni></WinCollation30>
+      </LgCollation>
+    </Collations24>
+  </LgWritingSystem>
+</Languages>
+
+<Styles>
+  <StStyle>
+    <Name17><Uni>Normal</Uni></Name17>
+    <Type17><Integer val="0"/></Type17>
+    <BasedOn17><Uni></Uni></BasedOn17>
+    <Next17><Uni>Normal</Uni></Next17>
+    <Rules17>
+    </Rules17>
+  </StStyle>
+  <StStyle>
+    <Name17><Uni>Bulleted List</Uni></Name17>
+    <Type17><Integer val="0"/></Type17>
+    <BasedOn17><Uni>Normal</Uni></BasedOn17>
+    <Next17><Uni>Bulleted List</Uni></Next17>
+    <Rules17>
+      <Prop firstIndent="-18000" bulNumScheme="101" bulNumStartAt="1"/>
+    </Rules17>
+  </StStyle>
+  <StStyle>
+    <Name17><Uni>Heading 1</Uni></Name17>
+    <Type17><Integer val="0"/></Type17>
+    <BasedOn17><Uni>Normal</Uni></BasedOn17>
+    <Next17><Uni>Heading 1</Uni></Next17>
+    <Rules17>
+      <Prop bold="invert" fontsize="14000" fontsizeUnit="mpt" spaceBefore="12000" spaceAfter="3000"/>
+    </Rules17>
+  </StStyle>
+  <StStyle>
+    <Name17><Uni>Heading 2</Uni></Name17>
+    <Type17><Integer val="0"/></Type17>
+    <BasedOn17><Uni>Normal</Uni></BasedOn17>
+    <Next17><Uni>Heading 2</Uni></Next17>
+    <Rules17>
+      <Prop italic="invert" fontsize="12000" fontsizeUnit="mpt" spaceBefore="12000" spaceAfter="3000"/>
+    </Rules17>
+  </StStyle>
+  <StStyle>
+    <Name17><Uni>Heading 3</Uni></Name17>
+    <Type17><Integer val="0"/></Type17>
+    <BasedOn17><Uni>Normal</Uni></BasedOn17>
+    <Next17><Uni>Heading 3</Uni></Next17>
+    <Rules17>
+      <Prop fontsize="12000" fontsizeUnit="mpt" spaceBefore="12000" spaceAfter="3000"/>
+    </Rules17>
+  </StStyle>
+  <StStyle>
+    <Name17><Uni>Numbered List</Uni></Name17>
+    <Type17><Integer val="0"/></Type17>
+    <BasedOn17><Uni>Normal</Uni></BasedOn17>
+    <Next17><Uni>Numbered List</Uni></Next17>
+    <Rules17>
+      <Prop firstIndent="-18000" bulNumScheme="10"/>
+    </Rules17>
+  </StStyle>
+  <StStyle>
+    <Name17><Uni>External Link</Uni></Name17>
+    <Type17><Integer val="1"/></Type17>
+    <BasedOn17><Uni>Normal</Uni></BasedOn17>
+    <Next17><Uni>External Link</Uni></Next17>
+    <Rules17>
+      <Prop underline="single" forecolor="7f007f" undercolor="7f007f"/>
+    </Rules17>
+  </StStyle>
+</Styles>
+
+<Body docRightToLeft="false">
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en">This is a file to test that the GrcRegressionTest benchmark fonts are basically functional.</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en">Ideally this file should be enhanced to actually test all the behavior of each font. For now we just test that the file loads and does some basic things.</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" bold="invert">Charis:</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" forecolor="blue" fontFamily="Charis GrcRegTest" fontVariations="1038=1">Ħ</Run>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="Charis GrcRegTest">ə̌̊</Run>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="Charis GrcRegTest" fontVariations="1052=1">l</Run>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" forecolor="red" fontFamily="Charis GrcRegTest" fontVariations="1052=1">̈</Run>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="Charis GrcRegTest" fontVariations="1052=1">l</Run>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="Charis GrcRegTest">o wor̫l͝d. ꜓꜔꜒꜔꜕꜖꜒꜕</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontFamily="Charis GrcRegTest"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" bold="invert">Padauk:</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="Padauk v3 GrcRegTest">တစြရုနူဃြ့</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontFamily="Charis GrcRegTest"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" bold="invert">Pig Latin v2:</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="PigLatin v2 GrcRegTest">Hello world.</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontFamily="Charis GrcRegTest"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" bold="invert">Pig Latin v3:</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontsize="26000" fontsizeUnit="mpt" fontFamily="PigLatin v3 GrcRegTest">Hello world.</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontFamily="Charis GrcRegTest"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" bold="invert">Scheherazade:</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop rightToLeft="1" namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="transparent" fontFamily="Scheherazade GrcRegTest">ڇڇَڇڶڟڇَڇ ٯٯۜٯ ٯ</Run>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="blue" fontFamily="Scheherazade GrcRegTest">ِ</Run>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="red" fontFamily="Scheherazade GrcRegTest">ّ</Run>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="transparent" fontFamily="Scheherazade GrcRegTest"> </Run>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="transparent" fontFamily="Scheherazade GrcRegTest" fontVariations="2001=1">ٯ</Run>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="red" fontFamily="Scheherazade GrcRegTest" fontVariations="2001=1">ِ</Run>
+        <Run ws="eabs" fontsize="36000" fontsizeUnit="mpt" forecolor="blue" fontFamily="Scheherazade GrcRegTest" fontVariations="2001=1">ّ</Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+  <StTxtPara>
+    <StyleRules15>
+      <Prop namedStyle="Normal"/>
+    </StyleRules15>
+    <Contents16>
+      <Str>
+        <Run ws="en" fontFamily="Charis GrcRegTest"></Run>
+      </Str>
+    </Contents16>
+  </StTxtPara>
+</Body>
+
+<PageSetup>
+  <PageInfo>
+    <TopMargin9999><Integer val="72000"/></TopMargin9999>
+    <BottomMargin9999><Integer val="72000"/></BottomMargin9999>
+    <LeftMargin9999><Integer val="90000"/></LeftMargin9999>
+    <RightMargin9999><Integer val="90000"/></RightMargin9999>
+    <HeaderMargin9999><Integer val="36000"/></HeaderMargin9999>
+    <FooterMargin9999><Integer val="36000"/></FooterMargin9999>
+    <PageSize9999><Integer val="0"/></PageSize9999>
+    <PageHeight9999><Integer val="792000"/></PageHeight9999>
+    <PageWidth9999><Integer val="612000"/></PageWidth9999>
+    <PageOrientation9999><Integer val="0"/></PageOrientation9999>
+    <Header9999>
+      <Str>
+        <Run ws="en">benchmark_test.wpx</Run>
+      </Str>
+    </Header9999>
+    <Footer9999>
+      <Str>
+        <Run ws="en">&amp;[page],&amp;[date]</Run>
+      </Str>
+    </Footer9999>
+  </PageInfo>
+</PageSetup>
+
+</WpDoc>
