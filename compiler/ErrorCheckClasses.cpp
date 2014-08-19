@@ -64,9 +64,6 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 	if (!ProcessGlyphAttributes(pfont))
 		return false;
 
-	if (m_prndr->HasCollisionPass())	// do this after glyph attributes have been processed
-		CalculateCollisionOctoboxes(pfont);
-
 	if (!m_prndr->FixGlyphAttrsInRules(this, pfont))
 		return false;
 
@@ -78,8 +75,6 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 
 	if (!StorePseudoToActualAsGlyphAttr())
 		return false;
-
-	CheckForEmptyClasses();
 
 	return true;
 }
@@ -375,7 +370,7 @@ bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 {
 	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
-		
+
 	return true;
 }
 
@@ -388,28 +383,6 @@ void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 		m_vpglfdMembers[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
 			hmActualForPseudo);
 	}
-}
-
-void GdlGlyphIntersectionClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-	std::map<utf16, utf16> & hmActualForPseudo)
-{
-	for (size_t iglfd = 0; iglfd < m_vpglfdSets.size(); iglfd++)
-	{
-		m_vpglfdSets[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
-			hmActualForPseudo);
-	}
-	ComputeMembers();
-}
-
-void GdlGlyphDifferenceClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-	std::map<utf16, utf16> & hmActualForPseudo)
-{
-	m_pglfdMinuend->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
-		hmActualForPseudo);
-	// The subtrahend is not processed at the top level.
-	m_pglfdSubtrahend->AssignGlyphIDs(pfont, wGlyphIDLim, hmActualForPseudo);
-
-	ComputeMembers();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -713,86 +686,9 @@ int GdlGlyphDefn::GlyphIDCount()
 }
 
 /**********************************************************************************************/
-
-/*----------------------------------------------------------------------------------------------
-	Compute the members of the classes that are more complicated than a simple union.
-----------------------------------------------------------------------------------------------*/
-void GdlGlyphIntersectionClassDefn::ComputeMembers()
-{
-	std::vector<utf16> vgidResult;
-
-	std::vector<utf16> vgid1;
-	m_vpglfdSets[0]->FlattenGlyphList(vgid1);
-
-	for (size_t iglfc = 1; iglfc < this->m_vpglfdSets.size(); iglfc++)
-	{
-		vgidResult.clear();
-		std::vector<utf16> vgid2;
-		m_vpglfdSets[iglfc]->FlattenGlyphList(vgid2);
-		for (size_t igid1 = 0; igid1 < vgid1.size(); igid1++)
-		{
-			bool fFound = false;
-			for (size_t igid2 = 0; igid2 < vgid2.size(); igid2++)
-			{
-				if (vgid2[igid2] == vgid1[igid1])
-				{
-					fFound = true;
-					break;
-				}
-			}
-			if (fFound)
-				vgidResult.push_back(vgid1[igid1]);
-
-		}
-		vgid1.assign(vgidResult.begin(), vgidResult.end());
-	}
-
-	// Fake a simple class definition that contains these glyphs.
-	GrpLineAndFile lnf = this->LineAndFile();
-	for (size_t igid = 0; igid < vgidResult.size(); igid++)
-	{
-		GdlGlyphDefn * pglfd = new GdlGlyphDefn(kglftGlyphID, vgidResult[igid]);
-		pglfd->AddGlyphID(vgidResult[igid]);
-		this->AddMember(pglfd, lnf);
-	}
-}
-
-
-void GdlGlyphDifferenceClassDefn::ComputeMembers()
-{
-	std::vector<utf16> vgidResult;
-	m_pglfdMinuend->FlattenGlyphList(vgidResult);
-
-	std::vector<utf16> vgid2;
-	m_pglfdSubtrahend->FlattenGlyphList(vgid2);
-
-	for (size_t igid2 = 0; igid2 < vgid2.size(); igid2++)
-	{
-		for (size_t igid1 = 0; igid1 < vgidResult.size(); igid1++)
-		{
-			if (vgidResult[igid1] == vgid2[igid2])
-			{
-				vgidResult.erase(vgidResult.begin() + igid1);
-				break;
-			}
-		}
-	}
-
-	// Fake a simple class definition that contains these glyphs.
-	GrpLineAndFile lnf = this->LineAndFile();
-	for (size_t igid = 0; igid < vgidResult.size(); igid++)
-	{
-		GdlGlyphDefn * pglfd = new GdlGlyphDefn(kglftGlyphID, vgidResult[igid]);
-		pglfd->AddGlyphID(vgidResult[igid]);
-		this->AddMember(pglfd, lnf);
-	}
-}
-
-/**********************************************************************************************/
 /*----------------------------------------------------------------------------------------------
 	Calculate the highest justification level used. If justification is not referenced at all,
 	the result = -2; -1 means only non-leveled attributes are used (justify.stretch, etc).
-	Return false if they have used too high a level.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::MaxJustificationLevel(int * pnJLevel)
 {
@@ -800,7 +696,7 @@ bool GrcManager::MaxJustificationLevel(int * pnJLevel)
 
 	m_prndr->MaxJustificationLevel(&m_nMaxJLevel);
 	m_fBasicJust = (m_nMaxJLevel == -2);
-	return (m_nMaxJLevel <= kMaxJustLevel);
+	return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -810,14 +706,12 @@ void GdlRenderer::MaxJustificationLevel(int * pnJLevel)
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
 		m_vpglfc[ipglfc]->MaxJustificationLevel(pnJLevel);
-		if (*pnJLevel >= kMaxJustLevel)
-			return;
 	}
 	//	Rules:
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
 		m_vprultbl[iprultbl]->MaxJustificationLevel(pnJLevel);
-		if (*pnJLevel >= kMaxJustLevel)
+		if (*pnJLevel >= 3)
 			return;
 	}
 }
@@ -830,13 +724,9 @@ void GdlGlyphClassDefn::MaxJustificationLevel(int * pnJLevel)
 	{
 		Symbol psym = m_vpglfaAttrs[ipglfa]->GlyphSymbol();
 		int n = psym->JustificationLevel();
-		if (n > kMaxJustLevel)
-		{
-			char rgch[10];
-			itoa(kMaxJustLevel, rgch, 10);
-			g_errorList.AddError(4122, this,
-				"Highest justification level permitted = ", rgch);
-		}
+		if (n > 3)
+			g_errorList.AddError(4119, this,
+				"Only 3 levels of justification are supported.");
 		*pnJLevel = max(*pnJLevel, n);
 	}
 }
@@ -877,13 +767,9 @@ void GdlRuleItem::MaxJustificationLevel(int * pnJLevel)
 	{
 		int n = -2;
 		m_pexpConstraint->MaxJustificationLevel(&n);
-		if (n > kMaxJustLevel)
-		{
-			char rgch[10];
-			itoa(kMaxJustLevel, rgch, 10);
-			g_errorList.AddError(4122, this,
-				"Highest justification level permitted = ", rgch);
-		}
+		if (n > 3)
+			g_errorList.AddError(4120, this,
+				"Only 3 levels of justification are supported.");
 		*pnJLevel = max(*pnJLevel, n);
 	}
 }
@@ -897,13 +783,9 @@ void GdlSetAttrItem::MaxJustificationLevel(int * pnJLevel)
 	{
 		int n = -2;
 		m_vpavs[ipavs]->MaxJustificationLevel(&n);
-		if (n > kMaxJustLevel)
-		{
-			char rgch[10];
-			itoa(kMaxJustLevel, rgch, 10);
-			g_errorList.AddError(4122, this,
-				"Highest justification level permitted = ", rgch);
-		}
+		if (n > 3)
+			g_errorList.AddError(4121, this,
+				"Only 3 levels of justification are supported.");
 		*pnJLevel = max(*pnJLevel, n);
 	}
 }
@@ -912,81 +794,11 @@ void GdlSetAttrItem::MaxJustificationLevel(int * pnJLevel)
 void GdlAttrValueSpec::MaxJustificationLevel(int * pnJLevel)
 {
 	int n = m_psymName->JustificationLevel();
-	if (n > kMaxJustLevel)
-	{
-		char rgch[10];
-		itoa(kMaxJustLevel, rgch, 10);
+	if (n > 3)
 		g_errorList.AddError(4122, this,
-			"Highest justification level permitted = ", rgch);
-	}
+			"Only 3 levels of justification are supported.");
 	*pnJLevel = max(*pnJLevel, n);
 }
-
-/**********************************************************************************************/
-
-/*----------------------------------------------------------------------------------------------
-	Return true if there is at least one collision-fixing pass.
-----------------------------------------------------------------------------------------------*/
-bool GdlRenderer::HasCollisionPass()
-{
-	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
-	{
-		if (m_vprultbl[iprultbl]->HasCollisionPass())
-			return true;
-	}
-	return false;
-}
-
-/*--------------------------------------------------------------------------------------------*/
-bool GdlRuleTable::HasCollisionPass()
-{
-	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
-	{
-		if (m_vppass[ippass]->CollisionFix() > 0)
-			return true;
-	}
-	return false;
-}
-
-
-/**********************************************************************************************/
-
-/*----------------------------------------------------------------------------------------------
-	Calculate octoboxes to use in collision fixing.
-----------------------------------------------------------------------------------------------*/
-void GrcManager::CalculateCollisionOctoboxes(GrcFont * pfont)
-{
-	Symbol psymSimple = m_psymtbl->FindSymbol(GrcStructName("collision", "simplebox"));
-	int nAttrIdSimple = psymSimple->InternalID();
-
-	m_vgbdy.resize(m_wGlyphIDLim);
-	for (utf16 wGid = 0; wGid < m_wGlyphIDLim; wGid++)
-	{
-		// Should this be treated as a simple box? Get the collision.simplebox attr.
-		bool fSimple = false;
-		GdlExpression * pexp;
-		int nPR;
-		int munitPR;
-		bool fOverride, fShadow;
-		GrpLineAndFile lnf;
-		m_pgax->Get(wGid, nAttrIdSimple,
-				&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
-		if (!pexp)
-			fSimple = false;
-		else
-		{
-			int n;
-			if (!pexp->ResolveToInteger(&n, false))
-				fSimple = false;
-			else
-				fSimple = (n > 0);
-		}
-
-		m_vgbdy[wGid].Initialize(wGid);
-		m_vgbdy[wGid].OverlayGrid(pfont, fSimple);
-	}
-}
-
 
 /**********************************************************************************************/
 
@@ -1025,27 +837,25 @@ void GrcManager::CalculateCollisionOctoboxes(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignInternalGlyphAttrIDs()
 {
-	int cpass = m_prndr->NumberOfPasses();
-
 	//	Assign the first batch of IDs to the built-in attributes;
 	//	this is an optimization for the Graphite2 engine.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1, cpass);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1);
 	m_cpsymBuiltIn = m_vpsymGlyphAttrs.size();
 
-	//	Assign the next batch of IDs to component bases (ie, component.X).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1, 0);
+	//	Assign the first batch of IDs to component bases (ie, component.X).
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1);
 	m_cpsymComponents = m_vpsymGlyphAttrs.size() - m_cpsymBuiltIn;
 
 	//	Assign the next batch to component box fields. (ie, component.X.top/bottom/left/right).
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBox,
-		m_cpsymBuiltIn, m_cpsymComponents, -1, 0);
+		m_cpsymBuiltIn, m_cpsymComponents, -1);
 
 	//	Assign the next batch to the justification attributes.
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappJustify, -1, -1,
-		NumJustLevels(), 0);
+		NumJustLevels());
 
 	//	Finally, assign IDs to everything else.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1, 0);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1);
 
 	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
@@ -1076,11 +886,10 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 		cpsymBuiltIn		- only used on pass 3
 		cpsymComponents		- only used on pass 3
 		cJLevels			- only used on pass 4
-		cpass				- only used in pass 1
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, int cpsymBuiltIn, int cpsymComponents,
-	int cJLevels, int cpass)
+	int cJLevels)
 {
 	if (gapp == kgappJustify)
 	{
@@ -1133,7 +942,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 	}
 
 	// Make a separate list of symbols to process, because the iterators get confused when you are
-	// changing the hash-map underneath it at the same time.
+	// changing the hash-map underneath it the same time.
 	std::vector<Symbol> vpsymToProcess;
 	for (SymbolTableMap::iterator it = EntriesBegin();
 		it != EntriesEnd();
@@ -1168,7 +977,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			}
 			else
 				psym->m_psymtblSubTable->AssignInternalGlyphAttrIDs(psymtblMain,
-					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels, 0);
+					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels);
 		}
 		else if (!psym->IsGeneric() &&
 			psym->FitsSymbolType(ksymtGlyphAttr))
@@ -1211,10 +1020,6 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				psymGeneric->SetInternalID(ipsym);
 				psym->SetInternalID(psymGeneric->InternalID());
 			}
-			else if (gapp == kgappOther && psym->IsIgnorableOffsetAttr() && !g_cman.OffsetAttrs())
-			{
-				// Ignore
-			}
 			else if (gapp == kgappOther && !psym->IsComponentBoxField())
 			{
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGeneric);
@@ -1224,7 +1029,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				int iv = psym->FieldIndex("gpath");
 				iv = (iv == -1) ? psym->FieldIndex("x") : iv;
 				iv = (iv == -1) ? psym->FieldIndex("y") : iv;
-				if (iv > -1 && g_cman.OffsetAttrs())
+				if (iv > -1)
 				{
 					//	We are going to convert all 'gpath' attributes to 'gpoint',
 					//	so create that attribute too. And we might convert x/y coordinates
@@ -1276,18 +1081,9 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			&& psym->FieldCount() == 1
 			&& (psym->FieldIs(0, "directionality")
 				|| psym->FieldIs(0, "breakweight")
-				|| psym->FieldIs(0, "*actualForPseudo*")
-				|| psym->FieldIs(0, "collision")
-				|| psym->FieldIs(0, "*skipPasses*")))
+				|| psym->FieldIs(0, "*actualForPseudo*")))
 		{
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
-			if (psym->FieldIs(0, "*skipPasses*") && cpass > kPassPerSPbitmap)
-			{
-				Symbol psym2 = PreDefineSymbol(GrcStructName("*skipPasses2*"), ksymtGlyphAttr, kexptNumber);
-				psym2->m_fGeneric = true;
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym2);
-				Assert(psym2->InternalID() == psym->InternalID() + 1);
-			}
 		}
 		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
 			&& psym->FieldCount() == 2
@@ -1298,32 +1094,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGlyph);
 			Symbol psymIsEnc = psymtblMain->FindSymbol(GrcStructName("mirror", "isEncoded"));
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymIsEnc);
-			Assert(psymGlyph->InternalID() != 0);
 			Assert(psymGlyph->InternalID() + 1 == psymIsEnc->InternalID());
-		}
-		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
-			&& psym->FieldCount() > 1
-			&& psym->FieldIs(0, "collision"))
-		{
-			//	Put collision.flags first, immediately followed by the others in a specific order.
-			Symbol psymFlags = psymtblMain->FindSymbol(GrcStructName("collision", "flags"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymFlags);
-			Symbol psymMinX = psymtblMain->FindSymbol(GrcStructName("collision", "min", "x"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinX);
-			Symbol psymMaxX = psymtblMain->FindSymbol(GrcStructName("collision", "max", "x"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxX);
-			Symbol psymMinY = psymtblMain->FindSymbol(GrcStructName("collision", "min", "y"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinY);
-			Symbol psymMaxY = psymtblMain->FindSymbol(GrcStructName("collision", "max", "y"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxY);
-			Symbol psymMargin = psymtblMain->FindSymbol(GrcStructName("collision", "margin"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMargin);
-			Assert(psymFlags->InternalID() != 0);
-			Assert(psymFlags->InternalID() + 1 == psymMinX->InternalID());
-			Assert(psymFlags->InternalID() + 2 == psymMaxX->InternalID());
-			Assert(psymFlags->InternalID() + 3 == psymMinY->InternalID());
-			Assert(psymFlags->InternalID() + 4 == psymMaxY->InternalID());
-			Assert(psymFlags->InternalID() + 5 == psymMargin->InternalID());
+			Assert(psymGlyph->InternalID() != 0);
 		}
 	}
 
@@ -1411,44 +1183,6 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("mirror", "isEncoded")));
 		vnSysDefValues.push_back(0);
 	}
-	if (m_prndr->HasCollisionPass())
-	{
-		//	collision.flags
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "flags")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "min", "x")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "max", "x")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "min", "y")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "max", "y")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "margin")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "simplebox")));
-		vnSysDefValues.push_back(0);
-	}
-	if (IncludePassOptimizations())
-	{
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("*skipPasses*")));
-		// Default value for the *skipPasses* attributes is a bitmap with 1 set for every pass.
-		int cpass = m_prndr->NumberOfPasses();
-		int cpass1 = (cpass > kPassPerSPbitmap) ? kPassPerSPbitmap : cpass;
-		unsigned int nDefaultSkipP = 0;
-		for (int i = 0; i < cpass1; i++)
-			nDefaultSkipP = (nDefaultSkipP << 1) + 1;
-		vnSysDefValues.push_back(nDefaultSkipP);
-		if (cpass > kPassPerSPbitmap)
-		{
-			vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("*skipPasses2*")));
-			int cpass2 = (cpass > kPassPerSPbitmap * 2) ? kPassPerSPbitmap * 2 : cpass;
-			unsigned int nDefaultSkipP2 = 0;
-			for (int i2 = kPassPerSPbitmap; i2 < cpass2; i2++)
-				nDefaultSkipP2 = (nDefaultSkipP2 << 1) + 1;
-			vnSysDefValues.push_back(nDefaultSkipP2);
-		}
-	}
 	// justify.weight = 1
 	if (NumJustLevels() > 0)
 	{
@@ -1530,9 +1264,6 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		Symbol psym = vpglfaAttrs[ipglfa]->GlyphSymbol();
 		Assert(!psym->IsGeneric());
 		int nGlyphAttrID = psym->InternalID();
-
-		if (!g_cman.OffsetAttrs() && psym->IsIgnorableOffsetAttr())
-			continue;
 
 		//	The new attribute assignment:
 		GdlAssignment * pasgnValue = vpglfaAttrs[ipglfa]->Assignment();
@@ -1695,20 +1426,35 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
                 }
                 else if (psym->LastFieldIs("directionality"))
                 {
-                    nStdValue = (int)this->DefaultDirCode(nUnicode, &fInitFailed);
-					if (fInitFailed && fIcuAvailable)
+					if (fIcuAvailable)
                     {
 						UCharDirection diricu = u_charDirection(nUnicode);
 						nStdValue = ConvertBidiCode(diricu, nUnicode);
-                        fInitFailed = 0;
 						//if (!Bidi() && nStdValue == kdircL)
 						//	nStdValue = 0;	// don't bother storing this for non-bidi fonts
                     }
+                    else
+					{
+						switch (nUnicode)
+						{
+						case kchwSpace:			nStdValue = kdircWhiteSpace; break;
+						case kchwLRM:			nStdValue = kdircL; break;
+						case kchwRLM:			nStdValue = kdircR; break;
+						case kchwLRO:			nStdValue = kdircLRO; break;
+						case kchwRLO:			nStdValue = kdircRLO; break;
+						case kchwLRE:			nStdValue = kdircLRE; break;
+						case kchwRLE:			nStdValue = kdircRLE; break;
+						case kchwPDF:			nStdValue = kdircPDF; break;
+						default:
+							if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
+								nStdValue = kdircWhiteSpace;
+							else
+								nStdValue = 0;		// don't know
+								fInitFailed = Bidi();	// we only care about the failure if this is a bidi font
+							break;
+						}
+					}
                 }
-				else if (psym->LastFieldIs("*skipPasses*") || psym->LastFieldIs("*skipPasses2*"))
-				{
-					nStdValue = nDefaultValue;
-				}
 				else if (psym->LastFieldIs("glyph") && Bidi())
 				{
 					int nUnicodeMirror = (int)u_charMirror(nUnicode);
@@ -1843,72 +1589,6 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 	return kdircNeutral;
 }
 
-/*----------------------------------------------------------------------------------------------
-	Return the default directionality code for the given USV.
-----------------------------------------------------------------------------------------------*/
-DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
-{
-	DirCode dircDefault;
-
-	switch (nUnicode)
-	{
-	case kchwSpace:		dircDefault = kdircWhiteSpace; break;
-	case kchwLRM:		dircDefault = kdircL; break;
-	case kchwRLM:		dircDefault = kdircR; break;
-	case kchwALM:		dircDefault = kdircRArab; break;
-	case kchwLRO:		dircDefault = kdircLRO; break;
-	case kchwRLO:		dircDefault = kdircRLO; break;
-	case kchwLRE:		dircDefault = kdircLRE; break;
-	case kchwRLE:		dircDefault = kdircRLE; break;
-	case kchwPDF:		dircDefault = kdircPDF; break;
-	case kchwLRI:		dircDefault = kdircLRI; break;
-	case kchwRLI:		dircDefault = kdircRLI; break;
-	case kchwFSI:		dircDefault = kdircFSI; break;
-	case kchwPDI:		dircDefault = kdircPDI; break;
-
-	// The following matching parentheses come from the Unicode BidiBrackets.txt file.
-
-	case 0x0028:	case 0x005B:	case 0x007B:	case 0x0F3A:	case 0x0F3C:
-	case 0x169B:	case 0x2045:	case 0x207D:	case 0x208D:	case 0x2329:
-	case 0x2768:	case 0x276A:	case 0x276C:	case 0x276E:	case 0x2770:
-	case 0x2772:	case 0x2774:	case 0x27C5:	case 0x27E6:	case 0x27E8:
-	case 0x27EA:	case 0x27EC:	case 0x27EE:	case 0x2983:	case 0x2985:
-	case 0x2987:	case 0x2989:	case 0x298B:	case 0x298D:	case 0x298F:
-	case 0x2991:	case 0x2993:	case 0x2995:	case 0x2997:	case 0x29D8:
-	case 0x29DA:	case 0x29FC:	case 0x2E22:	case 0x2E24:	case 0x2E26:
-	case 0x2E28:	case 0x3008:	case 0x300A:	case 0x300C:	case 0x300E:
-	case 0x3010:	case 0x3014:	case 0x3016:	case 0x3018:	case 0x301A:
-	case 0xFE59:	case 0xFE5B:	case 0xFE5D:	case 0xFF08:	case 0xFF3B:
-	case 0xFF5B:	case 0xFF5F:	case 0xFF62:
-		dircDefault = kdircOPP;
-		break;
-
-	case 0x0029:	case 0x005D:	case 0x007D:	case 0x0F3B:	case 0x0F3D:
-	case 0x169C:	case 0x2046:	case 0x207E:	case 0x208E:	case 0x232A:
-	case 0x2769:	case 0x276B:	case 0x276D:	case 0x276F:	case 0x2771:
-	case 0x2773:	case 0x2775:	case 0x27C6:	case 0x27E7:	case 0x27E9:
-	case 0x27EB:	case 0x27ED:	case 0x27EF:	case 0x2984:	case 0x2986:
-	case 0x2988:	case 0x298A:	case 0x298C:	case 0x298E:	case 0x2990:
-	case 0x2992:	case 0x2994:	case 0x2996:	case 0x2998:	case 0x29D9:
-	case 0x29DB:	case 0x29FD:	case 0x2E23:	case 0x2E25:	case 0x2E27:
-	case 0x2E29:	case 0x3009:	case 0x300B:	case 0x300D:	case 0x300F:
-	case 0x3011:	case 0x3015:	case 0x3017:	case 0x3019:	case 0x301B:
-	case 0xFE5A:	case 0xFE5C:	case 0xFE5E:	case 0xFF09:	case 0xFF3D:
-	case 0xFF5D:	case 0xFF60:	case 0xFF63:
-		dircDefault = kdircCPP;
-		break;
-
-	default:
-		if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
-			dircDefault = kdircWhiteSpace;
-		else
-			dircDefault = kdircNeutral;	// don't know
-			*pfInitFailed = Bidi();		// we only care about the failure if this is a bidi font
-		break;
-	}
-
-	return dircDefault;
-}
 
 /**********************************************************************************************/
 
@@ -2017,8 +1697,7 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 			}
 		}
 
-		if (this->OffsetAttrs())
-			ConvertBetweenXYAndGpoint(pfont, wGlyphID);
+		ConvertBetweenXYAndGpoint(pfont, wGlyphID);
 
 		// Just in case, since incrementing 0xFFFF will produce zero.
 		if (wGlyphID == 0xFFFF)
@@ -2619,8 +2298,7 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 				m_psymName->FullName());
 		delete this;
 	}
-	else if (m_psymName->FitsSymbolType(ksymtSlotAttrPtOff)		// attach.at, shift, etc.
-		|| m_psymName->FitsSymbolType(ksymtSlotAttrPt))			// collision.min/max
+	else if (m_psymName->FitsSymbolType(ksymtSlotAttrPt))	// attach.at, shift, etc.
 	{
 		if (m_psymName->IsReadOnlySlotAttr())
 		{
@@ -2639,24 +2317,15 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 		}
 
 		Symbol psymX = m_psymName->SubField("x");
-		Symbol psymY = m_psymName->SubField("y");
-		Symbol psymGpoint = m_psymName->SubField("gpoint");
-		Symbol psymXoffset = m_psymName->SubField("xoffset");
-		Symbol psymYoffset = m_psymName->SubField("yoffset");
 		Assert(psymX);
+		Symbol psymY = m_psymName->SubField("y");
 		Assert(psymY);
-		if (m_psymName->FitsSymbolType(ksymtSlotAttrPtOff))
-		{
-			Assert(psymGpoint);
-			Assert(psymXoffset);
-			Assert(psymYoffset);
-		}
-		else
-		{
-			Assert(psymGpoint == NULL);
-			Assert(psymXoffset == NULL);
-			Assert(psymYoffset == NULL);
-		}
+		Symbol psymGpoint = m_psymName->SubField("gpoint");
+		Assert(psymGpoint);
+		Symbol psymXoffset = m_psymName->SubField("xoffset");
+		Assert(psymXoffset);
+		Symbol psymYoffset = m_psymName->SubField("yoffset");
+		Assert(psymYoffset);
 
 		GdlExpression * pexpX = NULL;
 		GdlExpression * pexpY = NULL;
@@ -2705,51 +2374,41 @@ void GdlAttrValueSpec::FlattenPointSlotAttrs(GrcManager * pcman,
 			pavs->SetFlattened(true);
 			vpavsNew.push_back(pavs);
 		}
-		if (g_cman.OffsetAttrs())
+		if (pexpGpoint)
 		{
-			if (pexpGpoint)
-			{
-				if (psymGpoint->IsBogusSlotAttr())
-					delete pexpGpoint;
-				else
-				{
-					pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
-					pavs->CopyLineAndFile(*this);
-					pavs->SetFlattened(true);
-					vpavsNew.push_back(pavs);
-				}
-			}
-			if (pexpXoffset)
-			{
-				if (psymXoffset->IsBogusSlotAttr())
-					delete pexpXoffset;
-				else
-				{
-					pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
-					pavs->CopyLineAndFile(*this);
-					pavs->SetFlattened(true);
-					vpavsNew.push_back(pavs);
-				}
-			}
-			if (pexpYoffset)
-			{
-				if (psymYoffset->IsBogusSlotAttr())
-					delete pexpYoffset;
-				else
-				{
-					pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
-					pavs->CopyLineAndFile(*this);
-					pavs->SetFlattened(true);
-					vpavsNew.push_back(pavs);
-				}
-			}
-		} else {
-			if (pexpGpoint)
+			if (psymGpoint->IsBogusSlotAttr())
 				delete pexpGpoint;
-			if (pexpXoffset)
+			else
+			{
+				pavs = new GdlAttrValueSpec(psymGpoint, m_psymOperator, pexpGpoint);
+				pavs->CopyLineAndFile(*this);
+				pavs->SetFlattened(true);
+				vpavsNew.push_back(pavs);
+			}
+		}
+		if (pexpXoffset)
+		{
+			if (psymXoffset->IsBogusSlotAttr())
 				delete pexpXoffset;
-			if (pexpYoffset)
+			else
+			{
+				pavs = new GdlAttrValueSpec(psymXoffset, m_psymOperator, pexpXoffset);
+				pavs->CopyLineAndFile(*this);
+				pavs->SetFlattened(true);
+				vpavsNew.push_back(pavs);
+			}
+		}
+		if (pexpYoffset)
+		{
+			if (psymYoffset->IsBogusSlotAttr())
 				delete pexpYoffset;
+			else
+			{
+				pavs = new GdlAttrValueSpec(psymYoffset, m_psymOperator, pexpYoffset);
+				pavs->CopyLineAndFile(*this);
+				pavs->SetFlattened(true);
+				vpavsNew.push_back(pavs);
+			}
 		}
 
 		delete this;	// replaced
@@ -3305,36 +2964,5 @@ unsigned int GdlGlyphDefn::FirstGlyphInClass(bool * pfMoreThanOne)
 		return m_vwGlyphIDs[iw];
 	}
 	return 0; // pathological?
-}
-
-/**********************************************************************************************/
-
-/*----------------------------------------------------------------------------------------------
-	Give a warning about any empty classes.
-----------------------------------------------------------------------------------------------*/
-bool GrcManager::CheckForEmptyClasses()
-{
-	for (SymbolTableMap::iterator it = m_psymtbl->EntriesBegin();
-		it != m_psymtbl->EntriesEnd();
-		++it)
-	{
-		Symbol psym = it->second; // GetValue();
-		//Symbol psym = it.GetValue();
-
-		//if (psym->m_psymtblSubTable)
-		//	psym->m_psymtblSubTable->CheckForEmptyClasses();
-
-		if (psym->FitsSymbolType(ksymtClass) && psym->HasData())
-		{
-			GdlGlyphClassDefn * pglfc = psym->GlyphClassDefnData();
-			int cglf = pglfc->GlyphIDCount();
-			if (cglf == 0)
-				g_errorList.AddWarning(4518, pglfc,
-					"Empty class definition: ",
-					psym->FullName());
-		}
-	}
-
-	return true;
 }
 

@@ -6,6 +6,7 @@ GNU Lesser General Public License, as specified in the LICENSING.txt file.
 
 File: main.cpp
 Responsibility: Sharon Correll
+Last reviewed: Not yet.
 
 Description:
     Main function that runs the compiler. 
@@ -19,10 +20,6 @@ Compiler versions:
 	4.1		- mirror glyph attributes (Silf table 2.1 or 3.2)
 	4.2		- large number of glyphs (> 64K) in replacement classes (Silf table 4.0);
 				segsplit and extra LB flag
-	4.3		- handle &= and -= for class definitions; multiple justification levels
-	4.3.1	- added *skipPasses* glyph attribute and passKeySlot slot attribute for
-				optimization; don't output xoffset, yoffset, or gpoint att fields
-	5.0		- collision fixing (Glat table 3.0, Silf table 5.0 IF we define collision glyph attrs)
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -118,8 +115,6 @@ int main(int argc, char * argv[])
 	g_cman.SetSilfTableVersion(g_cman.DefaultSilfVersion(), false);
 	g_cman.SetSeparateControlFile(false);
 	g_cman.SetVerbose(true);
-	g_cman.SetPassOptimizations(true);
-	g_cman.SetOffsetAttrs(false);
 
 	// Ignore these warnings by default:
 	g_errorList.SetIgnoreWarning(510);	// Cannot find point number for coordinates...
@@ -139,7 +134,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 4.9";
+		std::cout << "Graphite Compiler Version 4.2";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -147,23 +142,21 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (c) 2002-2014, by SIL International.  All rights reserved.\n";
+			<< "Copyright (C) 2002-2012, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
 	{
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
-		std::cout << "   -d       - output XML debugger file\n";
-		std::cout << "   -D       - output all debugger files\n";
-		std::cout << "   -g       - permit and ignore invalid glyph definitions\n";
-		std::cout << "   -nNNNN   - set name table start location\n";
-		std::cout << "   -p       - omit pass-avoidance optimizations\n";
-		std::cout << "   -q       - quiet mode (no messages except on error)\n";
-		std::cout << "   -vN      - set Silf table version number\n";
-		std::cout << "   -wNNNN   - ignore warning with the given number\n";
-		std::cout << "   -wall    - display all warnings\n";
-		std::cout << "   -offsets - generate xoffset, yoffset, and gpoint glyph attributes\n";
+		std::cout << "   -d     - output XML debugger file\n";
+		std::cout << "   -D     - output all debugger files\n";
+		std::cout << "   -g     - permit and ignore invalid glyph definitions\n";
+		std::cout << "   -nNNNN - set name table start location\n";
+		std::cout << "   -q     - quiet mode (no messages except on error)\n";
+		std::cout << "   -vN    - set Silf table version number\n";
+		std::cout << "   -wNNNN - ignore warning with the given number\n";
+		std::cout << "   -wall  - display all warnings\n";
 		return 2;
 	}
 
@@ -209,9 +202,6 @@ int main(int argc, char * argv[])
 		//	}
 		//}
 	}
-	
-	// Is GDL file path absolute? So will be paths in GDX.
-	bool fAbsGdlFilePaths = (pchGdlFile[1] == ':' || pchGdlFile[0] == '/' || pchGdlFile[0] == '\\');
 
 	if (strcmp(rgchOutputFile, pchFontFile) == 0)
 	{
@@ -282,8 +272,7 @@ int main(int argc, char * argv[])
 			<< "Silf table version " << (g_cman.UserSpecifiedVersion() ? "requested" : "(default)")
 					<< ": " << staVersion << "\n\n";
 	}
-
-	// Simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
+	// simple test for illegal UTF encoding in file. GDL requires 7 bit codepoints
 	gr::byte bFirst, bSecond, bThird;
 	std::ifstream strmGdl;
 	strmGdl.open(pchGdlFile, std::ios_base::in | std::ios_base::binary);
@@ -350,8 +339,7 @@ int main(int argc, char * argv[])
 
 	if (!fFatalErr)
 	{
-		if (g_cman.IsVerbose())
-			std::cout << "Initial processing...\n";
+		if (g_cman.IsVerbose()) std::cout << "Initial processing...\n";
 		if (!g_cman.PostParse())
 		{
 			fFatalErr = true;
@@ -419,8 +407,7 @@ int main(int argc, char * argv[])
 
 	if (!fFatalErr)
 	{
-		if (g_cman.IsVerbose())
-			std::cout << "Compiling...\n";
+		if (g_cman.IsVerbose()) std::cout << "Compiling...\n";
 		g_cman.Compile(pfont);
 		if (g_cman.OutputDebugFiles())
 		{
@@ -435,14 +422,9 @@ int main(int argc, char * argv[])
 		}
 		if (g_cman.OutputDebugXml())
 		{
-			bool f = g_cman.DebugXml(pfont, rgchOutputFile, fAbsGdlFilePaths);
+			g_cman.DebugXml(pfont, rgchOutputFile);
 			if ( g_cman.IsVerbose())
-			{
-				if (f)
-					std::cout << "Debugger XML file generated.\n";
-				else
-					std::cout << "Error in generating debugger XML.\n";
-			}
+				std::cout << "Debugger XML file generated.\n";
 		}
 
 		int nRet = g_cman.OutputToFont(pchFontFile, rgchOutputFile,
@@ -513,24 +495,23 @@ int main(int argc, char * argv[])
 }
 
 /*----------------------------------------------------------------------------------------------
-    Interpret the compiler options, which are preceded by slashes  or hyphens
-	in the argument list.
+    Interpret the compiler options, which are preceded by slashes in the argument list.
 ----------------------------------------------------------------------------------------------*/
 void HandleCompilerOptions(char * arg)
 {
-	if (arg[1] == 'd')		// XML debugger file
+	if (arg[1] == 'd')
 	{
 		g_cman.SetOutputDebugFiles(true, false);
 	}
-	else if (arg[1] == 'D')	// all debugger files
+	else if (arg[1] == 'D')
 	{
 		g_cman.SetOutputDebugFiles(true, true);
 	}
-	else if (arg[1] == 'g')	// ignore bad glyphs
+	else if (arg[1] == 'g')
 	{
 		g_cman.SetIgnoreBadGlyphs(true);
 	}
-	else if (strcmp(arg+1, "wall") == 0)
+	else if ( arg[1] == 'w' && arg[2] == 'a' && arg[3] == 'l' && arg[4] == 'l' )
 	{
 		g_errorList.ClearIgnoreWarnings();
 	}
@@ -569,15 +550,6 @@ void HandleCompilerOptions(char * arg)
 	{
 		g_cman.SetVerbose(false);
 	}
-	else if (arg[1] == 'p')
-	{
-		g_cman.SetPassOptimizations(false);
-	}
-	else if (strcmp(arg+1, "offsets") == 0)
-	{
-		g_cman.SetOffsetAttrs(true);
-	}
-
 	//else if (arg[1] == 's')
 	//{
 	//	g_cman.SetSeparateControlFile(true);
@@ -585,45 +557,28 @@ void HandleCompilerOptions(char * arg)
 }
 
 /*----------------------------------------------------------------------------------------------
-    Try to be clever about the GDL-file and TTF-file arguments.
-	Don't do this for now, because it can confuse the user. Just given a warning.
+    Interpret the compiler options, which are preceded by slashes in the argument list.
 ----------------------------------------------------------------------------------------------*/
 void SetGdlAndFontFileNames(char * pchFile1, char * pchFile2,
 	char ** ppchGdlFile, char ** ppchFontFile)
 {
-	gr::byte bFirst1, bSecond1, bThird1, bFourth1, bFirst2, bSecond2;
+	gr::byte bFirst, bSecond, bThird, bFourth;
 	std::ifstream strm1;
 	strm1.open(pchFile1, std::ios_base::in | std::ios_base::binary);
-	strm1 >> bFirst1 >> bSecond1 >> bThird1 >> bFourth1;
+	strm1 >> bFirst >> bSecond >> bThird >> bFourth;
 	strm1.close();
 
-	std::ifstream strm2;
-	strm2.open(pchFile2, std::ios_base::in | std::ios_base::binary);
-	strm2 >> bFirst2 >> bSecond2;
-	strm2.close();
-
-	//if (bFirst1 == 0 && bThird1 == 0 && bFourth1 == 0 // && bSecond = 1 -- this can change with the version number
-	//	&& bFirst2 != 0 && bSecond2 != 0)
-	//{
-	//	// pchFile1 looks like the beginning of a TTF file, and pchFile2 could be a GDL file.
-	//	// So swap the arguments.
-	//	*ppchFontFile = pchFile1;
-	//	*ppchGdlFile = pchFile2;
-	//}
-	//else
-	//{
-	//	*ppchGdlFile = pchFile1;
-	//	*ppchFontFile = pchFile2;
-	//}
-
-	if (bFirst1 == 0 && bThird1 == 0 && bFourth1 == 0 // && bSecond = 1 -- this can change with the version number
-		&& bFirst2 != 0 && bSecond2 != 0)
+	if (bFirst == 0 && bThird == 0 && bFourth == 0) // && bSecond = 1 -- this can change with the version number
 	{
-		g_errorList.AddWarning(512, NULL, "Did you switch the names of the GDL and TTF files?");
+		// pchFile1 looks like the beginning of a TTF file.
+		*ppchFontFile = pchFile1;
+		*ppchGdlFile = pchFile2;
 	}
-
-	*ppchGdlFile = pchFile1;
-	*ppchFontFile = pchFile2;
+	else
+	{
+		*ppchGdlFile = pchFile1;
+		*ppchFontFile = pchFile2;
+	}
 }
 
 /*----------------------------------------------------------------------------------------------

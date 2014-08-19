@@ -129,18 +129,18 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	wchar_t rgchrFileName[200];
 	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200);
 	std::wstring strCommandLine(L"gdlpp "); // no, use staGdlppFile instead
-	if (m_fVerbose)
+	if (m_verbose)
 		strCommandLine = L"\" -V \"";
 	strCommandLine += rgchrFileName;
 	strCommandLine += L"\"";
 #else
 	std::string strCommandLine(_T("\""));
 	strCommandLine += staGdlppFile;
-	//if (m_fVerbose)
+	//if (m_verbose)
 	//	 strCommandLine += _T("gdlpp -V ");
 	//else
 	//	strCommandLine += _T("gdlpp ");
-	if (m_fVerbose)
+	if (m_verbose)
 		strCommandLine += _T("\" -V \"");
 	else
 		strCommandLine += _T("\" \"");
@@ -228,7 +228,7 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 		exit(-1);
 	case 0 :
 		// In child process
-		if (m_fVerbose)
+		if (m_verbose)
 			testexec = execlp(staGdlppFile.c_str(), staGdlppFile.c_str(),
 				"-V", staFileName.c_str(), tmpgdl, NULL);
 		else
@@ -480,7 +480,6 @@ void GrcManager::WalkParseTree(RefAST ast)
 	if (OutputDebugFiles())
 		DebugParseTree(ast);
 
-int temp = ast->getType();
 	Assert(ast->getType() == Ztop);
 	if (ast->getType() != Ztop)
 		return;
@@ -822,10 +821,8 @@ void GrcManager::WalkEnvTree(RefAST ast, TableType tblt,
 /*----------------------------------------------------------------------------------------------
 	Process a list of environment directives.
 	Assumes that parser does not permit a directive to take a list of values.
-
-	pnCollisionFix - set when processing a pass(X) statement; if NULL, FixCollisions is invalid
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
+void GrcManager::WalkDirectivesTree(RefAST ast)
 {
 	Assert(ast->getType() == Zdirectives);
 
@@ -887,27 +884,6 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
 						"The PointRadius directive requires a scaled value",
 						LineAndFile(ast));
 				SetPointRadius(nValue, MUnits());
-			}
-			else if (staName == "CollisionFix")
-			{
-				if (pnCollisionFix == NULL)
-					g_errorList.AddError(1185, NULL,
-						"The CollisionFix directive must be indicated directly on a pass",
-						LineAndFile(ast));
-				else
-				{
-					if (astValue->getType() == LITERAL_true)
-						*pnCollisionFix = 3;	// default; should this be 1??
-					else if (nValue > 7 || nValue < 0)
-					{
-						g_errorList.AddError(1186, NULL,
-							"The CollisionFix value must be between 0 and 7",
-							LineAndFile(ast));
-						*pnCollisionFix = 7;
-					}
-					else
-						*pnCollisionFix = nValue;
-				}
 			}
 			else
 			{
@@ -1036,8 +1012,6 @@ void GrcManager::WalkGlyphTableTree(RefAST ast)
 		{
 		case OP_EQ:
 		case OP_PLUSEQUAL:
-		case OP_ANDEQUAL:
-		case OP_MINUSEQUAL:
 			WalkGlyphTableElement(astContents);
 			break;
 
@@ -1054,17 +1028,7 @@ void GrcManager::WalkGlyphTableTree(RefAST ast)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::WalkGlyphTableElement(RefAST ast)
 {
-	int nodetyp = ast->getType();
-	Assert(nodetyp == OP_EQ || nodetyp == OP_PLUSEQUAL
-		|| nodetyp == OP_ANDEQUAL || nodetyp == OP_MINUSEQUAL);
-
-	GlyphClassType glfct;
-	switch (nodetyp)
-	{
-	case OP_ANDEQUAL:	glfct = kglfctIntersect;	break;
-	case OP_MINUSEQUAL:	glfct = kglfctDifference;	break;
-	default:			glfct = kglfctUnion;		break;
-	}
+	Assert(ast->getType() == OP_EQ || ast->getType() == OP_PLUSEQUAL);
 
 	std::vector<std::string> vsta;
 	GdlGlyphClassDefn * pglfc;
@@ -1073,21 +1037,11 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 	if (!psymClass)
 	{
 		//	Create the class.
-		psymClass = SymbolTable()->AddClassSymbol(GrcStructName(staClassName), LineAndFile(ast),
-			glfct);
+		psymClass = SymbolTable()->AddClassSymbol(GrcStructName(staClassName), LineAndFile(ast));
 		pglfc = psymClass->GlyphClassDefnData();
 		Assert(pglfc);
 		pglfc->SetName(staClassName);
 		m_prndr->AddGlyphClass(pglfc);
-
-		if (nodetyp == OP_ANDEQUAL || nodetyp == OP_MINUSEQUAL)
-		{
-			g_errorList.AddError(1184, NULL,
-				"Cannot perform set operation on nonexistent class ",
-				staClassName,
-				LineAndFile(ast));
-			return;
-		}
 	}
 	else
 	{
@@ -1102,7 +1056,7 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 		}
 		pglfc = psymClass->GlyphClassDefnData();
 		Assert(pglfc);
-		if (nodetyp == OP_EQ)
+		if (ast->getType() == OP_EQ)
 		{
 			g_errorList.AddError(1137, NULL,
 				"Duplicate definition of class ",
@@ -1110,24 +1064,14 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 				LineAndFile(ast));
 			return;
 		}
-		else if (nodetyp == OP_ANDEQUAL)
-		{
-			GrpLineAndFile lnf = LineAndFile(ast); // separate line makes Linux build happy
-			pglfc = ConvertClassToIntersection(psymClass, pglfc, lnf);
-		}
-		else if (nodetyp == OP_MINUSEQUAL)
-		{
-			GrpLineAndFile lnf = LineAndFile(ast); // separate line makes Linux build happy
-			pglfc = ConvertClassToDifference(psymClass, pglfc, lnf);
-		}
 	}
-	WalkGlyphClassTree(ast, pglfc, glfct);
+	WalkGlyphClassTree(ast, pglfc);
 }
 
 /*----------------------------------------------------------------------------------------------
 	Process a single glyph class definition.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc, GlyphClassType glfct)
+void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc)
 {
 	//	Skip the class name.
 	RefAST astContents = ast->getFirstChild()->getNextSibling();
@@ -1148,7 +1092,7 @@ void GrcManager::WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc, Glyph
 		}
 		else
 			//	Class member
-			ProcessGlyphClassMember(astContents, pglfc, glfct, NULL);
+			ProcessGlyphClassMember(astContents, pglfc, NULL);
 
 		astContents = astContents->getNextSibling();
 	}
@@ -1457,6 +1401,7 @@ void GrcManager::ProcessFunctionArg(bool fSlotAttr, GrcStructName const& xns,
 	}
 }
 
+
 /*----------------------------------------------------------------------------------------------
 	Record an error indicating that a function has the wrong number of arguments.
 ----------------------------------------------------------------------------------------------*/
@@ -1477,12 +1422,12 @@ void GrcManager::BadFunctionError(GrpLineAndFile & lnf, std::string staFunction,
 	to be used in creating a pseudo-glyph.
 	Arguments:
 		pglfc			- class to add to
-		glfct			- union, intersection, or difference
+		lnf				- where this member was added
 		pglfRet			- value to return to embed inside of pseudo;
 								one or the other of these arguments will be NULL
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
-	GlyphClassType glfct, GdlGlyphDefn ** ppglfRet)
+void GrcManager::ProcessGlyphClassMember(RefAST ast,
+	GdlGlyphClassDefn * pglfc, GdlGlyphDefn ** ppglfRet)
 {
 	Assert(!pglfc || !ppglfRet);
 	Assert(pglfc || ppglfRet);
@@ -1525,7 +1470,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		{
 			pglfT = ProcessGlyph(astItem, glft);
 			if (pglfc)
-				pglfc->AddElement(pglfT, LineAndFile(ast), glfct, this);
+				pglfc->AddMember(pglfT, LineAndFile(ast));
 			else
 				*ppglfRet = pglfT;	// return for pseudo
 
@@ -1556,7 +1501,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		{
 			pglfT = ProcessGlyph(astItem, kglftCodepoint, nCodePage);
 			if (pglfc)
-				pglfc->AddElement(pglfT, LineAndFile(ast), glfct, this);
+				pglfc->AddMember(pglfT, LineAndFile(ast));
 			else
 				*ppglfRet = pglfT;	// return for pseudo
 
@@ -1577,7 +1522,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		Assert(pglfc && !ppglfRet);	// can't put a pseudo inside a pseudo
 
 		astItem = ast->getFirstChild();
-		ProcessGlyphClassMember(astItem, NULL, kglfctUnion, &pglfForPseudo);
+		ProcessGlyphClassMember(astItem, NULL, &pglfForPseudo);
 
 		if (astItem->getNextSibling())
 		{
@@ -1588,7 +1533,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		else
 			pglfT = new GdlGlyphDefn(kglftPseudo, pglfForPseudo);
 		pglfT->SetLineAndFile(LineAndFile(ast));
-		pglfc->AddElement(pglfT, LineAndFile(ast), glfct, this);
+		pglfc->AddMember(pglfT, LineAndFile(ast));
 
 		break;
 
@@ -1616,7 +1561,7 @@ void GrcManager::ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		}
 		pglfcSub = psymSubClass->GlyphClassDefnData();
 		Assert(pglfcSub);
-		pglfc->AddElement(pglfcSub, LineAndFile(ast), glfct, this);
+		pglfc->AddMember(pglfcSub, LineAndFile(ast));
 
 		break;
 
@@ -2089,30 +2034,13 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 
 	RefAST astDirectives = ast->getFirstChild()->getNextSibling();
 	RefAST astContents = astDirectives;
-	int nCollisionFix = 0;
 	if (astDirectives && astDirectives->getType() == Zdirectives)
 	{
-		WalkDirectivesTree(astDirectives, &nCollisionFix);
+		WalkDirectivesTree(astDirectives);
 		astContents = astDirectives->getNextSibling();
 	}
 
 	GdlPass * ppass = prultbl->GetPass(lnf, Pass(), MaxRuleLoop(), MaxBackup());
-	char rgch[20];
-	itoa(Pass(), rgch, 10);
-	if (nCollisionFix > 0 && prultbl->Substitution())
-	{
-		g_errorList.AddError(1187, NULL,
-			"CollisionFix cannot be set on substitution passes, only positioning passes",
-			LineAndFile(ast));
-	}
-	else
-	{
-		if (nCollisionFix == 0 && ppass->CollisionFix() > 0)
-			g_errorList.AddWarning(1514, NULL,
-				"Clearing previous value of CollisionFix for pass ", rgch,
-				LineAndFile(ast)); 
-		ppass->SetCollisionFix(nCollisionFix);
-	}
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
 	//	constraint.
@@ -2627,7 +2555,7 @@ std::string GrcManager::ProcessClassList(RefAST ast, RefAST * pastNext)
 			nodetyp == LITERAL_unicode || nodetyp == LITERAL_codepoint || nodetyp == ZuHex ||
 			nodetyp == LITERAL_postscript || nodetyp == LITERAL_pseudo))
 	{
-		ProcessGlyphClassMember(astGlyph, pglfc, kglfctUnion, NULL);
+		ProcessGlyphClassMember(astGlyph, pglfc, NULL);
 		astGlyph = astGlyph->getNextSibling();
 	}
 	*pastNext = astGlyph;
@@ -2656,7 +2584,7 @@ std::string GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
 			nodetyp == LITERAL_unicode || nodetyp == LITERAL_codepoint || nodetyp == ZuHex ||
 			nodetyp == LITERAL_postscript || nodetyp == LITERAL_pseudo))
 	{
-		ProcessGlyphClassMember(astGlyph, pglfc, kglfctUnion, NULL);
+		ProcessGlyphClassMember(astGlyph, pglfc, NULL);
 		astGlyph = astGlyph->getNextSibling();
 	}
 	*pastNext = astGlyph;
@@ -2664,71 +2592,6 @@ std::string GrcManager::ProcessAnonymousClass(RefAST ast, RefAST * pastNext)
 	return staClassName;
 }
 
-
-/*----------------------------------------------------------------------------------------------
-    Convert an existing class to an intersection class if necessary.
-----------------------------------------------------------------------------------------------*/
-GdlGlyphClassDefn * GrcManager::ConvertClassToIntersection(Symbol psymClass,
-	GdlGlyphClassDefn * pglfc, GrpLineAndFile & lnf)
-{
-	GdlGlyphClassDefn * pglfcRet;
-
-	GdlGlyphIntersectionClassDefn * pglfci
-			= dynamic_cast<GdlGlyphIntersectionClassDefn *>(pglfc);
-	if (pglfci)
-	{
-		// Already an intersection class.
-		pglfcRet = pglfc;
-	}
-	else
-	{
-		GdlGlyphIntersectionClassDefn * pglfciNew = new GdlGlyphIntersectionClassDefn();
-		pglfciNew->SetLineAndFile(lnf);
-		std::string staName = pglfc->Name();
-		pglfciNew->SetName(staName);
-
-		Symbol psymAnonClass = SymbolTable()->AddAnonymousClassSymbol(pglfc->LineAndFile());
-		std::string staAnonClassName = psymAnonClass->FullName();
-		pglfc->SetName(staAnonClassName);
-
-		// Make the original class one of the set elements of the intersection.
-		pglfciNew->AddSet(pglfc, lnf);
-		psymClass->SetData(pglfciNew);
-
-		pglfcRet = dynamic_cast<GdlGlyphClassDefn *>(pglfciNew);
-		m_prndr->AddGlyphClass(pglfcRet);
-	}
-
-	return pglfcRet;
-}
-
-/*----------------------------------------------------------------------------------------------
-    Convert an existing class to a difference class with the original class contents as
-	its minuend.
-----------------------------------------------------------------------------------------------*/
-GdlGlyphClassDefn * GrcManager::ConvertClassToDifference(Symbol psymClass,
-	GdlGlyphClassDefn * pglfc, GrpLineAndFile & lnf)
-{
-	GdlGlyphDifferenceClassDefn * pglfcd = new GdlGlyphDifferenceClassDefn();
-	pglfcd->SetLineAndFile(lnf);
-	pglfcd->SetName(pglfc->Name());
-
-	Symbol psymAnonClass = SymbolTable()->AddAnonymousClassSymbol(pglfc->LineAndFile());
-	std::string staAnonClassName = psymAnonClass->FullName();
-	pglfc->SetName(staAnonClassName);
-	psymAnonClass->ReplaceClassData(pglfc);
-
-	// Make the original class the minuend of the new difference.
-	// I.e, "clsA -= clsB" means that the original contents of clsA becomes the minuend
-	// of the difference class, but is now anonymous.
-	pglfcd->SetMinuend(pglfc, lnf);
-	psymClass->SetData(pglfcd);
-
-	GdlGlyphClassDefn * pglfcRet = dynamic_cast<GdlGlyphClassDefn *>(pglfcd);
-	m_prndr->AddGlyphClass(pglfcRet);
-
-	return pglfcRet;
-}
 
 /*----------------------------------------------------------------------------------------------
 	Process a node that is a slot reference, either an identifer or a number. Fill in the

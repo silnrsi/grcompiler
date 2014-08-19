@@ -64,10 +64,6 @@ public:
 	{
 		m_fFlattened = f;
 	}
-	Symbol AttrName()
-	{
-		return m_psymName;
-	}
 
 protected:
 	//	Parser:
@@ -110,7 +106,6 @@ protected:
 	//	Compiler:
 	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, int nIIndex, int iritAttachTo);
-	bool IsKeySlotAttr();
 
 private:
 	void operator=(GdlAttrValueSpec);	// don't define the assignment operator
@@ -120,7 +115,6 @@ public:
 	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
 		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs);
 	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml);
-	void DebugXml(GrcManager * pcman, std::ostream & strmOut, std::string staPathToCur);
 
 protected:
 	//	Instance variables:
@@ -275,15 +269,11 @@ public:
 	virtual int AttachedToSlot();
 	bool OverlapsWith(GdlRuleItem * prit, GrcFont * pfont, int grfsdc);
 ///	void CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
-	virtual void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
+	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
-	bool IsSpaceItem(std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
-	virtual bool IsMarkedKeySlot() { return false; }	// only slots that perform modifications
-	virtual bool CanBeKeySlot() { return false; }
-	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> & viritInput, int iritFirstModItem);
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
@@ -306,11 +296,10 @@ public:
 		std::ostream & strmOut, bool fXml);
 	virtual void ConstraintPrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml, bool fSpace = false);
 
-	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
-	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
-	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
-		int & iritRhs);
-	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
+	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -385,7 +374,7 @@ public:
 	//	debuggers:
 	virtual void ContextPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut, bool fXml);
-	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlConstraint(GrcManager * pcman, std::ofstream & strmOut);
 
 };	//	end of GdlLineBreakItem
 
@@ -467,9 +456,7 @@ protected:
 		std::vector<int> & vcwClassSizes);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
-	virtual void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
-	void MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfont,
-		int ipavsFlags, int ipavsRange, int ipavsPriority);
+	virtual void ReplaceKern(GrcManager * pcman);
 	virtual void MaxJustificationLevel(int * pnJLevel);
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	virtual void SetAttachTo(int n)
@@ -484,27 +471,9 @@ protected:
 
 protected:
 	int AttachToSettingValue();
-	void ReplaceAttrSetting(int ipavs, GdlAttrValueSpec * pavsNew)
-	{	
-		pavsNew->CopyLineAndFile(*m_vpavs[ipavs]);
-		GdlAttrValueSpec * pavsOld = m_vpavs[ipavs];
-		m_vpavs[ipavs] = pavsNew;
-		delete pavsOld;
-	}
-	void EraseAttrSetting(int ipavs)
-	{
-		GdlAttrValueSpec * pavsToDelete = m_vpavs[ipavs];
-		m_vpavs.erase(m_vpavs.begin() + ipavs);
-		delete pavsToDelete;
-	}
 
 public:
 	//	Compiler:
-	virtual bool IsMarkedKeySlot();
-	virtual bool CanBeKeySlot()
-	{
-		return (m_vpavs.size() > 0);
-	}
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
 		std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
@@ -521,11 +490,10 @@ public:
 	virtual void AttrSetterPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut, bool fXml);
 
-	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
-	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
-	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
-		int & iritRhs);
-	//virtual void DebugXmlAttrSetter(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlContext(GrcManager * pcman, std::ofstream & strmOut, int & iritRhs);
+	//virtual void DebugXmlAttrSetter(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -635,14 +603,6 @@ protected:
 	virtual bool AnyAssociations();
 
 	//	Compiler:
-	virtual bool CanBeKeySlot()
-	{
-		//	True unless this is an insertion slot.
-		if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
-			return false;
-		else
-			return true;
-	}
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 public:
@@ -651,8 +611,8 @@ public:
 		std::ostream & strmOut, bool fXml);
 	virtual void RhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
 		std::ostream & strmOut, bool fXml);
-	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
-	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	virtual void DebugXmlLhs(GrcManager * pcman, std::ofstream & strmOut);
+	virtual void DebugXmlRhs(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -884,17 +844,14 @@ public:
 	void GiveOverlapWarnings(GrcFont * pfont, int grfsdc);
 	bool CheckLBsInRules(Symbol psymTable, int * pcritPreLB, int * pcritPostLB);
 	bool HasReprocessing();
-	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
+	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);
 	int ItemCountOriginal();
 	int FindSubstitutionItem(int iritDel);
-	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
-		std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
-	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);	
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
 		std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints);
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput);
@@ -913,8 +870,7 @@ public:
 	static std::string GlyphMetricDebugString(int gmet);
 	static std::string EngineCodeDebugString(int op);
 	static std::string ProcessStateDebugString(int pstat);
-	void DebugXml(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
-		int nPassNumber, int nRuleNum);
+	void DebugXml(GrcManager * pcman, std::ofstream & strmOut, int nPassNumber, int nRuleNum);
 
 protected:
 	//	Instance variables:

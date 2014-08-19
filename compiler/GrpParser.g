@@ -27,8 +27,6 @@ Description:
 		: = associate a label with an item, which can be used to explicitly build the
 				return tree construct
 		{#label = #(...) } = builds an explicit tree construct
-		
-	This file is converted into C++ code by running runantlr.bat.
 ----------------------------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------------------------
@@ -233,7 +231,7 @@ glyphEntry		:	( glyphContents | glyphAttrs ) (OP_SEMI!)?;
 
 
 glyphContents	:	IDENT
-					( (OP_EQ^ | OP_PLUSEQUAL^ | OP_ANDEQUAL^ | OP_MINUSEQUAL^) glyphSpec )
+					( (OP_EQ^ | OP_PLUSEQUAL^) glyphSpec )
 					(attributes)?
 ;
 
@@ -671,33 +669,26 @@ attrItemList	:	( attrItemStruct | attrItemFlat )
 					(OP_SEMI! attrItemList)?
 ;
 
-attrItemStruct!	:	(I:attrName) OP_LBRACE! (X:attrItemList)? (OP_SEMI!)? OP_RBRACE!
-						{ #attrItemStruct = #([ZdotStruct], I, X); }
+attrItemStruct!	:	(I1:IDENT | I2:LIT_INT | I3:"glyph") OP_LBRACE! (X:attrItemList)? (OP_SEMI!)? OP_RBRACE!
+						{ #attrItemStruct = #([ZdotStruct], I1, I2, I3, X); }
 ;
 
-//attrItemFlatTop! :(	S:attrSel OP_DOT X3:attrItemFlatTop
+//attrItemFlatTop! :	(	S:attrSel OP_DOT X3:attrItemFlatTop
 //							{ #attrItemFlatTop = #([OP_DOT], S, X3); }
 //					|	X:attrItemFlat
 //							{ #attrItemFlatTop = X; }
 //					)
 //;
 
-attrItemFlat!	:	(I:attrName)
+attrItemFlat!	:	(I1:IDENT | I2:LIT_INT | I3:"glyph")
 					(	D:OP_DOT! ( X1:attrItemFlat | X2:attrItemStruct )
-							{ #attrItemFlat = #(D, I, X1, X2); }
+							{ #attrItemFlat = #(D, I1, I2, I3, X1, X2); }
 
 					|	E:attrAssignOp
 						(V1:function | V2:expr)
-							{ #attrItemFlat = #(E, I, V1, V2); }
+							{ #attrItemFlat = #(E, I1, I2, I3, V1, V2); }
 					)
 ;
-
-// Some special tokens can also be attribute names: 
-// - "glyph" is also the name of a table"
-// - "justify" attribute values need special handling due to ambiguity between the
-//		level numbers and cluster numbers (see lookupExpr, etc.)
-// - "min" and "max" are also function names
-attrName		:	( IDENT | LIT_INT | "glyph" | "justify" | "min" | "max" );
 
 attrAssignOp	:	(	OP_EQ
 					|	OP_PLUSEQUAL
@@ -762,8 +753,6 @@ lookupExpr!			:	(	S:selectorExpr
 									{ #lookupExpr = #([Zlookup], S, I1, C1); }
 							|	{ #lookupExpr = #S; }
 							)
-						|	I3:justifyIdentDot
-								{ #lookupExpr = #([Zlookup], I3); }
 						|	I2:identDot (C2:clusterExpr)?
 								{ #lookupExpr = #([Zlookup], I2, C2); }
 						)
@@ -775,20 +764,10 @@ clusterExpr!		:	OP_DOT C:LIT_INT
 							{ #clusterExpr = #([Zcluster], C); }
 ;
 
-signedInt			:	( "true" | "false" | (OP_PLUS! | OP_MINUS^)? LIT_INT );
+signedInt			:	("true" | "false" | (OP_PLUS! | OP_MINUS^)? LIT_INT);
 
 identDot			:	(	( IDENT | "position" ) OP_DOT^ identDot
 						|	( IDENT | "position" )
-						)
-;
-
-// We create a separate rule to handle "justify.2...." because of the ambiguity between the integer as
-// a level and the integer as a cluster indicator.
-justifyIdentDot		:	"justify" OP_DOT^ justifyIdentDotAux;
-
-
-justifyIdentDotAux	:	(	( IDENT | LIT_INT ) OP_DOT^ identDot
-						|	( IDENT | LIT_INT )
 						)
 ;
 
@@ -858,7 +837,6 @@ tokens {
 	"glyphid";
 	"if";
 	"justification";
-	"justify";
 	"linebreak";
 	"max";
 	"min";
@@ -1042,7 +1020,6 @@ OP_MULT			:	'*';
 OP_MULTEQUAL	:	"*=";
 OP_DIV			:	'/';
 OP_DIVEQUAL		:	"/=";
-OP_ANDEQUAL		:	"&=";
 OP_COMMA		:	',';
 //OP_AT			:	'@';	// see AT_IDENT below
 OP_DOLLAR		:	'$';

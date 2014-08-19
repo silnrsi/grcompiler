@@ -17,7 +17,6 @@ Description:
 #ifndef GLYPH_INCLUDED
 #define GLYPH_INCLUDED
 
-
 /*----------------------------------------------------------------------------------------------
 Class: GdlGlyphDefn
 Description: A glyph or set of glyphs specified by a single codepoint, Unicode value,
@@ -35,8 +34,7 @@ public:
 	//	Constructors:
 	//	unicode(0x1234), glyphid(0x3333)
 	GdlGlyphDefn(GlyphType glft, int nFirst) 
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(nFirst),
 			m_nLast(nFirst),
 			m_wCodePage(0),
@@ -51,8 +49,7 @@ public:
 
 	//	unicode(0x1234..1237), glyphid(0x3333..03335), codepage(0x1234, 1252);
 	GdlGlyphDefn(GlyphType glft, int nFirst, int nLast)
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(nFirst),
 			m_nLast(nLast),
 			m_wCodePage(0),
@@ -72,8 +69,7 @@ public:
 
 	//	codepoint(1..2, 0x2222)
 	GdlGlyphDefn(GlyphType glft, int nFirst, int nLast, utf16 wCodePage)
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(nFirst),
 			m_nLast(nLast),
 			m_wCodePage(wCodePage),
@@ -86,8 +82,7 @@ public:
 
 	//	postscript("Ccedilla")
 	GdlGlyphDefn(GlyphType glft, std::string sta)
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
@@ -101,8 +96,7 @@ public:
 
 	//	codepoint("abc", 0x04e4)
 	GdlGlyphDefn(GlyphType glft, std::string sta, utf16 wCodePage)
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(wCodePage),
@@ -116,8 +110,7 @@ public:
 
 	//	pseudo(unicode(0x3344))
 	GdlGlyphDefn(GlyphType glft, GdlGlyphDefn * pglf)
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
@@ -131,8 +124,7 @@ public:
 
 	//	pseudo(unicode(0x3344), 0xf123)
 	GdlGlyphDefn(GlyphType glft, GdlGlyphDefn * pglf, int nInput)
-		:	GdlGlyphClassMember(),
-			m_glft(glft),
+		:	m_glft(glft),
 			m_nFirst(0),
 			m_nLast(0),
 			m_wCodePage(0),
@@ -212,11 +204,6 @@ public:
 	void SetNoRangeCheck()
 	{
 		m_fNoRangeCheck = true;
-	}
-
-	void AddGlyphID(utf16 w)
-	{
-		m_vwGlyphIDs.push_back(w);
 	}
 
 public:
@@ -329,8 +316,6 @@ public:
 		}
 	}
 
-	virtual bool IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs);
-
 public:
 	//	Compiler:
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);
@@ -344,7 +329,7 @@ public:
 	//	debugger
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
-	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut,
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs);
 
 
@@ -361,9 +346,7 @@ protected:
 
 	//	for compiler use:
 	std::vector<utf16> m_vwGlyphIDs;	// equivalent glyph IDs
-	utf16 m_wPseudo;					// glyph id assigned to pseudo-glyph
-
-	std::vector<GlyphBoundaries> m_vgbdy;
+	utf16 m_wPseudo;			// glyph id assigned to pseudo-glyph
 
 	bool m_fGAResolved;			// temporary use: glyph attributes resolved
 

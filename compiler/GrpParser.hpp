@@ -145,7 +145,6 @@ public:
 	public: void contextItem();
 	public: void constraint();
 	public: void otherEntry();
-	public: void attrName();
 	public: void attrAssignOp();
 	public: void function();
 	public: void conditionalExpr();
@@ -160,8 +159,6 @@ public:
 	public: void lookupExpr();
 	public: void selectorExpr();
 	public: void clusterExpr();
-	public: void justifyIdentDot();
-	public: void justifyIdentDotAux();
 private:
 	static const char* _tokenNames[];
 	
@@ -339,10 +336,6 @@ private:
 	static const BitSet _tokenSet_85;
 	static const unsigned long _tokenSet_86_data_[];
 	static const BitSet _tokenSet_86;
-	static const unsigned long _tokenSet_87_data_[];
-	static const BitSet _tokenSet_87;
-	static const unsigned long _tokenSet_88_data_[];
-	static const BitSet _tokenSet_88;
 };
 
 #endif /*INC_GrpParser_hpp_*/

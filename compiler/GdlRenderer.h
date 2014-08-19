@@ -92,18 +92,6 @@ public:
 	{
 		m_vpglfc.push_back(pglfc);
 	}
-	// currently not used:
-	void RemoveGlyphClass(GdlGlyphClassDefn * pglfc) // assumes it is only present once
-	{
-		for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
-		{
-			if (m_vpglfc[iglfc] == pglfc)
-			{
-				m_vpglfc.erase(m_vpglfc.begin() + iglfc);
-				break;
-			}
-		}
-	}
 	void AddFeature(GdlFeatureDefn * pfeat)
 	{
 		m_vpfeat.push_back(pfeat);
@@ -139,7 +127,6 @@ public:
 		std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 		std::vector<GdlExpression *> & vpexpExtra,
 		std::vector<Symbol> & vpsymGlyphAttrs);
-	DirCode DefaultDirCode(int nUnicode, bool * pfInitFailed);
 	DirCode ConvertBidiCode(UCharDirection diricu, utf16 wUnicode);
 	void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		std::vector<GdlExpression *> & vpexpExtra);
@@ -152,19 +139,11 @@ public:
 	void DeleteAllBadGlyphs();
 	bool CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont);
 	bool CheckLBsInRules();
-	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
+	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnLevel);
-	bool HasCollisionPass();
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
-	void CalculateSpaceContextuals(GrcFont * pfont);
-	int NumberOfPasses()
-	{
-		int cpass, cpassLB, cpassSub, cpassPos, cpassJust, ipassBidi;
-		CountPasses(&cpass, &cpassLB, &cpassSub, &cpassJust, &cpassPos, &ipassBidi);
-		return cpass;
-	}
 
 	void SetNumUserDefn(int c);
 	//{
@@ -185,7 +164,6 @@ public:
 	}
 
 	//	Compiler:
-	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
 	void GenerateFsms(GrcManager * pcman);
 	void CalculateContextOffsets();
 
@@ -202,10 +180,6 @@ public:
 
 		return nBitmap;
 	}
-	int SpaceContextualFlags()	// shifted for putting in flag byte
-	{
-		return ((int)(m_spcon)) << 2;
-	}
 	int PreXlbContext()
 	{
 		return m_critPreXlbContext;
@@ -221,9 +195,9 @@ public:
 	void DebugCmap(GrcFont * pfont, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	void DebugClasses(std::ostream & strmOut,
 		std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear);
-	void DebugXmlClasses(std::ofstream & strmOut, std::string staPathToCur);
-	void DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur);
-	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlClasses(std::ofstream & strmOut);
+	void DebugXmlFeatures(std::ofstream & strmOut);
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut);
 	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses);
 
 	//	Output:
@@ -266,8 +240,6 @@ protected:
 	//	limits on cross-line-boundary contextualization:
 	int m_critPreXlbContext;
 	int m_critPostXlbContext;
-	//	space contextuals:
-	SpaceContextuals m_spcon;
 
 	int m_cnUserDefn;	// number of user-defined slot attributes
 	int m_cnComponents;	// max number of components per ligature

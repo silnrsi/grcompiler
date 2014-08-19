@@ -32,7 +32,6 @@ public:
 			m_nMaxRuleLoop(nMaxRuleLoop),
 			m_nMaxBackup(nMaxBackup),
 			m_fBidi(false),
-			m_nCollisionFix(0),
 			m_nGlobalID(-1),
 			m_nPreBidiPass(0),
 			m_pfsm(NULL)
@@ -54,7 +53,6 @@ public:
 
 	int MaxRuleLoop()				{ return m_nMaxRuleLoop; }
 	int MaxBackup()					{ return m_nMaxBackup; }
-	int CollisionFix()				{ return m_nCollisionFix; }
 
 	//	Setters:
 	void SetBidi(bool f)			{ m_fBidi = f; }
@@ -62,7 +60,6 @@ public:
 
 	void SetMaxRuleLoop(int n)		{ m_nMaxRuleLoop = n; }
 	void SetMaxBackup(int n)		{ m_nMaxBackup = n; }
-	void SetCollisionFix(int n)		{ m_nCollisionFix = n; }
 
 public:
 	//	Parser:
@@ -93,13 +90,11 @@ public:
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		GdlRenderer * prndr, Symbol psymTable, int grfrco);
 	void CheckLBsInRules(Symbol psymTable);
-	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
+	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
-	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
-		std::vector<utf16> & vwSpaceGlyphs);
 
 	void AssignGlobalID(int nID)
 	{
@@ -125,7 +120,6 @@ public:
 	{
 		return m_nGlobalID + m_nPreBidiPass + 1;
 	}
-	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
 	void GenerateFsmMachineClasses(GrcManager * pcman);
@@ -161,7 +155,7 @@ public:
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking);
 	void WalkFsmMachineClasses();
-	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 		Symbol psymTableName);
 
 protected:
@@ -172,7 +166,6 @@ protected:
 	bool m_fBidi;
 	std::vector<GdlRule*> m_vprule;
 	std::vector<GdlExpression *> m_vpexpConstraints; // multiple constraints result from -else if-
-	int m_nCollisionFix;
 
 	int m_critMinPreContext;
 	int m_critMaxPreContext;
@@ -188,6 +181,7 @@ protected:
 	int m_critPreLB;	// max number of slots before a LB slot
 	int m_critPostLB;	// max number of slots after a LB slot
 	bool m_fReproc;		// true if this pass has reprocessing happening in any of its rules
+
 
 	//	Finite State Machine construction:
 
@@ -283,17 +277,13 @@ public:
 		ReplacementClassSet & setpglfc);
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont, GdlRenderer * prndr);
 	void CheckLBsInRules();
-	void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
+	void ReplaceKern(GrcManager * pcman);
 	void MaxJustificationLevel(int * pnJLevel);
-	bool HasCollisionPass();
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
-	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
-		std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
-	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
 	void GenerateFsms(GrcManager * pcman);
 	void CalculateContextOffsets(int * pcPrevious, int * pcFollowing, bool * pfLineBreak,
 		bool fPos, GdlRuleTable * prultbl1, GdlRuleTable * prultbl2);
@@ -309,7 +299,7 @@ public:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
-	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:

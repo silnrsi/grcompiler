@@ -71,10 +71,6 @@ Hungarian: glfd
 class GdlGlyphClassMember : public GdlDefn
 {
 public:
-	GdlGlyphClassMember()
-		: m_fIsSpaceGlyph(-1)
-	{
-	};
 	virtual ~GdlGlyphClassMember()
 	{
 	};
@@ -105,7 +101,6 @@ public:
 	virtual bool WarnAboutBadGlyphs(bool fTop) = 0;
 	virtual bool DeleteBadGlyphs() = 0;
 	virtual void FlattenGlyphList(std::vector<utf16> & vgidFlattened) = 0;
-	virtual bool IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs) = 0;
 
 public:
 	//	Compiler:
@@ -120,13 +115,8 @@ public:
 	//	debuggers
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni) = 0;
-	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut, 
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs) = 0;
-
-protected:
-	int m_fIsSpaceGlyph;	// Probably mistakenly I thought the CalculateSpaceContextuals routine
-							// was slow, hence the value is cached. It's probably not needed.
-
 };
 
 
@@ -143,9 +133,7 @@ class GdlGlyphClassDefn : public GdlGlyphClassMember
 public:
 	//	Constructors & destructors:
 	GdlGlyphClassDefn()
-		: GdlGlyphClassMember()
 	{
-		
 		m_fReplcmtIn = false;
 		m_fReplcmtOut = false;
 		m_nReplcmtInID = -1;
@@ -163,8 +151,6 @@ public:
 	//	Setters:
 	void SetName(std::string sta)		{ m_staName = sta; }
 
-	void AddElement(GdlGlyphClassMember * pglfdElement, GrpLineAndFile const& lnf,
-	   GlyphClassType glfct, GrcManager * pcman = NULL);
 	void AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
 
 	void AddGlyphAttr(Symbol, GdlAssignment * pasgn);
@@ -194,14 +180,9 @@ public:
 		GdlGlyphClassDefn * pglfcMember);
 
 	//	Pre-compiler:
-	virtual void ComputeMembers()
-	{	
-		// Overridden by intersection and difference classes to do something interesting.
-	}
-
 	virtual void ExplicitPseudos(PseudoSet & setpglf);
 	virtual int ActualForPseudo(utf16 wPseudo);
-	virtual void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
+	void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
 	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo,
@@ -254,11 +235,9 @@ public:
 	virtual bool HasBadGlyph();
 	virtual bool WarnAboutBadGlyphs(bool fTop);
 	virtual bool DeleteBadGlyphs();
-	virtual bool IsSpaceGlyph(std::vector<utf16> & vwSpaceGlyphs);
 
 public:
 	//	Compiler:
-	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
 	void RecordInclusionInClass(GdlPass * ppass);
 	virtual void RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * pglfc);
 	virtual void GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
@@ -275,8 +254,8 @@ public:
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
 	virtual void DebugCmapForMember(GrcFont * pfont,
 		utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni);
-	void DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs, std::string staPathToCur);
-	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
+	void DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs);
+	virtual void DebugXmlClassMembers(std::ofstream & strmOut,
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs);
 	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses);
 
@@ -358,85 +337,6 @@ protected:
 	}
 
 };	// end of class GdlGlyphClassDefn
-
-
-/*----------------------------------------------------------------------------------------------
-Class: GdlGlyphIntersectionClassDefn
-Description: A class of glyphs and glyph attribute settings that is calculated via an
-	intersection of two other classes.
-Hungarian: glfci
-----------------------------------------------------------------------------------------------*/
-class GdlGlyphIntersectionClassDefn : public GdlGlyphClassDefn
-{
-public:
-	GdlGlyphIntersectionClassDefn()
-		: GdlGlyphClassDefn()
-	{
-	};
-	virtual ~GdlGlyphIntersectionClassDefn()
-	{
-	};
-	void DeleteGlyphDefns();
-
-	void AddSet(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
-
-	// Pre-compiler:
-	virtual void AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-		std::map<utf16, utf16> & hmActualForPseudo);
-	virtual void ComputeMembers();
-
-protected:
-	// These sets are intersected to create the list of members:
-	std::vector<GdlGlyphClassMember*>	m_vpglfdSets;
-	std::vector<GrpLineAndFile>			m_vlnfSets;		// where each set was added, for debugger file
-};
-
-
-/*----------------------------------------------------------------------------------------------
-Class: GdlGlyphDifferenceClassDefn
-Description: A class of glyphs and glyph attribute settings that is calculated using the
-	difference of two other classes.
-Hungarian: glfcd
-----------------------------------------------------------------------------------------------*/
-class GdlGlyphDifferenceClassDefn : public GdlGlyphClassDefn
-{
-public:
-	GdlGlyphDifferenceClassDefn()
-		:	GdlGlyphClassDefn(),
-			m_pglfdMinuend(NULL),
-			m_pglfdSubtrahend(NULL)
-	{
-	};
-	virtual ~GdlGlyphDifferenceClassDefn()
-	{
-	};
-	void DeleteGlyphDefns();
-
-	void SetMinuend(GdlGlyphClassDefn * pglfd, GrpLineAndFile const& lnf);
-	void SetSubtrahend(GdlGlyphClassDefn * pglfd, GrpLineAndFile const& lnf);
-	void AddToSubtrahend(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
-	bool HasMinuend()
-	{
-		return (m_pglfdMinuend != NULL);
-	}
-	bool HasSubtrahend()
-	{
-		return (m_pglfdSubtrahend != NULL);
-	}
-
-	// Pre-compiler:
-	virtual void AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
-		std::map<utf16, utf16> & hmActualForPseudo);
-	virtual void ComputeMembers();
-
-protected:
-	// The subtrahend is subtracted from the minuend to create the list of members:
-	GdlGlyphClassDefn *	m_pglfdMinuend;
-	GrpLineAndFile			m_lnfMinuend;		// where minuend was added, for debugger file
-
-	GdlGlyphClassDefn *	m_pglfdSubtrahend;
-	GrpLineAndFile			m_lnfSubtrahend;	// where subtrahend was added, for debugger file
-};
 
 
 // Functor class for set manipulation.

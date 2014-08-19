@@ -52,26 +52,9 @@ void GdlGlyphClassDefn::DeleteGlyphDefns()
 		if (dynamic_cast<GdlGlyphDefn * >(m_vpglfdMembers[i]))
 			delete m_vpglfdMembers[i];
 	}
+
 }
 
-void GdlGlyphIntersectionClassDefn::DeleteGlyphDefns()
-{
-	GdlGlyphClassDefn::DeleteGlyphDefns();
-	for (size_t i = 0; i < m_vpglfdSets.size(); ++i)
-	{
-		if (dynamic_cast<GdlGlyphDefn * >(m_vpglfdSets[i]))
-			delete m_vpglfdSets[i];
-	}
-}
-
-void GdlGlyphDifferenceClassDefn::DeleteGlyphDefns()
-{
-	GdlGlyphClassDefn::DeleteGlyphDefns();
-	if (dynamic_cast<GdlGlyphDefn * >(m_pglfdMinuend))
-		delete m_pglfdMinuend;
-	if (dynamic_cast<GdlGlyphDefn * >(m_pglfdSubtrahend))
-		delete m_pglfdSubtrahend;
-}
 
 /***********************************************************************************************
 	Methods: Post-parser
@@ -150,56 +133,9 @@ GdlGlyphClassMember * GdlGlyphClassDefn::AddClassToClass(GrpLineAndFile const& l
 	return pglfcMember;
 }
 
-/*----------------------------------------------------------------------------------------------
-	Add an element to the class.
-----------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::AddElement(GdlGlyphClassMember * pglfdElement, GrpLineAndFile const& lnf,
-   GlyphClassType glfct, GrcManager * pcman)
-{
-	GdlGlyphIntersectionClassDefn * pglfci = dynamic_cast<GdlGlyphIntersectionClassDefn *>(this);
-	GdlGlyphDifferenceClassDefn * pglfcd = dynamic_cast<GdlGlyphDifferenceClassDefn *>(this);
-
-	switch (glfct)
-	{
-	case kglfctUnion:
-		AddMember(pglfdElement, lnf);
-		break;
-	case kglfctIntersect:
-		Assert(pglfci);
-		pglfci->AddSet(pglfdElement, lnf);
-		break;
-	case kglfctDifference:
-		Assert(pglfcd);
-		Assert(pglfcd->HasMinuend()); // because we only support -= right now
-		if (pglfcd->HasMinuend())
-		{
-			if (!pglfcd->HasSubtrahend())
-			{
-				// Create an anonymous class to hold the subtrahends.
-				Symbol psymClassAnon = pcman->SymbolTable()->AddAnonymousClassSymbol(lnf);
-				std::string staClassNameAnon = psymClassAnon->FullName();
-				GdlGlyphClassDefn * pglfcSubtra = psymClassAnon->GlyphClassDefnData();
-				Assert(pglfcSubtra);
-				pglfcSubtra->SetName(staClassNameAnon);
-				pglfcd->SetSubtrahend(pglfcSubtra, lnf);
-			}
-			pglfcd->AddToSubtrahend(pglfdElement, lnf);
-		}
-		else
-		{
-			GdlGlyphClassDefn * pglfd = dynamic_cast<GdlGlyphClassDefn *>(pglfdElement);
-			Assert(pglfd);	// because we only support class -= ... right now
-			pglfcd->SetMinuend(pglfd, lnf);
-		}
-		break;
-	default:
-		Assert(false);
-		break;
-	}
-}
 
 /*----------------------------------------------------------------------------------------------
-	Add a member to a "union" class (the standard kind).
+	Add a member to the class.
 ----------------------------------------------------------------------------------------------*/
 void GdlGlyphClassDefn::AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf)
 {
@@ -208,40 +144,6 @@ void GdlGlyphClassDefn::AddMember(GdlGlyphClassMember * pglfd, GrpLineAndFile co
 	m_vlnfMembers.push_back(lnf);
 }
 
-
-/*----------------------------------------------------------------------------------------------
-	Add a set to an intersection class.
-----------------------------------------------------------------------------------------------*/
-void GdlGlyphIntersectionClassDefn::AddSet(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf)
-{
-	Assert(m_vpglfdSets.size() == m_vlnfSets.size());
-	m_vpglfdSets.push_back(pglfd);
-	m_vlnfSets.push_back(lnf);
-}
-
-/*----------------------------------------------------------------------------------------------
-	Add an element to a difference class.
-----------------------------------------------------------------------------------------------*/
-void GdlGlyphDifferenceClassDefn::SetMinuend(GdlGlyphClassDefn * pglfd,
-	GrpLineAndFile const& lnf)
-{
-	m_pglfdMinuend = pglfd;
-	m_lnfMinuend = lnf;
-}
-
-void GdlGlyphDifferenceClassDefn::SetSubtrahend(GdlGlyphClassDefn * pglfd,
-	GrpLineAndFile const& lnf)
-{
-	m_pglfdSubtrahend = pglfd;
-	m_lnfSubtrahend = lnf;
-}
-
-void GdlGlyphDifferenceClassDefn::AddToSubtrahend(GdlGlyphClassMember * pglfd,
-	GrpLineAndFile const& lnf)
-{
-	Assert(m_pglfdSubtrahend);
-	m_pglfdSubtrahend->AddMember(pglfd, lnf);
-}
 
 /*----------------------------------------------------------------------------------------------
 	Add a user-defined glyph attribute to the list. Note that we shouldn't have to check

@@ -92,7 +92,6 @@ public:
 	public: void mOP_MULTEQUAL(bool _createToken);
 	public: void mOP_DIV(bool _createToken);
 	public: void mOP_DIVEQUAL(bool _createToken);
-	public: void mOP_ANDEQUAL(bool _createToken);
 	public: void mOP_COMMA(bool _createToken);
 	public: void mOP_DOLLAR(bool _createToken);
 	public: void mOP_LINEMARKER(bool _createToken);

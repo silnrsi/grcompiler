@@ -78,9 +78,6 @@ public:
 	void SetSubTable(GrcSymbolTable * psymtbl)	{ m_psymtblSubTable = psymtbl; }
 	void SetExpType(ExpressionType expt)		{ m_expt = expt; }
 
-	// Used for creating difference classes:
-	void ReplaceClassData(GdlGlyphClassDefn * pglfc);
-
 public:
 	//	General:
 	bool FitsSymbolType(SymbolType symt);
@@ -158,12 +155,8 @@ public:
 	bool DoesJustification();
 	bool IsMeasureAttr();
 	bool IsMirrorAttr();
-	bool IsCollisionAttr();
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
-	bool IsPseudoSlotAttr();
-	bool IsPassKeySlot();
-	bool IsIgnorableOffsetAttr();
 
 	Symbol SubField(std::string);
 	bool HasSubFields()
@@ -247,6 +240,7 @@ class GrcSymbolTable
 
 	typedef std::pair<std::string, Symbol> SymbolTablePair;
 	typedef std::map<std::string, Symbol> SymbolTableMap;
+	//typedef HashMap<StrAnsi, Symbol, HashStrAnsi, EqlStrAnsi> SymbolTableMap;
 
 public:
 	//	Constructor and destructor:
@@ -341,8 +335,7 @@ public:
 	//	General:
 	Symbol AddSymbol(const GrcStructName & xns, SymbolType symt, GrpLineAndFile const&);
 
-	Symbol AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const&,
-		GlyphClassType nodetyp = kglfctUnion);
+	Symbol AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const&);
 	Symbol AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFile const&);
 	Symbol AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf);
 	Symbol AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndFile const&,
@@ -383,7 +376,7 @@ public:
 public:
 	//	Pre-compiler methods:
 	bool AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain, std::vector<Symbol> & vpsymGlyphAttrIDs, 
-		int nPass, int cpsymBuiltIn, int cpsymComponents, int nMaxJLevel, int cpass);
+		int nPass, int cpsymBuiltIn, int cpsymComponents, int nMaxJLevel);
 	Symbol BaseLigComponent();
 
 	//	Debuggers:

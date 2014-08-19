@@ -104,7 +104,7 @@ public:
 	bool HasExtName(std::wstring stuName);
 
 	// Debuggers:
-	void DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlFeatures(std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:
@@ -246,7 +246,7 @@ public:
 	bool HasExtName(std::wstring stuName);
 
 	// Debuggers
-	void DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlFeatures(std::ofstream & strmOut);
 
 protected:
 	//	Instance variables:

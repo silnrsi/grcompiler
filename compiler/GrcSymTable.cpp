@@ -74,8 +74,7 @@ Symbol GrcSymbolTable::AddSymbol(const GrcStructName & xns, SymbolType symt,
     Add a symbol that is the name of a class to the main symbol table (if it is not already
 	there). Also, ensure that it has an GdlGlyphClassDefn as its data.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcSymbolTable::AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf,
-	GlyphClassType glfct)
+Symbol GrcSymbolTable::AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf)
 {
 	Assert(m_cLevel == 0);
 	Assert(xns.NumFields() == 1);
@@ -83,29 +82,7 @@ Symbol GrcSymbolTable::AddClassSymbol(const GrcStructName & xns, GrpLineAndFile 
 	Symbol psymAdded = AddSymbolAux(xns, ksymtClass, ksymtInvalid, lnf);
 	if (!psymAdded->HasData())
 	{
-		GdlGlyphClassDefn * pglfc;
-		GdlGlyphIntersectionClassDefn * pglfci;
-		GdlGlyphDifferenceClassDefn * pglfcd;
-		switch (glfct)
-		{
-		case kglfctUnion:
-			pglfc = new GdlGlyphClassDefn();
-			break;
-		// These two options are not used; currently the only way to create an intersection
-		// or difference is by converting an existing class as a result of the
-		// 'classA &= classB' syntax.
-		case kglfctIntersect:
-			pglfci = new GdlGlyphIntersectionClassDefn();
-			pglfc = dynamic_cast<GdlGlyphClassDefn *>(pglfci);
-			break;
-		case kglfctDifference:
-			pglfcd = new GdlGlyphDifferenceClassDefn();
-			pglfc = dynamic_cast<GdlGlyphClassDefn *>(pglfcd);
-			break;
-		default:
-			break;
-		}
-
+		GdlGlyphClassDefn * pglfc = new GdlGlyphClassDefn();
 		pglfc->SetLineAndFile(lnf);
 		psymAdded->SetData(pglfc);
 	}
@@ -135,9 +112,10 @@ Symbol GrcSymbolTable::AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFil
 	return psymAdded;
 }
 
+
 /*----------------------------------------------------------------------------------------------
-    Add a symbol that is the name of a language to the main symbol table (if it is not already
-	there). Also, ensure that it has an GdlLanguageDefn as its data.
+    Add a symbol that is the name of a feature to the main symbol table (if it is not already
+	there). Also, ensure that it has an GdlFeatureDefn as its data.
 ----------------------------------------------------------------------------------------------*/
 Symbol GrcSymbolTable::AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf)
 {
@@ -369,7 +347,6 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::FitsSymbolType(SymbolType symt)
 {
-	//	Exact match
 	if (m_symt == symt || m_symt2 == symt)
 		return true;
 
@@ -400,8 +377,6 @@ bool GrcSymbolTableEntry::FitsSymbolType(SymbolType symt)
 
 	case ksymtSlotAttr:
 		if (FitsSymbolType(ksymtSlotAttrPt))
-			return true;
-		if (FitsSymbolType(ksymtSlotAttrPtOff))
 			return true;
 		if (FitsSymbolType(ksymtSlotAttrCompRef))
 			return true;
@@ -498,24 +473,6 @@ Symbol GrcSymbolTable::FindSlotAttr(const GrcStructName & xns, GrpLineAndFile co
 		return NULL;
 	else
 		return psym;
-}
-
-/*----------------------------------------------------------------------------------------------
-    Answer true if the field at the given index is the given string.
-----------------------------------------------------------------------------------------------*/
-void GrcSymbolTableEntry::ReplaceClassData(GdlGlyphClassDefn * pglfc)
-{
-	if (m_pData)
-	{
-		// Empty class is being deleted.
-		GdlGlyphClassDefn * pglfcDelete = dynamic_cast<GdlGlyphClassDefn *>(m_pData);
-		Assert(pglfcDelete);
-		Assert(pglfcDelete->Name() == "");
-		pglfcDelete->ComputeMembers();
-		Assert(pglfcDelete->GlyphIDCount() == 0);
-		delete m_pData;
-	}
-	SetData(pglfc);
 }
 
 
@@ -630,12 +587,7 @@ bool GrcSymbolTableEntry::IsReadOnlySlotAttr()
 {
 	Assert(FitsSymbolType(ksymtSlotAttr));
 
-	if (FieldIs(0, "position"))
-		return true;
-	else if (FieldIs(0, "collision") && FieldIs(1, "fix"))
-		return true;
-	else
-		return false;
+	return (FieldIs(0, "position"));
 }
 
 
@@ -1066,19 +1018,6 @@ bool GrcSymbolTableEntry::IsMirrorAttr()
 }
 
 /*----------------------------------------------------------------------------------------------
-    Return true if the symbol is a collision-related attribute.
-----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTableEntry::IsCollisionAttr()
-{
-	if (m_staFieldName == "collision")
-		return true;
-	Symbol psymParent = ParentSymbol();
-	if (!psymParent)
-		return false;
-	return (psymParent->IsCollisionAttr());
-}
-
-/*----------------------------------------------------------------------------------------------
     Return true if the symbol is a user-definable slot attribute.
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsUserDefinableSlotAttr()
@@ -1090,40 +1029,6 @@ bool GrcSymbolTableEntry::IsUserDefinableSlotAttr()
 	}
 	else
 		return false;
-}
-
-/*----------------------------------------------------------------------------------------------
-    Return true if the symbol is a pseudo-slot attribute, used only by the compiler for
-	optimization purposes.
-----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTableEntry::IsPseudoSlotAttr()
-{
-	if (m_staFieldName == "passKeySlot")
-		return true;
-	else
-		return false;
-}
-
-/*----------------------------------------------------------------------------------------------
-    Return true if the symbol is the pseudo passKeySlot attribute.
-----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTableEntry::IsPassKeySlot()
-{
-	if (m_staFieldName == "passKeySlot")
-		return true;
-	else
-		return false;
-}
-
-/*----------------------------------------------------------------------------------------------
-    Return true if the symbol is of the form "attach.at/with.gpoint"
-----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTableEntry::IsIgnorableOffsetAttr()
-{
-	Assert(FitsSymbolType(ksymtGlyphAttr));
-	// Symbol psymParent = ParentSymbol();
-	return (m_staFieldName == "gpoint" || m_staFieldName == "xoffset"
-		|| m_staFieldName == "yoffset");
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1153,8 +1058,8 @@ int GrcSymbolTableEntry::UserDefinableSlotAttrIndex()
 ----------------------------------------------------------------------------------------------*/
 Symbol GrcSymbolTableEntry::SubField(std::string sta)
 {
-	Assert(FitsSymbolType(ksymtSlotAttrPt) || FitsSymbolType(ksymtSlotAttrPtOff)
-		|| FitsSymbolType(ksymtGlyphAttr) || FitsSymbolType(ksymtInvalidGlyphAttr)) ;
+	Assert(FitsSymbolType(ksymtSlotAttrPt) || FitsSymbolType(ksymtGlyphAttr) ||
+		FitsSymbolType(ksymtInvalidGlyphAttr)) ;
 	Assert(m_psymtblSubTable);
 	return m_psymtblSubTable->FindField(sta);
 }
@@ -1381,39 +1286,27 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 	else if (staField0 == "justify")	// TODO: handle all the levels
 	{
 		if (staField1 == "stretch")
-			return kslatJ0Stretch;
+			return kslatJStretch;
 		else if (staField1 == "shrink")
-			return kslatJ0Shrink;
+			return kslatJShrink;
 		else if (staField1 == "step")
-			return kslatJ0Step;
+			return kslatJStep;
 		else if (staField1 == "weight")
-			return kslatJ0Weight;
+			return kslatJWeight;
 		else if (staField1 == "width")
-			return kslatJ0Width;
-		else if (staField1 == "0" || staField1 == "1" || staField1 == "2" || staField1 == "3")
+			return kslatJWidth;
+		else if (staField1 == "0")
 		{
-			int slatStretch = kslatJ0Stretch;
-			if (staField1 == "0")
-				slatStretch = kslatJ0Stretch;
-			else if (staField1 == "1")
-				slatStretch = kslatJ1Stretch;
-			else if (staField1 == "2")
-				slatStretch = kslatJ2Stretch;
-			else if (staField1 == "3")
-				slatStretch = kslatJ3Stretch;
-			else
-				Assert(false);
-
 			if (staField2 == "stretch")
-				return slatStretch;
+				return kslatJStretch;
 			else if (staField2 == "shrink")
-				return slatStretch + (kslatJ0Shrink - kslatJ0Stretch);
+				return kslatJShrink;
 			else if (staField2 == "step")
-				return slatStretch + (kslatJ0Step - kslatJ0Stretch);
+				return kslatJStep;
 			else if (staField2 == "weight")
-				return slatStretch + (kslatJ0Weight - kslatJ0Stretch);
+				return kslatJWeight;
 			else if (staField2 == "width")
-				return slatStretch + (kslatJ0Width - kslatJ0Stretch);
+				return kslatJWidth;
 			else
 			{
 				Assert(false);
@@ -1440,59 +1333,6 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		return kslatUserDefn;
 	}
 
-	else if (staField0 == "collision")
-	{
-		if (staField1 == "flags")
-			return kslatColFlags;
-		else if (staField1 == "priority")	// alias for flags
-			return kslatColFlags;
-		else if (staField1 == "range")		// alias for flags
-			return kslatColFlags;
-		else if (staField1 == "margin")
-			return kslatColMargin;
-		else if (staField1 == "min")
-		{
-			if (staField2 == "x")
-				return kslatColMinX;
-			else if (staField2 == "y")
-				return kslatColMinY;
-			else
-			{
-				Assert(false);
-			}
-		}
-		else if (staField1 == "max")
-		{
-			if (staField2 == "x")
-				return kslatColMaxX;
-			else if (staField2 == "y")
-				return kslatColMaxY;
-			else
-			{
-				Assert(false);
-			}
-		}
-		else if (staField1 == "fix")
-		{
-			if (staField2 == "x")
-				return kslatColMinX;
-			else if (staField2 == "y")
-				return kslatColMinY;
-			else
-			{
-				Assert(false);
-			}
-		}
-		else
-		{
-			Assert(false);
-		}
-	}
-
-	else if (IsPseudoSlotAttr())
-	{
-		return kslatBogus;
-	}
 	else
 	{
 		Assert(false);
@@ -1638,7 +1478,6 @@ void GrcSymbolTable::InitDirectives()
 	PreDefineSymbol(GrcStructName("MaxRuleLoop"),			kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("MUnits"),				kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("PointRadius"),			kst, kexptMeas);
-	PreDefineSymbol(GrcStructName("CollisionFix"),			kst, kexptBoolean);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1735,12 +1574,11 @@ void GrcSymbolTable::InitSlotAttrs()
 {
 	SymbolType kst = ksymtSlotAttr;
 	SymbolType kstPt = ksymtSlotAttrPt;
-	SymbolType kstPtO = ksymtSlotAttrPtOff;
 
 	PreDefineSymbol(GrcStructName("attach", "to"),				kst, kexptSlotRef);
 	PreDefineSymbol(GrcStructName("attach", "level"),			kst, kexptNumber);
 
-	PreDefineSymbol(GrcStructName("attach", "at"),				kstPtO, kexptPoint);
+	PreDefineSymbol(GrcStructName("attach", "at"),				kstPt, kexptPoint);
 	PreDefineSymbol(GrcStructName("attach", "at", "x"),			kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("attach", "at", "y"),			kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("attach", "at", "gpath"),		kst, kexptNumber);
@@ -1748,7 +1586,7 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("attach", "at", "xoffset"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("attach", "at", "yoffset"),	kst, kexptMeas);
 
-	PreDefineSymbol(GrcStructName("attach", "with"),			kstPtO, kexptPoint);
+	PreDefineSymbol(GrcStructName("attach", "with"),			kstPt, kexptPoint);
 	PreDefineSymbol(GrcStructName("attach", "with", "x"),		kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("attach", "with", "y"),		kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("attach", "with", "gpath"),	kst, kexptNumber);
@@ -1783,7 +1621,7 @@ void GrcSymbolTable::InitSlotAttrs()
 
 	PreDefineSymbol(GrcStructName("insert"),		kst, kexptBoolean);
 
-	PreDefineSymbol(GrcStructName("advance"),		kstPtO,	kexptPoint);
+	PreDefineSymbol(GrcStructName("advance"),		kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("advance", "x"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("advance", "y"),	kst,	kexptMeas);
 	//	bogus attributes for error detection:
@@ -1792,7 +1630,7 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("advance", "xoffset"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("advance", "yoffset"),	kst, kexptMeas);
 
-	PreDefineSymbol(GrcStructName("kern"),				kstPtO,	kexptPoint);
+	PreDefineSymbol(GrcStructName("kern"),				kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("kern", "x"),			kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("kern", "y"),			kst,	kexptMeas);
 	//	bogus attributes for error detection:
@@ -1801,11 +1639,11 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("kern", "xoffset"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("kern", "yoffset"),	kst, kexptMeas);
 
-	PreDefineSymbol(GrcStructName("position"),			kstPtO,	kexptPoint);
+	PreDefineSymbol(GrcStructName("position"),			kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("position", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("position", "y"),		kst,	kexptMeas);
 
-	PreDefineSymbol(GrcStructName("shift"),				kstPtO,	kexptPoint);
+	PreDefineSymbol(GrcStructName("shift"),				kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("shift", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("shift", "y"),		kst,	kexptMeas);
 	//	bogus attributes for error detection:
@@ -1817,6 +1655,7 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("measure", "startofline"),kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("measure", "endofline"),	kst, kexptMeas);
 
+	//	TODO: handle all the levels.
 	PreDefineSymbol(GrcStructName("justify", "stretch"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("justify", "stretchHW"),	kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("justify", "shrink"),		kst, kexptMeas);
@@ -1824,37 +1663,14 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("justify", "weight"),		kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("justify", "width"),		kst, kexptMeas);
 
-	char rgchLevel[10];
-	for (int iLevel = 0; iLevel <= kMaxJustLevel; iLevel++)
-	{
-		itoa(iLevel, rgchLevel, 10);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "stretch"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel,"stretchHW"),kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "shrink"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "step"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "weight"),	kst, kexptNumber);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "width"),	kst, kexptMeas);
-	}
-
-	PreDefineSymbol(GrcStructName("collision", "flags"),	kst,	kexptNumber);
-	PreDefineSymbol(GrcStructName("collision", "range"),	kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "priority"),	kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "margin"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "min"),		kstPt,	kexptPoint);
-	PreDefineSymbol(GrcStructName("collision", "min", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "min", "y"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "max"),		kstPt,	kexptPoint);
-	PreDefineSymbol(GrcStructName("collision", "max", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "max", "y"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "fix", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "fix", "y"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "stretch"),	kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "stretchHW"),	kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "shrink"),	kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "step"),		kst, kexptMeas);
+	PreDefineSymbol(GrcStructName("justify", "0", "weight"),	kst, kexptNumber);
+	PreDefineSymbol(GrcStructName("justify", "0", "width"),		kst, kexptMeas);
 
 	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
-
-	//	A psuedo-attribute that indicates that a given slot serves as the "key" for the pass,
-	//	for optimization purposes.
-	PreDefineSymbol(GrcStructName("passKeySlot"), kst, kexptBoolean);
-
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1870,6 +1686,7 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("breakweight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
+	//	TODO: handle all the levels
 	psym = AddType2(GrcStructName("justify", "stretch"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("justify", "shrink"), ksymtGlyphAttr);
@@ -1879,27 +1696,17 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("justify", "weight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
-	char rgchLevel[10];
-	for (int iLevel = 0; iLevel <= kMaxJustLevel; iLevel++)
-	{
-		itoa(iLevel, rgchLevel, 10);
-		psym = AddType2(GrcStructName("justify", rgchLevel, "stretch"), ksymtGlyphAttr);
-		psym->m_fGeneric = true;
-		psym = AddType2(GrcStructName("justify", rgchLevel, "shrink"), ksymtGlyphAttr);
-		psym->m_fGeneric = true;
-		psym = AddType2(GrcStructName("justify", rgchLevel, "step"), ksymtGlyphAttr);
-		psym->m_fGeneric = true;
-		psym = AddType2(GrcStructName("justify", rgchLevel, "weight"), ksymtGlyphAttr);
-		psym->m_fGeneric = true;
-	}
+	psym = AddType2(GrcStructName("justify", "0", "stretch"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("justify", "0", "shrink"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("justify", "0", "step"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("justify", "0", "weight"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
 
 	//	A fake glyph attribute that is used to store the actual glyph ID for pseudo-glyphs.
 	psym = PreDefineSymbol(GrcStructName("*actualForPseudo*"), ksymtGlyphAttr, kexptNumber);
-	psym->m_fGeneric = true;
-
-	//	A built-in glyph attribute that is hold the pass optimization flags (bitmap indicating
-	//	the passes for which a glyph is not a key glyph).
-	psym = PreDefineSymbol(GrcStructName("*skipPasses*"), ksymtGlyphAttr, kexptNumber);
 	psym->m_fGeneric = true;
 
 	// These are just glyph attributes. These two must be in this order and contiguous,
@@ -1908,24 +1715,6 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = PreDefineSymbol(GrcStructName("mirror", "glyph"), ksymtGlyphAttr, kexptGlyphID);
 	psym->m_fGeneric = true;
 	psym = PreDefineSymbol(GrcStructName("mirror", "isEncoded"), ksymtGlyphAttr, kexptBoolean);
-	psym->m_fGeneric = true;
-
-	// Built-in glyph attributes that define how automatic collision fixing should work.
-	psym = AddType2(GrcStructName("collision", "flags"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "min", "x"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "max", "x"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "min", "y"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "max", "y"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "margin"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-
-	// This one is used by the compiler, but not stored in the font:
-	psym = PreDefineSymbol(GrcStructName("collision", "simplebox"), ksymtGlyphAttr, kexptNumber);
 	psym->m_fGeneric = true;
 }
 

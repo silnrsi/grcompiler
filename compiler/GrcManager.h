@@ -58,8 +58,6 @@ Hungarian: cman
 ----------------------------------------------------------------------------------------------*/
 class GrcManager
 {
-	typedef std::map<std::string, Symbol> SymbolTableMap;
-
 public:
 	//	Constructor & destructor:
 	GrcManager();
@@ -145,8 +143,7 @@ public:
 		case 0x00030000:	m_fxdCompilerVersion = 0x00030000;		break;
 		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
 		case 0x00030002:	m_fxdCompilerVersion = 0x00040001;		break;
-		case 0x00040000:	m_fxdCompilerVersion = 0x00040002;		break;
-		case 0x00050000:	m_fxdCompilerVersion = 0x00050000;		break;
+		case 0x00040000:	m_fxdCompilerVersion = 0x00050000;		break;
 		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
 	}
@@ -154,7 +151,7 @@ public:
 	int VersionForTable(int ti);
 	int VersionForTable(int ti, int fxdRequestedVersion);
 	int VersionForRules();
-	int CalculateSilfVersion(int fxdSpecVersion);
+	int SilfVersionForClassMap(int fxdSpecVersion);
 
 	void SetNameTableStart(int n)
 	{
@@ -205,14 +202,10 @@ public:
 	}
 	bool IgnoreBadGlyphs()				{ return m_fIgnoreBadGlyphs; }
 	void SetIgnoreBadGlyphs(bool f)		{ m_fIgnoreBadGlyphs = f; }
-	bool IsVerbose()					{ return m_fVerbose; }
-	void SetVerbose(bool f) 			{ m_fVerbose = f; }
+	bool IsVerbose()					{ return m_verbose; }
+	void SetVerbose(bool verbose) 		{ m_verbose = verbose; }
 	int SeparateControlFile()			{ return m_fSepCtrlFile; }
 	void SetSeparateControlFile(bool f)	{ m_fSepCtrlFile = f; }
-	bool IncludePassOptimizations()		{ return m_fPassOptimizations; }
-	void SetPassOptimizations(bool f)	{ m_fPassOptimizations = f; }
-	bool OffsetAttrs()					{ return m_fOffsetAttrs; }
-	void SetOffsetAttrs(bool f)			{ m_fOffsetAttrs = f; }
 
 public:
 	//	Parser:
@@ -227,12 +220,12 @@ protected:
 	void WalkParseTree(RefAST ast);
 	void WalkTopTree(RefAST ast);
 	void WalkEnvTree(RefAST ast, TableType tblt, GdlRuleTable *, GdlPass *);
-	void WalkDirectivesTree(RefAST ast, int * nCollisionFix = NULL);
+	void WalkDirectivesTree(RefAST ast);
 	void WalkTableTree(RefAST ast);
 	void WalkTableElement(RefAST ast, TableType tblt, GdlRuleTable * prultbl, GdlPass * ppass);
 	void WalkGlyphTableTree(RefAST ast);
 	void WalkGlyphTableElement(RefAST ast);
-	void WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc, GlyphClassType glfct);
+	void WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc);
 	void WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta);
 	void WalkFeatureTableTree(RefAST ast);
 	void WalkFeatureTableElement(RefAST ast);
@@ -253,7 +246,7 @@ protected:
 	GdlExpression * WalkExpressionTree(RefAST ast);
 
 	void ProcessGlobalSetting(RefAST);
-	void ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc, GlyphClassType glfct,
+	void ProcessGlyphClassMember(RefAST ast, GdlGlyphClassDefn * pglfc,
 		GdlGlyphDefn ** ppglfRet);
 	GdlGlyphDefn * ProcessGlyph(RefAST astGlyph, GlyphType glft, int nCodePage = -1);
 	void ProcessFunction(RefAST ast, std::vector<std::string> & vsta,
@@ -271,10 +264,6 @@ protected:
 	std::string ProcessAnonymousClass(RefAST ast, RefAST * pastNext);
 	void ProcessSlotIndicator(RefAST ast, GdlAlias * palias);
 	void ProcessAssociations(RefAST ast, GdlRuleTable * prultbl, GdlRuleItem * prit, int lrc);
-	GdlGlyphClassDefn * ConvertClassToIntersection(Symbol psymClass, GdlGlyphClassDefn * pglfc,
-		GrpLineAndFile & lnf);
-	GdlGlyphClassDefn * ConvertClassToDifference(Symbol psymClass, GdlGlyphClassDefn * pglfc,
-		GrpLineAndFile & lnf);
 
 	GrpLineAndFile LineAndFile(RefAST);
 	int NumericValue(RefAST);
@@ -326,7 +315,6 @@ protected:
 		bool * pfFixPassConstraints);
 
 	bool AssignInternalGlyphAttrIDs();
-	void CalculateCollisionOctoboxes(GrcFont * pfont);
 
 	bool AssignGlyphAttrsToClassMembers(GrcFont * pfont);
 	bool ProcessGlyphAttributes(GrcFont * pfont);
@@ -336,7 +324,6 @@ protected:
 		int cJLevels, int nAttrIDJStr, int nAttrIDJShr, int nAttrIDJStep, int nAttrIDJWeight,
 		int * pnMin, int * pnMax);
 	bool StorePseudoToActualAsGlyphAttr();
-	bool CheckForEmptyClasses();
 
 public:
 	int PseudoForUnicode(int nUnicode);
@@ -363,8 +350,6 @@ public:
 	////void InitializeFsmArrays();
 	std::vector<GdlGlyphClassDefn *> * FsmClassesForPass(int nPassID);
 	void CalculateContextOffsets();
-	void CalculateGlatVersion();
-	void PassOptimizations();
 
 	//	Output:
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
@@ -405,7 +390,6 @@ protected:
 		int * pibOffset, int * pcbSize);
 	void OutputGlatAndGloc(GrcBinaryStream * pbstrm, int * pnGlocOffset, int * pnGlocSize,
 		int * pnGlatOffset, int * pnGlatSize);
-	int OutputGlatOctoboxes(GrcBinaryStream * pbstrm);
 	void OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, int * pnSilfSize);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, int * pnFeatSize);
 	void OutputSileTable(GrcBinaryStream * pbstrm, utf16 * pchwFontName, long nChecksum);
@@ -422,7 +406,7 @@ public:
 	void DebugGlyphAttributes();
 	void DebugClasses();
 	void DebugFsm();
-	bool DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGdlFilePaths);
+	void DebugXml(GrcFont * pfont, char * pchOutputFilename);
 	////void WalkFsmMachineClasses();
 	void DebugOutput();
 	void DebugCmap(GrcFont * pfont);
@@ -433,13 +417,11 @@ public:
 	static void DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit);
 	static std::string ExpressionDebugString(ExpressionType expt);
 protected:
-	void DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut, std::string staPathToCur);
+	void DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut);
 	void CmapAndInverse(GrcFont * pfont, 
 		int cnUni, utf16 * rgnUniToGlyphID, unsigned int * rgnGlyphIDToUni,
 		std::vector<unsigned int> & vnXUniForPsd, std::vector<utf16> & vwXPsdForUni);
 
-	std::string pathFromOutputToCurrent(char * rgchCurDir, char * rgchOutputPath);
-	char splitPath(char * rgchPath, std::vector<std::string> & vstaResult);
 
 protected:
 	//	Instance variables:
@@ -463,20 +445,18 @@ protected:
 	//	Are we creating a separate control file?
 	bool m_fSepCtrlFile;
 
-	//	Basic justification: true if no justify attributes are present
+	//	Basic justification: true if no justify attributes are present.
 	bool m_fBasicJust;
-	//	Highest justification level used
+	//	Highest justification level used.
 	int m_nMaxJLevel;
-	//	Space contextual flags
-	SpaceContextuals m_spcon;
 
-	//	Where to start the feature names in the name table
+	//	Where to start the feature names in the name table.
 	int m_nNameTblStart;
 
 	//	Ignore nonexistent glyphs?
 	bool m_fIgnoreBadGlyphs;
 
-	//	The top-level object representing the GDL program
+	//	The top-level object representing the GDL program.
 	GdlRenderer * m_prndr;
 
 	GrcSymbolTable * m_psymtbl;
@@ -502,7 +482,7 @@ protected:
 
 	//	For compiler use:
 
-	int m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
+	int m_wGlyphIDLim;	// lim of range of glyph IDs in the font
 	int m_cwGlyphIDs;
 
 	int m_cpsymBuiltIn;		// total number of built-in attributes
@@ -532,8 +512,6 @@ protected:
 	//	all of the glyphs in the system. Used by the parser and post-parser.
 	GrcGlyphAttrMatrix * m_pgax;
 
-	std::vector<GlyphBoundaries> m_vgbdy;
-
 	//	The following defines an array containing the ligature component mappings for
 	//	each glyph. For glyphs that are not ligatures, the array contains NULL.
 	//	For ligatures, it contains a pointer to a structure holding a vector something like:
@@ -562,9 +540,7 @@ protected:
 
 	int cReplcmntClasses;
 
-	bool m_fVerbose;
-	bool m_fPassOptimizations;
-	bool m_fOffsetAttrs;
+	bool m_verbose;
 	
 	// compiler
 	std::vector<GdlFeatureDefn *> m_vpfeatInput;	// features defined in the input font, if any

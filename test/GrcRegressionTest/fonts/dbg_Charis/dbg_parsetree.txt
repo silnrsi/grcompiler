@@ -1,6 +1,6 @@
 PARSE TREE
 
-Ztop(97)
+Ztop(95)
    LITERAL_table(14): 'table'  [line #3]
       LITERAL_glyph(23): 'glyph'  [line #3]
       LITERAL_glyph(23): 'glyph'  [line #3]

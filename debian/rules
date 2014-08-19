@@ -1,12 +1,10 @@
 #!/usr/bin/make -f
 
-DEB_BUILD_OPTIONS=nocheck
-
 %:
 	dh $@
 
 override_dh_compress:
 	dh_compress -X.pdf
 
-override_dh_auto_test:
-	@echo $@
+
+

@@ -48,7 +48,6 @@ void GdlRenderer::GenerateFsms(GrcManager * pcman)
 {
 	for(size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		std::cout << " table " << iprultbl << " pass";
 		m_vprultbl[iprultbl]->GenerateFsms(pcman);
 	}
 }
@@ -58,10 +57,8 @@ void GdlRuleTable::GenerateFsms(GrcManager * pcman)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		std::cout << " " << ippass;
 		m_vppass[ippass]->GenerateFsm(pcman);
 	}
-	std::cout << "; ";
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -500,8 +497,6 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 {
 	//	Hungarian: ifs = index of FsmState
 
-	std::cout << " (mc " << NumberOfFsmMachineClasses() << " fsm";
-
 	if (m_nGlobalID == -1)
 	{
 		m_nMaxRuleContext = 0;
@@ -533,7 +528,7 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 			{
 				GdlRule * prule = m_vprule[iprule];
 				if (ifsCurrent == 0	||	// for state #0, all rules are consider matched
-						pfstateCurr->RuleMatched(iprule))
+					pfstateCurr->RuleMatched(iprule))
 				{
 					if (pfstateCurr->SlotsMatched() == prule->NumberOfInputItems())
 					{
@@ -545,8 +540,8 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 						GetMachineClassesForRuleItem(prule, critSlotsMatched, setpfsmc);
 
 						for (FsmMachineClassSet::iterator it = setpfsmc.begin();
-								it != setpfsmc.end();
-								++it)
+							it != setpfsmc.end();
+							++it)
 						{
 							FsmMachineClass * pfsmc = *it;
 							int ifsmcColumn = pfsmc->Column();
@@ -586,8 +581,6 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 
 		ifsCurrent++;	// go on to next state
 	}
-
-	std::cout << " " << ifsCurrent << ")";
 
 	m_nMaxRuleContext = m_pfsm->RawStateAt(ifsCurrent - 1)->m_critSlotsMatched;
 

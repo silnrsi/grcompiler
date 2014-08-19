@@ -37,12 +37,6 @@ using std::max;
 using std::min;
 #include "GrPlatform.h"
 #else
-#ifdef _WIN32
-    #include <direct.h>
-    #define getcwd _getcwd // stupid MSFT "deprecation" warning
-#else
-    #include <unistd.h>
-#endif
 #include <cstring>
 #include "GrCommon.h"
 #include "GrPlatform.h"
@@ -126,7 +120,6 @@ extern GrcManager g_cman;
 #include "GdlFeatures.h"
 #include "GdlNameDefn.h"
 #include "GrcGlyphAttrMatrix.h"
-#include "GlyphBoundaries.h"
 #include "GrcMasterTable.h"
 #include "Fsm.h"
 #include "GdlRule.h"
