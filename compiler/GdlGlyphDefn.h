@@ -17,7 +17,6 @@ Description:
 #ifndef GLYPH_INCLUDED
 #define GLYPH_INCLUDED
 
-
 /*----------------------------------------------------------------------------------------------
 Class: GdlGlyphDefn
 Description: A glyph or set of glyphs specified by a single codepoint, Unicode value,
@@ -361,9 +360,7 @@ protected:
 
 	//	for compiler use:
 	std::vector<utf16> m_vwGlyphIDs;	// equivalent glyph IDs
-	utf16 m_wPseudo;					// glyph id assigned to pseudo-glyph
-
-	std::vector<GlyphBoundaries> m_vgbdy;
+	utf16 m_wPseudo;			// glyph id assigned to pseudo-glyph
 
 	bool m_fGAResolved;			// temporary use: glyph attributes resolved
 

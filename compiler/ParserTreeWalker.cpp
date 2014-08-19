@@ -822,10 +822,8 @@ void GrcManager::WalkEnvTree(RefAST ast, TableType tblt,
 /*----------------------------------------------------------------------------------------------
 	Process a list of environment directives.
 	Assumes that parser does not permit a directive to take a list of values.
-
-	pnCollisionFix - set when processing a pass(X) statement; if NULL, FixCollisions is invalid
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
+void GrcManager::WalkDirectivesTree(RefAST ast)
 {
 	Assert(ast->getType() == Zdirectives);
 
@@ -887,27 +885,6 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
 						"The PointRadius directive requires a scaled value",
 						LineAndFile(ast));
 				SetPointRadius(nValue, MUnits());
-			}
-			else if (staName == "CollisionFix")
-			{
-				if (pnCollisionFix == NULL)
-					g_errorList.AddError(1185, NULL,
-						"The CollisionFix directive must be indicated directly on a pass",
-						LineAndFile(ast));
-				else
-				{
-					if (astValue->getType() == LITERAL_true)
-						*pnCollisionFix = 3;	// default; should this be 1??
-					else if (nValue > 7 || nValue < 0)
-					{
-						g_errorList.AddError(1186, NULL,
-							"The CollisionFix value must be between 0 and 7",
-							LineAndFile(ast));
-						*pnCollisionFix = 7;
-					}
-					else
-						*pnCollisionFix = nValue;
-				}
 			}
 			else
 			{
@@ -2089,30 +2066,13 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 
 	RefAST astDirectives = ast->getFirstChild()->getNextSibling();
 	RefAST astContents = astDirectives;
-	int nCollisionFix = 0;
 	if (astDirectives && astDirectives->getType() == Zdirectives)
 	{
-		WalkDirectivesTree(astDirectives, &nCollisionFix);
+		WalkDirectivesTree(astDirectives);
 		astContents = astDirectives->getNextSibling();
 	}
 
 	GdlPass * ppass = prultbl->GetPass(lnf, Pass(), MaxRuleLoop(), MaxBackup());
-	char rgch[20];
-	itoa(Pass(), rgch, 10);
-	if (nCollisionFix > 0 && prultbl->Substitution())
-	{
-		g_errorList.AddError(1187, NULL,
-			"CollisionFix cannot be set on substitution passes, only positioning passes",
-			LineAndFile(ast));
-	}
-	else
-	{
-		if (nCollisionFix == 0 && ppass->CollisionFix() > 0)
-			g_errorList.AddWarning(1514, NULL,
-				"Clearing previous value of CollisionFix for pass ", rgch,
-				LineAndFile(ast)); 
-		ppass->SetCollisionFix(nCollisionFix);
-	}
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
 	//	constraint.

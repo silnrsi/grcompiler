@@ -27,8 +27,6 @@ Description:
 		: = associate a label with an item, which can be used to explicitly build the
 				return tree construct
 		{#label = #(...) } = builds an explicit tree construct
-		
-	This file is converted into C++ code by running runantlr.bat.
 ----------------------------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------------------------
@@ -692,12 +690,10 @@ attrItemFlat!	:	(I:attrName)
 					)
 ;
 
-// Some special tokens can also be attribute names: 
-// - "glyph" is also the name of a table"
-// - "justify" attribute values need special handling due to ambiguity between the
-//		level numbers and cluster numbers (see lookupExpr, etc.)
-// - "min" and "max" are also function names
-attrName		:	( IDENT | LIT_INT | "glyph" | "justify" | "min" | "max" );
+// "glyph" and "justify" are treated as unique tokens because of their special processing needs:
+// "glyph" is also the name of a table, and the "justify" attribute values need special
+// handling due to ambiguity between the level numbers and cluster numbers (see lookupExpr, etc.)
+attrName		:	( IDENT | LIT_INT | "glyph" | "justify" );
 
 attrAssignOp	:	(	OP_EQ
 					|	OP_PLUSEQUAL

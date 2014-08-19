@@ -58,7 +58,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 	if (!m_prndr->CheckLBsInRules())
 		return false;
 
-	m_prndr->RewriteSlotAttrAssignments(this, pfont);
+	m_prndr->ReplaceKern(this);
 
 	int fxdVersionNeeded;
 	bool fFixPassConstraints = true;	// remains true if the only thing that is incompatible are
@@ -1371,21 +1371,6 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		// These can pretty much go anywhere, as far as I can see.
 	}
 
-	else if (m_psymName->IsCollisionAttr())
-	{
-		// You don't expect these in the substitution table, but they don't hurt,
-		// and they *could* go on the last substitution pass.
-		if ((grfrco & kfrcoSetPos) == 0)
-		{
-			g_errorList.AddWarning(3534, this,
-				"Setting a collision attribute (",
-				m_psymName->FullName(),
-				") in the ",
-				psymTable->FullName(),
-				" table; normally these are set in the positioning table");
-		}
-	}
-
 	else if (m_psymName->IsUserDefinableSlotAttr())
 	{
 		int nIndex = m_psymName->UserDefinableSlotAttrIndex();
@@ -2121,59 +2106,53 @@ bool GdlRule::HasReprocessing()
 /**********************************************************************************************/
 
 /*----------------------------------------------------------------------------------------------
-	Rewrite some slot attribute assignments:
-	* Replace any kern assigments with the equivalent shift and advance.
-	* Merge collision.range and collision.priority.
+	Replace any kern assigments with the equivalent shift and advance.
 ----------------------------------------------------------------------------------------------*/
-void GdlRenderer::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont)
+void GdlRenderer::ReplaceKern(GrcManager * pcman)
 {
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		m_vprultbl[iprultbl]->RewriteSlotAttrAssignments(pcman, pfont);
+		m_vprultbl[iprultbl]->ReplaceKern(pcman);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont)
+void GdlRuleTable::ReplaceKern(GrcManager * pcman)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		m_vppass[ippass]->RewriteSlotAttrAssignments(pcman, pfont);
+		m_vppass[ippass]->ReplaceKern(pcman);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlPass::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont)
+void GdlPass::ReplaceKern(GrcManager * pcman)
 {
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
-		m_vprule[iprule]->RewriteSlotAttrAssignments(pcman, pfont);
+		m_vprule[iprule]->ReplaceKern(pcman);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRule::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont)
+void GdlRule::ReplaceKern(GrcManager * pcman)
 {
 	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
-		m_vprit[iprit]->RewriteSlotAttrAssignments(pcman, pfont);
+		m_vprit[iprit]->ReplaceKern(pcman);
 	}
 }
 
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::RewriteSlotAttrAssignments(GrcManager * /*pcman*/, GrcFont * /*pfont*/)
+void GdlRuleItem::ReplaceKern(GrcManager * /*pcman*/)
 {
 	//	Do nothing.
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSetAttrItem::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont)
+void GdlSetAttrItem::ReplaceKern(GrcManager * pcman)
 {
-	int ipavsColFlags = -1;
-	int ipavsColRange = -1;
-	int ipavsColPriority = -1;
-
 	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		GdlAttrValueSpec * pavsShift;
@@ -2186,19 +2165,7 @@ void GdlSetAttrItem::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pf
 			m_vpavs.insert(m_vpavs.begin() + ipavs + 1, pavsAdvance);
 			ipavs++;
 		}
-
-		if (m_vpavs[ipavs]->m_psymName->FieldIs(0, "collision"))
-		{
-			if (m_vpavs[ipavs]->m_psymName->FieldIs(1, "flags"))
-				ipavsColFlags = ipavs;
-			else if (m_vpavs[ipavs]->m_psymName->FieldIs(1, "range"))
-				ipavsColRange = ipavs;
-			else if (m_vpavs[ipavs]->m_psymName->FieldIs(1, "priority"))
-				ipavsColPriority = ipavs;
-		}
 	}
-
-	MergeColRangeAndPriority(pcman, pfont, ipavsColFlags, ipavsColRange, ipavsColPriority);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2259,74 +2226,6 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 	return true;
 }
 
-/*----------------------------------------------------------------------------------------------
-	Merge the collision.range and collision.priority attributes into collision.flags.
-----------------------------------------------------------------------------------------------*/
-void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfont,
-	int ipavsFlags, int ipavsRange, int ipavsPriority)
-{
-	if (ipavsRange == -1 && ipavsPriority == -1)
-		return;
-
-	Symbol psymCollisionFlags = pcman->SymbolTable()->FindSymbol(GrcStructName("collision", "flags"));
-	Symbol psymEquals = pcman->SymbolTable()->FindSymbol("=");
-
-	GdlExpression * pexpFlagsOld = NULL;
-	GdlExpression * pexpRange = NULL;
-	GdlExpression * pexpPriority = NULL;
-	if (ipavsFlags >= 0)
-		pexpFlagsOld = m_vpavs[ipavsFlags]->m_pexpValue->Clone();
-	if (ipavsRange >= 0)
-		pexpRange = m_vpavs[ipavsRange]->m_pexpValue->Clone();
-	if (ipavsPriority >= 0)
-		pexpPriority = m_vpavs[ipavsPriority]->m_pexpValue->Clone();
-
-	Symbol psymPlus = pcman->SymbolTable()->FindSymbol("+");
-	GdlExpression * pexpFlagsTemp;
-	GdlExpression * pexpFlags;
-	SymbolSet setpsymBogus;
-	bool fCanSub;
-	if (pexpRange && pexpPriority)
-	{
-		pexpFlagsTemp = new GdlBinaryExpression(psymPlus, pexpRange, pexpPriority);
-		if (pexpFlagsOld)
-			pexpFlagsTemp = new GdlBinaryExpression(psymPlus, pexpFlagsOld, pexpFlagsTemp);
-	}
-	else if (pexpRange && pexpFlagsOld)
-		pexpFlagsTemp = new GdlBinaryExpression(psymPlus, pexpRange, pexpFlagsOld);
-	else if (pexpPriority && pexpFlagsOld)
-		pexpFlagsTemp = new GdlBinaryExpression(psymPlus, pexpPriority, pexpFlagsOld);
-	else if (pexpRange)
-		pexpFlagsTemp = pexpRange;
-	else if (pexpPriority)
-		pexpFlagsTemp = pexpPriority;
-
-	pexpFlags = pexpFlagsTemp->SimplifyAndUnscale(pcman->GlyphAttrMatrix(), -1, setpsymBogus, pfont, false, &fCanSub);
-	if (pexpFlagsTemp != pexpFlags)
-		delete pexpFlagsTemp;
-
-	GdlAttrValueSpec * pavsFlagsNew = new GdlAttrValueSpec(psymCollisionFlags, psymEquals, pexpFlags);
-
-	if (ipavsFlags >= 0)
-	{
-		ReplaceAttrSetting(ipavsFlags, pavsFlagsNew);
-		if (ipavsRange >= 0)
-			EraseAttrSetting(ipavsRange);
-		if (ipavsPriority >= 0)
-			EraseAttrSetting(ipavsPriority);
-	}
-	else if (ipavsRange >= 0)
-	{
-		ReplaceAttrSetting(ipavsRange, pavsFlagsNew);
-		if (ipavsPriority >= 0)
-			EraseAttrSetting(ipavsPriority);
-	}
-	else
-	{
-		ReplaceAttrSetting(ipavsPriority, pavsFlagsNew);
-	}
-}
-
 /**********************************************************************************************/
 /*----------------------------------------------------------------------------------------------
 	Check that the rules and glyph attributes are compatible with the requested version of the
@@ -2336,10 +2235,10 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 
 	This routine assumes that we can always sucessfully use a later version.
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
-	int * pfxdCpilrNeeded, bool * pfFixPassConstraints)
+bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
-	*pfxdSilfNeeded = fxdVersion;
+	*pfxdNeeded = fxdVersion;
 
 	if (fxdVersion >= kfxdMaxSilfVersion)
 		return true;
@@ -2347,14 +2246,14 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
 	if (!m_fBasicJust)
 	{
 		// We need version 2.0 for basic justification.
-		*pfxdSilfNeeded = max(0x00020000, *pfxdSilfNeeded);
+		*pfxdNeeded = max(0x00020000, *pfxdNeeded);
 		*pfxdCpilrNeeded = max(0x00020000, *pfxdCpilrNeeded);
 	}
 
 	if (m_vpglfcReplcmtClasses.size() >= kMaxReplcmtClassesV1_2)
 	{
 		// For a large set of replacement classes, we need 3.0.
-		*pfxdSilfNeeded = max(0x00030000, *pfxdSilfNeeded);
+		*pfxdNeeded = max(0x00030000, *pfxdNeeded);
 		*pfxdCpilrNeeded = max(0x00030000, *pfxdCpilrNeeded);
 	}
 
@@ -2365,28 +2264,27 @@ bool GrcManager::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
 	//	*pfxdNeeded = max(0x00030000, *pfxdNeeded);
 	//}
 
-	if (*pfxdSilfNeeded > fxdVersion)
+	if (*pfxdNeeded > fxdVersion)
 		*pfFixPassConstraints = false;
 
-	bool fRet = (*pfxdSilfNeeded <= fxdVersion);
+	bool fRet = (*pfxdNeeded <= fxdVersion);
 
-	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded,
-				pfFixPassConstraints) 
+	fRet = (m_prndr->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded, pfFixPassConstraints) 
 		&& fRet);
 
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
-	int * pfxdCpilrNeeded, bool * pfFixPassConstraints)
+bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 
 	//	Glyph atrributes:
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
-		fRet = m_vpglfc[ipglfc]->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded) 
+		fRet = m_vpglfc[ipglfc]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded) 
 			&& fRet;
 		if (!fRet)
 			*pfFixPassConstraints = false;	// something else is a problem
@@ -2394,7 +2292,7 @@ bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
 	//	Rules:
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded,
+		fRet = m_vprultbl[iprultbl]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded,
 			pfFixPassConstraints)
 			&& fRet;
 	}
@@ -2402,8 +2300,7 @@ bool GdlRenderer::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
-	int * pfxdCpilrNeeded)
+bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 
@@ -2415,36 +2312,31 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeed
 		{
 			// For justification, we need Silf version 2.0.
 			fRet = (fxdVersion >= 0x00020000);
-			*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00020000);
+			*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
 			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00020000);
 		}
 		else if (psym->IsMirrorAttr())
 		{
 			// For mirroring, we need version Silf 2.1 or 3.2.
 			fRet = (fxdVersion >= 0x00020000);
-			if (*pfxdSilfNeeded < 0x00030000)
-				*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00020001);
+			if (*pfxdNeeded < 0x00030000)
+				*pfxdNeeded = max(*pfxdNeeded, 0x00020001);
 			else
-				*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00030002);
+				*pfxdNeeded = max(*pfxdNeeded, 0x00030002);
 			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040001);
-		}
-		else if (psym->IsCollisionAttr())
-		{
-			*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00050000);
-			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00050000);
 		}
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
-	int * pfxdCpilrNeeded, bool * pfFixPassConstraints)
+bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
+	bool * pfFixPassConstraints)
 {
 	bool fRet = true;
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded,
+		fRet = m_vppass[ippass]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded,
 			pfFixPassConstraints)
 			&& fRet;
 	}
@@ -2452,7 +2344,7 @@ bool GdlRuleTable::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * pfxdCpilrNeeded,
+bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded,
 	bool * pfFixPassConstraints)
 {
 	bool fRet = true;
@@ -2460,13 +2352,13 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * 
 	{
 		// Pass constraints need 3.1. (Version 3.0 outputs empty pass constraints.)
 		fRet = (fxdVersion >= 0x00030001);
-		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00030001);
+		*pfxdNeeded = max(*pfxdNeeded, 0x00030001);
 		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040000);
 	}
 
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
-		bool fRetTmp = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded);
+		bool fRetTmp = m_vprule[iprule]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 		if (!fRetTmp)
 			*pfFixPassConstraints = false;	// something else is a problem
 		fRet = fRet && fRetTmp;
@@ -2475,49 +2367,49 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRule::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * pfxdCpilrNeeded)
+bool GdlRule::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 	for (size_t iprit = 0; iprit < m_vprit.size(); iprit++)
 	{
-		fRet = m_vprit[iprit]->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded)
+		fRet = m_vprit[iprit]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded)
 			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlRuleItem::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * pfxdCpilrNeeded)
+bool GdlRuleItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	if (m_pexpConstraint)
 	{
-		return m_pexpConstraint->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded);
+		return m_pexpConstraint->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 	}
 	else
 		return true;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlSetAttrItem::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * pfxdCpilrNeeded)
+bool GdlSetAttrItem::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
-	bool fRet = GdlRuleItem::CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded);
+	bool fRet = GdlRuleItem::CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded);
 
 	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
-		fRet = m_vpavs[ipavs]->CompatibleWithVersion(fxdVersion, pfxdSilfNeeded, pfxdCpilrNeeded)
+		fRet = m_vpavs[ipavs]->CompatibleWithVersion(fxdVersion, pfxdNeeded, pfxdCpilrNeeded)
 			&& fRet;
 	}
 	return fRet;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * pfxdCpilrNeeded)
+bool GdlAttrValueSpec::CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded)
 {
 	bool fRet = true;
 	if (m_psymName->IsMeasureAttr() || m_psymName->DoesJustification())
 	{
 		// Measuring and justification need 2.0.
-		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00020000);
+		*pfxdNeeded = max(*pfxdNeeded, 0x00020000);
 		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00020000);
 		fRet = (fxdVersion >= 0x00020000);
 	}

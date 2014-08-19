@@ -158,7 +158,6 @@ public:
 	bool DoesJustification();
 	bool IsMeasureAttr();
 	bool IsMirrorAttr();
-	bool IsCollisionAttr();
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
 	bool IsPseudoSlotAttr();

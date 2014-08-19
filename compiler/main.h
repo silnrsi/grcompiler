@@ -126,7 +126,6 @@ extern GrcManager g_cman;
 #include "GdlFeatures.h"
 #include "GdlNameDefn.h"
 #include "GrcGlyphAttrMatrix.h"
-#include "GlyphBoundaries.h"
 #include "GrcMasterTable.h"
 #include "Fsm.h"
 #include "GdlRule.h"

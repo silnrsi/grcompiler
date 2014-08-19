@@ -6,6 +6,7 @@ GNU Lesser General Public License, as specified in the LICENSING.txt file.
 
 File: main.cpp
 Responsibility: Sharon Correll
+Last reviewed: Not yet.
 
 Description:
     Main function that runs the compiler. 
@@ -22,7 +23,6 @@ Compiler versions:
 	4.3		- handle &= and -= for class definitions; multiple justification levels
 	4.3.1	- added *skipPasses* glyph attribute and passKeySlot slot attribute for
 				optimization; don't output xoffset, yoffset, or gpoint att fields
-	5.0		- collision fixing (Glat table 3.0, Silf table 5.0 IF we define collision glyph attrs)
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
@@ -139,7 +139,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 4.9";
+		std::cout << "Graphite Compiler Version 4.3.1";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -147,7 +147,7 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (c) 2002-2014, by SIL International.  All rights reserved.\n";
+			<< "Copyright (c) 2002-2013, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
