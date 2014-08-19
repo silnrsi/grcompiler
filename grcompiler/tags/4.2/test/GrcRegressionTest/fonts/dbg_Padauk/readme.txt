@@ -1,1 +1,0 @@
-This directory contains the debugger files that were generated in the process of compiling the PadaukBenchmark_v3.ttf font.
