@@ -109,8 +109,9 @@ protected:
 
 	void NormalizePoint(int mx, int my, float * pdx, float * pdy);
 	void UnnormalizePoint(float dx, float dy, int * pmx, int * pmy);
-	void UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff);
-	void AddPoint(int icellX, int icellY, float dx, float dy, bool fEntire);
+	void NormalizeSumAndDiff(int mSum, int mDiff, float * pdSum, float * pdDiff);
+	//void UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff);
+	void AddPoint(int icellX, int icellY, int mx, int my, float dx, float dy, bool fEntire);
 	void AddEntryMinMax(int icellX, int icellY, int gbcSide, int mVal);
 	void AddExitMinMax( int icellX, int icellY, int gbcSide, int mVal);
 
