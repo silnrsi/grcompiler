@@ -57,7 +57,7 @@ void GlyphBoundaryCell::Initialize()
 	// Initialize max to something small:
 	m_dValues[GlyphBoundaries::gbcRight] = 0;
 	m_dValues[GlyphBoundaries::gbcTop] = 0;
-	m_dValues[GlyphBoundaries::gbcDPMax] = -100.0;		// - 1 should be good enough
+	m_dValues[GlyphBoundaries::gbcDPMax] = -100.0;		// -1 should be good enough
 	m_dValues[GlyphBoundaries::gbcDNMax] = -100.0;		// 0 should be good enough
 
 	// Initialize intersections
@@ -80,6 +80,7 @@ void GlyphBoundaryCell::Initialize()
 	m_mExit[GlyphBoundaries::gbcRight][gbcMax] = -99999;
 	m_mExit[GlyphBoundaries::gbcBottom][gbcMax] = -99999;
 	m_mExit[GlyphBoundaries::gbcTop][gbcMax] = -99999;
+
 }
 
 
@@ -107,16 +108,58 @@ void GlyphBoundaries::UnnormalizePoint(float dx, float dy, int * pmx, int * pmy)
 }
 
 /*----------------------------------------------------------------------------------------------
-	 Given an sum (x+y) and difference (x-y) in normalised space (x,y between 0 and 1),
-	 return the corresponding addition and subtraction in normal em space coordinate space.
+	Convert sums and differences that represent diagonal lines to normalized values.
+	The coordinate system for each is the range of maximum and mimimum possible diagonals.
+	For the sum, maximum and minimum diagonals are defined by the upper-right and lower-left
+	points on the bounding box; for the diff, the range is defined by the lower-right and
+	upper-left points.
 ----------------------------------------------------------------------------------------------*/
-void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff)
+void GlyphBoundaries::NormalizeSumAndDiff(int mSum, int mDiff, float * pdSum, float * pdDiff)
 {
-    double mx = (dSum + dDiff) * 0.5 * (m_mxBbMax - m_mxBbMin) + m_mxBbMin;
-    double my = (dSum - dDiff) * 0.5 * (m_myBbMax - m_myBbMin) + m_myBbMin;
-	*pmSum = int(mx + my);
-	*pmDiff = int(mx - my);
+	// Calculate the scaling factor for normalizing the diagonals.
+	int mMinSum = m_mxBbMin + m_myBbMin;	// lower-left point
+	int mMaxSum = m_mxBbMax + m_myBbMax;	// upper-right point
+	int mMinDiff = m_mxBbMin - m_myBbMax;	// upper-left point
+	int mMaxDiff = m_mxBbMax - m_myBbMin;	// lower-right point
+
+	int mSumScale = mMaxSum - mMinSum;
+	int mDiffScale = mMaxDiff - mMinDiff;
+	Assert(mSumScale == mDiffScale);
+
+	*pdSum = (float)(mSum - mMinSum) / mSumScale;
+	*pdDiff = (float)(mDiff - mMinDiff) / mDiffScale;
 }
+
+/*----------------------------------------------------------------------------------------------
+	Given an sum (x+y) and difference (x-y) in normalised space (x,y between 0 and 1),
+	return the corresponding addition and subtraction in normal em space coordinate space.
+	Not needed.
+----------------------------------------------------------------------------------------------*/
+//void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff)
+//{
+//	int mMinSum = m_mxBbMin + m_myBbMin;	// lower-left point
+//	int mMaxSum = m_mxBbMax + m_myBbMax;	// upper-right point
+//	int mMinDiff = m_mxBbMin - m_myBbMax;	// upper-left point
+//	int mMaxDiff = m_mxBbMax - m_myBbMin;	// lower-right point
+//
+//	int mSumScale = mMaxSum - mMinSum;
+//	int mDiffScale = mMaxDiff - mMinDiff;
+//	Assert(mSumScale == mDiffScale);
+//
+//	*pmSum = (dSum * mSumScale) + mMinSum;
+//	*pmDiff = (dDiff * mDiffScale) + mMinDiff;
+//}
+
+
+// Version from Martin's original code:
+
+//void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff)
+//{
+//    double mx = ((dSum + dDiff) * 0.5 * (m_mxBbMax - m_mxBbMin)) + m_mxBbMin;
+//    double my = ((dSum - dDiff) * 0.5 * (m_myBbMax - m_myBbMin)) + m_myBbMin;
+//	*pmSum = int(mx + my);
+//	*pmDiff = int(mx - my);
+//}
 
 /*----------------------------------------------------------------------------------------------
 	 Accumulates a point into a glyph or subglyph structure. We store the actual points, but
@@ -125,15 +168,18 @@ void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum
 	 for the whole glyph ($glyph). Notice there is no need to accumulate a whole glyph bbox
 	 because that's already defined for a glyph.
 ----------------------------------------------------------------------------------------------*/
-void GlyphBoundaries::AddPoint(int icellX, int icellY, float dx, float dy, bool fEntire)
+void GlyphBoundaries::AddPoint(int icellX, int icellY, int mx, int my, float dx, float dy,
+	bool fEntire)
 {
 	GlyphBoundaryCell * pgbcell = m_rggbcellSub + CellIndex(icellX, icellY);
 
     //pgbdy->m_vdx.push_back(dx);
 	//pgbdy->m_vdy.push_back(dy);
 
-	float dSum = dx + dy;		// negative sloped lines at -45 degree angle
-	float dDiff = dx - dy;		// positive sloped lines at 45 degree angle
+	int mSum = mx + my;		// negative sloped lines at -45 degree angle
+	int mDiff = mx - my;	// positive sloped lines at 45 degree angle
+	float dSum, dDiff;
+	NormalizeSumAndDiff(mSum, mDiff, &dSum, &dDiff);
 
 	// Calculate mins and maxes.
     if (pgbcell->m_dValues[gbcLeft] == gbcUndef || dx < pgbcell->m_dValues[gbcLeft])
@@ -303,7 +349,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 			int icellX = int(dx * 4 - .001);
 			int icellY = int(dy * 4 - .001);
 
-			AddPoint(icellX, icellY, dx, dy, true);
+			AddPoint(icellX, icellY, mx, my, dx, dy, true);
  
 			// Figure out which direction we're moving: if this point is in a new cell,
 			// adjust the enter/exit max and mins.
@@ -324,7 +370,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 
 					// Add the intersection to the cell on the left (which might not be the previous cell, because
 					// the Y coordinate might have shifted quite a bit as well).
-					AddPoint(icellXPrev, icellYBoundary, dxBoundary, dyBoundary, false);
+					AddPoint(icellXPrev, icellYBoundary, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					// Also adjust the intersections based on the fact that the curve is leaving the old cell.
 					AddExitMinMax(icellXPrev, icellYBoundary, gbcRight, myBoundary);
 
@@ -333,7 +379,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					++icellXPrev;
 
 					// Now indicate the line is entering this new cell from the left.
-					AddPoint(icellXPrev, icellYBoundary, dxBoundary, dyBoundary, false);
+					AddPoint(icellXPrev, icellYBoundary, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					AddEntryMinMax(icellXPrev, icellYBoundary, gbcLeft, myBoundary);
 				}
 
@@ -354,7 +400,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 
 					// Add the intersection to the cell on the right (which might not be the previous cell, because
 					// the Y coordinate might have shifted quite a bit as well).
-					AddPoint(icellXPrev, icellYBoundary, dxBoundary, dyBoundary, false);
+					AddPoint(icellXPrev, icellYBoundary, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					// Also adjust the intersections based on the fact that the curve is leaving the old cell.
 					AddExitMinMax(icellXPrev, icellYBoundary, gbcLeft, myBoundary);
 
@@ -363,7 +409,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					--icellXPrev;
 
 					// Now indicate the line is entering this new cell from the left.
-					AddPoint(icellXPrev, icellYBoundary, dxBoundary, dyBoundary, false);
+					AddPoint(icellXPrev, icellYBoundary, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					AddEntryMinMax(icellXPrev, icellYBoundary, gbcRight, myBoundary);
 				}
 
@@ -382,7 +428,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 
 					// Add the intersection to the cell on the bottom (which might not be the previous cell, because
 					// the X coordinate might have shifted quite a bit as well).
-					AddPoint(icellXBoundary, icellYPrev, dxBoundary, dyBoundary, false);
+					AddPoint(icellXBoundary, icellYPrev, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					// Also adjust the intersections based on the fact that the curve is leaving the old cell.
 					AddExitMinMax(icellXBoundary, icellYPrev, gbcTop, mxBoundary);
 
@@ -391,7 +437,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					++icellYPrev;
 
 					// Now indicate the line is entering this new cell from the bottom.
-					AddPoint(icellXBoundary, icellYPrev, dxBoundary, dyBoundary, false);
+					AddPoint(icellXBoundary, icellYPrev, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					AddEntryMinMax(icellXBoundary, icellYPrev, gbcBottom, mxBoundary);
 				}
 
@@ -410,7 +456,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 
 					// Add the intersection to the cell on the top (which might not be the previous cell, because
 					// the X coordinate might have shifted quite a bit as well).
-					AddPoint(icellXBoundary, icellYPrev, dxBoundary, dyBoundary, false);
+					AddPoint(icellXBoundary, icellYPrev, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					// Also adjust the intersections based on the fact that the curve is leaving the old cell.
 					AddExitMinMax(icellXBoundary, icellYPrev, gbcBottom, mxBoundary);
 
@@ -419,7 +465,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					--icellYPrev;
 
 					// Now indicate the line is entering this new cell from the top.
-					AddPoint(icellXBoundary, icellYPrev, dxBoundary, dyBoundary, false);
+					AddPoint(icellXBoundary, icellYPrev, mxBoundary, myBoundary, dxBoundary, dyBoundary, false);
 					AddEntryMinMax(icellXBoundary, icellYPrev, gbcTop, mxBoundary);
 				}
 			}
@@ -450,6 +496,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 
 		int gbcMin = GlyphBoundaryCell::gbcMin;
 		int gbcMax = GlyphBoundaryCell::gbcMax;
+
+		int mx, my;
 		for (int icellX = 0; icellX < gbgridCellsH; icellX++)
 		{
 			for (int icellY = 0; icellY < gbgridCellsV; icellY++)
@@ -466,7 +514,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					|| (pgbcell->HasExit(gbcBottom)
 							&& (!pgbcell->HasEntry(gbcBottom) || bottomMinExit < bottomMinEntry)))
 				{
-					AddPoint(icellX, icellY, float(icellX / 4.0), float(icellY / 4.0), false);
+					UnnormalizePoint(float(icellX / 4.0), float(icellY / 4.0), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float(icellX / 4.0), float(icellY / 4.0), false);
 				}
 
 				// Top left
@@ -480,7 +529,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					|| (pgbcell->HasEntry(gbcTop)
 							&& (!pgbcell->HasExit(gbcTop) || topMinEntry < topMinExit)))
 				{
-					AddPoint(icellX, icellY, float(icellX / 4.0), float((icellY+1) / 4.0), false);
+					UnnormalizePoint(float(icellX / 4.0), float((icellY+1) / 4.0), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float(icellX / 4.0), float((icellY+1) / 4.0), false);
 				}
 
 				// Bottom right
@@ -494,7 +544,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					|| (pgbcell->HasEntry(gbcBottom)
 							&& (!pgbcell->HasExit(gbcBottom) || bottomMaxEntry > bottomMaxExit)))
 				{
-					AddPoint(icellX, icellY, float((icellX+1) / 4.0), float(icellY / 4.0), false);
+					UnnormalizePoint(float((icellX+1) / 4.0), float(icellY / 4.0), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float((icellX+1) / 4.0), float(icellY / 4.0), false);
 				}
 
 				// Top right
@@ -508,9 +559,9 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 					|| (pgbcell->HasExit(gbcTop)
 							&& (!pgbcell->HasEntry(gbcTop) || topMaxExit > topMaxEntry)))
 				{
-					AddPoint(icellX, icellY, float((icellX+1) / 4.0), float((icellY+1) / 4.0), false);
+					UnnormalizePoint(float((icellX+1) / 4.0), float((icellY+1) / 4.0), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float((icellX+1) / 4.0), float((icellY+1) / 4.0), false);
 				}
-
 			}
 		}
 
@@ -565,13 +616,20 @@ int GlyphBoundaries::OutputToGlat(GrcBinaryStream * pbstrm)
 ----------------------------------------------------------------------------------------------*/
 int GlyphBoundaries::OutputGlatFullDiagonals(GrcBinaryStream * pbstrm)
 {
-	// The possible range for negatively sloped diagonals is [0 .. 2]. Scale them to [0 .. 255].
-	int sDNMin = min(int(m_gbcellEntire.m_dValues[gbcDNMin] * 127.5), 255);
-	int sDNMax = min(int(m_gbcellEntire.m_dValues[gbcDNMax] * 127.5), 255);
+	Assert(m_gbcellEntire.m_dValues[gbcDNMin] >= 0);
+	Assert(m_gbcellEntire.m_dValues[gbcDNMax] >= 0);
+	Assert(m_gbcellEntire.m_dValues[gbcDPMin] >= 0);
+	Assert(m_gbcellEntire.m_dValues[gbcDPMax] >= 0);
+	Assert(m_gbcellEntire.m_dValues[gbcDNMin] <= 1.0);
+	Assert(m_gbcellEntire.m_dValues[gbcDNMax] <= 1.0);
+	Assert(m_gbcellEntire.m_dValues[gbcDPMin] <= 1.0);
+	Assert(m_gbcellEntire.m_dValues[gbcDPMax] <= 1.0);
 
-	// The possible range for positively sloped diagonals is [-1 .. 1]. Scale them to [0 .. 255].
-	int sDPMin = min(int(((m_gbcellEntire.m_dValues[gbcDPMin] + 1) * 127.5)), 255);
-	int sDPMax = min(int(((m_gbcellEntire.m_dValues[gbcDPMax] + 1) * 127.5)), 255);
+	// The possible range for negatively sloped diagonals is [0 .. 1]. Scale them to [0 .. 255].
+	int sDNMin = min(int(m_gbcellEntire.m_dValues[gbcDNMin] * 255), 255);
+	int sDNMax = min(int(m_gbcellEntire.m_dValues[gbcDNMax] * 255), 255);
+	int sDPMin = min(int(m_gbcellEntire.m_dValues[gbcDPMin] * 255), 255);
+	int sDPMax = min(int(m_gbcellEntire.m_dValues[gbcDPMax] * 255), 255);
 
 	pbstrm->WriteByte(sDNMin);
 	pbstrm->WriteByte(sDNMax);
@@ -590,19 +648,34 @@ int GlyphBoundaries::OutputGlatSubBox(GrcBinaryStream * pbstrm, int icellX, int 
 
 	if (pgbcell->HasData())
 	{
+		Assert(pgbcell->m_dValues[gbcLeft]  >= 0);
+		Assert(pgbcell->m_dValues[gbcRight] >= 0);
+		Assert(pgbcell->m_dValues[gbcBottom]>= 0);
+		Assert(pgbcell->m_dValues[gbcTop]   >= 0);
+		Assert(pgbcell->m_dValues[gbcDNMin] >= 0);
+		Assert(pgbcell->m_dValues[gbcDNMax] >= 0);
+		Assert(pgbcell->m_dValues[gbcDPMin] >= 0);
+		Assert(pgbcell->m_dValues[gbcDPMax] >= 0);
+		Assert(pgbcell->m_dValues[gbcLeft]  <= 1.0);
+		Assert(pgbcell->m_dValues[gbcRight] <= 1.0);
+		Assert(pgbcell->m_dValues[gbcBottom]<= 1.0);
+		Assert(pgbcell->m_dValues[gbcTop]   <= 1.0);
+		Assert(pgbcell->m_dValues[gbcDNMin] <= 1.0);
+		Assert(pgbcell->m_dValues[gbcDNMax] <= 1.0);
+		Assert(pgbcell->m_dValues[gbcDPMin] <= 1.0);
+		Assert(pgbcell->m_dValues[gbcDPMax] <= 1.0);
+
 		// The possible range for horizontal and vertical boundaries is [0 .. 1]. Scale them to [0 .. 255].
 		int sLeft   = min(int(pgbcell->m_dValues[gbcLeft]   * 255), 255);
 		int sRight  = min(int(pgbcell->m_dValues[gbcRight]  * 255), 255);
 		int sBottom = min(int(pgbcell->m_dValues[gbcBottom] * 255), 255);
 		int sTop    = min(int(pgbcell->m_dValues[gbcTop]    * 255), 255);
 
-		// The possible range for negatively sloped diagonals is [0 .. 2]. Scale them to [0 .. 255].
-		int sDNMin = min(int(pgbcell->m_dValues[gbcDNMin] * 127.5), 255);
-		int sDNMax = min(int(pgbcell->m_dValues[gbcDNMax] * 127.5), 255);
-
-		// The possible range for positively sloped diagonals is [-1 .. 1]. Scale them to [0 .. 255].
-		int sDPMin = min(int(((pgbcell->m_dValues[gbcDPMin] + 1) * 127.5)), 255);
-		int sDPMax = min(int(((pgbcell->m_dValues[gbcDPMax] + 1) * 127.5)), 255);
+		// The possible range for diagonals is [0 .. 1]. Scale them to [0 .. 255].
+		int sDNMin = min(int(pgbcell->m_dValues[gbcDNMin] * 255), 255);
+		int sDNMax = min(int(pgbcell->m_dValues[gbcDNMax] * 255), 255);
+		int sDPMin = min(int(pgbcell->m_dValues[gbcDPMin] * 255), 255);
+		int sDPMax = min(int(pgbcell->m_dValues[gbcDPMax] * 255), 255);
 
 		pbstrm->WriteByte(sLeft);
 		pbstrm->WriteByte(sRight);
