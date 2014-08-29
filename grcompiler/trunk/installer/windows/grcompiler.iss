@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Graphite Compiler
-AppVerName=Graphite Compiler 4.2
+AppVerName=Graphite Compiler 4.3.1
 AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
@@ -14,7 +14,7 @@ DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
 AllowNoIcons=yes
 ; installer file name:
-OutputBaseFilename=grcompiler_setup_4_2
+OutputBaseFilename=grcompiler_setup_4_3_1
 Compression=lzma
 SolidCompression=yes
 
@@ -26,8 +26,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\silgraphite_2_0\grcompiler\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\release\icuuc36.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\silgraphite_2_0\grcompiler\release\icudt36.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\release\icuuc49.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\silgraphite_2_0\grcompiler\release\icudt49.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; Don't need this because the ICU stuff is built with /MT:
 ;Source: "C:\Windows\system32\msvcr71.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\silgraphite_2_0\grcompiler\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
