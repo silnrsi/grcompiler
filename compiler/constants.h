@@ -144,7 +144,8 @@ enum {
 	kMaxReplcmtClasses		= 65535,	// Class map
 	kMaxReplcmtClassesV1_2	= 256,
 	kMaxGlyphAttrsGlat1		= 256,
-	kMaxComponents			= 16383
+	kMaxComponents			= 16383,
+	kMaxColIterations		= 7			// iterations per collision pass
 };
 
 
@@ -240,11 +241,12 @@ enum SlotAttrName {
 	kslatJ2Stretch,		kslatJ2Shrink,		kslatJ2Step,	kslatJ2Weight,	kslatJ2Width,
 	kslatJ3Stretch,		kslatJ3Shrink,		kslatJ3Step,	kslatJ3Weight,	kslatJ3Width,
 	kslatSegSplit = kslatJ0Stretch + 29,
-	kslatUserDefn = kslatJ0Stretch + 30,
+	kslatUserDefn = kslatJ0Stretch + 30, // 59
+	kslatBidiLevel,		// used in Graphite2 engine
 	kslatColFlags,
-	kslatColMargin,
 	kslatColMinX,	kslatColMinY,	kslatColMaxX,	kslatColMaxY,
-	kslatColFixX,	kslatColFixY
+	kslatColFixX,	kslatColFixY,	//read-only attr - how much adjustment was made
+	kslatColMargin,
 };
 
 

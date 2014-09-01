@@ -898,12 +898,15 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
 				{
 					if (astValue->getType() == LITERAL_true)
 						*pnCollisionFix = 3;	// default; should this be 1??
-					else if (nValue > 7 || nValue < 0)
+					else if (nValue > kMaxColIterations || nValue < 0)
 					{
+						char rgchMax[20];
+						itoa(kMaxColIterations, rgchMax, 10);
 						g_errorList.AddError(1186, NULL,
-							"The CollisionFix value must be between 0 and 7",
+							"The CollisionFix value must be between 0 and ",
+							rgchMax,
 							LineAndFile(ast));
-						*pnCollisionFix = 7;
+						*pnCollisionFix = kMaxColIterations;
 					}
 					else
 						*pnCollisionFix = nValue;

@@ -2033,14 +2033,26 @@ int GrcManager::VersionForTable(int ti, int fxdSpecVersion)
 	switch (ti)
 	{
 	case ktiGloc:
+		if (fxdSpecVersion >= 0x00040001)
+			// Thisi s a kludge to allow the Graphite2 engine to recognize
+			// the Glat 3.0 table:
+			return 0x00010001;
+		else
+			return 0x00010000;
+
 	case ktiGlat:
-		return 0x00010000;
+		if (fxdSpecVersion >= 0x00040001)
+			return 0x00030000;
+		else
+			return 0x00010000;
+
 	case ktiFeat:
 		return m_fxdFeatVersion;
 	case ktiSile:
 		return 0x00010000;
 	case ktiSill:
 		return 0x00010000;
+
 	case ktiSilf:
 		if (fxdSpecVersion == 0x00010000)
 			return 0x00010000;
@@ -2071,19 +2083,19 @@ int GrcManager::VersionForRules()
 }
 
 /*----------------------------------------------------------------------------------------------
-	Set and return the version of the Silf table that is needed to handle the size of
-	the class map (replacement class data).
+	Set and return the version of the Silf table that is needed - to handle the size of
+	the class map (replacement class data) or collision fixes.
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 {
 	int fxdResult = fxdSilfSpecVersion;
 
-	//if (m_prndr->HasCollisionPass())
-	//{
-	//	fxdResult = 0x00050000;
-	//}
-	//else
-	//{
+	if (m_prndr->HasCollisionPass())
+	{
+		fxdResult = 0x00040001;
+	}
+	else
+	{
 		//	Calculate it based on what is needed to handle the size of the class map
 		//	(replacement class data).
 		int cbSpaceNeeded;	// # of bytes needed = max offset
@@ -2130,7 +2142,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 			// Offsets won't all fit in short ints; we need long ints.
 			fxdResult = 0x00040000;
 		}
-//	}
+	}
 
 	if (fxdResult > fxdSilfSpecVersion)
 	{
@@ -2289,7 +2301,10 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	////int nFlags = m_prndr->LineBreakFlags() | m_prndr->SpaceContextualFlags();
 	int nFlags = m_prndr->LineBreakFlags();
 	Assert(nFlags < 4);
+	if (m_prndr->HasCollisionPass())
+		nFlags |= 0x0010;
 	pbstrm->WriteByte(nFlags);
+
 	//	ranges for cross-line-boundary contextualization
 	pbstrm->WriteByte(m_prndr->PreXlbContext());
 	pbstrm->WriteByte(m_prndr->PostXlbContext());
@@ -2305,15 +2320,11 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteByte(psym->InternalID());
 	if (fxdSilfVersion >= 0x00020000)
 	{
-		// mirror attribute ID
+		// first mirror attribute ID
 		psym = m_psymtbl->FindSymbol(GrcStructName("mirror", "glyph"));
 		pbstrm->WriteByte(psym->InternalID());
 
-		if (fxdSilfVersion >= 0x00050000)
-		{
-			psym = m_psymtbl->FindSymbol(GrcStructName("collision", "flags"));
-			pbstrm->WriteByte(psym->InternalID());
-		}
+		// See also collision.flag attribute ID below
 
 		if (this->IncludePassOptimizations())
 		{
@@ -2375,8 +2386,19 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	grfsdc = (grfsdc == 0) ? static_cast<gr::byte>(kfsdcHorizLtr) : grfsdc;	// supply default--left-to-right
 	pbstrm->WriteByte(grfsdc);
 
+	if (fxdSilfVersion >= 0x00040001)
+	{
+		// first collision attribute ID
+		psym = m_psymtbl->FindSymbol(GrcStructName("collision", "flags"));
+		pbstrm->WriteByte(psym->InternalID());
+	}
+	else
+	{
+		//	reserved (pad bytes)
+		pbstrm->WriteByte(0);
+	}
+
 	//	reserved (pad bytes)
-	pbstrm->WriteByte(0);
 	pbstrm->WriteByte(0);
 	pbstrm->WriteByte(0);
 
@@ -2721,7 +2743,7 @@ int GdlRuleTable::CountPasses()
 
 	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
-		if (m_vppass[ipass]->HasRules())
+		if (m_vppass[ipass]->HasRules() || m_vppass[ipass]->CollisionFix() > 0)
 			cRet++;
 	}
 	return cRet;
@@ -2759,7 +2781,7 @@ void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lo
 {
 	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
-		if (m_vppass[ipass]->HasRules())
+		if (m_vppass[ipass]->HasRules() || m_vppass[ipass]->CollisionFix() > 0)
 		{
 			vnOffsets.push_back(pbstrm->Position() - lTableStart);
 			m_vppass[ipass]->OutputPass(pcman, pbstrm, lTableStart);
@@ -2830,7 +2852,10 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	number of success states
 	pbstrm->WriteShort(NumSuccessStates());
 	//	number of columns
-	pbstrm->WriteShort(m_pfsm->NumberOfColumns());
+	if (m_pfsm == NULL)
+		pbstrm->WriteShort(0);
+	else
+		pbstrm->WriteShort(m_pfsm->NumberOfColumns());
 
 	//	number of glyph sub-ranges
 	int n = TotalNumGlyphSubRanges();
@@ -2871,15 +2896,23 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	for (i = 0; i < signed(vnRuleList.size()); i++)
 		pbstrm->WriteShort(vnRuleList[i]);
 
-	//	minRulePreContext
-	pbstrm->WriteByte(m_critMinPreContext);
-	//	maxRulePreContext
-	pbstrm->WriteByte(m_critMaxPreContext);
-	//	start states
-	Assert(m_critMaxPreContext - m_critMinPreContext + 1 == static_cast<int>(m_vrowStartStates.size()));
-	Assert(m_vrowStartStates[0] == 0);
-	for (i = 0; i < signed(m_vrowStartStates.size()); i++)
-		pbstrm->WriteShort(m_vrowStartStates[i]);
+	if (m_pfsm == NULL)
+	{
+		pbstrm->WriteByte(0);
+		pbstrm->WriteByte(0);
+	}
+	else
+	{
+		//	minRulePreContext
+		pbstrm->WriteByte(m_critMinPreContext);
+		//	maxRulePreContext
+		pbstrm->WriteByte(m_critMaxPreContext);
+		//	start states
+		Assert(m_critMaxPreContext - m_critMinPreContext + 1 == static_cast<int>(m_vrowStartStates.size()));
+		Assert(m_vrowStartStates[0] == 0);
+		for (i = 0; i < signed(m_vrowStartStates.size()); i++)
+			pbstrm->WriteShort(m_vrowStartStates[i]);
+	}
 
 	//	rule sort keys
 	for (i = 0; i < signed(m_vprule.size()); i++)
@@ -2913,7 +2946,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	}
 
 	//	transition table for states
-	OutputFsmTable(pbstrm);
+	if (m_pfsm != NULL)
+		OutputFsmTable(pbstrm);
 
 	//	constraint and action code
 

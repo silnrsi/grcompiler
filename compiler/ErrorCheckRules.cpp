@@ -2430,7 +2430,7 @@ bool GdlGlyphClassDefn::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeed
 		}
 		else if (psym->IsCollisionAttr())
 		{
-			*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00050000);
+			*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00040001);
 			*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00050000);
 		}
 	}
