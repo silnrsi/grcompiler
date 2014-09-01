@@ -146,7 +146,7 @@ public:
 		case 0x00030001:	m_fxdCompilerVersion = 0x00040000;		break;
 		case 0x00030002:	m_fxdCompilerVersion = 0x00040001;		break;
 		case 0x00040000:	m_fxdCompilerVersion = 0x00040002;		break;
-		case 0x00050000:	m_fxdCompilerVersion = 0x00050000;		break;
+		case 0x00040001:	m_fxdCompilerVersion = 0x00050000;		break;
 		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
 	}
