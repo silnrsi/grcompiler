@@ -2302,7 +2302,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	int nFlags = m_prndr->LineBreakFlags();
 	Assert(nFlags < 4);
 	if (m_prndr->HasCollisionPass())
-		nFlags |= 0x0010;
+		nFlags |= 0x0020;
 	pbstrm->WriteByte(nFlags);
 
 	//	ranges for cross-line-boundary contextualization
@@ -2900,6 +2900,9 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	{
 		pbstrm->WriteByte(0);
 		pbstrm->WriteByte(0);
+		// Since m_vrowStartStates = m_critMaxPreContext - m_critMinPreContext + 1 = 1,
+		// write one short:
+		pbstrm->WriteShort(0);
 	}
 	else
 	{
