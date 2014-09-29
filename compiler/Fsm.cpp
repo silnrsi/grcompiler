@@ -587,11 +587,13 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 		ifsCurrent++;	// go on to next state
 	}
 
-	std::cout << " " << ifsCurrent << ")";
+	std::cout << " " << ifsCurrent;
 
 	m_nMaxRuleContext = m_pfsm->RawStateAt(ifsCurrent - 1)->m_critSlotsMatched;
 
 	ReorderFsmStates();
+
+	std::cout << ")";
 
 	GenerateStartStates(pcman);
 }
@@ -820,6 +822,7 @@ void GdlPass::ReorderFsmStates()
 			}
 		}
 	}
+	std::cout << " " << ifsFinal;
 }
 
 
