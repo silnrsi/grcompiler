@@ -15,6 +15,8 @@ grcompiler_SOURCES = \
         ErrorCheckRules.cpp \
         Fsm.cpp \
         Fsm.h \
+        GlyphBoundaries.cpp \
+        GlyphBoundaries.h \
         GdlExpression.cpp \
         GdlExpression.h \
         GdlFeatures.cpp \
