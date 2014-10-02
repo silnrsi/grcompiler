@@ -128,6 +128,7 @@ public:
 	//	Pre-compiler:
 	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
+	bool CheckRecursiveGlyphClasses();
 	int ExplicitPseudos(PseudoSet & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
