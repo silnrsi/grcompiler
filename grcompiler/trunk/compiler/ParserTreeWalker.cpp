@@ -1083,13 +1083,19 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 		pglfc->SetName(staClassName);
 		m_prndr->AddGlyphClass(pglfc);
 
-		if (nodetyp == OP_ANDEQUAL || nodetyp == OP_MINUSEQUAL)
+		if (nodetyp == OP_ANDEQUAL || nodetyp == OP_MINUSEQUAL) // union or intersection
 		{
 			g_errorList.AddError(1184, NULL,
 				"Cannot perform set operation on nonexistent class ",
 				staClassName,
 				LineAndFile(ast));
 			return;
+		}
+		else if (nodetyp == OP_PLUSEQUAL)	// appending
+		{
+			g_errorList.AddWarning(1515, NULL,
+				"Appending to non-existent class '", staClassName, "'; class will be created",
+				LineAndFile(ast));
 		}
 	}
 	else
@@ -1108,8 +1114,8 @@ void GrcManager::WalkGlyphTableElement(RefAST ast)
 		if (nodetyp == OP_EQ)
 		{
 			g_errorList.AddError(1137, NULL,
-				"Duplicate definition of class ",
-				staClassName,
+				"Duplicate definition of class '",
+				staClassName, "'",
 				LineAndFile(ast));
 			return;
 		}

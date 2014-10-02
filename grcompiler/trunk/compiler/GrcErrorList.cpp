@@ -19,7 +19,7 @@ global - highest error: 142 / highest warning: 512
 		GrpParser
 		GrcFont
 
-parsing - highest error: 1187 / highest warning: 1514
+parsing - highest error: 1187 / highest warning: 1515
 		ParserTreeWalker
 		PostParser
 
@@ -39,7 +39,7 @@ error checking:
 		GdlTablePass
 		Fsm
 		Compiler
-	classes - highest error: 4147 / highest warning: 4518
+	classes - highest error: 4148 / highest warning: 4518
 		ErrorCheckClass
 		GrcGlyphAttrMatrix
 		GdlGlyphDefn
