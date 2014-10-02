@@ -37,6 +37,9 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 {
 //	MarkUnusedGlyphMetrics();
 
+	if (!m_prndr->CheckRecursiveGlyphClasses())
+		return false;
+
 	if (!GeneratePseudoGlyphs(pfont))
 		return false;
 
@@ -84,6 +87,52 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 	return true;
 }
 
+/*----------------------------------------------------------------------------------------------
+	Check For recursive class definitions. Return false if there is an error.
+----------------------------------------------------------------------------------------------*/
+bool GdlRenderer::CheckRecursiveGlyphClasses()
+{
+	bool f;
+	std::vector<GdlGlyphClassDefn*> vpglfcStack;
+	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
+	{
+		f = m_vpglfc[iglfc]->CheckRecursiveGlyphClasses(vpglfcStack);
+		if (!f)
+			return false;
+		Assert(vpglfcStack.size() == 0);
+	}
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & vpglfcStack)
+{
+	for (size_t iglfd = 0; iglfd < vpglfcStack.size(); iglfd++)
+	{
+		if (vpglfcStack[iglfd] == this)
+			return false;
+	}
+
+	vpglfcStack.push_back(this);
+	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+	{
+		bool f = m_vpglfdMembers[iglfd]->CheckRecursiveGlyphClasses(vpglfcStack);
+		if (!f)
+		{
+			g_errorList.AddError(4148, this, "Recursive class definition: ", this->Name());
+			return false;
+		}
+	}
+	vpglfcStack.pop_back();
+
+	return true;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlGlyphDefn::CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & /*vpglfcStack*/)
+{
+	return true; // okay, no embedded classes
+}
 
 /*----------------------------------------------------------------------------------------------
 	Handle the generation of pseudo glyphs. Return false if compilation cannot continue
@@ -203,19 +252,23 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 int GdlRenderer::ExplicitPseudos(PseudoSet & setpglf)
 {
 	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
-		m_vpglfc[iglfc]->ExplicitPseudos(setpglf);
+		m_vpglfc[iglfc]->ExplicitPseudos(setpglf, true);
 	return setpglf.size();
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::ExplicitPseudos(PseudoSet & setpglf)
+void GdlGlyphClassDefn::ExplicitPseudos(PseudoSet & setpglf, bool fProcessClasses)
 {
-	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
-		m_vpglfdMembers[iglfd]->ExplicitPseudos(setpglf);
+	if (fProcessClasses)
+	{
+		for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+			m_vpglfdMembers[iglfd]->ExplicitPseudos(setpglf, false);
+	}
+	// else the method is already called for this class directly
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphDefn::ExplicitPseudos(PseudoSet & setpglf)
+void GdlGlyphDefn::ExplicitPseudos(PseudoSet & setpglf, bool /*fProcessClasses*/)
 {
 	if (m_glft == kglftPseudo)
 	{

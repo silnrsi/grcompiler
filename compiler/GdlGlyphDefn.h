@@ -221,7 +221,8 @@ public:
 
 public:
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(PseudoSet & setpglf);
+	virtual bool CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & vpglfcStack);
+	virtual void ExplicitPseudos(PseudoSet & setpglf, bool fProcessClasses);
 	virtual int ActualForPseudo(utf16 wPseudo);
 	//	Answer true if there is exactly one glyph represented by the object.
 //	bool SingleGlyph()

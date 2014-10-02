@@ -80,7 +80,8 @@ public:
 	};
 
 	//	Pre-compiler:
-	virtual void ExplicitPseudos(PseudoSet & setpglf) = 0;
+	virtual bool CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & vpglfcStack) = 0;
+	virtual void ExplicitPseudos(PseudoSet & setpglf, bool fProcessClasses) = 0;
 	virtual int ActualForPseudo(utf16 wPseudo) = 0;
 	virtual int GlyphIDCount() = 0;
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne) = 0;
@@ -199,7 +200,8 @@ public:
 		// Overridden by intersection and difference classes to do something interesting.
 	}
 
-	virtual void ExplicitPseudos(PseudoSet & setpglf);
+	virtual bool CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & vpglfcStack);
+	virtual void ExplicitPseudos(PseudoSet & setpglf, bool fProcessClasses);
 	virtual int ActualForPseudo(utf16 wPseudo);
 	virtual void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
