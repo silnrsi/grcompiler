@@ -830,7 +830,10 @@ void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOu
 void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 {
 	if (m_vprule.size() == 0)
+	{
+		strmOut << "\nPASS: " << PassDebuggerNumber() << " - no rules\n";
 		return;
+	}
 
 	Assert(PassDebuggerNumber() != 0);
 
@@ -953,6 +956,9 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 		strmOut << "\nPASS CONSTRAINTS:\n";
 		GdlRule::DebugEngineCode(vbPassConstraints, fxdRuleVersion, strmOut);
 	}
+
+	if (m_vprule.size() == 0)
+		strmOut << "\nNO RULES\n";
 
 	for (size_t iprul = 0; iprul < m_vprule.size(); iprul++)
 	{
@@ -2714,31 +2720,35 @@ void GdlRuleTable::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur,
 	Symbol psymTableName)
 {
-	if (m_vprule.size() == 0)
+	if (!ValidPass())
 		return;
 
+	int temp = PassDebuggerNumber();
 	Assert(PassDebuggerNumber() != 0);
 
 	strmOut << "    <pass table=\"" << psymTableName->FullName()
 		<< "\" index=\"" << PassDebuggerNumber() << "\" >\n";
 
-	if (m_vpexpConstraints.size() > 0)
+	if (m_vprule.size() > 0)
 	{
-		strmOut << "        <passConstraints>\n";
-		for (size_t iexp = 0; iexp < m_vpexpConstraints.size(); iexp++)
+		if (m_vpexpConstraints.size() > 0)
 		{
-			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
-			strmOut << "          <passConstraint gdl=\"{ ";
-			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
-			strmOut << " }\" inFile=\"" << staPathToCur << lnf.File()
-				<< "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
+			strmOut << "        <passConstraints>\n";
+			for (size_t iexp = 0; iexp < m_vpexpConstraints.size(); iexp++)
+			{
+				GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
+				strmOut << "          <passConstraint gdl=\"{ ";
+				m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
+				strmOut << " }\" inFile=\"" << staPathToCur << lnf.File()
+					<< "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
+			}
+			strmOut << "        </passConstraints>\n";
 		}
-		strmOut << "        </passConstraints>\n";
-	}
 
-	for (size_t irule = 0; irule < m_vprule.size(); irule++)
-	{
-		m_vprule[irule]->DebugXml(pcman, strmOut, staPathToCur, PassDebuggerNumber(), irule);
+		for (size_t irule = 0; irule < m_vprule.size(); irule++)
+		{
+			m_vprule[irule]->DebugXml(pcman, strmOut, staPathToCur, PassDebuggerNumber(), irule);
+		}
 	}
 
 	strmOut << "    </pass>  <!-- pass " << PassDebuggerNumber() 

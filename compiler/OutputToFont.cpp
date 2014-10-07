@@ -1818,7 +1818,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 		if (fxdGlatVersion >= 0x00030000)
 		{
 			// Output glyph-approximation octoboxes.
-			if (wGlyphID < m_wGlyphIDLim)
+			if (wGlyphID < m_wGlyphIDLim && wGlyphID < (int)m_vgbdy.size())
 				cbOutput += m_vgbdy[wGlyphID].OutputToGlat(pbstrm);
 			else
 				cbOutput += GlyphBoundaries::OutputToGlatNonexistent(pbstrm);
@@ -2743,7 +2743,7 @@ int GdlRuleTable::CountPasses()
 
 	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
-		if (m_vppass[ipass]->HasRules() || m_vppass[ipass]->CollisionFix() > 0)
+		if (m_vppass[ipass]->ValidPass())
 			cRet++;
 	}
 	return cRet;
@@ -2781,7 +2781,7 @@ void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lo
 {
 	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
-		if (m_vppass[ipass]->HasRules() || m_vppass[ipass]->CollisionFix() > 0)
+		if (m_vppass[ipass]->ValidPass())
 		{
 			vnOffsets.push_back(pbstrm->Position() - lTableStart);
 			m_vppass[ipass]->OutputPass(pcman, pbstrm, lTableStart);

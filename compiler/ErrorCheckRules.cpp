@@ -181,7 +181,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 
 	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
-		if (m_vppass[ipass]->HasRules())
+		if (m_vppass[ipass]->ValidPass())
 		{
 			m_vppass[ipass]->AssignGlobalID(*pnPassNum);
 			(*pnPassNum)++;

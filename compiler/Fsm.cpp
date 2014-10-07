@@ -108,7 +108,7 @@ void GdlPass::GenerateFsm(GrcManager * pcman)
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 {
-	if (m_nGlobalID == -1)
+	if (m_nGlobalID == -1 || m_vprule.size() == 0)
 		return;	// no rules in this pass
 
 	InitializeFsmArrays(); // working arrays
@@ -502,9 +502,11 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 
 	std::cout << " (mc " << NumberOfFsmMachineClasses() << " fsm";
 
-	if (m_nGlobalID == -1)
+	if (m_nGlobalID == -1 || m_vprule.size() == 0)
 	{
 		m_nMaxRuleContext = 0;
+		m_pfsm = NULL;
+		std::cout << " 0)";
 		return;
 	}
 
@@ -1160,6 +1162,12 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 
 void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool fWorking)
 {
+	if (m_pfsm == NULL)
+	{
+		strmOut << "No fsm\n";
+		return;
+	}
+
 	int cfsmc = m_pfsm->NumberOfColumns();
 	if (fWorking)
 		strmOut << "\nWorking Table:          ";

@@ -109,6 +109,10 @@ public:
 	{
 		return (m_vprule.size() > 0);
 	}
+	bool ValidPass()
+	{
+		return (this->HasRules() || this->CollisionFix() > 0);
+	}
 
 	void SetPreBidiPass(int n)
 	{
