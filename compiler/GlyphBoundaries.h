@@ -99,7 +99,7 @@ public:
 		m_wGlyphID = wGlyphID;
 	}
 
-	void OverlayGrid(GrcFont * pfont, bool fSimple);
+	void OverlayGrid(GrcFont * pfont, bool fComplex);
 	int CellGridBitmap();
 
 protected:
@@ -121,6 +121,7 @@ protected:
 public:
 	int OutputToGlat(GrcBinaryStream * pbstrm);
 	static int OutputToGlatNonexistent(GrcBinaryStream * pbstrm);
+	bool ComplexFit();
 protected:
 	int OutputGlatFullDiagonals(GrcBinaryStream * pbstrm);
 	int OutputGlatSubBox(GrcBinaryStream * pbstrm, int icellX, int icellY);

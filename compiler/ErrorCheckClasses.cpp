@@ -68,7 +68,7 @@ bool GrcManager::PreCompileClassesAndGlyphs(GrcFont * pfont)
 		return false;
 
 	if (m_prndr->HasCollisionPass())	// do this after glyph attributes have been processed
-		CalculateCollisionOctoboxes(pfont);
+		CalculateCollisionOctaboxes(pfont);
 
 	if (!m_prndr->FixGlyphAttrsInRules(this, pfont))
 		return false;
@@ -1005,38 +1005,40 @@ bool GdlRuleTable::HasCollisionPass()
 /**********************************************************************************************/
 
 /*----------------------------------------------------------------------------------------------
-	Calculate octoboxes to use in collision fixing.
+	Calculate octaboxes to use in collision fixing.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::CalculateCollisionOctoboxes(GrcFont * pfont)
+void GrcManager::CalculateCollisionOctaboxes(GrcFont * pfont)
 {
-	Symbol psymSimple = m_psymtbl->FindSymbol(GrcStructName("collision", "simplebox"));
-	int nAttrIdSimple = psymSimple->InternalID();
+	Symbol psymComplex = m_psymtbl->FindSymbol(GrcStructName("collision", "complexfit"));
+	int nAttrIdComplex = psymComplex->InternalID();
 
 	m_vgbdy.resize(m_wGlyphIDLim);
 	for (utf16 wGid = 0; wGid < m_wGlyphIDLim; wGid++)
 	{
-		// Should this be treated as a simple box? Get the collision.simplebox attr.
-		bool fSimple = false;
+		// The collision.complexfit attr tell whether the shape of this glyph is complex
+		// enough to require a grid of octaboxes to represent its shape rather than a single
+		// octabox.
+		bool fComplex = false;
 		GdlExpression * pexp;
 		int nPR;
 		int munitPR;
 		bool fOverride, fShadow;
 		GrpLineAndFile lnf;
-		m_pgax->Get(wGid, nAttrIdSimple,
+		m_pgax->Get(wGid, nAttrIdComplex,
 				&pexp, &nPR, &munitPR, &fOverride, &fShadow, &lnf);
 		if (!pexp)
-			fSimple = false;
+			fComplex = false;
 		else
 		{
 			int n;
 			if (!pexp->ResolveToInteger(&n, false))
-				fSimple = false;
+				fComplex = false;
 			else
-				fSimple = (n > 0);
+				fComplex = (n > 0);
 		}
 
 		m_vgbdy[wGid].Initialize(wGid);
-		m_vgbdy[wGid].OverlayGrid(pfont, fSimple);
+		m_vgbdy[wGid].OverlayGrid(pfont, fComplex);
 	}
 }
 
@@ -1330,7 +1332,6 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			&& (psym->FieldIs(0, "directionality")
 				|| psym->FieldIs(0, "breakweight")
 				|| psym->FieldIs(0, "*actualForPseudo*")
-				|| psym->FieldIs(0, "collision")
 				|| psym->FieldIs(0, "*skipPasses*")))
 		{
 			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
@@ -1341,6 +1342,11 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym2);
 				Assert(psym2->InternalID() == psym->InternalID() + 1);
 			}
+		}
+		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
+			&& psym->FieldIs(0, "collision"))
+		{
+			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
 		}
 		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
 			&& psym->FieldCount() == 2
@@ -1479,7 +1485,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "margin")));
 		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "simplebox")));
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexfit")));
 		vnSysDefValues.push_back(0);
 	}
 	if (IncludePassOptimizations())
