@@ -1817,7 +1817,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 
 		if (fxdGlatVersion >= 0x00030000)
 		{
-			// Output glyph-approximation octoboxes.
+			// Output glyph-approximation octaboxes.
 			if (wGlyphID < m_wGlyphIDLim && wGlyphID < (int)m_vgbdy.size())
 				cbOutput += m_vgbdy[wGlyphID].OutputToGlat(pbstrm);
 			else

@@ -326,7 +326,7 @@ protected:
 		bool * pfFixPassConstraints);
 
 	bool AssignInternalGlyphAttrIDs();
-	void CalculateCollisionOctoboxes(GrcFont * pfont);
+	void CalculateCollisionOctaboxes(GrcFont * pfont);
 
 	bool AssignGlyphAttrsToClassMembers(GrcFont * pfont);
 	bool ProcessGlyphAttributes(GrcFont * pfont);
@@ -405,7 +405,7 @@ protected:
 		int * pibOffset, int * pcbSize);
 	void OutputGlatAndGloc(GrcBinaryStream * pbstrm, int * pnGlocOffset, int * pnGlocSize,
 		int * pnGlatOffset, int * pnGlatSize);
-	int OutputGlatOctoboxes(GrcBinaryStream * pbstrm);
+	int OutputGlatOctaboxes(GrcBinaryStream * pbstrm);
 	void OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, int * pnSilfSize);
 	void OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, int * pnFeatSize);
 	void OutputSileTable(GrcBinaryStream * pbstrm, utf16 * pchwFontName, long nChecksum);

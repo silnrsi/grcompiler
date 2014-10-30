@@ -87,7 +87,7 @@ void GrcManager::CalculateGlatVersion()
 {
 	int fxdGlatVersion = VersionForTable(ktiGlat);
 	//	The version of the Glat table depends on the number of glyph attributes defined
-	//	and whether we include the glyph approximation octoboxes for collision fixing.
+	//	and whether we include the glyph approximation octaboxes for collision fixing.
 
 	if (m_prndr->HasCollisionPass())
 	{
@@ -2510,7 +2510,6 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 			strmOut << "\" />\n";
 
 		}
-
 		strmOut << "    </glyph>\n";
 	}
 

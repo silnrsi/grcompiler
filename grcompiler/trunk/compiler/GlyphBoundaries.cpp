@@ -273,6 +273,7 @@ bool GlyphBoundaryCell::HasExit(int nSide)
 
 /*----------------------------------------------------------------------------------------------
 	 Return a bitmap indicating which cells of the grid overlap with the curve.
+	 Zero means we don't want subboxes for this glyph - it has a simple shape.
 ----------------------------------------------------------------------------------------------*/
 int GlyphBoundaries::CellGridBitmap()
 {
@@ -291,10 +292,11 @@ int GlyphBoundaries::CellGridBitmap()
 }
 
 /*----------------------------------------------------------------------------------------------
-	 Develop a grid of octoboxes that correspond to the glyph curve, and also an octobox
+	 Develop a grid of octaboxes that correspond to the glyph curve, and also an octabox
 	 for the entire glyph.
+	 If fComplex is false, only the octabox for the entire glyph is needed.
 ----------------------------------------------------------------------------------------------*/
-void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
+void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 {
 	std::vector<int> vmx;
 	std::vector<int> vmy;
@@ -313,7 +315,7 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 	}
 	else if (pfont->GetGlyfPts(m_wGlyphID, &viEndPt, &vmx, &vmy, &vfOnCurve))
 	{
-		// Calculate bounding box, which is used to normalize all the octoboxes.
+		// Calculate bounding box, which is used to normalize all the octaboxes.
 		for (int i = 0; i < signed(vmx.size()); i++)
 		{
 			m_mxBbMin = (vmx[i] < m_mxBbMin) ? vmx[i] : m_mxBbMin;
@@ -565,15 +567,11 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 			}
 		}
 
-		int nBitmapTemp = this->CellGridBitmap();
-		int x = 3;
-		x++;
-
-		//	If only simple metrics were requested, clear all the subboxes but leave the
+		//	If complex metrics were not requested, clear all the subboxes but leave the
 		//	full-glyph diagonals.
 		//	This is obviously not the most efficient way to implement this, but it is the
 		//	easiest and least messy.
-		if (fSimple)
+		if (!fComplex)
 			ClearSubBoxCells();
 	}
 	else
@@ -584,6 +582,15 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fSimple)
 		m_gbcellEntire.m_dValues[gbcDPMin] = 0;
 		m_gbcellEntire.m_dValues[gbcDPMax] = 0;
 	}
+}
+
+/*----------------------------------------------------------------------------------------------
+	 Return true if subbox octaboxes are needed for this glyph.
+----------------------------------------------------------------------------------------------*/
+bool GlyphBoundaries::ComplexFit()
+{
+	int nBitmap = this->CellGridBitmap();
+	return (nBitmap != 0);
 }
 
 /*----------------------------------------------------------------------------------------------
