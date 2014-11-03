@@ -1925,7 +1925,7 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 
 	// This one is used by the compiler, but not stored in the font:
-	psym = PreDefineSymbol(GrcStructName("collision", "complexfit"), ksymtGlyphAttr, kexptNumber);
+	psym = PreDefineSymbol(GrcStructName("collision", "complexFit"), ksymtGlyphAttr, kexptNumber);
 	psym->m_fGeneric = true;
 }
 

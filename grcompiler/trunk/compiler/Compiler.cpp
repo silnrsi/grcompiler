@@ -2451,7 +2451,10 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 	strmOut << "  <glyphs>\n";
 
 	std::vector<std::string> vstaSingleMemberClasses;
-	m_prndr->RecordSingleMemberClasses(vstaSingleMemberClasses);
+	std::vector<std::string> vstaSingleMemberClassFiles;
+	std::vector<int> vnSingleMemberClassLines;
+	m_prndr->RecordSingleMemberClasses(vstaSingleMemberClasses,
+		vstaSingleMemberClassFiles, vnSingleMemberClassLines);
 
 	for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
@@ -2469,6 +2472,9 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 			strmOut << "\" usv=\""; 
 			DebugUnicode(strmOut, rgnGlyphIDToUni[wGlyphID], false);
 		}
+		if (vstaSingleMemberClassFiles.size() > (unsigned)wGlyphID && vstaSingleMemberClassFiles[wGlyphID] != "")
+			strmOut << "\" inFile=\"" << vstaSingleMemberClassFiles[wGlyphID]
+				<< "\" atLine=\"" << vnSingleMemberClassLines[wGlyphID];
 		strmOut<< "\"" << ">\n";
 	
 		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
@@ -2496,6 +2502,10 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				// Attribute not defined for this glyph.
 				continue;
 
+			if (! m_prndr->HasCollisionPass() && m_vpsymGlyphAttrs[nAttrID]->IsCollisionAttr())
+				// Ignore collision attributes when there is no collision pass.
+				continue;
+
 			strmOut << "      <glyphAttrValue name=\"" << m_vpsymGlyphAttrs[nAttrID]->FullName()
 				<< "\" value=\"";
 			if (m_vpsymGlyphAttrs[nAttrID]->LastFieldIs("gpoint") && nValue == kGpointZero)
@@ -2517,24 +2527,37 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses)
+void GdlRenderer::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses,
+	std::vector<std::string> & vstaFiles, std::vector<int> & vnLines)
 {
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
-		m_vpglfc[ipglfc]->RecordSingleMemberClasses(vstaSingleMemberClasses);
+		m_vpglfc[ipglfc]->RecordSingleMemberClasses(vstaSingleMemberClasses, vstaFiles, vnLines);
 	}
 }
 
-void GdlGlyphClassDefn::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses)
+void GdlGlyphClassDefn::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses,
+	std::vector<std::string> & vstaFiles, std::vector<int> & vnLines)
 {
 	FlattenMyGlyphList();
 	if (m_vgidFlattened.size() == 1)
 	{
 		utf16 gid = m_vgidFlattened[0];
 		while (vstaSingleMemberClasses.size() <= gid)
+		{
 			vstaSingleMemberClasses.push_back("");
+			vstaFiles.push_back("");
+			vnLines.push_back(-1);
+		}
 		if (vstaSingleMemberClasses[gid] == "")
+		{
 			vstaSingleMemberClasses[gid] = this->Name();
+			if (!m_lnf.NotSet())
+			{
+				vstaFiles[gid] = m_lnf.File();
+				vnLines[gid] = m_lnf.OriginalLine();
+			}
+		}
 	}
 }
 
