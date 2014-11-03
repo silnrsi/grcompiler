@@ -280,7 +280,8 @@ public:
 	void DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphIDs, std::string staPathToCur);
 	virtual void DebugXmlClassMembers(std::ofstream & strmOut, std::string staPathToCur,
 		GdlGlyphClassDefn * pglfdParent, GrpLineAndFile lnf, int & cwGlyphIDs);
-	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses);
+	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses,
+		std::vector<std::string> & vstaFiles, std::vector<int> & vnLines);
 
 	void FlattenMyGlyphList()
 	{

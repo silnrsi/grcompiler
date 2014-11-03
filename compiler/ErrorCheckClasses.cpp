@@ -1009,13 +1009,13 @@ bool GdlRuleTable::HasCollisionPass()
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::CalculateCollisionOctaboxes(GrcFont * pfont)
 {
-	Symbol psymComplex = m_psymtbl->FindSymbol(GrcStructName("collision", "complexfit"));
+	Symbol psymComplex = m_psymtbl->FindSymbol(GrcStructName("collision", "complexFit"));
 	int nAttrIdComplex = psymComplex->InternalID();
 
 	m_vgbdy.resize(m_wGlyphIDLim);
 	for (utf16 wGid = 0; wGid < m_wGlyphIDLim; wGid++)
 	{
-		// The collision.complexfit attr tell whether the shape of this glyph is complex
+		// The collision.complexFit attr tell whether the shape of this glyph is complex
 		// enough to require a grid of octaboxes to represent its shape rather than a single
 		// octabox.
 		bool fComplex = false;
@@ -1485,7 +1485,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "margin")));
 		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexfit")));
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexFit")));
 		vnSysDefValues.push_back(0);
 	}
 	if (IncludePassOptimizations())
