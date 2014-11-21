@@ -1082,25 +1082,27 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 {
 	int cpass = m_prndr->NumberOfPasses();
 
+	bool fCollFix = m_prndr->HasCollisionPass();
+
 	//	Assign the first batch of IDs to the built-in attributes;
 	//	this is an optimization for the Graphite2 engine.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1, cpass);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1, cpass, fCollFix);
 	m_cpsymBuiltIn = m_vpsymGlyphAttrs.size();
 
 	//	Assign the next batch of IDs to component bases (ie, component.X).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1, 0);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1, 0, fCollFix);
 	m_cpsymComponents = m_vpsymGlyphAttrs.size() - m_cpsymBuiltIn;
 
 	//	Assign the next batch to component box fields. (ie, component.X.top/bottom/left/right).
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBox,
-		m_cpsymBuiltIn, m_cpsymComponents, -1, 0);
+		m_cpsymBuiltIn, m_cpsymComponents, -1, 0, fCollFix);
 
 	//	Assign the next batch to the justification attributes.
 	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappJustify, -1, -1,
-		NumJustLevels(), 0);
+		NumJustLevels(), 0, fCollFix);
 
 	//	Finally, assign IDs to everything else.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1, 0);
+	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1, 0, fCollFix);
 
 	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
@@ -1135,7 +1137,7 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, int cpsymBuiltIn, int cpsymComponents,
-	int cJLevels, int cpass)
+	int cJLevels, int cpass, bool fCollFix)
 {
 	if (gapp == kgappJustify)
 	{
@@ -1223,7 +1225,7 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			}
 			else
 				psym->m_psymtblSubTable->AssignInternalGlyphAttrIDs(psymtblMain,
-					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels, 0);
+					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels, 0, fCollFix);
 		}
 		else if (!psym->IsGeneric() &&
 			psym->FitsSymbolType(ksymtGlyphAttr))
@@ -1344,11 +1346,6 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			}
 		}
 		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
-			&& psym->FieldIs(0, "collision"))
-		{
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
-		}
-		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
 			&& psym->FieldCount() == 2
 			&& psym->FieldIs(0, "mirror"))
 		{
@@ -1364,25 +1361,30 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 			&& psym->FieldCount() > 1
 			&& psym->FieldIs(0, "collision"))
 		{
-			//	Put collision.flags first, immediately followed by the others in a specific order.
-			Symbol psymFlags = psymtblMain->FindSymbol(GrcStructName("collision", "flags"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymFlags);
-			Symbol psymMinX = psymtblMain->FindSymbol(GrcStructName("collision", "min", "x"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinX);
-			Symbol psymMaxX = psymtblMain->FindSymbol(GrcStructName("collision", "max", "x"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxX);
-			Symbol psymMinY = psymtblMain->FindSymbol(GrcStructName("collision", "min", "y"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinY);
-			Symbol psymMaxY = psymtblMain->FindSymbol(GrcStructName("collision", "max", "y"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxY);
-			Symbol psymMargin = psymtblMain->FindSymbol(GrcStructName("collision", "margin"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMargin);
-			Assert(psymFlags->InternalID() != 0);
-			Assert(psymFlags->InternalID() + 1 == psymMinX->InternalID());
-			Assert(psymFlags->InternalID() + 2 == psymMaxX->InternalID());
-			Assert(psymFlags->InternalID() + 3 == psymMinY->InternalID());
-			Assert(psymFlags->InternalID() + 4 == psymMaxY->InternalID());
-			Assert(psymFlags->InternalID() + 5 == psymMargin->InternalID());
+			if (fCollFix)
+			{
+				//	Put collision.flags first, immediately followed by the others in a specific order.
+				Symbol psymFlags = psymtblMain->FindSymbol(GrcStructName("collision", "flags"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymFlags);
+				Symbol psymMinX = psymtblMain->FindSymbol(GrcStructName("collision", "min", "x"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinX);
+				Symbol psymMaxX = psymtblMain->FindSymbol(GrcStructName("collision", "max", "x"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxX);
+				Symbol psymMinY = psymtblMain->FindSymbol(GrcStructName("collision", "min", "y"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMinY);
+				Symbol psymMaxY = psymtblMain->FindSymbol(GrcStructName("collision", "max", "y"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxY);
+				Symbol psymMargin = psymtblMain->FindSymbol(GrcStructName("collision", "margin"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMargin);
+				Assert(psymFlags->InternalID() != 0);
+				Assert(psymFlags->InternalID() + 1 == psymMinX->InternalID());
+				Assert(psymFlags->InternalID() + 2 == psymMaxX->InternalID());
+				Assert(psymFlags->InternalID() + 3 == psymMinY->InternalID());
+				Assert(psymFlags->InternalID() + 4 == psymMaxY->InternalID());
+				Assert(psymFlags->InternalID() + 5 == psymMargin->InternalID());
+			}
+			// Otherwise we don't want to assign glyph attr IDs to the collision attributes, because
+			// the older table format doesn't know how to handle them.
 		}
 	}
 
