@@ -104,6 +104,23 @@ public:
 		strmOut << staStripped << "(" << m_nLineOrig << ")";
 	}
 
+	std::string FileWithPath(std::string staPath) // append the given path unless the file has an absolute path
+	{
+		std::string staResult;
+		if (m_staFile[0] == '/' || m_staFile[1] == ':') //  / is Linux, C: is Windows
+		{
+			// Absolute path
+			staResult = m_staFile;
+		}
+		else
+		{
+			// Relative path
+			staResult = staPath;
+			staResult.append(m_staFile);
+		}
+		return staResult;
+	}
+
 protected:
 	//	instance variables:
 	int m_nLinePre;			// line in pre-processed file
