@@ -2514,7 +2514,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				strmOut  << nValue;
 
 			if (!lnf.NotSet())
-				strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+				strmOut << "\" inFile=\"" << lnf.FileWithPath(staPathToCur)
 					<< "\" atLine=\"" << lnf.OriginalLine();
 
 			strmOut << "\" />\n";
@@ -2617,7 +2617,7 @@ void GdlGlyphDefn::DebugXmlClassMembers(std::ofstream & strmOut, std::string sta
 		strmOut << "      <member glyphid=\"" << m_vwGlyphIDs[iw] << "\" index=\"" << cwGlyphIDs;
 
 		if (!lnf.NotSet())
-			strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+			strmOut << "\" inFile=\"" << lnf.FileWithPath(staPathToCur)
 				<< "\" atLine=\"" << lnf.OriginalLine();
 
 		strmOut << "\" />\n";
@@ -2677,7 +2677,7 @@ void GdlFeatureDefn::DebugXmlFeatures(std::ofstream & strmOut, std::string staPa
 	strmOut << "\" index=\"" << this->InternalID();
 
 	if (!lnf.NotSet() && this->ID() != kfidStdLang)
-		strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+		strmOut << "\" inFile=\"" << lnf.FileWithPath(staPathToCur)
 			<< "\" atLine=\"" << lnf.OriginalLine();
 
 	strmOut << "\" >\n";
@@ -2697,7 +2697,7 @@ void GdlFeatureSetting::DebugXmlFeatures(std::ofstream & strmOut, std::string st
 		<< "\" value=\"" << this->Value();
 
 	if (!lnf.NotSet())
-		strmOut << "\" inFile=\"" << staPathToCur << lnf.File()
+		strmOut << "\" inFile=\"" << lnf.FileWithPath(staPathToCur)
 			<< "\" atLine=\"" << lnf.OriginalLine();
 
 	strmOut << "\" />\n";
@@ -2761,7 +2761,7 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::st
 				GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
 				strmOut << "          <passConstraint gdl=\"{ ";
 				m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
-				strmOut << " }\" inFile=\"" << staPathToCur << lnf.File()
+				strmOut << " }\" inFile=\"" << lnf.FileWithPath(staPathToCur)
 					<< "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
 			}
 			strmOut << "        </passConstraints>\n";
@@ -2796,7 +2796,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, std::string 
 			GrpLineAndFile lnf = m_vpexpConstraints[iexp]->LineAndFile();
 			strmOut << "          <ruleConstraint gdl=\"{ ";
 			m_vpexpConstraints[iexp]->PrettyPrint(pcman, strmOut, true);
-			strmOut << " }\" inFile=\"" << staPathToCur << lnf.File()
+			strmOut << " }\" inFile=\"" << lnf.FileWithPath(staPathToCur)
 				<< "\" atLine=\"" << lnf.OriginalLine() << "\" />\n";
 		}
 		strmOut << "        </ruleConstraints>\n";
