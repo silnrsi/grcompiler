@@ -2518,7 +2518,6 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 					<< "\" atLine=\"" << lnf.OriginalLine();
 
 			strmOut << "\" />\n";
-
 		}
 		strmOut << "    </glyph>\n";
 	}
@@ -3231,41 +3230,48 @@ void GrcManager::PassOptimizations()
 	Symbol psymSkipP = m_psymtbl->FindSymbol("*skipPasses*");
 	unsigned int nAttrIdSkipP = psymSkipP->InternalID();
 
-	m_prndr->PassOptimizations(m_pgax, nAttrIdSkipP);
+	m_prndr->PassOptimizations(m_pgax, m_psymtbl, nAttrIdSkipP);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRenderer::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP)
+void GdlRenderer::PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl,
+	unsigned int nAttrIdSkipP)
 {
 	for (size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		m_vprultbl[iprultbl]->PassOptimizations(pgax, nAttrIdSkipP);
+		m_vprultbl[iprultbl]->PassOptimizations(pgax, psymtbl, nAttrIdSkipP);
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP)
+void GdlRuleTable::PassOptimizations(GrcGlyphAttrMatrix * pgax,  GrcSymbolTable * psymtbl,
+	unsigned int nAttrIdSkipP)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		m_vppass[ippass]->PassOptimizations(pgax, nAttrIdSkipP);
+		m_vppass[ippass]->PassOptimizations(pgax, psymtbl, nAttrIdSkipP);
 	}
 }
 /*--------------------------------------------------------------------------------------------*/
-void GdlPass::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP)
+void GdlPass::PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl,
+	unsigned int nAttrIdSkipP)
 {
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
-		m_vprule[iprule]->PassOptimizations(pgax, nAttrIdSkipP, this->GlobalID());
+		m_vprule[iprule]->PassOptimizations(pgax, psymtbl, nAttrIdSkipP, this->GlobalID());
 	}
 }
 /*--------------------------------------------------------------------------------------------*/
-void GdlRule::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID)
+void GdlRule::PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl,
+	unsigned int nAttrIdSkipP, int nPassID)
 {
 	//	Find a "key" slot for this rule: the first slot to be modified via substitution,
 	//	deletion, or attribute setting. For each glyph in the class associated with the slot,
 	//	clear the *skipPasses* bit for this pass, indicating that the presence of that glyph
 	//	requires the pass to be run.
+
+	bool fInsertion = false;
+	int iritFirstNonInsertion = -1;
 
 	//	First, look for a slot that is explicitly marked.
 	int iritKey = -1;
@@ -3278,6 +3284,10 @@ void GdlRule::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdS
 			else
 				g_errorList.AddWarning(5708, this, "Multiple slots marked as key slot");
 		}
+		if (m_vprit[irit]->IsInsertionSlot())
+			fInsertion = true;
+		else if (iritFirstNonInsertion == -1)
+			iritFirstNonInsertion = irit;
 	}
 
 	if (iritKey == -1)
@@ -3293,6 +3303,21 @@ void GdlRule::PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdS
 		}
 	}
 	
+	if (iritKey == -1 && fInsertion)
+	{
+		// The rule has an insertion, so use the first non-insertion slot as the key.
+		iritKey = iritFirstNonInsertion;
+
+		if (iritKey == -1)
+		{
+			// All slots are insertion slots. Just mark all glyphs as key for this pass.
+			// (Actually this should never happen, because a rule with all insertions results in
+			// an error before we get this far.)
+			Symbol psym = psymtbl->FindSymbol("ANY");
+			GdlGlyphClassDefn * pglfcKey = psym->GlyphClassDefnData();
+			pglfcKey->MarkKeyGlyphsForPass(pgax, nAttrIdSkipP, nPassID);
+		}
+	}
 	if (iritKey > -1)
 	{
 		m_vprit[iritKey]->MarkKeyGlyphsForPass(pgax, nAttrIdSkipP, nPassID);

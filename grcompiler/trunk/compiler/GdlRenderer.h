@@ -186,7 +186,7 @@ public:
 	}
 
 	//	Compiler:
-	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP);
+	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, unsigned int nAttrIdSkipP);
 	void GenerateFsms(GrcManager * pcman);
 	void CalculateContextOffsets();
 
