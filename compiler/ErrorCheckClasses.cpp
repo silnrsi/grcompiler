@@ -2522,9 +2522,10 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 					{
 						//	slot out of range--error will be produced later
 					}
-					else if (!dynamic_cast<GdlSetAttrItem *>(prule->Item(srAttachTo - 1)))
-						g_errorList.AddError(4131, this,
-							"Cannot attach to an item in the context");
+					// Go ahead and allow this:
+//					else if (!dynamic_cast<GdlSetAttrItem *>(prule->Item(srAttachTo - 1)))
+//						g_errorList.AddError(4131, this,
+//							"Cannot attach to an item in the context");
 				}
 			}
 			pavs->FixGlyphAttrsInRules(pcman, vpglfcInClasses, irit, psymOutput);

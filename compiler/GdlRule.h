@@ -283,6 +283,7 @@ public:
 	//	Compiler:
 	virtual bool IsMarkedKeySlot() { return false; }	// only slots that perform modifications
 	virtual bool CanBeKeySlot() { return false; }
+	virtual bool IsInsertionSlot() { return false; }
 	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> & viritInput, int iritFirstModItem);
@@ -645,6 +646,10 @@ protected:
 	}
 	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
+	virtual bool IsInsertionSlot()
+	{
+		return m_psymInput->FitsSymbolType(ksymtSpecialUnderscore);
+	}
 public:
 	//	debuggers:
 	virtual void LhsPrettyPrint(GrcManager * pcman, GdlRule * prule, int irit,
@@ -894,7 +899,8 @@ public:
 		std::vector<utf16> & vwSpaceGlyphs);
 
 	//	Compiler:
-	void PassOptimizations(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);	
+	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, 
+		unsigned int nAttrIdSkipP, int nPassID);	
 	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
 		std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints);
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput);
