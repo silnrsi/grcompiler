@@ -145,7 +145,7 @@ public:
 	void GetMachineClassesForRuleItem(GdlRule  * prule, int irit,
 		FsmMachineClassSet & setpfsmc);
 	int FindIdenticalState(int ifsToMatch, int ifsMin);
-	void ReorderFsmStates();
+	void ReorderFsmStates(GrcManager * pcman);
 	int NumStates();
 	int NumAcceptingStates();
 	int NumTransitionalStates();
