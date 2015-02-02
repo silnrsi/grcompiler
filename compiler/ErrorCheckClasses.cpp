@@ -1474,7 +1474,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	}
 	if (m_prndr->HasCollisionPass())
 	{
-		//	collision.flags
+		//	collision.flags and friends
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "flags")));
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "min", "x")));
@@ -1488,6 +1488,10 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "margin")));
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexFit")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "minxoffset")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "jumpable")));
 		vnSysDefValues.push_back(0);
 	}
 	if (IncludePassOptimizations())

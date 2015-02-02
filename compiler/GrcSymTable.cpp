@@ -1829,25 +1829,27 @@ void GrcSymbolTable::InitSlotAttrs()
 	{
 		itoa(iLevel, rgchLevel, 10);
 		PreDefineSymbol(GrcStructName("justify", rgchLevel, "stretch"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel,"stretchHW"),kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", rgchLevel,	"stretchHW"),kst,kexptMeas);
 		PreDefineSymbol(GrcStructName("justify", rgchLevel, "shrink"),	kst, kexptMeas);
 		PreDefineSymbol(GrcStructName("justify", rgchLevel, "step"),	kst, kexptMeas);
 		PreDefineSymbol(GrcStructName("justify", rgchLevel, "weight"),	kst, kexptNumber);
 		PreDefineSymbol(GrcStructName("justify", rgchLevel, "width"),	kst, kexptMeas);
 	}
 
-	PreDefineSymbol(GrcStructName("collision", "flags"),	kst,	kexptNumber);
-	PreDefineSymbol(GrcStructName("collision", "range"),	kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "priority"),	kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "margin"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "min"),		kstPt,	kexptPoint);
-	PreDefineSymbol(GrcStructName("collision", "min", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "min", "y"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "max"),		kstPt,	kexptPoint);
-	PreDefineSymbol(GrcStructName("collision", "max", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "max", "y"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "fix", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "fix", "y"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "flags"),		kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("collision", "range"),		kst,	kexptNumber);	// alias for flags
+	PreDefineSymbol(GrcStructName("collision", "priority"),		kst,	kexptNumber);	// alias for flags
+	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "min"),			kstPt,	kexptPoint);
+	PreDefineSymbol(GrcStructName("collision", "min", "x"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "min", "y"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "max"),			kstPt,	kexptPoint);
+	PreDefineSymbol(GrcStructName("collision", "max", "x"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "max", "y"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "fix", "x"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "fix", "y"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "minxoffset"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "jumpable"),		kst,	kexptBoolean);
 
 	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
 
@@ -1922,6 +1924,10 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("collision", "max", "y"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "margin"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "minxoffset"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "jumpable"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
 	// This one is used by the compiler, but not stored in the font:

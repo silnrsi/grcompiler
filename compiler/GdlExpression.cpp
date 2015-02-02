@@ -137,11 +137,12 @@ bool EquivalentTypes(ExpressionType expt1, ExpressionType expt2)
 		switch (expt1)
 		{
 		case kexptNumber:
-		case kexptMeas:
 		case kexptBoolean:
 		case kexptZero:
 		case kexptOne:
 			return true;
+		case kexptMeas:
+			return (expt2 == kexptZero);
 		default:
 			break;
 		}

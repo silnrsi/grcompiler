@@ -244,9 +244,9 @@ enum SlotAttrName {
 	kslatUserDefn = kslatJ0Stretch + 30,
 	kslatBidiLevel,		// used in Graphite2 engine
 	kslatColFlags,
-	kslatColMinX,	kslatColMinY,	kslatColMaxX,	kslatColMaxY,
-	kslatColFixX,	kslatColFixY,	//read-only attr - how much adjustment was made
-	kslatColMargin,
+	kslatColMinX,	kslatColMinY,		kslatColMaxX,	kslatColMaxY,
+	kslatColFixX,	kslatColFixY,		//read-only attr - how much adjustment was made
+	kslatColMargin,	kslatColMaxXOff,	kslatColJumpable
 };
 
 
