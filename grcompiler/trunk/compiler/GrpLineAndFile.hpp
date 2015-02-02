@@ -107,7 +107,9 @@ public:
 	std::string FileWithPath(std::string staPath) // append the given path unless the file has an absolute path
 	{
 		std::string staResult;
-		if (m_staFile[0] == '/' || m_staFile[1] == ':') //  / is Linux, C: is Windows
+		if (m_staFile == "")
+			staResult = m_staFile;
+		else if (m_staFile[0] == '/' || m_staFile[1] == ':') //  / is Linux, C: is Windows
 		{
 			// Absolute path
 			staResult = m_staFile;
