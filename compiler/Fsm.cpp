@@ -48,7 +48,8 @@ void GdlRenderer::GenerateFsms(GrcManager * pcman)
 {
 	for(size_t iprultbl = 0; iprultbl < m_vprultbl.size(); iprultbl++)
 	{
-		std::cout << " table " << iprultbl << " pass";
+		if (pcman->IsVerbose())
+			std::cout << " table " << iprultbl << " pass";
 		m_vprultbl[iprultbl]->GenerateFsms(pcman);
 	}
 }
@@ -58,10 +59,12 @@ void GdlRuleTable::GenerateFsms(GrcManager * pcman)
 {
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
-		std::cout << " " << ippass;
+		if (pcman->IsVerbose())
+			std::cout << " " << ippass;
 		m_vppass[ippass]->GenerateFsm(pcman);
 	}
-	std::cout << "; ";
+	if (pcman->IsVerbose())
+		std::cout << "; ";
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -500,13 +503,15 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 {
 	//	Hungarian: ifs = index of FsmState
 
-	std::cout << " (mc " << NumberOfFsmMachineClasses() << " fsm";
+	if (pcman->IsVerbose())
+		std::cout << " (mc " << NumberOfFsmMachineClasses() << " fsm";
 
 	if (m_nGlobalID == -1 || m_vprule.size() == 0)
 	{
 		m_nMaxRuleContext = 0;
 		m_pfsm = NULL;
-		std::cout << " 0)";
+		if (pcman->IsVerbose())
+			std::cout << " 0)";
 		return;
 	}
 
@@ -589,13 +594,15 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 		ifsCurrent++;	// go on to next state
 	}
 
-	std::cout << " " << ifsCurrent;
+	if (pcman->IsVerbose())
+		std::cout << " " << ifsCurrent;
 
 	m_nMaxRuleContext = m_pfsm->RawStateAt(ifsCurrent - 1)->m_critSlotsMatched;
 
-	ReorderFsmStates();
+	ReorderFsmStates(pcman);
 
-	std::cout << ")";
+	if (pcman->IsVerbose())
+		std::cout << ")";
 
 	GenerateStartStates(pcman);
 }
@@ -767,7 +774,7 @@ int GdlRule::NumberOfInputItems()
 	(Non-transitional non-success states are an error!)
 	Merged states have the same index as the state they are merged with.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::ReorderFsmStates()
+void GdlPass::ReorderFsmStates(GrcManager * pcman)
 {
 	m_vifsWorkToFinal.resize(m_pfsm->RawNumberOfStates(), -1);
 	Assert(m_vifsFinalToWork.size() == 0);
@@ -824,7 +831,8 @@ void GdlPass::ReorderFsmStates()
 			}
 		}
 	}
-	std::cout << " " << ifsFinal;
+	if (pcman->IsVerbose())
+		std::cout << " " << ifsFinal;
 }
 
 
