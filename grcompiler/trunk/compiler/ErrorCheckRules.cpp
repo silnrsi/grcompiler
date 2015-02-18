@@ -1272,16 +1272,18 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	else if (m_psymName->IsAttachment())
 	{
-		if ((grfrco & kfrcoSetPos) == 0)
-		{
-			g_errorList.AddError(3122, this,
-				"Cannot set the ",
-				m_psymName->FullName(),
-				" attribute in the ",
-				psymTable->FullName(),
-				" table");
-			fOkay = false;
-		}
+		// Go ahead and allow this - Graphite2 is happy with it and it is
+		// helpful in some circumstances.
+		//if ((grfrco & kfrcoSetPos) == 0)
+		//{
+		//	g_errorList.AddError(3122, this,
+		//		"Cannot set the ",
+		//		m_psymName->FullName(),
+		//		" attribute in the ",
+		//		psymTable->FullName(),
+		//		" table");
+		//	fOkay = false;
+		//}
 		GdlGlyphClassDefn * pglfcTmp = prit->OutputSymbol()->GlyphClassDefnData();
 		if (pglfcTmp && pglfcTmp->IncludesGlyph(g_cman.LbGlyphId()))
 		{
