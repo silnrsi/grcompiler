@@ -133,22 +133,21 @@ void GlyphBoundaries::NormalizeSumAndDiff(int mSum, int mDiff, float * pdSum, fl
 /*----------------------------------------------------------------------------------------------
 	Given an sum (x+y) and difference (x-y) in normalised space (x,y between 0 and 1),
 	return the corresponding addition and subtraction in normal em space coordinate space.
-	Not needed.
 ----------------------------------------------------------------------------------------------*/
-//void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff)
-//{
-//	int mMinSum = m_mxBbMin + m_myBbMin;	// lower-left point
-//	int mMaxSum = m_mxBbMax + m_myBbMax;	// upper-right point
-//	int mMinDiff = m_mxBbMin - m_myBbMax;	// upper-left point
-//	int mMaxDiff = m_mxBbMax - m_myBbMin;	// lower-right point
-//
-//	int mSumScale = mMaxSum - mMinSum;
-//	int mDiffScale = mMaxDiff - mMinDiff;
-//	Assert(mSumScale == mDiffScale);
-//
-//	*pmSum = (dSum * mSumScale) + mMinSum;
-//	*pmDiff = (dDiff * mDiffScale) + mMinDiff;
-//}
+void GlyphBoundaries::UnnormalizeSumAndDiff(float dSum, float dDiff, int * pmSum, int * pmDiff)
+{
+	int mMinSum = m_mxBbMin + m_myBbMin;	// lower-left point
+	int mMaxSum = m_mxBbMax + m_myBbMax;	// upper-right point
+	int mMinDiff = m_mxBbMin - m_myBbMax;	// upper-left point
+	int mMaxDiff = m_mxBbMax - m_myBbMin;	// lower-right point
+
+	int mSumScale = mMaxSum - mMinSum;
+	int mDiffScale = mMaxDiff - mMinDiff;
+	Assert(mSumScale == mDiffScale);
+
+	*pmSum = (int)(dSum * mSumScale) + mMinSum;
+	*pmDiff = (int)(dDiff * mDiffScale) + mMinDiff;
+}
 
 
 // Version from Martin's original code:
@@ -345,9 +344,9 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 			int mx = vmx[i];
 			int my = vmy[i];
 			float dx, dy;
-			NormalizePoint(mx, my, &dx, &dy); // dx, dy range from 0..1.0.
+			NormalizePoint(mx, my, &dx, &dy); // dx, dy range from 0 .. 1.0.
 
-			// Figure out which grid cell this point belongs in; indices are 0..3.
+			// Figure out which grid cell this point belongs in; indices are 0 .. 3.
 			int icellX = int(dx * 4 - .001);
 			int icellY = int(dy * 4 - .001);
 
@@ -739,20 +738,32 @@ void GlyphBoundaries::ClearSubBoxCells()
 ----------------------------------------------------------------------------------------------*/
 void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 {
+	int mxLeft, mxRight, myBottom, myTop, mDnMin, mDnMax, mDpMin, mDpMax;
+
+	// Note that left, right, bottom and top are not actually recorded; they are defined to be 0 and 1.
+	UnnormalizePoint(0, 0, &mxLeft, &myBottom);
+	UnnormalizePoint(1.0, 1.0, &mxRight, &myTop);
+	UnnormalizeSumAndDiff(m_gbcellEntire.m_dValues[gbcDNMin], m_gbcellEntire.m_dValues[gbcDPMin],
+		&mDnMin, &mDpMin);
+	UnnormalizeSumAndDiff(m_gbcellEntire.m_dValues[gbcDNMax], m_gbcellEntire.m_dValues[gbcDPMax],
+		&mDnMax, &mDpMax);
+
 	//strmOut << std::fixed; // for outputing floating point
 	//strmOut.precision(2);
 	strmOut
 		<< "      <glyphAttrValue name=\"octabox.full\" value=\""
+
 		// Note that left, right, bottom and top are not actually recorded; they are defined to be 0 and 1.
-//		<< m_gbcellEntire.m_dValues[gbcLeft]   << " "
-//		<< m_gbcellEntire.m_dValues[gbcRight]  << " ; "
-//		<< m_gbcellEntire.m_dValues[gbcBottom] << " "
-//		<< m_gbcellEntire.m_dValues[gbcTop]    << " ; "
-		<< "0  100 ; 0  100 ; "
-		<< int(m_gbcellEntire.m_dValues[gbcDNMin] * 100)  << "  "
-		<< int(m_gbcellEntire.m_dValues[gbcDNMax] * 100)  << " ; "
-		<< int(m_gbcellEntire.m_dValues[gbcDPMin] * 100)  << "  "
-		<< int(m_gbcellEntire.m_dValues[gbcDPMax] * 100)
+		//<< "0  100 ; 0  100 ; "
+		//<< int(m_gbcellEntire.m_dValues[gbcDNMin] * 100)  << "  "
+		//<< int(m_gbcellEntire.m_dValues[gbcDNMax] * 100)  << " ; "
+		//<< int(m_gbcellEntire.m_dValues[gbcDPMin] * 100)  << "  "
+		//<< int(m_gbcellEntire.m_dValues[gbcDPMax] * 100)
+
+		<< mxLeft << "  " << mxRight << " ; "
+		<< myBottom << "  " << myTop << " ; "
+		<< mDnMin << "  " << mDnMax << " ; "
+		<< mDpMin << "  " << mDpMax
 		<< "\" />\n";
 
 	for (int icellY = 0; icellY < gbgridCellsV; icellY++)
@@ -763,16 +774,31 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 
 			if (pgbcell->HasData())
 			{
+				UnnormalizePoint(pgbcell->m_dValues[gbcLeft], pgbcell->m_dValues[gbcBottom], 
+					&mxLeft, &myBottom);
+				UnnormalizePoint(pgbcell->m_dValues[gbcRight], pgbcell->m_dValues[gbcTop],
+					&mxRight, &myTop);
+				UnnormalizeSumAndDiff(pgbcell->m_dValues[gbcDNMin], pgbcell->m_dValues[gbcDPMin],
+					&mDnMin, &mDpMin);
+				UnnormalizeSumAndDiff(pgbcell->m_dValues[gbcDNMax], pgbcell->m_dValues[gbcDPMax],
+					&mDnMax, &mDpMax);
+
 				strmOut
-					<< "      <glyphAttrValue name=\"octabox.sub_" << icellX << "-" << icellY << "\" value=\""
-					<< int(pgbcell->m_dValues[gbcLeft] * 100)   << "  "
-					<< int(pgbcell->m_dValues[gbcRight] * 100)  << " ; "
-					<< int(pgbcell->m_dValues[gbcBottom] * 100) << "  "
-					<< int(pgbcell->m_dValues[gbcTop] * 100)    << " ; "
-					<< int(pgbcell->m_dValues[gbcDNMin] * 100)  << "  "
-					<< int(pgbcell->m_dValues[gbcDNMax] * 100)  << " ; "
-					<< int(pgbcell->m_dValues[gbcDPMin] * 100)  << "  "
-					<< int(pgbcell->m_dValues[gbcDPMax] * 100)
+					<< "      <glyphAttrValue name=\"octabox.sub_" << icellX+1 << "-" << icellY+1 << "\" value=\""
+
+					//<< int(pgbcell->m_dValues[gbcLeft] * 100)   << "  "
+					//<< int(pgbcell->m_dValues[gbcRight] * 100)  << " ; "
+					//<< int(pgbcell->m_dValues[gbcBottom] * 100) << "  "
+					//<< int(pgbcell->m_dValues[gbcTop] * 100)    << " ; "
+					//<< int(pgbcell->m_dValues[gbcDNMin] * 100)  << "  "
+					//<< int(pgbcell->m_dValues[gbcDNMax] * 100)  << " ; "
+					//<< int(pgbcell->m_dValues[gbcDPMin] * 100)  << "  "
+					//<< int(pgbcell->m_dValues[gbcDPMax] * 100)
+
+					<< mxLeft << "  " << mxRight << " ; "
+					<< myBottom << "  " << myTop << " ; "
+					<< mDnMin << "  " << mDnMax << " ; "
+					<< mDpMin << "  " << mDpMax
 					<< "\" />\n";
 			}
 		}
