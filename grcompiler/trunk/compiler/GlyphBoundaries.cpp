@@ -61,25 +61,25 @@ void GlyphBoundaryCell::Initialize()
 	m_dValues[GlyphBoundaries::gbcDNMax] = -100.0;		// 0 should be good enough
 
 	// Initialize intersections
-	m_mEntry[GlyphBoundaries::gbcLeft][gbcMin] = 99999;
-	m_mEntry[GlyphBoundaries::gbcRight][gbcMin] = 99999;
+	m_mEntry[GlyphBoundaries::gbcLeft][gbcMin] =   99999;
+	m_mEntry[GlyphBoundaries::gbcRight][gbcMin] =  99999;
 	m_mEntry[GlyphBoundaries::gbcBottom][gbcMin] = 99999;
-	m_mEntry[GlyphBoundaries::gbcTop][gbcMin] = 99999;
+	m_mEntry[GlyphBoundaries::gbcTop][gbcMin] =    99999;
 
-	m_mExit[GlyphBoundaries::gbcLeft][gbcMin] = 99999;
-	m_mExit[GlyphBoundaries::gbcRight][gbcMin] = 99999;
-	m_mExit[GlyphBoundaries::gbcBottom][gbcMin] = 99999;
-	m_mExit[GlyphBoundaries::gbcTop][gbcMin] = 99999;
+	m_mExit[GlyphBoundaries::gbcLeft][gbcMin] =    99999;
+	m_mExit[GlyphBoundaries::gbcRight][gbcMin] =   99999;
+	m_mExit[GlyphBoundaries::gbcBottom][gbcMin] =  99999;
+	m_mExit[GlyphBoundaries::gbcTop][gbcMin] =     99999;
 
-	m_mEntry[GlyphBoundaries::gbcLeft][gbcMax] = -99999;
-	m_mEntry[GlyphBoundaries::gbcRight][gbcMax] = -99999;
+	m_mEntry[GlyphBoundaries::gbcLeft][gbcMax] =   -99999;
+	m_mEntry[GlyphBoundaries::gbcRight][gbcMax] =  -99999;
 	m_mEntry[GlyphBoundaries::gbcBottom][gbcMax] = -99999;
-	m_mEntry[GlyphBoundaries::gbcTop][gbcMax] = -99999;
+	m_mEntry[GlyphBoundaries::gbcTop][gbcMax] =    -99999;
 
-	m_mExit[GlyphBoundaries::gbcLeft][gbcMax] = -99999;
-	m_mExit[GlyphBoundaries::gbcRight][gbcMax] = -99999;
-	m_mExit[GlyphBoundaries::gbcBottom][gbcMax] = -99999;
-	m_mExit[GlyphBoundaries::gbcTop][gbcMax] = -99999;
+	m_mExit[GlyphBoundaries::gbcLeft][gbcMax] =    -99999;
+	m_mExit[GlyphBoundaries::gbcRight][gbcMax] =   -99999;
+	m_mExit[GlyphBoundaries::gbcBottom][gbcMax] =  -99999;
+	m_mExit[GlyphBoundaries::gbcTop][gbcMax] =     -99999;
 
 }
 
@@ -164,8 +164,8 @@ void GlyphBoundaries::NormalizeSumAndDiff(int mSum, int mDiff, float * pdSum, fl
 /*----------------------------------------------------------------------------------------------
 	 Accumulates a point into a glyph or subglyph structure. We store the actual points, but
 	 never use them. But we do use the accumulated maximal bounding box (bbox) and maximal
-	 diamond box (dbox). If we are working with subboxes ($g), we will also want to accumulate
-	 for the whole glyph ($glyph). Notice there is no need to accumulate a whole glyph bbox
+	 diamond box (dbox). If we are working with subboxes, we will also want to accumulate
+	 for the whole glyph. Notice there is no need to accumulate a whole glyph bbox
 	 because that's already defined for a glyph.
 ----------------------------------------------------------------------------------------------*/
 void GlyphBoundaries::AddPoint(int icellX, int icellY, int mx, int my, float dx, float dy,
@@ -732,4 +732,49 @@ void GlyphBoundaries::ClearSubBoxCells()
 		}
 	}
 
+}
+
+/*----------------------------------------------------------------------------------------------
+	 Output the glyph boundary estimatesto the .GDX file.
+----------------------------------------------------------------------------------------------*/
+void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
+{
+	//strmOut << std::fixed; // for outputing floating point
+	//strmOut.precision(2);
+	strmOut
+		<< "      <glyphAttrValue name=\"fullBox\" value=\""
+		// Note that left, right, bottom and top are not actually recorded; they are defined to be 0 and 1.
+//		<< m_gbcellEntire.m_dValues[gbcLeft]   << " "
+//		<< m_gbcellEntire.m_dValues[gbcRight]  << " ; "
+//		<< m_gbcellEntire.m_dValues[gbcBottom] << " "
+//		<< m_gbcellEntire.m_dValues[gbcTop]    << " ; "
+		<< "0  100 ; 0  100 ; "
+		<< int(m_gbcellEntire.m_dValues[gbcDNMin] * 100)  << "  "
+		<< int(m_gbcellEntire.m_dValues[gbcDNMax] * 100)  << " ; "
+		<< int(m_gbcellEntire.m_dValues[gbcDPMin] * 100)  << "  "
+		<< int(m_gbcellEntire.m_dValues[gbcDPMax] * 100)
+		<< "\" />\n";
+
+	for (int icellY = 0; icellY < gbgridCellsV; icellY++)
+	{
+		for (int icellX = 0; icellX < gbgridCellsH; icellX++)
+		{
+			GlyphBoundaryCell * pgbcell = m_rggbcellSub + CellIndex(icellX, icellY);
+
+			if (pgbcell->HasData())
+			{
+				strmOut
+					<< "      <glyphAttrValue name=\"subBox_" << icellX << "-" << icellY << "\" value=\""
+					<< int(pgbcell->m_dValues[gbcLeft] * 100)   << "  "
+					<< int(pgbcell->m_dValues[gbcRight] * 100)  << " ; "
+					<< int(pgbcell->m_dValues[gbcBottom] * 100) << "  "
+					<< int(pgbcell->m_dValues[gbcTop] * 100)    << " ; "
+					<< int(pgbcell->m_dValues[gbcDNMin] * 100)  << "  "
+					<< int(pgbcell->m_dValues[gbcDNMax] * 100)  << " ; "
+					<< int(pgbcell->m_dValues[gbcDPMin] * 100)  << "  "
+					<< int(pgbcell->m_dValues[gbcDPMax] * 100)
+					<< "\" />\n";
+			}
+		}
+	}
 }

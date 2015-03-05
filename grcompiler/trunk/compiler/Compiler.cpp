@@ -535,6 +535,10 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 				vbOutput.push_back(kopIAttrAdd);
 			else if (staOp == "-=")
 				vbOutput.push_back(kopIAttrSub);
+//			else if (staOp == "&=")
+//				vbOutput.push_back(kopIAttrBitAnd);
+//			else if (staOp == "|=")
+//				vbOutput.push_back(kopIAttrBitOr);
 			else
 			{
 				Assert(false);
@@ -581,6 +585,10 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 			op = kopAttrAdd;
 		else if (staOp == "-=")
 			op = kopAttrSub;
+//		else if (staOp == "&=")
+//			op = kopAttrBitAnd;
+//		else if (staOp == "|=")
+//			op = kopAttrBitOr;
 		else
 		{
 			Assert(false);
@@ -1051,6 +1059,9 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 		case kopAnd:				cbArgs = 0;		break;
 		case kopOr:					cbArgs = 0;		break;
 		case kopNot:				cbArgs = 0;		break;
+		//case kopBitAnd:				cbArgs = 0;		break;
+		//case kopBitOr:				cbArgs = 0;		break;
+		//case kopBitNot:				cbArgs = 0;		break;
 		case kopEqual:				cbArgs = 0;		break;
 		case kopNotEq:				cbArgs = 0;		break;
 		case kopLess:				cbArgs = 0;		break;
@@ -1123,6 +1134,8 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 		case kopAttrSet:
 		case kopAttrAdd:
 		case kopAttrSub:
+//		case kopAttrBitAnd:
+//		case kopAttrBitOr:
 		case kopAttrSetSlot:
 			slat = vb[ib++];
 			strmOut << " " << SlotAttributeDebugString(slat);
@@ -1131,6 +1144,8 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 		case kopIAttrSet:
 		case kopIAttrAdd:
 		case kopIAttrSub:
+//		case kopIAttrBitAnd:
+//		case kopIAttrBitOr:
 		case kopIAttrSetSlot:
 			slat = vb[ib++];
 			strmOut << " " << SlotAttributeDebugString(slat);
@@ -1324,6 +1339,9 @@ std::string GdlRule::EngineCodeDebugString(int op)
 	case kopAnd:					return "And";
 	case kopOr:						return "Or";
 	case kopNot:					return "Not";
+	//case kopBitAnd:					return "BitAnd";
+	//case kopBitOr:					return "BitOr";
+	//case kopBitNot:					return "BitNot";
 	case kopEqual:					return "Equal";
 	case kopNotEq:					return "NotEq";
 	case kopLess:					return "Less";
@@ -1347,6 +1365,8 @@ std::string GdlRule::EngineCodeDebugString(int op)
 	case kopAttrSet:				return "AttrSet";
 	case kopAttrAdd:				return "AttrAdd";
 	case kopAttrSub:				return "AttrSub";
+//	case kopAttrBitAnd:				return "AttrBitAnd";
+//	case kopAttrBitOr:				return "AttrBitOr";
 	case kopAttrSetSlot:			return "AttrSetSlot";
 	case kopIAttrSetSlot:			return "IAttrSetSlot";
 	case kopPushSlotAttr:			return "PushSlotAttr";
@@ -1366,6 +1386,8 @@ std::string GdlRule::EngineCodeDebugString(int op)
 	case kopIAttrSet:				return "IAttrSet";
 	case kopIAttrAdd:				return "IAttrAdd";
 	case kopIAttrSub:				return "IAttrSub";
+//	case kopIAttrBitAnd:			return "IAttrBitAnd";
+//	case kopIAttrBitOr:				return "IAttrBitOr";
 	case kopPushProcState:			return "PushProcState";
 	default:
 		Assert(false);
@@ -2459,6 +2481,8 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 	m_prndr->RecordSingleMemberClasses(vstaSingleMemberClasses,
 		vstaSingleMemberClassFiles, vnSingleMemberClassLines);
 
+	int fxdGlatVersion = TableVersion(ktiGlat);
+
 	for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
 		// Convert breakweight values depending on the table version to output.
@@ -2522,6 +2546,14 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 
 			strmOut << "\" />\n";
 		}
+
+		if (fxdGlatVersion >= 0x00030000)
+		{
+			// Output glyph-approximation octaboxes.
+			if (wGlyphID < m_wGlyphIDLim && wGlyphID < (int)m_vgbdy.size())
+				m_vgbdy[wGlyphID].DebugXml(strmOut);
+		}
+
 		strmOut << "    </glyph>\n";
 	}
 

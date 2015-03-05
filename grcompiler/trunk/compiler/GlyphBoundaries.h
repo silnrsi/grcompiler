@@ -122,6 +122,7 @@ public:
 	int OutputToGlat(GrcBinaryStream * pbstrm);
 	static int OutputToGlatNonexistent(GrcBinaryStream * pbstrm);
 	bool ComplexFit();
+	void DebugXml(std::ofstream & strmOut);
 protected:
 	int OutputGlatFullDiagonals(GrcBinaryStream * pbstrm);
 	int OutputGlatSubBox(GrcBinaryStream * pbstrm, int icellX, int icellY);
