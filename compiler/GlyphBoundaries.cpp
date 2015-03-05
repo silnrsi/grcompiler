@@ -742,7 +742,7 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 	//strmOut << std::fixed; // for outputing floating point
 	//strmOut.precision(2);
 	strmOut
-		<< "      <glyphAttrValue name=\"fullBox\" value=\""
+		<< "      <glyphAttrValue name=\"octabox.full\" value=\""
 		// Note that left, right, bottom and top are not actually recorded; they are defined to be 0 and 1.
 //		<< m_gbcellEntire.m_dValues[gbcLeft]   << " "
 //		<< m_gbcellEntire.m_dValues[gbcRight]  << " ; "
@@ -764,7 +764,7 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 			if (pgbcell->HasData())
 			{
 				strmOut
-					<< "      <glyphAttrValue name=\"subBox_" << icellX << "-" << icellY << "\" value=\""
+					<< "      <glyphAttrValue name=\"octabox.sub_" << icellX << "-" << icellY << "\" value=\""
 					<< int(pgbcell->m_dValues[gbcLeft] * 100)   << "  "
 					<< int(pgbcell->m_dValues[gbcRight] * 100)  << " ; "
 					<< int(pgbcell->m_dValues[gbcBottom] * 100) << "  "
