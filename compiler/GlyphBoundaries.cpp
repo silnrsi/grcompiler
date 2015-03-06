@@ -8,14 +8,15 @@ File: GlyphBoundaries.cpp
 Responsibility: Sharon Correll
 Last reviewed: Not yet.
 
-Description:
+Description
     A data structure that approximates the boundaries of the glyph.
--------------------------------------------------------------------------------*//*:End Ignore*/
+-------------------------------------------------------------------------------*//*End Ignore*/
 
 /***********************************************************************************************
 	Include files
 ***********************************************************************************************/
 #include "main.h"
+#include <iomanip>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -766,6 +767,7 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 		<< mDpMin << "  " << mDpMax
 		<< "\" />\n";
 
+    int count = 0;
 	for (int icellY = 0; icellY < gbgridCellsV; icellY++)
 	{
 		for (int icellX = 0; icellX < gbgridCellsH; icellX++)
@@ -783,12 +785,9 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 				UnnormalizeSumAndDiff(pgbcell->m_dValues[gbcDNMax], pgbcell->m_dValues[gbcDPMax],
 					&mDnMax, &mDpMax);
 
-				int icell = (icellY * gbgridCellsH) + icellX;
-
 				strmOut
-					<< "      <glyphAttrValue name=\"octabox.sub_" 
-					<< ((icell < 10) ? "0" : "") 
-					<< icell << "_" << icellX+1 << "-" << icellY+1 << "\" value=\""
+					<< "      <glyphAttrValue name=\"octabox.sub_" << std::setfill('0') << std::setw(2) << count;
+                strmOut << "_" << icellX+1 << "-" << icellY+1 << "\" value=\""
 
 					//<< int(pgbcell->m_dValues[gbcLeft] * 100)   << "  "
 					//<< int(pgbcell->m_dValues[gbcRight] * 100)  << " ; "
@@ -804,6 +803,7 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 					<< mDnMin << "  " << mDnMax << " ; "
 					<< mDpMin << "  " << mDpMax
 					<< "\" />\n";
+                ++count;
 			}
 		}
 	}
