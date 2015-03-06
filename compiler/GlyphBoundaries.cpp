@@ -783,8 +783,12 @@ void GlyphBoundaries::DebugXml(std::ofstream & strmOut)
 				UnnormalizeSumAndDiff(pgbcell->m_dValues[gbcDNMax], pgbcell->m_dValues[gbcDPMax],
 					&mDnMax, &mDpMax);
 
+				int icell = (icellY * gbgridCellsH) + icellX;
+
 				strmOut
-					<< "      <glyphAttrValue name=\"octabox.sub_" << icellX+1 << "-" << icellY+1 << "\" value=\""
+					<< "      <glyphAttrValue name=\"octabox.sub_" 
+					<< ((icell < 10) ? "0" : "") 
+					<< icell << "_" << icellX+1 << "-" << icellY+1 << "\" value=\""
 
 					//<< int(pgbcell->m_dValues[gbcLeft] * 100)   << "  "
 					//<< int(pgbcell->m_dValues[gbcRight] * 100)  << " ; "
