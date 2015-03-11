@@ -41,10 +41,12 @@ public:
 		kprecFunctional=0,	// min(), max() -- low precedence
 		kprecAssignment,	// =, +=, -=
 		kprecConditional,	// ?
-		kprecComparative,	// ==, <, >=, etc.
 		kprecLogical,		// &&, ||
+		kprecBitwise,		// &, |
+		kprecComparative,	// ==, <, >=, etc.
 		kprecAdditive,		// +, -
-		kprecMultiplicative	// *, /
+		kprecMultiplicative,// *, /
+		kprecNegational		// !, ~
 	};		// hungarian: prec
 
 public:

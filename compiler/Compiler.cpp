@@ -1265,11 +1265,15 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 	case kslatSegSplit:			return "segsplit";
 	case kslatColFlags:			return "col_flags";
 	case kslatColMargin:		return "col_margin";
-	case kslatColMinXOff:		return "col_minxoffset";
+	case kslatColMarginMin:		return "col_marginmin";
+	case kslatColMaxOverlap:	return "col_maxoverlap";
 	case kslatColMinX:			return "col_min_x";
 	case kslatColMinY:			return "col_min_y";
 	case kslatColMaxX:			return "col_max_x";
 	case kslatColMaxY:			return "col_max_y";
+	case kslatColNogoGlyph:		return "col_nogo_glyph";
+	case kslatColNogoOffX:		return "col_nogo_off_x";
+	case kslatColNogoOffY:		return "col_nogo_off_y";
 	case kslatColFixX:			return "col_fix_x";
 	case kslatColFixY:			return "col_fix_y";
 	default:

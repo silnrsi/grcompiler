@@ -8,8 +8,8 @@
 
 #include "GrpLexer.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "Antlr/ScannerException.hpp"
-#include "Antlr/CharBuffer.hpp"
+#include "antlr/ScannerException.hpp"
+#include "antlr/CharBuffer.hpp"
 
 
 
@@ -61,8 +61,8 @@ void GrpLexer::initLiterals()
 	literals["name"] = 16;
 	literals["endenvironment"] = 10;
 	literals["endtable"] = 15;
-	literals["false"] = 78;
-	literals["true"] = 77;
+	literals["false"] = 81;
+	literals["true"] = 80;
 	literals["glyph"] = 23;
 	literals["codepoint"] = 28;
 	literals["justify"] = 61;
@@ -203,9 +203,9 @@ RefToken GrpLexer::nextToken()
 				_rettoken=_returnToken;
 				break;
 			}
-			case static_cast<unsigned char>('|'):
+			case static_cast<unsigned char>('~'):
 			{
-				mOP_OR(true);
+				mOP_BITNOT(true);
 				_rettoken=_returnToken;
 				break;
 			}
@@ -300,6 +300,10 @@ RefToken GrpLexer::nextToken()
 					mOP_AND(true);
 					_rettoken=_returnToken;
 				}
+				else if ((LA(1)==static_cast<unsigned char>('|')) && (LA(2)==static_cast<unsigned char>('|'))) {
+					mOP_OR(true);
+					_rettoken=_returnToken;
+				}
 				else if ((LA(1)==static_cast<unsigned char>('.'))) {
 					mOP_DOT(true);
 					_rettoken=_returnToken;
@@ -338,6 +342,14 @@ RefToken GrpLexer::nextToken()
 				}
 				else if ((LA(1)==static_cast<unsigned char>('#'))) {
 					mOP_HASH(true);
+					_rettoken=_returnToken;
+				}
+				else if ((LA(1)==static_cast<unsigned char>('&'))) {
+					mOP_BITAND(true);
+					_rettoken=_returnToken;
+				}
+				else if ((LA(1)==static_cast<unsigned char>('|'))) {
+					mOP_BITOR(true);
 					_rettoken=_returnToken;
 				}
 				else if ((_tokenSet_0.member(LA(1)))) {
@@ -433,11 +445,11 @@ void GrpLexer::mCOMMENT_SL(bool _createToken) {
 			}
 		}
 		else {
-			goto _loop429;
+			goto _loop435;
 		}
 		
 	} while (true);
-	_loop429:;
+	_loop435:;
 	}
 	_ttype = Token::SKIP;
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -727,11 +739,11 @@ void GrpLexer::mCOMMENT_ML(bool _createToken) {
 				match(static_cast<unsigned char>('*'));
 			}
 		else {
-			goto _loop433;
+			goto _loop439;
 		}
 		}
 	} while (true);
-	_loop433:;
+	_loop439:;
 	}
 	match("*/");
 	_ttype = Token::SKIP;
@@ -752,35 +764,35 @@ void GrpLexer::mLIT_INT(bool _createToken) {
 		{
 		match("0x");
 		{
-		int _cnt440=0;
+		int _cnt446=0;
 		do {
 			if ((_tokenSet_3.member(LA(1)))) {
 				mXDIGIT(false);
 			}
 			else {
-				if ( _cnt440>=1 ) { goto _loop440; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+				if ( _cnt446>=1 ) { goto _loop446; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 			}
 			
-			_cnt440++;
+			_cnt446++;
 		} while (true);
-		_loop440:;
+		_loop446:;
 		}
 		}
 	}
 	else if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
 		{
-		int _cnt437=0;
+		int _cnt443=0;
 		do {
 			if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
 				mDIGIT(false);
 			}
 			else {
-				if ( _cnt437>=1 ) { goto _loop437; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+				if ( _cnt443>=1 ) { goto _loop443; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 			}
 			
-			_cnt437++;
+			_cnt443++;
 		} while (true);
-		_loop437:;
+		_loop443:;
 		}
 	}
 	else {
@@ -884,18 +896,18 @@ void GrpLexer::mLIT_UHEX(bool _createToken) {
 	
 	match("U+");
 	{
-	int _cnt444=0;
+	int _cnt450=0;
 	do {
 		if ((_tokenSet_3.member(LA(1)))) {
 			mXDIGIT(false);
 		}
 		else {
-			if ( _cnt444>=1 ) { goto _loop444; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+			if ( _cnt450>=1 ) { goto _loop450; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 		}
 		
-		_cnt444++;
+		_cnt450++;
 	} while (true);
-	_loop444:;
+	_loop450:;
 	}
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
 	   _token = makeToken(_ttype);
@@ -1051,11 +1063,11 @@ void GrpLexer::mLIT_STRING(bool _createToken) {
 			}
 		}
 		else {
-			goto _loop451;
+			goto _loop457;
 		}
 		
 	} while (true);
-	_loop451:;
+	_loop457:;
 	}
 	_saveIndex=text.length();
 	mDQUOTE(false);
@@ -1544,6 +1556,45 @@ void GrpLexer::mOP_OR(bool _createToken) {
 	_returnToken = _token;
 }
 
+void GrpLexer::mOP_BITAND(bool _createToken) {
+	int _ttype; RefToken _token; int _begin=text.length();
+	_ttype = OP_BITAND;
+	int _saveIndex;
+	
+	match("&");
+	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
+	   _token = makeToken(_ttype);
+	   _token->setText(text.substr(_begin, text.length()-_begin));
+	}
+	_returnToken = _token;
+}
+
+void GrpLexer::mOP_BITOR(bool _createToken) {
+	int _ttype; RefToken _token; int _begin=text.length();
+	_ttype = OP_BITOR;
+	int _saveIndex;
+	
+	match("|");
+	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
+	   _token = makeToken(_ttype);
+	   _token->setText(text.substr(_begin, text.length()-_begin));
+	}
+	_returnToken = _token;
+}
+
+void GrpLexer::mOP_BITNOT(bool _createToken) {
+	int _ttype; RefToken _token; int _begin=text.length();
+	_ttype = OP_BITNOT;
+	int _saveIndex;
+	
+	match("~");
+	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
+	   _token = makeToken(_ttype);
+	   _token->setText(text.substr(_begin, text.length()-_begin));
+	}
+	_returnToken = _token;
+}
+
 void GrpLexer::mOP_BSLASH(bool _createToken) {
 	int _ttype; RefToken _token; int _begin=text.length();
 	_ttype = OP_BSLASH;
@@ -1753,11 +1804,11 @@ void GrpLexer::mIDENT(bool _createToken) {
 		}
 		default:
 		{
-			goto _loop501;
+			goto _loop510;
 		}
 		}
 	} while (true);
-	_loop501:;
+	_loop510:;
 	}
 	_ttype = testLiteralsTable(_ttype);
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1938,11 +1989,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 			}
 			default:
 			{
-				goto _loop507;
+				goto _loop516;
 			}
 			}
 		} while (true);
-		_loop507:;
+		_loop516:;
 		}
 	}
 	else {
@@ -1952,11 +2003,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 				matchRange(static_cast<unsigned char>('0'),static_cast<unsigned char>('9'));
 			}
 			else {
-				goto _loop509;
+				goto _loop518;
 			}
 			
 		} while (true);
-		_loop509:;
+		_loop518:;
 		}
 	}
 	

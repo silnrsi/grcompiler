@@ -1015,7 +1015,7 @@ void GrcManager::CalculateCollisionOctaboxes(GrcFont * pfont)
 	m_vgbdy.resize(m_wGlyphIDLim);
 	for (utf16 wGid = 0; wGid < m_wGlyphIDLim; wGid++)
 	{
-		// The collision.complexFit attr tell whether the shape of this glyph is complex
+		// The collision.complexFit attr tells whether the shape of this glyph is complex
 		// enough to require a grid of octaboxes to represent its shape rather than a single
 		// octabox.
 		bool fComplex = false;
@@ -1376,12 +1376,32 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxY);
 				Symbol psymMargin = psymtblMain->FindSymbol(GrcStructName("collision", "margin"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMargin);
+				Symbol psymMarginMin = psymtblMain->FindSymbol(GrcStructName("collision", "marginmin"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMarginMin);
+				Symbol psymMaxOverlap = psymtblMain->FindSymbol(GrcStructName("collision", "maxoverlap"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxOverlap);
+				Symbol psymNogoGlyph = psymtblMain->FindSymbol(GrcStructName("collision", "nogozone", "glyph"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymNogoGlyph);
+				Symbol psymNogoOffX = psymtblMain->FindSymbol(GrcStructName("collision", "nogozone", "offset", "x"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymNogoOffX);
+				Symbol psymNogoOffY = psymtblMain->FindSymbol(GrcStructName("collision", "nogozone", "offset", "y"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymNogoOffY);
+				// This isn't put into the font tables, but an ID is needed for processing.
+				Symbol psymComplexFit = psymtblMain->FindSymbol(GrcStructName("collision", "complexFit"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymComplexFit);
+
 				Assert(psymFlags->InternalID() != 0);
 				Assert(psymFlags->InternalID() + 1 == psymMinX->InternalID());
 				Assert(psymFlags->InternalID() + 2 == psymMaxX->InternalID());
 				Assert(psymFlags->InternalID() + 3 == psymMinY->InternalID());
 				Assert(psymFlags->InternalID() + 4 == psymMaxY->InternalID());
 				Assert(psymFlags->InternalID() + 5 == psymMargin->InternalID());
+				Assert(psymFlags->InternalID() + 6 == psymMarginMin->InternalID());
+				Assert(psymFlags->InternalID() + 7 == psymMaxOverlap->InternalID());
+				Assert(psymFlags->InternalID() + 8 == psymNogoGlyph->InternalID());
+				Assert(psymFlags->InternalID() + 9 == psymNogoOffX->InternalID());
+				Assert(psymFlags->InternalID() + 10 == psymNogoOffY->InternalID());
+				Assert(psymFlags->InternalID() + 11 == psymComplexFit->InternalID());
 			}
 			// Otherwise we don't want to assign glyph attr IDs to the collision attributes, because
 			// the older table format doesn't know how to handle them.
@@ -1487,11 +1507,17 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "margin")));
 		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "marginmin")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "maxoverlap")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "nogozone", "glyph")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "nogozone", "offset", "x")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "nogozone", "offset", "y")));
+		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexFit")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "minxoffset")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "jumpable")));
 		vnSysDefValues.push_back(0);
 	}
 	if (IncludePassOptimizations())
@@ -1774,7 +1800,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 				{
 					nStdValue = nDefaultValue;
 				}
-				else if (psym->LastFieldIs("glyph") && Bidi())
+				else if (psym->FieldAt(0) == "mirror" && psym->LastFieldIs("glyph") && Bidi())
 				{
 					int nUnicodeMirror = (int)u_charMirror(nUnicode);
 					if (nUnicodeMirror == nUnicode)
@@ -1982,7 +2008,7 @@ DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
 	* make sure that the statements are appropriate for the context of the glyph table
 		(rather than a rule table);
 	* do type checking;
-	* convert g-paths to g-points.
+	* convert g-paths to g-points;
 	* convert x/y coordinates to g-points and vice versa.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
@@ -2026,6 +2052,29 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 					m_pgax->Set(wGlyphID, iAttrID,
 						pexpNew, nPR, munitPR, fOverride, false, lnf);
 				}
+
+				// We decided not to do this:
+				//if (psymAttr->IsCollisionAttr() && psymAttr->LastFieldIs("maxoverlap"))
+				//{
+				//	// Distinguish between values of false and 0. False means ignore, and value is stored
+				//	// as 0. An actual 0 is changed to 1, since the difference between 0 and 1 is negligible.
+				//	GdlNumericExpression * pexpNum = dynamic_cast<GdlNumericExpression *>(pexpNew);
+				//	if (pexpNum)
+				//	{
+				//		if (pexpNum->IsBoolean())
+				//		{
+				//			if (pexpNum->Value() == 1) // "true"
+				//				g_errorList.AddError(9999, pexp,
+				//				"Invalid value for collision.maxoverlap: true",
+				//				lnf);
+				//			// else "false" = 0
+				//		}
+				//		else if (pexpNum->Value() == 0)
+				//		{
+				//			pexpNum->SetValue(1); // because 0 means false for this attribute
+				//		}
+				//	}
+				//}
 
 				//	Convert g-paths to g-points
 				int nGPathValue;

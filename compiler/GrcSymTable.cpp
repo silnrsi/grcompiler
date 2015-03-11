@@ -358,7 +358,7 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 	if (psym->m_symt == ksymtInvalid)
 		psym->SetSymbolType(symtLeaf);
 
-	Assert(psym->m_symt == symtLeaf);
+	Assert(psym->m_symt == symtLeaf || psym->m_symt2 == symtLeaf);
 
 	return psym;
 }
@@ -1267,6 +1267,7 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 	std::string staField0 = FieldAt(0);
 	std::string staField1 = FieldAt(1);
 	std::string staField2 = FieldAt(2);
+	std::string staField3 = FieldAt(3);
 
 	if (staField0 == "advance")
 	{
@@ -1452,8 +1453,10 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 			return kslatColFlags;
 		else if (staField1 == "margin")
 			return kslatColMargin;
-		else if (staField1 == "minxoffset")
-			return kslatColMinXOff;
+		else if (staField1 == "marginmin")
+			return kslatColMarginMin;
+		else if (staField1 == "maxoverlap")
+			return kslatColMaxOverlap;
 		else if (staField1 == "min")
 		{
 			if (staField2 == "x")
@@ -1471,6 +1474,26 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 				return kslatColMaxX;
 			else if (staField2 == "y")
 				return kslatColMaxY;
+			else
+			{
+				Assert(false);
+			}
+		}
+		else if (staField1 == "nogozone")
+		{
+			if (staField2 == "glyph")
+				return kslatColNogoGlyph;
+			else if (staField2 == "offset")
+			{
+				if (staField3 == "x")
+					return kslatColNogoOffX;
+				else if (staField3 == "y")
+					return kslatColNogoOffY;
+				else
+				{
+					Assert(false);
+				}
+			}
 			else
 			{
 				Assert(false);
@@ -1708,6 +1731,8 @@ void GrcSymbolTable::InitOperators()
 	PreDefineSymbol(GrcStructName("-="),	ksymtOpAssign, kexpt, kprec);
 	PreDefineSymbol(GrcStructName("*="),	ksymtOpAssign, kexpt, kprec);
 	PreDefineSymbol(GrcStructName("/="),	ksymtOpAssign, kexpt, kprec);
+	//PreDefineSymbol(GrcStructName("&="),	ksymtOpAssign, kexpt, kprec); -- not implemented
+	//PreDefineSymbol(GrcStructName("|="),	ksymtOpAssign, kexpt, kprec); -- not implemented
 
 	kprec = GrcSymbolTableEntry::kprecConditional;
 	PreDefineSymbol(GrcStructName("?"),		kst, kexpt, kprec);
@@ -1715,7 +1740,6 @@ void GrcSymbolTable::InitOperators()
 	kprec = GrcSymbolTableEntry::kprecLogical;
 	PreDefineSymbol(GrcStructName("||"),	kst, kexpt, kprec);
 	PreDefineSymbol(GrcStructName("&&"),	kst, kexpt, kprec);
-	PreDefineSymbol(GrcStructName("!"),		kst, kexpt, kprec);
 
 	kprec = GrcSymbolTableEntry::kprecComparative;
 	PreDefineSymbol(GrcStructName("=="),	kst, kexpt, kprec);
@@ -1732,6 +1756,17 @@ void GrcSymbolTable::InitOperators()
 	kprec = GrcSymbolTableEntry::kprecMultiplicative;
 	PreDefineSymbol(GrcStructName("*"),		kst, kexpt, kprec);
 	PreDefineSymbol(GrcStructName("/"),		kst, kexpt, kprec);
+
+	kprec = GrcSymbolTableEntry::kprecBitwise;
+	// Strictly speaking these two operators don't have the same precedence,
+	// but it doesn't matter since apparently we don't use the precedence value
+	// for anything.
+	PreDefineSymbol(GrcStructName("&"),		kst, kexpt, kprec);
+	PreDefineSymbol(GrcStructName("|"),		kst, kexpt, kprec);
+
+	kprec = GrcSymbolTableEntry::kprecNegational;
+	PreDefineSymbol(GrcStructName("!"),		kst, kexpt, kprec);
+	PreDefineSymbol(GrcStructName("~"),		kst, kexpt, kprec);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1844,16 +1879,21 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("collision", "range"),		kst,	kexptNumber);	// alias for flags
 	PreDefineSymbol(GrcStructName("collision", "priority"),		kst,	kexptNumber);	// alias for flags
 	PreDefineSymbol(GrcStructName("collision", "jumpable"),		kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "min"),			kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("collision", "min", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "min", "y"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "max"),			kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("collision", "max", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "max", "y"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "marginmin"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "maxoverlap"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "nogozone", "glyph"),		kst,	kexptGlyphID);
+	PreDefineSymbol(GrcStructName("collision", "nogozone", "offset"),		kst,	kexptPoint);
+	PreDefineSymbol(GrcStructName("collision", "nogozone", "offset", "x"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "nogozone", "offset", "y"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "fix", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "fix", "y"),		kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "minxoffset"),	kst,	kexptMeas);
 
 	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
 
@@ -1929,7 +1969,15 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "margin"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "minxoffset"), ksymtGlyphAttr);
+	psym = AddType2(GrcStructName("collision", "marginmin"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "maxoverlap"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "nogozone", "glyph"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "nogozone", "offset", "x"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "nogozone", "offset", "y"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
 	// This one is used by the compiler, but not stored in the font:

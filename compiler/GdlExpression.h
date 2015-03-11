@@ -306,26 +306,37 @@ public:
 	GdlNumericExpression(int nValue)
 		:	GdlSimpleExpression(),
 			m_nValue(nValue),
-			m_munits(kmunitNone)
+			m_munits(kmunitNone),
+			m_fBoolean(false)
 	{
 		SetType(kexptNumber);
 	}
 	GdlNumericExpression(int nValue, int munits)
 		:	GdlSimpleExpression(),
 			m_nValue(nValue),
-			m_munits(munits)
+			m_munits(munits),
+			m_fBoolean(false)
 	{
 		if (m_munits == kmunitNone)
 			SetType(kexptNumber);
 		else
 			SetType(kexptMeas);
 	}
+	GdlNumericExpression(int nValue, bool fBool)
+		:	GdlSimpleExpression(),
+			m_nValue(nValue),
+			m_munits(kmunitNone),
+			m_fBoolean(fBool)
+	{
+		SetType(kexptBoolean);
+	}
 
 	//	copy constructor
 	GdlNumericExpression(const GdlNumericExpression & exp)
 		:	GdlSimpleExpression(exp),
 			m_nValue(exp.m_nValue),
-			m_munits(exp.m_munits)
+			m_munits(exp.m_munits),
+			m_fBoolean(exp.m_fBoolean)
 	{}
 
 	virtual GdlExpression * Clone()
@@ -336,6 +347,7 @@ public:
 	//	Getters:
 	int Value()	{ return m_nValue; }
 	int	Units()	{ return m_munits; }
+	boolean IsBoolean() { return m_fBoolean; }
 
 public:
 	//	Parser:
@@ -386,7 +398,8 @@ public:
 protected:
 	//	Instance variables:
 	int m_nValue;
-	int m_munits;	// Scaling in effect when expression was encountered, or kmunitNone
+	int m_munits;		// Scaling in effect when expression was encountered, or kmunitNone
+	bool m_fBoolean;	// was originally indicated as 'true' or 'false
 };
 
 
@@ -977,7 +990,8 @@ public:
 		:	GdlExpression(),
 			m_psymName(psymName),
 			m_nClusterLevel(0),
-			m_pexpSimplified(NULL)
+			m_pexpSimplified(NULL),
+			m_fGlyphAttr(false)
 	{
 		m_pexpSelector = new GdlSlotRefExpression(staSel);
 		m_pexpSelector->PropagateLineAndFile(m_lnf);
@@ -988,7 +1002,8 @@ public:
 			m_psymName(psymName),
 			m_pexpSelector(NULL),
 			m_nClusterLevel(0),
-			m_pexpSimplified(NULL)
+			m_pexpSimplified(NULL),
+			m_fGlyphAttr(false)
 	{
 	}
 
@@ -998,7 +1013,8 @@ public:
 			m_psymName(exp.m_psymName),
 			m_nClusterLevel(exp.m_nClusterLevel),
 			m_nInternalID(exp.m_nInternalID),
-			m_nSubIndex(exp.m_nSubIndex)
+			m_nSubIndex(exp.m_nSubIndex),
+			m_fGlyphAttr(exp.m_fGlyphAttr)
 	{
 		m_pexpSelector =
 			(exp.m_pexpSelector) ?
@@ -1035,6 +1051,9 @@ public:
 	{
 		return m_psymName->FitsSymbolType(symt);
 	}
+
+	//	Setters:
+	void SetGlyphAttr(bool f = true) { m_fGlyphAttr = f; }
 
 public:
 	//	Parser:
@@ -1094,6 +1113,8 @@ protected:
 
 	GdlNumericExpression *	m_pexpSimplified;
 
+	bool					m_fGlyphAttr;
+
 	//	for compiler use:
 	int m_nInternalID;
 	int m_nSubIndex;	//	for indexed attributes (component.X.ref)
@@ -1104,7 +1125,7 @@ protected:
 Class: GdlClassMemberExpression
 Description: Expression to look up the a glyph, with an index into a class.
 	Only used within glyph attribute definitions.
-Hungarian: 
+Hungarian: expil
 ----------------------------------------------------------------------------------------------*/
 
 class GdlClassMemberExpression : public GdlLookupExpression
@@ -1148,8 +1169,13 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexptRet);
 	bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
+	int ValueCount();
+
 	// Compiler:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
+	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+		int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
+		bool fAttachAt, int iritAttachTo, int * pnValue);
 
 	void SetClassSize(int cgid)
 	{
