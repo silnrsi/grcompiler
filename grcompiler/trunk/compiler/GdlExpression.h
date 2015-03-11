@@ -980,7 +980,8 @@ public:
 		:	GdlExpression(),
 			m_psymName(psymName),
 			m_nClusterLevel(0),
-			m_pexpSimplified(NULL)
+			m_pexpSimplified(NULL),
+			m_fGlyphAttr(false)
 	{
 		m_pexpSelector = new GdlSlotRefExpression(nSel);
 		m_pexpSelector->PropagateLineAndFile(m_lnf);

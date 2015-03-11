@@ -1493,10 +1493,10 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 			pexpil->SetGlyphIndex(0); // should only be one glyph possible
 			int cValues = pexpil->ValueCount();
 			if (cValues == 0)
-				g_errorList.AddError(9999, this,
+				g_errorList.AddError(3163, this,
 						"No glyphs in class ", pexpil->Name()->FullName());
 			else if (cValues > 1)
-				g_errorList.AddError(9999, this,
+				g_errorList.AddError(3164, this,
 						"Single glyph definition required for collision.nogozone.glyph attribute: ",
 						pexpil->Name()->FullName());
 		}

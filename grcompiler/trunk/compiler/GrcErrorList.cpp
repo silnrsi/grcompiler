@@ -24,7 +24,7 @@ parsing - highest error: 1187 / highest warning: 1515
 		PostParser
 
 error checking:
-	general - highest error: 2164 / highest warning: 2535
+	general - highest error: 2165 / highest warning: 2535
 		GdlExpression
 		GrcMasterTable
 		GrcSymTable
@@ -33,7 +33,7 @@ error checking:
 		GrcBinaryStream
 		GrcEnv
 		GdlRenderer
-	rules - highest error: 3162 / highest warning: 3535
+	rules - highest error: 3164 / highest warning: 3535
 		ErrorCheckRules
 		GdlRule
 		GdlTablePass

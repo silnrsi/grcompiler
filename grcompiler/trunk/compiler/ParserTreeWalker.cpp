@@ -1393,6 +1393,7 @@ void GrcManager::ProcessFunction(RefAST ast, std::vector<std::string> & vsta,
 			BadFunctionError(lnf, staName, "1 or 3");
 	}
 
+	// glyphattr(attrName) function is not implemented - instead use glyph.attrName
 	//else if (staName == "glyphattr")
 	//{
 	//	if (!fSlotAttr)
@@ -2922,7 +2923,9 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 	int nValue;
 	int nCluster;
 	bool fM;
+	bool fGlyphAttr = false;
 	std::vector<std::string> vsta;
+	GdlLookupExpression * pexplook;
 
 	int nodetyp = ast->getType();
 	switch (nodetyp)
@@ -3050,7 +3053,7 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 		}
 		astName = astT;
 		vsta.clear();
-		psymName = IdentifierSymbol(astName, vsta);
+		psymName = IdentifierSymbol(astName, vsta, &fGlyphAttr);
 		Assert(psymName);
 //		GdlLookupExpression::LookupType lookType;
 //		if (psymName->FitsSymbolType(ksymtFeature))
@@ -3080,6 +3083,8 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 			pexpRet = new GdlClassMemberExpression(psymName);
 		else
 			pexpRet = new GdlLookupExpression(psymName, -1, nCluster);
+		pexplook = dynamic_cast<GdlLookupExpression*>(pexpRet);
+		pexplook->SetGlyphAttr(fGlyphAttr);
 
 		break;
 
@@ -3255,18 +3260,28 @@ int GrcManager::NumericValue(RefAST ast)
 
 /*----------------------------------------------------------------------------------------------
 	Return the symbol corresponding to the dotted identifier.
+	If the first element of the symbol is "glyph", that is stripped out, but its presence 
+	is indicated by the boolean	flag, which tells that we want to treat the attribute name 
+	as a glyph attribute, not a	slot attribute.
 ----------------------------------------------------------------------------------------------*/
-Symbol GrcManager::IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta)
+Symbol GrcManager::IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta,
+		bool * pfGlyphAttr)
 {
 	if (ast->getType() == OP_DOT)
 	{
 		RefAST ast1 = ast->getFirstChild();
-		vsta.push_back(ast1->getText().c_str());
-		return IdentifierSymbol(ast1->getNextSibling(), vsta);
+		if (vsta.size() == 0 && strcmp(ast1->getText().c_str(), "glyph") == 0)
+			*pfGlyphAttr = true;	// treat as glyph attribute
+		else
+			vsta.push_back(ast1->getText().c_str());
+		return IdentifierSymbol(ast1->getNextSibling(), vsta, pfGlyphAttr);
 	}
 
 	Assert(ast->getType() == IDENT);
-	vsta.push_back(ast->getText().c_str());
+	if (vsta.size() == 0 && strcmp(ast->getText().c_str(), "glyph") == 0)
+		*pfGlyphAttr = true;
+	else
+		vsta.push_back(ast->getText().c_str());
 	Symbol psymRet = SymbolTable()->FindSymbol(GrcStructName(vsta));
 	if (!psymRet)
 	{

@@ -1318,10 +1318,16 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 	{
 		//	Okay
 	}
-	else if (m_psymName->FitsSymbolType(ksymtGlyphAttr) ||
-		m_psymName->FitsSymbolType(ksymtSlotAttr) ||
-		m_psymName->FitsSymbolType(ksymtFeature) ||
-		m_psymName->FitsSymbolType(ksymtProcState))
+	else if (m_fGlyphAttr && !m_psymName->FitsSymbolType(ksymtGlyphAttr))
+	{
+		g_errorList.AddError(2165, this,
+			"Undefined glyph attribute: ", m_psymName->FullName());
+		return;
+	}
+	else if (m_psymName->FitsSymbolType(ksymtGlyphAttr)
+		|| m_psymName->FitsSymbolType(ksymtSlotAttr)
+		|| m_psymName->FitsSymbolType(ksymtFeature)
+		|| m_psymName->FitsSymbolType(ksymtProcState))
 	{
 		if (m_nClusterLevel != 0)
 			g_errorList.AddError(2118, this,
