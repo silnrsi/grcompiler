@@ -161,6 +161,7 @@ public:
 	public: void arithFunction();
 	public: void lookupExpr();
 	public: void selectorExpr();
+	public: void glyphIdentDot();
 	public: void clusterExpr();
 	public: void justifyIdentDot();
 	public: void justifyIdentDotAux();

@@ -704,7 +704,7 @@ attrAssignOp	:	(	OP_EQ
 					|	OP_MINUSEQUAL
 					|	OP_DIVEQUAL
 					|	OP_MULTEQUAL
-					|	OP_ANDEQUAL
+//					|	OP_ANDEQUAL - not implemented
 //					|	OP_OREQUAL - not implemented
 					)
 ;
@@ -768,12 +768,14 @@ singleExpr			:	(	OP_LPAREN! expr OP_RPAREN!
 ;
 
 lookupExpr!			:	(	S:selectorExpr 
-							(	OP_DOT I1:identDot (C1:clusterExpr)?
-									{ #lookupExpr = #([Zlookup], S, I1, C1); }
+							(	OP_DOT (I1g:glyphIdentDot | I1:identDot) (C1:clusterExpr)?
+									{ #lookupExpr = #([Zlookup], S, I1, I1g, C1); }
 							|	{ #lookupExpr = #S; }
 							)
 						|	I3:justifyIdentDot
 								{ #lookupExpr = #([Zlookup], I3); }
+						|	I4:glyphIdentDot (C4:clusterExpr)?
+								{ #lookupExpr = #([Zlookup], I4, C4); }
 						|	I2:identDot (C2:clusterExpr)?
 								{ #lookupExpr = #([Zlookup], I2, C2); }
 						)
@@ -801,6 +803,9 @@ justifyIdentDotAux	:	(	( IDENT | LIT_INT ) OP_DOT^ identDot
 						|	( IDENT | LIT_INT )
 						)
 ;
+
+// Probably wouldn't have to do this if I could remember how to make the correct structure be created:
+glyphIdentDot	:	"glyph" OP_DOT^ identDot;
 
 
 //

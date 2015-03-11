@@ -279,7 +279,7 @@ protected:
 	GrpLineAndFile LineAndFile(RefAST);
 	int NumericValue(RefAST);
 	int NumericValue(RefAST, bool * pfM);
-	Symbol IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta);
+	Symbol IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta, bool * pfGlyphAttr);
 	bool ClassPredefGlyphAttr(std::vector<std::string> & vsta, ExpressionType * pexpt, SymbolType * psymt);
 public:	// so they can be called by the test procedures
 	GrcEnv * PushTableEnv(GrpLineAndFile &, std::string staTableName);
