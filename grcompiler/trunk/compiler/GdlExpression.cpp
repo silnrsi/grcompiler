@@ -1334,6 +1334,10 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 			"Incomplete glyph attribute: ",
 			m_psymName->FullName());
 	}
+	else if (m_psymName->FitsSymbolType(ksymtClass))
+	{
+		// Okay
+	}
 	else
 	{
 		g_errorList.AddError(2120, this,
@@ -1833,6 +1837,23 @@ GdlExpression * GdlStringExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*p
 
 
 /*----------------------------------------------------------------------------------------------
+	Return the number of glyphs in the class.
+----------------------------------------------------------------------------------------------*/
+int GdlClassMemberExpression::ValueCount()
+{
+	GdlDefn * pgdl = m_psymName->Data();
+	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn *>(pgdl);
+	if (pglfc)
+	{
+		std::vector<utf16> vgid;
+		pglfc->FlattenGlyphList(vgid);
+		return vgid.size();
+	}
+	else
+		return 0; // invalid class
+}
+
+/*----------------------------------------------------------------------------------------------
 	Change the value 0 in the expression to a special value. This is needed for the value
 	of gpoint attributes, because we consistently use 0 to mean "no legitimate value".
 ----------------------------------------------------------------------------------------------*/
@@ -2253,10 +2274,11 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer *
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & /*vfDel*/,
 	bool /*fValue*/, bool /*fValueIsInputSlot*/)
 {
-	Assert(m_psymName->FitsSymbolType(ksymtGlyphData) ||
-		m_psymName->FitsSymbolType(ksymtSlotAttr) ||
-		m_psymName->FitsSymbolType(ksymtFeature) ||
-		m_psymName->FitsSymbolType(ksymtInvalid));
+	Assert(m_psymName->FitsSymbolType(ksymtGlyphData)
+		|| m_psymName->FitsSymbolType(ksymtSlotAttr)
+		|| m_psymName->FitsSymbolType(ksymtFeature)
+		|| m_psymName->FitsSymbolType(ksymtClass)
+		|| m_psymName->FitsSymbolType(ksymtInvalid));
 
 	if (m_nClusterLevel != 0 && !m_psymName->FitsSymbolType(ksymtGlyphMetric))
 		g_errorList.AddError(2135, this,
@@ -2820,6 +2842,8 @@ void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::
 		vbOutput.push_back(kopNot);
 	else if (strcmp(staOp.c_str(), "-") == 0)
 		vbOutput.push_back(kopNeg);
+	else if (strcmp(staOp.c_str(), "~") == 0)
+		vbOutput.push_back(kopBitNot);
 	// eventually, perhaps add kopTrunc8 and kopTrunc16
 	else
 	{
@@ -2858,6 +2882,10 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 		vbOutput.push_back(kopAnd);
 	else if (staOp == "||")
 		vbOutput.push_back(kopOr);
+	else if (staOp == "&")
+		vbOutput.push_back(kopBitAnd);
+	else if (staOp == "|")
+		vbOutput.push_back(kopBitOr);
 	else if (staOp == "==")
 		vbOutput.push_back(kopEqual);
 	else if (staOp == "!=")
@@ -2937,7 +2965,7 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 
 	//	Several slot attributes and glyph attributes have the same name; treat these as
 	//	slot attributes, since their values will default to the glyph attributes.
-	if (m_psymName->FitsSymbolType(ksymtSlotAttr))
+	if (m_psymName->FitsSymbolType(ksymtSlotAttr) && !m_fGlyphAttr)
 	{
 		if (m_psymName->IsIndexedSlotAttr())
 		{
@@ -3057,6 +3085,43 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 }
 
 /*--------------------------------------------------------------------------------------------*/
+void GdlClassMemberExpression::GenerateEngineCode(int /*fxdRuleVersion*/,
+	std::vector<gr::byte> & vbOutput,
+	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
+	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
+{
+	//	Output most-significant byte first.
+	
+	gr::byte b4 = m_gid & 0x000000FF;
+	if ((m_gid & 0xFFFFFF80) == 0 || (m_gid & 0xFFFFFF80) == 0xFFFFFF80)
+	{
+		vbOutput.push_back(kopPushByte);
+		vbOutput.push_back(b4);
+	}
+	else
+	{
+		gr::byte b3 = (m_gid & 0x0000FF00) >> 8;
+		if ((m_gid & 0xFFFF8000) == 0 || (m_gid & 0xFFFF8000) == 0xFFFF8000)
+		{
+			vbOutput.push_back(kopPushShort);
+			vbOutput.push_back(b3);
+			vbOutput.push_back(b4);
+		}
+		else
+		{
+			gr::byte b1 = (m_gid & 0xFF000000) >> 24;
+			gr::byte b2 = (m_gid & 0x00FF0000) >> 16;
+
+			vbOutput.push_back(kopPushLong);
+			vbOutput.push_back(b1);
+			vbOutput.push_back(b2);
+			vbOutput.push_back(b3);
+			vbOutput.push_back(b4);
+		}
+	}
+}
+
+/*--------------------------------------------------------------------------------------------*/
 void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
 	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
@@ -3147,6 +3212,10 @@ void GdlBinaryExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut
 	m_pexpOperand1->PrettyPrint(pcman, strmOut, fXml, true);
 	if (fXml && strcmp(m_psymOperator->FullName().data(), "&&") == 0)
 		strmOut << " &amp;&amp; ";
+	else if (fXml && strcmp(m_psymOperator->FullName().data(), "&") == 0)
+		strmOut << " &amp; ";
+	else if (fXml && strcmp(m_psymOperator->FullName().data(), "&=") == 0)
+		strmOut << " &amp;= ";
 	else if (fXml && strcmp(m_psymOperator->FullName().data(), "<") == 0)
 		strmOut << " &lt; ";
 	else if (fXml && strcmp(m_psymOperator->FullName().data(), "<=") == 0)

@@ -213,7 +213,11 @@ enum ActionCommand {
 	kopIAttrSet,		kopIAttrAdd,		kopIAttrSub,
 	kopPushProcState,	kopPushVersion,
 	kopPutSubs,			kopPutSubs2,		kopPutSubs3,
-	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr
+	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr,
+
+	kopBitAnd,			kopBitOr,			kopBitNot,
+	// not implemented:
+	//kopAttrBitAnd,		kopAttrBitOr,		kopIAttrBitAnd,		kopIAttrBitOr
 
 };
 
@@ -244,9 +248,10 @@ enum SlotAttrName {
 	kslatUserDefn = kslatJ0Stretch + 30,
 	kslatBidiLevel,		// used in Graphite2 engine
 	kslatColFlags,
-	kslatColMinX,	kslatColMinY,		kslatColMaxX,	kslatColMaxY,
-	kslatColFixX,	kslatColFixY,		//read-only attr - how much adjustment was made
-	kslatColMargin,	kslatColMinXOff
+	kslatColMinX,		kslatColMinY,		kslatColMaxX,	kslatColMaxY,
+	kslatColFixX,		kslatColFixY,		//read-only attr - how much adjustment was made
+	kslatColMargin,		kslatColMarginMin,	kslatColMaxOverlap,
+	kslatColNogoGlyph,	kslatColNogoOffX,	kslatColNogoOffY
 };
 
 

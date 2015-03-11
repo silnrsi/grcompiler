@@ -704,6 +704,8 @@ attrAssignOp	:	(	OP_EQ
 					|	OP_MINUSEQUAL
 					|	OP_DIVEQUAL
 					|	OP_MULTEQUAL
+					|	OP_ANDEQUAL
+//					|	OP_OREQUAL - not implemented
 					)
 ;
 
@@ -724,8 +726,16 @@ logicalOrExpr		:	logicalAndExpr
 						(OP_OR^ logicalAndExpr)*
 ;
 
-logicalAndExpr		:	comparativeExpr
-						(OP_AND^ comparativeExpr)*
+logicalAndExpr		:	bitwiseOrExpr
+						(OP_AND^ bitwiseOrExpr)*
+;
+
+bitwiseOrExpr		:	bitwiseAndExpr
+						(OP_BITOR^ bitwiseAndExpr)*
+;
+
+bitwiseAndExpr		:	comparativeExpr
+						(OP_BITAND^ comparativeExpr)*
 ;
 
 comparativeExpr		:	additiveExpr
@@ -744,7 +754,7 @@ multiplicativeExpr	:	unaryExpr
 						((OP_MULT^ | OP_DIV^) unaryExpr)*
 ;
 
-unaryExpr			:	(	(( OP_NOT^ | OP_MINUS^) singleExpr)
+unaryExpr			:	(	(( OP_NOT^ | OP_MINUS^ | OP_BITNOT^) singleExpr)
 						|	singleExpr
 						)
 ;
@@ -1042,7 +1052,8 @@ OP_MULT			:	'*';
 OP_MULTEQUAL	:	"*=";
 OP_DIV			:	'/';
 OP_DIVEQUAL		:	"/=";
-OP_ANDEQUAL		:	"&=";
+OP_ANDEQUAL		:	"&=";	// used for both class definitions
+//OP_OREQUAL	:	"|=";	// bitwise assignment - not implemented
 OP_COMMA		:	',';
 //OP_AT			:	'@';	// see AT_IDENT below
 OP_DOLLAR		:	'$';
@@ -1050,6 +1061,9 @@ OP_LINEMARKER	:	"#line";
 OP_HASH			:	'#';
 OP_AND			:	"&&";
 OP_OR			:	"||";
+OP_BITAND		:	"&";
+OP_BITOR		:	"|";
+OP_BITNOT		:	"~";
 OP_BSLASH		:	'\\';
 OP_UNDER		:	'_';
 OP_QUESTION		:	'?';

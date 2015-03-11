@@ -1208,8 +1208,9 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 			}
 		}
 	}
-	else if (nodetyp == OP_PLUSEQUAL || nodetyp == OP_MINUSEQUAL ||
-		nodetyp == OP_MULTEQUAL || nodetyp == OP_DIVEQUAL)
+	else if (nodetyp == OP_PLUSEQUAL || nodetyp == OP_MINUSEQUAL
+		|| nodetyp == OP_MULTEQUAL || nodetyp == OP_DIVEQUAL)
+		// || nodetyp == OP_ANDEQUAL || nodetyp == OP_OREQUAL) - not implemented
 	{
 		std::string staOp = ast->getText();
 		g_errorList.AddError(1139, NULL,
@@ -1391,6 +1392,32 @@ void GrcManager::ProcessFunction(RefAST ast, std::vector<std::string> & vsta,
 		else
 			BadFunctionError(lnf, staName, "1 or 3");
 	}
+
+	//else if (staName == "glyphattr")
+	//{
+	//	if (!fSlotAttr)
+	//		g_errorList.AddError(9999, NULL,
+	//			"glyphattr() function should only be used within a rule",
+	//			LineAndFile(ast));
+
+	//	astX1 = astName->getNextSibling();
+	//	if (astX1)
+	//	{
+	//		pexp1 = WalkExpressionTree(astX1);
+	//		astX2 = astX1->getNextSibling();
+	//		if (astX2)
+	//			BadFunctionError(lnf, staName, "1");
+	//		else
+	//		{
+	//			ProcessFunctionArg(false, vsta, nPR, mPRUnits, fOverride, lnf,
+	//				kexptUnknown, prit, psymOp, pexp1);
+	//		}
+
+	//		pexp1 = NULL; // don't do processing below
+	//	}
+	//	else
+	//		BadFunctionError(lnf, staName, "1");
+	//}
 
 	else
 	{
@@ -2825,8 +2852,9 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<st
 
 	int nodetyp = ast->getType();
 
-	if (nodetyp == OP_EQ || nodetyp == OP_PLUSEQUAL || nodetyp == OP_MINUSEQUAL ||
-		nodetyp == OP_MULTEQUAL || nodetyp == OP_DIVEQUAL)
+	if (nodetyp == OP_EQ || nodetyp == OP_PLUSEQUAL || nodetyp == OP_MINUSEQUAL
+		|| nodetyp == OP_MULTEQUAL || nodetyp == OP_DIVEQUAL)
+		// || nodetyp == OP_ANDEQUAL || nodetyp == OP_OREQUAL -- not implemented
 	{
 		Symbol psymOp = SymbolTable()->FindSymbol(ast->getText().c_str());
 		Assert(psymOp);
@@ -2915,6 +2943,8 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 	case OP_DIV:
 	case OP_AND:
 	case OP_OR:
+	case OP_BITAND:
+	case OP_BITOR:
 		if (nodetyp == OP_EQ)
 			psymOp = SymbolTable()->FindSymbol("==");
 		else
@@ -2975,10 +3005,11 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 			break;
 		}
 		else
-		{	// fall through
+		{	// fall through to make a unary expression
 		}
 
 	case OP_NOT:
+	case OP_BITNOT:
 		psymOp = SymbolTable()->FindSymbol(ast->getText().c_str());
 		Assert(psymOp);
 
@@ -3092,15 +3123,15 @@ GdlExpression * GrcManager::WalkExpressionTree(RefAST ast)
 		if (fM)
 			pexpRet = new GdlNumericExpression(nValue, MUnits());
 		else
-			pexpRet = new GdlNumericExpression(nValue);
+			pexpRet = new GdlNumericExpression(nValue, false);
 		break;
 
 	case LITERAL_true:
-		pexpRet = new GdlNumericExpression(1);
+		pexpRet = new GdlNumericExpression(1, true);
 		break;
 
 	case LITERAL_false:
-		pexpRet = new GdlNumericExpression(0);
+		pexpRet = new GdlNumericExpression(0, true);
 		break;
 
 	case LIT_STRING:

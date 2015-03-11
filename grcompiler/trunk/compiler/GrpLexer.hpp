@@ -1,7 +1,7 @@
 #ifndef INC_GrpLexer_hpp_
 #define INC_GrpLexer_hpp_
 
-#include "Antlr/config.hpp"
+#include "antlr/config.hpp"
 /*
  * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
  * 
@@ -10,10 +10,10 @@
  * ANTLR Version 2.6.0; 1996-1999
  */
 
-#include "Antlr/CommonToken.hpp"
-#include "Antlr/InputBuffer.hpp"
-#include "Antlr/BitSet.hpp"
-#include "Antlr/CharScanner.hpp"
+#include "antlr/CommonToken.hpp"
+#include "antlr/InputBuffer.hpp"
+#include "antlr/BitSet.hpp"
+#include "antlr/CharScanner.hpp"
 
 //	Header stuff here
 void AddGlobalError(bool, int nID, std::string, int nLine);
@@ -99,6 +99,9 @@ public:
 	public: void mOP_HASH(bool _createToken);
 	public: void mOP_AND(bool _createToken);
 	public: void mOP_OR(bool _createToken);
+	public: void mOP_BITAND(bool _createToken);
+	public: void mOP_BITOR(bool _createToken);
+	public: void mOP_BITNOT(bool _createToken);
 	public: void mOP_BSLASH(bool _createToken);
 	public: void mOP_UNDER(bool _createToken);
 	public: void mOP_QUESTION(bool _createToken);
