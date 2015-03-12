@@ -796,6 +796,9 @@ public:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
+	bool GenerateSetBitsOp(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+		int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
+		bool fAttachAt, int iritAttachTo);
 
 	//	debuggers:
 	virtual void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,

@@ -216,6 +216,7 @@ enum ActionCommand {
 	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr,
 
 	kopBitAnd,			kopBitOr,			kopBitNot,
+	kopSetBits
 	// not implemented:
 	//kopAttrBitAnd,		kopAttrBitOr,		kopIAttrBitAnd,		kopIAttrBitOr
 

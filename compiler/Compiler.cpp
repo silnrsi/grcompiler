@@ -509,7 +509,7 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 	Assert(m_pexpValue);
 	ExpressionType expt = m_psymName->ExpType();
 	Assert(expt == kexptSlotRef || expt == kexptNumber ||
-		expt == kexptMeas || expt == kexptBoolean);
+		expt == kexptMeas || expt == kexptBoolean || expt == kexptGlyphID);
 	std::string staOp = m_psymOperator->FullName();
 	int slat = m_psymName->SlotAttrEngineCodeOp();
 
@@ -1050,6 +1050,9 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 		case kopSub:				cbArgs = 0;		break;
 		case kopMul:				cbArgs = 0;		break;
 		case kopDiv:				cbArgs = 0;		break;
+		case kopBitAnd:				cbArgs = 0;		break;
+		case kopBitOr:				cbArgs = 0;		break;
+		case kopBitNot:				cbArgs = 0;		break;
 		case kopMin:				cbArgs = 0;		break;
 		case kopMax:				cbArgs = 0;		break;
 		case kopNeg:				cbArgs = 0;		break;
@@ -1059,9 +1062,6 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 		case kopAnd:				cbArgs = 0;		break;
 		case kopOr:					cbArgs = 0;		break;
 		case kopNot:				cbArgs = 0;		break;
-		//case kopBitAnd:				cbArgs = 0;		break;
-		//case kopBitOr:				cbArgs = 0;		break;
-		//case kopBitNot:				cbArgs = 0;		break;
 		case kopEqual:				cbArgs = 0;		break;
 		case kopNotEq:				cbArgs = 0;		break;
 		case kopLess:				cbArgs = 0;		break;
@@ -1192,6 +1192,18 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 		case kopPopRet:				cbArgs = 0;		break;
 		case kopRetZero:			cbArgs = 0;		break;
 		case kopRetTrue:			cbArgs = 0;		break;
+		case kopSetBits:
+			nUnsigned = (signed short int)vb[ib++];
+			nUnsigned = (nUnsigned << 8) + vb[ib++];
+			nSigned = (signed int)nUnsigned;
+			strmOut << " " << nSigned;
+			nUnsigned = (signed short int)vb[ib++];
+			nUnsigned = (nUnsigned << 8) + vb[ib++];
+			nSigned = (signed int)nUnsigned;
+			strmOut << " " << nSigned;
+			cbArgs = 0;
+			break;
+
 		default:
 			Assert(false);
 			cbArgs = 0;
@@ -1343,9 +1355,9 @@ std::string GdlRule::EngineCodeDebugString(int op)
 	case kopAnd:					return "And";
 	case kopOr:						return "Or";
 	case kopNot:					return "Not";
-	//case kopBitAnd:					return "BitAnd";
-	//case kopBitOr:					return "BitOr";
-	//case kopBitNot:					return "BitNot";
+	case kopBitAnd:					return "BitAnd";
+	case kopBitOr:					return "BitOr";
+	case kopBitNot:					return "BitNot";
 	case kopEqual:					return "Equal";
 	case kopNotEq:					return "NotEq";
 	case kopLess:					return "Less";
@@ -1393,6 +1405,7 @@ std::string GdlRule::EngineCodeDebugString(int op)
 //	case kopIAttrBitAnd:			return "IAttrBitAnd";
 //	case kopIAttrBitOr:				return "IAttrBitOr";
 	case kopPushProcState:			return "PushProcState";
+	case kopSetBits:				return "SetBits";
 	default:
 		Assert(false);
 		char rgch[20];

@@ -683,6 +683,10 @@ bool GdlUnaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 		*pexptRet = expt;
 		return true;
 	}
+	else if (m_psymOperator->MatchesOp("~"))
+	{
+		*pexptRet = expt;
+	}
 	else
 	{
 		g_errorList.AddError(2102, this,
@@ -706,7 +710,8 @@ bool GdlBinaryExpression::CheckTypeAndUnits(ExpressionType * pexptRet)
 	*pexptRet = expt1;	// unless changed below
 
 	if (m_psymOperator->MatchesOp("+") || m_psymOperator->MatchesOp("-") ||
-		m_psymOperator->MatchesOp("*") || m_psymOperator->MatchesOp("/"))
+		m_psymOperator->MatchesOp("*") || m_psymOperator->MatchesOp("/") ||
+		m_psymOperator->MatchesOp("&") || m_psymOperator->MatchesOp("|"))
 	{
 		//	Additive, multiplicative
 		if (expt1 == kexptSlotRef || expt2 == kexptSlotRef)
@@ -2862,51 +2867,59 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * /*pnValue*/)
 {
-	int nBogus;
-	m_pexpOperand1->GenerateEngineCode(fxdRuleVersion, vbOutput,
-		iritCurrent, pviritInput, nIIndex,
-		fAttachAt, iritAttachTo, &nBogus);
-	m_pexpOperand2->GenerateEngineCode(fxdRuleVersion, vbOutput,
-		iritCurrent, pviritInput, nIIndex,
-		fAttachAt, iritAttachTo, &nBogus);
-
-	std::string staOp = m_psymOperator->FullName();
-
-	if (staOp == "+")
-		vbOutput.push_back(kopAdd);
-	else if (staOp == "-")
-		vbOutput.push_back(kopSub);
-	else if (staOp == "*")
-		vbOutput.push_back(kopMul);
-	else if (staOp == "/")
-		vbOutput.push_back(kopDiv);
-	else if (staOp == "max")
-		vbOutput.push_back(kopMax);
-	else if (staOp == "min")
-		vbOutput.push_back(kopMin);
-	else if (staOp == "&&")
-		vbOutput.push_back(kopAnd);
-	else if (staOp == "||")
-		vbOutput.push_back(kopOr);
-	else if (staOp == "&")
-		vbOutput.push_back(kopBitAnd);
-	else if (staOp == "|")
-		vbOutput.push_back(kopBitOr);
-	else if (staOp == "==")
-		vbOutput.push_back(kopEqual);
-	else if (staOp == "!=")
-		vbOutput.push_back(kopNotEq);
-	else if (staOp == "<")
-		vbOutput.push_back(kopLess);
-	else if (staOp == ">")
-		vbOutput.push_back(kopGtr);
-	else if (staOp == "<=")
-		vbOutput.push_back(kopLessEq);
-	else if (staOp == ">=")
-		vbOutput.push_back(kopGtrEq);
+	if (GenerateSetBitsOp(fxdRuleVersion, vbOutput, iritCurrent, pviritInput, nIIndex,
+		fAttachAt, iritAttachTo))
+	{
+		// method above did the output
+	}
 	else
 	{
-		Assert(false);
+		int nBogus;
+		m_pexpOperand1->GenerateEngineCode(fxdRuleVersion, vbOutput,
+			iritCurrent, pviritInput, nIIndex,
+			fAttachAt, iritAttachTo, &nBogus);
+		m_pexpOperand2->GenerateEngineCode(fxdRuleVersion, vbOutput,
+			iritCurrent, pviritInput, nIIndex,
+			fAttachAt, iritAttachTo, &nBogus);
+
+		std::string staOp = m_psymOperator->FullName();
+
+		if (staOp == "+")
+			vbOutput.push_back(kopAdd);
+		else if (staOp == "-")
+			vbOutput.push_back(kopSub);
+		else if (staOp == "*")
+			vbOutput.push_back(kopMul);
+		else if (staOp == "/")
+			vbOutput.push_back(kopDiv);
+		else if (staOp == "max")
+			vbOutput.push_back(kopMax);
+		else if (staOp == "min")
+			vbOutput.push_back(kopMin);
+		else if (staOp == "&&")
+			vbOutput.push_back(kopAnd);
+		else if (staOp == "||")
+			vbOutput.push_back(kopOr);
+		else if (staOp == "&")
+			vbOutput.push_back(kopBitAnd);
+		else if (staOp == "|")
+			vbOutput.push_back(kopBitOr);
+		else if (staOp == "==")
+			vbOutput.push_back(kopEqual);
+		else if (staOp == "!=")
+			vbOutput.push_back(kopNotEq);
+		else if (staOp == "<")
+			vbOutput.push_back(kopLess);
+		else if (staOp == ">")
+			vbOutput.push_back(kopGtr);
+		else if (staOp == "<=")
+			vbOutput.push_back(kopLessEq);
+		else if (staOp == ">=")
+			vbOutput.push_back(kopGtrEq);
+		else
+		{
+			Assert(false);
+		}
 	}
 }
 
@@ -3192,6 +3205,51 @@ void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector
 {
 	//	Should never have string expressions in engine code.
 	Assert(false);
+}
+
+
+/*----------------------------------------------------------------------------------------------
+	If this expression is of the form (s & (~m) | v)), use the special setbits operator.
+----------------------------------------------------------------------------------------------*/
+bool GdlBinaryExpression::GenerateSetBitsOp(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
+	bool fAttachAt, int iritAttachTo)
+{
+	std::string staOp = m_psymOperator->FullName();
+	if (staOp == "|")
+	{
+		GdlBinaryExpression * pexp1And = dynamic_cast<GdlBinaryExpression *>(m_pexpOperand1);
+		GdlNumericExpression * pexp2Value = dynamic_cast<GdlNumericExpression *>(m_pexpOperand2);
+		if (pexp1And && pexp2Value)
+		{
+			std::string staOp1 = pexp1And->Operator()->FullName();
+			GdlUnaryExpression * pexp1And2Not = dynamic_cast<GdlUnaryExpression *>(pexp1And->Operand2());
+			if (staOp1 == "&" && pexp1And2Not)
+			{
+				std::string staOp12 = pexp1And2Not->Operator()->FullName();
+				if (staOp12 == "~")
+				{
+					int nMask, nValue;
+					if (pexp1And2Not->Operand()->ResolveToInteger(&nMask, false)
+						&& pexp2Value->ResolveToInteger(&nValue, false)
+						&& nMask <= 0xFFFF)
+					{
+						// Okay, it's the right form.
+						pexp1And->Operand1()->GenerateEngineCode(fxdRuleVersion, vbOutput, iritCurrent,
+							pviritInput, nIIndex, fAttachAt, iritAttachTo, NULL);
+						vbOutput.push_back(kopSetBits);
+						vbOutput.push_back(nMask >> 8);
+						vbOutput.push_back(nMask & 0x000000FF);
+						vbOutput.push_back(nValue >> 8);
+						vbOutput.push_back(nValue & 0x000000FF);
+						return true;
+					}
+				}
+			}
+		}
+	}
+	
+	return false;
 }
 
 /*----------------------------------------------------------------------------------------------
