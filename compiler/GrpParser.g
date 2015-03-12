@@ -790,7 +790,7 @@ clusterExpr!		:	OP_DOT C:LIT_INT
 signedInt			:	( "true" | "false" | (OP_PLUS! | OP_MINUS^)? LIT_INT );
 
 identDot			:	(	( IDENT | "position" ) OP_DOT^ identDot
-						|	( IDENT | "position" )
+						|	( IDENT | "position" | "glyph" )
 						)
 ;
 
