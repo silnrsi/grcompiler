@@ -3277,9 +3277,9 @@ Symbol GrcManager::IdentifierSymbol(RefAST ast, std::vector<std::string> & vsta,
 		return IdentifierSymbol(ast1->getNextSibling(), vsta, pfGlyphAttr);
 	}
 
-	Assert(ast->getType() == IDENT);
+	Assert(ast->getType() == IDENT || ast->getType() == LITERAL_glyph);
 	if (vsta.size() == 0 && strcmp(ast->getText().c_str(), "glyph") == 0)
-		*pfGlyphAttr = true;
+		*pfGlyphAttr = true;	// treat as glyph attribute
 	else
 		vsta.push_back(ast->getText().c_str());
 	Symbol psymRet = SymbolTable()->FindSymbol(GrcStructName(vsta));
