@@ -3258,6 +3258,9 @@ void GdlLookupExpression::PrettyPrint(GrcManager * pcman, std::ostream & strmOut
 		m_pexpSelector->PrettyPrint(pcman, strmOut, fXml, true);
 		strmOut << ".";
 	}
+	if (m_fGlyphAttr)
+		strmOut << "glyph.";
+
 	strmOut << m_psymName->FullAbbrev().data();
 }
 

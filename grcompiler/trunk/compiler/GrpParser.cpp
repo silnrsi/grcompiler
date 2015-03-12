@@ -100,6 +100,7 @@ void GrpParser::declarationList() {
 		do {
 			switch ( LA(1)) {
 			case IDENT:
+			case LITERAL_glyph:
 			case LITERAL_position:
 			{
 				globalDecl();
@@ -198,6 +199,7 @@ void GrpParser::globalDecl() {
 		case LITERAL_endenvironment:
 		case IDENT:
 		case LITERAL_table:
+		case LITERAL_glyph:
 		case LITERAL_position:
 		{
 			break;
@@ -278,6 +280,7 @@ void GrpParser::topEnvironDecl() {
 		case LITERAL_endenvironment:
 		case IDENT:
 		case LITERAL_table:
+		case LITERAL_glyph:
 		case LITERAL_position:
 		{
 			break;
@@ -301,6 +304,7 @@ void GrpParser::topEnvironDecl() {
 		case LITERAL_endenvironment:
 		case IDENT:
 		case LITERAL_table:
+		case LITERAL_glyph:
 		case LITERAL_position:
 		{
 			break;
@@ -322,6 +326,7 @@ void GrpParser::topEnvironDecl() {
 				break;
 			}
 			case IDENT:
+			case LITERAL_glyph:
 			case LITERAL_position:
 			{
 				globalDecl();
@@ -449,7 +454,7 @@ void GrpParser::identDot() {
 	
 	try {      // for error handling
 		{
-		if ((LA(1)==IDENT||LA(1)==LITERAL_position) && (LA(2)==OP_DOT) && (LA(3)==IDENT||LA(3)==LITERAL_position)) {
+		if ((LA(1)==IDENT||LA(1)==LITERAL_position) && (LA(2)==OP_DOT) && (LA(3)==IDENT||LA(3)==LITERAL_glyph||LA(3)==LITERAL_position)) {
 			{
 			switch ( LA(1)) {
 			case IDENT:
@@ -481,7 +486,7 @@ void GrpParser::identDot() {
 			identDot();
 			astFactory.addASTChild(currentAST, returnAST);
 		}
-		else if ((LA(1)==IDENT||LA(1)==LITERAL_position) && (_tokenSet_6.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
+		else if ((LA(1)==IDENT||LA(1)==LITERAL_glyph||LA(1)==LITERAL_position) && (_tokenSet_6.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
 			{
 			switch ( LA(1)) {
 			case IDENT:
@@ -498,6 +503,14 @@ void GrpParser::identDot() {
 				tmp18_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp18_AST);
 				match(LITERAL_position);
+				break;
+			}
+			case LITERAL_glyph:
+			{
+				RefAST tmp19_AST = nullAST;
+				tmp19_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp19_AST);
+				match(LITERAL_glyph);
 				break;
 			}
 			default:
@@ -534,8 +547,8 @@ void GrpParser::exprList() {
 		{
 		do {
 			if ((LA(1)==OP_COMMA)) {
-				RefAST tmp19_AST = nullAST;
-				tmp19_AST = astFactory.create(LT(1));
+				RefAST tmp20_AST = nullAST;
+				tmp20_AST = astFactory.create(LT(1));
 				match(OP_COMMA);
 				expr();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -608,8 +621,8 @@ void GrpParser::directiveList() {
 	RefAST directiveList_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp20_AST = nullAST;
-		tmp20_AST = astFactory.create(LT(1));
+		RefAST tmp21_AST = nullAST;
+		tmp21_AST = astFactory.create(LT(1));
 		match(OP_LBRACE);
 		{
 		switch ( LA(1)) {
@@ -620,8 +633,8 @@ void GrpParser::directiveList() {
 			{
 			do {
 				if ((LA(1)==OP_SEMI) && (LA(2)==IDENT) && (LA(3)==OP_EQ)) {
-					RefAST tmp21_AST = nullAST;
-					tmp21_AST = astFactory.create(LT(1));
+					RefAST tmp22_AST = nullAST;
+					tmp22_AST = astFactory.create(LT(1));
 					match(OP_SEMI);
 					directive();
 					astFactory.addASTChild(currentAST, returnAST);
@@ -637,8 +650,8 @@ void GrpParser::directiveList() {
 			switch ( LA(1)) {
 			case OP_SEMI:
 			{
-				RefAST tmp22_AST = nullAST;
-				tmp22_AST = astFactory.create(LT(1));
+				RefAST tmp23_AST = nullAST;
+				tmp23_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 				break;
 			}
@@ -664,8 +677,8 @@ void GrpParser::directiveList() {
 		}
 		}
 		}
-		RefAST tmp23_AST = nullAST;
-		tmp23_AST = astFactory.create(LT(1));
+		RefAST tmp24_AST = nullAST;
+		tmp24_AST = astFactory.create(LT(1));
 		match(OP_RBRACE);
 		directiveList_AST = currentAST.root;
 	}
@@ -684,13 +697,13 @@ void GrpParser::directive() {
 	RefAST directive_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp24_AST = nullAST;
-		tmp24_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp24_AST);
-		match(IDENT);
 		RefAST tmp25_AST = nullAST;
 		tmp25_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp25_AST);
+		astFactory.addASTChild(currentAST, tmp25_AST);
+		match(IDENT);
+		RefAST tmp26_AST = nullAST;
+		tmp26_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp26_AST);
 		match(OP_EQ);
 		expr();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -711,15 +724,15 @@ void GrpParser::tableName() {
 	RefAST tableName_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp26_AST = nullAST;
-		tmp26_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp27_AST = nullAST;
 		tmp27_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp27_AST);
-		match(LITERAL_name);
+		match(OP_LPAREN);
 		RefAST tmp28_AST = nullAST;
 		tmp28_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp28_AST);
+		match(LITERAL_name);
+		RefAST tmp29_AST = nullAST;
+		tmp29_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -748,8 +761,8 @@ void GrpParser::tableName() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp29_AST = nullAST;
-			tmp29_AST = astFactory.create(LT(1));
+			RefAST tmp30_AST = nullAST;
+			tmp30_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -814,15 +827,15 @@ void GrpParser::tableGlyph() {
 	RefAST tableGlyph_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp30_AST = nullAST;
-		tmp30_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp31_AST = nullAST;
 		tmp31_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp31_AST);
-		match(LITERAL_glyph);
+		match(OP_LPAREN);
 		RefAST tmp32_AST = nullAST;
 		tmp32_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp32_AST);
+		match(LITERAL_glyph);
+		RefAST tmp33_AST = nullAST;
+		tmp33_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -850,8 +863,8 @@ void GrpParser::tableGlyph() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp33_AST = nullAST;
-			tmp33_AST = astFactory.create(LT(1));
+			RefAST tmp34_AST = nullAST;
+			tmp34_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -914,15 +927,15 @@ void GrpParser::tableFeature() {
 	RefAST tableFeature_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp34_AST = nullAST;
-		tmp34_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp35_AST = nullAST;
 		tmp35_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp35_AST);
-		match(LITERAL_feature);
+		match(OP_LPAREN);
 		RefAST tmp36_AST = nullAST;
 		tmp36_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp36_AST);
+		match(LITERAL_feature);
+		RefAST tmp37_AST = nullAST;
+		tmp37_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -952,8 +965,8 @@ void GrpParser::tableFeature() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp37_AST = nullAST;
-			tmp37_AST = astFactory.create(LT(1));
+			RefAST tmp38_AST = nullAST;
+			tmp38_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1020,15 +1033,15 @@ void GrpParser::tableLanguage() {
 	RefAST tableLanguage_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp38_AST = nullAST;
-		tmp38_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp39_AST = nullAST;
 		tmp39_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp39_AST);
-		match(LITERAL_language);
+		match(OP_LPAREN);
 		RefAST tmp40_AST = nullAST;
 		tmp40_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp40_AST);
+		match(LITERAL_language);
+		RefAST tmp41_AST = nullAST;
+		tmp41_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -1056,8 +1069,8 @@ void GrpParser::tableLanguage() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp41_AST = nullAST;
-			tmp41_AST = astFactory.create(LT(1));
+			RefAST tmp42_AST = nullAST;
+			tmp42_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1120,15 +1133,15 @@ void GrpParser::tableSub() {
 	RefAST tableSub_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp42_AST = nullAST;
-		tmp42_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp43_AST = nullAST;
 		tmp43_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp43_AST);
-		match(LITERAL_substitution);
+		match(OP_LPAREN);
 		RefAST tmp44_AST = nullAST;
 		tmp44_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp44_AST);
+		match(LITERAL_substitution);
+		RefAST tmp45_AST = nullAST;
+		tmp45_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -1169,8 +1182,8 @@ void GrpParser::tableSub() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp45_AST = nullAST;
-			tmp45_AST = astFactory.create(LT(1));
+			RefAST tmp46_AST = nullAST;
+			tmp46_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1230,15 +1243,15 @@ void GrpParser::tableJust() {
 	RefAST tableJust_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp46_AST = nullAST;
-		tmp46_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp47_AST = nullAST;
 		tmp47_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp47_AST);
-		match(LITERAL_justification);
+		match(OP_LPAREN);
 		RefAST tmp48_AST = nullAST;
 		tmp48_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp48_AST);
+		match(LITERAL_justification);
+		RefAST tmp49_AST = nullAST;
+		tmp49_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -1279,8 +1292,8 @@ void GrpParser::tableJust() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp49_AST = nullAST;
-			tmp49_AST = astFactory.create(LT(1));
+			RefAST tmp50_AST = nullAST;
+			tmp50_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1340,24 +1353,24 @@ void GrpParser::tablePos() {
 	RefAST tablePos_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp50_AST = nullAST;
-		tmp50_AST = astFactory.create(LT(1));
+		RefAST tmp51_AST = nullAST;
+		tmp51_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		{
 		switch ( LA(1)) {
 		case LITERAL_position:
 		{
-			RefAST tmp51_AST = nullAST;
-			tmp51_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp51_AST);
+			RefAST tmp52_AST = nullAST;
+			tmp52_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp52_AST);
 			match(LITERAL_position);
 			break;
 		}
 		case LITERAL_positioning:
 		{
-			RefAST tmp52_AST = nullAST;
-			tmp52_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp52_AST);
+			RefAST tmp53_AST = nullAST;
+			tmp53_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp53_AST);
 			match(LITERAL_positioning);
 			break;
 		}
@@ -1367,8 +1380,8 @@ void GrpParser::tablePos() {
 		}
 		}
 		}
-		RefAST tmp53_AST = nullAST;
-		tmp53_AST = astFactory.create(LT(1));
+		RefAST tmp54_AST = nullAST;
+		tmp54_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -1409,8 +1422,8 @@ void GrpParser::tablePos() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp54_AST = nullAST;
-			tmp54_AST = astFactory.create(LT(1));
+			RefAST tmp55_AST = nullAST;
+			tmp55_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1470,15 +1483,15 @@ void GrpParser::tableLineBreak() {
 	RefAST tableLineBreak_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp55_AST = nullAST;
-		tmp55_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp56_AST = nullAST;
 		tmp56_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp56_AST);
-		match(LITERAL_linebreak);
+		match(OP_LPAREN);
 		RefAST tmp57_AST = nullAST;
 		tmp57_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp57_AST);
+		match(LITERAL_linebreak);
+		RefAST tmp58_AST = nullAST;
+		tmp58_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -1519,8 +1532,8 @@ void GrpParser::tableLineBreak() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp58_AST = nullAST;
-			tmp58_AST = astFactory.create(LT(1));
+			RefAST tmp59_AST = nullAST;
+			tmp59_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1580,15 +1593,15 @@ void GrpParser::tableOther() {
 	RefAST tableOther_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp59_AST = nullAST;
-		tmp59_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
 		RefAST tmp60_AST = nullAST;
 		tmp60_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp60_AST);
-		match(IDENT);
+		match(OP_LPAREN);
 		RefAST tmp61_AST = nullAST;
 		tmp61_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp61_AST);
+		match(IDENT);
+		RefAST tmp62_AST = nullAST;
+		tmp62_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		if ((LA(1)==OP_LBRACE) && (LA(2)==OP_RBRACE||LA(2)==IDENT) && ((LA(3) >= OP_EQ && LA(3) <= AT_IDENT))) {
@@ -1604,8 +1617,8 @@ void GrpParser::tableOther() {
 		}
 		{
 		if ((LA(1)==OP_SEMI) && ((LA(2) >= OP_EQ && LA(2) <= AT_IDENT)) && (_tokenSet_4.member(LA(3)))) {
-			RefAST tmp62_AST = nullAST;
-			tmp62_AST = astFactory.create(LT(1));
+			RefAST tmp63_AST = nullAST;
+			tmp63_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 		}
 		else if (((LA(1) >= OP_EQ && LA(1) <= AT_IDENT)) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -1645,9 +1658,9 @@ void GrpParser::nameEnv() {
 	RefAST nameEnv_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp63_AST = nullAST;
-		tmp63_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp63_AST);
+		RefAST tmp64_AST = nullAST;
+		tmp64_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp64_AST);
 		match(LITERAL_environment);
 		{
 		switch ( LA(1)) {
@@ -1676,8 +1689,8 @@ void GrpParser::nameEnv() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp64_AST = nullAST;
-			tmp64_AST = astFactory.create(LT(1));
+			RefAST tmp65_AST = nullAST;
+			tmp65_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1725,15 +1738,15 @@ void GrpParser::nameEnv() {
 		} while (true);
 		_loop35:;
 		}
-		RefAST tmp65_AST = nullAST;
-		tmp65_AST = astFactory.create(LT(1));
+		RefAST tmp66_AST = nullAST;
+		tmp66_AST = astFactory.create(LT(1));
 		match(LITERAL_endenvironment);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp66_AST = nullAST;
-			tmp66_AST = astFactory.create(LT(1));
+			RefAST tmp67_AST = nullAST;
+			tmp67_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -1791,8 +1804,8 @@ void GrpParser::nameSpecList() {
 			astFactory.addASTChild(currentAST, returnAST);
 			{
 			if ((LA(1)==OP_SEMI) && (LA(2)==IDENT||LA(2)==LIT_INT) && (_tokenSet_15.member(LA(3)))) {
-				RefAST tmp67_AST = nullAST;
-				tmp67_AST = astFactory.create(LT(1));
+				RefAST tmp68_AST = nullAST;
+				tmp68_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 				nameSpecList();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -1806,8 +1819,8 @@ void GrpParser::nameSpecList() {
 			}
 			{
 			if ((LA(1)==OP_SEMI) && (_tokenSet_17.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
-				RefAST tmp68_AST = nullAST;
-				tmp68_AST = astFactory.create(LT(1));
+				RefAST tmp69_AST = nullAST;
+				tmp69_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 			}
 			else if ((_tokenSet_17.member(LA(1))) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -1867,8 +1880,8 @@ void GrpParser::nameSpecStruct() {
 		}
 		}
 		}
-		RefAST tmp69_AST = nullAST;
-		tmp69_AST = astFactory.create(LT(1));
+		RefAST tmp70_AST = nullAST;
+		tmp70_AST = astFactory.create(LT(1));
 		match(OP_LBRACE);
 		{
 		switch ( LA(1)) {
@@ -1889,13 +1902,13 @@ void GrpParser::nameSpecStruct() {
 		}
 		}
 		}
-		RefAST tmp70_AST = nullAST;
-		tmp70_AST = astFactory.create(LT(1));
+		RefAST tmp71_AST = nullAST;
+		tmp71_AST = astFactory.create(LT(1));
 		match(OP_RBRACE);
 		{
 		if ((LA(1)==OP_SEMI) && (_tokenSet_17.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
-			RefAST tmp71_AST = nullAST;
-			tmp71_AST = astFactory.create(LT(1));
+			RefAST tmp72_AST = nullAST;
+			tmp72_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 		}
 		else if ((_tokenSet_17.member(LA(1))) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -2077,17 +2090,17 @@ void GrpParser::signedInt() {
 		switch ( LA(1)) {
 		case LITERAL_true:
 		{
-			RefAST tmp72_AST = nullAST;
-			tmp72_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp72_AST);
+			RefAST tmp73_AST = nullAST;
+			tmp73_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp73_AST);
 			match(LITERAL_true);
 			break;
 		}
 		case LITERAL_false:
 		{
-			RefAST tmp73_AST = nullAST;
-			tmp73_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp73_AST);
+			RefAST tmp74_AST = nullAST;
+			tmp74_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp74_AST);
 			match(LITERAL_false);
 			break;
 		}
@@ -2099,16 +2112,16 @@ void GrpParser::signedInt() {
 			switch ( LA(1)) {
 			case OP_PLUS:
 			{
-				RefAST tmp74_AST = nullAST;
-				tmp74_AST = astFactory.create(LT(1));
+				RefAST tmp75_AST = nullAST;
+				tmp75_AST = astFactory.create(LT(1));
 				match(OP_PLUS);
 				break;
 			}
 			case OP_MINUS:
 			{
-				RefAST tmp75_AST = nullAST;
-				tmp75_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp75_AST);
+				RefAST tmp76_AST = nullAST;
+				tmp76_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp76_AST);
 				match(OP_MINUS);
 				break;
 			}
@@ -2122,9 +2135,9 @@ void GrpParser::signedInt() {
 			}
 			}
 			}
-			RefAST tmp76_AST = nullAST;
-			tmp76_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp76_AST);
+			RefAST tmp77_AST = nullAST;
+			tmp77_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp77_AST);
 			match(LIT_INT);
 			break;
 		}
@@ -2155,9 +2168,9 @@ void GrpParser::stringDefn() {
 		switch ( LA(1)) {
 		case LIT_STRING:
 		{
-			RefAST tmp77_AST = nullAST;
-			tmp77_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp77_AST);
+			RefAST tmp78_AST = nullAST;
+			tmp78_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp78_AST);
 			match(LIT_STRING);
 			break;
 		}
@@ -2170,9 +2183,9 @@ void GrpParser::stringDefn() {
 		case OP_LPAREN:
 		{
 			{
-			RefAST tmp78_AST = nullAST;
-			tmp78_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp78_AST);
+			RefAST tmp79_AST = nullAST;
+			tmp79_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp79_AST);
 			match(OP_LPAREN);
 			stringDefn();
 			astFactory.addASTChild(currentAST, returnAST);
@@ -2183,9 +2196,9 @@ void GrpParser::stringDefn() {
 					switch ( LA(1)) {
 					case OP_COMMA:
 					{
-						RefAST tmp79_AST = nullAST;
-						tmp79_AST = astFactory.create(LT(1));
-						astFactory.addASTChild(currentAST, tmp79_AST);
+						RefAST tmp80_AST = nullAST;
+						tmp80_AST = astFactory.create(LT(1));
+						astFactory.addASTChild(currentAST, tmp80_AST);
 						match(OP_COMMA);
 						break;
 					}
@@ -2211,9 +2224,9 @@ void GrpParser::stringDefn() {
 			} while (true);
 			_loop57:;
 			}
-			RefAST tmp80_AST = nullAST;
-			tmp80_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp80_AST);
+			RefAST tmp81_AST = nullAST;
+			tmp81_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp81_AST);
 			match(OP_RPAREN);
 			}
 			break;
@@ -2241,27 +2254,27 @@ void GrpParser::stringFunc() {
 	RefAST stringFunc_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp81_AST = nullAST;
-		tmp81_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp81_AST);
-		match(LITERAL_string);
 		RefAST tmp82_AST = nullAST;
 		tmp82_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
+		astFactory.makeASTRoot(currentAST, tmp82_AST);
+		match(LITERAL_string);
 		RefAST tmp83_AST = nullAST;
 		tmp83_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp83_AST);
+		match(OP_LPAREN);
+		RefAST tmp84_AST = nullAST;
+		tmp84_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp84_AST);
 		match(LIT_STRING);
 		{
 		switch ( LA(1)) {
 		case OP_COMMA:
 		{
-			RefAST tmp84_AST = nullAST;
-			tmp84_AST = astFactory.create(LT(1));
-			match(OP_COMMA);
 			RefAST tmp85_AST = nullAST;
 			tmp85_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp85_AST);
+			match(OP_COMMA);
+			RefAST tmp86_AST = nullAST;
+			tmp86_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp86_AST);
 			match(LIT_INT);
 			break;
 		}
@@ -2275,8 +2288,8 @@ void GrpParser::stringFunc() {
 		}
 		}
 		}
-		RefAST tmp86_AST = nullAST;
-		tmp86_AST = astFactory.create(LT(1));
+		RefAST tmp87_AST = nullAST;
+		tmp87_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		stringFunc_AST = currentAST.root;
 	}
@@ -2295,9 +2308,9 @@ void GrpParser::glyphEnv() {
 	RefAST glyphEnv_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp87_AST = nullAST;
-		tmp87_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp87_AST);
+		RefAST tmp88_AST = nullAST;
+		tmp88_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp88_AST);
 		match(LITERAL_environment);
 		{
 		switch ( LA(1)) {
@@ -2325,8 +2338,8 @@ void GrpParser::glyphEnv() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp88_AST = nullAST;
-			tmp88_AST = astFactory.create(LT(1));
+			RefAST tmp89_AST = nullAST;
+			tmp89_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -2372,15 +2385,15 @@ void GrpParser::glyphEnv() {
 		} while (true);
 		_loop69:;
 		}
-		RefAST tmp89_AST = nullAST;
-		tmp89_AST = astFactory.create(LT(1));
+		RefAST tmp90_AST = nullAST;
+		tmp90_AST = astFactory.create(LT(1));
 		match(LITERAL_endenvironment);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp90_AST = nullAST;
-			tmp90_AST = astFactory.create(LT(1));
+			RefAST tmp91_AST = nullAST;
+			tmp91_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -2433,8 +2446,8 @@ void GrpParser::glyphEntry() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp91_AST = nullAST;
-			tmp91_AST = astFactory.create(LT(1));
+			RefAST tmp92_AST = nullAST;
+			tmp92_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -2469,42 +2482,42 @@ void GrpParser::glyphContents() {
 	RefAST glyphContents_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp92_AST = nullAST;
-		tmp92_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp92_AST);
+		RefAST tmp93_AST = nullAST;
+		tmp93_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp93_AST);
 		match(IDENT);
 		{
 		{
 		switch ( LA(1)) {
 		case OP_EQ:
 		{
-			RefAST tmp93_AST = nullAST;
-			tmp93_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp93_AST);
+			RefAST tmp94_AST = nullAST;
+			tmp94_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp94_AST);
 			match(OP_EQ);
 			break;
 		}
 		case OP_PLUSEQUAL:
 		{
-			RefAST tmp94_AST = nullAST;
-			tmp94_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp94_AST);
+			RefAST tmp95_AST = nullAST;
+			tmp95_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp95_AST);
 			match(OP_PLUSEQUAL);
 			break;
 		}
 		case OP_ANDEQUAL:
 		{
-			RefAST tmp95_AST = nullAST;
-			tmp95_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp95_AST);
+			RefAST tmp96_AST = nullAST;
+			tmp96_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp96_AST);
 			match(OP_ANDEQUAL);
 			break;
 		}
 		case OP_MINUSEQUAL:
 		{
-			RefAST tmp96_AST = nullAST;
-			tmp96_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp96_AST);
+			RefAST tmp97_AST = nullAST;
+			tmp97_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp97_AST);
 			match(OP_MINUSEQUAL);
 			break;
 		}
@@ -2559,8 +2572,8 @@ void GrpParser::glyphAttrs() {
 		switch ( LA(1)) {
 		case OP_LBRACE:
 		{
-			RefAST tmp97_AST = nullAST;
-			tmp97_AST = astFactory.create(LT(1));
+			RefAST tmp98_AST = nullAST;
+			tmp98_AST = astFactory.create(LT(1));
 			match(OP_LBRACE);
 			{
 			switch ( LA(1)) {
@@ -2585,16 +2598,16 @@ void GrpParser::glyphAttrs() {
 			}
 			}
 			}
-			RefAST tmp98_AST = nullAST;
-			tmp98_AST = astFactory.create(LT(1));
+			RefAST tmp99_AST = nullAST;
+			tmp99_AST = astFactory.create(LT(1));
 			match(OP_RBRACE);
 			A_AST = astFactory.make( (new ASTArray(2))->add(astFactory.create(Zattrs))->add(X1_AST));
 			break;
 		}
 		case OP_DOT:
 		{
-			RefAST tmp99_AST = nullAST;
-			tmp99_AST = astFactory.create(LT(1));
+			RefAST tmp100_AST = nullAST;
+			tmp100_AST = astFactory.create(LT(1));
 			match(OP_DOT);
 			{
 			if ((_tokenSet_25.member(LA(1))) && (_tokenSet_26.member(LA(2)))) {
@@ -2645,9 +2658,9 @@ void GrpParser::glyphSpec() {
 		switch ( LA(1)) {
 		case IDENT:
 		{
-			RefAST tmp100_AST = nullAST;
-			tmp100_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp100_AST);
+			RefAST tmp101_AST = nullAST;
+			tmp101_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp101_AST);
 			match(IDENT);
 			break;
 		}
@@ -2690,8 +2703,8 @@ void GrpParser::glyphSpec() {
 		case OP_LPAREN:
 		{
 			{
-			RefAST tmp101_AST = nullAST;
-			tmp101_AST = astFactory.create(LT(1));
+			RefAST tmp102_AST = nullAST;
+			tmp102_AST = astFactory.create(LT(1));
 			match(OP_LPAREN);
 			{
 			switch ( LA(1)) {
@@ -2713,8 +2726,8 @@ void GrpParser::glyphSpec() {
 						switch ( LA(1)) {
 						case OP_COMMA:
 						{
-							RefAST tmp102_AST = nullAST;
-							tmp102_AST = astFactory.create(LT(1));
+							RefAST tmp103_AST = nullAST;
+							tmp103_AST = astFactory.create(LT(1));
 							match(OP_COMMA);
 							break;
 						}
@@ -2757,8 +2770,8 @@ void GrpParser::glyphSpec() {
 			}
 			}
 			}
-			RefAST tmp103_AST = nullAST;
-			tmp103_AST = astFactory.create(LT(1));
+			RefAST tmp104_AST = nullAST;
+			tmp104_AST = astFactory.create(LT(1));
 			match(OP_RPAREN);
 			}
 			break;
@@ -2791,8 +2804,8 @@ void GrpParser::attributes() {
 		switch ( LA(1)) {
 		case OP_LBRACE:
 		{
-			RefAST tmp104_AST = nullAST;
-			tmp104_AST = astFactory.create(LT(1));
+			RefAST tmp105_AST = nullAST;
+			tmp105_AST = astFactory.create(LT(1));
 			match(OP_LBRACE);
 			{
 			switch ( LA(1)) {
@@ -2822,8 +2835,8 @@ void GrpParser::attributes() {
 			switch ( LA(1)) {
 			case OP_SEMI:
 			{
-				RefAST tmp105_AST = nullAST;
-				tmp105_AST = astFactory.create(LT(1));
+				RefAST tmp106_AST = nullAST;
+				tmp106_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 				break;
 			}
@@ -2837,8 +2850,8 @@ void GrpParser::attributes() {
 			}
 			}
 			}
-			RefAST tmp106_AST = nullAST;
-			tmp106_AST = astFactory.create(LT(1));
+			RefAST tmp107_AST = nullAST;
+			tmp107_AST = astFactory.create(LT(1));
 			match(OP_RBRACE);
 			attributes_AST = currentAST.root;
 			attributes_AST = astFactory.make( (new ASTArray(2))->add(astFactory.create(Zattrs))->add(X_AST));
@@ -2910,8 +2923,8 @@ void GrpParser::attrItemList() {
 		}
 		{
 		if ((LA(1)==OP_SEMI) && (_tokenSet_25.member(LA(2))) && (_tokenSet_30.member(LA(3)))) {
-			RefAST tmp107_AST = nullAST;
-			tmp107_AST = astFactory.create(LT(1));
+			RefAST tmp108_AST = nullAST;
+			tmp108_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			attrItemList();
 			astFactory.addASTChild(currentAST, returnAST);
@@ -3039,8 +3052,8 @@ void GrpParser::attrItemStruct() {
 		attrName();
 		I_AST = returnAST;
 		}
-		RefAST tmp108_AST = nullAST;
-		tmp108_AST = astFactory.create(LT(1));
+		RefAST tmp109_AST = nullAST;
+		tmp109_AST = astFactory.create(LT(1));
 		match(OP_LBRACE);
 		{
 		switch ( LA(1)) {
@@ -3070,8 +3083,8 @@ void GrpParser::attrItemStruct() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp109_AST = nullAST;
-			tmp109_AST = astFactory.create(LT(1));
+			RefAST tmp110_AST = nullAST;
+			tmp110_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -3085,8 +3098,8 @@ void GrpParser::attrItemStruct() {
 		}
 		}
 		}
-		RefAST tmp110_AST = nullAST;
-		tmp110_AST = astFactory.create(LT(1));
+		RefAST tmp111_AST = nullAST;
+		tmp111_AST = astFactory.create(LT(1));
 		match(OP_RBRACE);
 		attrItemStruct_AST = currentAST.root;
 		attrItemStruct_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(ZdotStruct))->add(I_AST)->add(X_AST));
@@ -3119,8 +3132,8 @@ void GrpParser::codepointFunc() {
 		F = LT(1);
 		F_AST = astFactory.create(F);
 		match(LITERAL_codepoint);
-		RefAST tmp111_AST = nullAST;
-		tmp111_AST = astFactory.create(LT(1));
+		RefAST tmp112_AST = nullAST;
+		tmp112_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		codepointList();
 		X_AST = returnAST;
@@ -3128,8 +3141,8 @@ void GrpParser::codepointFunc() {
 		switch ( LA(1)) {
 		case OP_COMMA:
 		{
-			RefAST tmp112_AST = nullAST;
-			tmp112_AST = astFactory.create(LT(1));
+			RefAST tmp113_AST = nullAST;
+			tmp113_AST = astFactory.create(LT(1));
 			match(OP_COMMA);
 			N = LT(1);
 			N_AST = astFactory.create(N);
@@ -3147,8 +3160,8 @@ void GrpParser::codepointFunc() {
 		}
 		}
 		}
-		RefAST tmp113_AST = nullAST;
-		tmp113_AST = astFactory.create(LT(1));
+		RefAST tmp114_AST = nullAST;
+		tmp114_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		codepointFunc_AST = currentAST.root;
 		codepointFunc_AST = astFactory.make( (new ASTArray(3))->add(F_AST)->add(C_AST)->add(X_AST));
@@ -3172,12 +3185,12 @@ void GrpParser::glyphidFunc() {
 	RefAST glyphidFunc_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp114_AST = nullAST;
-		tmp114_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp114_AST);
-		match(LITERAL_glyphid);
 		RefAST tmp115_AST = nullAST;
 		tmp115_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp115_AST);
+		match(LITERAL_glyphid);
+		RefAST tmp116_AST = nullAST;
+		tmp116_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		intOrRange();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -3188,8 +3201,8 @@ void GrpParser::glyphidFunc() {
 				switch ( LA(1)) {
 				case OP_COMMA:
 				{
-					RefAST tmp116_AST = nullAST;
-					tmp116_AST = astFactory.create(LT(1));
+					RefAST tmp117_AST = nullAST;
+					tmp117_AST = astFactory.create(LT(1));
 					match(OP_COMMA);
 					break;
 				}
@@ -3213,8 +3226,8 @@ void GrpParser::glyphidFunc() {
 		} while (true);
 		_loop107:;
 		}
-		RefAST tmp117_AST = nullAST;
-		tmp117_AST = astFactory.create(LT(1));
+		RefAST tmp118_AST = nullAST;
+		tmp118_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		glyphidFunc_AST = currentAST.root;
 	}
@@ -3233,16 +3246,16 @@ void GrpParser::postscriptFunc() {
 	RefAST postscriptFunc_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp118_AST = nullAST;
-		tmp118_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp118_AST);
-		match(LITERAL_postscript);
 		RefAST tmp119_AST = nullAST;
 		tmp119_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
+		astFactory.makeASTRoot(currentAST, tmp119_AST);
+		match(LITERAL_postscript);
 		RefAST tmp120_AST = nullAST;
 		tmp120_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp120_AST);
+		match(OP_LPAREN);
+		RefAST tmp121_AST = nullAST;
+		tmp121_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp121_AST);
 		match(LIT_STRING);
 		{
 		do {
@@ -3251,8 +3264,8 @@ void GrpParser::postscriptFunc() {
 				switch ( LA(1)) {
 				case OP_COMMA:
 				{
-					RefAST tmp121_AST = nullAST;
-					tmp121_AST = astFactory.create(LT(1));
+					RefAST tmp122_AST = nullAST;
+					tmp122_AST = astFactory.create(LT(1));
 					match(OP_COMMA);
 					break;
 				}
@@ -3266,9 +3279,9 @@ void GrpParser::postscriptFunc() {
 				}
 				}
 				}
-				RefAST tmp122_AST = nullAST;
-				tmp122_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp122_AST);
+				RefAST tmp123_AST = nullAST;
+				tmp123_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp123_AST);
 				match(LIT_STRING);
 			}
 			else {
@@ -3278,8 +3291,8 @@ void GrpParser::postscriptFunc() {
 		} while (true);
 		_loop111:;
 		}
-		RefAST tmp123_AST = nullAST;
-		tmp123_AST = astFactory.create(LT(1));
+		RefAST tmp124_AST = nullAST;
+		tmp124_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		postscriptFunc_AST = currentAST.root;
 	}
@@ -3298,12 +3311,12 @@ void GrpParser::unicodeFunc() {
 	RefAST unicodeFunc_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp124_AST = nullAST;
-		tmp124_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp124_AST);
-		match(LITERAL_unicode);
 		RefAST tmp125_AST = nullAST;
 		tmp125_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp125_AST);
+		match(LITERAL_unicode);
+		RefAST tmp126_AST = nullAST;
+		tmp126_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		intOrRange();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -3314,8 +3327,8 @@ void GrpParser::unicodeFunc() {
 				switch ( LA(1)) {
 				case OP_COMMA:
 				{
-					RefAST tmp126_AST = nullAST;
-					tmp126_AST = astFactory.create(LT(1));
+					RefAST tmp127_AST = nullAST;
+					tmp127_AST = astFactory.create(LT(1));
 					match(OP_COMMA);
 					break;
 				}
@@ -3339,8 +3352,8 @@ void GrpParser::unicodeFunc() {
 		} while (true);
 		_loop115:;
 		}
-		RefAST tmp127_AST = nullAST;
-		tmp127_AST = astFactory.create(LT(1));
+		RefAST tmp128_AST = nullAST;
+		tmp128_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		unicodeFunc_AST = currentAST.root;
 	}
@@ -3386,12 +3399,12 @@ void GrpParser::pseudoFunc() {
 	RefAST pseudoFunc_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp128_AST = nullAST;
-		tmp128_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp128_AST);
-		match(LITERAL_pseudo);
 		RefAST tmp129_AST = nullAST;
 		tmp129_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp129_AST);
+		match(LITERAL_pseudo);
+		RefAST tmp130_AST = nullAST;
+		tmp130_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		{
 		switch ( LA(1)) {
@@ -3441,8 +3454,8 @@ void GrpParser::pseudoFunc() {
 			switch ( LA(1)) {
 			case OP_COMMA:
 			{
-				RefAST tmp130_AST = nullAST;
-				tmp130_AST = astFactory.create(LT(1));
+				RefAST tmp131_AST = nullAST;
+				tmp131_AST = astFactory.create(LT(1));
 				match(OP_COMMA);
 				break;
 			}
@@ -3461,17 +3474,17 @@ void GrpParser::pseudoFunc() {
 			switch ( LA(1)) {
 			case LIT_INT:
 			{
-				RefAST tmp131_AST = nullAST;
-				tmp131_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp131_AST);
+				RefAST tmp132_AST = nullAST;
+				tmp132_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp132_AST);
 				match(LIT_INT);
 				break;
 			}
 			case LIT_UHEX:
 			{
-				RefAST tmp132_AST = nullAST;
-				tmp132_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp132_AST);
+				RefAST tmp133_AST = nullAST;
+				tmp133_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp133_AST);
 				match(LIT_UHEX);
 				break;
 			}
@@ -3493,8 +3506,8 @@ void GrpParser::pseudoFunc() {
 		}
 		}
 		}
-		RefAST tmp133_AST = nullAST;
-		tmp133_AST = astFactory.create(LT(1));
+		RefAST tmp134_AST = nullAST;
+		tmp134_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		pseudoFunc_AST = currentAST.root;
 	}
@@ -3518,8 +3531,8 @@ void GrpParser::codepointList() {
 		case OP_LPAREN:
 		{
 			{
-			RefAST tmp134_AST = nullAST;
-			tmp134_AST = astFactory.create(LT(1));
+			RefAST tmp135_AST = nullAST;
+			tmp135_AST = astFactory.create(LT(1));
 			match(OP_LPAREN);
 			codepointItem();
 			astFactory.addASTChild(currentAST, returnAST);
@@ -3530,8 +3543,8 @@ void GrpParser::codepointList() {
 					switch ( LA(1)) {
 					case OP_COMMA:
 					{
-						RefAST tmp135_AST = nullAST;
-						tmp135_AST = astFactory.create(LT(1));
+						RefAST tmp136_AST = nullAST;
+						tmp136_AST = astFactory.create(LT(1));
 						match(OP_COMMA);
 						break;
 					}
@@ -3557,8 +3570,8 @@ void GrpParser::codepointList() {
 			} while (true);
 			_loop101:;
 			}
-			RefAST tmp136_AST = nullAST;
-			tmp136_AST = astFactory.create(LT(1));
+			RefAST tmp137_AST = nullAST;
+			tmp137_AST = astFactory.create(LT(1));
 			match(OP_RPAREN);
 			}
 			break;
@@ -3598,9 +3611,9 @@ void GrpParser::codepointItem() {
 		switch ( LA(1)) {
 		case LIT_STRING:
 		{
-			RefAST tmp137_AST = nullAST;
-			tmp137_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp137_AST);
+			RefAST tmp138_AST = nullAST;
+			tmp138_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp138_AST);
 			match(LIT_STRING);
 			break;
 		}
@@ -3638,17 +3651,17 @@ void GrpParser::charOrIntOrRange() {
 		switch ( LA(1)) {
 		case LIT_CHAR:
 		{
-			RefAST tmp138_AST = nullAST;
-			tmp138_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp138_AST);
+			RefAST tmp139_AST = nullAST;
+			tmp139_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp139_AST);
 			match(LIT_CHAR);
 			break;
 		}
 		case LIT_INT:
 		{
-			RefAST tmp139_AST = nullAST;
-			tmp139_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp139_AST);
+			RefAST tmp140_AST = nullAST;
+			tmp140_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp140_AST);
 			match(LIT_INT);
 			break;
 		}
@@ -3662,25 +3675,25 @@ void GrpParser::charOrIntOrRange() {
 		switch ( LA(1)) {
 		case OP_DOTDOT:
 		{
-			RefAST tmp140_AST = nullAST;
-			tmp140_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp140_AST);
+			RefAST tmp141_AST = nullAST;
+			tmp141_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp141_AST);
 			match(OP_DOTDOT);
 			{
 			switch ( LA(1)) {
 			case LIT_CHAR:
 			{
-				RefAST tmp141_AST = nullAST;
-				tmp141_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp141_AST);
+				RefAST tmp142_AST = nullAST;
+				tmp142_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp142_AST);
 				match(LIT_CHAR);
 				break;
 			}
 			case LIT_INT:
 			{
-				RefAST tmp142_AST = nullAST;
-				tmp142_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp142_AST);
+				RefAST tmp143_AST = nullAST;
+				tmp143_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp143_AST);
 				match(LIT_INT);
 				break;
 			}
@@ -3725,23 +3738,23 @@ void GrpParser::intOrRange() {
 	try {      // for error handling
 		{
 		if ((LA(1)==LIT_INT) && (LA(2)==OP_DOTDOT)) {
-			RefAST tmp143_AST = nullAST;
-			tmp143_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp143_AST);
-			match(LIT_INT);
 			RefAST tmp144_AST = nullAST;
 			tmp144_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp144_AST);
-			match(OP_DOTDOT);
+			astFactory.addASTChild(currentAST, tmp144_AST);
+			match(LIT_INT);
 			RefAST tmp145_AST = nullAST;
 			tmp145_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp145_AST);
-			match(LIT_INT);
-		}
-		else if ((LA(1)==LIT_INT) && (LA(2)==OP_RPAREN||LA(2)==LIT_INT||LA(2)==OP_COMMA)) {
+			astFactory.makeASTRoot(currentAST, tmp145_AST);
+			match(OP_DOTDOT);
 			RefAST tmp146_AST = nullAST;
 			tmp146_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp146_AST);
+			match(LIT_INT);
+		}
+		else if ((LA(1)==LIT_INT) && (LA(2)==OP_RPAREN||LA(2)==LIT_INT||LA(2)==OP_COMMA)) {
+			RefAST tmp147_AST = nullAST;
+			tmp147_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp147_AST);
 			match(LIT_INT);
 		}
 		else {
@@ -3768,23 +3781,23 @@ void GrpParser::unicodeIntOrRange() {
 	try {      // for error handling
 		{
 		if ((LA(1)==LIT_UHEX) && (LA(2)==OP_DOTDOT)) {
-			RefAST tmp147_AST = nullAST;
-			tmp147_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp147_AST);
-			match(LIT_UHEX);
 			RefAST tmp148_AST = nullAST;
 			tmp148_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp148_AST);
-			match(OP_DOTDOT);
+			astFactory.addASTChild(currentAST, tmp148_AST);
+			match(LIT_UHEX);
 			RefAST tmp149_AST = nullAST;
 			tmp149_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp149_AST);
-			match(LIT_UHEX);
-		}
-		else if ((LA(1)==LIT_UHEX) && (_tokenSet_35.member(LA(2)))) {
+			astFactory.makeASTRoot(currentAST, tmp149_AST);
+			match(OP_DOTDOT);
 			RefAST tmp150_AST = nullAST;
 			tmp150_AST = astFactory.create(LT(1));
 			astFactory.addASTChild(currentAST, tmp150_AST);
+			match(LIT_UHEX);
+		}
+		else if ((LA(1)==LIT_UHEX) && (_tokenSet_35.member(LA(2)))) {
+			RefAST tmp151_AST = nullAST;
+			tmp151_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp151_AST);
 			match(LIT_UHEX);
 		}
 		else {
@@ -3809,9 +3822,9 @@ void GrpParser::featureEnv() {
 	RefAST featureEnv_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp151_AST = nullAST;
-		tmp151_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp151_AST);
+		RefAST tmp152_AST = nullAST;
+		tmp152_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp152_AST);
 		match(LITERAL_environment);
 		{
 		switch ( LA(1)) {
@@ -3841,8 +3854,8 @@ void GrpParser::featureEnv() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp152_AST = nullAST;
-			tmp152_AST = astFactory.create(LT(1));
+			RefAST tmp153_AST = nullAST;
+			tmp153_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -3892,15 +3905,15 @@ void GrpParser::featureEnv() {
 		} while (true);
 		_loop134:;
 		}
-		RefAST tmp153_AST = nullAST;
-		tmp153_AST = astFactory.create(LT(1));
+		RefAST tmp154_AST = nullAST;
+		tmp154_AST = astFactory.create(LT(1));
 		match(LITERAL_endenvironment);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp154_AST = nullAST;
-			tmp154_AST = astFactory.create(LT(1));
+			RefAST tmp155_AST = nullAST;
+			tmp155_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -3959,8 +3972,8 @@ void GrpParser::featureSpecList() {
 			astFactory.addASTChild(currentAST, returnAST);
 			{
 			if ((LA(1)==OP_SEMI) && (LA(2)==IDENT||LA(2)==LITERAL_name||LA(2)==LIT_INT) && (LA(3)==OP_EQ||LA(3)==OP_LBRACE||LA(3)==OP_DOT)) {
-				RefAST tmp155_AST = nullAST;
-				tmp155_AST = astFactory.create(LT(1));
+				RefAST tmp156_AST = nullAST;
+				tmp156_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 				featureSpecList();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -3976,8 +3989,8 @@ void GrpParser::featureSpecList() {
 			switch ( LA(1)) {
 			case OP_SEMI:
 			{
-				RefAST tmp156_AST = nullAST;
-				tmp156_AST = astFactory.create(LT(1));
+				RefAST tmp157_AST = nullAST;
+				tmp157_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 				break;
 			}
@@ -4048,8 +4061,8 @@ void GrpParser::featureSpecStruct() {
 		}
 		}
 		}
-		RefAST tmp157_AST = nullAST;
-		tmp157_AST = astFactory.create(LT(1));
+		RefAST tmp158_AST = nullAST;
+		tmp158_AST = astFactory.create(LT(1));
 		match(OP_LBRACE);
 		{
 		switch ( LA(1)) {
@@ -4071,13 +4084,13 @@ void GrpParser::featureSpecStruct() {
 		}
 		}
 		}
-		RefAST tmp158_AST = nullAST;
-		tmp158_AST = astFactory.create(LT(1));
+		RefAST tmp159_AST = nullAST;
+		tmp159_AST = astFactory.create(LT(1));
 		match(OP_RBRACE);
 		{
 		if ((LA(1)==OP_SEMI) && (_tokenSet_43.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
-			RefAST tmp159_AST = nullAST;
-			tmp159_AST = astFactory.create(LT(1));
+			RefAST tmp160_AST = nullAST;
+			tmp160_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 		}
 		else if ((_tokenSet_43.member(LA(1))) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -4312,9 +4325,9 @@ void GrpParser::languageEnv() {
 	RefAST languageEnv_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp160_AST = nullAST;
-		tmp160_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp160_AST);
+		RefAST tmp161_AST = nullAST;
+		tmp161_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp161_AST);
 		match(LITERAL_environment);
 		{
 		switch ( LA(1)) {
@@ -4342,8 +4355,8 @@ void GrpParser::languageEnv() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp161_AST = nullAST;
-			tmp161_AST = astFactory.create(LT(1));
+			RefAST tmp162_AST = nullAST;
+			tmp162_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -4389,15 +4402,15 @@ void GrpParser::languageEnv() {
 		} while (true);
 		_loop161:;
 		}
-		RefAST tmp162_AST = nullAST;
-		tmp162_AST = astFactory.create(LT(1));
+		RefAST tmp163_AST = nullAST;
+		tmp163_AST = astFactory.create(LT(1));
 		match(LITERAL_endenvironment);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp163_AST = nullAST;
-			tmp163_AST = astFactory.create(LT(1));
+			RefAST tmp164_AST = nullAST;
+			tmp164_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -4454,8 +4467,8 @@ void GrpParser::languageSpecList() {
 			astFactory.addASTChild(currentAST, returnAST);
 			{
 			if ((LA(1)==OP_SEMI) && (LA(2)==IDENT) && (LA(3)==OP_LBRACE||LA(3)==OP_DOT)) {
-				RefAST tmp164_AST = nullAST;
-				tmp164_AST = astFactory.create(LT(1));
+				RefAST tmp165_AST = nullAST;
+				tmp165_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 				languageSpecList();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -4469,8 +4482,8 @@ void GrpParser::languageSpecList() {
 			}
 			{
 			if ((LA(1)==OP_SEMI) && (_tokenSet_24.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
-				RefAST tmp165_AST = nullAST;
-				tmp165_AST = astFactory.create(LT(1));
+				RefAST tmp166_AST = nullAST;
+				tmp166_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 			}
 			else if ((_tokenSet_24.member(LA(1))) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -4514,8 +4527,8 @@ void GrpParser::languageSpec() {
 		switch ( LA(1)) {
 		case OP_DOT:
 		{
-			RefAST tmp166_AST = nullAST;
-			tmp166_AST = astFactory.create(LT(1));
+			RefAST tmp167_AST = nullAST;
+			tmp167_AST = astFactory.create(LT(1));
 			match(OP_DOT);
 			languageSpecItem();
 			X1_AST = returnAST;
@@ -4529,18 +4542,18 @@ void GrpParser::languageSpec() {
 		}
 		case OP_LBRACE:
 		{
-			RefAST tmp167_AST = nullAST;
-			tmp167_AST = astFactory.create(LT(1));
+			RefAST tmp168_AST = nullAST;
+			tmp168_AST = astFactory.create(LT(1));
 			match(OP_LBRACE);
 			languageItemList();
 			X2_AST = returnAST;
-			RefAST tmp168_AST = nullAST;
-			tmp168_AST = astFactory.create(LT(1));
+			RefAST tmp169_AST = nullAST;
+			tmp169_AST = astFactory.create(LT(1));
 			match(OP_RBRACE);
 			{
 			if ((LA(1)==OP_SEMI) && (_tokenSet_24.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
-				RefAST tmp169_AST = nullAST;
-				tmp169_AST = astFactory.create(LT(1));
+				RefAST tmp170_AST = nullAST;
+				tmp170_AST = astFactory.create(LT(1));
 				match(OP_SEMI);
 			}
 			else if ((_tokenSet_24.member(LA(1))) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -4683,8 +4696,8 @@ void GrpParser::languageSpecItem() {
 		}
 		{
 		if ((LA(1)==OP_SEMI) && (_tokenSet_45.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
-			RefAST tmp170_AST = nullAST;
-			tmp170_AST = astFactory.create(LT(1));
+			RefAST tmp171_AST = nullAST;
+			tmp171_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 		}
 		else if ((_tokenSet_45.member(LA(1))) && (_tokenSet_4.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
@@ -4744,30 +4757,30 @@ void GrpParser::languageCodeList() {
 		switch ( LA(1)) {
 		case LIT_STRING:
 		{
-			RefAST tmp171_AST = nullAST;
-			tmp171_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp171_AST);
+			RefAST tmp172_AST = nullAST;
+			tmp172_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp172_AST);
 			match(LIT_STRING);
 			break;
 		}
 		case OP_LPAREN:
 		{
-			RefAST tmp172_AST = nullAST;
-			tmp172_AST = astFactory.create(LT(1));
-			match(OP_LPAREN);
 			RefAST tmp173_AST = nullAST;
 			tmp173_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp173_AST);
+			match(OP_LPAREN);
+			RefAST tmp174_AST = nullAST;
+			tmp174_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp174_AST);
 			match(LIT_STRING);
 			{
 			do {
 				if ((LA(1)==OP_COMMA)) {
-					RefAST tmp174_AST = nullAST;
-					tmp174_AST = astFactory.create(LT(1));
-					match(OP_COMMA);
 					RefAST tmp175_AST = nullAST;
 					tmp175_AST = astFactory.create(LT(1));
-					astFactory.addASTChild(currentAST, tmp175_AST);
+					match(OP_COMMA);
+					RefAST tmp176_AST = nullAST;
+					tmp176_AST = astFactory.create(LT(1));
+					astFactory.addASTChild(currentAST, tmp176_AST);
 					match(LIT_STRING);
 				}
 				else {
@@ -4777,9 +4790,9 @@ void GrpParser::languageCodeList() {
 			} while (true);
 			_loop182:;
 			}
-			RefAST tmp176_AST = nullAST;
-			tmp176_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp176_AST);
+			RefAST tmp177_AST = nullAST;
+			tmp177_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp177_AST);
 			match(OP_RPAREN);
 			break;
 		}
@@ -4886,13 +4899,13 @@ void GrpParser::subIf() {
 		C1k = LT(1);
 		C1k_AST = astFactory.create(C1k);
 		match(LITERAL_if);
-		RefAST tmp177_AST = nullAST;
-		tmp177_AST = astFactory.create(LT(1));
+		RefAST tmp178_AST = nullAST;
+		tmp178_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		expr();
 		E_AST = returnAST;
-		RefAST tmp178_AST = nullAST;
-		tmp178_AST = astFactory.create(LT(1));
+		RefAST tmp179_AST = nullAST;
+		tmp179_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		subEntryList();
@@ -4934,15 +4947,15 @@ void GrpParser::subIf() {
 		}
 		}
 		}
-		RefAST tmp179_AST = nullAST;
-		tmp179_AST = astFactory.create(LT(1));
+		RefAST tmp180_AST = nullAST;
+		tmp180_AST = astFactory.create(LT(1));
 		match(LITERAL_endif);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp180_AST = nullAST;
-			tmp180_AST = astFactory.create(LT(1));
+			RefAST tmp181_AST = nullAST;
+			tmp181_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -5015,8 +5028,8 @@ void GrpParser::subRule() {
 		switch ( LA(1)) {
 		case OP_GT:
 		{
-			RefAST tmp181_AST = nullAST;
-			tmp181_AST = astFactory.create(LT(1));
+			RefAST tmp182_AST = nullAST;
+			tmp182_AST = astFactory.create(LT(1));
 			match(OP_GT);
 			{
 			subRhs();
@@ -5040,8 +5053,8 @@ void GrpParser::subRule() {
 		switch ( LA(1)) {
 		case OP_DIV:
 		{
-			RefAST tmp182_AST = nullAST;
-			tmp182_AST = astFactory.create(LT(1));
+			RefAST tmp183_AST = nullAST;
+			tmp183_AST = astFactory.create(LT(1));
 			match(OP_DIV);
 			{
 			context();
@@ -5060,8 +5073,8 @@ void GrpParser::subRule() {
 		}
 		}
 		}
-		RefAST tmp183_AST = nullAST;
-		tmp183_AST = astFactory.create(LT(1));
+		RefAST tmp184_AST = nullAST;
+		tmp184_AST = astFactory.create(LT(1));
 		match(OP_SEMI);
 		subRule_AST = currentAST.root;
 		subRule_AST = astFactory.make( (new ASTArray(4))->add(astFactory.create(Zrule))->add(L_AST)->add(R_AST)->add(C_AST));
@@ -5085,19 +5098,19 @@ void GrpParser::subPass() {
 	RefAST subPass_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp184_AST = nullAST;
-		tmp184_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp184_AST);
-		match(LITERAL_pass);
 		RefAST tmp185_AST = nullAST;
 		tmp185_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
+		astFactory.makeASTRoot(currentAST, tmp185_AST);
+		match(LITERAL_pass);
 		RefAST tmp186_AST = nullAST;
 		tmp186_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp186_AST);
-		match(LIT_INT);
+		match(OP_LPAREN);
 		RefAST tmp187_AST = nullAST;
 		tmp187_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp187_AST);
+		match(LIT_INT);
+		RefAST tmp188_AST = nullAST;
+		tmp188_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -5138,8 +5151,8 @@ void GrpParser::subPass() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp188_AST = nullAST;
-			tmp188_AST = astFactory.create(LT(1));
+			RefAST tmp189_AST = nullAST;
+			tmp189_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -5182,15 +5195,15 @@ void GrpParser::subPass() {
 		} while (true);
 		_loop200:;
 		}
-		RefAST tmp189_AST = nullAST;
-		tmp189_AST = astFactory.create(LT(1));
+		RefAST tmp190_AST = nullAST;
+		tmp190_AST = astFactory.create(LT(1));
 		match(LITERAL_endpass);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp190_AST = nullAST;
-			tmp190_AST = astFactory.create(LT(1));
+			RefAST tmp191_AST = nullAST;
+			tmp191_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -5243,9 +5256,9 @@ void GrpParser::subEnv() {
 	RefAST subEnv_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp191_AST = nullAST;
-		tmp191_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp191_AST);
+		RefAST tmp192_AST = nullAST;
+		tmp192_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp192_AST);
 		match(LITERAL_environment);
 		{
 		switch ( LA(1)) {
@@ -5286,8 +5299,8 @@ void GrpParser::subEnv() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp192_AST = nullAST;
-			tmp192_AST = astFactory.create(LT(1));
+			RefAST tmp193_AST = nullAST;
+			tmp193_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -5330,15 +5343,15 @@ void GrpParser::subEnv() {
 		} while (true);
 		_loop194:;
 		}
-		RefAST tmp193_AST = nullAST;
-		tmp193_AST = astFactory.create(LT(1));
+		RefAST tmp194_AST = nullAST;
+		tmp194_AST = astFactory.create(LT(1));
 		match(LITERAL_endenvironment);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp194_AST = nullAST;
-			tmp194_AST = astFactory.create(LT(1));
+			RefAST tmp195_AST = nullAST;
+			tmp195_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -5455,17 +5468,17 @@ void GrpParser::subElseIf() {
 		switch ( LA(1)) {
 		case Zelseif:
 		{
-			RefAST tmp195_AST = nullAST;
-			tmp195_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp195_AST);
+			RefAST tmp196_AST = nullAST;
+			tmp196_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp196_AST);
 			match(Zelseif);
 			break;
 		}
 		case LITERAL_elseif:
 		{
-			RefAST tmp196_AST = nullAST;
-			tmp196_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp196_AST);
+			RefAST tmp197_AST = nullAST;
+			tmp197_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp197_AST);
 			match(LITERAL_elseif);
 			break;
 		}
@@ -5475,13 +5488,13 @@ void GrpParser::subElseIf() {
 		}
 		}
 		}
-		RefAST tmp197_AST = nullAST;
-		tmp197_AST = astFactory.create(LT(1));
+		RefAST tmp198_AST = nullAST;
+		tmp198_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		expr();
 		astFactory.addASTChild(currentAST, returnAST);
-		RefAST tmp198_AST = nullAST;
-		tmp198_AST = astFactory.create(LT(1));
+		RefAST tmp199_AST = nullAST;
+		tmp199_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		subEntryList();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -5680,8 +5693,8 @@ void GrpParser::subLhsList() {
 	
 	try {      // for error handling
 		{
-		RefAST tmp199_AST = nullAST;
-		tmp199_AST = astFactory.create(LT(1));
+		RefAST tmp200_AST = nullAST;
+		tmp200_AST = astFactory.create(LT(1));
 		match(OP_LBRACKET);
 		{
 		int _cnt230=0;
@@ -5698,13 +5711,13 @@ void GrpParser::subLhsList() {
 		} while (true);
 		_loop230:;
 		}
-		RefAST tmp200_AST = nullAST;
-		tmp200_AST = astFactory.create(LT(1));
-		match(OP_RBRACKET);
-		}
 		RefAST tmp201_AST = nullAST;
 		tmp201_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp201_AST);
+		match(OP_RBRACKET);
+		}
+		RefAST tmp202_AST = nullAST;
+		tmp202_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp202_AST);
 		match(OP_QUESTION);
 		subLhsList_AST = currentAST.root;
 	}
@@ -5813,8 +5826,8 @@ void GrpParser::subRhsItem() {
 			case OP_COLON:
 			{
 				{
-				RefAST tmp202_AST = nullAST;
-				tmp202_AST = astFactory.create(LT(1));
+				RefAST tmp203_AST = nullAST;
+				tmp203_AST = astFactory.create(LT(1));
 				match(OP_COLON);
 				associations();
 				C4a1_AST = returnAST;
@@ -5822,8 +5835,8 @@ void GrpParser::subRhsItem() {
 				switch ( LA(1)) {
 				case OP_DOLLAR:
 				{
-					RefAST tmp203_AST = nullAST;
-					tmp203_AST = astFactory.create(LT(1));
+					RefAST tmp204_AST = nullAST;
+					tmp204_AST = astFactory.create(LT(1));
 					match(OP_DOLLAR);
 					selector();
 					C4s1_AST = returnAST;
@@ -5863,8 +5876,8 @@ void GrpParser::subRhsItem() {
 			case OP_DOLLAR:
 			{
 				{
-				RefAST tmp204_AST = nullAST;
-				tmp204_AST = astFactory.create(LT(1));
+				RefAST tmp205_AST = nullAST;
+				tmp205_AST = astFactory.create(LT(1));
 				match(OP_DOLLAR);
 				selector();
 				C4s2_AST = returnAST;
@@ -5872,8 +5885,8 @@ void GrpParser::subRhsItem() {
 				switch ( LA(1)) {
 				case OP_COLON:
 				{
-					RefAST tmp205_AST = nullAST;
-					tmp205_AST = astFactory.create(LT(1));
+					RefAST tmp206_AST = nullAST;
+					tmp206_AST = astFactory.create(LT(1));
 					match(OP_COLON);
 					associations();
 					C4a2_AST = returnAST;
@@ -5953,8 +5966,8 @@ void GrpParser::subRhsItem() {
 				switch ( LA(1)) {
 				case OP_COLON:
 				{
-					RefAST tmp206_AST = nullAST;
-					tmp206_AST = astFactory.create(LT(1));
+					RefAST tmp207_AST = nullAST;
+					tmp207_AST = astFactory.create(LT(1));
 					match(OP_COLON);
 					associations();
 					C2a_AST = returnAST;
@@ -5999,8 +6012,8 @@ void GrpParser::subRhsItem() {
 				switch ( LA(1)) {
 				case OP_COLON:
 				{
-					RefAST tmp207_AST = nullAST;
-					tmp207_AST = astFactory.create(LT(1));
+					RefAST tmp208_AST = nullAST;
+					tmp208_AST = astFactory.create(LT(1));
 					match(OP_COLON);
 					break;
 				}
@@ -6245,9 +6258,9 @@ void GrpParser::alias() {
 	RefAST I_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp208_AST = nullAST;
-		tmp208_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp208_AST);
+		RefAST tmp209_AST = nullAST;
+		tmp209_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp209_AST);
 		match(OP_EQ);
 		I = LT(1);
 		I_AST = astFactory.create(I);
@@ -6280,25 +6293,25 @@ void GrpParser::slotIndicator() {
 		switch ( LA(1)) {
 		case LIT_INT:
 		{
-			RefAST tmp209_AST = nullAST;
-			tmp209_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp209_AST);
+			RefAST tmp210_AST = nullAST;
+			tmp210_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp210_AST);
 			match(LIT_INT);
 			break;
 		}
 		case IDENT:
 		{
-			RefAST tmp210_AST = nullAST;
-			tmp210_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp210_AST);
+			RefAST tmp211_AST = nullAST;
+			tmp211_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp211_AST);
 			match(IDENT);
 			break;
 		}
 		case Qalias:
 		{
-			RefAST tmp211_AST = nullAST;
-			tmp211_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp211_AST);
+			RefAST tmp212_AST = nullAST;
+			tmp212_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp212_AST);
 			match(Qalias);
 			break;
 		}
@@ -6326,8 +6339,8 @@ void GrpParser::assocsList() {
 	
 	try {      // for error handling
 		{
-		RefAST tmp212_AST = nullAST;
-		tmp212_AST = astFactory.create(LT(1));
+		RefAST tmp213_AST = nullAST;
+		tmp213_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		{
 		switch ( LA(1)) {
@@ -6344,8 +6357,8 @@ void GrpParser::assocsList() {
 					switch ( LA(1)) {
 					case OP_COMMA:
 					{
-						RefAST tmp213_AST = nullAST;
-						tmp213_AST = astFactory.create(LT(1));
+						RefAST tmp214_AST = nullAST;
+						tmp214_AST = astFactory.create(LT(1));
 						match(OP_COMMA);
 						break;
 					}
@@ -6383,8 +6396,8 @@ void GrpParser::assocsList() {
 		}
 		}
 		}
-		RefAST tmp214_AST = nullAST;
-		tmp214_AST = astFactory.create(LT(1));
+		RefAST tmp215_AST = nullAST;
+		tmp215_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		}
 		assocsList_AST = currentAST.root;
@@ -6408,17 +6421,17 @@ void GrpParser::slotIndicatorAfterAt() {
 		switch ( LA(1)) {
 		case LIT_INT:
 		{
-			RefAST tmp215_AST = nullAST;
-			tmp215_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp215_AST);
+			RefAST tmp216_AST = nullAST;
+			tmp216_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp216_AST);
 			match(LIT_INT);
 			break;
 		}
 		case Qalias:
 		{
-			RefAST tmp216_AST = nullAST;
-			tmp216_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp216_AST);
+			RefAST tmp217_AST = nullAST;
+			tmp217_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp217_AST);
 			match(Qalias);
 			break;
 		}
@@ -6525,13 +6538,13 @@ void GrpParser::posIf() {
 		C1k = LT(1);
 		C1k_AST = astFactory.create(C1k);
 		match(LITERAL_if);
-		RefAST tmp217_AST = nullAST;
-		tmp217_AST = astFactory.create(LT(1));
+		RefAST tmp218_AST = nullAST;
+		tmp218_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		expr();
 		E_AST = returnAST;
-		RefAST tmp218_AST = nullAST;
-		tmp218_AST = astFactory.create(LT(1));
+		RefAST tmp219_AST = nullAST;
+		tmp219_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		posEntryList();
@@ -6573,15 +6586,15 @@ void GrpParser::posIf() {
 		}
 		}
 		}
-		RefAST tmp219_AST = nullAST;
-		tmp219_AST = astFactory.create(LT(1));
+		RefAST tmp220_AST = nullAST;
+		tmp220_AST = astFactory.create(LT(1));
 		match(LITERAL_endif);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp220_AST = nullAST;
-			tmp220_AST = astFactory.create(LT(1));
+			RefAST tmp221_AST = nullAST;
+			tmp221_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -6652,8 +6665,8 @@ void GrpParser::posRule() {
 		switch ( LA(1)) {
 		case OP_DIV:
 		{
-			RefAST tmp221_AST = nullAST;
-			tmp221_AST = astFactory.create(LT(1));
+			RefAST tmp222_AST = nullAST;
+			tmp222_AST = astFactory.create(LT(1));
 			match(OP_DIV);
 			{
 			context();
@@ -6672,8 +6685,8 @@ void GrpParser::posRule() {
 		}
 		}
 		}
-		RefAST tmp222_AST = nullAST;
-		tmp222_AST = astFactory.create(LT(1));
+		RefAST tmp223_AST = nullAST;
+		tmp223_AST = astFactory.create(LT(1));
 		match(OP_SEMI);
 		posRule_AST = currentAST.root;
 		posRule_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(Zrule))->add(R_AST)->add(C_AST));
@@ -6697,19 +6710,19 @@ void GrpParser::posPass() {
 	RefAST posPass_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp223_AST = nullAST;
-		tmp223_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp223_AST);
-		match(LITERAL_pass);
 		RefAST tmp224_AST = nullAST;
 		tmp224_AST = astFactory.create(LT(1));
-		match(OP_LPAREN);
+		astFactory.makeASTRoot(currentAST, tmp224_AST);
+		match(LITERAL_pass);
 		RefAST tmp225_AST = nullAST;
 		tmp225_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp225_AST);
-		match(LIT_INT);
+		match(OP_LPAREN);
 		RefAST tmp226_AST = nullAST;
 		tmp226_AST = astFactory.create(LT(1));
+		astFactory.addASTChild(currentAST, tmp226_AST);
+		match(LIT_INT);
+		RefAST tmp227_AST = nullAST;
+		tmp227_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		{
 		switch ( LA(1)) {
@@ -6750,8 +6763,8 @@ void GrpParser::posPass() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp227_AST = nullAST;
-			tmp227_AST = astFactory.create(LT(1));
+			RefAST tmp228_AST = nullAST;
+			tmp228_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -6794,15 +6807,15 @@ void GrpParser::posPass() {
 		} while (true);
 		_loop288:;
 		}
-		RefAST tmp228_AST = nullAST;
-		tmp228_AST = astFactory.create(LT(1));
+		RefAST tmp229_AST = nullAST;
+		tmp229_AST = astFactory.create(LT(1));
 		match(LITERAL_endpass);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp229_AST = nullAST;
-			tmp229_AST = astFactory.create(LT(1));
+			RefAST tmp230_AST = nullAST;
+			tmp230_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -6855,9 +6868,9 @@ void GrpParser::posEnv() {
 	RefAST posEnv_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp230_AST = nullAST;
-		tmp230_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp230_AST);
+		RefAST tmp231_AST = nullAST;
+		tmp231_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp231_AST);
 		match(LITERAL_environment);
 		{
 		switch ( LA(1)) {
@@ -6898,8 +6911,8 @@ void GrpParser::posEnv() {
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp231_AST = nullAST;
-			tmp231_AST = astFactory.create(LT(1));
+			RefAST tmp232_AST = nullAST;
+			tmp232_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -6942,15 +6955,15 @@ void GrpParser::posEnv() {
 		} while (true);
 		_loop282:;
 		}
-		RefAST tmp232_AST = nullAST;
-		tmp232_AST = astFactory.create(LT(1));
+		RefAST tmp233_AST = nullAST;
+		tmp233_AST = astFactory.create(LT(1));
 		match(LITERAL_endenvironment);
 		{
 		switch ( LA(1)) {
 		case OP_SEMI:
 		{
-			RefAST tmp233_AST = nullAST;
-			tmp233_AST = astFactory.create(LT(1));
+			RefAST tmp234_AST = nullAST;
+			tmp234_AST = astFactory.create(LT(1));
 			match(OP_SEMI);
 			break;
 		}
@@ -7067,17 +7080,17 @@ void GrpParser::posElseIf() {
 		switch ( LA(1)) {
 		case Zelseif:
 		{
-			RefAST tmp234_AST = nullAST;
-			tmp234_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp234_AST);
+			RefAST tmp235_AST = nullAST;
+			tmp235_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp235_AST);
 			match(Zelseif);
 			break;
 		}
 		case LITERAL_elseif:
 		{
-			RefAST tmp235_AST = nullAST;
-			tmp235_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp235_AST);
+			RefAST tmp236_AST = nullAST;
+			tmp236_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp236_AST);
 			match(LITERAL_elseif);
 			break;
 		}
@@ -7087,13 +7100,13 @@ void GrpParser::posElseIf() {
 		}
 		}
 		}
-		RefAST tmp236_AST = nullAST;
-		tmp236_AST = astFactory.create(LT(1));
+		RefAST tmp237_AST = nullAST;
+		tmp237_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		expr();
 		astFactory.addASTChild(currentAST, returnAST);
-		RefAST tmp237_AST = nullAST;
-		tmp237_AST = astFactory.create(LT(1));
+		RefAST tmp238_AST = nullAST;
+		tmp238_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		posEntryList();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -7230,8 +7243,8 @@ void GrpParser::posRhsList() {
 	
 	try {      // for error handling
 		{
-		RefAST tmp238_AST = nullAST;
-		tmp238_AST = astFactory.create(LT(1));
+		RefAST tmp239_AST = nullAST;
+		tmp239_AST = astFactory.create(LT(1));
 		match(OP_LBRACKET);
 		{
 		int _cnt316=0;
@@ -7248,13 +7261,13 @@ void GrpParser::posRhsList() {
 		} while (true);
 		_loop316:;
 		}
-		RefAST tmp239_AST = nullAST;
-		tmp239_AST = astFactory.create(LT(1));
-		match(OP_RBRACKET);
-		}
 		RefAST tmp240_AST = nullAST;
 		tmp240_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp240_AST);
+		match(OP_RBRACKET);
+		}
+		RefAST tmp241_AST = nullAST;
+		tmp241_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp241_AST);
 		match(OP_QUESTION);
 		posRhsList_AST = currentAST.root;
 	}
@@ -7391,8 +7404,8 @@ void GrpParser::contextList() {
 	RefAST contextList_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp241_AST = nullAST;
-		tmp241_AST = astFactory.create(LT(1));
+		RefAST tmp242_AST = nullAST;
+		tmp242_AST = astFactory.create(LT(1));
 		match(OP_LBRACKET);
 		{
 		int _cnt332=0;
@@ -7409,12 +7422,12 @@ void GrpParser::contextList() {
 		} while (true);
 		_loop332:;
 		}
-		RefAST tmp242_AST = nullAST;
-		tmp242_AST = astFactory.create(LT(1));
-		match(OP_RBRACKET);
 		RefAST tmp243_AST = nullAST;
 		tmp243_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp243_AST);
+		match(OP_RBRACKET);
+		RefAST tmp244_AST = nullAST;
+		tmp244_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp244_AST);
 		match(OP_QUESTION);
 		contextList_AST = currentAST.root;
 	}
@@ -7563,8 +7576,8 @@ void GrpParser::constraint() {
 	RefAST X_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp244_AST = nullAST;
-		tmp244_AST = astFactory.create(LT(1));
+		RefAST tmp245_AST = nullAST;
+		tmp245_AST = astFactory.create(LT(1));
 		match(OP_LBRACE);
 		{
 		switch ( LA(1)) {
@@ -7599,8 +7612,8 @@ void GrpParser::constraint() {
 		}
 		}
 		}
-		RefAST tmp245_AST = nullAST;
-		tmp245_AST = astFactory.create(LT(1));
+		RefAST tmp246_AST = nullAST;
+		tmp246_AST = astFactory.create(LT(1));
 		match(OP_RBRACE);
 		constraint_AST = currentAST.root;
 		constraint_AST = astFactory.make( (new ASTArray(2))->add(astFactory.create(Zconstraint))->add(X_AST));
@@ -7628,8 +7641,8 @@ void GrpParser::otherEntry() {
 		{
 		if ((_tokenSet_77.member(LA(1))) && ((LA(2) >= OP_EQ && LA(2) <= AT_IDENT)) && (_tokenSet_4.member(LA(3)))) {
 			{
-			RefAST tmp246_AST = nullAST;
-			tmp246_AST = astFactory.create(LT(1));
+			RefAST tmp247_AST = nullAST;
+			tmp247_AST = astFactory.create(LT(1));
 			match(_tokenSet_77);
 			}
 		}
@@ -7668,49 +7681,49 @@ void GrpParser::attrName() {
 		switch ( LA(1)) {
 		case IDENT:
 		{
-			RefAST tmp247_AST = nullAST;
-			tmp247_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp247_AST);
+			RefAST tmp248_AST = nullAST;
+			tmp248_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp248_AST);
 			match(IDENT);
 			break;
 		}
 		case LIT_INT:
 		{
-			RefAST tmp248_AST = nullAST;
-			tmp248_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp248_AST);
+			RefAST tmp249_AST = nullAST;
+			tmp249_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp249_AST);
 			match(LIT_INT);
 			break;
 		}
 		case LITERAL_glyph:
 		{
-			RefAST tmp249_AST = nullAST;
-			tmp249_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp249_AST);
+			RefAST tmp250_AST = nullAST;
+			tmp250_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp250_AST);
 			match(LITERAL_glyph);
 			break;
 		}
 		case LITERAL_justify:
 		{
-			RefAST tmp250_AST = nullAST;
-			tmp250_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp250_AST);
+			RefAST tmp251_AST = nullAST;
+			tmp251_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp251_AST);
 			match(LITERAL_justify);
 			break;
 		}
 		case LITERAL_min:
 		{
-			RefAST tmp251_AST = nullAST;
-			tmp251_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp251_AST);
+			RefAST tmp252_AST = nullAST;
+			tmp252_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp252_AST);
 			match(LITERAL_min);
 			break;
 		}
 		case LITERAL_max:
 		{
-			RefAST tmp252_AST = nullAST;
-			tmp252_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp252_AST);
+			RefAST tmp253_AST = nullAST;
+			tmp253_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp253_AST);
 			match(LITERAL_max);
 			break;
 		}
@@ -7741,41 +7754,41 @@ void GrpParser::attrAssignOp() {
 		switch ( LA(1)) {
 		case OP_EQ:
 		{
-			RefAST tmp253_AST = nullAST;
-			tmp253_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp253_AST);
+			RefAST tmp254_AST = nullAST;
+			tmp254_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp254_AST);
 			match(OP_EQ);
 			break;
 		}
 		case OP_PLUSEQUAL:
 		{
-			RefAST tmp254_AST = nullAST;
-			tmp254_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp254_AST);
+			RefAST tmp255_AST = nullAST;
+			tmp255_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp255_AST);
 			match(OP_PLUSEQUAL);
 			break;
 		}
 		case OP_MINUSEQUAL:
 		{
-			RefAST tmp255_AST = nullAST;
-			tmp255_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp255_AST);
+			RefAST tmp256_AST = nullAST;
+			tmp256_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp256_AST);
 			match(OP_MINUSEQUAL);
 			break;
 		}
 		case OP_DIVEQUAL:
 		{
-			RefAST tmp256_AST = nullAST;
-			tmp256_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp256_AST);
+			RefAST tmp257_AST = nullAST;
+			tmp257_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp257_AST);
 			match(OP_DIVEQUAL);
 			break;
 		}
 		case OP_MULTEQUAL:
 		{
-			RefAST tmp257_AST = nullAST;
-			tmp257_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp257_AST);
+			RefAST tmp258_AST = nullAST;
+			tmp258_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp258_AST);
 			match(OP_MULTEQUAL);
 			break;
 		}
@@ -7808,8 +7821,8 @@ void GrpParser::function() {
 		I = LT(1);
 		I_AST = astFactory.create(I);
 		match(IDENT);
-		RefAST tmp258_AST = nullAST;
-		tmp258_AST = astFactory.create(LT(1));
+		RefAST tmp259_AST = nullAST;
+		tmp259_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		{
 		switch ( LA(1)) {
@@ -7844,8 +7857,8 @@ void GrpParser::function() {
 		}
 		}
 		}
-		RefAST tmp259_AST = nullAST;
-		tmp259_AST = astFactory.create(LT(1));
+		RefAST tmp260_AST = nullAST;
+		tmp260_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		function_AST = currentAST.root;
 		function_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(Zfunction))->add(I_AST)->add(E_AST));
@@ -7875,15 +7888,15 @@ void GrpParser::conditionalExpr() {
 		switch ( LA(1)) {
 		case OP_QUESTION:
 		{
-			RefAST tmp260_AST = nullAST;
-			tmp260_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp260_AST);
+			RefAST tmp261_AST = nullAST;
+			tmp261_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp261_AST);
 			match(OP_QUESTION);
 			expr();
 			astFactory.addASTChild(currentAST, returnAST);
-			RefAST tmp261_AST = nullAST;
-			tmp261_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp261_AST);
+			RefAST tmp262_AST = nullAST;
+			tmp262_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp262_AST);
 			match(OP_COLON);
 			expr();
 			astFactory.addASTChild(currentAST, returnAST);
@@ -7899,6 +7912,7 @@ void GrpParser::conditionalExpr() {
 		case LITERAL_table:
 		case LITERAL_endtable:
 		case OP_COMMA:
+		case LITERAL_glyph:
 		case OP_COLON:
 		case LITERAL_position:
 		{
@@ -7932,9 +7946,9 @@ void GrpParser::logicalOrExpr() {
 		{
 		do {
 			if ((LA(1)==OP_OR)) {
-				RefAST tmp262_AST = nullAST;
-				tmp262_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp262_AST);
+				RefAST tmp263_AST = nullAST;
+				tmp263_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp263_AST);
 				match(OP_OR);
 				logicalAndExpr();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -7968,9 +7982,9 @@ void GrpParser::logicalAndExpr() {
 		{
 		do {
 			if ((LA(1)==OP_AND)) {
-				RefAST tmp263_AST = nullAST;
-				tmp263_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp263_AST);
+				RefAST tmp264_AST = nullAST;
+				tmp264_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp264_AST);
 				match(OP_AND);
 				bitwiseOrExpr();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -8004,9 +8018,9 @@ void GrpParser::bitwiseOrExpr() {
 		{
 		do {
 			if ((LA(1)==OP_BITOR)) {
-				RefAST tmp264_AST = nullAST;
-				tmp264_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp264_AST);
+				RefAST tmp265_AST = nullAST;
+				tmp265_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp265_AST);
 				match(OP_BITOR);
 				bitwiseAndExpr();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -8040,9 +8054,9 @@ void GrpParser::bitwiseAndExpr() {
 		{
 		do {
 			if ((LA(1)==OP_BITAND)) {
-				RefAST tmp265_AST = nullAST;
-				tmp265_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp265_AST);
+				RefAST tmp266_AST = nullAST;
+				tmp266_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp266_AST);
 				match(OP_BITAND);
 				comparativeExpr();
 				astFactory.addASTChild(currentAST, returnAST);
@@ -8080,57 +8094,57 @@ void GrpParser::comparativeExpr() {
 				switch ( LA(1)) {
 				case OP_EQUALEQUAL:
 				{
-					RefAST tmp266_AST = nullAST;
-					tmp266_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp266_AST);
+					RefAST tmp267_AST = nullAST;
+					tmp267_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp267_AST);
 					match(OP_EQUALEQUAL);
 					break;
 				}
 				case OP_NE:
 				{
-					RefAST tmp267_AST = nullAST;
-					tmp267_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp267_AST);
+					RefAST tmp268_AST = nullAST;
+					tmp268_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp268_AST);
 					match(OP_NE);
 					break;
 				}
 				case OP_LT:
 				{
-					RefAST tmp268_AST = nullAST;
-					tmp268_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp268_AST);
+					RefAST tmp269_AST = nullAST;
+					tmp269_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp269_AST);
 					match(OP_LT);
 					break;
 				}
 				case OP_LE:
 				{
-					RefAST tmp269_AST = nullAST;
-					tmp269_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp269_AST);
+					RefAST tmp270_AST = nullAST;
+					tmp270_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp270_AST);
 					match(OP_LE);
 					break;
 				}
 				case OP_GT:
 				{
-					RefAST tmp270_AST = nullAST;
-					tmp270_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp270_AST);
+					RefAST tmp271_AST = nullAST;
+					tmp271_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp271_AST);
 					match(OP_GT);
 					break;
 				}
 				case OP_GE:
 				{
-					RefAST tmp271_AST = nullAST;
-					tmp271_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp271_AST);
+					RefAST tmp272_AST = nullAST;
+					tmp272_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp272_AST);
 					match(OP_GE);
 					break;
 				}
 				case OP_EQ:
 				{
-					RefAST tmp272_AST = nullAST;
-					tmp272_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp272_AST);
+					RefAST tmp273_AST = nullAST;
+					tmp273_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp273_AST);
 					match(OP_EQ);
 					break;
 				}
@@ -8176,17 +8190,17 @@ void GrpParser::additiveExpr() {
 				switch ( LA(1)) {
 				case OP_PLUS:
 				{
-					RefAST tmp273_AST = nullAST;
-					tmp273_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp273_AST);
+					RefAST tmp274_AST = nullAST;
+					tmp274_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp274_AST);
 					match(OP_PLUS);
 					break;
 				}
 				case OP_MINUS:
 				{
-					RefAST tmp274_AST = nullAST;
-					tmp274_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp274_AST);
+					RefAST tmp275_AST = nullAST;
+					tmp275_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp275_AST);
 					match(OP_MINUS);
 					break;
 				}
@@ -8232,17 +8246,17 @@ void GrpParser::multiplicativeExpr() {
 				switch ( LA(1)) {
 				case OP_MULT:
 				{
-					RefAST tmp275_AST = nullAST;
-					tmp275_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp275_AST);
+					RefAST tmp276_AST = nullAST;
+					tmp276_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp276_AST);
 					match(OP_MULT);
 					break;
 				}
 				case OP_DIV:
 				{
-					RefAST tmp276_AST = nullAST;
-					tmp276_AST = astFactory.create(LT(1));
-					astFactory.makeASTRoot(currentAST, tmp276_AST);
+					RefAST tmp277_AST = nullAST;
+					tmp277_AST = astFactory.create(LT(1));
+					astFactory.makeASTRoot(currentAST, tmp277_AST);
 					match(OP_DIV);
 					break;
 				}
@@ -8286,25 +8300,25 @@ void GrpParser::unaryExpr() {
 			switch ( LA(1)) {
 			case OP_NOT:
 			{
-				RefAST tmp277_AST = nullAST;
-				tmp277_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp277_AST);
+				RefAST tmp278_AST = nullAST;
+				tmp278_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp278_AST);
 				match(OP_NOT);
 				break;
 			}
 			case OP_MINUS:
 			{
-				RefAST tmp278_AST = nullAST;
-				tmp278_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp278_AST);
+				RefAST tmp279_AST = nullAST;
+				tmp279_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp279_AST);
 				match(OP_MINUS);
 				break;
 			}
 			case OP_BITNOT:
 			{
-				RefAST tmp279_AST = nullAST;
-				tmp279_AST = astFactory.create(LT(1));
-				astFactory.makeASTRoot(currentAST, tmp279_AST);
+				RefAST tmp280_AST = nullAST;
+				tmp280_AST = astFactory.create(LT(1));
+				astFactory.makeASTRoot(currentAST, tmp280_AST);
 				match(OP_BITNOT);
 				break;
 			}
@@ -8348,21 +8362,21 @@ void GrpParser::singleExpr() {
 		switch ( LA(1)) {
 		case OP_LPAREN:
 		{
-			RefAST tmp280_AST = nullAST;
-			tmp280_AST = astFactory.create(LT(1));
+			RefAST tmp281_AST = nullAST;
+			tmp281_AST = astFactory.create(LT(1));
 			match(OP_LPAREN);
 			expr();
 			astFactory.addASTChild(currentAST, returnAST);
-			RefAST tmp281_AST = nullAST;
-			tmp281_AST = astFactory.create(LT(1));
+			RefAST tmp282_AST = nullAST;
+			tmp282_AST = astFactory.create(LT(1));
 			match(OP_RPAREN);
 			break;
 		}
 		case LIT_STRING:
 		{
-			RefAST tmp282_AST = nullAST;
-			tmp282_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp282_AST);
+			RefAST tmp283_AST = nullAST;
+			tmp283_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp283_AST);
 			match(LIT_STRING);
 			break;
 		}
@@ -8421,17 +8435,17 @@ void GrpParser::arithFunction() {
 		switch ( LA(1)) {
 		case LITERAL_max:
 		{
-			RefAST tmp283_AST = nullAST;
-			tmp283_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp283_AST);
+			RefAST tmp284_AST = nullAST;
+			tmp284_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp284_AST);
 			match(LITERAL_max);
 			break;
 		}
 		case LITERAL_min:
 		{
-			RefAST tmp284_AST = nullAST;
-			tmp284_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp284_AST);
+			RefAST tmp285_AST = nullAST;
+			tmp285_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp285_AST);
 			match(LITERAL_min);
 			break;
 		}
@@ -8441,8 +8455,8 @@ void GrpParser::arithFunction() {
 		}
 		}
 		}
-		RefAST tmp285_AST = nullAST;
-		tmp285_AST = astFactory.create(LT(1));
+		RefAST tmp286_AST = nullAST;
+		tmp286_AST = astFactory.create(LT(1));
 		match(OP_LPAREN);
 		{
 		switch ( LA(1)) {
@@ -8478,8 +8492,8 @@ void GrpParser::arithFunction() {
 		}
 		}
 		}
-		RefAST tmp286_AST = nullAST;
-		tmp286_AST = astFactory.create(LT(1));
+		RefAST tmp287_AST = nullAST;
+		tmp287_AST = astFactory.create(LT(1));
 		match(OP_RPAREN);
 		arithFunction_AST = currentAST.root;
 	}
@@ -8517,29 +8531,22 @@ void GrpParser::lookupExpr() {
 			switch ( LA(1)) {
 			case OP_DOT:
 			{
-				RefAST tmp287_AST = nullAST;
-				tmp287_AST = astFactory.create(LT(1));
+				RefAST tmp288_AST = nullAST;
+				tmp288_AST = astFactory.create(LT(1));
 				match(OP_DOT);
 				{
-				switch ( LA(1)) {
-				case LITERAL_glyph:
-				{
+				if ((LA(1)==LITERAL_glyph) && (LA(2)==OP_DOT) && (LA(3)==IDENT||LA(3)==LITERAL_glyph||LA(3)==LITERAL_position)) {
 					glyphIdentDot();
 					I1g_AST = returnAST;
-					break;
 				}
-				case IDENT:
-				case LITERAL_position:
-				{
+				else if ((LA(1)==IDENT||LA(1)==LITERAL_glyph||LA(1)==LITERAL_position) && (_tokenSet_90.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
 					identDot();
 					I1_AST = returnAST;
-					break;
 				}
-				default:
-				{
+				else {
 					throw NoViableAltException(LT(1));
 				}
-				}
+				
 				}
 				{
 				switch ( LA(1)) {
@@ -8560,6 +8567,7 @@ void GrpParser::lookupExpr() {
 				case LITERAL_table:
 				case LITERAL_endtable:
 				case OP_COMMA:
+				case LITERAL_glyph:
 				case OP_GT:
 				case OP_DIV:
 				case OP_QUESTION:
@@ -8605,6 +8613,7 @@ void GrpParser::lookupExpr() {
 			case LITERAL_table:
 			case LITERAL_endtable:
 			case OP_COMMA:
+			case LITERAL_glyph:
 			case OP_GT:
 			case OP_DIV:
 			case OP_QUESTION:
@@ -8651,123 +8660,120 @@ void GrpParser::lookupExpr() {
 			currentAST.advanceChildToEnd();
 			break;
 		}
-		case LITERAL_glyph:
-		{
-			glyphIdentDot();
-			I4_AST = returnAST;
-			{
-			switch ( LA(1)) {
-			case OP_DOT:
-			{
-				clusterExpr();
-				C4_AST = returnAST;
-				break;
-			}
-			case Token::EOF_TYPE:
-			case OP_EQ:
-			case OP_RPAREN:
-			case OP_SEMI:
-			case LITERAL_environment:
-			case LITERAL_endenvironment:
-			case OP_RBRACE:
-			case IDENT:
-			case LITERAL_table:
-			case LITERAL_endtable:
-			case OP_COMMA:
-			case OP_GT:
-			case OP_DIV:
-			case OP_QUESTION:
-			case OP_COLON:
-			case LITERAL_position:
-			case OP_OR:
-			case OP_AND:
-			case OP_BITOR:
-			case OP_BITAND:
-			case OP_EQUALEQUAL:
-			case OP_NE:
-			case OP_LT:
-			case OP_LE:
-			case OP_GE:
-			case OP_PLUS:
-			case OP_MINUS:
-			case OP_MULT:
-			{
-				break;
-			}
-			default:
-			{
-				throw NoViableAltException(LT(1));
-			}
-			}
-			}
-			lookupExpr_AST = currentAST.root;
-			lookupExpr_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(Zlookup))->add(I4_AST)->add(C4_AST));
-			currentAST.root = lookupExpr_AST;
-			currentAST.child = lookupExpr_AST!=nullAST &&lookupExpr_AST->getFirstChild()!=nullAST ?
-				lookupExpr_AST->getFirstChild() : lookupExpr_AST;
-			currentAST.advanceChildToEnd();
-			break;
-		}
-		case IDENT:
-		case LITERAL_position:
-		{
-			identDot();
-			I2_AST = returnAST;
-			{
-			switch ( LA(1)) {
-			case OP_DOT:
-			{
-				clusterExpr();
-				C2_AST = returnAST;
-				break;
-			}
-			case Token::EOF_TYPE:
-			case OP_EQ:
-			case OP_RPAREN:
-			case OP_SEMI:
-			case LITERAL_environment:
-			case LITERAL_endenvironment:
-			case OP_RBRACE:
-			case IDENT:
-			case LITERAL_table:
-			case LITERAL_endtable:
-			case OP_COMMA:
-			case OP_GT:
-			case OP_DIV:
-			case OP_QUESTION:
-			case OP_COLON:
-			case LITERAL_position:
-			case OP_OR:
-			case OP_AND:
-			case OP_BITOR:
-			case OP_BITAND:
-			case OP_EQUALEQUAL:
-			case OP_NE:
-			case OP_LT:
-			case OP_LE:
-			case OP_GE:
-			case OP_PLUS:
-			case OP_MINUS:
-			case OP_MULT:
-			{
-				break;
-			}
-			default:
-			{
-				throw NoViableAltException(LT(1));
-			}
-			}
-			}
-			lookupExpr_AST = currentAST.root;
-			lookupExpr_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(Zlookup))->add(I2_AST)->add(C2_AST));
-			currentAST.root = lookupExpr_AST;
-			currentAST.child = lookupExpr_AST!=nullAST &&lookupExpr_AST->getFirstChild()!=nullAST ?
-				lookupExpr_AST->getFirstChild() : lookupExpr_AST;
-			currentAST.advanceChildToEnd();
-			break;
-		}
 		default:
-		{
+			if ((LA(1)==LITERAL_glyph) && (LA(2)==OP_DOT) && (LA(3)==IDENT||LA(3)==LITERAL_glyph||LA(3)==LITERAL_position)) {
+				glyphIdentDot();
+				I4_AST = returnAST;
+				{
+				switch ( LA(1)) {
+				case OP_DOT:
+				{
+					clusterExpr();
+					C4_AST = returnAST;
+					break;
+				}
+				case Token::EOF_TYPE:
+				case OP_EQ:
+				case OP_RPAREN:
+				case OP_SEMI:
+				case LITERAL_environment:
+				case LITERAL_endenvironment:
+				case OP_RBRACE:
+				case IDENT:
+				case LITERAL_table:
+				case LITERAL_endtable:
+				case OP_COMMA:
+				case LITERAL_glyph:
+				case OP_GT:
+				case OP_DIV:
+				case OP_QUESTION:
+				case OP_COLON:
+				case LITERAL_position:
+				case OP_OR:
+				case OP_AND:
+				case OP_BITOR:
+				case OP_BITAND:
+				case OP_EQUALEQUAL:
+				case OP_NE:
+				case OP_LT:
+				case OP_LE:
+				case OP_GE:
+				case OP_PLUS:
+				case OP_MINUS:
+				case OP_MULT:
+				{
+					break;
+				}
+				default:
+				{
+					throw NoViableAltException(LT(1));
+				}
+				}
+				}
+				lookupExpr_AST = currentAST.root;
+				lookupExpr_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(Zlookup))->add(I4_AST)->add(C4_AST));
+				currentAST.root = lookupExpr_AST;
+				currentAST.child = lookupExpr_AST!=nullAST &&lookupExpr_AST->getFirstChild()!=nullAST ?
+					lookupExpr_AST->getFirstChild() : lookupExpr_AST;
+				currentAST.advanceChildToEnd();
+			}
+			else if ((LA(1)==IDENT||LA(1)==LITERAL_glyph||LA(1)==LITERAL_position) && (_tokenSet_90.member(LA(2))) && (_tokenSet_4.member(LA(3)))) {
+				identDot();
+				I2_AST = returnAST;
+				{
+				switch ( LA(1)) {
+				case OP_DOT:
+				{
+					clusterExpr();
+					C2_AST = returnAST;
+					break;
+				}
+				case Token::EOF_TYPE:
+				case OP_EQ:
+				case OP_RPAREN:
+				case OP_SEMI:
+				case LITERAL_environment:
+				case LITERAL_endenvironment:
+				case OP_RBRACE:
+				case IDENT:
+				case LITERAL_table:
+				case LITERAL_endtable:
+				case OP_COMMA:
+				case LITERAL_glyph:
+				case OP_GT:
+				case OP_DIV:
+				case OP_QUESTION:
+				case OP_COLON:
+				case LITERAL_position:
+				case OP_OR:
+				case OP_AND:
+				case OP_BITOR:
+				case OP_BITAND:
+				case OP_EQUALEQUAL:
+				case OP_NE:
+				case OP_LT:
+				case OP_LE:
+				case OP_GE:
+				case OP_PLUS:
+				case OP_MINUS:
+				case OP_MULT:
+				{
+					break;
+				}
+				default:
+				{
+					throw NoViableAltException(LT(1));
+				}
+				}
+				}
+				lookupExpr_AST = currentAST.root;
+				lookupExpr_AST = astFactory.make( (new ASTArray(3))->add(astFactory.create(Zlookup))->add(I2_AST)->add(C2_AST));
+				currentAST.root = lookupExpr_AST;
+				currentAST.child = lookupExpr_AST!=nullAST &&lookupExpr_AST->getFirstChild()!=nullAST ?
+					lookupExpr_AST->getFirstChild() : lookupExpr_AST;
+				currentAST.advanceChildToEnd();
+			}
+		else {
 			throw NoViableAltException(LT(1));
 		}
 		}
@@ -8788,25 +8794,25 @@ void GrpParser::selectorExpr() {
 	RefAST selectorExpr_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp288_AST = nullAST;
-		tmp288_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp288_AST);
+		RefAST tmp289_AST = nullAST;
+		tmp289_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp289_AST);
 		match(OP_AT);
 		{
 		switch ( LA(1)) {
 		case LIT_INT:
 		{
-			RefAST tmp289_AST = nullAST;
-			tmp289_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp289_AST);
+			RefAST tmp290_AST = nullAST;
+			tmp290_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp290_AST);
 			match(LIT_INT);
 			break;
 		}
 		case Qalias:
 		{
-			RefAST tmp290_AST = nullAST;
-			tmp290_AST = astFactory.create(LT(1));
-			astFactory.addASTChild(currentAST, tmp290_AST);
+			RefAST tmp291_AST = nullAST;
+			tmp291_AST = astFactory.create(LT(1));
+			astFactory.addASTChild(currentAST, tmp291_AST);
 			match(Qalias);
 			break;
 		}
@@ -8833,13 +8839,13 @@ void GrpParser::glyphIdentDot() {
 	RefAST glyphIdentDot_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp291_AST = nullAST;
-		tmp291_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp291_AST);
-		match(LITERAL_glyph);
 		RefAST tmp292_AST = nullAST;
 		tmp292_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp292_AST);
+		astFactory.addASTChild(currentAST, tmp292_AST);
+		match(LITERAL_glyph);
+		RefAST tmp293_AST = nullAST;
+		tmp293_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp293_AST);
 		match(OP_DOT);
 		identDot();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -8862,8 +8868,8 @@ void GrpParser::clusterExpr() {
 	RefAST C_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp293_AST = nullAST;
-		tmp293_AST = astFactory.create(LT(1));
+		RefAST tmp294_AST = nullAST;
+		tmp294_AST = astFactory.create(LT(1));
 		match(OP_DOT);
 		C = LT(1);
 		C_AST = astFactory.create(C);
@@ -8890,13 +8896,13 @@ void GrpParser::justifyIdentDot() {
 	RefAST justifyIdentDot_AST = nullAST;
 	
 	try {      // for error handling
-		RefAST tmp294_AST = nullAST;
-		tmp294_AST = astFactory.create(LT(1));
-		astFactory.addASTChild(currentAST, tmp294_AST);
-		match(LITERAL_justify);
 		RefAST tmp295_AST = nullAST;
 		tmp295_AST = astFactory.create(LT(1));
-		astFactory.makeASTRoot(currentAST, tmp295_AST);
+		astFactory.addASTChild(currentAST, tmp295_AST);
+		match(LITERAL_justify);
+		RefAST tmp296_AST = nullAST;
+		tmp296_AST = astFactory.create(LT(1));
+		astFactory.makeASTRoot(currentAST, tmp296_AST);
 		match(OP_DOT);
 		justifyIdentDotAux();
 		astFactory.addASTChild(currentAST, returnAST);
@@ -8923,17 +8929,17 @@ void GrpParser::justifyIdentDotAux() {
 			switch ( LA(1)) {
 			case IDENT:
 			{
-				RefAST tmp296_AST = nullAST;
-				tmp296_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp296_AST);
+				RefAST tmp297_AST = nullAST;
+				tmp297_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp297_AST);
 				match(IDENT);
 				break;
 			}
 			case LIT_INT:
 			{
-				RefAST tmp297_AST = nullAST;
-				tmp297_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp297_AST);
+				RefAST tmp298_AST = nullAST;
+				tmp298_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp298_AST);
 				match(LIT_INT);
 				break;
 			}
@@ -8943,9 +8949,9 @@ void GrpParser::justifyIdentDotAux() {
 			}
 			}
 			}
-			RefAST tmp298_AST = nullAST;
-			tmp298_AST = astFactory.create(LT(1));
-			astFactory.makeASTRoot(currentAST, tmp298_AST);
+			RefAST tmp299_AST = nullAST;
+			tmp299_AST = astFactory.create(LT(1));
+			astFactory.makeASTRoot(currentAST, tmp299_AST);
 			match(OP_DOT);
 			identDot();
 			astFactory.addASTChild(currentAST, returnAST);
@@ -8955,17 +8961,17 @@ void GrpParser::justifyIdentDotAux() {
 			switch ( LA(1)) {
 			case IDENT:
 			{
-				RefAST tmp299_AST = nullAST;
-				tmp299_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp299_AST);
+				RefAST tmp300_AST = nullAST;
+				tmp300_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp300_AST);
 				match(IDENT);
 				break;
 			}
 			case LIT_INT:
 			{
-				RefAST tmp300_AST = nullAST;
-				tmp300_AST = astFactory.create(LT(1));
-				astFactory.addASTChild(currentAST, tmp300_AST);
+				RefAST tmp301_AST = nullAST;
+				tmp301_AST = astFactory.create(LT(1));
+				astFactory.addASTChild(currentAST, tmp301_AST);
 				match(LIT_INT);
 				break;
 			}
@@ -9119,13 +9125,13 @@ const unsigned long GrpParser::_tokenSet_3_data_[] = { 9856850UL, 3800621056UL, 
 const BitSet GrpParser::_tokenSet_3(_tokenSet_3_data_,8);
 const unsigned long GrpParser::_tokenSet_4_data_[] = { 4294967282UL, 4294967295UL, 4294967295UL, 262143UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_4(_tokenSet_4_data_,8);
-const unsigned long GrpParser::_tokenSet_5_data_[] = { 26114UL, 33554432UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_5_data_[] = { 8414722UL, 33554432UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_5(_tokenSet_5_data_,4);
-const unsigned long GrpParser::_tokenSet_6_data_[] = { 2422706UL, 34660352UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_6_data_[] = { 10811314UL, 34660352UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_6(_tokenSet_6_data_,8);
 const unsigned long GrpParser::_tokenSet_7_data_[] = { 128UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_7(_tokenSet_7_data_,4);
-const unsigned long GrpParser::_tokenSet_8_data_[] = { 2160514UL, 34603008UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_8_data_[] = { 10549122UL, 34603008UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_8(_tokenSet_8_data_,4);
 const unsigned long GrpParser::_tokenSet_9_data_[] = { 4294967280UL, 4294967295UL, 4294967295UL, 262143UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_9(_tokenSet_9_data_,8);
@@ -9145,7 +9151,7 @@ const unsigned long GrpParser::_tokenSet_16_data_[] = { 5386304UL, 0UL, 202752UL
 const BitSet GrpParser::_tokenSet_16(_tokenSet_16_data_,8);
 const unsigned long GrpParser::_tokenSet_17_data_[] = { 194304UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_17(_tokenSet_17_data_,4);
-const unsigned long GrpParser::_tokenSet_18_data_[] = { 2357138UL, 34660376UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_18_data_[] = { 10745746UL, 34660376UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_18(_tokenSet_18_data_,8);
 const unsigned long GrpParser::_tokenSet_19_data_[] = { 7340096UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_19(_tokenSet_19_data_,4);
@@ -9265,31 +9271,31 @@ const unsigned long GrpParser::_tokenSet_76_data_[] = { 4227866944UL, 271024128U
 const BitSet GrpParser::_tokenSet_76(_tokenSet_76_data_,4);
 const unsigned long GrpParser::_tokenSet_77_data_[] = { 4294918128UL, 4294967295UL, 4294967295UL, 262143UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_77(_tokenSet_77_data_,8);
-const unsigned long GrpParser::_tokenSet_78_data_[] = { 28480UL, 33554432UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_78_data_[] = { 8417088UL, 33554432UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_78(_tokenSet_78_data_,4);
-const unsigned long GrpParser::_tokenSet_79_data_[] = { 2160514UL, 34635776UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_79_data_[] = { 10549122UL, 34635776UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_79(_tokenSet_79_data_,4);
-const unsigned long GrpParser::_tokenSet_80_data_[] = { 2160514UL, 34635776UL, 4UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_80_data_[] = { 10549122UL, 34635776UL, 4UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_80(_tokenSet_80_data_,8);
-const unsigned long GrpParser::_tokenSet_81_data_[] = { 2160514UL, 34635776UL, 12UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_81_data_[] = { 10549122UL, 34635776UL, 12UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_81(_tokenSet_81_data_,8);
-const unsigned long GrpParser::_tokenSet_82_data_[] = { 2160514UL, 34635776UL, 28UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_82_data_[] = { 10549122UL, 34635776UL, 28UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_82(_tokenSet_82_data_,8);
 const unsigned long GrpParser::_tokenSet_83_data_[] = { 16UL, 8192UL, 1984UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_83(_tokenSet_83_data_,8);
-const unsigned long GrpParser::_tokenSet_84_data_[] = { 2160514UL, 34635776UL, 60UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_84_data_[] = { 10549122UL, 34635776UL, 60UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_84(_tokenSet_84_data_,8);
-const unsigned long GrpParser::_tokenSet_85_data_[] = { 2160530UL, 34643968UL, 2044UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_85_data_[] = { 10549138UL, 34643968UL, 2044UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_85(_tokenSet_85_data_,8);
-const unsigned long GrpParser::_tokenSet_86_data_[] = { 2160530UL, 34643968UL, 8188UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_86_data_[] = { 10549138UL, 34643968UL, 8188UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_86(_tokenSet_86_data_,8);
 const unsigned long GrpParser::_tokenSet_87_data_[] = { 9576512UL, 3792175104UL, 202752UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_87(_tokenSet_87_data_,8);
 const unsigned long GrpParser::_tokenSet_88_data_[] = { 11990994UL, 3801669632UL, 262140UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_88(_tokenSet_88_data_,8);
-const unsigned long GrpParser::_tokenSet_89_data_[] = { 2160530UL, 34660352UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_89_data_[] = { 10549138UL, 34660352UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_89(_tokenSet_89_data_,8);
-const unsigned long GrpParser::_tokenSet_90_data_[] = { 2422674UL, 34660352UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
+const unsigned long GrpParser::_tokenSet_90_data_[] = { 10811282UL, 34660352UL, 16380UL, 0UL, 0UL, 0UL, 0UL, 0UL };
 const BitSet GrpParser::_tokenSet_90(_tokenSet_90_data_,8);
 
 
