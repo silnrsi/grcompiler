@@ -1380,12 +1380,12 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMarginMin);
 				Symbol psymMaxOverlap = psymtblMain->FindSymbol(GrcStructName("collision", "maxoverlap"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymMaxOverlap);
-				Symbol psymNogoGlyph = psymtblMain->FindSymbol(GrcStructName("collision", "nogozone", "glyph"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymNogoGlyph);
-				Symbol psymNogoOffX = psymtblMain->FindSymbol(GrcStructName("collision", "nogozone", "offset", "x"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymNogoOffX);
-				Symbol psymNogoOffY = psymtblMain->FindSymbol(GrcStructName("collision", "nogozone", "offset", "y"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymNogoOffY);
+				Symbol psymBlockGlyph = psymtblMain->FindSymbol(GrcStructName("collision", "blocker", "glyph"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymBlockGlyph);
+				Symbol psymBlockOffX = psymtblMain->FindSymbol(GrcStructName("collision", "blocker", "offset", "x"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymBlockOffX);
+				Symbol psymBlockOffY = psymtblMain->FindSymbol(GrcStructName("collision", "blocker", "offset", "y"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymBlockOffY);
 				// This isn't put into the font tables, but an ID is needed for processing.
 				Symbol psymComplexFit = psymtblMain->FindSymbol(GrcStructName("collision", "complexFit"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymComplexFit);
@@ -1398,9 +1398,9 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				Assert(psymFlags->InternalID() + 5 == psymMargin->InternalID());
 				Assert(psymFlags->InternalID() + 6 == psymMarginMin->InternalID());
 				Assert(psymFlags->InternalID() + 7 == psymMaxOverlap->InternalID());
-				Assert(psymFlags->InternalID() + 8 == psymNogoGlyph->InternalID());
-				Assert(psymFlags->InternalID() + 9 == psymNogoOffX->InternalID());
-				Assert(psymFlags->InternalID() + 10 == psymNogoOffY->InternalID());
+				Assert(psymFlags->InternalID() + 8 == psymBlockGlyph->InternalID());
+				Assert(psymFlags->InternalID() + 9 == psymBlockOffX->InternalID());
+				Assert(psymFlags->InternalID() + 10 == psymBlockOffY->InternalID());
 				Assert(psymFlags->InternalID() + 11 == psymComplexFit->InternalID());
 			}
 			// Otherwise we don't want to assign glyph attr IDs to the collision attributes, because
@@ -1511,11 +1511,11 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "maxoverlap")));
 		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "nogozone", "glyph")));
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "blocker", "glyph")));
 		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "nogozone", "offset", "x")));
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "blocker", "offset", "x")));
 		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "nogozone", "offset", "y")));
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "blocker", "offset", "y")));
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexFit")));
 		vnSysDefValues.push_back(0);

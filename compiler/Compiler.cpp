@@ -1283,9 +1283,9 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 	case kslatColMinY:			return "col_min_y";
 	case kslatColMaxX:			return "col_max_x";
 	case kslatColMaxY:			return "col_max_y";
-	case kslatColNogoGlyph:		return "col_nogo_glyph";
-	case kslatColNogoOffX:		return "col_nogo_off_x";
-	case kslatColNogoOffY:		return "col_nogo_off_y";
+	case kslatColBlockGlyph:		return "col_block_glyph";
+	case kslatColBlockOffX:		return "col_block_off_x";
+	case kslatColBlockOffY:		return "col_block_off_y";
 	case kslatColFixX:			return "col_fix_x";
 	case kslatColFixY:			return "col_fix_y";
 	default:
