@@ -252,7 +252,7 @@ enum SlotAttrName {
 	kslatColMinX,		kslatColMinY,		kslatColMaxX,	kslatColMaxY,
 	kslatColFixX,		kslatColFixY,		//read-only attr - how much adjustment was made
 	kslatColMargin,		kslatColMarginMin,	kslatColMaxOverlap,
-	kslatColNogoGlyph,	kslatColNogoOffX,	kslatColNogoOffY
+	kslatColBlockGlyph,	kslatColBlockOffX,	kslatColBlockOffY
 };
 
 

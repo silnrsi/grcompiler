@@ -1487,7 +1487,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 			}
 		}
 
-		if (m_psymName->IsCollisionAttr() && m_psymName->LastFieldIs("glyph")) // collision.nogozone.glyph
+		if (m_psymName->IsCollisionAttr() && m_psymName->LastFieldIs("glyph")) // collision.blocker.glyph
 		{
 			GdlClassMemberExpression * pexpil = dynamic_cast<GdlClassMemberExpression *>(m_pexpValue);
 			if (pexpil)
@@ -1499,7 +1499,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 							"No glyphs in class ", pexpil->Name()->FullName());
 				else if (cValues > 1)
 					g_errorList.AddError(3164, this,
-							"Single glyph definition required for collision.nogozone.glyph attribute: ",
+							"Single glyph definition required for collision.blocker.glyph attribute: ",
 							pexpil->Name()->FullName());
 			}
 		}
