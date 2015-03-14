@@ -347,7 +347,7 @@ public:
 	//	Getters:
 	int Value()	{ return m_nValue; }
 	int	Units()	{ return m_munits; }
-	boolean IsBoolean() { return m_fBoolean; }
+	bool IsBoolean() { return m_fBoolean; }
 
 public:
 	//	Parser:
