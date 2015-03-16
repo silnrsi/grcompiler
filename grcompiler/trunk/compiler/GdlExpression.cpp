@@ -1576,8 +1576,8 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 {
 	int nAttrID = -1;
 
-	if (!m_psymName->IsGeneric() && pgax
-		&& (m_psymName->FitsSymbolType(ksymtGlyphAttr)
+	if (!m_psymName->IsGeneric()
+		&& ((m_psymName->FitsSymbolType(ksymtGlyphAttr) && pgax)
 			|| m_psymName->FitsSymbolType(ksymtGlyphMetric)))
 	{
 		//	A non-generic attribute or metric means the value for the
