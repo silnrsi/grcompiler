@@ -1479,16 +1479,16 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 				Assert(false);
 			}
 		}
-		else if (staField1 == "blocker")
+		else if (staField1 == "exclude")
 		{
 			if (staField2 == "glyph")
-				return kslatColBlockGlyph;
+				return kslatColExclGlyph;
 			else if (staField2 == "offset")
 			{
 				if (staField3 == "x")
-					return kslatColBlockOffX;
+					return kslatColExclOffX;
 				else if (staField3 == "y")
-					return kslatColBlockOffY;
+					return kslatColExclOffY;
 				else
 				{
 					Assert(false);
@@ -1888,10 +1888,10 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "marginmin"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "maxoverlap"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "blocker", "glyph"),		kst,	kexptGlyphID);
-	PreDefineSymbol(GrcStructName("collision", "blocker", "offset"),		kst,	kexptPoint);
-	PreDefineSymbol(GrcStructName("collision", "blocker", "offset", "x"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "blocker", "offset", "y"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "exclude", "glyph"),		kst,	kexptGlyphID);
+	PreDefineSymbol(GrcStructName("collision", "exclude", "offset"),		kst,	kexptPoint);
+	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "x"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "y"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "fix", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "fix", "y"),		kst,	kexptMeas);
 
@@ -1973,11 +1973,11 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "maxoverlap"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "blocker", "glyph"), ksymtGlyphAttr);
+	psym = AddType2(GrcStructName("collision", "exclude", "glyph"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "blocker", "offset", "x"), ksymtGlyphAttr);
+	psym = AddType2(GrcStructName("collision", "exclude", "offset", "x"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "blocker", "offset", "y"), ksymtGlyphAttr);
+	psym = AddType2(GrcStructName("collision", "exclude", "offset", "y"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
 	// This one is used by the compiler, but not stored in the font:
