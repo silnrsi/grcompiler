@@ -131,7 +131,7 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 	for (size_t ifasgn = 0; ifasgn < m_vstaFeat.size(); ifasgn++)
 	{
 		Symbol psymFeat = pcman->SymbolTable()->FindSymbol(m_vstaFeat[ifasgn]);
-		if (!psymFeat)
+		if (!psymFeat || psymFeat->SymType() == ksymtInvalid)
 		{
 			g_errorList.AddError(3154, NULL, "Undefined feature: ", m_vstaFeat[ifasgn], m_vlnf[ifasgn]);
 			continue;
