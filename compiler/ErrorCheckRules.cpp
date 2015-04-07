@@ -889,7 +889,7 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 				else
 					delete pexpNew;
 			}
-			pexpNew->CheckAttachToLookup();
+			m_pexpConstraint->CheckAttachToLookup();
 		}
 	}
 

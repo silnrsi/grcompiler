@@ -71,6 +71,7 @@ public:
 	//	Getters:
 	GdlDefn * Data()			{ return m_pData; }
 	bool HasData()				{ return m_fHasData; }
+	SymbolType SymType()		{ return m_symt; }
 	ExpressionType ExpType()	{ return m_expt; }
 	GrpLineAndFile & LineAndFile() { return m_lnf; }
 
