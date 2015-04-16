@@ -1455,8 +1455,17 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 			return kslatColMargin;
 		else if (staField1 == "marginmin")
 			return kslatColMarginMin;
-		else if (staField1 == "maxoverlap")
-			return kslatColMaxOverlap;
+		else if (staField1 == "order")
+		{
+			if (staField2 == "class")
+				return kslatColOrderClass;
+			else if (staField2 == "enforce")
+				return kslatColOrderEnforce;
+			else
+			{
+				Assert(false);
+			}
+		}
 		else if (staField1 == "min")
 		{
 			if (staField2 == "x")
@@ -1887,8 +1896,9 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("collision", "max", "y"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "marginmin"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "maxoverlap"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "exclude", "glyph"),		kst,	kexptGlyphID);
+	PreDefineSymbol(GrcStructName("collision", "order", "class"),			kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("collision", "order", "enforce"),			kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("collision", "exclude", "glyph"),			kst,	kexptGlyphID);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset"),		kst,	kexptPoint);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "x"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "y"),	kst,	kexptMeas);
@@ -1971,7 +1981,9 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "marginmin"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "maxoverlap"), ksymtGlyphAttr);
+	psym = AddType2(GrcStructName("collision", "order", "class"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("collision", "order", "enforce"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "exclude", "glyph"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
