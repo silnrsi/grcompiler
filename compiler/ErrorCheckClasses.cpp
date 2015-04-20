@@ -3221,6 +3221,8 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 	//Symbol psymJWeight = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "weight"));
 	Symbol psymJWeight = m_psymtbl->FindSymbol(GrcStructName("justify", "weight"));
 	int nAttrIdJWeight = psymJWeight->InternalID();
+	Symbol psymSkipPasses = m_psymtbl->FindSymbol(GrcStructName("*skipPasses*"));
+	int nAttrIdSkipPasses = psymSkipPasses->InternalID();
 
 	for (utf16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
@@ -3245,6 +3247,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 					int nMinValue, nMaxValue;
 					MinAndMaxGlyphAttrValues(iAttrID,
 						NumJustLevels(), nAttrIdJStr, nAttrIdJShr, nAttrIdJStep, nAttrIdJWeight,
+						nAttrIdSkipPasses,
 						&nMinValue, &nMaxValue);
 
 					if (pexpNew && pexpNew != pexp)
@@ -3317,6 +3320,7 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::MinAndMaxGlyphAttrValues(int nAttrID,
 	int cJLevels, int nAttrIdJStr, int nAttrIdJShr, int nAttrIdJStep, int nAttrIdJWeight,
+	int nAttrIdSkipPasses,
 	int * pnMin, int * pnMax)
 {
 	*pnMin = kMinGlyphAttrValue;
@@ -3342,6 +3346,11 @@ void GrcManager::MinAndMaxGlyphAttrValues(int nAttrID,
 		//	justify.weight
 		*pnMin = 0;
 		*pnMax = 255;
+	}
+	else if (nAttrIdSkipPasses == nAttrID)
+	{
+		*pnMin = 0;
+		*pnMax = 0x10000; // 1 + actual max=0xFFFF (since test is >= )
 	}
 }
 

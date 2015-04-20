@@ -333,7 +333,8 @@ protected:
 	void ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID);
 	bool FinalGlyphAttrResolution(GrcFont * pfont);
 	void MinAndMaxGlyphAttrValues(int nAttrID,
-		int cJLevels, int nAttrIDJStr, int nAttrIDJShr, int nAttrIDJStep, int nAttrIDJWeight,
+		int cJLevels, int nAttrIdJStr, int nAttrIdJShr, int nAttrIdJStep, int nAttrIdJWeight,
+		int nAttrIdSkipPasses,
 		int * pnMin, int * pnMax);
 	bool StorePseudoToActualAsGlyphAttr();
 	bool CheckForEmptyClasses();
