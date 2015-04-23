@@ -3349,7 +3349,7 @@ void GrcManager::MinAndMaxGlyphAttrValues(int nAttrID,
 	}
 	else if (nAttrIdSkipPasses == nAttrID)
 	{
-		*pnMin = 0;
+		*pnMin = -1;
 		*pnMax = 0x10000; // 1 + actual max=0xFFFF (since test is >= )
 	}
 }
