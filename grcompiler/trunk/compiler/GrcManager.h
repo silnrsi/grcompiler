@@ -353,6 +353,7 @@ public:
 
 protected:
 	bool AssignClassInternalIDs();
+	void DetermineTableVersion();
 public:
 	void AddToFsmClasses(GdlGlyphClassDefn * pglfc, int nPassID);
 protected:

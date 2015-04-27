@@ -60,6 +60,20 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 
 	m_prndr->RewriteSlotAttrAssignments(this, pfont);
 
+	this->DetermineTableVersion();
+
+	return true;
+}
+
+
+/**********************************************************************************************/
+/*----------------------------------------------------------------------------------------------
+	Assign each pass a global ID number. Record a warning if the pass numbers are not
+	sequential for a given table, or if there are rules in an unspecified pass. Return
+	the number of valid passes (those with rules in them).
+----------------------------------------------------------------------------------------------*/
+void GrcManager::DetermineTableVersion()
+{
 	int fxdVersionNeeded;
 	bool fFixPassConstraints = true;	// remains true if the only thing that is incompatible are
 										// the pass constraints
@@ -109,9 +123,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 		SetSilfTableVersion(fxdVersionNeeded, false);
 	}
 
-	return true;
 }
-
 
 /**********************************************************************************************/
 
@@ -1008,20 +1020,20 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 				if (iritSub > -1)
 				{
 					GdlRuleItem * pritSub = prule->Rule(iritSub);
-					pritSub->AddAssociation(prule->LineAndFile(), 1);	// 1-based
-					pritSub->AddAssociation(prule->LineAndFile(), 2);
+					pritSub->AddAssociation(prule->LineAndFile(), 1 + prule->PrependedAnys());	// 1-based
+					pritSub->AddAssociation(prule->LineAndFile(), 2 + prule->PrependedAnys());
 					char rgch[20];
-					itoa(int(iritSub+1), rgch, 10);
+					itoa(int(iritSub + 1 - prule->PrependedAnys()), rgch, 10);
 					g_errorList.AddWarning(3532, this,
 						"Item ", PosString(),
-						": deleted slot automatically associated with slot ", rgch);
+						": slot ", rgch, " automatically associated with deleted item");
 				}
 			}
 			else
 			{
 				g_errorList.AddWarning(3529, this,
 					"Item ", PosString(),
-					": deleted item was not associated with another slot");
+					": no slot was associated with deleted item");
 			}
 		}
 	}
@@ -1030,13 +1042,13 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		//	Insertion
 		if (m_vpexpAssocs.size() == 0 && !m_psymOutput->FitsSymbolType(ksymtSpecialAt))
 		{
-			if (prule->ItemCount() == 2)
+			if (prule->ItemCountOriginal() == 2)
 			{
 				// Automatically associate the inserted item with the single item in the LHS.
-				int iritOther = (irit == 0) ? 1 : 0;
-				//GdlRuleItem * pritOther = prule->Rule(iritOther);
-				int nOther = (irit == 0) ? 2 : 1;
-				this->AddAssociation(prule->LineAndFile(), nOther);	// 1-based
+				int iritOther = (irit - prule->PrependedAnys() == 0) ? 1 : 0;
+				int nOther = (irit - prule->PrependedAnys() == 0) ? 2 : 1;
+				int nOtherPany = nOther + prule->PrependedAnys();
+				this->AddAssociation(prule->LineAndFile(), nOtherPany);	// 1-based
 				char rgch[20];
 				itoa(int(nOther), rgch, 10);
 				g_errorList.AddWarning(3533, this,
@@ -2142,7 +2154,6 @@ bool GdlRule::HasReprocessing()
 /*----------------------------------------------------------------------------------------------
 	Rewrite some slot attribute assignments:
 	* Replace any kern assigments with the equivalent shift and advance.
-	* Merge collision.range and collision.priority.
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont)
 {
@@ -2280,6 +2291,7 @@ bool GdlAttrValueSpec::ReplaceKern(GrcManager * pcman,
 
 /*----------------------------------------------------------------------------------------------
 	Merge the collision.range and collision.priority attributes into collision.flags.
+	TODO: DELETE - priority is no longer defined
 ----------------------------------------------------------------------------------------------*/
 void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfont,
 	int ipavsFlags, int ipavsRange, int ipavsPriority)

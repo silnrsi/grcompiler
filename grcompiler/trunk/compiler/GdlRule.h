@@ -901,6 +901,7 @@ public:
 	int FindSubstitutionItem(int iritDel);
 	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 		std::vector<utf16> & vwSpaceGlyphs);
+	int PrependedAnys() { return m_critPrependedAnys; }
 
 	//	Compiler:
 	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, 
