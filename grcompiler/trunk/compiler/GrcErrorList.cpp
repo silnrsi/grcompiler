@@ -19,7 +19,7 @@ global - highest error: 142 / highest warning: 512
 		GrpParser
 		GrcFont
 
-parsing - highest error: 1187 / highest warning: 1515
+parsing - highest error: 1188 / highest warning: 1515
 		ParserTreeWalker
 		PostParser
 
