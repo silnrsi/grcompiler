@@ -2383,12 +2383,17 @@ void GrcManager::WalkRuleTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * ppas
 	if (astLhs)
 	{
 		astItem = astLhs->getFirstChild();
+		int critRhs = irit;
 		irit = 0;
 		while (astItem)
 		{
 			ProcessItemRange(astItem, prultbl, ppass, prule, &irit, 2, false);
 			astItem = astItem->getNextSibling();
 		}
+		if (irit > 0 && irit != critRhs)
+			g_errorList.AddError(1188, NULL,
+				"Number of items in left- and right-hand-sides do not match",
+				LineAndFile(ast));
 	}
 
 	//	Copy the conditionals from the -if- statements currently in effect.
