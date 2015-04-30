@@ -1117,23 +1117,35 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 			if (ifsmcColCurr != -1)
 			{
 				wLast = w - 1;
-				itoa(wFirst, rgch, 16);
-				strmOut << "  0x";
-				if (wFirst <= 0x0fff) strmOut << "0";
-				if (wFirst <= 0x00ff) strmOut << "0";
-				if (wFirst <= 0x000f) strmOut << "0";
+				//itoa(wFirst, rgch, 16);	// hex
+				//strmOut << "  0x";
+				//if (wFirst <= 0x0fff) strmOut << "0";
+				//if (wFirst <= 0x00ff) strmOut << "0";
+				//if (wFirst <= 0x000f) strmOut << "0";
+				
+				if (wFirst < 1000) strmOut << " ";
+				if (wFirst < 100) strmOut << " ";
+				if (wFirst < 10) strmOut << " ";
+				itoa(wFirst, rgch, 10);
 				strmOut << rgch;
 				if (wFirst < wLast)
 				{
-					itoa(wLast, rgch, 16);
-					strmOut << "..0x";
-					if (wLast <= 0x0fff) strmOut << "0";
-					if (wLast <= 0x00ff) strmOut << "0";
-					if (wLast <= 0x000f) strmOut << "0";
+					//itoa(wLast, rgch, 16);	// hex
+					//strmOut << "..0x";
+					//if (wLast <= 0x0fff) strmOut << "0";
+					//if (wLast <= 0x00ff) strmOut << "0";
+					//if (wLast <= 0x000f) strmOut << "0";
+
+					strmOut << " ..";
+					if (wLast < 1000) strmOut << " ";
+					if (wLast < 100) strmOut << " ";
+					if (wLast < 10) strmOut << " ";
+					itoa(wLast, rgch, 10);
 					strmOut << rgch;
 				}
 				else
-					strmOut << "        ";
+					//strmOut << "        "; // hex
+					strmOut << "       ";
 
 //				if (w < 0x0100)
 //					strmOut << " '" << (char)w << "'";
