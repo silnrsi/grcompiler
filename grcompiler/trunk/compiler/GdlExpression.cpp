@@ -142,6 +142,7 @@ bool EquivalentTypes(ExpressionType expt1, ExpressionType expt2)
 		case kexptOne:
 			return true;
 		case kexptMeas:
+		case kexptSlotRef:  // eg, att.to == 0
 			return (expt2 == kexptZero);
 		default:
 			break;
