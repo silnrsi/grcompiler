@@ -1400,6 +1400,21 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		}
 	}
 
+	else if (m_psymName->IsSequenceAttr())
+	{
+		// You don't expect these in the substitution table, but they don't hurt,
+		// and they *could* go on the last substitution pass.
+		if ((grfrco & kfrcoSetPos) == 0)
+		{
+			g_errorList.AddWarning(3534, this,
+				"Setting a sequence attribute (",
+				m_psymName->FullName(),
+				") in the ",
+				psymTable->FullName(),
+				" table; normally these are set in the positioning table");
+		}
+	}
+
 	else if (m_psymName->IsUserDefinableSlotAttr())
 	{
 		int nIndex = m_psymName->UserDefinableSlotAttrIndex();

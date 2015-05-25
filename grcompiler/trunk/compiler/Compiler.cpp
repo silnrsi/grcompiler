@@ -1277,9 +1277,7 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 	case kslatSegSplit:			return "segsplit";
 	case kslatColFlags:			return "col_flags";
 	case kslatColMargin:		return "col_margin";
-	case kslatColMarginMin:		return "col_marginmin";
-	case kslatColOrderClass:	return "col_order_class";
-	case kslatColOrderEnforce:	return "col_order_enforce";
+	case kslatColMarginWt:		return "col_marginweight";
 	case kslatColMinX:			return "col_min_x";
 	case kslatColMinY:			return "col_min_y";
 	case kslatColMaxX:			return "col_max_x";
@@ -1289,6 +1287,17 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 	case kslatColExclOffY:		return "col_excl_off_y";
 	case kslatColFixX:			return "col_fix_x";
 	case kslatColFixY:			return "col_fix_y";
+//	case kslatColOrderClass:	return "col_order_class";
+//	case kslatColOrderEnforce:	return "col_order_enforce";
+	case kslatSeqClass:			return "seq_class";
+	case kslatSeqOrder:			return "seq_order";
+	case kslatSeqAboveXoff:		return "seq_above_xoff";
+	case kslatSeqAboveWt:		return "seq_above_wt";
+	case kslatSeqBelowXlim:		return "seq_below_xlim";
+	case kslatSeqBelowWt:		return "seq_below_wt";
+	case kslatSeqValignHt:		return "seq_valign_ht";
+	case kslatSeqValignWt:		return "seq_valign_wt";
+
 	default:
 		Assert(false);
 		char rgch[20];

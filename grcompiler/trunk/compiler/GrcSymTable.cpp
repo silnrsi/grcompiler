@@ -1079,6 +1079,19 @@ bool GrcSymbolTableEntry::IsCollisionAttr()
 }
 
 /*----------------------------------------------------------------------------------------------
+    Return true if the symbol is a sequence-related attribute.
+----------------------------------------------------------------------------------------------*/
+bool GrcSymbolTableEntry::IsSequenceAttr()
+{
+	if (m_staFieldName == "sequence")
+		return true;
+	Symbol psymParent = ParentSymbol();
+	if (!psymParent)
+		return false;
+	return (psymParent->IsSequenceAttr());
+}
+
+/*----------------------------------------------------------------------------------------------
     Return true if the symbol is a user-definable slot attribute.
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsUserDefinableSlotAttr()
@@ -1445,27 +1458,24 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 	{
 		if (staField1 == "flags")
 			return kslatColFlags;
-		else if (staField1 == "priority")	// alias for flags
-			return kslatColFlags;
-		else if (staField1 == "range")		// alias for flags
-			return kslatColFlags;
-		else if (staField1 == "jumpable")	// alias for flags
-			return kslatColFlags;
+		else if (staField1 == "status")
+			return kslatColFlags;	// engine returns both of these ORed together
 		else if (staField1 == "margin")
 			return kslatColMargin;
-		else if (staField1 == "marginmin")
-			return kslatColMarginMin;
-		else if (staField1 == "order")
-		{
-			if (staField2 == "class")
-				return kslatColOrderClass;
-			else if (staField2 == "enforce")
-				return kslatColOrderEnforce;
-			else
-			{
-				Assert(false);
-			}
-		}
+		else if (staField1 == "marginweight")
+			return kslatColMarginWt;
+
+		//else if (staField1 == "order")
+		//{
+		//	if (staField2 == "class")
+		//		return kslatColOrderClass;
+		//	else if (staField2 == "enforce")
+		//		return kslatColOrderEnforce;
+		//	else
+		//	{
+		//		Assert(false);
+		//	}
+		//}
 		else if (staField1 == "min")
 		{
 			if (staField2 == "x")
@@ -1514,6 +1524,50 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 				return kslatColMinX;
 			else if (staField2 == "y")
 				return kslatColMinY;
+			else
+			{
+				Assert(false);
+			}
+		}
+		else
+		{
+			Assert(false);
+		}
+	}
+	else if (staField0 == "sequence")
+	{
+		if (staField1 == "class")
+			return kslatSeqClass;
+		else if (staField1 == "order")
+			return kslatSeqOrder;
+		else if (staField1 == "above")
+		{
+			if (staField2 == "xoffset")
+				return kslatSeqAboveXoff;
+			else if (staField2 == "weight")
+				return kslatSeqAboveWt;
+			else
+			{
+				Assert(false);
+			}
+		}
+		else if (staField1 == "below")
+		{
+			if (staField2 == "xlimit")
+				return kslatSeqBelowXlim;
+			else if (staField2 == "weight")
+				return kslatSeqBelowWt;
+			else
+			{
+				Assert(false);
+			}
+		}
+		else if (staField1 == "valign")
+		{
+			if (staField2 == "height")
+				return kslatSeqValignHt;
+			else if (staField2 == "weight")
+				return kslatSeqValignWt;
 			else
 			{
 				Assert(false);
@@ -1885,9 +1939,7 @@ void GrcSymbolTable::InitSlotAttrs()
 	}
 
 	PreDefineSymbol(GrcStructName("collision", "flags"),		kst,	kexptNumber);
-	PreDefineSymbol(GrcStructName("collision", "range"),		kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "priority"),		kst,	kexptNumber);	// alias for flags
-	PreDefineSymbol(GrcStructName("collision", "jumpable"),		kst,	kexptNumber);	// alias for flags
+	PreDefineSymbol(GrcStructName("collision", "status"),		kst,	kexptNumber); // alias for flags
 	PreDefineSymbol(GrcStructName("collision", "min"),			kstPt,	kexptPoint);
 	PreDefineSymbol(GrcStructName("collision", "min", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "min", "y"),		kst,	kexptMeas);
@@ -1895,15 +1947,24 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("collision", "max", "x"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "max", "y"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "marginmin"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "order", "class"),			kst,	kexptNumber);
-	PreDefineSymbol(GrcStructName("collision", "order", "enforce"),			kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("collision", "marginweight"),	kst,	kexptNumber);
+	//PreDefineSymbol(GrcStructName("collision", "marginmin"),	kst,	kexptMeas);
+	//PreDefineSymbol(GrcStructName("collision", "order", "class"),			kst,	kexptNumber);
+	//PreDefineSymbol(GrcStructName("collision", "order", "enforce"),			kst,	kexptNumber);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "glyph"),			kst,	kexptGlyphID);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset"),		kst,	kexptPoint);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "x"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "y"),	kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "fix", "x"),		kst,	kexptMeas);
-	PreDefineSymbol(GrcStructName("collision", "fix", "y"),		kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "fix", "x"),			kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("collision", "fix", "y"),			kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("sequence", "class"),				kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("sequence", "order"),				kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("sequence", "above", "xoffset"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("sequence", "above", "weight"),	kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("sequence", "below", "xlimit"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("sequence", "below", "weight"),	kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("sequence", "valign", "height"),	kst,	kexptMeas);
+	PreDefineSymbol(GrcStructName("sequence", "valign", "weight"),	kst,	kexptNumber);
 
 	PreDefineSymbol(GrcStructName("segsplit"),	kst, kexptNumber);
 
@@ -1979,12 +2040,14 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "margin"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "marginmin"), ksymtGlyphAttr);
+	psym = AddType2(GrcStructName("collision", "marginweight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "order", "class"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "order", "enforce"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
+	//psym = AddType2(GrcStructName("collision", "marginmin"), ksymtGlyphAttr);
+	//psym->m_fGeneric = true;
+	//psym = AddType2(GrcStructName("collision", "order", "class"), ksymtGlyphAttr);
+	//psym->m_fGeneric = true;
+	//psym = AddType2(GrcStructName("collision", "order", "enforce"), ksymtGlyphAttr);
+	//psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "exclude", "glyph"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "exclude", "offset", "x"), ksymtGlyphAttr);
@@ -1992,6 +2055,23 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("collision", "exclude", "offset", "y"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
+	psym = AddType2(GrcStructName("sequence", "class"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "order"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "above", "xoffset"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "above", "weight"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "below", "xlimit"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "below", "weight"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "valign", "height"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "valign", "weight"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	
 	// This one is used by the compiler, but not stored in the font:
 	psym = PreDefineSymbol(GrcStructName("collision", "complexFit"), ksymtGlyphAttr, kexptNumber);
 	psym->m_fGeneric = true;
