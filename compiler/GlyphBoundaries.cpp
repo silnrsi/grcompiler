@@ -303,6 +303,9 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 	std::vector<int> viEndPt;
 	std::vector<bool> vfOnCurve;	// not used
 
+	const float ccellX = (float)gbgridCellsH;
+	const float ccellY = (float)gbgridCellsV;
+
 	m_mxBbMin = m_myBbMin = 99999;	// something very large
 	m_mxBbMax = m_myBbMax = -99999;	// something very small
 	if (pfont->IsSpace(m_wGlyphID))
@@ -348,8 +351,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 			NormalizePoint(mx, my, &dx, &dy); // dx, dy range from 0 .. 1.0.
 
 			// Figure out which grid cell this point belongs in; indices are 0 .. 3.
-			int icellX = int(dx * 4 - .001);
-			int icellY = int(dy * 4 - .001);
+			int icellX = int((dx * ccellX) - .001);
+			int icellY = int((dy * ccellY) - .001);
 
 			AddPoint(icellX, icellY, mx, my, dx, dy, true);
  
@@ -363,10 +366,10 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					// left of this cell.
 					
 					// Interpolate between the two points.
-					float dxBoundary = float((icellXPrev + 1) / 4.0); // border between two cells
+					float dxBoundary = float((icellXPrev + 1) / ccellX); // border between two cells
 					float dRatio = (dxBoundary - dxPrev) / (dx - dxPrev);
 					float dyBoundary = (dRatio * dy) + ((1 - dRatio) * dyPrev);
-					int icellYBoundary = int((dyBoundary * 4) - .001);
+					int icellYBoundary = int((dyBoundary * ccellY) - .001);
 					int mxBoundary, myBoundary;
 					UnnormalizePoint(dxBoundary, dyBoundary, &mxBoundary, &myBoundary);
 
@@ -393,10 +396,10 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					// right of this cell.
 					
 					// Interpolate between the two points.
-					float dxBoundary = float(icellXPrev / 4.0); // border between two cells
+					float dxBoundary = float(icellXPrev / ccellX); // border between two cells
 					float dRatio = (dxBoundary - dxPrev) / (dx - dxPrev);
 					float dyBoundary = (dRatio * dy) + ((1 - dRatio) * dyPrev);
-					int icellYBoundary = int((dyBoundary * 4) - .001);
+					int icellYBoundary = int((dyBoundary * ccellY) - .001);
 					int mxBoundary, myBoundary;
 					UnnormalizePoint(dxBoundary, dyBoundary, &mxBoundary, &myBoundary);
 
@@ -421,10 +424,10 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					// bottom of this cell.
 					
 					// Interpolate between the two points.
-					float dyBoundary = float((icellYPrev + 1) / 4.0); // border between two cells
+					float dyBoundary = float((icellYPrev + 1) / ccellY); // border between two cells
 					float dRatio = (dyBoundary - dyPrev) / (dy - dyPrev);
 					float dxBoundary = (dRatio * dx) + ((1 - dRatio) * dxPrev);
-					int icellXBoundary = int((dxBoundary * 4) - .001);
+					int icellXBoundary = int((dxBoundary * ccellX) - .001);
 					int mxBoundary, myBoundary;
 					UnnormalizePoint(dxBoundary, dyBoundary, &mxBoundary, &myBoundary);
 
@@ -449,10 +452,10 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					// top of this cell.
 					
 					// Interpolate between the two points.
-					float dyBoundary = float(icellYPrev / 4.0); // border between two cells
+					float dyBoundary = float(icellYPrev / ccellY); // border between two cells
 					float dRatio = (dyBoundary - dyPrev) / (dy - dyPrev);
 					float dxBoundary = (dRatio * dx) + ((1 - dRatio) * dxPrev);
-					int icellXBoundary = int((dxBoundary * 4) - .001);
+					int icellXBoundary = int((dxBoundary * ccellX) - .001);
 					int mxBoundary, myBoundary;
 					UnnormalizePoint(dxBoundary, dyBoundary, &mxBoundary, &myBoundary);
 
@@ -516,8 +519,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					|| (pgbcell->HasExit(gbcBottom)
 							&& (!pgbcell->HasEntry(gbcBottom) || bottomMinExit < bottomMinEntry)))
 				{
-					UnnormalizePoint(float(icellX / 4.0), float(icellY / 4.0), &mx, &my);
-					AddPoint(icellX, icellY, mx, my, float(icellX / 4.0), float(icellY / 4.0), false);
+					UnnormalizePoint(float(icellX / ccellX), float(icellY / ccellY), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float(icellX / ccellX), float(icellY / ccellY), false);
 				}
 
 				// Top left
@@ -531,8 +534,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					|| (pgbcell->HasEntry(gbcTop)
 							&& (!pgbcell->HasExit(gbcTop) || topMinEntry < topMinExit)))
 				{
-					UnnormalizePoint(float(icellX / 4.0), float((icellY+1) / 4.0), &mx, &my);
-					AddPoint(icellX, icellY, mx, my, float(icellX / 4.0), float((icellY+1) / 4.0), false);
+					UnnormalizePoint(float(icellX / ccellX), float((icellY+1) / ccellY), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float(icellX / ccellX), float((icellY+1) / ccellY), false);
 				}
 
 				// Bottom right
@@ -546,8 +549,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					|| (pgbcell->HasEntry(gbcBottom)
 							&& (!pgbcell->HasExit(gbcBottom) || bottomMaxEntry > bottomMaxExit)))
 				{
-					UnnormalizePoint(float((icellX+1) / 4.0), float(icellY / 4.0), &mx, &my);
-					AddPoint(icellX, icellY, mx, my, float((icellX+1) / 4.0), float(icellY / 4.0), false);
+					UnnormalizePoint(float((icellX+1) / ccellX), float(icellY / ccellY), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float((icellX+1) / ccellX), float(icellY / ccellY), false);
 				}
 
 				// Top right
@@ -561,8 +564,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 					|| (pgbcell->HasExit(gbcTop)
 							&& (!pgbcell->HasEntry(gbcTop) || topMaxExit > topMaxEntry)))
 				{
-					UnnormalizePoint(float((icellX+1) / 4.0), float((icellY+1) / 4.0), &mx, &my);
-					AddPoint(icellX, icellY, mx, my, float((icellX+1) / 4.0), float((icellY+1) / 4.0), false);
+					UnnormalizePoint(float((icellX+1) / ccellX), float((icellY+1) / ccellY), &mx, &my);
+					AddPoint(icellX, icellY, mx, my, float((icellX+1) / ccellX), float((icellY+1) / ccellY), false);
 				}
 			}
 		}
@@ -719,6 +722,7 @@ int GlyphBoundaries::OutputToGlatNonexistent(GrcBinaryStream * pbstrm)
 
 /*----------------------------------------------------------------------------------------------
 	 Clear all the data in the sub-box cells.
+	 Currently is only called when we have a simple glyph for which we don't need sub-boxes.
 ----------------------------------------------------------------------------------------------*/
 void GlyphBoundaries::ClearSubBoxCells()
 {

@@ -162,6 +162,7 @@ public:
 	bool IsMeasureAttr();
 	bool IsMirrorAttr();
 	bool IsCollisionAttr();
+	bool IsSequenceAttr();
 	bool IsUserDefinableSlotAttr();
 	int UserDefinableSlotAttrIndex();
 	bool IsPseudoSlotAttr();

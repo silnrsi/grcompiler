@@ -251,8 +251,11 @@ enum SlotAttrName {
 	kslatColFlags,
 	kslatColMinX,		kslatColMinY,		kslatColMaxX,	kslatColMaxY,
 	kslatColFixX,		kslatColFixY,		//read-only attr - how much adjustment was made
-	kslatColMargin,		kslatColMarginMin,	kslatColOrderClass,	kslatColOrderEnforce,
-	kslatColExclGlyph,	kslatColExclOffX,	kslatColExclOffY
+	kslatColMargin,		kslatColMarginWt,
+	kslatSeqClass,	kslatSeqOrder,			// <-- TODO: move these two down with the other seq attrs
+	kslatColExclGlyph,	kslatColExclOffX,	kslatColExclOffY,
+	kslatSeqAboveXoff,	kslatSeqAboveWt,	kslatSeqBelowXlim,	kslatSeqBelowWt, kslatSeqValignHt, kslatSeqValignWt
+
 };
 
 
