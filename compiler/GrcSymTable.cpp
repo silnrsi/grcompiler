@@ -1134,9 +1134,10 @@ bool GrcSymbolTableEntry::IsPassKeySlot()
 bool GrcSymbolTableEntry::IsIgnorableOffsetAttr()
 {
 	Assert(FitsSymbolType(ksymtGlyphAttr));
-	// Symbol psymParent = ParentSymbol();
-	return (m_staFieldName == "gpoint" || m_staFieldName == "xoffset"
-		|| m_staFieldName == "yoffset");
+	//Symbol psymParent = ParentSymbol();
+	return (!IsSequenceAttr()
+		&& (m_staFieldName == "gpoint" || m_staFieldName == "xoffset"
+				|| m_staFieldName == "yoffset"));
 }
 
 /*----------------------------------------------------------------------------------------------
