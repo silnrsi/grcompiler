@@ -1290,6 +1290,7 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 //	case kslatColOrderClass:	return "col_order_class";
 //	case kslatColOrderEnforce:	return "col_order_enforce";
 	case kslatSeqClass:			return "seq_class";
+	case kslatSeqProxClass:		return "seq_proxClass";
 	case kslatSeqOrder:			return "seq_order";
 	case kslatSeqAboveXoff:		return "seq_above_xoff";
 	case kslatSeqAboveWt:		return "seq_above_wt";
