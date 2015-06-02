@@ -1386,6 +1386,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclOffY);
 				Symbol psymSeqClass = psymtblMain->FindSymbol(GrcStructName("sequence", "class"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymSeqClass);
+				Symbol psymSeqProxClass = psymtblMain->FindSymbol(GrcStructName("sequence", "proxClass"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymSeqProxClass);
 				Symbol psymSeqOrder = psymtblMain->FindSymbol(GrcStructName("sequence", "order"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymSeqOrder);
 				Symbol psymSeqAboveXoff = psymtblMain->FindSymbol(GrcStructName("sequence", "above", "xoffset"));
@@ -1416,15 +1418,16 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				Assert(psymColFlags->InternalID() + 8 == psymExclOffX->InternalID());
 				Assert(psymColFlags->InternalID() + 9 == psymExclOffY->InternalID());
 				Assert(psymColFlags->InternalID() + 10 == psymSeqClass->InternalID());
-				Assert(psymColFlags->InternalID() + 11 == psymSeqOrder->InternalID());
-				Assert(psymColFlags->InternalID() + 12 == psymSeqAboveXoff->InternalID());
-				Assert(psymColFlags->InternalID() + 13 == psymSeqAboveWt->InternalID());
-				Assert(psymColFlags->InternalID() + 14 == psymSeqBelowXlim->InternalID());
-				Assert(psymColFlags->InternalID() + 15 == psymSeqBelowWt->InternalID());
-				Assert(psymColFlags->InternalID() + 16 == psymSeqValignHt->InternalID());
-				Assert(psymColFlags->InternalID() + 17 == psymSeqValignWt->InternalID());
+				Assert(psymColFlags->InternalID() + 11 == psymSeqProxClass->InternalID());
+				Assert(psymColFlags->InternalID() + 12 == psymSeqOrder->InternalID());
+				Assert(psymColFlags->InternalID() + 13 == psymSeqAboveXoff->InternalID());
+				Assert(psymColFlags->InternalID() + 14 == psymSeqAboveWt->InternalID());
+				Assert(psymColFlags->InternalID() + 15 == psymSeqBelowXlim->InternalID());
+				Assert(psymColFlags->InternalID() + 16 == psymSeqBelowWt->InternalID());
+				Assert(psymColFlags->InternalID() + 17 == psymSeqValignHt->InternalID());
+				Assert(psymColFlags->InternalID() + 18 == psymSeqValignWt->InternalID());
 				// Keep this last:
-				Assert(psymColFlags->InternalID() + 18 == psymComplexFit->InternalID());
+				Assert(psymColFlags->InternalID() + 19 == psymComplexFit->InternalID());
 			}
 			// Otherwise we don't want to assign glyph attr IDs to the collision attributes, because
 			// the older table format doesn't know how to handle them.
@@ -1543,6 +1546,8 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexFit")));
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("sequence", "class")));
+		vnSysDefValues.push_back(0);
+		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("sequence", "proxClass")));
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("sequence", "order")));
 		vnSysDefValues.push_back(0);

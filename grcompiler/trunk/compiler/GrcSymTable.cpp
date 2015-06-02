@@ -1539,6 +1539,8 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 	{
 		if (staField1 == "class")
 			return kslatSeqClass;
+		else if (staField1 == "proxClass")
+			return kslatSeqProxClass;
 		else if (staField1 == "order")
 			return kslatSeqOrder;
 		else if (staField1 == "above")
@@ -1959,6 +1961,7 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("collision", "fix", "x"),			kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "fix", "y"),			kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("sequence", "class"),				kst,	kexptNumber);
+	PreDefineSymbol(GrcStructName("sequence", "proxClass"),			kst,	kexptNumber);
 	PreDefineSymbol(GrcStructName("sequence", "order"),				kst,	kexptNumber);
 	PreDefineSymbol(GrcStructName("sequence", "above", "xoffset"),	kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("sequence", "above", "weight"),	kst,	kexptNumber);
@@ -2057,6 +2060,8 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 
 	psym = AddType2(GrcStructName("sequence", "class"), ksymtGlyphAttr);
+	psym->m_fGeneric = true;
+	psym = AddType2(GrcStructName("sequence", "proxClass"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("sequence", "order"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
