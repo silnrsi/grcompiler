@@ -824,8 +824,11 @@ void GrcManager::WalkEnvTree(RefAST ast, TableType tblt,
 	Assumes that parser does not permit a directive to take a list of values.
 
 	pnCollisionFix - set when processing a pass(X) statement; if NULL, FixCollisions is invalid
+	pfKern
+	pnCollisionThreshold
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
+void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, bool * pfKern,
+	int * pnCollisionThreshold)
 {
 	Assert(ast->getType() == Zdirectives);
 
@@ -911,6 +914,32 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix)
 					else
 						*pnCollisionFix = nValue;
 				}
+			}
+			else if (staName == "Kern")
+			{
+				if (pfKern == NULL)
+					g_errorList.AddError(1189, NULL,
+						"The Kern directive must be indicated directly on a pass",
+						LineAndFile(ast));
+				else if (nValue != 0 && nValue != 1)
+					g_errorList.AddWarning(1516, NULL,
+						"The Kern value should be a boolean; setting to true",
+						LineAndFile(ast));
+				else
+					*pfKern = (bool)nValue;
+			}
+			else if (staName == "CollisionThreshold")
+			{
+				if (pnCollisionThreshold == NULL)
+					g_errorList.AddError(1190, NULL,
+						"The CollisionThreshold directive must be indicated directly on a pass",
+						LineAndFile(ast));
+				else if (nValue < 1 || nValue > 255)
+					g_errorList.AddError(1191, NULL,
+						"The CollisionThreshold value must be between 1 and 255",
+						LineAndFile(ast));
+				else
+					*pnCollisionThreshold = nValue;
 			}
 			else
 			{
@@ -2127,9 +2156,11 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	RefAST astDirectives = ast->getFirstChild()->getNextSibling();
 	RefAST astContents = astDirectives;
 	int nCollisionFix = 0;
+	bool fKern = false;
+	int nCollisionThreshold = 0;
 	if (astDirectives && astDirectives->getType() == Zdirectives)
 	{
-		WalkDirectivesTree(astDirectives, &nCollisionFix);
+		WalkDirectivesTree(astDirectives, &nCollisionFix, &fKern, &nCollisionThreshold);
 		astContents = astDirectives->getNextSibling();
 	}
 
@@ -2142,13 +2173,52 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 			"CollisionFix cannot be set on substitution passes, only positioning passes",
 			LineAndFile(ast));
 	}
-	else
+	else if (!prultbl->Substitution())
 	{
 		if (nCollisionFix == 0 && ppass->CollisionFix() > 0)
 			g_errorList.AddWarning(1514, NULL,
 				"Clearing previous value of CollisionFix for pass ", rgch,
 				LineAndFile(ast)); 
 		ppass->SetCollisionFix(nCollisionFix);
+	}
+	if (fKern && prultbl->Substitution())
+	{
+		g_errorList.AddError(1192, NULL,
+			"Kern cannot be set on substitution passes, only positioning passes",
+			LineAndFile(ast));
+	}
+	else if (!prultbl->Substitution())
+	{
+		if (!fKern && ppass->Kern())
+			g_errorList.AddWarning(1517, NULL,
+				"Clearing previous value of Kern for pass ", rgch,
+				LineAndFile(ast)); 
+		ppass->SetKern(fKern);
+	}
+	if (nCollisionThreshold != 0 && prultbl->Substitution())
+	{
+		g_errorList.AddError(1193, NULL,
+			"CollisionThreshold cannot be set on substitution passes, only positioning passes",
+			LineAndFile(ast));
+	}
+	else if (prultbl->Substitution())
+	{
+		ppass->SetCollisionThreshold(0);
+	}
+	else
+	{
+		if (nCollisionThreshold == 0 && ppass->CollisionThreshold() != 0
+					&& ppass->CollisionThreshold() != kCollisionThresholdDefault )
+			g_errorList.AddWarning(1518, NULL,
+				"Clearing previous value of CollisionThreshold for pass ", rgch,
+				LineAndFile(ast)); 
+		else if (nCollisionThreshold > 0 && nCollisionFix == 0 && !fKern)
+			g_errorList.AddWarning(1519, NULL,
+				"CollisionThreshold has no effect without collision-fixing and/or kerning",
+				LineAndFile(ast));
+		if (nCollisionThreshold == 0)
+			nCollisionThreshold = kCollisionThresholdDefault;
+		ppass->SetCollisionThreshold(nCollisionThreshold);
 	}
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
@@ -2847,6 +2917,7 @@ void GrcManager::ProcessAssociations(RefAST ast, GdlRuleTable *prultbl, GdlRuleI
 
 /*----------------------------------------------------------------------------------------------
 	Traverse the slot attribute assignment tree, adding the assignments to the rule item.
+	This will also handle feature assignments.
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<std::string> & vsta)
 {
@@ -2866,11 +2937,21 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<st
 		Assert(psymOp);
 
 		Symbol psymSlotAttr = SymbolTable()->FindSlotAttr(GrcStructName(vsta), LineAndFile(ast));
-		if (!psymSlotAttr)
+		Symbol psymFeature = SymbolTable()->FindFeature(GrcStructName(vsta), LineAndFile(ast));
+		if (psymSlotAttr && psymFeature)
+		{
+			g_errorList.AddError(1165, NULL,
+				GrcStructName(vsta).FullString(),
+				" is ambiguous with regards to being a feature or slot attribute",
+				LineAndFile(ast));
+		}
+		else if (!psymSlotAttr && !psymFeature)
+		{
 			g_errorList.AddError(1165, NULL,
 				"Invalid slot attribute: ",
 				GrcStructName(vsta).FullString(),
 				LineAndFile(ast));
+		}
 		else
 		{
 			RefAST astValue = astNextID->getNextSibling();
@@ -2881,7 +2962,9 @@ void GrcManager::WalkSlotAttrTree(RefAST ast, GdlRuleItem * prit, std::vector<st
 			else
 			{
 				GdlExpression * pexpValue = WalkExpressionTree(astValue);
-				GdlAttrValueSpec * pavs = new GdlAttrValueSpec(psymSlotAttr, psymOp, pexpValue);
+				GdlAttrValueSpec * pavs = (psymSlotAttr)
+					? new GdlAttrValueSpec(psymSlotAttr, psymOp, pexpValue)
+					: new GdlAttrValueSpec(psymFeature, psymOp, pexpValue);
 				prit->AddAttrValueSpec(pavs);
 			}
 		}

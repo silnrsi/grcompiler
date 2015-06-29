@@ -94,8 +94,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt) = 0;
 	virtual void GlyphAttrCheck(Symbol psymAttr) = 0;
 	virtual void FixFeatureTestsInRules(GrcFont *) = 0;
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat) = 0;
-	virtual void LookupExpCheck(bool fInIf) = 0;
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr) = 0;
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature) = 0;
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub) = 0;
@@ -214,10 +214,10 @@ public:
 	virtual void GlyphAttrCheck(Symbol /*psymAttr*/) { }
 	virtual void FixFeatureTestsInRules(GrcFont *) { }
 
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/)
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/, bool & /*fErr*/)
 		{ return this; }
 
-	virtual void LookupExpCheck(bool /*fInIf*/) { }
+	virtual void LookupExpCheck(bool /*fInIf*/, Symbol /*psymFeature*/) { }
 
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * /*pgax*/,
 		utf16 /*wGlyphID*/, SymbolSet & /*setpsym*/, GrcFont * /*pfont*/,
@@ -365,8 +365,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
@@ -478,8 +478,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
@@ -575,8 +575,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
@@ -670,8 +670,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
@@ -772,8 +772,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
@@ -886,8 +886,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
@@ -1075,8 +1075,8 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexpt);
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual void FixFeatureTestsInRules(GrcFont *);
-	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat);
-	virtual void LookupExpCheck(bool fInIf);
+	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
+	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);

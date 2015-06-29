@@ -501,6 +501,20 @@ Symbol GrcSymbolTable::FindSlotAttr(const GrcStructName & xns, GrpLineAndFile co
 }
 
 /*----------------------------------------------------------------------------------------------
+    Return the symbol corresponding to the slot attribute name. Return NULL if it is not
+	a legal slot attribute. If it is of the form component.???.reference, add it to the
+	symbol table.
+----------------------------------------------------------------------------------------------*/
+Symbol GrcSymbolTable::FindFeature(const GrcStructName & xns, GrpLineAndFile const& lnf)
+{
+	Symbol psym = FindSymbol(xns);
+	if (!psym || !psym->FitsSymbolType(ksymtFeature))
+		return NULL;
+	else
+		return psym;
+}
+
+/*----------------------------------------------------------------------------------------------
     Answer true if the field at the given index is the given string.
 ----------------------------------------------------------------------------------------------*/
 void GrcSymbolTableEntry::ReplaceClassData(GdlGlyphClassDefn * pglfc)
@@ -606,7 +620,7 @@ bool GrcSymbolTableEntry::IsComparativeOp()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsBogusSlotAttr()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 
 	if (FieldCount() != 2)
 		return false;
@@ -645,7 +659,7 @@ bool GrcSymbolTableEntry::IsReadOnlySlotAttr()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsWriteOnlySlotAttr()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 
 	return (FieldIs(0, "kern"));
 }
@@ -659,7 +673,9 @@ bool GrcSymbolTableEntry::IsIndexedSlotAttr()
 {
 	Assert(FitsSymbolType(ksymtSlotAttr));
 
-	if (FieldIs(0, "component") && LastFieldIs("reference"))
+	if (FitsSymbolType(ksymtFeature))
+		return false;
+	else if (FieldIs(0, "component") && LastFieldIs("reference"))
 		return true;
 	else if (IsUserDefinableSlotAttr())
 		return true;
@@ -891,9 +907,9 @@ Symbol GrcSymbolTableEntry::PointSisterField(std::string staField)
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsComponentRef()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 	Symbol psymParent = ParentSymbol();
-	return (m_staFieldName == "reference" &&
+	return (FitsSymbolType(ksymtSlotAttr) && m_staFieldName == "reference" &&
 		psymParent && psymParent->ParentSymbol() &&
 		psymParent->ParentSymbol()->m_staFieldName == "component");
 }
@@ -942,9 +958,9 @@ bool GrcSymbolTableEntry::IsPointField()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsAttachTo()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 	Symbol psymParent = ParentSymbol();
-	return (psymParent &&
+	return (FitsSymbolType(ksymtSlotAttr) && psymParent &&
 		psymParent->m_staFieldName == "attach" && m_staFieldName == "to");
 }
 
@@ -953,9 +969,10 @@ bool GrcSymbolTableEntry::IsAttachTo()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsAttachAtField()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 	Symbol psymParent = ParentSymbol();
-	return (psymParent && psymParent->ParentSymbol()
+	return (FitsSymbolType(ksymtSlotAttr)
+		&& psymParent && psymParent->ParentSymbol()
 		&& psymParent->ParentSymbol()->m_staFieldName == "attach"
 		&& psymParent->m_staFieldName == "at");
 }
@@ -965,9 +982,10 @@ bool GrcSymbolTableEntry::IsAttachAtField()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsAttachWithField()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 	Symbol psymParent = ParentSymbol();
-	return (psymParent && psymParent->ParentSymbol()
+	return (FitsSymbolType(ksymtSlotAttr)
+		&& psymParent && psymParent->ParentSymbol()
 		&& psymParent->ParentSymbol()->m_staFieldName == "attach"
 		&& psymParent->m_staFieldName == "with");
 }
@@ -977,9 +995,10 @@ bool GrcSymbolTableEntry::IsAttachWithField()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsAttachXField()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 	Symbol psymParent = ParentSymbol();
-	return ((psymParent && psymParent->ParentSymbol())
+	return (FitsSymbolType(ksymtSlotAttr)
+		&& (psymParent && psymParent->ParentSymbol())
 		&& (psymParent->ParentSymbol()->m_staFieldName == "attach")
 		&& ((psymParent->m_staFieldName == "with") || (psymParent->m_staFieldName == "at"))
 		&& m_staFieldName == "x");
@@ -990,7 +1009,7 @@ bool GrcSymbolTableEntry::IsAttachXField()
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTableEntry::IsAttachOffsetField()
 {
-	Assert(FitsSymbolType(ksymtSlotAttr));
+	Assert(FitsSymbolType(ksymtSlotAttr) || FitsSymbolType(ksymtFeature));
 	// Symbol psymParent = ParentSymbol();
 	return ((IsAttachWithField() || IsAttachAtField())
 		&& (m_staFieldName == "xoffset" || m_staFieldName == "yoffset"));
@@ -1732,6 +1751,8 @@ void GrcSymbolTable::InitDirectives()
 	PreDefineSymbol(GrcStructName("MUnits"),				kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("PointRadius"),			kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("CollisionFix"),			kst, kexptBoolean);
+	PreDefineSymbol(GrcStructName("Kern"),					kst, kexptBoolean);
+	PreDefineSymbol(GrcStructName("CollisionThreshold"),	kst, kexptNumber);
 }
 
 /*--------------------------------------------------------------------------------------------*/

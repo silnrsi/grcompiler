@@ -1231,7 +1231,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 									// in the input stream (ie, comp.X.ref) as opposed to
 									// an output slot (ie, attach.to)
 
-	if (!m_psymName->FitsSymbolType(ksymtSlotAttr))
+	if (!m_psymName->FitsSymbolType(ksymtSlotAttr) && !m_psymName->FitsSymbolType(ksymtFeature))
 	{
 		if (m_psymName->FitsSymbolType(ksymtGlyphAttr))
 			g_errorList.AddError(3117, this,
@@ -1241,13 +1241,47 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 				"Cannot set glyph metrics");
 		else
 			g_errorList.AddError(3119, this,
-				"Cannot set anything but slot attributes in rules");
+				"Cannot set anything but slot attributes and features in rules");
 		return false;
 	}
 
 	bool fOkay = true;
 
-	if (m_psymName->IsPseudoSlotAttr())
+	if (m_psymName->FitsSymbolType(ksymtFeature))
+	{
+		if (this->m_psymOperator->FullName() != "=")
+			g_errorList.AddError(3165, this,
+				"Cannot set a feature using any operator but '='");
+
+		// Convert any feature setting in the value to an integer.
+		GdlFeatureDefn * pfeat = m_psymName->FeatureDefnData();
+		bool fErr = false;
+		GdlExpression * pexpNew = m_pexpValue->ConvertFeatureSettingValue(pfeat, fErr);
+		if (pexpNew != m_pexpValue)
+		{
+			delete m_pexpValue;
+			m_pexpValue = pexpNew;
+		}
+		// Check that the calculated value is an expected setting for this feature.
+		if (!fErr)
+		{
+			int n;
+			bool fInt = m_pexpValue->ResolveToInteger(&n, false);
+			if (fInt)
+			{
+				GdlFeatureSetting * pfsetValue = pfeat->FindSettingWithValue(n);
+				if (!pfsetValue)
+					g_errorList.AddWarning(3536, this,
+						"Setting feature ", pfeat->Name(), " to undefined setting");
+			}
+			else
+			{
+				g_errorList.AddWarning(3537, this,
+					"Cannot validate setting for feature ", pfeat->Name());
+			}
+		}
+	}
+	else if (m_psymName->IsPseudoSlotAttr())
 	{
 		// Ignore
 		int x; x = 3;
@@ -1767,7 +1801,7 @@ void GdlSubstitutionItem::AdjustToIOIndices(std::vector<int> & viritInput, std::
 void GdlAttrValueSpec::AdjustToIOIndices(GdlRuleItem * prit,
 	std::vector<int> & viritInput, std::vector<int> & viritOutput)
 {
-	Assert(m_psymName->FitsSymbolType(ksymtSlotAttr));
+	Assert(m_psymName->FitsSymbolType(ksymtSlotAttr) || m_psymName->FitsSymbolType(ksymtFeature));
 
 	if (m_psymName->ExpType() == kexptSlotRef)
 	{
