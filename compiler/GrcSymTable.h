@@ -359,6 +359,7 @@ public:
 	Symbol FindSymbol(const std::string staName);
 
 	Symbol FindSlotAttr(const GrcStructName & xns, GrpLineAndFile const&);
+	Symbol FindFeature(const GrcStructName & xns, GrpLineAndFile const& lnf);
 
 protected:
 	int AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttrIDs,

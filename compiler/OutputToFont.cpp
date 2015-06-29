@@ -2090,7 +2090,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 {
 	int fxdResult = fxdSilfSpecVersion;
 
-	if (m_prndr->HasCollisionPass())
+	if (m_prndr->HasCollisionPass() && fxdSilfSpecVersion < 0x00040001)
 	{
 		fxdResult = 0x00040001;
 	}
@@ -2812,8 +2812,9 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int nOffsetToDebugArrays = 0;
 	long lOffsetToDebugArraysPos = 0;
 
-	//	flags: bits 0-2 = collision fix
-	pbstrm->WriteByte(m_nCollisionFix);
+	//	flags: bits 0-2 = collision fix; bit 3 = kern
+	int nTemp = m_nCollisionFix | ((int)m_fKern << 3);
+	pbstrm->WriteByte(nTemp);
 	//	MaxRuleLoop
 	pbstrm->WriteByte(m_nMaxRuleLoop);
 	//	max rule context
@@ -2937,7 +2938,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved - pad byte
-		pbstrm->WriteByte(0);
+		pbstrm->WriteByte(0);	// ?? numColStrata - for collision-fix kerning
+
 		lCodeOffsets = pbstrm->Position();
 		// pass constraint byte count
 		pbstrm->WriteShort(0);
@@ -2960,7 +2962,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved - pad byte
-		pbstrm->WriteByte(0);
+		pbstrm->WriteByte(m_nCollisionThreshold);
 
 		nOffsetToPConstraint = pbstrm->Position() - lTableStart;
 		std::vector<gr::byte> vbPassConstr;

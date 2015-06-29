@@ -145,7 +145,8 @@ enum {
 	kMaxReplcmtClassesV1_2	= 256,
 	kMaxGlyphAttrsGlat1		= 256,
 	kMaxComponents			= 16383,
-	kMaxColIterations		= 7			// iterations per collision pass
+	kMaxColIterations		= 7,			// iterations per collision pass
+	kMaxCollisionThreshold	= 255
 };
 
 
@@ -173,7 +174,9 @@ enum {
 enum {
 	kMaxFileLineNumber = 0x1FFFFFFF,	//	kludge to ensure that certain error messages come last
 
-	kPassPerSPbitmap = 16	// *skipPasses* bitmap; 16 = size of glyph attr word
+	kPassPerSPbitmap = 16,	// *skipPasses* bitmap; 16 = size of glyph attr word
+
+	kCollisionThresholdDefault = 10
 };
 
 
@@ -216,10 +219,12 @@ enum ActionCommand {
 	kopPutGlyph,		kopPushGlyphAttr,	kopPushAttToGlyphAttr,
 
 	kopBitAnd,			kopBitOr,			kopBitNot,
-	kopSetBits
+	kopSetBits,
 	// not implemented:
-	//kopAttrBitAnd,		kopAttrBitOr,		kopIAttrBitAnd,		kopIAttrBitOr
+	//kopAttrBitAnd,		kopAttrBitOr,		kopIAttrBitAnd,		kopIAttrBitOr,
 
+	kopFeatSet,
+	kopLim
 };
 
 

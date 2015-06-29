@@ -2501,7 +2501,7 @@ void GdlSetAttrItem::FixGlyphAttrsInRules(GrcManager * pcman,
 		//	Check that appropriate glyph attributes exist for the slot attributes that
 		//	are making use of them.
 		Symbol psym = pavs->m_psymName;
-		Assert(psym->FitsSymbolType(ksymtSlotAttr));
+		Assert(psym->FitsSymbolType(ksymtSlotAttr) || psym->FitsSymbolType(ksymtFeature));
 
 		if (psym->IsAttachAtField())
 		{
@@ -2696,10 +2696,11 @@ void GdlAttrValueSpec::FixGlyphAttrsInRules(GrcManager * pcman,
 		psymOutClass->FitsSymbolType(ksymtSpecialUnderscore) ||
 		psymOutClass->FitsSymbolType(ksymtSpecialAt));
 
+	SymbolType symtName = this->m_psymName->SymType();
 	if (m_pexpValue)
 	{
 		m_pexpValue->CheckAndFixGlyphAttrsInRules(pcman, vpglfcInClasses, irit);
-		m_pexpValue->LookupExpCheck(false);
+		m_pexpValue->LookupExpCheck(false, ((symtName == ksymtFeature) ? m_psymName : NULL));
 	}
 }
 
@@ -3195,7 +3196,7 @@ void GdlRule::FixFeatureTestsInRules(GrcFont * pfont)
 	for (size_t ipexp = 0; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->FixFeatureTestsInRules(pfont);
-		m_vpexpConstraints[ipexp]->LookupExpCheck(true);
+		m_vpexpConstraints[ipexp]->LookupExpCheck(true, NULL);
 	}
 
 	for (size_t irit = 0; irit < m_vprit.size(); irit++)
@@ -3210,7 +3211,7 @@ void GdlRuleItem::FixFeatureTestsInRules(GrcFont * pfont)
 	if (m_pexpConstraint)
 	{
 		m_pexpConstraint->FixFeatureTestsInRules(pfont);
-		m_pexpConstraint->LookupExpCheck(false);
+		m_pexpConstraint->LookupExpCheck(false, NULL);
 	}
 }
 
@@ -3229,7 +3230,7 @@ void GdlPass::FixFeatureTestsInPass(GrcFont * pfont)
 	for (size_t ipexp = 0; ipexp < m_vpexpConstraints.size(); ipexp++)
 	{
 		m_vpexpConstraints[ipexp]->FixFeatureTestsInRules(pfont);
-		m_vpexpConstraints[ipexp]->LookupExpCheck(true);
+		m_vpexpConstraints[ipexp]->LookupExpCheck(true, NULL);
 	}
 }
 /*--------------------------------------------------------------------------------------------*/

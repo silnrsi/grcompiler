@@ -1051,7 +1051,8 @@ void GdlBinaryExpression::FixFeatureTestsInRules(GrcFont *pfont)
 	{
 		GdlFeatureDefn * pfeat = pexplookFeature->Name()->FeatureDefnData();
 		Assert(pfeat);
-		GdlExpression * pexpNew = m_pexpOperand2->ConvertFeatureSettingValue(pfeat);
+		bool fErr;
+		GdlExpression * pexpNew = m_pexpOperand2->ConvertFeatureSettingValue(pfeat, fErr);
 		if (pexpNew != m_pexpOperand2)
 		{
 			delete m_pexpOperand2;
@@ -1128,13 +1129,13 @@ void GdlStringExpression::FixFeatureTestsInRules(GrcFont * /*pfont*/)
 	Return the equivalent expression, with any feature setting value converted to a
 	numeric expression.
 ----------------------------------------------------------------------------------------------*/
-GdlExpression * GdlUnaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlUnaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr)
 {
 	if (pfeat->IsLanguageFeature())
 		g_errorList.AddWarning(2515, this,
 			"Arithmetic calculation of language ID value");
 
-	GdlExpression * pexpNew = m_pexpOperand->ConvertFeatureSettingValue(pfeat);
+	GdlExpression * pexpNew = m_pexpOperand->ConvertFeatureSettingValue(pfeat, fErr);
 	if (pexpNew != m_pexpOperand)
 	{
 		delete m_pexpOperand;
@@ -1144,20 +1145,20 @@ GdlExpression * GdlUnaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlBinaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlBinaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr)
 {
 	if (pfeat->IsLanguageFeature())
 		g_errorList.AddWarning(2516, this,
 			"Arithmetic calculation of language ID value");
 
 	GdlExpression * pexpNew;
-	pexpNew = m_pexpOperand1->ConvertFeatureSettingValue(pfeat);
+	pexpNew = m_pexpOperand1->ConvertFeatureSettingValue(pfeat, fErr);
 	if (pexpNew != m_pexpOperand1)
 	{
 		delete m_pexpOperand1;
 		m_pexpOperand1 = pexpNew;
 	}
-	pexpNew = m_pexpOperand2->ConvertFeatureSettingValue(pfeat);
+	pexpNew = m_pexpOperand2->ConvertFeatureSettingValue(pfeat, fErr);
 	if (pexpNew != m_pexpOperand2)
 	{
 		delete m_pexpOperand2;
@@ -1167,22 +1168,22 @@ GdlExpression * GdlBinaryExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlCondExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlCondExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr)
 {
 	GdlExpression * pexpNew;
-	pexpNew = m_pexpTest->ConvertFeatureSettingValue(pfeat);
+	pexpNew = m_pexpTest->ConvertFeatureSettingValue(pfeat, fErr);
 	if (pexpNew != m_pexpTest)
 	{
 		delete m_pexpTest;
 		m_pexpTest = pexpNew;
 	}
-	pexpNew = m_pexpTrue->ConvertFeatureSettingValue(pfeat);
+	pexpNew = m_pexpTrue->ConvertFeatureSettingValue(pfeat, fErr);
 	if (pexpNew != m_pexpTrue)
 	{
 		delete m_pexpTrue;
 		m_pexpTrue = pexpNew;
 	}
-	pexpNew = m_pexpFalse->ConvertFeatureSettingValue(pfeat);
+	pexpNew = m_pexpFalse->ConvertFeatureSettingValue(pfeat, fErr);
 	if (pexpNew != m_pexpFalse)
 	{
 		delete m_pexpFalse;
@@ -1192,11 +1193,13 @@ GdlExpression * GdlCondExpression::ConvertFeatureSettingValue(GdlFeatureDefn * p
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr)
 {
 	if (pfeat->IsLanguageFeature())
+	{
 		g_errorList.AddWarning(2517, this,
 			"Arithmetic calculation of language ID value");
+	}
 
 	//	Note: normally the symbol type will be ksymtInvalid.
 	if (m_psymName->FieldCount() > 1)
@@ -1204,28 +1207,37 @@ GdlExpression * GdlLookupExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 		g_errorList.AddError(2113, this,
 			"Invalid feature setting: ",
 			m_psymName->FullName());
+		fErr = true;
 		return this;
 	}
 
-	GdlFeatureSetting * pfset = pfeat->FindSetting(std::string(m_psymName->LastField()));
-	if (!pfset)
+	if (m_psymName->FitsSymbolType(ksymtFeature))
 	{
-		g_errorList.AddError(2114, this,
-			"Feature '",
-			pfeat->Name(),
-			"' has no setting '",
-			m_psymName->FullName(),
-			"'");
+		//	We are reading the value of a feature, not specifying a setting.
 		return this;
 	}
-
-	//	Caller will replace setting expression with numeric value.
-	GdlNumericExpression * pexpValue = new GdlNumericExpression(pfset->Value());
-	return pexpValue;
+	else
+	{
+		GdlFeatureSetting * pfset = pfeat->FindSetting(std::string(m_psymName->LastField()));
+		if (!pfset)
+		{
+			g_errorList.AddError(2114, this,
+				"Feature '",
+				pfeat->Name(),
+				"' has no setting '",
+				m_psymName->FullName(),
+				"'");
+			fErr = true;
+			return this;
+		}
+		//	Caller will replace setting expression with numeric value.
+		GdlNumericExpression * pexpValue = new GdlNumericExpression(pfset->Value());
+		return pexpValue;
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr)
 {
 	if (pfeat->IsLanguageFeature())
 		g_errorList.AddWarning(2518, this,
@@ -1235,7 +1247,7 @@ GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/)
+GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/, bool & fErr)
 {
 	//	Caller will replace slot-ref expression with numeric expression.
 	char rgch[20];
@@ -1248,7 +1260,7 @@ GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat)
+GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr)
 {
 	if (pfeat->IsLanguageFeature())
 	{
@@ -1258,6 +1270,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 		{
 			g_errorList.AddError(2115, this,
 				"Invalid language ID--must be a 4-byte string");
+			fErr = true;
 		}
 		else if (m_staValue.length() < 4)
 		{
@@ -1280,6 +1293,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 		g_errorList.AddError(2116, this,
 			"Inappropriate value of feature setting: ",
 			m_staValue);
+		fErr = true;
 	}
 	return this;
 }
@@ -1290,29 +1304,30 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	Argument:
 		fInIf			- true if the statement was inside an -if- statement, rather than
 							inside a rule's context.
+		psymFeature		- this expression sets the value of the given feature
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::LookupExpCheck(bool fInIf)
+void GdlUnaryExpression::LookupExpCheck(bool fInIf, Symbol psymFeature)
 {
-	m_pexpOperand->LookupExpCheck(fInIf);
+	m_pexpOperand->LookupExpCheck(fInIf, psymFeature);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::LookupExpCheck(bool fInIf)
+void GdlBinaryExpression::LookupExpCheck(bool fInIf, Symbol psymFeature)
 {
-	m_pexpOperand1->LookupExpCheck(fInIf);
-	m_pexpOperand2->LookupExpCheck(fInIf);
+	m_pexpOperand1->LookupExpCheck(fInIf, psymFeature);
+	m_pexpOperand2->LookupExpCheck(fInIf, psymFeature);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::LookupExpCheck(bool fInIf)
+void GdlCondExpression::LookupExpCheck(bool fInIf, Symbol psymFeature)
 {
-	m_pexpTest->LookupExpCheck(fInIf);
-	m_pexpTrue->LookupExpCheck(fInIf);
-	m_pexpFalse->LookupExpCheck(fInIf);
+	m_pexpTest->LookupExpCheck(fInIf, psymFeature);
+	m_pexpTrue->LookupExpCheck(fInIf, psymFeature);
+	m_pexpFalse->LookupExpCheck(fInIf, psymFeature);
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::LookupExpCheck(bool fInIf)
+void GdlLookupExpression::LookupExpCheck(bool fInIf, Symbol psymFeature)
 {
 	if (!m_psymName)
 	{
@@ -1345,6 +1360,17 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 		g_errorList.AddError(2119, this,
 			"Incomplete glyph attribute: ",
 			m_psymName->FullName());
+	}
+	else if (psymFeature && m_psymName->FitsSymbolType(ksymtInvalid))
+	{
+		GdlFeatureDefn * pfeat = psymFeature->FeatureDefnData();
+		GdlFeatureSetting * pfset = pfeat->FindSetting(std::string(m_psymName->LastField()));
+		if (!pfset)
+		{
+			g_errorList.AddWarning(2536, this,
+				"Setting feature to an undefined value");
+			return;
+		}
 	}
 	else if (m_psymName->FitsSymbolType(ksymtClass))
 	{
@@ -1381,18 +1407,28 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::LookupExpCheck(bool /*fInIf*/)
+void GdlNumericExpression::LookupExpCheck(bool /*fInIf*/, Symbol /*psymFeature*/)
 {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::LookupExpCheck(bool /*fInIf*/)
+void GdlSlotRefExpression::LookupExpCheck(bool /*fInIf*/, Symbol psymFeature)
 {
+	if (psymFeature)
+	{
+		g_errorList.AddError(2166, this,
+			"Setting feature to a slot reference");
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::LookupExpCheck(bool /*fInIf*/)
+void GdlStringExpression::LookupExpCheck(bool /*fInIf*/, Symbol psymFeature)
 {
+	if (psymFeature)
+	{
+		g_errorList.AddError(2167, this,
+			"Setting feature to a string value");
+	}
 }
 
 
@@ -2055,7 +2091,7 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 			pfXY, pfGpoint);
 	}
 	else
-		LookupExpCheck(false);
+		LookupExpCheck(false, false);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -3084,6 +3120,11 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 		Assert(pfeat);
 		vbOutput.push_back(pfeat->InternalID());
 		vbOutput.push_back(nSelOffset);
+	}
+	else if (m_psymName->FitsSymbolType(ksymtFeatSetting))
+	{
+		//	Should already have been converted to an integer, if valid.
+		Assert(false);
 	}
 	else if (m_psymName->FitsSymbolType(ksymtProcState))
 	{

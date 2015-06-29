@@ -505,17 +505,28 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 
 	int nBogus;
 
-	Assert(m_psymName->FitsSymbolType(ksymtSlotAttr));
+	Assert(m_psymName->FitsSymbolType(ksymtSlotAttr) || m_psymName->FitsSymbolType(ksymtFeature));
 	Assert(m_pexpValue);
 	ExpressionType expt = m_psymName->ExpType();
-	Assert(expt == kexptSlotRef || expt == kexptNumber ||
-		expt == kexptMeas || expt == kexptBoolean || expt == kexptGlyphID);
+	Assert(expt == kexptSlotRef || expt == kexptNumber
+		|| expt == kexptMeas || expt == kexptBoolean || expt == kexptGlyphID);
 	std::string staOp = m_psymOperator->FullName();
-	int slat = m_psymName->SlotAttrEngineCodeOp();
+	int slat = m_psymName->FitsSymbolType(ksymtSlotAttr) ? m_psymName->SlotAttrEngineCodeOp() : kslatBogus;
 
 	if (m_psymName->IsPseudoSlotAttr())
 	{
 		// Ignore
+	}
+	else if (m_psymName->FitsSymbolType(ksymtFeature))
+	{
+		GdlFeatureDefn * pfeat = m_psymName->FeatureDefnData();
+		Assert(staOp == "=");
+
+		m_pexpValue->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, NULL, nIIndex,
+			false, -1, &nBogus);
+
+		vbOutput.push_back(kopFeatSet);
+		vbOutput.push_back(pfeat->InternalID());
 	}
 	else if (m_psymName->IsIndexedSlotAttr())	// eg, component.XXX.ref, user1
 	{
@@ -599,7 +610,6 @@ bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVe
 
 		vbOutput.push_back(op);
 		vbOutput.push_back(slat);
-
 	}
 
 	return fAttachForward;
@@ -1181,7 +1191,7 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 			strmOut << " " << GlyphMetricDebugString(gmet);
 			cbArgs = 2;	// selector, cluster
 			break;
-		case kopPushFeat:			cbArgs = 2;		break;	// feature, selector
+		case kopPushFeat:			cbArgs = 2;		break;	// feature internal ID, selector
 		//case kopPushIGlyphAttr:	cbArgs = 2;		break;	// glyph attr, index
 		case kopPushProcState:
 			pstat = vb[ib++];
@@ -1203,6 +1213,8 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/
 			strmOut << " " << nSigned;
 			cbArgs = 0;
 			break;
+
+		case kopFeatSet:			cbArgs = 1;		break;	// feature internal ID
 
 		default:
 			Assert(false);
@@ -1417,6 +1429,7 @@ std::string GdlRule::EngineCodeDebugString(int op)
 //	case kopIAttrBitOr:				return "IAttrBitOr";
 	case kopPushProcState:			return "PushProcState";
 	case kopSetBits:				return "SetBits";
+	case kopFeatSet:				return "FeatSet";
 	default:
 		Assert(false);
 		char rgch[20];

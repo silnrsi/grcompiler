@@ -227,7 +227,8 @@ protected:
 	void WalkParseTree(RefAST ast);
 	void WalkTopTree(RefAST ast);
 	void WalkEnvTree(RefAST ast, TableType tblt, GdlRuleTable *, GdlPass *);
-	void WalkDirectivesTree(RefAST ast, int * nCollisionFix = NULL);
+	void WalkDirectivesTree(RefAST ast, int * nCollisionFix = NULL, bool * pfKern = NULL,
+		int * pnCollisionThreshold = NULL);
 	void WalkTableTree(RefAST ast);
 	void WalkTableElement(RefAST ast, TableType tblt, GdlRuleTable * prultbl, GdlPass * ppass);
 	void WalkGlyphTableTree(RefAST ast);

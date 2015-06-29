@@ -22,8 +22,9 @@ Compiler versions:
 	4.3		- handle &= and -= for class definitions; multiple justification levels
 	4.3.1	- added *skipPasses* glyph attribute and passKeySlot slot attribute for
 				optimization; don't output xoffset, yoffset, or gpoint att fields
-	5.0		- collision fixing (Glat table 3.0, Gloc table 1.1;
+	5.0		- collision fixing (Glat table 3.0, Gloc table 1.1; feat-set operator;
 				Silf table 4.1 IF we define collision glyph attrs)
+				
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
