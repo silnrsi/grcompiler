@@ -1972,9 +1972,6 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("collision", "max", "y"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "margin"),		kst,	kexptMeas);
 	PreDefineSymbol(GrcStructName("collision", "marginweight"),	kst,	kexptNumber);
-	//PreDefineSymbol(GrcStructName("collision", "marginmin"),	kst,	kexptMeas);
-	//PreDefineSymbol(GrcStructName("collision", "order", "class"),			kst,	kexptNumber);
-	//PreDefineSymbol(GrcStructName("collision", "order", "enforce"),			kst,	kexptNumber);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "glyph"),			kst,	kexptGlyphID);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset"),		kst,	kexptPoint);
 	PreDefineSymbol(GrcStructName("collision", "exclude", "offset", "x"),	kst,	kexptMeas);
@@ -2067,18 +2064,13 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym->m_fGeneric = true;
 	psym = AddType2(GrcStructName("collision", "marginweight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
-	//psym = AddType2(GrcStructName("collision", "marginmin"), ksymtGlyphAttr);
+	// Not defined as glyph attributes:
+	//psym = AddType2(GrcStructName("collision", "exclude", "glyph"), ksymtGlyphAttr);
 	//psym->m_fGeneric = true;
-	//psym = AddType2(GrcStructName("collision", "order", "class"), ksymtGlyphAttr);
+	//psym = AddType2(GrcStructName("collision", "exclude", "offset", "x"), ksymtGlyphAttr);
 	//psym->m_fGeneric = true;
-	//psym = AddType2(GrcStructName("collision", "order", "enforce"), ksymtGlyphAttr);
+	//psym = AddType2(GrcStructName("collision", "exclude", "offset", "y"), ksymtGlyphAttr);
 	//psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "exclude", "glyph"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "exclude", "offset", "x"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
-	psym = AddType2(GrcStructName("collision", "exclude", "offset", "y"), ksymtGlyphAttr);
-	psym->m_fGeneric = true;
 
 	psym = AddType2(GrcStructName("sequence", "class"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;

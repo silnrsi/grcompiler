@@ -1378,12 +1378,13 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMargin);
 				Symbol psymColMarginWt = psymtblMain->FindSymbol(GrcStructName("collision", "marginweight"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMarginWt);
-				Symbol psymExclGlyph = psymtblMain->FindSymbol(GrcStructName("collision", "exclude", "glyph"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclGlyph);
-				Symbol psymExclOffX = psymtblMain->FindSymbol(GrcStructName("collision", "exclude", "offset", "x"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclOffX);
-				Symbol psymExclOffY = psymtblMain->FindSymbol(GrcStructName("collision", "exclude", "offset", "y"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclOffY);
+				// Not defined as glyph attributes:
+				//Symbol psymExclGlyph = psymtblMain->FindSymbol(GrcStructName("collision", "exclude", "glyph"));
+				//AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclGlyph);
+				//Symbol psymExclOffX = psymtblMain->FindSymbol(GrcStructName("collision", "exclude", "offset", "x"));
+				//AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclOffX);
+				//Symbol psymExclOffY = psymtblMain->FindSymbol(GrcStructName("collision", "exclude", "offset", "y"));
+				//AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymExclOffY);
 				Symbol psymSeqClass = psymtblMain->FindSymbol(GrcStructName("sequence", "class"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymSeqClass);
 				Symbol psymSeqProxClass = psymtblMain->FindSymbol(GrcStructName("sequence", "proxClass"));
@@ -1414,20 +1415,20 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				Assert(psymColFlags->InternalID() + 4 == psymColMaxY->InternalID());
 				Assert(psymColFlags->InternalID() + 5 == psymColMargin->InternalID());
 				Assert(psymColFlags->InternalID() + 6 == psymColMarginWt->InternalID());
-				Assert(psymColFlags->InternalID() + 7 == psymExclGlyph->InternalID());
-				Assert(psymColFlags->InternalID() + 8 == psymExclOffX->InternalID());
-				Assert(psymColFlags->InternalID() + 9 == psymExclOffY->InternalID());
-				Assert(psymColFlags->InternalID() + 10 == psymSeqClass->InternalID());
-				Assert(psymColFlags->InternalID() + 11 == psymSeqProxClass->InternalID());
-				Assert(psymColFlags->InternalID() + 12 == psymSeqOrder->InternalID());
-				Assert(psymColFlags->InternalID() + 13 == psymSeqAboveXoff->InternalID());
-				Assert(psymColFlags->InternalID() + 14 == psymSeqAboveWt->InternalID());
-				Assert(psymColFlags->InternalID() + 15 == psymSeqBelowXlim->InternalID());
-				Assert(psymColFlags->InternalID() + 16 == psymSeqBelowWt->InternalID());
-				Assert(psymColFlags->InternalID() + 17 == psymSeqValignHt->InternalID());
-				Assert(psymColFlags->InternalID() + 18 == psymSeqValignWt->InternalID());
+				//Assert(psymColFlags->InternalID() + 7 == psymExclGlyph->InternalID());
+				//Assert(psymColFlags->InternalID() + 8 == psymExclOffX->InternalID());
+				//Assert(psymColFlags->InternalID() + 9 == psymExclOffY->InternalID());
+				Assert(psymColFlags->InternalID() + 7 == psymSeqClass->InternalID());
+				Assert(psymColFlags->InternalID() + 8 == psymSeqProxClass->InternalID());
+				Assert(psymColFlags->InternalID() + 9 == psymSeqOrder->InternalID());
+				Assert(psymColFlags->InternalID() + 10 == psymSeqAboveXoff->InternalID());
+				Assert(psymColFlags->InternalID() + 11 == psymSeqAboveWt->InternalID());
+				Assert(psymColFlags->InternalID() + 12 == psymSeqBelowXlim->InternalID());
+				Assert(psymColFlags->InternalID() + 13 == psymSeqBelowWt->InternalID());
+				Assert(psymColFlags->InternalID() + 14 == psymSeqValignHt->InternalID());
+				Assert(psymColFlags->InternalID() + 15 == psymSeqValignWt->InternalID());
 				// Keep this last:
-				Assert(psymColFlags->InternalID() + 19 == psymComplexFit->InternalID());
+				Assert(psymColFlags->InternalID() + 16 == psymComplexFit->InternalID());
 			}
 			// Otherwise we don't want to assign glyph attr IDs to the collision attributes, because
 			// the older table format doesn't know how to handle them.
@@ -1535,14 +1536,13 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "marginweight")));
 		vnSysDefValues.push_back(0);
-		//vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "marginmin")));
+		// Not defined as glyph attributes:
+		//vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "exclude", "glyph")));
 		//vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "exclude", "glyph")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "exclude", "offset", "x")));
-		vnSysDefValues.push_back(0);
-		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "exclude", "offset", "y")));
-		vnSysDefValues.push_back(0);
+		//vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "exclude", "offset", "x")));
+		//vnSysDefValues.push_back(0);
+		//vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "exclude", "offset", "y")));
+		//vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("collision", "complexFit")));
 		vnSysDefValues.push_back(0);
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("sequence", "class")));

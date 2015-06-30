@@ -1504,11 +1504,10 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		}
 		else if (exptFound == kexptUnknown)
 		{
-			g_errorList.AddError(3130, this,
-				"Invalid value for ",
+			// Possibly they are reading a user-defined glyph attribute of unknown type.
+			g_errorList.AddWarning(3538, this,
+				"Cannot validate value for ",
 				m_psymName->FullName());
-			fOkay = false;
-			fKeepChecking = false;
 		}
 		else if (m_psymName->IsUserDefinableSlotAttr())
 		{
