@@ -6,24 +6,24 @@ noinst_PROGRAMS = GrcRegressionTest
 
 AM_CPPFLAGS = -I$(top_srcdir)/../../compiler
 
-@ GrcRegressionTest_LDFLAGS = $(GR2_LIBS)
+GrcRegressionTest_LDFLAGS = $(GR2_LIBS)
 
 GrcRegressionTest_SOURCES = \
         main.h \
         stdafx.h \
         TestCase.h \
         CompareFontTables.cpp \
-		FileInput.cpp \
+        FileInput.cpp \
         GrcRtFileFont.h \
         GrcRtFileFont.cpp \
         GrcRegressionTest.cpp \
         TtfUtil.cpp \
-	TtfUtil.h \
-	FileInput.h \
-	FontTableCache.h \
-	TtfTypes.h \
-    fonts \
-    regtest
+        TtfUtil.h \
+        FileInput.h \
+        FontTableCache.h \
+        TtfTypes.h \
+        fonts \
+        regtest
 
 # FontStubb.cpp
 
