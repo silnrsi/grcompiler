@@ -9,6 +9,8 @@ pkgdata_DATA = stddef.gdh
 
 grcompiler_SOURCES = \
         Compiler.cpp \
+        Compressor.cpp \
+        Compressor.h \
         constants.h \
         ErrorCheckClasses.cpp \
         ErrorCheckFeatures.cpp \
@@ -64,6 +66,7 @@ grcompiler_SOURCES = \
         OutputToFont.cpp \
         ParserTreeWalker.cpp \
         PostParser.cpp \
+        Shrinker.h \
         StrAnsiHash.h \
         TtfUtil.cpp \
         TtfUtil.h \

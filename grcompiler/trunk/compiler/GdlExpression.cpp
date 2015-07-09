@@ -2091,7 +2091,7 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 			pfXY, pfGpoint);
 	}
 	else
-		LookupExpCheck(false, false);
+		LookupExpCheck(false, 0);
 }
 
 /*--------------------------------------------------------------------------------------------*/
