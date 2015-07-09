@@ -16,6 +16,8 @@ Description:
 #ifndef GRC_BINSTRM_INCLUDED
 #define GRC_BINSTRM_INCLUDED
 
+#include <string>
+#include <sstream>
 using std::fstream;
 
 /*----------------------------------------------------------------------------------------------
@@ -78,6 +80,55 @@ public:
 
 public:
 	std::ostream m_strm;
+};
+
+/*----------------------------------------------------------------------------------------------
+Class: GrcDiversion
+Description: Divert output on a given stream a temporary in-memory buffer in constructor.
+  Restore i/o to streams original target and write buffer on call to undivert() or the destructor.
+Hungarian: dstrm
+----------------------------------------------------------------------------------------------*/
+class GrcDiversion : public std::stringbuf
+{
+    std::streambuf * m_sbSaved;
+    std::iostream   & m_strm;
+
+    // Disable copying of any sort
+    GrcDiversion(const GrcDiversion &);
+    GrcDiversion & operator = (const GrcDiversion &);
+
+public:
+    GrcDiversion(std::iostream & strm, const std::string sInitial="")
+        : m_sbSaved(0), m_strm(strm)
+    {
+        divert(sInitial);
+    }
+
+    ~GrcDiversion()
+    {
+        undivert();
+    }
+
+    void divert(const std::string sInitial="")
+    {
+        undivert();
+        m_strm.flush();
+        str(sInitial);
+        m_sbSaved = m_strm.rdbuf(this);
+    }
+
+    void undivert()
+    {
+        if (m_sbSaved)
+        {
+            m_strm.flush();
+            m_strm.rdbuf(m_sbSaved);
+            m_strm.write(str().data(), str().size());
+            m_strm.flush();
+            str("");
+            m_sbSaved = 0;
+        }
+    }
 };
 
 #endif // !GRC_BINSTRM_INCLUDED

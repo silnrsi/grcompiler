@@ -122,6 +122,7 @@ int main(int argc, char * argv[])
 	g_cman.SetVerbose(true);
 	g_cman.SetPassOptimizations(true);
 	g_cman.SetOffsetAttrs(false);
+	g_cman.SetCompressor(ktcNone);
 
 	// Ignore these warnings by default:
 	g_errorList.SetIgnoreWarning(510);	// Cannot find point number for coordinates...
@@ -156,6 +157,7 @@ int main(int argc, char * argv[])
 	{
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
+		std::cout << "   -c       - compress graphite tables.";
 		std::cout << "   -d       - output XML debugger file\n";
 		std::cout << "   -D       - output all debugger files\n";
 		std::cout << "   -g       - permit and ignore invalid glyph definitions\n";
@@ -520,7 +522,11 @@ int main(int argc, char * argv[])
 ----------------------------------------------------------------------------------------------*/
 void HandleCompilerOptions(char * arg)
 {
-	if (arg[1] == 'd')		// XML debugger file
+    if (arg[1] == 'c')
+    {
+        g_cman.SetCompressor(ktcShrinker);
+    }
+    else if (arg[1] == 'd')	// XML debugger file
 	{
 		g_cman.SetOutputDebugFiles(true, false);
 	}

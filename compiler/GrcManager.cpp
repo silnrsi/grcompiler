@@ -75,6 +75,7 @@ void GrcManager::Init()
 	m_fxdGlatTableVersion = 0;
 	m_fxdFeatTableVersion = 0;
 	m_fxdSillTableVersion = 0;
+	m_tcCompressor = ktcNone;
 }
 
 

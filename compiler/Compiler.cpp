@@ -91,7 +91,7 @@ void GrcManager::CalculateGlatVersion()
 	//	The version of the Glat table depends on the number of glyph attributes defined
 	//	and whether we include the glyph approximation octaboxes for collision fixing.
 
-	if (m_prndr->HasCollisionPass())
+    if (m_prndr->HasCollisionPass() || m_tcCompressor != ktcNone)
 	{
 		g_errorList.AddWarning(3535, NULL, "Version 3.0 of the Glat table will be generated.");
 		fxdGlatVersion = 0x00030000;

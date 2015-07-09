@@ -51,6 +51,15 @@ enum GlyphAttrProcessPasses
 	kgappOther		= 4
 };
 
+
+//  Compresssion schemes
+enum TableCompressor
+{
+    ktcNone = 0,
+    ktcShrinker = 1
+};
+
+
 /*----------------------------------------------------------------------------------------------
 Class: GrcManager
 Description: The object that manages the complication process. There is one global instance.
@@ -149,6 +158,15 @@ public:
 		case 0x00040001:	m_fxdCompilerVersion = 0x00050000;		break;
 		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
+	}
+
+	TableCompressor Compressor() const
+	{
+	    return m_tcCompressor;
+	}
+	void SetCompressor(TableCompressor tc)
+	{
+	    m_tcCompressor = tc;
 	}
 
 	int VersionForTable(int ti);
@@ -417,6 +435,8 @@ protected:
 	void ReadSourceFontFeatures(std::ifstream & strmSrc, size_t iTableFeatSrc, size_t iTableFeatLen,
 		size_t iTableNameSrc, size_t iTableNameLen);
 
+	bool CompressOutput(std::stringbuf & sb);
+
 public:
 
 	//	debuggers:
@@ -572,6 +592,7 @@ protected:
 	// compiler
 	std::vector<GdlFeatureDefn *> m_vpfeatInput;	// features defined in the input font, if any
 
+	TableCompressor m_tcCompressor;
 public:
 	//	For test procedures:
 	void test_Recycle();
