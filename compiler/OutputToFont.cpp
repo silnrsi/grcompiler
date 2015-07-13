@@ -2108,7 +2108,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 	}
 	else if (m_prndr->HasCollisionPass() && fxdSilfSpecVersion < 0x00040001)
 	{
-		fxdResult = 0x00040001;
+		fxdResult = 0x00040001;	// GdlPass::CompatibleWithVersion will have set it to 5.0 if necessary
 	}
 	else
 	{
@@ -2318,9 +2318,9 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteByte(ipassBidi);
 
 	//	flags: line-break and space contextuals
-	////int nFlags = m_prndr->LineBreakFlags() | m_prndr->SpaceContextualFlags();
-	int nFlags = m_prndr->LineBreakFlags();
-	Assert(nFlags < 4);
+	int nFlags = m_prndr->LineBreakFlags() | m_prndr->SpaceContextualFlags();
+	/////int nFlags = m_prndr->LineBreakFlags();
+	/////Assert(nFlags < 4);
 	if (m_prndr->HasCollisionPass())
 		nFlags |= 0x0020;
 	pbstrm->WriteByte(nFlags);
@@ -2886,6 +2886,15 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	number of rules
 	pbstrm->WriteShort(m_vprule.size());
 
+	if (fxdSilfVersion >= 0x00050000)
+	{
+		pbstrm->WriteByte(m_nCollisionThreshold);
+		// reserved - pad byte
+		pbstrm->WriteByte(0);
+		pbstrm->WriteByte(0);
+		pbstrm->WriteByte(0);
+	}
+
 	long lFsmOffsetPos = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
@@ -3024,7 +3033,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved - pad byte
-		pbstrm->WriteByte(m_nCollisionThreshold);
+		pbstrm->WriteByte(0);
 
 		nOffsetToPConstraint = pbstrm->Position() - lTableStart;
 		std::vector<gr::byte> vbPassConstr;

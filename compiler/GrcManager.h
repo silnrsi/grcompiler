@@ -98,6 +98,10 @@ public:
 		m_fxdSilfTableVersion = fxd;
 		m_fUserSpecifiedVersion = fUserSpec;
 	}
+	void FixSilfTableVersion(int fxd)
+	{
+		m_fxdSilfTableVersion = fxd;
+	}
 	int MaxSilfVersion()
 	{
 		// Highest version of the Silf table this version of the compiler can generate:
@@ -156,6 +160,7 @@ public:
 		case 0x00030002:	m_fxdCompilerVersion = 0x00040001;		break;
 		case 0x00040000:	m_fxdCompilerVersion = 0x00040002;		break;
 		case 0x00040001:	m_fxdCompilerVersion = 0x00050000;		break;
+		case 0x00050000:	m_fxdCompilerVersion = 0x00050000;		break;
 		default:			m_fxdCompilerVersion = 0x00FF0000;		break;	// unknown
 		}
 	}
@@ -491,7 +496,7 @@ protected:
 	//	Highest justification level used
 	int m_nMaxJLevel;
 	//	Space contextual flags
-	SpaceContextuals m_spcon;
+	//////////////SpaceContextuals m_spcon;
 
 	//	Where to start the feature names in the name table
 	int m_nNameTblStart;

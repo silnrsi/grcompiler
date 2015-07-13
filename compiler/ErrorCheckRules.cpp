@@ -68,9 +68,7 @@ bool GrcManager::PreCompileRules(GrcFont * pfont)
 
 /**********************************************************************************************/
 /*----------------------------------------------------------------------------------------------
-	Assign each pass a global ID number. Record a warning if the pass numbers are not
-	sequential for a given table, or if there are rules in an unspecified pass. Return
-	the number of valid passes (those with rules in them).
+	Determine the table version needed depending on various factors.
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::DetermineTableVersion()
 {
@@ -99,7 +97,7 @@ void GrcManager::DetermineTableVersion()
 					" of the Silf table is inadequate to handle pass constraints; version ",
 					VersionString(fxdVersionNeeded),
 					" will be generated.");
-				SetSilfTableVersion(fxdVersionNeeded, false);
+				FixSilfTableVersion(fxdVersionNeeded);
 			}
 		}
 		else 
@@ -113,14 +111,14 @@ void GrcManager::DetermineTableVersion()
 					VersionString(fxdVersionNeeded),
 					" will be generated instead.");
 			}
-			SetSilfTableVersion(fxdVersionNeeded, false);
+			FixSilfTableVersion(fxdVersionNeeded);
 		}
 		
 	}
 	else if (fxdVersionNeeded > fxdRequested)
 	{
 		// Eg, 2.0 -> 2.1
-		SetSilfTableVersion(fxdVersionNeeded, false);
+		FixSilfTableVersion(fxdVersionNeeded);
 	}
 
 }
@@ -2542,6 +2540,18 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * 
 		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00030001);
 		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040000);
 	}
+	if (m_nCollisionThreshold > 0 && m_nCollisionThreshold != kCollisionThresholdDefault)
+	{
+		fRet = (fxdVersion >= 0x00050000);
+		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00050000);
+		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00050000);
+	}
+	else if (m_nCollisionFix > 0)
+	{
+		fRet = (fxdVersion >= 0x00040001);
+		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00040001);
+		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00050000);
+	}
 
 	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
 	{
@@ -2729,9 +2739,18 @@ void GdlRuleTable::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 void GdlPass::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 		std::vector<utf16> & vwSpaceGlyphs)
 {
-	for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
+	// Automatic kerning has the same effect of putting spaces in the middle of rule.
+	// This is the most lenient setting, so there is no reason to examine every rule.
+	if (m_fKern)
 	{
-		m_vprule[iprule]->CalculateSpaceContextuals(pspconSoFar, vwSpaceGlyphs);
+		*pspconSoFar = kspconAnywhere;
+	}
+	else
+	{
+		for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
+		{
+			m_vprule[iprule]->CalculateSpaceContextuals(pspconSoFar, vwSpaceGlyphs);
+		}
 	}
 }
 
