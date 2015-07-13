@@ -136,6 +136,8 @@ extern GrcManager g_cman;
 #include "GdlRenderer.h"
 #include "GrcEnv.h"
 #include "GrcManager.h"
+#include "Compressor.h"
+#include "Shrinker.h"
 
 /*************************************************************************************
 	Functions.

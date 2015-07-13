@@ -124,6 +124,7 @@ LINK32=link.exe
 
 LINK32_OBJS= \
 		 "$(INTDIR)\Compiler.obj" \
+		 "$(INTDIR)\Compressor.obj" \
 		 "$(INTDIR)\ErrorCheckClasses.obj" \
 		 "$(INTDIR)\ErrorCheckFeatures.obj" \
 		 "$(INTDIR)\ErrorCheckRules.obj" \
@@ -185,6 +186,7 @@ LINK32_OBJS= \
 
 BSC32_SBRS= \
 		 "$(INTDIR)\Compiler.sbr" \
+		 "$(INTDIR)\Compressor.sbr" \
 		 "$(INTDIR)\ErrorCheckClasses.sbr" \
 		 "$(INTDIR)\ErrorCheckFeatures.sbr" \
 		 "$(INTDIR)\ErrorCheckRules.sbr" \
@@ -244,6 +246,7 @@ BSC32_SBRS= \
 <<
 
 "$(INTDIR)\Compiler.obj" "$(INTDIR)\Compiler.sbr" : "$(GRC_SRC)\Compiler.cpp" "$(INTDIR)"
+"$(INTDIR)\Compressor.obj" "$(INTDIR)\Compressor.sbr" : "$(GRC_SRC)\Compressor.cpp" "$(INTDIR)"
 "$(INTDIR)\ErrorCheckClasses.obj" "$(INTDIR)\ErrorCheckClasses.sbr" : "$(GRC_SRC)\ErrorCheckClasses.cpp" "$(INTDIR)"
 "$(INTDIR)\ErrorCheckFeatures.obj" "$(INTDIR)\ErrorCheckFeatures.sbr" : "$(GRC_SRC)\ErrorCheckFeatures.cpp" "$(INTDIR)"
 "$(INTDIR)\ErrorCheckRules.obj" "$(INTDIR)\ErrorCheckRules.sbr" : "$(GRC_SRC)\ErrorCheckRules.cpp" "$(INTDIR)"
