@@ -2540,13 +2540,7 @@ bool GdlPass::CompatibleWithVersion(int fxdVersion, int * pfxdSilfNeeded, int * 
 		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00030001);
 		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00040000);
 	}
-	if (m_nCollisionThreshold > 0 && m_nCollisionThreshold != kCollisionThresholdDefault)
-	{
-		fRet = (fxdVersion >= 0x00050000);
-		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00050000);
-		*pfxdCpilrNeeded = max(*pfxdCpilrNeeded, 0x00050000);
-	}
-	else if (m_nCollisionFix > 0)
+	if (m_nCollisionFix > 0)
 	{
 		fRet = (fxdVersion >= 0x00040001);
 		*pfxdSilfNeeded = max(*pfxdSilfNeeded, 0x00040001);
