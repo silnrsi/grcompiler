@@ -2108,7 +2108,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 	}
 	else if (m_prndr->HasCollisionPass() && fxdSilfSpecVersion < 0x00040001)
 	{
-		fxdResult = 0x00040001;	// GdlPass::CompatibleWithVersion will have set it to 5.0 if necessary
+		fxdResult = 0x00040001;
 	}
 	else
 	{
@@ -2886,15 +2886,6 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	number of rules
 	pbstrm->WriteShort(m_vprule.size());
 
-	if (fxdSilfVersion >= 0x00050000)
-	{
-		pbstrm->WriteByte(m_nCollisionThreshold);
-		// reserved - pad byte
-		pbstrm->WriteByte(0);
-		pbstrm->WriteByte(0);
-		pbstrm->WriteByte(0);
-	}
-
 	long lFsmOffsetPos = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
@@ -3008,8 +2999,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	long lCodeOffsets = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
-		// reserved - pad byte
-		pbstrm->WriteByte(0);	// ?? numColStrata - for collision-fix kerning
+		pbstrm->WriteByte(m_nCollisionThreshold);
 
 		lCodeOffsets = pbstrm->Position();
 		// pass constraint byte count
