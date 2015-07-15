@@ -2874,8 +2874,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int nOffsetToDebugArrays = 0;
 	long lOffsetToDebugArraysPos = 0;
 
-	//	flags: bits 0-2 = collision fix; bit 3 = kern
-	int nTemp = m_nCollisionFix | ((int)m_fKern << 3);
+	//	flags: bits 0-2 = collision fix; bits 3-4 = kern
+	int nTemp = m_nCollisionFix | ((int)m_nAutoKern << 3);
 	pbstrm->WriteByte(nTemp);
 	//	MaxRuleLoop
 	pbstrm->WriteByte(m_nMaxRuleLoop);

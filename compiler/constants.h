@@ -389,3 +389,10 @@ enum JustifyModes
 	kjmodJustify	= 2
 };
 
+// Auto-kerning
+enum {
+	kakNone = 0,
+	kakFull = 1,
+	kakNoSpace = 2
+};
+
