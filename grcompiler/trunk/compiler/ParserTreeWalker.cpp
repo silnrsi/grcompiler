@@ -824,10 +824,10 @@ void GrcManager::WalkEnvTree(RefAST ast, TableType tblt,
 	Assumes that parser does not permit a directive to take a list of values.
 
 	pnCollisionFix - set when processing a pass(X) statement; if NULL, FixCollisions is invalid
-	pfKern
+	pnAutoKern
 	pnCollisionThreshold
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, bool * pfKern,
+void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAutoKern,
 	int * pnCollisionThreshold)
 {
 	Assert(ast->getType() == Zdirectives);
@@ -915,18 +915,18 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, bool * pfK
 						*pnCollisionFix = nValue;
 				}
 			}
-			else if (staName == "Kern")
+			else if (staName == "AutoKern")
 			{
-				if (pfKern == NULL)
+				if (pnAutoKern == NULL)
 					g_errorList.AddError(1189, NULL,
-						"The Kern directive must be indicated directly on a pass",
+						"The AutoKern directive must be indicated directly on a pass",
 						LineAndFile(ast));
-				else if (nValue != 0 && nValue != 1)
+				else if (nValue != kakNone && nValue != kakFull && nValue != kakNoSpace)
 					g_errorList.AddWarning(1516, NULL,
-						"The Kern value should be a boolean; setting to true",
+						"The AutoKern value should be 0 (NONE), 1 (FULL), or 2 (NOSPACE)",
 						LineAndFile(ast));
 				else
-					*pfKern = (bool)nValue;
+					*pnAutoKern = nValue;
 			}
 			else if (staName == "CollisionThreshold")
 			{
@@ -2156,11 +2156,11 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	RefAST astDirectives = ast->getFirstChild()->getNextSibling();
 	RefAST astContents = astDirectives;
 	int nCollisionFix = 0;
-	bool fKern = false;
+	int nAutoKern = 0;
 	int nCollisionThreshold = 0;
 	if (astDirectives && astDirectives->getType() == Zdirectives)
 	{
-		WalkDirectivesTree(astDirectives, &nCollisionFix, &fKern, &nCollisionThreshold);
+		WalkDirectivesTree(astDirectives, &nCollisionFix, &nAutoKern, &nCollisionThreshold);
 		astContents = astDirectives->getNextSibling();
 	}
 
@@ -2181,19 +2181,19 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 				LineAndFile(ast)); 
 		ppass->SetCollisionFix(nCollisionFix);
 	}
-	if (fKern && prultbl->Substitution())
+	if (nAutoKern > 0 && prultbl->Substitution())
 	{
 		g_errorList.AddError(1192, NULL,
-			"Kern cannot be set on substitution passes, only positioning passes",
+			"AutoKern cannot be set on substitution passes, only positioning passes",
 			LineAndFile(ast));
 	}
 	else if (!prultbl->Substitution())
 	{
-		if (!fKern && ppass->Kern())
+		if (nAutoKern == 0 && ppass->AutoKern())
 			g_errorList.AddWarning(1517, NULL,
-				"Clearing previous value of Kern for pass ", rgch,
+				"Clearing previous value of AutoKern for pass ", rgch,
 				LineAndFile(ast)); 
-		ppass->SetKern(fKern);
+		ppass->SetAutoKern(nAutoKern);
 	}
 	if (nCollisionThreshold != 0 && prultbl->Substitution())
 	{
@@ -2212,9 +2212,9 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 			g_errorList.AddWarning(1518, NULL,
 				"Clearing previous value of CollisionThreshold for pass ", rgch,
 				LineAndFile(ast)); 
-		else if (nCollisionThreshold > 0 && nCollisionFix == 0 && !fKern)
+		else if (nCollisionThreshold > 0 && nCollisionFix == 0 && nAutoKern == 0)
 			g_errorList.AddWarning(1519, NULL,
-				"CollisionThreshold has no effect without collision-fixing and/or kerning",
+				"CollisionThreshold has no effect without collision-fixing and/or auto-kerning",
 				LineAndFile(ast));
 		if (nCollisionThreshold == 0)
 			nCollisionThreshold = kCollisionThresholdDefault;

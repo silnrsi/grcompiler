@@ -2733,9 +2733,9 @@ void GdlRuleTable::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 void GdlPass::CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 		std::vector<utf16> & vwSpaceGlyphs)
 {
-	// Automatic kerning has the same effect of putting spaces in the middle of rule.
+	// Full auto-kerning has the same effect of putting spaces in the middle of rule.
 	// This is the most lenient setting, so there is no reason to examine every rule.
-	if (m_fKern)
+	if (m_nAutoKern == kakFull)
 	{
 		*pspconSoFar = kspconAnywhere;
 	}

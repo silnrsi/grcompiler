@@ -33,7 +33,7 @@ public:
 			m_nMaxBackup(nMaxBackup),
 			m_fBidi(false),
 			m_nCollisionFix(0),
-			m_fKern(false),
+			m_nAutoKern(false),
 			m_nCollisionThreshold(0),
 			m_nGlobalID(-1),
 			m_nPreBidiPass(0),
@@ -57,7 +57,7 @@ public:
 	int MaxRuleLoop()				{ return m_nMaxRuleLoop; }
 	int MaxBackup()					{ return m_nMaxBackup; }
 	int CollisionFix()				{ return m_nCollisionFix; }
-	bool Kern()						{ return m_fKern; }
+	int AutoKern()					{ return m_nAutoKern; }
 	int CollisionThreshold()		{ return m_nCollisionThreshold; }
 
 	//	Setters:
@@ -67,7 +67,7 @@ public:
 	void SetMaxRuleLoop(int n)		{ m_nMaxRuleLoop = n; }
 	void SetMaxBackup(int n)		{ m_nMaxBackup = n; }
 	void SetCollisionFix(int n)		{ m_nCollisionFix = n; }
-	void SetKern(bool f)			{ m_fKern = f; }
+	void SetAutoKern(int n)				{ m_nAutoKern = n; }
 	void SetCollisionThreshold(int n) { m_nCollisionThreshold = n; }
 
 public:
@@ -183,7 +183,7 @@ protected:
 	std::vector<GdlRule*> m_vprule;
 	std::vector<GdlExpression *> m_vpexpConstraints; // multiple constraints result from -else if-
 	int m_nCollisionFix;
-	bool m_fKern;
+	bool m_nAutoKern;
 	int m_nCollisionThreshold;
 
 	int m_critMinPreContext;

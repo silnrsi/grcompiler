@@ -1751,7 +1751,7 @@ void GrcSymbolTable::InitDirectives()
 	PreDefineSymbol(GrcStructName("MUnits"),				kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("PointRadius"),			kst, kexptMeas);
 	PreDefineSymbol(GrcStructName("CollisionFix"),			kst, kexptBoolean);
-	PreDefineSymbol(GrcStructName("Kern"),					kst, kexptBoolean);
+	PreDefineSymbol(GrcStructName("AutoKern"),				kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("CollisionThreshold"),	kst, kexptNumber);
 }
 
