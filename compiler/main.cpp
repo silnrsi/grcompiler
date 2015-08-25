@@ -8,7 +8,7 @@ File: main.cpp
 Responsibility: Sharon Correll
 
 Description:
-    Main function that runs the compiler. 
+    Main function that runs the compiler.
 
 Compiler versions:
 	1.0		- Initial

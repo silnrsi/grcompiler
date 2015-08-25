@@ -35,6 +35,7 @@ public:
 			m_nCollisionFix(0),
 			m_nAutoKern(false),
 			m_nCollisionThreshold(0),
+			m_fPostBidi(false),
 			m_nGlobalID(-1),
 			m_nPreBidiPass(0),
 			m_pfsm(NULL)
@@ -59,6 +60,7 @@ public:
 	int CollisionFix()				{ return m_nCollisionFix; }
 	int AutoKern()					{ return m_nAutoKern; }
 	int CollisionThreshold()		{ return m_nCollisionThreshold; }
+	bool PostBidi()					{ return m_fPostBidi; }
 
 	//	Setters:
 	void SetBidi(bool f)			{ m_fBidi = f; }
@@ -69,6 +71,7 @@ public:
 	void SetCollisionFix(int n)		{ m_nCollisionFix = n; }
 	void SetAutoKern(int n)				{ m_nAutoKern = n; }
 	void SetCollisionThreshold(int n) { m_nCollisionThreshold = n; }
+	void SetPostBidi(bool f)		{ m_fPostBidi = f; }
 
 public:
 	//	Parser:
@@ -185,13 +188,15 @@ protected:
 	int m_nCollisionFix;
 	bool m_nAutoKern;
 	int m_nCollisionThreshold;
+	bool m_fPostBidi;
 
 	int m_critMinPreContext;
 	int m_critMaxPreContext;
 
 	//	for compiler use:
 //	int m_nNumber2;		// with respect to all the passes in all tables
-	int m_nGlobalID;	// -1 if invalid--no rules
+	int m_nGlobalID;	// global pass number, not including passes with no rules or bidi pass;
+						//		-1 if invalid--no rules
 	int m_nPreBidiPass;	// 1 if there is a previous bidi pass, 0 otherwise
 	int m_nMaxRuleContext;	// number of slots of input needed
 
@@ -290,7 +295,7 @@ public:
 	//	Pre-compiler:
 	void FixRulePreContexts(Symbol psymAnyClass);
 	void FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
-	void CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum);
+	void CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int *pipassBidi);
 	void MarkReplacementClasses(GrcManager * pcman,
 		ReplacementClassSet & setpglfc);
 	void CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont, GdlRenderer * prndr);
@@ -314,12 +319,13 @@ public:
 
 	//	Output
 	int CountPasses();
+	int PostBidiPass(int cpassPrior, int ipassBidi);
 	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
 		std::vector<int> & vnOffsets);
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
-	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
+	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut, int ipassBidi);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 

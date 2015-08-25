@@ -256,7 +256,7 @@ protected:
 
 	bool m_fAutoPseudo;
 	int m_nBidi;		// boolean; -1 if not set
-	int m_iPassBidi;
+	int m_ipassBidi;
 	int m_grfsdc;		// supported script directions
 	std::vector<int>	m_vnScriptTags;
 	GdlNumericExpression * m_pexpXAscent;

@@ -136,25 +136,30 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 
 	GdlRuleTable * prultbl;
 
+	m_ipassBidi = -1;
+
 	if ((prultbl = FindRuleTable("linebreak")) != NULL)
-		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
+		prultbl->CheckTablesAndPasses(pcman, &nPassNum, &m_ipassBidi);
 
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
-		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
+		prultbl->CheckTablesAndPasses(pcman, &nPassNum, &m_ipassBidi);
 
-	if (Bidi())
-		m_iPassBidi = nPassNum;
-	else
-		m_iPassBidi = -1;
+	//if (Bidi())
+	//	m_ipassBidi = nPassNum;
+	//else
+	//	m_ipassBidi = -1;
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
-		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
+		prultbl->CheckTablesAndPasses(pcman, &nPassNum, &m_ipassBidi);
 
 	if ((prultbl = FindRuleTable("positioning")) != NULL)
-		prultbl->CheckTablesAndPasses(pcman, &nPassNum);
+		prultbl->CheckTablesAndPasses(pcman, &nPassNum, &m_ipassBidi);
 
 	//	At this point nPassNum = the number of valid passes.
 	*pcpassValid = nPassNum;
+
+	if (this->Bidi() && m_ipassBidi == -1)
+		m_ipassBidi = nPassNum;
 
 	if (nPassNum >= kMaxPasses)
 	{
@@ -178,7 +183,7 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
+void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int *pipassBidi)
 {
 	if (m_vppass.size() > 1 && m_vppass[0]->HasRules())
 	{
@@ -195,10 +200,12 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum)
 		{
 			m_vppass[ipass]->AssignGlobalID(*pnPassNum);
 			(*pnPassNum)++;
-			if (pcman->Renderer()->Bidi()
-				&& (m_psymName->LastFieldIs("positioning") || m_psymName->LastFieldIs("justification")))
+			if (pcman->Renderer()->Bidi())
 			{
-				m_vppass[ipass]->SetPreBidiPass(1);
+				if (*pipassBidi == -1 && m_vppass[ipass]->PostBidi())
+					*pipassBidi = *pnPassNum;
+				if (*pipassBidi != -1)
+					m_vppass[ipass]->SetPreBidiPass(1);
 			}
 		}
 		else if (ipass == 0)

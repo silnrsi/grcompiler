@@ -828,7 +828,7 @@ void GrcManager::WalkEnvTree(RefAST ast, TableType tblt,
 	pnCollisionThreshold
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAutoKern,
-	int * pnCollisionThreshold)
+	int * pnCollisionThreshold, bool * pfPostBidi)
 {
 	Assert(ast->getType() == Zdirectives);
 
@@ -940,6 +940,15 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAu
 						LineAndFile(ast));
 				else
 					*pnCollisionThreshold = nValue;
+			}
+			else if (staName == "PostBidi")
+			{
+				if (pnCollisionFix == NULL)
+					g_errorList.AddError(1194, NULL,
+						"The PostBidi directive must be indicated directly on a pass",
+						LineAndFile(ast));
+				else
+					*pfPostBidi = (bool)nValue;
 			}
 			else
 			{
@@ -2158,9 +2167,10 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	int nCollisionFix = 0;
 	int nAutoKern = 0;
 	int nCollisionThreshold = 0;
+	bool fPostBidi = false;
 	if (astDirectives && astDirectives->getType() == Zdirectives)
 	{
-		WalkDirectivesTree(astDirectives, &nCollisionFix, &nAutoKern, &nCollisionThreshold);
+		WalkDirectivesTree(astDirectives, &nCollisionFix, &nAutoKern, &nCollisionThreshold, &fPostBidi);
 		astContents = astDirectives->getNextSibling();
 	}
 
@@ -2220,6 +2230,8 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 			nCollisionThreshold = kCollisionThresholdDefault;
 		ppass->SetCollisionThreshold(nCollisionThreshold);
 	}
+
+	ppass->SetPostBidi(fPostBidi);
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
 	//	constraint.

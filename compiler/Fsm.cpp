@@ -1057,8 +1057,8 @@ void GdlRenderer::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->DebugFsm(pcman, strmOut);
 
-	if (m_iPassBidi > -1)
-		strmOut << "\nPASS " << m_iPassBidi + 1 << ": bidi\n";
+	if (m_ipassBidi > -1)
+		strmOut << "\nPASS " << m_ipassBidi + 1 << ": bidi\n";
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 		prultbl->DebugFsm(pcman, strmOut);
