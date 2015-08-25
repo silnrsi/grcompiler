@@ -822,26 +822,26 @@ void GdlRenderer::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut
 	GdlRuleTable * prultbl;
 
 	if ((prultbl = FindRuleTable("linebreak")) != NULL)
-		prultbl->DebugRulePrecedence(pcman, strmOut);
+		prultbl->DebugRulePrecedence(pcman, strmOut, m_ipassBidi);
 
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
-		prultbl->DebugRulePrecedence(pcman, strmOut);
-
-	if (m_iPassBidi > -1)
-		strmOut << "\nPASS " << m_iPassBidi + 1 << ": bidi\n";
+		prultbl->DebugRulePrecedence(pcman, strmOut, m_ipassBidi);
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
-		prultbl->DebugRulePrecedence(pcman, strmOut);
+		prultbl->DebugRulePrecedence(pcman, strmOut, m_ipassBidi);
 
 	if ((prultbl = FindRuleTable("positioning")) != NULL)
-		prultbl->DebugRulePrecedence(pcman, strmOut);
+		prultbl->DebugRulePrecedence(pcman, strmOut, m_ipassBidi);
 }
 
-void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
+void GdlRuleTable::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut, int ipassBidi)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
+		if (ipassBidi - 1 == m_vppass[ippass]->GlobalID())
+			strmOut << "\nPASS " << ipassBidi << ": bidi\n";
+
 		m_vppass[ippass]->DebugRulePrecedence(pcman, strmOut);
 	}
 }
@@ -857,7 +857,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 
 	Assert(PassDebuggerNumber() != 0);
 
-	strmOut << "\nPASS: " << PassDebuggerNumber() << "\n";
+	strmOut << "\nPASS: " << PassDebuggerNumber() << " (GDL #" << this->m_nNumber << ")\n";
 
 	// Sort rules by their precedence: primarily by the number of items matched (largest first),
 	// and secondarily by their location in the file (rule number--smallest first).
@@ -939,8 +939,8 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
 
-	if (m_iPassBidi > -1)
-		strmOut << "\nPASS " << m_iPassBidi + 1 << ": bidi\n";
+	if (m_ipassBidi > -1)
+		strmOut << "\nPASS " << m_ipassBidi + 1 << ": bidi\n";
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
@@ -2794,7 +2794,7 @@ void GdlRenderer::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
 
 	if (Bidi())
-		strmOut << "    <pass table=\"bidi\" index=\"" << m_iPassBidi + 1 << "\" />\n";
+		strmOut << "    <pass table=\"bidi\" index=\"" << m_ipassBidi + 1 << "\" />\n";
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
