@@ -99,7 +99,7 @@ class GrcDiversion : public std::stringbuf
 
 public:
     GrcDiversion(std::iostream & strm, const std::string sInitial="")
-        : m_sbSaved(0), m_strm(strm)
+        : std::stringbuf(std::ios::in | std::ios::out | std::ios::ate), m_sbSaved(0), m_strm(strm)
     {
         divert(sInitial);
     }

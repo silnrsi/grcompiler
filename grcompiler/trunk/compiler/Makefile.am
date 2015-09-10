@@ -1,7 +1,7 @@
-AM_CPPFLAGS = -I@srcdir@/Generic -I@srcdir@/Grammar
+AM_CPPFLAGS = -I@srcdir@/Generic -I@srcdir@/Grammar -I@srcdir@/LZ4
 
-SUBDIRS = Generic Grammar
-LIBS = @LIBS@ @LIBICONV@ -LGeneric -LGrammar -lgeneric -lparser
+SUBDIRS = Generic Grammar LZ4
+LIBS = @LIBS@ @LIBICONV@ -LGeneric -LGrammar -LLZ4 -lgeneric -lparser -llz4
 EXTRA_DIST = resource.h GrCompiler.rc GrpParser.g GrpParser_readme.txt GrpParserTokenTypes.txt stddef.gdh
 
 bin_PROGRAMS = grcompiler
@@ -9,8 +9,6 @@ pkgdata_DATA = stddef.gdh
 
 grcompiler_SOURCES = \
         Compiler.cpp \
-        Compressor.cpp \
-        Compressor.h \
         constants.h \
         ErrorCheckClasses.cpp \
         ErrorCheckFeatures.cpp \
@@ -66,7 +64,6 @@ grcompiler_SOURCES = \
         OutputToFont.cpp \
         ParserTreeWalker.cpp \
         PostParser.cpp \
-        Shrinker.h \
         StrAnsiHash.h \
         TtfUtil.cpp \
         TtfUtil.h \

@@ -16,7 +16,7 @@ Description:
 	Include files
 ***********************************************************************************************/
 #include "main.h"
-#include "Compressor.h"
+#include "LZ4/lz4hc.h"
 
 #include <time.h>
 #include <memory>
@@ -1806,14 +1806,20 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	int nAttrIdJStr = psymJStr->InternalID();
 
 	//	Output the Glat table, recording the offsets in the array.
+    *pnGlatOffset = pbstrm->Position();
+	const int fxdGlatVersion = TableVersion(ktiGlat);
 
-	*pnGlatOffset = pbstrm->Position();
-	int fxdGlatVersion = TableVersion(ktiGlat);
+    GrcDiversion dstrm(*pbstrm);
 	pbstrm->WriteInt(fxdGlatVersion);	// version number
 
-	GrcDiversion dstrm(*pbstrm);
 
-	int cbOutput = 4;	// first glyph starts after the version number
+    int cbOutput = 4;   // first glyph starts after the version number
+	if (fxdGlatVersion >= 00030000)
+	{
+        pbstrm->WriteInt(0);
+        cbOutput += 4;
+	}
+
 
 	int wGlyphID;
 	for (wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
@@ -1891,7 +1897,8 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	//	Final offset to give total length.
 	prgibGlyphOffsets[m_cwGlyphIDs] = cbOutput;
 
-	CompressOutput(dstrm);
+    if (!Compress(dstrm))
+        g_errorList.AddWarning(5508, NULL, "The Glat table is incompressible and will not be compressed.");
 	dstrm.undivert();
 
 	// handle size and padding
@@ -1906,7 +1913,6 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	pbstrm->WriteInt(fxd);	// version number
 	SetTableVersion(ktiGloc, fxd);
 
-//	dstrm.divert();
 	//	flags
 	utf16 wFlags = 0;
 	bool fNeedLongFormat = (cbOutput >= 0x0000FFFF);
@@ -1932,9 +1938,6 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 		if (wGlyphID == 0xFFFF)
 			break;
 	}
-
-//    CompressOutput(dstrm);
-//    dstrm.undivert();
 
 	// handle size and padding
 	nTmp = pbstrm->Position();
@@ -2234,6 +2237,9 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	fxdSilfVersion = CalculateSilfVersion(fxdSilfVersion);
 	SetTableVersion(ktiSilf, fxdSilfVersion);
 
+    // Divert output destined for the disk to a memory buffer.
+    GrcDiversion dstrm(*pbstrm);
+
 	//	version number
 	pbstrm->WriteInt(fxdSilfVersion);
 
@@ -2247,9 +2253,6 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	//	number of sub-tables
 	pbstrm->WriteShort(1);
-
-	// Divert output destined for the disk to a memory buffer.
-	GrcDiversion dstrm(*pbstrm);
 
 	if (fxdSilfVersion >= 0x00030000)
 	{
@@ -2500,7 +2503,8 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->SetPosition(lSavePos);
 
     // Handle compression
-    CompressOutput(dstrm);
+    if (!Compress(dstrm))
+        g_errorList.AddWarning(5509, NULL, "The Silf table is incompressible and will not be compressed.");
     dstrm.undivert();
 
     // handle size and padding
@@ -2508,7 +2512,17 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->SeekPadLong(pbstrm->Position());
 }
 
-bool GrcManager::CompressOutput(std::stringbuf & sb)
+/*----------------------------------------------------------------------------------------------
+    Compress a std::stringbuf using the compression scheme set on GrcManager.
+
+    Arguments:
+        sb - reference to the stringbuffer to be compressed this will contain the compressed
+             data on return.
+    Return:
+        bool - true for success, false if compression failed.  On failure sb will be unaltered
+               as if the ktcNone compression scheme had been selected.
+----------------------------------------------------------------------------------------------*/
+bool GrcManager::Compress(std::stringbuf & sb)
 {
     if (m_tcCompressor == ktcNone)
        return true;
@@ -2522,9 +2536,8 @@ bool GrcManager::CompressOutput(std::stringbuf & sb)
     int nCompressedSize = 0;
     switch (m_tcCompressor)
     {
-    case ktcShrinker:
-        nCompressedSize  = shrinker::compress(sPlainBuf.data(), pcCompressedBuf, nSize);
-        //nCompressedSize = (nSize*47)/100;
+    case ktcLZ4:
+        nCompressedSize  = LZ4_compress_HC(sPlainBuf.data(), pcCompressedBuf, nSize, nSize, 9);
         break;
     default: break;
     }
@@ -2535,12 +2548,11 @@ bool GrcManager::CompressOutput(std::stringbuf & sb)
         return false;
     }
 
-    // Clear the buffer
-    sb.str("");
+    // Initialise the buffer with the uncompressed version number.
+    sb.str(std::string(sPlainBuf, 0, 4));
     // Put scheme and uncompressed size.
-    nSize = read(nSize);
-    sb.sputc(m_tcCompressor);   // Low byte of reserved uint16
-    sb.sputn(reinterpret_cast<char *>(&nSize), sizeof(uint32));
+    uint32 const hdr = read((m_tcCompressor << 27) | (nSize & 0x07ffffff));
+    sb.sputn(reinterpret_cast<char const *>(&hdr), sizeof hdr);
     // Put the compressed data.
     sb.sputn(pcCompressedBuf, nCompressedSize);
 

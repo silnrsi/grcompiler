@@ -6,14 +6,14 @@ libparser_a_SOURCES = \
 	ANTLRException.cpp \
 	ASTFactory.cpp \
 	BitSet.cpp \
-    	CharBuffer.cpp \
+	CharBuffer.cpp \
 	CharScanner.cpp \
 	CommonASTNode.cpp \
 	CommonToken.cpp \
-    	InputBuffer.cpp \
+	InputBuffer.cpp \
 	LexerSharedInputState.cpp \
 	LLkParser.cpp \
-    	MismatchedTokenException.cpp \
+	MismatchedTokenException.cpp \
 	NoViableAltException.cpp \
 	Parser.cpp \
 	ParserException.cpp \
