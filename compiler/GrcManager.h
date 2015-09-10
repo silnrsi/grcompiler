@@ -56,7 +56,7 @@ enum GlyphAttrProcessPasses
 enum TableCompressor
 {
     ktcNone = 0,
-    ktcShrinker = 1
+    ktcLZ4 = 1
 };
 
 
@@ -440,7 +440,7 @@ protected:
 	void ReadSourceFontFeatures(std::ifstream & strmSrc, size_t iTableFeatSrc, size_t iTableFeatLen,
 		size_t iTableNameSrc, size_t iTableNameLen);
 
-	bool CompressOutput(std::stringbuf & sb);
+	bool Compress(std::stringbuf & sb);
 
 public:
 

@@ -8,6 +8,7 @@ TARGET=GrCompiler
 GRC_SRC=.\compiler
 GRC_GRMR_SRC=.\compiler\Grammar
 GRC_ANTLR_SRC=.\compiler\Grammar\Antlr
+GRC_LZ4_SRC=.\compiler\LZ4
 GRC_RES=.\compiler
 GRC_GEN_SRC=.\compiler\Generic
 GRC_LIB_SRC=.\compiler
@@ -86,6 +87,16 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
    $(CPP_PROJ) $< 
 <<
 
+{$(GRC_LZ4_SRC)}.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+{$(GRC_LZ4_SRC)}.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
 {$(GRC_GEN_SRC)}.cpp{$(INTDIR)}.obj::
    $(CPP) @<<
    $(CPP_PROJ) $< 
@@ -124,7 +135,8 @@ LINK32=link.exe
 
 LINK32_OBJS= \
 		 "$(INTDIR)\Compiler.obj" \
-		 "$(INTDIR)\Compressor.obj" \
+		 "$(INTDIR)\lz4.obj" \
+		 "$(INTDIR)\lz4hc.obj" \
 		 "$(INTDIR)\ErrorCheckClasses.obj" \
 		 "$(INTDIR)\ErrorCheckFeatures.obj" \
 		 "$(INTDIR)\ErrorCheckRules.obj" \
@@ -186,7 +198,8 @@ LINK32_OBJS= \
 
 BSC32_SBRS= \
 		 "$(INTDIR)\Compiler.sbr" \
-		 "$(INTDIR)\Compressor.sbr" \
+		 "$(INTDIR)\lz4.sbr" \
+		 "$(INTDIR)\lz4hc.sbr" \
 		 "$(INTDIR)\ErrorCheckClasses.sbr" \
 		 "$(INTDIR)\ErrorCheckFeatures.sbr" \
 		 "$(INTDIR)\ErrorCheckRules.sbr" \
@@ -246,7 +259,6 @@ BSC32_SBRS= \
 <<
 
 "$(INTDIR)\Compiler.obj" "$(INTDIR)\Compiler.sbr" : "$(GRC_SRC)\Compiler.cpp" "$(INTDIR)"
-"$(INTDIR)\Compressor.obj" "$(INTDIR)\Compressor.sbr" : "$(GRC_SRC)\Compressor.cpp" "$(INTDIR)"
 "$(INTDIR)\ErrorCheckClasses.obj" "$(INTDIR)\ErrorCheckClasses.sbr" : "$(GRC_SRC)\ErrorCheckClasses.cpp" "$(INTDIR)"
 "$(INTDIR)\ErrorCheckFeatures.obj" "$(INTDIR)\ErrorCheckFeatures.sbr" : "$(GRC_SRC)\ErrorCheckFeatures.cpp" "$(INTDIR)"
 "$(INTDIR)\ErrorCheckRules.obj" "$(INTDIR)\ErrorCheckRules.sbr" : "$(GRC_SRC)\ErrorCheckRules.cpp" "$(INTDIR)"
@@ -294,6 +306,9 @@ BSC32_SBRS= \
 "$(INTDIR)\String.obj" "$(INTDIR)\String.sbr" : "$(GRC_GRMR_SRC)\String.cpp" "$(INTDIR)"
 "$(INTDIR)\Token.obj" "$(INTDIR)\Token.sbr" : "$(GRC_GRMR_SRC)\Token.cpp" "$(INTDIR)"
 "$(INTDIR)\TokenBuffer.obj" "$(INTDIR)\TokenBuffer.sbr" : "$(GRC_GRMR_SRC)\TokenBuffer.cpp" "$(INTDIR)"
+
+"$(INTDIR)\lz4.obj" "$(INTDIR)\lz4.sbr" : "$(GRC_LZ4_SRC)\lz4.cpp" "$(INTDIR)"
+"$(INTDIR)\lz4hc.obj" "$(INTDIR)\lz4hc.sbr" : "$(GRC_LZ4_SRC)\lz4hc.cpp" "$(INTDIR)"
 
 # "$(INTDIR)\Util.obj" "$(INTDIR)\Util.sbr" : "$(GRC_GEN_SRC)\Util.cpp" "$(INTDIR)"
 # "$(INTDIR)\UtilString.obj" "$(INTDIR)\UtilString.sbr" : "$(GRC_GEN_SRC)\UtilString.cpp" "$(INTDIR)"

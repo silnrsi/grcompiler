@@ -524,7 +524,7 @@ void HandleCompilerOptions(char * arg)
 {
     if (arg[1] == 'c')
     {
-        g_cman.SetCompressor(ktcShrinker);
+        g_cman.SetCompressor(ktcLZ4);
     }
     else if (arg[1] == 'd')	// XML debugger file
 	{

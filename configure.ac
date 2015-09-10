@@ -145,6 +145,7 @@ AC_CONFIG_FILES(Makefile \
 	compiler/Makefile \
 	compiler/Generic/Makefile \
 	compiler/Grammar/Makefile \
+	compiler/LZ4/Makefile \
     test/Makefile)
 
 AC_CONFIG_SUBDIRS([test/GrcRegressionTest])

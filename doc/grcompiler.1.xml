@@ -24,17 +24,19 @@
     <cmdsynopsis>
       <command>grcompiler</command>
 
+      <arg><option>-c</option></arg>
+
       <arg><option>-d</option></arg>
 
       <arg><option>-D</option></arg>
 
       <arg><option>-g</option></arg>
 
-      <arg><option>-n</option> <replaceable>number</replaceable></arg>
+      <arg><option>-n</option><replaceable>number</replaceable></arg>
 
-      <arg><option>-v </option><replaceable>number</replaceable></arg>
+      <arg><option>-v</option><replaceable>number</replaceable></arg>
 
-      <arg><option>-w </option><replaceable>number</replaceable></arg>
+      <arg><option>-w</option><replaceable>number</replaceable></arg>
 
       <arg><option>-wall</option></arg>
 
@@ -58,6 +60,17 @@
     with graphite tables in it.</para>
 
     <variablelist>
+      <varlistentry>
+        <term><option>-c</option></term>
+
+        <listitem>
+          <para>
+          Enable compression of Graphite tables. 
+          This forces a version 5.0 Silf and version 3.0 Glat.
+          </para>
+        </listitem>
+      </varlistentry>
+
       <varlistentry>
         <term><option>-d</option></term>
 
@@ -83,7 +96,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><option>-n</option><parameter>number</parameter></term>
+        <term><option>-n</option> <parameter>number</parameter></term>
 
         <listitem>
           <para>Set name table start location.</para>
@@ -99,7 +112,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><option>-v<parameter>number</parameter></option></term>
+        <term><option>-v</option> <parameter>number</parameter></term>
 
         <listitem>
           <para>Set Silf table version number.</para>
@@ -107,7 +120,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><option>-w</option><parameter>nnnn</parameter></term>
+        <term><option>-w</option> <parameter>number</parameter></term>
 
         <listitem>
           <para>Ignore warning with the given number. This option may be
