@@ -1,0 +1,13 @@
+LZ4 partial library source
+
+The following files were pulled from: 
+    http://github.com/Cyan4973/lz4/tree/master/
+at commit dfabec2d18
+
+lib/lz4.c
+lib/lz4.h
+lib/lz4hc.c
+lib/lz4hc.h
+
+The remaining files are unnecessary since we don't use the lz4 framing format.
+
