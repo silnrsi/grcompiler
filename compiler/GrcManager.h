@@ -441,8 +441,15 @@ protected:
 		size_t iTableNameSrc, size_t iTableNameLen);
 
 	bool Compress(std::stringbuf & sb);
+	void NoteCompressionRatio(int ti, double ratio) {
+	    m_mpnfCompressionInfo[ti] = ratio-1;
+	}
 
 public:
+
+	double CompressionRatio(int ti) {
+	    return m_mpnfCompressionInfo[ti];
+	}
 
 	//	debuggers:
 	void DebugEngineCode();
@@ -487,6 +494,8 @@ protected:
 	int m_fxdGlatTableVersion;
 	int m_fxdFeatTableVersion;
 	int m_fxdSillTableVersion;
+
+	std::map<uint32, double> m_mpnfCompressionInfo;
 
 	//	Are we creating a separate control file?
 	bool m_fSepCtrlFile;

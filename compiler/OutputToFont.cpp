@@ -1897,8 +1897,11 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	//	Final offset to give total length.
 	prgibGlyphOffsets[m_cwGlyphIDs] = cbOutput;
 
+    double nOriginalSize = dstrm.str().size();
     if (!Compress(dstrm))
         g_errorList.AddWarning(5508, NULL, "The Glat table is incompressible and will not be compressed.");
+    nOriginalSize /= dstrm.str().size();
+    NoteCompressionRatio(ktiGlat, nOriginalSize);
 	dstrm.undivert();
 
 	// handle size and padding
@@ -2503,8 +2506,11 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->SetPosition(lSavePos);
 
     // Handle compression
+	double nOriginalSize = dstrm.str().size();
     if (!Compress(dstrm))
         g_errorList.AddWarning(5509, NULL, "The Silf table is incompressible and will not be compressed.");
+    nOriginalSize /= dstrm.str().size();
+    NoteCompressionRatio(ktiSilf, nOriginalSize);
     dstrm.undivert();
 
     // handle size and padding

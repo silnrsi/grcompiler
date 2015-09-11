@@ -291,6 +291,17 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 			<< " ignored)";
 }
 
+void WriteTableDescriptionString(std::ostream& strmOut, TableId ti)
+{
+    uint32 nTag = TtfUtil::TableIdTag(ti);
+    char csTagStr[] = {' ', nTag >> 24, (nTag >> 16) & 0xff, (nTag >> 8) & 0xff, nTag & 0xff, ':', 0};
+    double dCompressionRatio = g_cman.CompressionRatio(ti);
+    strmOut << csTagStr << VersionString(g_cman.TableVersion(ti));
+
+    if (dCompressionRatio)
+        strmOut << " compressed (" << int(100/(1+dCompressionRatio)) << "% of original)";
+    strmOut << std::endl;
+}
 /*----------------------------------------------------------------------------------------------
 	Output the table version numbers to the error file.
 ----------------------------------------------------------------------------------------------*/
@@ -298,22 +309,18 @@ void GrcErrorList::WriteTableVersionsGenerated(std::ostream& strmOut)
 {
 	strmOut << "Table versions generated:\n";
 
-	int fxd = g_cman.TableVersion(ktiSilf);
-	strmOut << "  Silf: " << VersionString(fxd) << "\n";
-	fxd = g_cman.TableVersion(ktiGloc);
-	strmOut << "  Gloc: " << VersionString(fxd) << "\n";
-	fxd = g_cman.TableVersion(ktiGlat);
-	strmOut << "  Glat: " << VersionString(fxd) << "\n";
-	fxd = g_cman.TableVersion(ktiFeat);
-	strmOut << "  Feat: " << VersionString(fxd) << "\n";
-	fxd = g_cman.TableVersion(ktiSill);
-	strmOut << "  Sill: " << VersionString(fxd) << "\n\n";
+	WriteTableDescriptionString(strmOut, ktiSilf);
+	WriteTableDescriptionString(strmOut, ktiGloc);
+	WriteTableDescriptionString(strmOut, ktiGlat);
+	WriteTableDescriptionString(strmOut, ktiFeat);
+	WriteTableDescriptionString(strmOut, ktiSill);
 
-	fxd = g_cman.CompilerVersion();
+	const int fxd = g_cman.CompilerVersion();
 	strmOut << "Minimal compiler version required: " << VersionString(fxd) << "\n";
 
 	strmOut << "\n*******************************************************\n\n";
 }
+
 
 /*----------------------------------------------------------------------------------------------
 	Return the number of non-fatal errors.
