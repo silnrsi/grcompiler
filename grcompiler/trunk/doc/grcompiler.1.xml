@@ -52,7 +52,7 @@
     </cmdsynopsis>
   </refsynopsisdiv>
 
-  <refsection>
+  <refsect1>
     <title>Description</title>
 
     <para>Grcompiler compiles a Graphite Description Language description of
@@ -137,9 +137,9 @@
       </varlistentry>
 
     </variablelist>
-  </refsection>
+  </refsect1>
 
-  <refsection>
+  <refsect1>
     <title>Environment</title>
 
     <para>grcompiler makes use of the following environment variables</para>
@@ -154,9 +154,9 @@
           </glossdef>
         </glossentry>
       </glosslist></para>
-  </refsection>
+  </refsect1>
 
-  <refsection>
+  <refsect1>
     <title>Files</title>
 
     <para><glosslist>
@@ -240,11 +240,15 @@
           </glossdef>
         </glossentry>
       </glosslist></para>
-  </refsection>
-
-  <refsection>
-    <title>Author</title>
-
-    <para>Martin Hosken <email>mhosken@users.sourceforge.net</email></para>
-  </refsection>
+  </refsect1>
+  <refsect1>
+  	<title>Author</title>
+  	<simpara>
+  		<ulink url="http://graphite.sil.org">Graphite project</ulink>
+  	</simpara><simpara>
+  		<orgname>SIL International</orgname>
+  		<email>graphite_nrsi@sil.org</email>
+    </simpara>
+    
+  </refsect1>
 </refentry>
