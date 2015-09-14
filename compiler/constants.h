@@ -176,7 +176,9 @@ enum {
 
 	kPassPerSPbitmap = 16,	// *skipPasses* bitmap; 16 = size of glyph attr word
 
-	kCollisionThresholdDefault = 10
+	kCollisionThresholdDefault = 10,
+
+	kFullPass = 2		// do a full bidi pass
 };
 
 

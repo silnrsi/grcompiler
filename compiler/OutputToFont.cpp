@@ -2788,12 +2788,9 @@ void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 {
 	GdlRuleTable * prultbl;
 
-	int ipassBidi = -1;
-
 	if ((prultbl = FindRuleTable("linebreak")) != NULL)
 	{
 		*pcpassLB = prultbl->CountPasses();
-		ipassBidi = prultbl->PostBidiPass(0, ipassBidi);
 	}
 	else
 		*pcpassLB = 0;
@@ -2801,7 +2798,6 @@ void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 	{
 		*pcpassSub = prultbl->CountPasses();
-		ipassBidi = prultbl->PostBidiPass(*pcpassLB, ipassBidi);
 	}
 	else
 		*pcpassSub = 0;
@@ -2809,7 +2805,6 @@ void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 	if ((prultbl = FindRuleTable("justification")) != NULL)
 	{
 		*pcpassJust = prultbl->CountPasses();
-		ipassBidi = prultbl->PostBidiPass(*pcpassLB + *pcpassSub, ipassBidi);
 	}
 	else
 		*pcpassJust = 0;
@@ -2817,26 +2812,16 @@ void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 	if ((prultbl = FindRuleTable("positioning")) != NULL)
 	{
 		*pcpassPos = prultbl->CountPasses();
-		ipassBidi = prultbl->PostBidiPass(*pcpassLB + *pcpassSub + *pcpassJust, ipassBidi);
 	}
 	else
 		*pcpassPos = 0;
 
 	*pcpass = *pcpassLB + *pcpassSub + *pcpassJust + *pcpassPos;
 
-	if (Bidi())
-	{
-		if (ipassBidi == -1)
-			*pipassBidi = *pcpass;   // used to be: *pcpassLB + *pcpassSub;
-		else
-			*pipassBidi = ipassBidi;
-	}
+	if (RawBidi() == kFullPass && !HasFlippedPass())
+		*pipassBidi = *pcpassLB + *pcpassSub;
 	else
 		*pipassBidi = -1;
-
-	// m_ipassBidi was already calculated by the GdlRuleTable::CheckTablesAndPasses method;
-	// the answer should match. TODO: remove this redundancy.
-	Assert(*pipassBidi == this->m_ipassBidi);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -2851,23 +2836,6 @@ int GdlRuleTable::CountPasses()
 	}
 	return cRet;
 }
-
-/*----------------------------------------------------------------------------------------------
-	Return the (global) index of the first pass marked "PostBidi", or -1.
-----------------------------------------------------------------------------------------------*/
-int GdlRuleTable::PostBidiPass(int cpassPrior, int ipassBidi)
-{
-	if (ipassBidi > -1)
-		return ipassBidi;	// already set to an earlier pass
-
-	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
-	{
-		if (m_vppass[ipass]->PostBidi())
-			return cpassPrior + ((ipass == 0) ? ipass + 1 : ipass);
-	}
-	return -1;
-}
-
 
 /*----------------------------------------------------------------------------------------------
 	Output the passes to the stream.
@@ -2931,8 +2899,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	int nOffsetToDebugArrays = 0;
 	long lOffsetToDebugArraysPos = 0;
 
-	//	flags: bits 0-2 = collision fix; bits 3-4 = kern
-	int nTemp = m_nCollisionFix | ((int)m_nAutoKern << 3);
+	//	flags: bits 0-2 = collision fix; bits 3-4 = kern; bit 5 = flip direction
+	int nTemp = m_nCollisionFix | ((int)m_nAutoKern << 3 | m_fFlipDir << 5);
 	pbstrm->WriteByte(nTemp);
 	//	MaxRuleLoop
 	pbstrm->WriteByte(m_nMaxRuleLoop);

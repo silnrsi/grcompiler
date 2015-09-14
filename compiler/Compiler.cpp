@@ -2553,7 +2553,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				continue;
 
 			if ((m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() || nAttrID == nAttrIdDir)
-					&& !m_prndr->Bidi())
+					&& m_prndr->Bidi())
 				// Ignore mirror and directionality attribute for non-bidi.
 				continue;
 
@@ -2793,7 +2793,7 @@ void GdlRenderer::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut,
 	if ((prultbl = FindRuleTable("substitution")) != NULL)
 		prultbl->DebugXmlRules(pcman, strmOut, staPathToCur);
 
-	if (Bidi())
+	if (RawBidi() == kFullPass)
 		strmOut << "    <pass table=\"bidi\" index=\"" << m_ipassBidi + 1 << "\" />\n";
 
 	if ((prultbl = FindRuleTable("justification")) != NULL)

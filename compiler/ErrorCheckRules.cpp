@@ -196,16 +196,48 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 
 	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
+		char rgchPass[20];
+		itoa(ipass, rgchPass, 10);
 		if (m_vppass[ipass]->ValidPass())
 		{
 			m_vppass[ipass]->AssignGlobalID(*pnPassNum);
 			(*pnPassNum)++;
-			if (pcman->Renderer()->Bidi())
+
+			int fsdcPassDir = m_vppass[ipass]->Direction();
+			int fsdcScriptDir = pcman->Renderer()->ScriptDirections();
+			if (fsdcPassDir != kfsdcNone && fsdcPassDir != kfsdcHorizLtr && fsdcPassDir != kfsdcHorizRtl)
 			{
-				if (*pipassBidi == -1 && m_vppass[ipass]->PostBidi())
-					*pipassBidi = *pnPassNum;
-				if (*pipassBidi != -1)
-					m_vppass[ipass]->SetPreBidiPass(1);
+				g_errorList.AddError(3166, this,
+					"Invalid direction for pass ",
+					rgchPass);
+			}
+			else if (fsdcPassDir != kfsdcNone && fsdcScriptDir != kfsdcHorizLtr && fsdcScriptDir != kfsdcHorizRtl)
+			{
+				char rgchScrDir[20];
+				itoa(fsdcScriptDir, rgchScrDir, 10);
+				g_errorList.AddError(3167, this,
+					"Direction directive invalid (on pass ",
+					rgchPass,
+					") due to font ScriptDirection setting of ",
+					rgchScrDir);
+			}
+			else if (fsdcPassDir != kfsdcNone && fsdcScriptDir == fsdcPassDir)
+			{
+				g_errorList.AddWarning(3539, this,
+					"Direction of pass ",
+					rgchPass,
+					" matches font's ScriptDirection and will have no effect ");
+			}
+			else
+			{
+				Assert(fsdcScriptDir >= kfsdcNone);
+				Assert(fsdcScriptDir <= kfsdcHorizRtl);
+				if (fsdcPassDir > kfsdcNone)
+				{
+					Assert(fsdcScriptDir != fsdcPassDir);
+					m_vppass[ipass]->SetFlipDirection(true);
+					pcman->Renderer()->SetHasFlippedPass(true);
+				}
 			}
 		}
 		else if (ipass == 0)
@@ -215,11 +247,9 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 		}
 		else
 		{
-			char rgch[20];
-			itoa(ipass, rgch, 10);
 			g_errorList.AddWarning(3503, this,
 				"Pass ",
-				rgch,
+				rgchPass,
 				" of ",
 				m_psymName->FullName(),
 				" table contains no rules");

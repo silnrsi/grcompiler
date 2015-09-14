@@ -41,8 +41,11 @@ public:
 	void SetAutoPseudo(bool f)	{ m_fAutoPseudo = f; }
 
 	bool Bidi()					{ return (m_nBidi > 0); } // -1 = false (default)
-	int RawBidi()				{ return m_nBidi; }
+	int RawBidi()				{ return m_nBidi; }		// false, true, -1=not set, 2=full bidi pass
 	void SetBidi(int n)			{ m_nBidi = n; }
+
+	bool HasFlippedPass()		{ return m_fHasFlippedPass; }
+	void SetHasFlippedPass(bool f)	{ m_fHasFlippedPass = f; }
 
 	int ScriptDirections()		{ return m_grfsdc; }
 	void AddScriptDirection(int fsdc)
@@ -168,9 +171,6 @@ public:
 	}
 
 	void SetNumUserDefn(int c);
-	//{
-	//	m_cnUserDefn = max(m_cnUserDefn, c+1);
-	//}
 	int NumUserDefn()
 	{
 		return m_cnUserDefn;
@@ -255,8 +255,9 @@ protected:
 //	GdlStdStyle						m_rgsty[FeatureDefn::kstvLim];
 
 	bool m_fAutoPseudo;
-	int m_nBidi;		// boolean; -1 if not set
+	int m_nBidi;		// boolean or 2 = explict pass; -1 if not set
 	int m_ipassBidi;
+	int m_fHasFlippedPass;
 	int m_grfsdc;		// supported script directions
 	std::vector<int>	m_vnScriptTags;
 	GdlNumericExpression * m_pexpXAscent;

@@ -2039,7 +2039,7 @@ DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
 			dircDefault = kdircWhiteSpace;
 		else
 			dircDefault = kdircNeutral;	// don't know
-			*pfInitFailed = Bidi();		// we only care about the failure if this is a bidi font
+			*pfInitFailed = (bool)Bidi();		// we only care about the failure if this is a bidi font
 		break;
 	}
 
