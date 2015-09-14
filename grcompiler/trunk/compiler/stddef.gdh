@@ -1,3 +1,10 @@
+/*
+	Copyright (C) 1999-2015 SIL International. All rights reserved.
+
+	Distributable under the terms of either the Common Public License or the
+	GNU Lesser General Public License, as specified in the LICENSING.txt file.
+*/
+
 //	Standard abbreviations:
 
 #define adv advance
@@ -58,6 +65,9 @@
 #define HORIZONTAL_RIGHT_TO_LEFT 2
 #define VERTICAL_FROM_LEFT 4
 #define VERTICAL_FROM_RIGHT 8
+
+#define LEFT_TO_RIGHT 1
+#define RIGHT_TO_LEFT 2
 
 #define JMODE_NORMAL 0
 #define JMODE_MEASURE 1

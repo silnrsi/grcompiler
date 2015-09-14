@@ -19,7 +19,7 @@ global - highest error: 142 / highest warning: 512
 		GrpParser
 		GrcFont
 
-parsing - highest error: 1194 / highest warning: 1519
+parsing - highest error: 1195 / highest warning: 1519
 		ParserTreeWalker
 		PostParser
 
@@ -33,7 +33,7 @@ error checking:
 		GrcBinaryStream
 		GrcEnv
 		GdlRenderer
-	rules - highest error: 3165 / highest warning: 3538
+	rules - highest error: 3167 / highest warning: 3539
 		ErrorCheckRules
 		GdlRule
 		GdlTablePass

@@ -1753,7 +1753,7 @@ void GrcSymbolTable::InitDirectives()
 	PreDefineSymbol(GrcStructName("CollisionFix"),			kst, kexptBoolean);
 	PreDefineSymbol(GrcStructName("AutoKern"),				kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("CollisionThreshold"),	kst, kexptNumber);
-	PreDefineSymbol(GrcStructName("PostBidi"),				kst, kexptBoolean);
+	PreDefineSymbol(GrcStructName("Direction"),				kst, kexptNumber);
 }
 
 /*--------------------------------------------------------------------------------------------*/

@@ -44,6 +44,7 @@ GdlRenderer::GdlRenderer()
 	m_fAutoPseudo = true;
 	m_nBidi = -1;		// not set
 	m_ipassBidi = -2;	// not set
+	m_fHasFlippedPass = false;
 	m_pexpXAscent = NULL;
 	m_pexpXDescent = NULL;
 	m_grfsdc = kfsdcNone;

@@ -157,7 +157,7 @@ int main(int argc, char * argv[])
 	{
 		std::cout << "\nusage: grcompiler [options] gdl-file input-font-file [output-font-file] [output-font-name]\n";
 		std::cout << "\nOptions:\n";
-		std::cout << "   -c       - compress graphite tables.";
+		std::cout << "   -c       - compress graphite tables\n";
 		std::cout << "   -d       - output XML debugger file\n";
 		std::cout << "   -D       - output all debugger files\n";
 		std::cout << "   -g       - permit and ignore invalid glyph definitions\n";

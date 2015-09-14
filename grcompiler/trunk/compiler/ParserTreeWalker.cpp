@@ -592,9 +592,9 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		}
 
 		if (astValue->getType() == LITERAL_true)
-			m_prndr->SetBidi(true);
+			m_prndr->SetBidi(1);
 		else if (astValue->getType() == LITERAL_false)
-			m_prndr->SetBidi(false);
+			m_prndr->SetBidi(0);
 		else if (astValue->getType() == LIT_INT)
 		{
 			int nValue;
@@ -606,11 +606,11 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 					LineAndFile(astValue));
 			else
 			{
-				if (nValue != 0 && nValue != 1)
+				if (nValue != 0 && nValue != 1 && nValue != 2)
 					g_errorList.AddWarning(1512, NULL,
 						"Non-boolean value for the Bidi global; will be set to true",
 						LineAndFile(astValue));
-				m_prndr->SetBidi(nValue != 0);
+				m_prndr->SetBidi(nValue);
 			}
 		}
 
@@ -828,7 +828,7 @@ void GrcManager::WalkEnvTree(RefAST ast, TableType tblt,
 	pnCollisionThreshold
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAutoKern,
-	int * pnCollisionThreshold, bool * pfPostBidi)
+	int * pnCollisionThreshold, int * pnDir)
 {
 	Assert(ast->getType() == Zdirectives);
 
@@ -849,7 +849,9 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAu
 			nValue = 1;
 		else
 		{
-			Assert(false);
+			g_errorList.AddError(1195, NULL,
+				"Invalid value for directive ", staName,
+				LineAndFile(ast));
 		}
 
 		Symbol psym = SymbolTable()->FindSymbol(staName);
@@ -941,14 +943,14 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAu
 				else
 					*pnCollisionThreshold = nValue;
 			}
-			else if (staName == "PostBidi")
+			else if (staName == "Direction")
 			{
-				if (pnCollisionFix == NULL)
+				if (pnDir == NULL)
 					g_errorList.AddError(1194, NULL,
-						"The PostBidi directive must be indicated directly on a pass",
+						"The Direction directive must be indicated directly on a pass",
 						LineAndFile(ast));
 				else
-					*pfPostBidi = (bool)nValue;
+					*pnDir = nValue;
 			}
 			else
 			{
@@ -2167,10 +2169,10 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	int nCollisionFix = 0;
 	int nAutoKern = 0;
 	int nCollisionThreshold = 0;
-	bool fPostBidi = false;
+	int nDir = 0;
 	if (astDirectives && astDirectives->getType() == Zdirectives)
 	{
-		WalkDirectivesTree(astDirectives, &nCollisionFix, &nAutoKern, &nCollisionThreshold, &fPostBidi);
+		WalkDirectivesTree(astDirectives, &nCollisionFix, &nAutoKern, &nCollisionThreshold, &nDir);
 		astContents = astDirectives->getNextSibling();
 	}
 
@@ -2231,7 +2233,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 		ppass->SetCollisionThreshold(nCollisionThreshold);
 	}
 
-	ppass->SetPostBidi(fPostBidi);
+	ppass->SetDirection(nDir);
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
 	//	constraint.

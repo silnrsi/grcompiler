@@ -31,11 +31,11 @@ public:
 		:	m_nNumber(nNum),
 			m_nMaxRuleLoop(nMaxRuleLoop),
 			m_nMaxBackup(nMaxBackup),
-			m_fBidi(false),
 			m_nCollisionFix(0),
 			m_nAutoKern(false),
 			m_nCollisionThreshold(0),
-			m_fPostBidi(false),
+			m_nDir(0),
+			m_fFlipDir(0),
 			m_nGlobalID(-1),
 			m_nPreBidiPass(0),
 			m_pfsm(NULL)
@@ -60,18 +60,18 @@ public:
 	int CollisionFix()				{ return m_nCollisionFix; }
 	int AutoKern()					{ return m_nAutoKern; }
 	int CollisionThreshold()		{ return m_nCollisionThreshold; }
-	bool PostBidi()					{ return m_fPostBidi; }
+	int Direction()					{ return m_nDir; }
 
 	//	Setters:
-	void SetBidi(bool f)			{ m_fBidi = f; }
-	void AddRule(GdlRule* prule)	{ m_vprule.push_back(prule); }
+	void AddRule(GdlRule* prule)		{ m_vprule.push_back(prule); }
 
-	void SetMaxRuleLoop(int n)		{ m_nMaxRuleLoop = n; }
-	void SetMaxBackup(int n)		{ m_nMaxBackup = n; }
-	void SetCollisionFix(int n)		{ m_nCollisionFix = n; }
+	void SetMaxRuleLoop(int n)			{ m_nMaxRuleLoop = n; }
+	void SetMaxBackup(int n)			{ m_nMaxBackup = n; }
+	void SetCollisionFix(int n)			{ m_nCollisionFix = n; }
 	void SetAutoKern(int n)				{ m_nAutoKern = n; }
-	void SetCollisionThreshold(int n) { m_nCollisionThreshold = n; }
-	void SetPostBidi(bool f)		{ m_fPostBidi = f; }
+	void SetCollisionThreshold(int n)	{ m_nCollisionThreshold = n; }
+	void SetDirection(int n)			{ m_nDir = n; }
+	void SetFlipDirection(bool f)		{ m_fFlipDir = f; }
 
 public:
 	//	Parser:
@@ -182,13 +182,13 @@ protected:
 	int m_nNumber;
 	int m_nMaxRuleLoop;
 	int m_nMaxBackup;
-	bool m_fBidi;
 	std::vector<GdlRule*> m_vprule;
 	std::vector<GdlExpression *> m_vpexpConstraints; // multiple constraints result from -else if-
 	int m_nCollisionFix;
 	bool m_nAutoKern;
 	int m_nCollisionThreshold;
-	bool m_fPostBidi;
+	int m_nDir;
+	bool m_fFlipDir;
 
 	int m_critMinPreContext;
 	int m_critMaxPreContext;
@@ -319,7 +319,6 @@ public:
 
 	//	Output
 	int CountPasses();
-	int PostBidiPass(int cpassPrior, int ipassBidi);
 	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
 		std::vector<int> & vnOffsets);
 
