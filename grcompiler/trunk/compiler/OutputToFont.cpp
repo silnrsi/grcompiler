@@ -1812,21 +1812,25 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
     GrcDiversion dstrm(*pbstrm);
 	pbstrm->WriteInt(fxdGlatVersion);	// version number
 
-
+    bool fOutputOctaboxes = m_prndr->HasCollisionPass();
     int cbOutput = 4;   // first glyph starts after the version number
 	if (fxdGlatVersion >= 00030000)
 	{
-        pbstrm->WriteInt(0);
+	    // If we're using a version 3 table we start after compression
+	    // scheme + reserved flags DWORD.
+	    // For now we force octabox generation on
+	    fOutputOctaboxes = true;
+	    pbstrm->WriteInt(fOutputOctaboxes);
         cbOutput += 4;
 	}
-
+	Assert(fOutputOctaboxes && fxdGlatVersion >= 00030000);
 
 	int wGlyphID;
 	for (wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
 		prgibGlyphOffsets[wGlyphID] = cbOutput;
 
-		if (fxdGlatVersion >= 0x00030000)
+		if (fOutputOctaboxes)
 		{
 			// Output glyph-approximation octaboxes.
 			if (wGlyphID < m_wGlyphIDLim && wGlyphID < (int)m_vgbdy.size())
