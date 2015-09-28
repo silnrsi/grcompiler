@@ -808,10 +808,12 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	std::vector<bool> vfLb;
 	std::vector<bool> vfInsertion;
 	std::vector<bool> vfDeletion;
+	std::vector<bool> vfAssocs;
 	size_t crit = m_vprit.size();
 	vfLb.resize(crit, false);
 	vfInsertion.resize(crit, false);
 	vfDeletion.resize(crit, false);
+	vfAssocs.resize(crit, false);
 	std::vector<int> vcwClassSizes;
 	vcwClassSizes.resize(crit, false);
 	bool fAnyAssocs = false;
@@ -849,6 +851,9 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 			fAnyAssocs = (fAnyAssocs || prit->AnyAssociations()
 				// an @ has an implied association
 				|| (prit->OutputSymbol() && prit->OutputSymbol()->FitsSymbolType(ksymtSpecialAt)));
+			prit->SetAssocsVector(vfAssocs);
+			if (prit->OutputSymbol() && prit->OutputSymbol()->FitsSymbolType(ksymtSpecialAt))
+				vfAssocs[irit] = true;
 		}
 	}
 
@@ -873,7 +878,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 
 		if (!m_vprit[irit]->CheckRulesForErrors(pgax, pfont, prndr, this, psymTable, 
 				grfrco, irit, fAnyAssocs, vfLb, 
-				vfInsertion, vfDeletion, vcwClassSizes))
+				vfInsertion, vfDeletion, vcwClassSizes, vfAssocs))
 		{
 			fOkay = false;
 		}
@@ -898,7 +903,7 @@ bool GdlRuleItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont
 	GdlRenderer * prndr, GdlRule * /*prule*/, Symbol /*psymTable*/,
 	int /*grfrco*/, int /*irit*/, bool /*fAnyAssocs*/,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & /*vcwClassSizes*/ )
+	std::vector<int> & /*vcwClassSizes*/, std::vector<bool> & /*vfAssocs*/ )
 {
 	bool fOkay = true;
 
@@ -948,7 +953,7 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 	GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 	int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & vcwSizes)
+	std::vector<int> & vcwSizes, std::vector<bool> & vfAssocs)
 {
 	bool fOkay = true;
 
@@ -963,7 +968,7 @@ bool GdlLineBreakItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	//	method on superclass: check constraints.
 	if(!GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, prule, psymTable,
-		grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes))
+		grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes, vfAssocs))
 	{
 		fOkay = false;
 	}
@@ -976,10 +981,10 @@ bool GdlSetAttrItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pf
 	GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 	int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & vcwSizes)
+	std::vector<int> & vcwSizes, std::vector<bool> & vfAssocs)
 {
 	bool fOkay = GdlRuleItem::CheckRulesForErrors(pgax, pfont, prndr, prule, psymTable,
-			grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes);
+			grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwSizes, vfAssocs);
 
 	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
@@ -998,7 +1003,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 	int grfrco, int irit, bool fAnyAssocs,
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-	std::vector<int> & vcwClassSizes)
+	std::vector<int> & vcwClassSizes, std::vector<bool> & vfAssocs)
 {
 	int crit = signed(vfLb.size());
 
@@ -1045,23 +1050,43 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 			fOkay = false;
 		}
 
-		if (!fAnyAssocs)
+		if (!vfAssocs[irit])
 		{
-			if (prule->ItemCountOriginal() == 2)
+			int iritAssoc = prule->FindAutoAssocItem(true);
+			GdlRuleItem * pritAssoc = (iritAssoc == -1) ? NULL : prule->Rule(iritAssoc);
+			if (prule->ItemCountOriginal() == 1)
 			{
-				// Automatically associate the deleted item with the single other item in the rule.
-				// Also associate that item with itself.
-				int iritSub = prule->FindSubstitutionItem(irit);
-				if (iritSub > -1)
+				g_errorList.AddError(3168, this,
+					"Rules with deletions must include at least two slots");
+			}
+			else if (prule->ItemCountOriginal() == this->CountFlags(vfDel) + 1
+				&& iritAssoc > -1
+				&& (prule->AutoAssocDone() || !pritAssoc->AnyAssociations()))
+			{
+				// Automatically associate the all deleted item(s) with the single non-deleted slot
+				// in the rule. Also associate that item with itself.
+				if (prule->AutoAssocDone())
 				{
-					GdlRuleItem * pritSub = prule->Rule(iritSub);
-					pritSub->AddAssociation(prule->LineAndFile(), 1 + prule->PrependedAnys());	// 1-based
-					pritSub->AddAssociation(prule->LineAndFile(), 2 + prule->PrependedAnys());
+					// Did this already for a previous item.
+					Assert(irit > 0);
+				}
+				else
+				{
 					char rgch[20];
-					itoa(int(iritSub + 1 - prule->PrependedAnys()), rgch, 10);
-					g_errorList.AddWarning(3532, this,
-						"Item ", PosString(),
-						": slot ", rgch, " automatically associated with deleted item");
+					itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
+					for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
+					{
+						GdlRuleItem * prit = prule->Item(irit);
+						if (prit->OutputSymbol()->FullName() != "ANY")
+						{
+							pritAssoc->AddAssociation(prule->LineAndFile(), irit + 1 + prule->PrependedAnys());	// 1-based
+							if (irit != iritAssoc)
+								g_errorList.AddWarning(3532, this,
+									"Item ", prit->PosString(),
+									": slot ", rgch, " automatically associated with deleted item");
+						}
+					}
+					prule->SetAutoAssocDone();
 				}
 			}
 			else
@@ -1077,18 +1102,51 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 		//	Insertion
 		if (m_vpexpAssocs.size() == 0 && !m_psymOutput->FitsSymbolType(ksymtSpecialAt))
 		{
-			if (prule->ItemCountOriginal() == 2)
+			int iritAssoc = prule->FindAutoAssocItem(false);
+			GdlRuleItem * pritAssoc = (iritAssoc == -1) ? NULL : prule->Rule(iritAssoc);
+
+			bool fExplAssocs = false;
+			for (int iritTmp = 0; iritTmp < prule->ItemCountOriginal(); iritTmp++)
 			{
-				// Automatically associate the inserted item with the single item in the LHS.
-				int iritOther = (irit - prule->PrependedAnys() == 0) ? 1 : 0;
-				int nOther = (irit - prule->PrependedAnys() == 0) ? 2 : 1;
-				int nOtherPany = nOther + prule->PrependedAnys();
-				this->AddAssociation(prule->LineAndFile(), nOtherPany);	// 1-based
-				char rgch[20];
-				itoa(int(nOther), rgch, 10);
-				g_errorList.AddWarning(3533, this,
-					"Item ", PosString(),
-					": inserted item automatically associated with slot ", rgch);
+				if (prule->Item(iritTmp)->AnyAssociations())
+					fExplAssocs = true;
+				// DON'T treat @ as an explicit association.
+			}
+
+			if (prule->ItemCountOriginal() == 1)
+			{
+				g_errorList.AddError(3169, this,
+					"Rules with insertions must include at least two slots");
+			}
+			else if (prule->ItemCountOriginal() == this->CountFlags(vfIns) + 1
+				&& iritAssoc > -1
+				&& (prule->AutoAssocDone() || !fExplAssocs))
+			{
+				// Automatically associate all the inserted item(s) with the single non-inserted slot
+				// in the rule.
+				if (prule->AutoAssocDone())
+				{
+					// Did this already for a previous item.
+					Assert(irit > 0);
+				}
+				else
+				{
+					for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
+					{
+						GdlRuleItem * prit = prule->Item(irit);
+						if (prit->OutputSymbol()->FullName() != "ANY"
+							&& irit != iritAssoc)
+						{
+							prit->AddAssociation(prule->LineAndFile(), iritAssoc + 1 - prule->PrependedAnys()); // 1-based
+							char rgch[20];
+							itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
+							g_errorList.AddWarning(3533, this,
+								"Item ", prit->PosString(),
+								": inserted item automatically associated with slot ", rgch);
+						}
+					}
+					prule->SetAutoAssocDone();
+				}
 			}
 			else
 			{
@@ -1191,7 +1249,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	}
 
 	if (!GdlSetAttrItem::CheckRulesForErrors(pgax, pfont, prndr, prule, psymTable,
-		grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwClassSizes))
+		grfrco, irit, fAnyAssocs, vfLb, vfIns, vfDel, vcwClassSizes, vfAssocs))
 	{
 		fOkay = false;
 	}
@@ -1644,6 +1702,36 @@ bool GdlSubstitutionItem::AnyAssociations()
 {
 	return (m_vpexpAssocs.size() > 0);
 }
+
+
+/*----------------------------------------------------------------------------------------------
+	Set flags indicating which items in the input are associated.
+----------------------------------------------------------------------------------------------*/
+void GdlRuleItem::SetAssocsVector(std::vector<bool> & vfAssocs)
+{
+}
+
+void GdlSubstitutionItem::SetAssocsVector(std::vector<bool> & vfAssocs)
+{
+	for (int iexp = 0; iexp < signed(this->m_vpexpAssocs.size()); iexp++)
+	{
+		int srNumber = m_vpexpAssocs[iexp]->SlotNumber(); // 1-based
+		vfAssocs[srNumber - 1] = true;
+	}
+}
+
+
+/*----------------------------------------------------------------------------------------------
+	Count up the insertiondeletion flags in the vector.
+----------------------------------------------------------------------------------------------*/
+int GdlSubstitutionItem::CountFlags(std::vector<bool> & vfFlags)
+{
+	int cFlags = 0;
+	for (int i = 0; i < signed(vfFlags.size()); i++)
+		cFlags = cFlags + ((vfFlags[i]) ? 1 : 0);
+	return cFlags;
+}
+
 
 /**********************************************************************************************/
 
@@ -2715,24 +2803,33 @@ int GdlRule::ItemCountOriginal()
 }
 
 /*----------------------------------------------------------------------------------------------
-	Give a deletion slot, return the indices of the substitution item it should be associated
-	with.
-
-	Assumes there are exactly two items in the rule (not including ANY items).
+	Return the index of the single item that deletions or insertions can be associated
+	with. Return -1 if there is more than one such item, in which case we can not do an automatic
+	association.
 ----------------------------------------------------------------------------------------------*/
-int GdlRule::FindSubstitutionItem(int iritDel)
+int GdlRule::FindAutoAssocItem(bool fDelete)
 {
+	int iritResult = -1;
 	for (size_t irit = 0; irit <m_vprit.size(); irit++)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		if (prit->OutputSymbol()->FullName() == "ANY")
 			continue;
-		if (irit == iritDel)
-			continue;
-		if (dynamic_cast<GdlSubstitutionItem *>(prit) != NULL)
-			return irit;
+		GdlSubstitutionItem * pritSub = dynamic_cast<GdlSubstitutionItem *>(prit);
+		if (pritSub == NULL
+			|| (fDelete && !pritSub->OutputSymbol()->FitsSymbolType(ksymtSpecialUnderscore))
+			|| (!fDelete && !pritSub->InputSymbol()->FitsSymbolType(ksymtSpecialUnderscore)))
+		{
+			if (iritResult != -1)
+			{
+				iritResult = -1;
+				break;	// more than one possibility;
+			}
+			else
+				iritResult = irit;
+		}
 	}
-	return -1;
+	return iritResult;
 }
 
 

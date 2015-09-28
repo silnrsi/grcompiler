@@ -215,6 +215,10 @@ public:
 	}
 
 public:
+	Symbol InputSymbol()
+	{
+		return m_psymInput;
+	}
 	//	For classes that don't do substitutions, the output is the input
 	virtual Symbol OutputSymbol()
 	{
@@ -261,8 +265,9 @@ public:
 		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit, bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-		std::vector<int> & vcwClassSizes);
+		std::vector<int> & vcwClassSizes, std::vector<bool> & vfAssocs);
 	virtual bool AnyAssociations();
+	virtual void SetAssocsVector(std::vector<bool> & vfAssocs);
 	bool CheckForJustificationConstraint();
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
@@ -382,7 +387,7 @@ protected:
 		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-		std::vector<int> & vcwClassSizes);
+		std::vector<int> & vcwClassSizes, std::vector<bool> & vfAssocs);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 
@@ -469,7 +474,7 @@ protected:
 		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-		std::vector<int> & vcwClassSizes);
+		std::vector<int> & vcwClassSizes, std::vector<bool> & vfAssocs);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pfont);
@@ -632,12 +637,14 @@ protected:
 		GdlRenderer * prndr, GdlRule * prule, Symbol psymTable,
 		int grfrco, int irit,  bool fAnyAssocs,
 		std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
-		std::vector<int> & vcwClassSizes);
+		std::vector<int> & vcwClassSizes, std::vector<bool> & vfAssocs);
 	virtual void AdjustSlotRefsForPreAnys(int critPrependedAnys);
 	virtual void AssignIOIndices(int * pcritInput, int * pcritOutput,
 		std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual void AdjustToIOIndices(std::vector<int> & viritInput, std::vector<int> & viritOutput);
 	virtual bool AnyAssociations();
+	virtual void SetAssocsVector(std::vector<bool> & vfAssocs);
+	int CountFlags(std::vector<bool> & vfFlags);
 
 	//	Compiler:
 	virtual bool CanBeKeySlot()
@@ -767,6 +774,7 @@ public:
 		m_nScanAdvance = -1;
 		m_nDefaultAdvance = -1;
 		m_fBadRule = false;
+		m_fAutoAssoc = false;
 	}
 
 	~GdlRule()
@@ -798,6 +806,9 @@ public:
 	{
 		return m_fBadRule;
 	}
+
+	bool AutoAssocDone() { return m_fAutoAssoc; }
+	void SetAutoAssocDone() { m_fAutoAssoc = true; }
 
 	int SortKey();
 
@@ -898,7 +909,7 @@ public:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 	void MovePassConstraintsToRule(std::vector<GdlExpression *> & m_vpexpPassConstr);
 	int ItemCountOriginal();
-	int FindSubstitutionItem(int iritDel);
+	int FindAutoAssocItem(bool fDelete);
 	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 		std::vector<utf16> & vwSpaceGlyphs);
 	int PrependedAnys() { return m_critPrependedAnys; }
@@ -962,7 +973,10 @@ protected:
 	int m_nDefaultAdvance;
 
 	//	true if errors have been detected in this rule so don't keep processing
-	bool m_fBadRule; 
+	bool m_fBadRule;
+
+	//	automatic associations have been done
+	bool m_fAutoAssoc;
 
 };	// end of GdlRule
 
