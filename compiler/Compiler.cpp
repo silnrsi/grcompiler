@@ -88,8 +88,9 @@ bool GrcManager::Compile(GrcFont * /*pfont*/)
 void GrcManager::CalculateGlatVersion()
 {
 	int fxdGlatVersion = VersionForTable(ktiGlat);
-	//	The version of the Glat table depends on the number of glyph attributes defined
-	//	and whether we include the glyph approximation octaboxes for collision fixing.
+	//	The version of the Glat table depends on the number of glyph attributes defined,
+	//  whether compression is enabled and whether we include the glyph approximation
+	//  octaboxes for collision fixing.
 
     if (m_prndr->HasCollisionPass() || m_tcCompressor != ktcNone)
 	{
