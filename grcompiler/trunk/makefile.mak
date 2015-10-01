@@ -87,12 +87,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
    $(CPP_PROJ) $< 
 <<
 
-{$(GRC_LZ4_SRC)}.cpp{$(INTDIR)}.obj::
+{$(GRC_LZ4_SRC)}.c{$(INTDIR)}.obj::
    $(CPP) @<<
    $(CPP_PROJ) $< 
 <<
 
-{$(GRC_LZ4_SRC)}.cpp{$(INTDIR)}.sbr::
+{$(GRC_LZ4_SRC)}.c{$(INTDIR)}.sbr::
    $(CPP) @<<
    $(CPP_PROJ) $< 
 <<
@@ -307,8 +307,8 @@ BSC32_SBRS= \
 "$(INTDIR)\Token.obj" "$(INTDIR)\Token.sbr" : "$(GRC_GRMR_SRC)\Token.cpp" "$(INTDIR)"
 "$(INTDIR)\TokenBuffer.obj" "$(INTDIR)\TokenBuffer.sbr" : "$(GRC_GRMR_SRC)\TokenBuffer.cpp" "$(INTDIR)"
 
-"$(INTDIR)\lz4.obj" "$(INTDIR)\lz4.sbr" : "$(GRC_LZ4_SRC)\lz4.cpp" "$(INTDIR)"
-"$(INTDIR)\lz4hc.obj" "$(INTDIR)\lz4hc.sbr" : "$(GRC_LZ4_SRC)\lz4hc.cpp" "$(INTDIR)"
+"$(INTDIR)\lz4.obj" "$(INTDIR)\lz4.sbr" : "$(GRC_LZ4_SRC)\lz4.c" "$(INTDIR)"
+"$(INTDIR)\lz4hc.obj" "$(INTDIR)\lz4hc.sbr" : "$(GRC_LZ4_SRC)\lz4hc.c" "$(INTDIR)"
 
 # "$(INTDIR)\Util.obj" "$(INTDIR)\Util.sbr" : "$(GRC_GEN_SRC)\Util.cpp" "$(INTDIR)"
 # "$(INTDIR)\UtilString.obj" "$(INTDIR)\UtilString.sbr" : "$(GRC_GEN_SRC)\UtilString.cpp" "$(INTDIR)"
