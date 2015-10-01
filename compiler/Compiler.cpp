@@ -2554,7 +2554,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				continue;
 
 			if ((m_vpsymGlyphAttrs[nAttrID]->IsMirrorAttr() || nAttrID == nAttrIdDir)
-					&& m_prndr->Bidi())
+					&& m_prndr->Bidi() == 0)
 				// Ignore mirror and directionality attribute for non-bidi.
 				continue;
 

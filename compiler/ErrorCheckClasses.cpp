@@ -1502,12 +1502,12 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	m_plclist = new GrcLigComponentList(m_cwGlyphIDs);
 
 	//	List of system-defined glyph attributes:
-	//	directionality = 0
+	//	directionality; default = 0 (neutral)
 	std::vector<Symbol> vpsymSysDefined;
 	std::vector<int> vnSysDefValues;
 	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("directionality"));
 	vnSysDefValues.push_back(kdircNeutral);
-	//	breakweight = letter
+	//	breakweight; default = letter
 	vpsymSysDefined.push_back(SymbolTable()->FindSymbol("breakweight"));
 	vnSysDefValues.push_back(klbLetterBreak);
 	if (m_prndr->Bidi())
