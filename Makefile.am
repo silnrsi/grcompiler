@@ -5,8 +5,8 @@ EXTRA_DIST = license makefile.mak
 dist-hook:
 	find $(distdir) -name ".svn" | xargs rm -rf
 
-VC_VERSION = 2.4.5
-D_VERSION = `svnversion ${top_srcdir}|sed -e "s/[0-9]*\://g"`
+VC_VERSION = 5.0
+D_VERSION = `hg identify -n || svnversion ${top_srcdir}|sed -e "s/[0-9]*\://g"`
 DEB_VERSION = $(VC_VERSION)+0$(D_VERSION)svn
 DEBPACKAGE = grcompiler-$(DEB_VERSION)
 RELPACKAGE = grcompiler-${VC_VERSION}

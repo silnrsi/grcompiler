@@ -1,7 +1,7 @@
 FILES INCLUDED
 
 Program Files
-* GrCompiler.exe - Graphite compiler version 4.3.1
+* GrCompiler.exe - Graphite compiler version 5.0
 * icuuc49.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
 * icudt49.dll - ICU data tables
 * gdlpp.exe - preprocessor to handle #define and #include statements
