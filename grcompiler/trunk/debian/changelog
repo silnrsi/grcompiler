@@ -1,9 +1,9 @@
-grcompiler (4.2-1~palaso1) UNRELEASED; urgency=low
+grcompiler (5.0-1~palaso1) trusty; urgency=low
 
-  * 4.2 final release
+  * 5.0 final release
   * LIBS not LDFLAGS for icu ldflags, Closes: #677671
 
- -- Daniel Glassey <wdg@debian.org>  Thu, 21 Jun 2012 13:49:58 +0700
+ -- Martin Hosken <martin_hosken@sil.org>  Mon, 12 Oct 2015 10:05:49 +0700
 
 grcompiler (4.2~pre6-1) unstable; urgency=low
 
