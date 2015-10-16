@@ -1814,7 +1814,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 
     bool fOutputOctaboxes = m_prndr->HasCollisionPass();
     int cbOutput = 4;   // first glyph starts after the version number
-	if (fxdGlatVersion >= 00030000)
+	if (fxdGlatVersion >= 0x00030000)
 	{
 	    // If we're using a version 3 table we start after compression
 	    // scheme + reserved flags DWORD.
@@ -1823,7 +1823,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	    pbstrm->WriteInt(fOutputOctaboxes);
         cbOutput += 4;
 	}
-	Assert(fOutputOctaboxes && fxdGlatVersion >= 00030000);
+	Assert(fOutputOctaboxes && fxdGlatVersion >= 0x00030000);
 
 	int wGlyphID;
 	for (wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
