@@ -650,7 +650,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 		}
 	}
 
-	g_errorList.AddError(121, pgdlobj, 
+	g_errorList.AddWarning(121, pgdlobj, 
 		"Unable to get bounding box for glyph ", 
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return INT_MIN;
