@@ -2,8 +2,8 @@ FILES INCLUDED
 
 Program Files
 * GrCompiler.exe - Graphite compiler version 5.0
-* icuuc49.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
-* icudt49.dll - ICU data tables
+* icuuc56.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
+* icudt56.dll - ICU data tables
 * gdlpp.exe - preprocessor to handle #define and #include statements
 * stddef.gdh - standard GDL abbreviations
 
@@ -46,7 +46,9 @@ If the output-font-name is omitted, the resulting font will have the same name a
 
 Options:
 
--d - causes the compiler to output files that can be used to debug the Graphite version of the font. This flag is recommended. These files are documented in "Compiler Debug Files.doc".
+-d - causes the compiler to output the XML debugger file. This flag is recommended, and required for fonts to run in Graide.
+
+-D - causes the compiler to output both the XML file and the text debugger files. The text files are documented in "Compiler Debug Files.doc".
 
 -g - permit and ignore invalid glyph definitions.
 
@@ -69,6 +71,25 @@ The file "allcaps.gdl" is a very simple program that you can try to compile. It 
 UNINSTALLING THE PROGRAM
 
 To uninstall, run "unins000.exe".
+
+
+CHANGES SINCE VERSION 4.3.1
+
+* Upgrade to use ICU 5.6.
+
+* Added support for automatic collision fixing.
+
+* Added support for table compression.
+
+* Replaced bidi pass (between substitution and positioning passes) with Direction setting on any pass.
+
+* Automatically create associations for insertion and deletion rules for multi-slot rules (previously this only worked for rules with two slots).
+
+* Support glyph.<attrName> syntax in rules to force reading of a glyph attribute rather than a slot attribute.
+
+* Support setting features in rules.
+
+* Support bit-wise operators and special SetBits operator.
 
 
 CHANGES SINCE VERSION 4.3
