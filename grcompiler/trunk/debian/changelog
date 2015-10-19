@@ -1,3 +1,9 @@
+grcompiler (5.0.1-1~palaso1) trusty; urgency=medium
+
+  * Fix bad bugs
+
+ -- Martin Hosken <martin_hosken@sil.org>  Mon, 19 Oct 2015 14:48:23 +0700
+
 grcompiler (5.0-1~palaso1) trusty; urgency=low
 
   * 5.0 final release

@@ -1823,7 +1823,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	    pbstrm->WriteInt(fOutputOctaboxes);
         cbOutput += 4;
 	}
-	Assert(fOutputOctaboxes && fxdGlatVersion >= 0x00030000);
+	Assert(fxdGlatVersion < 0x00030000 || fOutputOctaboxes);
 
 	int wGlyphID;
 	for (wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
