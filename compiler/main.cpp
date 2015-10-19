@@ -142,7 +142,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 5.0";
+		std::cout << "Graphite Compiler Version 5.0.1";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
