@@ -170,7 +170,7 @@ Symbol GrcSymbolTable::AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndF
 {
 	Assert(m_cLevel == 0);
 	SymbolType symt = (fMetric) ? ksymtGlyphMetric : ksymtGlyphAttr;
-	SymbolType symtOther = (fMetric) ? ksymtInvalid : ksymtInvalidGlyphAttr;
+	SymbolType symtOther = (fMetric) ? ksymtInvalid : ksymtNonLeafGlyphAttr;
 	Symbol psymAdded = AddSymbolAux(xns, symt, symtOther, lnf);
 	psymAdded->AdjustExpTypeIfPossible(expt);
 
@@ -316,7 +316,7 @@ Symbol GrcSymbolTable::AddAnonymousClassSymbol(GrpLineAndFile const& lnf)
 		xns				- structured name of symbol
 		symtLeaf		- symbol type to use for leaf node
 		symtOther		- symbol type to use for nodes along the way (generally ksymtInvalid
-							or ksymtInvalidGlyphAttr)
+							or ksymtNonLeafGlyphAttr)
 ----------------------------------------------------------------------------------------------*/
 Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 	SymbolType symtLeaf, SymbolType symtOther, GrpLineAndFile const& lnf)
@@ -394,7 +394,7 @@ bool GrcSymbolTableEntry::FitsSymbolType(SymbolType symt)
 		break;
 
 	case ksymtInvalid:
-		if (FitsSymbolType(ksymtInvalidGlyphAttr))
+		if (FitsSymbolType(ksymtNonLeafGlyphAttr))
 			return true;
 		break;
 
@@ -490,7 +490,7 @@ Symbol GrcSymbolTable::FindSlotAttr(const GrcStructName & xns, GrpLineAndFile co
 	if (!psym && xns.NumFields() == 3 &&
 		xns.FieldEquals(0, "component") && xns.FieldEquals(2, "reference"))
 	{
-		psym = AddSymbolAux(xns, ksymtSlotAttrCompRef, ksymtInvalidGlyphAttr, lnf);
+		psym = AddSymbolAux(xns, ksymtSlotAttrCompRef, ksymtNonLeafGlyphAttr, lnf);
 		psym->SetExpType(kexptSlotRef);
 	}
 
@@ -862,7 +862,7 @@ Symbol GrcSymbolTableEntry::BaseLigComponent()
 {
 	Assert(FitsSymbolType(ksymtGlyphAttr) ||
 		FitsSymbolType(ksymtSlotAttr) ||
-		FitsSymbolType(ksymtInvalidGlyphAttr));
+		FitsSymbolType(ksymtNonLeafGlyphAttr));
 
 	Symbol psymParent = ParentSymbol();
 	Assert(psymParent);
@@ -1187,7 +1187,7 @@ int GrcSymbolTableEntry::UserDefinableSlotAttrIndex()
 Symbol GrcSymbolTableEntry::SubField(std::string sta)
 {
 	Assert(FitsSymbolType(ksymtSlotAttrPt) || FitsSymbolType(ksymtSlotAttrPtOff)
-		|| FitsSymbolType(ksymtGlyphAttr) || FitsSymbolType(ksymtInvalidGlyphAttr)) ;
+		|| FitsSymbolType(ksymtGlyphAttr) || FitsSymbolType(ksymtNonLeafGlyphAttr)) ;
 	Assert(m_psymtblSubTable);
 	return m_psymtblSubTable->FindField(sta);
 }

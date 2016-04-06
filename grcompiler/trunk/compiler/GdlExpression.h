@@ -1173,6 +1173,11 @@ public:
 	virtual bool CheckTypeAndUnits(ExpressionType * pexptRet);
 	bool ResolveToInteger(int * pnRet, bool fSlotRef);
 
+	virtual bool PointFieldEquivalents(GrcManager * pcman,
+		GdlExpression ** ppexpX, GdlExpression ** ppexpY,
+		GdlExpression ** ppexpGpoint,
+		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset);
+
 	int ValueCount();
 
 	// Compiler:

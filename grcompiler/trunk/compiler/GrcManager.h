@@ -258,6 +258,7 @@ protected:
 	void WalkGlyphTableElement(RefAST ast);
 	void WalkGlyphClassTree(RefAST ast, GdlGlyphClassDefn * pglfc, GlyphClassType glfct);
 	void WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta);
+	void AddGlyphAttr(RefAST ast, std::vector<std::string> & vsta, GdlExpression * pexpValue);
 	void WalkFeatureTableTree(RefAST ast);
 	void WalkFeatureTableElement(RefAST ast);
 	void WalkFeatureSettingsTree(RefAST ast, std::vector<std::string> & vsta);
