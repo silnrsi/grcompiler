@@ -1246,6 +1246,7 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 				if (pexpValue->PointFieldEquivalents(this, &pexpX, &pexpY, &pexpGpoint, &pexpXoffset, &pexpYoffset)
 					&& (pexpX || pexpY))
 				{
+					
 					if (pexpX)
 					{
 						vsta.push_back("x");
@@ -1258,23 +1259,35 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 						AddGlyphAttr(ast, vsta, pexpY);
 						vsta.pop_back();
 					}
-					if (pexpGpoint)
+					if (OffsetAttrs())
 					{
-						vsta.push_back("gpoint");
-						AddGlyphAttr(ast, vsta, pexpGpoint);
-						vsta.pop_back();
+						if (pexpGpoint)
+						{
+							vsta.push_back("gpoint");
+							AddGlyphAttr(ast, vsta, pexpGpoint);
+							vsta.pop_back();
+						}
+						if (pexpXoffset)
+						{
+							vsta.push_back("xoffset");
+							AddGlyphAttr(ast, vsta, pexpY);
+							vsta.pop_back();
+						}
+						if (pexpYoffset)
+						{
+							vsta.push_back("yoffset");
+							AddGlyphAttr(ast, vsta, pexpY);
+							vsta.pop_back();
+						}
 					}
-					if (pexpXoffset)
+					else
 					{
-						vsta.push_back("xoffset");
-						AddGlyphAttr(ast, vsta, pexpY);
-						vsta.pop_back();
-					}
-					if (pexpYoffset)
-					{
-						vsta.push_back("yoffset");
-						AddGlyphAttr(ast, vsta, pexpY);
-						vsta.pop_back();
+						if (pexpGpoint)
+							delete pexpGpoint;
+						if (pexpXoffset)
+							delete pexpXoffset;
+						if (pexpYoffset)
+							delete pexpYoffset;
 					}
 					delete pexpValue;
 				}
