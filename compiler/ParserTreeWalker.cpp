@@ -1238,13 +1238,50 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 			{
 				GdlExpression * pexpValue = WalkExpressionTree(astValue);
 
-				Symbol psym = SymbolTable()->AddGlyphAttrSymbol(GrcStructName(vsta),
-					LineAndFile(ast), pexpValue->ExpType());
-
-				if (psym)
-                    m_mtbGlyphAttrs->AddItem(psym, pexpValue,
-						PointRadius(), PointRadiusUnits(), AttrOverride(), LineAndFile(ast),
-						"glyph attr assignment");
+				GdlExpression * pexpX = NULL;
+				GdlExpression * pexpY = NULL;
+				GdlExpression * pexpGpoint = NULL;
+				GdlExpression * pexpXoffset = NULL;
+				GdlExpression * pexpYoffset = NULL;
+				if (pexpValue->PointFieldEquivalents(this, &pexpX, &pexpY, &pexpGpoint, &pexpXoffset, &pexpYoffset)
+					&& (pexpX || pexpY))
+				{
+					if (pexpX)
+					{
+						vsta.push_back("x");
+						AddGlyphAttr(ast, vsta, pexpX);
+						vsta.pop_back();
+					}
+					if (pexpY)
+					{
+						vsta.push_back("y");
+						AddGlyphAttr(ast, vsta, pexpY);
+						vsta.pop_back();
+					}
+					if (pexpGpoint)
+					{
+						vsta.push_back("gpoint");
+						AddGlyphAttr(ast, vsta, pexpGpoint);
+						vsta.pop_back();
+					}
+					if (pexpXoffset)
+					{
+						vsta.push_back("xoffset");
+						AddGlyphAttr(ast, vsta, pexpY);
+						vsta.pop_back();
+					}
+					if (pexpYoffset)
+					{
+						vsta.push_back("yoffset");
+						AddGlyphAttr(ast, vsta, pexpY);
+						vsta.pop_back();
+					}
+					delete pexpValue;
+				}
+				else
+				{
+					AddGlyphAttr(ast, vsta, pexpValue);
+				}
 			}
 		}
 	}
@@ -1271,6 +1308,20 @@ void GrcManager::WalkGlyphAttrTree(RefAST ast, std::vector<std::string> & vsta)
 	}
 
 	vsta.pop_back();
+}
+
+/*----------------------------------------------------------------------------------------------
+	Add the expression as the value of the glyph attribute indicated by the strings.
+----------------------------------------------------------------------------------------------*/
+void GrcManager::AddGlyphAttr(RefAST ast, std::vector<std::string> & vsta, GdlExpression * pexpValue)
+{
+	Symbol psym = SymbolTable()->AddGlyphAttrSymbol(GrcStructName(vsta),
+		LineAndFile(ast), pexpValue->ExpType());
+
+	if (psym)
+		m_mtbGlyphAttrs->AddItem(psym, pexpValue,
+			PointRadius(), PointRadiusUnits(), AttrOverride(), LineAndFile(ast),
+			"glyph attr assignment");
 }
 
 /*----------------------------------------------------------------------------------------------

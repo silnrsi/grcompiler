@@ -77,7 +77,7 @@ typedef enum SymbolType {	// hungarian: symt
 			ksymtGlyphAttrComp,	// user-defined: component.???.top/bottom/right/left
 		ksymtGlyphMetric,		// pre-defined
 	ksymtInvalid,
-		ksymtInvalidGlyphAttr,	// a non-leaf field within a glyph attribute
+		ksymtNonLeafGlyphAttr,	// a non-leaf field within a glyph attribute
 	ksymtNameID,				// user-defined
 	ksymtOperator,				// pre-defined: ==, &&, +, -, min, max, etc.
 		ksymtOpAssign,

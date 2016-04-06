@@ -1355,7 +1355,7 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf, Symbol psymFeature)
 				"Composite metric indicator is incompatible with ",
 				m_psymName->TypeDescriptorString());
 	}
-	else if (m_psymName->FitsSymbolType(ksymtInvalidGlyphAttr))
+	else if (m_psymName->FitsSymbolType(ksymtNonLeafGlyphAttr))
 	{
 		g_errorList.AddError(2119, this,
 			"Incomplete glyph attribute: ",
@@ -2129,6 +2129,15 @@ void GdlStringExpression::CheckCompleteAttachmentPoint(GrcManager * /*pcman*/,
 	ignore it at this point. Eventually	we may detect an error due to the omission.
 ----------------------------------------------------------------------------------------------*/
 bool GdlExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
+	GdlExpression ** /*ppexpX*/, GdlExpression ** /*ppexpY*/,
+	GdlExpression ** /*ppexpGpoint*/, GdlExpression ** /*ppexpXoffset*/, GdlExpression ** /*ppexpYoffset*/)
+{
+	//	Only glyph attribute lookups can handle this.
+	return false;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+bool GdlClassMemberExpression::PointFieldEquivalents(GrcManager * /*pcman*/,
 	GdlExpression ** /*ppexpX*/, GdlExpression ** /*ppexpY*/,
 	GdlExpression ** /*ppexpGpoint*/, GdlExpression ** /*ppexpXoffset*/, GdlExpression ** /*ppexpYoffset*/)
 {
