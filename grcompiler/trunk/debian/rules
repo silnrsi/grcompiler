@@ -1,9 +1,10 @@
 #!/usr/bin/make -f
+export DH_VERBOSE=1
 
 DEB_BUILD_OPTIONS=nocheck
 
 %:
-	dh $@ --with autoreconf
+	dh $@ --parallel --with autoreconf --as-needed
 
 override_dh_compress:
 	dh_compress -X.pdf
@@ -12,4 +13,4 @@ override_dh_auto_test:
 	@echo $@
 
 override_dh_autoreconf:
-	dh_autoreconf autoreconf -i -f 
+	dh_autoreconf autoreconf -- -i -f 
