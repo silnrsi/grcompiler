@@ -3,10 +3,13 @@
 DEB_BUILD_OPTIONS=nocheck
 
 %:
-	dh $@
+	dh $@ --with autoreconf
 
 override_dh_compress:
 	dh_compress -X.pdf
 
 override_dh_auto_test:
 	@echo $@
+
+override_dh_autoreconf:
+	dh_autoreconf autoreconf -i -f 
