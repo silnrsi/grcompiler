@@ -116,6 +116,7 @@ protected:
 	void AddExitMinMax( int icellX, int icellY, int gbcSide, int mVal);
 
 	void ClearSubBoxCells();
+	void RoundSubBoxCells();
 
 	// Compiler:
 public:
