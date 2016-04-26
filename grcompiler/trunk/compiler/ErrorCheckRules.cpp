@@ -1079,7 +1079,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 						GdlRuleItem * prit = prule->Item(irit);
 						if (prit->OutputSymbol()->FullName() != "ANY")
 						{
-							pritAssoc->AddAssociation(prule->LineAndFile(), irit + 1 + prule->PrependedAnys());	// 1-based
+							pritAssoc->AddAssociation(prule->LineAndFile(), irit + 1);	// 1-based
 							if (irit != iritAssoc)
 								g_errorList.AddWarning(3532, this,
 									"Item ", prit->PosString(),

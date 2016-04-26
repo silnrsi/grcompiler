@@ -1036,7 +1036,6 @@ void GrcManager::CalculateCollisionOctaboxes(GrcFont * pfont)
 			else
 				fComplex = (n > 0);
 		}
-
 		m_vgbdy[wGid].Initialize(wGid);
 		m_vgbdy[wGid].OverlayGrid(pfont, fComplex);
 	}

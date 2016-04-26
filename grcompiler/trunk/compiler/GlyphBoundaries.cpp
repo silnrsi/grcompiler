@@ -585,6 +585,8 @@ void GlyphBoundaries::OverlayGrid(GrcFont * pfont, bool fComplex)
 		m_gbcellEntire.m_dValues[gbcDPMin] = 0;
 		m_gbcellEntire.m_dValues[gbcDPMax] = 0;
 	}
+
+	RoundSubBoxCells();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -735,7 +737,28 @@ void GlyphBoundaries::ClearSubBoxCells()
 			Assert(!pgbcell->HasData());
 		}
 	}
+}
 
+/*----------------------------------------------------------------------------------------------
+	 Ignore tiny rounding errors.
+----------------------------------------------------------------------------------------------*/
+void GlyphBoundaries::RoundSubBoxCells()
+{
+	for (int icellX = 0; icellX < gbgridCellsH; icellX++)
+	{
+		for (int icellY = 0; icellY < gbgridCellsV; icellY++)
+		{
+			GlyphBoundaryCell * pgbcell = m_rggbcellSub + CellIndex(icellX, icellY);
+			pgbcell->m_dValues[GlyphBoundaries::gbcLeft] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcLeft] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcBottom] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcBottom] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcDPMin] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcDPMin] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcDNMin] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcDNMin] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcRight] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcRight] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcTop] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcTop] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcDPMax] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcDPMax] * 10000)) / 10000.0);
+			pgbcell->m_dValues[GlyphBoundaries::gbcDNMax] = (float)(((int)(pgbcell->m_dValues[GlyphBoundaries::gbcDNMax] * 10000)) / 10000.0);
+		}
+	}
 }
 
 /*----------------------------------------------------------------------------------------------
