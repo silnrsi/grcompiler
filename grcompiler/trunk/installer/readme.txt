@@ -46,6 +46,8 @@ If the output-font-name is omitted, the resulting font will have the same name a
 
 Options:
 
+-c - generate a compressed version of the font
+
 -d - causes the compiler to output the XML debugger file. This flag is recommended, and required for fonts to run in Graide.
 
 -D - causes the compiler to output both the XML file and the text debugger files. The text files are documented in "Compiler Debug Files.doc".
