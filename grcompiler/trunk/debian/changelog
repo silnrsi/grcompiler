@@ -1,3 +1,11 @@
+grcompiler (5.0.2-1~palaso1) trusty; urgency=medium
+
+  * New upstream release
+  * Avoid rounding errors that make sub-box values higher than 1.0
+  * Fix bug in automatically creating associations
+
+ -- Bobby de Vos <bobby_devos@sil.org>  Wed, 01 Jun 2016 16:03:29 -0600
+
 grcompiler (5.0.1-1~palaso1) trusty; urgency=medium
 
   * Fix bad bugs
