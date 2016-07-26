@@ -2825,7 +2825,14 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::st
 	Assert(PassDebuggerNumber() != 0);
 
 	strmOut << "    <pass table=\"" << psymTableName->FullName()
-		<< "\" index=\"" << PassDebuggerNumber() << "\" >\n";
+		<< "\" index=\"" << PassDebuggerNumber() << "\"";
+	if (m_nCollisionFix != 0)
+		strmOut << " collisionFix=\"" << m_nCollisionFix << "\"";
+	if (m_nAutoKern != 0)
+		strmOut << " autoKern=\"" << m_nAutoKern << "\"";
+	if (m_fFlipDir != 0)
+		strmOut << " flipDir=\"" << int(m_fFlipDir) << "\"";
+	strmOut << " >\n";
 
 	if (m_vprule.size() > 0)
 	{

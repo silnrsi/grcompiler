@@ -1095,6 +1095,16 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					"Item ", PosString(),
 					": no slot was associated with deleted item");
 			}
+
+			for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+			{
+				if (m_vpavs[ipavs]->AttrName()->IsPassKeySlot())
+				{
+					g_errorList.AddWarning(3540, this,
+						"Cannot set passKeySlot on an inserted item");
+					EraseAttrSetting(ipavs);
+				}
+			}
 		}
 	}
 	if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))

@@ -2241,8 +2241,8 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	}
 
 	GdlPass * ppass = prultbl->GetPass(lnf, Pass(), MaxRuleLoop(), MaxBackup());
-	char rgch[20];
-	itoa(Pass(), rgch, 10);
+	char rgchPass[20];
+	itoa(Pass(), rgchPass, 10);
 	if (nCollisionFix > 0 && prultbl->Substitution())
 	{
 		g_errorList.AddError(1187, NULL,
@@ -2253,7 +2253,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	{
 		if (nCollisionFix == 0 && ppass->CollisionFix() > 0)
 			g_errorList.AddWarning(1514, NULL,
-				"Clearing previous value of CollisionFix for pass ", rgch,
+				"Clearing previous value of CollisionFix for pass ", rgchPass,
 				LineAndFile(ast)); 
 		ppass->SetCollisionFix(nCollisionFix);
 	}
@@ -2267,7 +2267,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	{
 		if (nAutoKern == 0 && ppass->AutoKern())
 			g_errorList.AddWarning(1517, NULL,
-				"Clearing previous value of AutoKern for pass ", rgch,
+				"Clearing previous value of AutoKern for pass ", rgchPass,
 				LineAndFile(ast)); 
 		ppass->SetAutoKern(nAutoKern);
 	}
@@ -2286,7 +2286,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 		if (nCollisionThreshold == 0 && ppass->CollisionThreshold() != 0
 					&& ppass->CollisionThreshold() != kCollisionThresholdDefault )
 			g_errorList.AddWarning(1518, NULL,
-				"Clearing previous value of CollisionThreshold for pass ", rgch,
+				"Clearing previous value of CollisionThreshold for pass ", rgchPass,
 				LineAndFile(ast)); 
 		else if (nCollisionThreshold > 0 && nCollisionFix == 0 && nAutoKern == 0)
 			g_errorList.AddWarning(1519, NULL,
@@ -2297,6 +2297,12 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 		ppass->SetCollisionThreshold(nCollisionThreshold);
 	}
 
+	if (ppass->Direction() != 0 && ppass->Direction() != nDir)
+	{
+		g_errorList.AddWarning(1520, NULL,
+			"Inconsistent Direction directive specifications on pass ", rgchPass,
+			LineAndFile(ast));
+	}
 	ppass->SetDirection(nDir);
 
 	//	Copy the conditional(s) from the -if- statement currently in effect as a pass-level
@@ -2880,6 +2886,7 @@ GdlGlyphClassDefn * GrcManager::ConvertClassToIntersection(Symbol psymClass,
 		Symbol psymAnonClass = SymbolTable()->AddAnonymousClassSymbol(pglfc->LineAndFile());
 		std::string staAnonClassName = psymAnonClass->FullName();
 		pglfc->SetName(staAnonClassName);
+		psymAnonClass->ReplaceClassData(pglfc);
 
 		// Make the original class one of the set elements of the intersection.
 		pglfciNew->AddSet(pglfc, lnf);
