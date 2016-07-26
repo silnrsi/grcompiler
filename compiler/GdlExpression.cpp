@@ -143,6 +143,7 @@ bool EquivalentTypes(ExpressionType expt1, ExpressionType expt2)
 			return true;
 		case kexptMeas:
 		case kexptSlotRef:  // eg, att.to == 0
+		case kexptGlyphID:  // eg, collision.exclude.glyph = 0
 			return (expt2 == kexptZero);
 		default:
 			break;

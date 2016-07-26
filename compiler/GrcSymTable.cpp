@@ -515,7 +515,8 @@ Symbol GrcSymbolTable::FindFeature(const GrcStructName & xns, GrpLineAndFile con
 }
 
 /*----------------------------------------------------------------------------------------------
-    Answer true if the field at the given index is the given string.
+    Replace the data class associated with the symbol with the given class. The 
+	existing class should be uninitialized.
 ----------------------------------------------------------------------------------------------*/
 void GrcSymbolTableEntry::ReplaceClassData(GdlGlyphClassDefn * pglfc)
 {
