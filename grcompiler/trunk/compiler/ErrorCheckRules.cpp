@@ -1008,101 +1008,115 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	int crit = signed(vfLb.size());
 
 	bool fOkay = true;
+
 	if ((grfrco & kfrcoSubst) == 0)
 	{
-		g_errorList.AddError(3109, this,
-			"Substitution (left-hand-side) not permitted in ",
-			psymTable->FullName(),
-			" table");
-		fOkay = false;
-		
+		//g_errorList.AddError(3109, this,
+		//	"Substitution (left-hand-side) not permitted in ",
+		//	psymTable->FullName(),
+		//	" table");
+		//fOkay = false;
+
+		g_errorList.AddWarning(3541, this,
+			"Substitution in ", psymTable->FullName(), " table rule");
 	}
 
 	if (OutputSymbol()->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	Deletion
-		if (m_vpavs.size())
+		if ((grfrco & kfrcoSubst) == 0)
 		{
-			if (m_vpavs.size() == 1 && m_vpavs[0]->AttrName()->IsPassKeySlot())
-			{
-				// Okay to set a deletion slot as a key slot.
-			}
-			else
-			{
-				g_errorList.AddWarning(3505, this,
-					"Item ", PosString(),
-					": setting attributes of a deleted item");
-				for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
-					delete m_vpavs[ipavs];
-				m_vpavs.clear();
-				fOkay = false;
-			}
-		}
-
-		if (m_vpexpAssocs.size())
-		{
-			g_errorList.AddWarning(3506, this,
-				"Item ", PosString(),
-				": setting associations of a deleted item");
-			for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
-				delete m_vpexpAssocs[ipexp];
-			m_vpexpAssocs.clear();
+			g_errorList.AddError(3170, this,
+				"Deletion not permitted in ",
+				psymTable->FullName(),
+				" table");
 			fOkay = false;
 		}
-
-		if (!vfAssocs[irit])
+		else
 		{
-			int iritAssoc = prule->FindAutoAssocItem(true);
-			GdlRuleItem * pritAssoc = (iritAssoc == -1) ? NULL : prule->Rule(iritAssoc);
-			if (prule->ItemCountOriginal() == 1)
+			if (m_vpavs.size())
 			{
-				g_errorList.AddError(3168, this,
-					"Rules with deletions must include at least two slots");
-			}
-			else if (prule->ItemCountOriginal() == this->CountFlags(vfDel) + 1
-				&& iritAssoc > -1
-				&& (prule->AutoAssocDone() || !pritAssoc->AnyAssociations()))
-			{
-				// Automatically associate the all deleted item(s) with the single non-deleted slot
-				// in the rule. Also associate that item with itself.
-				if (prule->AutoAssocDone())
+				if (m_vpavs.size() == 1 && m_vpavs[0]->AttrName()->IsPassKeySlot())
 				{
-					// Did this already for a previous item.
-					Assert(irit > 0);
+					// Okay to set a deletion slot as a key slot.
 				}
 				else
 				{
-					char rgch[20];
-					itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
-					for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
-					{
-						GdlRuleItem * prit = prule->Item(irit);
-						if (prit->OutputSymbol()->FullName() != "ANY")
-						{
-							pritAssoc->AddAssociation(prule->LineAndFile(), irit + 1);	// 1-based
-							if (irit != iritAssoc)
-								g_errorList.AddWarning(3532, this,
-									"Item ", prit->PosString(),
-									": slot ", rgch, " automatically associated with deleted item");
-						}
-					}
-					prule->SetAutoAssocDone();
+					g_errorList.AddWarning(3505, this,
+						"Item ", PosString(),
+						": setting attributes of a deleted item");
+					for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+						delete m_vpavs[ipavs];
+					m_vpavs.clear();
+					fOkay = false;
 				}
 			}
-			else
+
+			if (m_vpexpAssocs.size())
 			{
-				g_errorList.AddWarning(3529, this,
+				g_errorList.AddWarning(3506, this,
 					"Item ", PosString(),
-					": no slot was associated with deleted item");
+					": setting associations of a deleted item");
+				for (size_t ipexp = 0; ipexp < m_vpexpAssocs.size(); ipexp++)
+					delete m_vpexpAssocs[ipexp];
+				m_vpexpAssocs.clear();
+				fOkay = false;
 			}
 
-			for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+			if (!vfAssocs[irit])
 			{
-				if (m_vpavs[ipavs]->AttrName()->IsPassKeySlot())
+				int iritAssoc = prule->FindAutoAssocItem(true);
+				GdlRuleItem * pritAssoc = (iritAssoc == -1) ? NULL : prule->Rule(iritAssoc);
+				if (prule->ItemCountOriginal() == 1)
 				{
-					g_errorList.AddWarning(3540, this,
-						"Cannot set passKeySlot on an inserted item");
-					EraseAttrSetting(ipavs);
+					g_errorList.AddError(3168, this,
+						"Rules with deletions must include at least two slots");
+				}
+				else if (prule->ItemCountOriginal() == this->CountFlags(vfDel) + 1
+					&& iritAssoc > -1
+					&& (prule->AutoAssocDone() || !pritAssoc->AnyAssociations()))
+				{
+					// Automatically associate the all deleted item(s) with the single non-deleted slot
+					// in the rule. Also associate that item with itself.
+					if (prule->AutoAssocDone())
+					{
+						// Did this already for a previous item.
+						Assert(irit > 0);
+					}
+					else
+					{
+						char rgch[20];
+						itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
+						for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
+						{
+							GdlRuleItem * prit = prule->Item(irit);
+							if (prit->OutputSymbol()->FullName() != "ANY")
+							{
+								pritAssoc->AddAssociation(prule->LineAndFile(), irit + 1);	// 1-based
+								if (irit != iritAssoc)
+									g_errorList.AddWarning(3532, this,
+										"Item ", prit->PosString(),
+										": slot ", rgch, " automatically associated with deleted item");
+							}
+						}
+						prule->SetAutoAssocDone();
+					}
+				}
+				else
+				{
+					g_errorList.AddWarning(3529, this,
+						"Item ", PosString(),
+						": no slot was associated with deleted item");
+				}
+
+				for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+				{
+					if (m_vpavs[ipavs]->AttrName()->IsPassKeySlot())
+					{
+						g_errorList.AddWarning(3540, this,
+							"Cannot set passKeySlot on an inserted item");
+						EraseAttrSetting(ipavs);
+					}
 				}
 			}
 		}
@@ -1110,66 +1124,77 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 	if (m_psymInput->FitsSymbolType(ksymtSpecialUnderscore))
 	{
 		//	Insertion
-		if (m_vpexpAssocs.size() == 0 && !m_psymOutput->FitsSymbolType(ksymtSpecialAt))
+		if ((grfrco & kfrcoSubst) == 0)
 		{
-			int iritAssoc = prule->FindAutoAssocItem(false);
-			GdlRuleItem * pritAssoc = (iritAssoc == -1) ? NULL : prule->Rule(iritAssoc);
+			g_errorList.AddError(3171, this,
+				"Insertion not permitted in ",
+				psymTable->FullName(),
+				" table");
+			fOkay = false;
+		}
+		else
+		{
+			if (m_vpexpAssocs.size() == 0 && !m_psymOutput->FitsSymbolType(ksymtSpecialAt))
+			{
+				int iritAssoc = prule->FindAutoAssocItem(false);
+				GdlRuleItem * pritAssoc = (iritAssoc == -1) ? NULL : prule->Rule(iritAssoc);
 
-			bool fExplAssocs = false;
-			for (int iritTmp = 0; iritTmp < prule->ItemCountOriginal(); iritTmp++)
-			{
-				if (prule->Item(iritTmp)->AnyAssociations())
-					fExplAssocs = true;
-				// DON'T treat @ as an explicit association.
-			}
-
-			if (prule->ItemCountOriginal() == 1)
-			{
-				g_errorList.AddError(3169, this,
-					"Rules with insertions must include at least two slots");
-			}
-			else if (prule->ItemCountOriginal() == this->CountFlags(vfIns) + 1
-				&& iritAssoc > -1
-				&& (prule->AutoAssocDone() || !fExplAssocs))
-			{
-				// Automatically associate all the inserted item(s) with the single non-inserted slot
-				// in the rule.
-				if (prule->AutoAssocDone())
+				bool fExplAssocs = false;
+				for (int iritTmp = 0; iritTmp < prule->ItemCountOriginal(); iritTmp++)
 				{
-					// Did this already for a previous item.
-					Assert(irit > 0);
+					if (prule->Item(iritTmp)->AnyAssociations())
+						fExplAssocs = true;
+					// DON'T treat @ as an explicit association.
+				}
+
+				if (prule->ItemCountOriginal() == 1)
+				{
+					g_errorList.AddError(3169, this,
+						"Rules with insertions must include at least two slots");
+				}
+				else if (prule->ItemCountOriginal() == this->CountFlags(vfIns) + 1
+					&& iritAssoc > -1
+					&& (prule->AutoAssocDone() || !fExplAssocs))
+				{
+					// Automatically associate all the inserted item(s) with the single non-inserted slot
+					// in the rule.
+					if (prule->AutoAssocDone())
+					{
+						// Did this already for a previous item.
+						Assert(irit > 0);
+					}
+					else
+					{
+						for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
+						{
+							GdlRuleItem * prit = prule->Item(irit);
+							if (prit->OutputSymbol()->FullName() != "ANY"
+								&& irit != iritAssoc)
+							{
+								prit->AddAssociation(prule->LineAndFile(), iritAssoc + 1 - prule->PrependedAnys()); // 1-based
+								char rgch[20];
+								itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
+								g_errorList.AddWarning(3533, this,
+									"Item ", prit->PosString(),
+									": inserted item automatically associated with slot ", rgch);
+							}
+						}
+						prule->SetAutoAssocDone();
+					}
 				}
 				else
 				{
-					for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
-					{
-						GdlRuleItem * prit = prule->Item(irit);
-						if (prit->OutputSymbol()->FullName() != "ANY"
-							&& irit != iritAssoc)
-						{
-							prit->AddAssociation(prule->LineAndFile(), iritAssoc + 1 - prule->PrependedAnys()); // 1-based
-							char rgch[20];
-							itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
-							g_errorList.AddWarning(3533, this,
-								"Item ", prit->PosString(),
-								": inserted item automatically associated with slot ", rgch);
-						}
-					}
-					prule->SetAutoAssocDone();
+					g_errorList.AddWarning(3507, this,
+						"Item ", PosString(),
+						": inserted item was not given association");
 				}
 			}
-			else
+			if (m_pexpConstraint)
 			{
-				g_errorList.AddWarning(3507, this,
+				g_errorList.AddError(3110, this,
 					"Item ", PosString(),
-					": inserted item was not given association");
+					": cannot include constraint on inserted item");
 			}
-		}
-		if (m_pexpConstraint)
-		{
-			g_errorList.AddError(3110, this,
-				"Item ", PosString(),
-				": cannot include constraint on inserted item");
 		}
 	}
 

@@ -1,9 +1,9 @@
 #ifndef INC_GrpParserTokenTypes_hpp_
 #define INC_GrpParserTokenTypes_hpp_
 
-#include "Antlr/config.hpp"
+#include "antlr/config.hpp"
 /*
- * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
+ * ANTLR-generated file resulting from grammar c:\graphite1\grcompiler\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software

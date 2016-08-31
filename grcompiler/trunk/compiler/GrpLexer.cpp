@@ -1,5 +1,5 @@
 /*
- * ANTLR-generated file resulting from grammar c:\silgraphite_2_0\grcompiler\compiler\grpparser.g
+ * ANTLR-generated file resulting from grammar c:\graphite1\grcompiler\compiler\grpparser.g
  * 
  * Terence Parr, MageLang Institute
  * with John Lilley, Empathy Software
@@ -8,8 +8,8 @@
 
 #include "GrpLexer.hpp"
 #include "GrpParserTokenTypes.hpp"
-#include "Antlr/ScannerException.hpp"
-#include "Antlr/CharBuffer.hpp"
+#include "antlr/ScannerException.hpp"
+#include "antlr/CharBuffer.hpp"
 
 
 
@@ -445,11 +445,11 @@ void GrpLexer::mCOMMENT_SL(bool _createToken) {
 			}
 		}
 		else {
-			goto _loop438;
+			goto _loop435;
 		}
 		
 	} while (true);
-	_loop438:;
+	_loop435:;
 	}
 	_ttype = Token::SKIP;
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -739,11 +739,11 @@ void GrpLexer::mCOMMENT_ML(bool _createToken) {
 				match(static_cast<unsigned char>('*'));
 			}
 		else {
-			goto _loop442;
+			goto _loop439;
 		}
 		}
 	} while (true);
-	_loop442:;
+	_loop439:;
 	}
 	match("*/");
 	_ttype = Token::SKIP;
@@ -764,27 +764,10 @@ void GrpLexer::mLIT_INT(bool _createToken) {
 		{
 		match("0x");
 		{
-		int _cnt449=0;
+		int _cnt446=0;
 		do {
 			if ((_tokenSet_3.member(LA(1)))) {
 				mXDIGIT(false);
-			}
-			else {
-				if ( _cnt449>=1 ) { goto _loop449; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
-			}
-			
-			_cnt449++;
-		} while (true);
-		_loop449:;
-		}
-		}
-	}
-	else if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
-		{
-		int _cnt446=0;
-		do {
-			if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
-				mDIGIT(false);
 			}
 			else {
 				if ( _cnt446>=1 ) { goto _loop446; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
@@ -793,6 +776,23 @@ void GrpLexer::mLIT_INT(bool _createToken) {
 			_cnt446++;
 		} while (true);
 		_loop446:;
+		}
+		}
+	}
+	else if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
+		{
+		int _cnt443=0;
+		do {
+			if (((LA(1) >= static_cast<unsigned char>('0') && LA(1) <= static_cast<unsigned char>('9')))) {
+				mDIGIT(false);
+			}
+			else {
+				if ( _cnt443>=1 ) { goto _loop443; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+			}
+			
+			_cnt443++;
+		} while (true);
+		_loop443:;
 		}
 	}
 	else {
@@ -896,18 +896,18 @@ void GrpLexer::mLIT_UHEX(bool _createToken) {
 	
 	match("U+");
 	{
-	int _cnt453=0;
+	int _cnt450=0;
 	do {
 		if ((_tokenSet_3.member(LA(1)))) {
 			mXDIGIT(false);
 		}
 		else {
-			if ( _cnt453>=1 ) { goto _loop453; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
+			if ( _cnt450>=1 ) { goto _loop450; } else {throw ScannerException(std::string("no viable alt for char: ")+charName(LA(1)),getLine());}
 		}
 		
-		_cnt453++;
+		_cnt450++;
 	} while (true);
-	_loop453:;
+	_loop450:;
 	}
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
 	   _token = makeToken(_ttype);
@@ -1063,11 +1063,11 @@ void GrpLexer::mLIT_STRING(bool _createToken) {
 			}
 		}
 		else {
-			goto _loop460;
+			goto _loop457;
 		}
 		
 	} while (true);
-	_loop460:;
+	_loop457:;
 	}
 	_saveIndex=text.length();
 	mDQUOTE(false);
@@ -1804,11 +1804,11 @@ void GrpLexer::mIDENT(bool _createToken) {
 		}
 		default:
 		{
-			goto _loop513;
+			goto _loop510;
 		}
 		}
 	} while (true);
-	_loop513:;
+	_loop510:;
 	}
 	_ttype = testLiteralsTable(_ttype);
 	if ( _createToken && _token==nullToken && _ttype!=Token::SKIP ) {
@@ -1989,11 +1989,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 			}
 			default:
 			{
-				goto _loop519;
+				goto _loop516;
 			}
 			}
 		} while (true);
-		_loop519:;
+		_loop516:;
 		}
 	}
 	else {
@@ -2003,11 +2003,11 @@ void GrpLexer::mAT_IDENT(bool _createToken) {
 				matchRange(static_cast<unsigned char>('0'),static_cast<unsigned char>('9'));
 			}
 			else {
-				goto _loop521;
+				goto _loop518;
 			}
 			
 		} while (true);
-		_loop521:;
+		_loop518:;
 		}
 	}
 	
