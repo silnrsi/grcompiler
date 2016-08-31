@@ -579,11 +579,14 @@ posElseIf		:	( Zelseif^ | "elseif"^ )
 posEntryList	:	(posEntry)*;
 
 //	REVIEW: should we make the syntax here allow for a LHS, and check for it later?
-posRule!		:	R:(! R1:posRhs { #R = #([Zrhs], R1); } )
-					( OP_DIV! C:(! C1:context { #C = #([Zcontext], C1); } ) )?
-					OP_SEMI!
-						{ #posRule = #([Zrule], R, C); }
-;
+////posRule!		:	R:(! R1:posRhs { #R = #([Zrhs], R1); } )
+////					( OP_DIV! C:(! C1:context { #C = #([Zcontext], C1); } ) )?
+////					OP_SEMI!
+////						{ #posRule = #([Zrule], R, C); }
+////;
+
+// To allow substitution rules in a positioning pass:
+posRule			:	subRule;
 
 posRhs			:	(posRhsRange)+;
 

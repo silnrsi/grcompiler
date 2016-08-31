@@ -33,7 +33,7 @@ error checking:
 		GrcBinaryStream
 		GrcEnv
 		GdlRenderer
-	rules - highest error: 3169 / highest warning: 3540
+	rules - highest error: 3171 / highest warning: 3541
 		ErrorCheckRules
 		GdlRule
 		GdlTablePass
