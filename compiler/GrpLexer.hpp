@@ -1,7 +1,7 @@
 #ifndef INC_GrpLexer_hpp_
 #define INC_GrpLexer_hpp_
 
-#include "antlr/config.hpp"
+#include "Antlr/config.hpp"
 /*
  * ANTLR-generated file resulting from grammar c:\graphite1\grcompiler\compiler\grpparser.g
  * 
