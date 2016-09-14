@@ -10,10 +10,10 @@
  * ANTLR Version 2.6.0; 1996-1999
  */
 
-#include "antlr/CommonToken.hpp"
-#include "antlr/InputBuffer.hpp"
-#include "antlr/BitSet.hpp"
-#include "antlr/CharScanner.hpp"
+#include "Antlr/CommonToken.hpp"
+#include "Antlr/InputBuffer.hpp"
+#include "Antlr/BitSet.hpp"
+#include "Antlr/CharScanner.hpp"
 
 //	Header stuff here
 void AddGlobalError(bool, int nID, std::string, int nLine);
