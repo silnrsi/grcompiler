@@ -3138,15 +3138,23 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 	}
 	else if (m_psymName->FitsSymbolType(ksymtProcState))
 	{
-		Assert(!m_pexpSelector);
-		vbOutput.push_back(kopPushProcState);
-		if (m_psymName->FullName() == "JustifyMode")
-			vbOutput.push_back(kpstatJustifyMode);
-		else if (m_psymName->FullName() == "JustifyLevel")
-			vbOutput.push_back(kpstatJustifyLevel);
-		else
-		{
-			Assert(false);
+		if (m_psymName->FullName() == "RunDirection") {
+			// The RunDirection processing state is equivalent to the directionality of the glyphs.
+			vbOutput.push_back(kopPushSlotAttr);
+			vbOutput.push_back(kslatDir);
+			vbOutput.push_back(nSelOffset);
+
+		} else {
+			Assert(!m_pexpSelector);
+			vbOutput.push_back(kopPushProcState);
+			if (m_psymName->FullName() == "JustifyMode")
+				vbOutput.push_back(kpstatJustifyMode);
+			else if (m_psymName->FullName() == "JustifyLevel")
+				vbOutput.push_back(kpstatJustifyLevel);
+			else
+			{
+				Assert(false);
+			}
 		}
 	}
 	else

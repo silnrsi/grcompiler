@@ -2139,6 +2139,8 @@ void GrcSymbolTable::InitProcStates()
 {
 	SymbolType kst = ksymtProcState;
 
-	PreDefineSymbol(GrcStructName("JustifyMode"),	kst, kexptNumber);
+	PreDefineSymbol(GrcStructName("JustifyMode"),		kst, kexptNumber);
 	//PreDefineSymbol(GrcStructName("JustifyLevel"),	kst, kexptNumber);
+
+	PreDefineSymbol(GrcStructName("RunDirection"),		kst, kexptNumber);
 }

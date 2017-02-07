@@ -81,7 +81,7 @@ typedef enum SymbolType {	// hungarian: symt
 	ksymtNameID,				// user-defined
 	ksymtOperator,				// pre-defined: ==, &&, +, -, min, max, etc.
 		ksymtOpAssign,
-	ksymtProcState,				// pre-defined: JustifyMode, JustifyLevel
+	ksymtProcState,				// pre-defined: JustifyMode, JustifyLevel, RunDirection
 	ksymtSlotAttr,				// pre-defined
 		ksymtSlotAttrPtOff,		// pre-defined: attach.at/with, shift, kern--attributes with
 								//		point values that need to be expanded into integers,
