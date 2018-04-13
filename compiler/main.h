@@ -140,7 +140,7 @@ extern GrcManager g_cman;
 /*************************************************************************************
 	Functions.
 *************************************************************************************/
-void HandleCompilerOptions(char *);
+int HandleCompilerOptions(int cargExtra, char *, char*);
 void SetGdlAndFontFileNames(char * pchFile1, char * pchFile2,
 	char ** ppchGdlFile, char ** ppchFontFile);
 void BinarySearchConstants(int n, int * pnPowerOf2, int * pnLog);

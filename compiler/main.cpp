@@ -128,8 +128,10 @@ int main(int argc, char * argv[])
 	g_errorList.SetIgnoreWarning(510);	// Cannot find point number for coordinates...
 	g_errorList.SetIgnoreWarning(3521);	// Vertical overlap between
 
-	// on linux systems an argument starting with a / may be a path
-	// so use - for options. On Windows allow both / or -
+	g_cman.SetErrorFileName("gdlerr.txt");
+
+	// On linux systems an argument starting with a / may be a path
+	// so use - for options. On Windows allow both / or -.
 #ifdef _WIN32 
 	while (argc >= 2 + cargExtra
 		&& (argv[1 + cargExtra][0] == '/' || argv[1 + cargExtra][0] == '-'))
@@ -137,8 +139,8 @@ int main(int argc, char * argv[])
 	while (argc >= 2 + cargExtra && argv[1 + cargExtra][0] == '-')
 #endif
 	{
-		HandleCompilerOptions(argv[1 + cargExtra]);
-		cargExtra++;
+		cargExtra = HandleCompilerOptions(cargExtra, argv[1 + cargExtra],
+			(2 + cargExtra > argc) ? NULL : argv[2 + cargExtra]);
 	}
 	if (g_cman.IsVerbose())
 	{
@@ -160,6 +162,7 @@ int main(int argc, char * argv[])
 		std::cout << "   -c       - compress graphite tables\n";
 		std::cout << "   -d       - output XML debugger file\n";
 		std::cout << "   -D       - output all debugger files\n";
+		std::cout << "   -e       - error message file; gdlerr.txt by default\n";
 		std::cout << "   -g       - permit and ignore invalid glyph definitions\n";
 		std::cout << "   -nNNNN   - set name table start location\n";
 		std::cout << "   -p       - omit pass-avoidance optimizations\n";
@@ -176,7 +179,7 @@ int main(int argc, char * argv[])
 	SetGdlAndFontFileNames(argv[1 + cargExtra], (argc > 2 + cargExtra) ? argv[2 + cargExtra] : NULL,
 		&pchGdlFile, &pchFontFile);
 
-	g_errorList.SetFileNameFromGdlFile(pchGdlFile);
+	g_errorList.SetFileNameFromGdlFile(&g_cman, pchGdlFile);
 
 	if (argc > 3 + cargExtra)
 	{
@@ -483,7 +486,7 @@ int main(int argc, char * argv[])
 		if (cerrWarningGiven > 0)
 			std::cout << "and " << cerrWarningGiven << " warning" << (cerrWarningGiven > 1 ? "s " : " ");
 		std::cout << ((cerrFatal + cerrWarningGiven > 1) ? "have" : "has")
-			<< " been output to gdlerr.txt";
+			<< " been output to " << g_errorList.ErrFileName();
 		if (cerrWarningIgnored > 0)
 			std::cout << " (" << cerrWarningIgnored
 				<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored)";
@@ -492,7 +495,7 @@ int main(int argc, char * argv[])
 	else if (cerrWarningGiven > 0)
 	{
 		std::cout << cerrWarningGiven << " warning"
-			<< (cerrWarningGiven > 1 ? "s have" : " has") << " been output to gdlerr.txt";
+			<< (cerrWarningGiven > 1 ? "s have" : " has") << " been output to " << g_errorList.ErrFileName();
 		if (cerrWarningIgnored > 0)
 			std::cout << " (" << cerrWarningIgnored
 				<< ((cerrWarningIgnored > 1) ? " warnings" : " warning") << " ignored)";
@@ -517,22 +520,27 @@ int main(int argc, char * argv[])
 }
 
 /*----------------------------------------------------------------------------------------------
-    Interpret the compiler options, which are preceded by slashes  or hyphens
-	in the argument list.
+  Interpret the compiler options, which are preceded by slashes or hyphens
+  in the argument list.
 ----------------------------------------------------------------------------------------------*/
-void HandleCompilerOptions(char * arg)
+int HandleCompilerOptions(int cargExtra, char * arg, char * arg2)
 {
-    if (arg[1] == 'c')
-    {
-        g_cman.SetCompressor(ktcLZ4);
-    }
-    else if (arg[1] == 'd')	// XML debugger file
+	if (arg[1] == 'c')
+	{
+		g_cman.SetCompressor(ktcLZ4);
+	}
+	else if (arg[1] == 'd')	// XML debugger file
 	{
 		g_cman.SetOutputDebugFiles(true, false);
 	}
 	else if (arg[1] == 'D')	// all debugger files
 	{
 		g_cman.SetOutputDebugFiles(true, true);
+	}
+    else if (arg[1] == 'e') // error file
+	{
+		g_cman.SetErrorFileName(arg2);
+		cargExtra++; // skip file name
 	}
 	else if (arg[1] == 'g')	// ignore bad glyphs
 	{
@@ -586,10 +594,14 @@ void HandleCompilerOptions(char * arg)
 		g_cman.SetOffsetAttrs(true);
 	}
 
+
 	//else if (arg[1] == 's')
 	//{
 	//	g_cman.SetSeparateControlFile(true);
 	//}
+
+	cargExtra++;
+	return cargExtra;
 }
 
 /*----------------------------------------------------------------------------------------------

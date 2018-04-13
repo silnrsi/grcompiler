@@ -226,6 +226,9 @@ public:
 		m_fOutputDebugXml = fXml;
 		m_fOutputDebugFiles = fOther;
 	}
+	std::string ErrorFileName()			{ return m_staErrorFileName; }
+	void SetErrorFileName(std::string staFileName)
+										{ m_staErrorFileName = staFileName; }
 	bool IgnoreBadGlyphs()				{ return m_fIgnoreBadGlyphs; }
 	void SetIgnoreBadGlyphs(bool f)		{ m_fIgnoreBadGlyphs = f; }
 	bool IsVerbose()					{ return m_fVerbose; }
@@ -500,6 +503,8 @@ protected:
 
 	//	Are we creating a separate control file?
 	bool m_fSepCtrlFile;
+
+	std::string m_staErrorFileName;  // gdlerr.txt by default
 
 	//	Basic justification: true if no justify attributes are present
 	bool m_fBasicJust;

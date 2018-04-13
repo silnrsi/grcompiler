@@ -299,9 +299,11 @@ public:
 		std::string staOutputFile, std::string staOutputFamily,
 		std::string staVersion, bool fSepCtrlFile);
 
-	void SetFileNameFromGdlFile(char * pchGdlFile);
+	void SetFileNameFromGdlFile(GrcManager * pcman, char * pchGdlFile);
 
 	void WriteTableVersionsGenerated(std::ostream& strmOut);
+
+	std::string ErrFileName() { return m_strErrFile; }
 
 protected:
 	//	instance variables:

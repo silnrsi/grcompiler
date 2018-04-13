@@ -3269,7 +3269,7 @@ void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector
 
 
 /*----------------------------------------------------------------------------------------------
-	If this expression is of the form (s & (~m) | v)), use the special setbits operator.
+	If this expression is of the form ( (s & (~m)) | v), use the special setbits operator.
 ----------------------------------------------------------------------------------------------*/
 bool GdlBinaryExpression::GenerateSetBitsOp(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
