@@ -33,7 +33,7 @@ error checking:
 		GrcBinaryStream
 		GrcEnv
 		GdlRenderer
-	rules - highest error: 3171 / highest warning: 3541
+	rules - highest error: 3172 / highest warning: 3541
 		ErrorCheckRules
 		GdlRule
 		GdlTablePass
@@ -294,7 +294,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 void WriteTableDescriptionString(std::ostream& strmOut, TableId ti)
 {
     uint32 nTag = TtfUtil::TableIdTag(ti);
-    char csTagStr[] = {' ', nTag >> 24, (nTag >> 16) & 0xff, (nTag >> 8) & 0xff, nTag & 0xff, ':', 0};
+    char csTagStr[] = {' ', (char)(nTag >> 24), (char)(nTag >> 16), (char)(nTag >> 8), (char)nTag, ':', 0};
     double dCompressionRatio = g_cman.CompressionRatio(ti);
     strmOut << csTagStr << VersionString(g_cman.TableVersion(ti));
 

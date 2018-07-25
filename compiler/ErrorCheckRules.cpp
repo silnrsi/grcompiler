@@ -711,6 +711,17 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 				rgchMax,
 				" allowed for input side of substitution");
 		}
+
+		utf16 wGlyphIDDup;
+        if (pglfc->HasDuplicateGlyphs(&wGlyphIDDup))
+        {
+            g_errorList.AddError(3172, this,
+                "Duplicates (",
+                GdlGlyphDefn::GlyphIDString(wGlyphIDDup),
+                ") not permitted in input class: '",
+                pglfc->Name(),
+                "'");
+        }
 	}
 
 	setpglfcReplace.insert(pglfc);

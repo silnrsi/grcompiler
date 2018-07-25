@@ -315,6 +315,33 @@ void GdlGlyphClassDefn::FlattenGlyphList(std::vector<utf16> & vgidFlattened)
 	}
 }
 
+/*----------------------------------------------------------------------------------------------
+	Return true if there are duplicate glyphs in the class.
+----------------------------------------------------------------------------------------------*/
+bool GdlGlyphClassDefn::HasDuplicateGlyphs(utf16 * pgid) {
+	std::vector<utf16> vgidFlattened;
+	this->FlattenGlyphList(vgidFlattened);
+	for (size_t i = 0; i < vgidFlattened.size() - 1; i++)
+	{
+		for (size_t j = i+1; j < vgidFlattened.size(); j++)
+		{
+			if (vgidFlattened[i] == vgidFlattened[j])
+			{
+				*pgid = vgidFlattened[i];
+				return true;
+			}
+		}
+	}
+	//std::set<utf16> setgidNoDup;
+	//for (size_t i = 0; i < vgidFlattened.size(); i++) {
+	//	setgidNoDup.insert(vgidFlattened[i]);
+	//}
+	//return (setgidNoDup.size() < vgidFlattened.size());
+
+	return false;
+}
+
+
 
 #if 0
 

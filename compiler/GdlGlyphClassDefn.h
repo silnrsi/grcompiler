@@ -250,7 +250,9 @@ public:
 	int ReplcmtInputID()					{ return m_nReplcmtInID; }
 	int ReplcmtOutputID()					{ return m_nReplcmtOutID; }
 
+
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
+	bool HasDuplicateGlyphs(utf16 * pgid);
 
 	virtual bool HasOverlapWith(GdlGlyphClassMember * glfd, GrcFont * pfont);
 	virtual bool HasBadGlyph();
