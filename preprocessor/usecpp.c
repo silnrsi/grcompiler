@@ -1,12 +1,8 @@
-#ifdef RCS
-static char rcsid[]="$Id: usecpp.c,v 1.2 2004/10/25 19:08:41 danglassey Exp $";
-#endif
 /******************************************************************************
 Copyright (c) 1999 Daniel Stenberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -19,10 +15,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 /******************************************************************************
@@ -30,21 +24,15 @@ SOFTWARE.
  * ----------------------------------------------------------------------------
  *
  * Project: Frexx C Preprocessor
- * $Source: /cvsroot/silgraphite/silgraphite/src/GrCompiler/GdlPp/usecpp.c,v $
- * $Revision: 1.2 $
- * $Date: 2004/10/25 19:08:41 $
- * $Author: danglassey $
+ * $Source: /home/user/start/cpp/RCS/usecpp.c,v $
+ * $Revision: 1.6 $
+ * $Date: 1994/06/02 09:11:01 $
+ * $Author: start $
  * $State: Exp $
- * $Locker:  $
+ * $Locker: start $
  *
  * ----------------------------------------------------------------------------
  * $Log: usecpp.c,v $
- * Revision 1.2  2004/10/25 19:08:41  danglassey
- * gcc prefers some extra brackets - remove warnings
- *
- * Revision 1.1  2003/04/21 21:24:18  wardak
- * Add files for the GDL pre-processor (gdlpp.exe).
- *
  * Revision 1.6  1994/06/02  09:11:01  start
  * Added the '-n' option!
  *
@@ -118,11 +106,6 @@ struct Library *FPPBase=NULL;
 #define va_list void *
 #endif
 
-#ifndef PREFIX
-#define PREFIX
-#define REG(x)
-#endif
-
 #include "fpp.h"
 #define MAX_TAGS 40 /* maximum number of tags allowed! */
 #define FILE_LOCAL static
@@ -145,8 +128,8 @@ FILE_LOCAL char DoString(struct fppTag **, char *);
 extern long __stack=8000;
 #endif
 
-FILE_LOCAL char ignore=FALSE;  /* if we should ignore strange flags! */
-FILE_LOCAL char display=FALSE; /* display all options in use! */
+FILE_LOCAL char ignore=FPP_FALSE;  /* if we should ignore strange flags! */
+FILE_LOCAL char display=FPP_FALSE; /* display all options in use! */
 
 FILE_LOCAL char dontreadprefs; /* set if only the command line is valid */
 
@@ -169,10 +152,8 @@ int main(int argc, char **argv)
   tagptr->data = "INCLUDE:";
 #elif defined (OS9)
   tagptr->data = "/dd/defs/";
-#elif defined (WIN32)
-  tagptr->data = "";
 #else
-  tagptr->data = PKGDATADIR;
+  tagptr->data = "/usr/include/";
 #endif
   tagptr++;
 
@@ -293,9 +274,9 @@ char GetPrefs(struct fppTag **tagptr, char **string)
   
   FILE     *PrefsFile_PF;
   unsigned  Length_U;
-/*  char     *PrefsBuffer_PC;*//*NOT USED*/
+  char     *PrefsBuffer_PC;
   char ret= 0;
-  char *env_var;
+  char *env;
 
   *string = NULL;
 
@@ -307,9 +288,9 @@ char GetPrefs(struct fppTag **tagptr, char **string)
     Length_U = ftell(PrefsFile_PF);
     fseek(PrefsFile_PF, 0, SEEK_SET);
 
-    if ((*string = (char *)malloc(Length_U+1))) {
-      size_t bytesRead = fread(*string, 1, Length_U, PrefsFile_PF);
-      (*string)[bytesRead] = '\0';
+    if (*string = (char *)malloc(Length_U+1)) {
+      fread(*string, 1, Length_U, PrefsFile_PF);
+      (*string)[Length_U] = '\0';
       
       ret = !DoString(tagptr, *string);
     }
@@ -320,12 +301,8 @@ char GetPrefs(struct fppTag **tagptr, char **string)
     }
   }
 
-#ifdef GDLPP
-  if((env_var = getenv("GDLPP_PREFS"))) {
-#else
-  if((env_var = getenv("CPP_PREFS"))) {
-#endif
-    ret= !DoString(tagptr, env_var);
+  if((env = getenv("CPP_PREFS"))) {
+    ret= !DoString(tagptr, env);
     if(ret && *string)
       free( *string );
   }
@@ -392,37 +369,37 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
 
       case 'H':			      /* display all whitespaces */
 	(*tagptr)->tag = FPPTAG_OUTPUTSPACE;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 
       case 'b': 		      /* display unbalance */
 	(*tagptr)->tag = FPPTAG_OUTPUTBALANCE;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 
       case 'f':			      /* output all defined functions! */
 	(*tagptr)->tag = FPPTAG_DISPLAYFUNCTIONS;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
         break;
 
       case 'F':			      /* output all included files! */
 	(*tagptr)->tag = FPPTAG_OUTPUTINCLUDES;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
         break;
 
       case 'V':			      /* do not output version */
-	(*tagptr)->tag = FPPTAG_IGNOREVERSION;
-	(*tagptr)->data= (void *)FALSE;
+	(*tagptr)->tag = FPPTAG_SHOWVERSION;
+	(*tagptr)->data= (void *)FPP_FALSE;
 	(*tagptr)++;
 	break;
 
       case 'C':                       /* Keep comments */
 	(*tagptr)->tag = FPPTAG_KEEPCOMMENTS;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 	
@@ -434,12 +411,12 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
 
       case 'd':                       /* Display all options */
 	fprintf(stderr, "FOUND -d flag!\n");
-	display = TRUE;
+	display = FPP_TRUE;
 	break;
 	
       case 'E':                       /* Ignore non-fatal errors */
 	(*tagptr)->tag=FPPTAG_IGNORE_NONFATAL;
-	(*tagptr)->data=(void *)TRUE;
+	(*tagptr)->data=(void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 	
@@ -468,13 +445,13 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
 	  /* Do not output the 'line' keyword */
 	  (*tagptr)->tag=FPPTAG_OUTPUTLINE;
 	}
-	(*tagptr)->data=(void *)FALSE;
+	(*tagptr)->data=(void *)FPP_FALSE;
 	(*tagptr)++;
 	break;
 
       case 'M':                       /* Do not warn at missing includes */
 	(*tagptr)->tag=FPPTAG_WARNMISSINCLUDE;
-	(*tagptr)->data=(void *)FALSE;
+	(*tagptr)->data=(void *)FPP_FALSE;
 	(*tagptr)++;
 	break;
 
@@ -489,31 +466,31 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
 
       case 'N':                       /* No machine specific built-ins */
 	(*tagptr)->tag=FPPTAG_BUILTINS;
-	(*tagptr)->data=(void *)FALSE;
+	(*tagptr)->data=(void *)FPP_FALSE;
 	(*tagptr)++;
 	break;
 
       case 'B':			      /* No predefines like __LINE__, etc. */
 	(*tagptr)->tag=FPPTAG_PREDEFINES;
-	(*tagptr)->data=(void *)FALSE;
+	(*tagptr)->data=(void *)FPP_FALSE;
 	(*tagptr)++;
 	break;
 	
       case 'P':			      /* No C++ comments */
 	(*tagptr)->tag=FPPTAG_IGNORE_CPLUSPLUS;
-	(*tagptr)->data=(void *)TRUE;
+	(*tagptr)->data=(void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 	
       case 'p':			      /* warn about illegal # - instructions */
 	(*tagptr)->tag = FPPTAG_WARNILLEGALCPP;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 
       case 'R':
 	(*tagptr)->tag = FPPTAG_RIGHTCONCAT;
-	(*tagptr)->data= (void *)TRUE;
+	(*tagptr)->data= (void *)FPP_TRUE;
 	(*tagptr)++;
 	break;
 
@@ -544,18 +521,18 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
       case 'w':			      /* Output all #defines but not the
 					 main file */
 	(*tagptr)->tag=FPPTAG_OUTPUTMAIN;
-	(*tagptr)->data=(void *)FALSE;
+	(*tagptr)->data=(void *)FPP_FALSE;
 	(*tagptr)++;
 	
       case 'W':			      /* Output all #defines */
         if(!strncmp(ap, "WW", 2)) {
           (*tagptr)->tag=FPPTAG_WEBMODE;
-          (*tagptr)->data=(void *)TRUE;
+          (*tagptr)->data=(void *)FPP_TRUE;
           (*tagptr)++;
         }
         else {
           (*tagptr)->tag=FPPTAG_OUTPUT_DEFINES;
-          (*tagptr)->data=(void *)TRUE;
+          (*tagptr)->data=(void *)FPP_TRUE;
           (*tagptr)++;
         }
 	break;
@@ -609,11 +586,7 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
 		  "  -S\tSpecify sizes for #if sizeof\n"
 		  "  -t\tThis function should not get an initial function\n"
 		  "  -U\tUndefine symbol\n"
-#ifdef GDLPP
-		  "  -V\tOutput version information\n"
-#else
 		  "  -V\tDon't output version information\n"
-#endif
 		  "  -W\tOutput all #defines\n"
                   "  -WWW\tWeb mode preprocessing\n"
 		  "  -w\tOnly output #defines\n"

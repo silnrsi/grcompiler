@@ -1,12 +1,8 @@
-#ifdef RCS
-static char rcsid[]="$Id: cpp2.c,v 1.2 2004/10/25 19:08:41 danglassey Exp $";
-#endif
 /******************************************************************************
 Copyright (c) 1999 Daniel Stenberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -19,85 +15,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
-/******************************************************************************
- *                               FREXXWARE
- * ----------------------------------------------------------------------------
- *
- * Project: Frexx C Preprocessor
- * $Source: /cvsroot/silgraphite/silgraphite/src/GrCompiler/GdlPp/cpp2.c,v $
- * $Revision: 1.2 $
- * $Date: 2004/10/25 19:08:41 $
- * $Author: danglassey $
- * $State: Exp $
- * $Locker:  $
- *
- * ----------------------------------------------------------------------------
- * $Log: cpp2.c,v $
- * Revision 1.2  2004/10/25 19:08:41  danglassey
- * gcc prefers some extra brackets - remove warnings
- *
- * Revision 1.1  2003/04/21 21:24:18  wardak
- * Add files for the GDL pre-processor (gdlpp.exe).
- *
- * Revision 1.5  1994/01/24  09:32:54  start
- * Fixed AmigaDOS include file routine.
- *
- * Revision 1.4  1993/12/06  13:50:39  start
- * A lot of new stuff (too much to mention)
- *
- * Revision 1.4  1993/12/06  13:50:39  start
- * A lot of new stuff (too much to mention)
- *
- * Revision 1.3  1993/11/29  14:00:32  start
- * new
- *
- * Revision 1.2  1993/11/11  07:16:39  start
- * New stuff
- *
- * Revision 1.1  1993/11/03  09:13:08  start
- * Initial revision
- *
- *
- *****************************************************************************/
-/*
- *              C P P 2 . C
- *
- *             Process #control lines
- *
- * Edit history
- * 13-Nov-84    MM  Split from cpp1.c
- * 21-Oct-85    RMS Do not turn on `instring' while reading #include arg.
- *              Rename `token' to `tokenbuf'.
- *              Flush tabs at end of #include line, like spaces.
- * 14-Mar-86    FNF Incorporate macro based C debugging package.
- *              Port to Commodore AMIGA.
- * 25-May-86    FNF Change handling of fully qualified include file
- *              pathnames (like "/usr/include/stdio.h" for unix,
- *              or "df0:include/stdio.h" for the Amiga) to be
- *              used verbatum in the first open attempt.
- * 20-Aug-88    Ois Added #error. Passed unrecognized # commands.
- *              Added \n when those lines are passed.
- */
+#include <stdio.h>
+#include <ctype.h>
 
-#include    <stdio.h>
-#include    <ctype.h>
-#include    "cppdef.h"
-#include    "cpp.h"
+#include "cppdef.h"
+#include "cpp.h"
 
 #ifdef _AMIGA
 #include <proto/dos.h>
 #endif
 
-FILE_LOCAL void dump_line(struct Global *, int *);
-FILE_LOCAL ReturnCode doif(struct Global *, int);
-INLINE FILE_LOCAL ReturnCode doinclude(struct Global *);
-INLINE FILE_LOCAL int hasdirectory(char *, char *);
+FILE_LOCAL void fpp_dump_line(struct Global *, int *);
+FILE_LOCAL ReturnCode fpp_doif(struct Global *, int);
+INLINE FILE_LOCAL ReturnCode fpp_doinclude(struct Global *);
+INLINE FILE_LOCAL int fpp_hasdirectory(char *, char *);
 
 
 /*
@@ -121,7 +56,7 @@ INLINE FILE_LOCAL int hasdirectory(char *, char *);
 #define L_pragma    ('p' + ('a' << 1))
 #define L_undef     ('u' + ('d' << 1))
 
-ReturnCode control( struct Global *global,
+ReturnCode fpp_control( struct Global *global,
     int *counter )  /* Pending newline counter */
 {
     /*
@@ -139,7 +74,7 @@ ReturnCode control( struct Global *global,
     char *ep;
     ReturnCode ret;
 
-    c = skipws( global );
+    c = fpp_skipws( global );
 
     if( c == '\n' || c == EOF_CHAR )
         {
@@ -149,10 +84,10 @@ ReturnCode control( struct Global *global,
         }
 
     if( !isdigit(c) )
-        scanid( global, c );                  /* Get #word to tokenbuf        */
+        fpp_scanid( global, c );                  /* Get #word to tokenbuf        */
     else
         {
-        unget( global );                    /* Hack -- allow #123 as a      */
+        fpp_unget( global );                    /* Hack -- allow #123 as a      */
 
         strcpy( global->tokenbuf, "line" );   /* synonym for #line 123        */
         }
@@ -215,7 +150,7 @@ ReturnCode control( struct Global *global,
      * control keyword (or L_nogood if we think it's nonsense).
      */
     if( global->infile->fp == NULL )
-        cwarn( global, WARN_CONTROL_LINE_IN_MACRO, global->tokenbuf );
+        fpp_cwarn( global, WARN_CONTROL_LINE_IN_MACRO, global->tokenbuf );
 
     if( !compiling )
         {                       /* Not compiling now    */
@@ -226,7 +161,7 @@ ReturnCode control( struct Global *global,
             case L_ifndef:          /*   we must nest #if's */
                 if( ++global->ifptr >= &global->ifstack[BLK_NEST] )
                     {
-                    cfatal( global, FATAL_TOO_MANY_NESTINGS, global->tokenbuf );
+                    fpp_cfatal( global, FATAL_TOO_MANY_NESTINGS, global->tokenbuf );
 
                     return( FPP_TOO_MANY_NESTED_STATEMENTS );
                     }
@@ -243,7 +178,7 @@ ReturnCode control( struct Global *global,
             case L_undef:           /*     aren't           */
             case L_assert:          /*  compiling.  */
             case L_error:
-                dump_line( global, counter );       /* Ignore rest of line  */
+                fpp_dump_line( global, counter );       /* Ignore rest of line  */
                 return(FPP_OK);
             }
         }
@@ -252,7 +187,7 @@ ReturnCode control( struct Global *global,
      */
     if( *counter > 0 && (hash == L_line || hash == L_pragma) )
         {
-        Putchar( global, '\n' );
+        fpp_Putchar( global, '\n' );
 
         (*counter)--;
         }
@@ -265,21 +200,21 @@ ReturnCode control( struct Global *global,
              * field and line number for the next input line.
              * Set wrongline to force it out later.
              */
-            c = skipws( global );
+            c = fpp_skipws( global );
 
             global->workp = global->work;       /* Save name in work    */
 
             while( c != '\n' && c != EOF_CHAR )
                 {
-                if( (ret = save( global, c )) )
+                if( (ret = fpp_save( global, c )) )
                     return(ret);
 
-                c = get( global );
+                c = fpp_get( global );
                 }
 
-            unget( global );
+            fpp_unget( global );
 
-            if( (ret = save( global, EOS )) )
+            if( (ret = fpp_save( global, EOS )) )
                 return(ret);
 
             /*
@@ -288,7 +223,7 @@ ReturnCode control( struct Global *global,
              */
             global->line = atoi(global->work) - 1;     /* Reset line number    */
 
-            for( tp = global->work; isdigit(*tp) || type[*tp] == SPA; tp++)
+            for( tp = global->work; isdigit(*tp) || type[(unsigned)*tp] == SPA; tp++)
                 ;             /* Skip over digits */
 
             if( *tp != EOS )
@@ -304,44 +239,44 @@ ReturnCode control( struct Global *global,
 
                 if( global->infile->progname != NULL )
                     /* Give up the old name if it's allocated.   */
-                    Freemem( global->infile->progname );
+                    free( global->infile->progname );
 
-                global->infile->progname = savestring( global, tp );
+                global->infile->progname = fpp_savestring( global, tp );
                 }
 
-            global->wrongline = TRUE;           /* Force output later   */
+            global->wrongline = FPP_TRUE;           /* Force output later   */
             break;
 
         case L_include:
-            ret = doinclude( global );
+            ret = fpp_doinclude( global );
             if( ret )
                 return(ret);
             break;
 
         case L_define:
-            ret = dodefine( global );
+            ret = fpp_dodefine( global );
             if( ret )
                 return(ret);
             break;
 
         case L_undef:
-            doundef( global );
+            fpp_doundef( global );
             break;
 
         case L_else:
             if( global->ifptr == &global->ifstack[0] )
                 {
-                cerror( global, ERROR_STRING_MUST_BE_IF, global->tokenbuf );
+                fpp_cerror( global, ERROR_STRING_MUST_BE_IF, global->tokenbuf );
 
-                dump_line( global, counter );
+                fpp_dump_line( global, counter );
 
                 return( FPP_OK );
                 }
             else if( (*global->ifptr & ELSE_SEEN) != 0 )
                 {
-                cerror( global, ERROR_STRING_MAY_NOT_FOLLOW_ELSE, global->tokenbuf );
+                fpp_cerror( global, ERROR_STRING_MAY_NOT_FOLLOW_ELSE, global->tokenbuf );
 
-                dump_line( global, counter );
+                fpp_dump_line( global, counter );
 
                 return( FPP_OK );
                 }
@@ -350,11 +285,11 @@ ReturnCode control( struct Global *global,
 
             if( (*global->ifptr & WAS_COMPILING) != 0 )
                 {
-                if( compiling || (*global->ifptr & TRUE_SEEN) != 0 )
-                    compiling = FALSE;
+                if( compiling || (*global->ifptr & FPP_TRUE_SEEN) != 0 )
+                    compiling = FPP_FALSE;
                 else
                     {
-                    compiling = TRUE;
+                    compiling = FPP_TRUE;
                     }
                 }
             break;
@@ -362,31 +297,31 @@ ReturnCode control( struct Global *global,
         case L_elif:
             if( global->ifptr == &global->ifstack[0] )
                 {
-                cerror( global, ERROR_STRING_MUST_BE_IF, global->tokenbuf );
+                fpp_cerror( global, ERROR_STRING_MUST_BE_IF, global->tokenbuf );
 
-                dump_line( global, counter );
+                fpp_dump_line( global, counter );
 
                 return( FPP_OK );
                 }
             else if( (*global->ifptr & ELSE_SEEN) != 0 )
                 {
-                cerror( global, ERROR_STRING_MAY_NOT_FOLLOW_ELSE, global->tokenbuf );
+                fpp_cerror( global, ERROR_STRING_MAY_NOT_FOLLOW_ELSE, global->tokenbuf );
 
-                dump_line( global, counter );
+                fpp_dump_line( global, counter );
 
                 return( FPP_OK );
                 }
 
-            if( (*global->ifptr & (WAS_COMPILING | TRUE_SEEN)) != WAS_COMPILING )
+            if( (*global->ifptr & (WAS_COMPILING | FPP_TRUE_SEEN)) != WAS_COMPILING )
                 {
-                compiling = FALSE;        /* Done compiling stuff */
+                compiling = FPP_FALSE;        /* Done compiling stuff */
 
-                dump_line( global, counter );   /* Skip this clause */
+                fpp_dump_line( global, counter );   /* Skip this clause */
 
                 return( FPP_OK );
                 }
 
-            ret = doif( global, L_if );
+            ret = fpp_doif( global, L_if );
 
             if( ret )
                 return(ret);
@@ -394,7 +329,7 @@ ReturnCode control( struct Global *global,
             break;
 
         case L_error:
-            cerror(global, ERROR_ERROR);
+            fpp_cerror(global, ERROR_ERROR);
             break;
 
         case L_if:
@@ -404,7 +339,7 @@ ReturnCode control( struct Global *global,
                 {
                 *global->ifptr = WAS_COMPILING;
 
-                ret = doif( global, hash );
+                ret = fpp_doif( global, hash );
 
                 if( ret )
                     return(ret);
@@ -412,22 +347,22 @@ ReturnCode control( struct Global *global,
                 break;
                 }
 
-            cfatal( global, FATAL_TOO_MANY_NESTINGS, global->tokenbuf );
+            fpp_cfatal( global, FATAL_TOO_MANY_NESTINGS, global->tokenbuf );
 
             return( FPP_TOO_MANY_NESTED_STATEMENTS );
 
         case L_endif:
             if( global->ifptr == &global->ifstack[0] )
                 {
-                cerror( global, ERROR_STRING_MUST_BE_IF, global->tokenbuf );
+                fpp_cerror( global, ERROR_STRING_MUST_BE_IF, global->tokenbuf );
 
-                dump_line( global, counter );
+                fpp_dump_line( global, counter );
 
                 return(FPP_OK);
                 }
 
             if( !compiling && (*global->ifptr & WAS_COMPILING) != 0 )
-                global->wrongline = TRUE;
+                global->wrongline = FPP_TRUE;
 
             compiling = ((*global->ifptr & WAS_COMPILING) != 0);
 
@@ -439,13 +374,13 @@ ReturnCode control( struct Global *global,
             {
             int result;
 
-            ret = eval( global, &result );
+            ret = fpp_eval( global, &result );
 
             if(ret)
                 return(ret);
 
             if( result == 0 )
-                cerror( global, ERROR_PREPROC_FAILURE );
+                fpp_cerror( global, ERROR_PREPROC_FAILURE );
             }
             break;
 
@@ -454,14 +389,14 @@ ReturnCode control( struct Global *global,
              * #pragma is provided to pass "options" to later
              * passes of the compiler.  cpp doesn't have any yet.
              */
-            Putstring( global, "#pragma " );
+            fpp_Putstring( global, "#pragma " );
 
-            while( (c = get( global ) ) != '\n' && c != EOF_CHAR )
-                Putchar( global, c );
+            while( (c = fpp_get( global ) ) != '\n' && c != EOF_CHAR )
+                fpp_Putchar( global, c );
 
-            unget( global );
+            fpp_unget( global );
 
-            Putchar( global, '\n' );
+            fpp_Putchar( global, '\n' );
 
             break;
 
@@ -473,18 +408,18 @@ ReturnCode control( struct Global *global,
              * This would allow #asm or similar extensions.
              */
             if( global->warnillegalcpp )
-                cwarn( global, WARN_ILLEGAL_COMMAND, global->tokenbuf );
+                fpp_cwarn( global, WARN_ILLEGAL_COMMAND, global->tokenbuf );
 
-            Putchar( global, '#' );
-            Putstring( global, global->tokenbuf );
-            Putchar( global, ' ' );
+            fpp_Putchar( global, '#' );
+            fpp_Putstring( global, global->tokenbuf );
+            fpp_Putchar( global, ' ' );
 
-            while( (c = get( global ) ) != '\n' && c != EOF_CHAR )
-                Putchar( global, c );
+            while( (c = fpp_get( global ) ) != '\n' && c != EOF_CHAR )
+                fpp_Putchar( global, c );
 
-            unget( global );
+            fpp_unget( global );
 
-            Putchar( global, '\n' );
+            fpp_Putchar( global, '\n' );
 
             break;
         }
@@ -497,15 +432,15 @@ ReturnCode control( struct Global *global,
          *      #if foo
          *      #endif  foo
          */
-        dump_line( global, counter );         /* Take common exit */
+        fpp_dump_line( global, counter );         /* Take common exit */
 
         return( FPP_OK );
         #else
-        if( skipws( global ) != '\n' )
+        if( fpp_skipws( global ) != '\n' )
             {
-            cwarn( global, WARN_UNEXPECTED_TEXT_IGNORED );
+            fpp_cwarn( global, WARN_UNEXPECTED_TEXT_IGNORED );
 
-            skipnl( global );
+            fpp_skipnl( global );
             }
         #endif
         }
@@ -516,21 +451,21 @@ ReturnCode control( struct Global *global,
 }
 
 FILE_LOCAL
-void dump_line(struct Global *global, int *counter)
+void fpp_dump_line(struct Global *global, int *counter)
 {
-    skipnl( global );         /* Ignore rest of line  */
+    fpp_skipnl( global );         /* Ignore rest of line  */
 
     (*counter)++;
 }
 
 FILE_LOCAL
-ReturnCode doif(struct Global *global, int hash)
+ReturnCode fpp_doif(struct Global *global, int hash)
 {
     /*
      * Process an #if, #ifdef, or #ifndef. The latter two are straightforward,
      * while #if needs a subroutine of its own to evaluate the expression.
      *
-     * doif() is called only if compiling is TRUE.  If false, compilation
+     * fpp_doif() is called only if compiling is FPP_TRUE.  If false, compilation
      * is always supressed, so we don't need to evaluate anything.  This
      * supresses unnecessary warnings.
      */
@@ -539,16 +474,16 @@ ReturnCode doif(struct Global *global, int hash)
     int found;
     ReturnCode ret;
 
-    if( (c = skipws( global ) ) == '\n' || c == EOF_CHAR )
+    if( (c = fpp_skipws( global ) ) == '\n' || c == EOF_CHAR )
         {
-        unget( global );
+        fpp_unget( global );
 
-        cerror( global, ERROR_MISSING_ARGUMENT );
+        fpp_cerror( global, ERROR_MISSING_ARGUMENT );
 
         #if !OLD_PREPROCESSOR
-        skipnl( global );               /* Prevent an extra     */
+        fpp_skipnl( global );               /* Prevent an extra     */
 
-        unget( global );                /* Error message        */
+        fpp_unget( global );                /* Error message        */
         #endif
 
         return(FPP_OK);
@@ -556,14 +491,14 @@ ReturnCode doif(struct Global *global, int hash)
 
     if( hash == L_if )
         {
-        unget( global );
+        fpp_unget( global );
 
-        ret = eval( global, &found );
+        ret = fpp_eval( global, &found );
 
         if( ret )
             return( ret );
 
-        found = (found != 0);     /* Evaluate expr, != 0 is  TRUE */
+        found = (found != 0);     /* Evaluate expr, != 0 is  FPP_TRUE */
 
         hash = L_ifdef;       /* #if is now like #ifdef */
         }
@@ -572,34 +507,34 @@ ReturnCode doif(struct Global *global, int hash)
         if( type[c] != LET )
             {         /* Next non-blank isn't letter  */
                           /* ... is an error          */
-            cerror( global, ERROR_MISSING_ARGUMENT );
+            fpp_cerror( global, ERROR_MISSING_ARGUMENT );
 
             #if !OLD_PREPROCESSOR
-            skipnl( global );             /* Prevent an extra     */
+            fpp_skipnl( global );             /* Prevent an extra     */
 
-            unget( global );              /* Error message        */
+            fpp_unget( global );              /* Error message        */
             #endif
 
             return(FPP_OK);
             }
 
-        found = ( lookid( global, c ) != NULL ); /* Look for it in symbol table */
+        found = ( fpp_lookid( global, c ) != NULL ); /* Look for it in symbol table */
         }
 
     if( found == (hash == L_ifdef) )
         {
-        compiling = TRUE;
+        compiling = FPP_TRUE;
 
-        *global->ifptr |= TRUE_SEEN;
+        *global->ifptr |= FPP_TRUE_SEEN;
         }
     else
-        compiling = FALSE;
+        compiling = FPP_FALSE;
 
     return(FPP_OK);
 }
 
 INLINE FILE_LOCAL
-ReturnCode doinclude( struct Global *global )
+ReturnCode fpp_doinclude( struct Global *global )
 {
     /*
      *  Process the #include control line.
@@ -623,14 +558,14 @@ ReturnCode doinclude( struct Global *global )
     int delim;
     ReturnCode ret;
 
-    delim = skipws( global );
+    delim = fpp_skipws( global );
 
-    if( (ret = macroid( global, &delim )) )
+    if( (ret = fpp_macroid( global, &delim )) )
         return(ret);
 
     if( delim != '<' && delim != '"' )
         {
-        cerror( global, ERROR_INCLUDE_SYNTAX );
+        fpp_cerror( global, ERROR_INCLUDE_SYNTAX );
 
         return( FPP_OK );
         }
@@ -640,11 +575,11 @@ ReturnCode doinclude( struct Global *global )
 
     global->workp = global->work;
 
-    while( (c = get(global)) != '\n' && c != EOF_CHAR )
-        if( (ret = save( global, c )) )       /* Put it away.                */
+    while( (c = fpp_get(global)) != '\n' && c != EOF_CHAR )
+        if( (ret = fpp_save( global, c )) )       /* Put it away.                */
             return( ret );
 
-    unget( global );                        /* Force nl after include      */
+    fpp_unget( global );                        /* Force nl after include      */
 
     /*
      * The draft is unclear if the following should be done.
@@ -655,21 +590,21 @@ ReturnCode doinclude( struct Global *global )
 
     if( *global->workp != delim )
         {
-        cerror( global, ERROR_INCLUDE_SYNTAX );
+        fpp_cerror( global, ERROR_INCLUDE_SYNTAX );
 
         return(FPP_OK);
         }
 
     *global->workp = EOS;         /* Terminate filename       */
 
-    ret = openinclude( global, global->work, (delim == '"') );
+    ret = fpp_openinclude( global, global->work, (delim == '"') );
 
     if( ret && global->warnnoinclude )
         {
         /*
          * Warn if #include file isn't there.
          */
-        cwarn( global, WARN_CANNOT_OPEN_INCLUDE, global->work );
+        fpp_cwarn( global, WARN_CANNOT_OPEN_INCLUDE, global->work );
         }
 
     return( FPP_OK );
@@ -679,13 +614,13 @@ ReturnCode doinclude( struct Global *global )
 ReturnCode MultiAssignLoad( struct Global *global, char *incptr, char *filename, char *tmpname );
 #endif
 
-ReturnCode openinclude( struct Global *global,
+ReturnCode fpp_openinclude( struct Global *global,
     char *filename,     /* Input file name         */
-    int searchlocal )   /* TRUE if #include "file" */
+    int searchlocal )   /* FPP_TRUE if #include "file" */
 {
     /*
      * Actually open an include file.  This routine is only called from
-     * doinclude() above, but was written as a separate subroutine for
+     * fpp_doinclude() above, but was written as a separate subroutine for
      * programmer convenience.  It searches the list of directories
      * and actually opens the file, linking it into the list of
      * active files.  Returns ReturnCode. No error message is printed.
@@ -693,24 +628,15 @@ ReturnCode openinclude( struct Global *global,
 
     char **incptr;
     char tmpname[NWORK]; /* Filename work area    */
-    int len;
-/*    ReturnCode ret; *//*NOT USED*/
+    size_t len;
 
-    #if HOST == SYS_AMIGADOS
-    if( strchr (filename, ':') != NULL )
-        {
-        if( ! openfile( global, filename ) )
-            return(FPP_OK);
-        }
-    #else
     if( filename[0] == '/' )
         {
-        if( ! openfile( global, filename ) )
+        if( ! fpp_openfile( global, filename ) )
             return(FPP_OK);
         }
-    #endif
 
-    if( searchlocal )
+    if( searchlocal && global->allowincludelocal )
         {
         /*
          * Look in local directory first.
@@ -720,12 +646,12 @@ ReturnCode openinclude( struct Global *global,
          * discarding the last pathname component of the source file
          * name then tacking on the #include argument.
          */
-        if( hasdirectory( global->infile->filename, tmpname ) )
+        if( fpp_hasdirectory( global->infile->filename, tmpname ) )
             strcat( tmpname, filename );
         else
             strcpy( tmpname, filename );
 
-        if( ! openfile( global, tmpname ) )
+        if( ! fpp_openfile( global, tmpname ) )
             return(FPP_OK);
         }
 
@@ -739,37 +665,18 @@ ReturnCode openinclude( struct Global *global,
 
         if( len + strlen(filename) >= sizeof(tmpname) )
             {
-            cfatal( global, FATAL_FILENAME_BUFFER_OVERFLOW );
+            fpp_cfatal( global, FATAL_FILENAME_BUFFER_OVERFLOW );
 
             return( FPP_FILENAME_BUFFER_OVERFLOW );
             }
         else
             {
-            #if HOST == SYS_AMIGADOS
-            if( (*incptr)[len-1] != '/' && (*incptr)[len-1] != ':' )
-	            sprintf( tmpname, "%s/%s", *incptr, filename );
-            #else
             if( (*incptr)[len-1] != '/' )
                 sprintf( tmpname, "%s/%s", *incptr, filename );
-            #endif
             else
                 sprintf( tmpname, "%s%s", *incptr, filename );
 
-            #if HOST == SYS_AMIGADOS
-            //
-            //  amp July 9, 1997
-            //
-            //  OK, hack in multiassign support for the buitin
-            //  search directories...
-            //
-            if( (*incptr)[len-1] == ':' )
-                {
-                if( ! MultiAssignLoad( global, *incptr, filename, tmpname ) )
-                    return(FPP_OK);
-                }
-            else
-            #endif
-            if( !openfile( global, tmpname ) )
+            if( !fpp_openfile( global, tmpname ) )
                 return(FPP_OK);
             }
         }
@@ -778,39 +685,25 @@ ReturnCode openinclude( struct Global *global,
 }
 
 INLINE FILE_LOCAL
-int hasdirectory( char *source,   /* Directory to examine         */
+int fpp_hasdirectory( char *source,   /* Directory to examine         */
     char *result )  /* Put directory stuff here     */
 {
     /*
      * If a device or directory is found in the source filename string, the
      * node/device/directory part of the string is copied to result and
-     * hasdirectory returns TRUE.  Else, nothing is copied and it returns FALSE.
+     * fpp_hasdirectory returns FPP_TRUE.  Else, nothing is copied and it returns FPP_FALSE.
      */
 
     char *tp2;
 
-    #if HOST == SYS_AMIGADOS
-    char *tp1;
-
-    if( (tp1 = strrchr( source, ':' ) ) == NULL )
-        tp1 = source;
-
-    if( (tp2 = strrchr( tp1, '/' ) ) == NULL )
-        tp2 = tp1;
-
-    if( tp2 == source )
-        return (FALSE);
-
-    #else
     if( (tp2 = strrchr( source, '/' ) ) == NULL )
-        return(FALSE);
-    #endif
+        return(FPP_FALSE);
 
     strncpy( result, source, tp2 - source + 1 );
 
     result[tp2 - source + 1] = EOS;
 
-    return( TRUE );
+    return( FPP_TRUE );
 }
 
 #ifdef _AMIGA
@@ -850,7 +743,7 @@ ReturnCode MultiAssignLoad( struct Global *global, char *incptr, char *filename,
             //  Normally we would pass the lock and filename
             //  to the Load() routine, which would CD to the
             //  directory and Open(filename), but in order to
-            //  satisfy the exisiting openfile() function, we
+            //  satisfy the exisiting fpp_openfile() function, we
             //  bite the bullet and build the complete pathspec
             //  rather than add the standard Load() routine.
             //
@@ -858,7 +751,7 @@ ReturnCode MultiAssignLoad( struct Global *global, char *incptr, char *filename,
                 {
                 AddPart( tmpname, filename, NWORK );
 
-                RtnCode = openfile( global, tmpname );
+                RtnCode = fpp_openfile( global, tmpname );
 
                 if( ! RtnCode )
                     break;

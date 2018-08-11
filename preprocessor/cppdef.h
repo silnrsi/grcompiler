@@ -3,18 +3,15 @@
  * ----------------------------------------------------------------------------
  *
  * Project: Frexx C Preprocessor
- * $Source: /cvsroot/silgraphite/silgraphite/src/GrCompiler/GdlPp/cppdef.h,v $
- * $Revision: 1.1 $
- * $Date: 2003/04/21 21:24:18 $
- * $Author: wardak $
+ * $Source: /home/user/start/cpp/RCS/cppdef.h,v $
+ * $Revision: 1.4 $
+ * $Date: 1993/12/06 13:51:20 $
+ * $Author: start $
  * $State: Exp $
- * $Locker:  $
+ * $Locker: start $
  *
  * ----------------------------------------------------------------------------
  * $Log: cppdef.h,v $
- * Revision 1.1  2003/04/21 21:24:18  wardak
- * Add files for the GDL pre-processor (gdlpp.exe).
- *
  * Revision 1.4  1993/12/06  13:51:20  start
  * A lot of new stuff (too much to mention)
  *
@@ -38,9 +35,9 @@
 /* Convert Emacs's conventions for BIG_ENDIAN to cpp's convention.  */
 #ifdef BIG_ENDIAN
 #undef BIG_ENDIAN
-#define BIG_ENDIAN TRUE
+#define BIG_ENDIAN FPP_TRUE
 #else /* not BIG_ENDIAN */
-#define BIG_ENDIAN FALSE
+#define BIG_ENDIAN FPP_FALSE
 #endif /* BIG_ENDIAN */
 
 /* Emacs uses the names index and rindex and defines them as str(r)chr if nec;
@@ -76,12 +73,12 @@
  */
 
 /*
- * This redundant definition of TRUE and FALSE works around
+ * This redundant definition of FPP_TRUE and FPP_FALSE works around
  * a limitation of Decus C.
  */
-#ifndef TRUE
-#define TRUE			1
-#define FALSE			0
+#ifndef FPP_TRUE
+#define FPP_TRUE			1
+#define FPP_FALSE			0
 #endif
 
 /*
@@ -97,20 +94,13 @@
 #define SYS_ONYX		6
 #define SYS_68000		7
 #define SYS_AMIGADOS		8
-#define SYS_MSDOS		9
 
-#ifdef _MSC_VER
-#undef HOST
-#define HOST			SYS_MSDOS
-#endif
 #ifndef HOST
 #ifdef	unix
 #define HOST			SYS_UNIX
 #else
 #ifdef	amiga
 #define HOST			SYS_AMIGADOS
-#else
-#error "Unknown HOST system"
 #endif
 #endif
 #endif
@@ -144,27 +134,27 @@
  *		to be marked "static" even though they are referenced
  *		by "extern" statements elsewhere.
  *
- * OK_DOLLAR	Should be set TRUE if $ is a valid alphabetic character
+ * OK_DOLLAR	Should be set FPP_TRUE if $ is a valid alphabetic character
  *		in identifiers (default), or zero if $ is invalid.
- *		Default is TRUE.
+ *		Default is FPP_TRUE.
  *
- * OK_CONCAT	Should be set TRUE if # may be used to concatenate
+ * OK_CONCAT	Should be set FPP_TRUE if # may be used to concatenate
  *		tokens in macros (per the Ansi Draft Standard) or
- *		FALSE for old-style # processing (needed if cpp is
+ *		FPP_FALSE for old-style # processing (needed if cpp is
  *		to process assembler source code).
  */
-#define OK_CONCAT TRUE
+#define OK_CONCAT FPP_TRUE
 /*
- * OK_DATE	Predefines the compilation date if set TRUE.
+ * OK_DATE	Predefines the compilation date if set FPP_TRUE.
  *		Not permitted by the Nov. 12, 1984 Draft Standard.
  */
-#define OK_DATE TRUE
+#define OK_DATE FPP_TRUE
 /*
  *
  * OK_SIZEOF	Permits sizeof in #if preprocessor expressions.
  *		According to K&R V2 (page 232), this is not allowed.
  */
-#define OK_SIZEOF TRUE
+#define OK_SIZEOF FPP_TRUE
 /*
  * S_CHAR etc.	Define the sizeof the basic TARGET machine word types.
  *		By default, sizes are set to the values for the HOST
@@ -179,14 +169,9 @@
  *		specific directories.
  */
 
-#if HOST == SYS_AMIGADOS
 #define MACHINE 		"amiga", "m68000"
 #define SYSTEM			"amigados"
-#endif
-#if HOST == SYS_MSDOS
-#define MACHINE			"\"PC\"", "i386/Pentium XXX"
-#define SYSTEM			"MS-DOS/Windows"
-#endif
+
 
 /*
  * defaults
@@ -203,9 +188,9 @@
  */
 
 #if	OLD_PREPROCESSOR
-#define OK_DOLLAR		FALSE
-#define OK_CONCAT		FALSE
-#define COMMENT_INVISIBLE	TRUE
+#define OK_DOLLAR		FPP_FALSE
+#define OK_CONCAT		FPP_FALSE
+#define COMMENT_INVISIBLE	FPP_TRUE
 #endif
 
 /*
@@ -224,15 +209,15 @@
 #endif
 
 /*
- * BIG_ENDIAN is set TRUE on machines (such as the IBM 360 series)
+ * BIG_ENDIAN is set FPP_TRUE on machines (such as the IBM 360 series)
  * where 'ab' stores 'a' in the high-bits and 'b' in the low-bits.
- * It is set FALSE on machines (such as the PDP-11 and Vax-11)
+ * It is set FPP_FALSE on machines (such as the PDP-11 and Vax-11)
  * where 'ab' stores 'a' in the low-bits and 'b' in the high-bits.
  * (Or is it the other way around?) -- Warning: BIG_ENDIAN code is untested.
  * [I *seems* to be the other way around, according to the code /OIS]
  */
 #ifndef BIG_ENDIAN
-#define BIG_ENDIAN		FALSE
+#define BIG_ENDIAN		FPP_FALSE
 #endif
 
 /*
@@ -242,27 +227,27 @@
  * expansions.	This was removed from the Draft Ansi Standard.
  */
 #ifndef COMMENT_INVISIBLE
-#define COMMENT_INVISIBLE	FALSE
+#define COMMENT_INVISIBLE	FPP_FALSE
 #endif
 
 /*
  * OK_DOLLAR enables use of $ as a valid "letter" in identifiers.
  * This is a permitted extension to the Ansi Standard and is required
- * for e.g., VMS, RSX-11M, etc.   It should be set FALSE if cpp is
+ * for e.g., VMS, RSX-11M, etc.   It should be set FPP_FALSE if cpp is
  * used to preprocess assembler source on Unix systems.  OLD_PREPROCESSOR
- * sets OK_DOLLAR FALSE for that reason.
+ * sets OK_DOLLAR FPP_FALSE for that reason.
  */
 #ifndef OK_DOLLAR
-#define OK_DOLLAR		TRUE
+#define OK_DOLLAR		FPP_TRUE
 #endif
 
 /*
  * OK_CONCAT enables (one possible implementation of) token concatenation.
  * If cpp is used to preprocess Unix assembler source, this should be
- * set FALSE as the concatenation character, #, is used by the assembler.
+ * set FPP_FALSE as the concatenation character, #, is used by the assembler.
  */
 #ifndef OK_CONCAT
-#define OK_CONCAT		TRUE
+#define OK_CONCAT		FPP_TRUE
 #endif
 
 /*
@@ -271,7 +256,7 @@
  * by the Draft Ansi Standard.
  */
 #ifndef OK_DATE
-#define OK_DATE 	TRUE
+#define OK_DATE 	FPP_TRUE
 #endif
 
 /*
@@ -282,7 +267,7 @@
  * This option was added in the PDC process, under no. *OIS*0.92*.
  */
 #ifndef OK_SIZEOF
-#define OK_SIZEOF	FALSE
+#define OK_SIZEOF	FPP_FALSE
 #endif
 
 /*
@@ -290,7 +275,7 @@
  */
 
 #ifndef DEBUG
-#define DEBUG		FALSE
+#define DEBUG		FPP_FALSE
 #endif
 
 /*
@@ -393,13 +378,6 @@
 #define SBSIZE  64
 #endif
 
-#ifdef GDLPP
-#define VERSION_TEXT "Frexx C Preprocessor v1.5 " \
-"Copyright (C) by FrexxWare 1993 - 1997.\n" \
-"Revised by SIL International for Graphite Description Language, " \
-__DATE__ "\n"
-#else
-#define VERSION_TEXT "Frexx C Preprocessor v1.5 " \
-"Copyright (C) by FrexxWare 1993 - 1997.\n" \
-"Compiled by Daniel Stenberg " __DATE__ "\n"
-#endif
+#define VERSION_TEXT "Frexx C Preprocessor v1.5.1 " \
+"Copyright (C) by FrexxWare 1993 - 2002.\n" \
+"Compiled " __DATE__ "\n"

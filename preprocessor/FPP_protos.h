@@ -3,18 +3,15 @@
  * ----------------------------------------------------------------------------
  *
  * Project: Frexx C Preprocessor
- * $Source: /cvsroot/silgraphite/silgraphite/src/GrCompiler/GdlPp/FPP_protos.h,v $
- * $Revision: 1.1 $
- * $Date: 2003/04/21 21:24:18 $
- * $Author: wardak $
+ * $Source: /home/user/start/cpp/RCS/FPP_protos.h,v $
+ * $Revision: 1.3 $
+ * $Date: 1993/12/06 13:51:20 $
+ * $Author: start $
  * $State: Exp $
- * $Locker:  $
+ * $Locker: start $
  *
  * ----------------------------------------------------------------------------
  * $Log: FPP_protos.h,v $
- * Revision 1.1  2003/04/21 21:24:18  wardak
- * Add files for the GDL pre-processor (gdlpp.exe).
- *
  * Revision 1.3  1993/12/06  13:51:20  start
  * A lot of new stuff (too much to mention)
  *
