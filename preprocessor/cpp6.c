@@ -371,14 +371,7 @@ ReturnCode fpp_scannumber(struct Global *global,
      * Note that this algorithm accepts "012e4" and "03.4"
      * as legitimate floating-point numbers.
      */
-    if (radix != 16 && (c == 'e' || c == 'E')) {
-      if (expseen)                      /* Already saw 'E'?     */
-        break;                          /* Exit loop, bad nbr.  */
-      expseen = FPP_TRUE;                   /* Set exponent seen    */
-      signseen = FPP_FALSE;                 /* We can read '+' now  */
-      radix = 10;                       /* Decimal exponent     */
-    }
-    else if (radix != 16 && c == '.') {
+    if (radix != 16 && c == '.') {
       if (dotflag)                      /* Saw dot already?     */
         break;                          /* Exit loop, two dots  */
       dotflag = FPP_TRUE;                   /* Remember the dot     */
@@ -420,48 +413,6 @@ ReturnCode fpp_scannumber(struct Global *global,
    * 'L' for "long double".
    */
 
-  if (dotflag || expseen) {               /* Floating point?      */
-    if (c == 'l' || c == 'L') {
-      ret=(*outfun)(global, c);
-      if(ret)
-        return(ret);
-      c = fpp_get(global);                   /* Ungotten later       */
-    }
-  } else {                                      /* Else it's an integer */
-    /*
-     * We know that dotflag and expseen are both zero, now:
-     * dotflag signals "saw 'L'", and
-     * expseen signals "saw 'U'".
-     */
-    done=FPP_TRUE;
-    while(done) {
-      switch (c) {
-      case 'l':
-      case 'L':
-        if (dotflag) {
-          done=FPP_FALSE;
-          continue;
-        }
-        dotflag = FPP_TRUE;
-        break;
-      case 'u':
-      case 'U':
-        if (expseen) {
-          done=FPP_FALSE;
-          continue;
-        }
-        expseen = FPP_TRUE;
-        break;
-      default:
-        done=FPP_FALSE;
-        continue;
-      }
-      ret=(*outfun)(global, c);       /* Got 'L' or 'U'.      */
-      if(ret)
-        return(ret);
-      c = fpp_get(global);                /* Look at next, too.   */
-    }
-  }
   fpp_unget(global);                         /* Not part of a number */
   if(!(global->webmode)) {
     if (octal89 && radix == 8)

@@ -153,7 +153,7 @@ int main(int argc, char **argv)
 #elif defined (OS9)
   tagptr->data = "/dd/defs/";
 #else
-  tagptr->data = "/usr/include/";
+  tagptr->data = PKGDATADIR;
 #endif
   tagptr++;
 
@@ -301,7 +301,7 @@ char GetPrefs(struct fppTag **tagptr, char **string)
     }
   }
 
-  if((env = getenv("CPP_PREFS"))) {
+  if((env = getenv("GDLPP_PREFS"))) {
     ret= !DoString(tagptr, env);
     if(ret && *string)
       free( *string );
@@ -586,7 +586,7 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
 		  "  -S\tSpecify sizes for #if sizeof\n"
 		  "  -t\tThis function should not get an initial function\n"
 		  "  -U\tUndefine symbol\n"
-		  "  -V\tDon't output version information\n"
+		  "  -V\tOutput version information\n"
 		  "  -W\tOutput all #defines\n"
                   "  -WWW\tWeb mode preprocessing\n"
 		  "  -w\tOnly output #defines\n"

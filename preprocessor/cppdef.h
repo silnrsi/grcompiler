@@ -94,6 +94,12 @@
 #define SYS_ONYX		6
 #define SYS_68000		7
 #define SYS_AMIGADOS		8
+#define SYS_MSDOS		9
+
+#ifdef _MSC_VER
+#undef HOST
+#define HOST			SYS_MSDOS
+#endif
 
 #ifndef HOST
 #ifdef	unix
@@ -169,8 +175,13 @@
  *		specific directories.
  */
 
+#if HOST == SYS_AMIGADOS
 #define MACHINE 		"amiga", "m68000"
 #define SYSTEM			"amigados"
+#elif HOST == SYS_MSDOS
+#define MACHINE			"\"PC\"", "i386/Pentium XXX"
+#define SYSTEM			"MS-DOS/Windows"
+#endif
 
 
 /*
@@ -380,4 +391,5 @@
 
 #define VERSION_TEXT "Frexx C Preprocessor v1.5.1 " \
 "Copyright (C) by FrexxWare 1993 - 2002.\n" \
+"Revised by SIL International for Graphite Description Language, " \
 "Compiled " __DATE__ "\n"

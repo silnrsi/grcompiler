@@ -129,7 +129,7 @@ int fpp_dooptions(struct Global *global, struct fppTag *tags)
       global->showincluded = tags->data?1:0;
       break;
     case FPPTAG_SHOWVERSION:
-      global->showversion = tags->data?1:0;
+      global->showversion = tags->data?0:1;
       break;
     case FPPTAG_WARNILLEGALCPP:
       global->warnillegalcpp = tags->data?1:0;

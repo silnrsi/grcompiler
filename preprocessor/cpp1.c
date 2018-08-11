@@ -81,6 +81,10 @@ int fppPreProcess(struct fppTag *tags)
 #elif defined( unix )
   global->preset[1]="unix";
   global->preset[2]= NULL;
+#elif defined( _MSC_VER )
+  global->preset[1]="\"PC\"";
+  global->preset[2]="MS-DOS/Windows";
+  global->preset[3]= NULL;
 #endif
 
   /* Note: order is important   */
@@ -112,7 +116,7 @@ int fppPreProcess(struct fppTag *tags)
   global->warnillegalcpp = FPP_FALSE;
   global->outputLINE = FPP_TRUE;
   global->warnnoinclude = FPP_TRUE;
-  global->showversion = FPP_TRUE;
+  global->showversion = FPP_FALSE;
   global->showincluded = FPP_FALSE;
   global->showspace = FPP_FALSE;
   global->nestcomments = FPP_FALSE;
