@@ -1,0 +1,46 @@
+diff --git a/preprocessor/cpp1.c b/preprocessor/cpp1.c
+index d076441..8207b9b 100644
+--- a/preprocessor/cpp1.c
++++ b/preprocessor/cpp1.c
+@@ -81,6 +81,10 @@ int fppPreProcess(struct fppTag *tags)
+ #elif defined( unix )
+   global->preset[1]="unix";
+   global->preset[2]= NULL;
++#elif defined( _MSC_VER )
++  global->preset[1]="\"PC\"";
++  global->preset[2]="MS-DOS/Windows";
++  global->preset[3]= NULL;
+ #endif
+ 
+   /* Note: order is important   */
+diff --git a/preprocessor/cppdef.h b/preprocessor/cppdef.h
+index 26ba17b..3b2d035 100644
+--- a/preprocessor/cppdef.h
++++ b/preprocessor/cppdef.h
+@@ -94,6 +94,12 @@
+ #define SYS_ONYX		6
+ #define SYS_68000		7
+ #define SYS_AMIGADOS		8
++#define SYS_MSDOS		9
++
++#ifdef _MSC_VER
++#undef HOST
++#define HOST			SYS_MSDOS
++#endif
+ 
+ #ifndef HOST
+ #ifdef	unix
+@@ -169,8 +175,13 @@
+  *		specific directories.
+  */
+ 
++#if HOST == SYS_AMIGADOS
+ #define MACHINE 		"amiga", "m68000"
+ #define SYSTEM			"amigados"
++#elif HOST == SYS_MSDOS
++#define MACHINE			"\"PC\"", "i386/Pentium XXX"
++#define SYSTEM			"MS-DOS/Windows"
++#endif
+ 
+ 
+ /*

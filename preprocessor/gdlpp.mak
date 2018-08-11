@@ -63,7 +63,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\cpp4.obj" \
 	"$(INTDIR)\cpp5.obj" \
 	"$(INTDIR)\cpp6.obj" \
-	"$(INTDIR)\memory.obj" \
 	"$(INTDIR)\usecpp.obj"
 
 "$(OUTDIR)\$(TARGET).exe" : "$(OUTDIR)" $(LINK32_OBJS)
@@ -78,7 +77,6 @@ BSC32_SBRS= \
 	"$(INTDIR)\cpp4.sbr" \
 	"$(INTDIR)\cpp5.sbr" \
 	"$(INTDIR)\cpp6.sbr" \
-	"$(INTDIR)\memory.sbr" \
 	"$(INTDIR)\usecpp.sbr"
 
 "$(OUTDIR)\$(TARGET).bsc" : "$(OUTDIR)" $(BSC32_SBRS)
@@ -98,8 +96,6 @@ SOURCE=cpp4
 SOURCE=cpp5
 "$(INTDIR)\$(SOURCE).obj" "$(INTDIR)\$(SOURCE).sbr" : "$(GDLPP_SRC)\$(SOURCE).c" "$(INTDIR)"
 SOURCE=cpp6
-"$(INTDIR)\$(SOURCE).obj" "$(INTDIR)\$(SOURCE).sbr" : "$(GDLPP_SRC)\$(SOURCE).c" "$(INTDIR)"
-SOURCE=memory
 "$(INTDIR)\$(SOURCE).obj" "$(INTDIR)\$(SOURCE).sbr" : "$(GDLPP_SRC)\$(SOURCE).c" "$(INTDIR)"
 SOURCE=usecpp
 "$(INTDIR)\$(SOURCE).obj" "$(INTDIR)\$(SOURCE).sbr" : "$(GDLPP_SRC)\$(SOURCE).c" "$(INTDIR)"

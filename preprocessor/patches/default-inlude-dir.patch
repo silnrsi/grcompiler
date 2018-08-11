@@ -1,0 +1,13 @@
+diff --git a/preprocessor/usecpp.c b/preprocessor/usecpp.c
+index 702e93c..9442d34 100644
+--- a/preprocessor/usecpp.c
++++ b/preprocessor/usecpp.c
+@@ -153,7 +153,7 @@ int main(int argc, char **argv)
+ #elif defined (OS9)
+   tagptr->data = "/dd/defs/";
+ #else
+-  tagptr->data = "/usr/include/";
++  tagptr->data = PKGDATADIR;
+ #endif
+   tagptr++;
+ 
