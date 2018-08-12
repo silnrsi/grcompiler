@@ -114,14 +114,7 @@ typedef signed int       sdata32;	// generic 32-bit data
 #define NULL	0
 #endif
 
-// std::_Ios_Openmode isn't defined in the Windows compiler
-#ifdef __GNUC__
-    typedef std::_Ios_Openmode openmode_t;
-#elif defined(__INTEL_COMPILER)
-    typedef std::ios_base::openmode openmode_t;
-#else
-    typedef int openmode_t;
-#endif
+typedef std::ios_base::openmode openmode_t;
 
 /*************************************************************************************
  Offsets and addresses. AddrOf is useful for taking the address of an object
