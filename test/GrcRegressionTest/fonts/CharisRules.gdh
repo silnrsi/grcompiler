@@ -359,7 +359,7 @@ if (eng == capital)
 endif;
 if (eng == short)
 	// for fonts with default = descender, capital, or base:
-	(cBaselineHook g__eng cno_Kom) > cKom;
+	(cBaselineHook g__eng /*cno_Kom*/) > cKom;
 endif;
 
 

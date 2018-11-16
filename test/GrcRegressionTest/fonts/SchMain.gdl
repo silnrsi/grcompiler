@@ -168,6 +168,17 @@ pass(3)	// ligature diacritics
 
 endpass; // 3
 
+table(glyph)
+// Avoid including zeroWidthJoiner twice in contextual form rules below.
+cDualLinkFinAux = cDualLinkFin;
+cDualLinkFinAux -= zeroWidthJoiner;
+cDualLinkMedAux = cDualLinkMed;
+cDualLinkMedAux -= zeroWidthJoiner;
+cRightLinkIsoAux = cRightLinkIso;
+cRightLinkIsoAux -= zeroWidthJoiner;
+cRightLinkFinAux = cRightLinkFin;
+cRightLinkFinAux -= zeroWidthJoiner;
+endtable;
 
 pass(4)	// Contextual forms, lam-alef ligature, subtending marks
 
@@ -185,8 +196,8 @@ pass(4)	// Contextual forms, lam-alef ligature, subtending marks
 
 	// All other contextual forms
 	
-	(cDualLinkIso cDualLinkFin absTatweel) (cDualLinkIso cRightLinkIso absTatweel) > 
-		(cDualLinkIni cDualLinkMed absTatweel) (cDualLinkFin cRightLinkFin absTatweel)
+	(cDualLinkIso cDualLinkFinAux absTatweel) (cDualLinkIso cRightLinkIsoAux absTatweel) > 
+		(cDualLinkIni cDualLinkMedAux absTatweel) (cDualLinkFin cRightLinkFinAux absTatweel)
 		/ _  cDiaDigit?  MARKS ^ _ ;	// Unicode 5.X
 
 

@@ -3,7 +3,7 @@ RULE PRECEDENCE
 
 TABLE: substitution
 
-PASS: 1
+PASS: 1 (GDL #0)
 
 0 - RULE 1.0, PigLatinMain.gdl(46):  clsConsUC  clsCons  clsCons  clsWfLC  >  clsWfUC$4:4  clsConsLC$1:1 { user1 = 1;  }  @2 { user1 = 1;  }  @3 { user1 = 1;  }   /  _{ user1 == 0 }  ^  _{ user1 == @1.user1 }  _{ user1 == @1.user1 }  _  ;
 

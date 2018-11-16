@@ -7,6 +7,8 @@ PASS: 0
 
 PASS CONSTRAINTS: none
 
+NO RULES
+
 PASS: 1
 
 PASS CONSTRAINTS: none
@@ -3820,6 +3822,8 @@ TABLE: positioning
 PASS: 0
 
 PASS CONSTRAINTS: none
+
+NO RULES
 
 PASS: 3
 

@@ -166,6 +166,7 @@ GLYPH ATTRIBUTE VALUES
 12  [0x000c]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
+   directionality = 21 [0x0015]
    mirror.glyph = 13 [0x000d]
    mirror.isEncoded = 1
 
@@ -173,6 +174,7 @@ GLYPH ATTRIBUTE VALUES
 13  [0x000d]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
+   directionality = 22 [0x0016]
    mirror.glyph = 12 [0x000c]
    mirror.isEncoded = 1
 
@@ -493,6 +495,7 @@ GLYPH ATTRIBUTE VALUES
 63  [0x003f]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
+   directionality = 21 [0x0015]
    mirror.glyph = 65 [0x0041]
    mirror.isEncoded = 1
 
@@ -505,6 +508,7 @@ GLYPH ATTRIBUTE VALUES
 65  [0x0041]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
+   directionality = 22 [0x0016]
    mirror.glyph = 63 [0x003f]
    mirror.isEncoded = 1
 
@@ -703,6 +707,7 @@ GLYPH ATTRIBUTE VALUES
 95  [0x005f]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
+   directionality = 21 [0x0015]
    mirror.glyph = 97 [0x0061]
    mirror.isEncoded = 1
 
@@ -715,6 +720,7 @@ GLYPH ATTRIBUTE VALUES
 97  [0x0061]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
+   directionality = 22 [0x0016]
    mirror.glyph = 95 [0x005f]
    mirror.isEncoded = 1
 
@@ -11450,7 +11456,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1198  [0x04ae]
-   *actualForPseudo* = 352 [0x0160  / ]
+   *actualForPseudo* = 364 [0x016c  / ]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
 
@@ -11462,19 +11468,19 @@ GLYPH ATTRIBUTE VALUES
 
 
 1200  [0x04b0]
-   *actualForPseudo* = 364 [0x016c  / ]
+   *actualForPseudo* = 354 [0x0162  / ]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
 
 
 1201  [0x04b1]
-   *actualForPseudo* = 303 [0x012f  / ]
+   *actualForPseudo* = 35 [0x0023  / ]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
 
 
 1202  [0x04b2]
-   *actualForPseudo* = 354 [0x0162  / ]
+   *actualForPseudo* = 303 [0x012f  / ]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
 
@@ -11510,7 +11516,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 1208  [0x04b8]
-   *actualForPseudo* = 35 [0x0023  / ]
+   *actualForPseudo* = 352 [0x0160  / ]
    *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
 
@@ -11522,30 +11528,6 @@ GLYPH ATTRIBUTE VALUES
 
 
 1210  [0x04ba]
-   *actualForPseudo* = 35 [0x0023  / ]
-   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
-   breakweight = 30 [0x001e]
-
-
-1211  [0x04bb]
-   *actualForPseudo* = 35 [0x0023  / ]
-   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
-   breakweight = 30 [0x001e]
-
-
-1212  [0x04bc]
-   *actualForPseudo* = 35 [0x0023  / ]
-   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
-   breakweight = 30 [0x001e]
-
-
-1213  [0x04bd]
-   *actualForPseudo* = 35 [0x0023  / ]
-   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
-   breakweight = 30 [0x001e]
-
-
-1214  [0x04be]
    *actualForPseudo* = 1057 [0x0421  / ]
    *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
@@ -11555,7 +11537,7 @@ GLYPH ATTRIBUTE VALUES
    diaDigitA_.y = 185 [0x00b9]
 
 
-1215  [0x04bf]
+1211  [0x04bb]
    *actualForPseudo* = 1058 [0x0422  / ]
    *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
@@ -11565,17 +11547,7 @@ GLYPH ATTRIBUTE VALUES
    diaDigitA_.y = 193 [0x00c1]
 
 
-1216  [0x04c0]
-   *actualForPseudo* = 1059 [0x0423  / ]
-   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
-   breakweight = 30 [0x001e]
-   diaA.x = 164 [0x00a4]
-   diaA.y = 648 [0x0288]
-   diaDigitA_.x = 164 [0x00a4]
-   diaDigitA_.y = 181 [0x00b5]
-
-
-1217  [0x04c1]
+1212  [0x04bc]
    *actualForPseudo* = 1059 [0x0423  / ]
    *skipPasses* = 367 [0x016f  /  1 1 1 1 0 1 1 0 1]
    breakweight = 30 [0x001e]
@@ -11585,7 +11557,29 @@ GLYPH ATTRIBUTE VALUES
    diaDigitB_.y = 648 [0x0288]
 
 
-1218  [0x04c2]
+1213  [0x04bd]
+   *actualForPseudo* = 35 [0x0023  / ]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
+   breakweight = 30 [0x001e]
+
+
+1214  [0x04be]
+   *actualForPseudo* = 1060 [0x0424  / ]
+   *skipPasses* = 383 [0x017f  /  1 1 1 1 1 1 1 0 1]
+   breakweight = 30 [0x001e]
+   diaB.x = 165 [0x00a5]
+   diaB.y = 212 [0x00d4]
+   diaDigitB_.x = 165 [0x00a5]
+   diaDigitB_.y = 608 [0x0260]
+
+
+1215  [0x04bf]
+   *actualForPseudo* = 35 [0x0023  / ]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
+   breakweight = 30 [0x001e]
+
+
+1216  [0x04c0]
    *actualForPseudo* = 1060 [0x0424  / ]
    *skipPasses* = 447 [0x01bf  /  1 1 1 1 1 1 0 1 1]
    breakweight = 30 [0x001e]
@@ -11595,14 +11589,26 @@ GLYPH ATTRIBUTE VALUES
    diaDigitA_.y = 212 [0x00d4]
 
 
-1219  [0x04c3]
-   *actualForPseudo* = 1060 [0x0424  / ]
-   *skipPasses* = 383 [0x017f  /  1 1 1 1 1 1 1 0 1]
+1217  [0x04c1]
+   *actualForPseudo* = 35 [0x0023  / ]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
    breakweight = 30 [0x001e]
-   diaB.x = 165 [0x00a5]
-   diaB.y = 212 [0x00d4]
-   diaDigitB_.x = 165 [0x00a5]
-   diaDigitB_.y = 608 [0x0260]
+
+
+1218  [0x04c2]
+   *actualForPseudo* = 1059 [0x0423  / ]
+   *skipPasses* = 431 [0x01af  /  1 1 1 1 0 1 0 1 1]
+   breakweight = 30 [0x001e]
+   diaA.x = 164 [0x00a4]
+   diaA.y = 648 [0x0288]
+   diaDigitA_.x = 164 [0x00a4]
+   diaDigitA_.y = 181 [0x00b5]
+
+
+1219  [0x04c3]
+   *actualForPseudo* = 35 [0x0023  / ]
+   *skipPasses* = 510 [0x01fe  /  0 1 1 1 1 1 1 1 1]
+   breakweight = 30 [0x001e]
 
 
 1220  [0x04c4]

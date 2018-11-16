@@ -3733,21 +3733,21 @@ table(feature)
 
 
 supernum {
-id = 1026;
+id = "tone";
 name.1033 = string("Tone numbers");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 70
 }
 
 hide_tone_staff {
-id = 1050;
+id = "tstv";
 name.1033 = string("Hide tone contour staves");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 76
 }
 
 pitch9 {
-id = 1062;
+id = "pit9";
 name.1033 = string("9-level pitches");
 default = 0;
 settings {
@@ -3771,42 +3771,42 @@ name.1033 = string("Show tramlines, non-ligated");
 }
 
 viet {
-id = 1029;
+id = "viet";
 name.x409 = string("Vietnamese-style diacritics");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 106
 }
 
 rom {
-id = 1041;
+id = "romn";
 name.1033 = string("Romanian-style diacritics");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 112
 }
 
 chinantec_tone {
-id = 1057;
+id = "chtn";
 name.1033 = string("Chinantec tones");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 118
 }
 
 bridging_diac {
-id = 1052;
+id = "brig";
 name.1033 = string("Bridging diacritics");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 124
 }
 
 barred_bowl {
-id = 1031;
+id = "bowl";
 name.1033 = string("Barred-bowl forms");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 130
 }
 
 literacy {
-id = 1032;
+id = "litr";
 name.1033 = string("Literacy alternates");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 138
@@ -3814,7 +3814,7 @@ default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); 
 
 
 slant_italic {
-id = 1053;
+id = "ital";
 name.1033 = string("Slant italic specials");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 145
@@ -3822,7 +3822,7 @@ default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); 
 
 
 eng {
-id = 1024;
+id = "Engs";
 name.1033 = string("Uppercase Eng alternates");
 default = descender;
 settings {
@@ -3846,7 +3846,7 @@ name.1033 = string("Capital N with tail");
 }
 
 ramshorn {
-id = 1025;
+id = "ramh";
 name.1033 = string("Rams horn alternates");
 default = small;
 settings {
@@ -3866,7 +3866,7 @@ name.1033 = string("Small gamma");
 }
 
 ogonek {
-id = 1043;
+id = "ogon";
 name.1033 = string("Ogonek alternate");
 default = ipa;
 settings {
@@ -3882,7 +3882,7 @@ name.1033 = string("Straight");
 }
 
 h_stroke {
-id = 1038;
+id = "Hstk";
 name.1033 = string("Capital H-stroke alternate");
 default = horizontal;
 settings {
@@ -3898,7 +3898,7 @@ name.1033 = string("Vertical stroke");
 }
 
 ltnjstroke {
-id = 1049;
+id = "Jstk";
 name.1033 = string("J stroke hook alternate");
 default = noSerif;
 settings {
@@ -3914,7 +3914,7 @@ name.1033 = string("Top serif");
 }
 
 n_hook {
-id = 1035;
+id = "N_hk";
 name.1033 = string("Capital N-left-hook alternate");
 default = ucStyle;
 settings {
@@ -3930,7 +3930,7 @@ name.1033 = string("Lowercase style");
 }
 
 open_o {
-id = 1059;
+id = "opnO";
 name.1033 = string("Open-O alternate");
 default = bottomSerif;
 settings {
@@ -3946,7 +3946,7 @@ name.1033 = string("Top serif");
 }
 
 p_hook {
-id = 1040;
+id = "p_hk";
 name.1033 = string("Small p-hook alternate");
 default = left_hook;
 settings {
@@ -3962,7 +3962,7 @@ name.1033 = string("Right hook");
 }
 
 r_tail {
-id = 1039;
+id = "R_tl";
 name.1033 = string("Capital R-tail alternate");
 default = UCstyle;
 settings {
@@ -3978,7 +3978,7 @@ name.1033 = string("Lowercase style");
 }
 
 t_hook {
-id = 1037;
+id = "t_hk";
 name.1033 = string("Capital T-hook alternate");
 default = left_hook;
 settings {
@@ -3994,7 +3994,7 @@ name.1033 = string("Right hook");
 }
 
 v_hook {
-id = 1033;
+id = "v_hk";
 name.1033 = string("Small v-hook alternate");
 default = curved;
 settings {
@@ -4010,7 +4010,7 @@ name.1033 = string("Straight");
 }
 
 y_hook {
-id = 1034;
+id = "Y_hk";
 name.1033 = string("Capital Y-hook alternate");
 default = right_hook;
 settings {
@@ -4026,7 +4026,7 @@ name.1033 = string("Right hook");
 }
 
 ezh_curl {
-id = 1036;
+id = "ezhc";
 name.1033 = string("Small ezh-curl alternate");
 default = small;
 settings {
@@ -4042,7 +4042,7 @@ name.1033 = string("Large bowl");
 }
 
 ezh {
-id = 1042;
+id = "Ezhr";
 name.1033 = string("Capital Ezh alternates");
 default = ipa;
 settings {
@@ -4058,7 +4058,7 @@ name.1033 = string("Reversed sigma");
 }
 
 ou {
-id = 1045;
+id = "opOU";
 name.1033 = string("OU alternates");
 default = closed;
 settings {
@@ -4074,14 +4074,14 @@ name.1033 = string("Open");
 }
 
 mongol_e {
-id = 1027;
+id = "mone";
 name.1033 = string("Cyrillic E alternates");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 404
 }
 #line 416
 apostrophe {
-id = 1044;
+id = "apos";
 name.1033 = string("Modifier apostrophe alternates");
 default = small;
 settings {
@@ -4097,7 +4097,7 @@ name.1033 = string("Large");
 }
 #line 451
 modlowcolon {
-id = 1047;
+id = "coln";
 name.1033 = string("Modifier colon alternate");
 default = tight;
 settings {
@@ -4113,21 +4113,21 @@ name.1033 = string("Wide");
 }
 
 short_breve {
-id = 1028;
+id = "sbrv";
 name.1033 = string("Combining breve Cyrillic form");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 471
 }
 
 cyrillic_shha {
-id = 1056;
+id = "shha";
 name.1033 = string("Cyrillic shha alternate");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 477
 }
 
 emptyset {
-id = 1046;
+id = "empt";
 name.1033 = string("Empty set alternates");
 default = circle;
 settings {
@@ -4143,14 +4143,14 @@ name.1033 = string("Zero");
 }
 
 invis {
-id = 1030;
+id = "invs";
 name.1033 = string("Show invisible characters");
 default = ffalse; settings { ffalse { value = 0; name.0x0409 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 499
 }
 
 select_diac {
-id = 1051;
+id = "dsel";
 name.1033 = string("Diacritic selection");
 default = ftrue; settings { ffalse { value = 0; name.1033 = string("False"); } ftrue { value = 1; name.1033 = string("True"); } }
 #line 505
@@ -4249,7 +4249,7 @@ if (eng == capital)
 endif;
 if (eng == short)
 
-(cBaselineHook g__eng cno_Kom) > cKom;
+(cBaselineHook g__eng ) > cKom;
 endif;
 
 

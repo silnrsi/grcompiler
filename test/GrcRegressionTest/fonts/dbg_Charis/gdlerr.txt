@@ -13,14 +13,13 @@ Create separate control file: no
 *******************************************************
 
 Table versions generated:
-  Silf: 2.0
-  Gloc: 1.0
-  Glat: 1.0
-  Feat: 1.0
-  Sill: 1.0
-
+ Silf:2.0
+ Gloc:1.0
+ Glat:1.0
+ Feat:2.0
+ Sill:1.0
 Minimal compiler version required: 2.0
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 0 warnings (131 warnings ignored)
+Compilation succeeded - 0 errors, 0 warnings (128 warnings ignored)

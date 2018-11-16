@@ -64,19 +64,19 @@ table(feature)
 
 
 supernum {
-	id = 1026;
+	id = "tone"; // 1026;
 	name.1033 = string("Tone numbers");
 	bool
 }    
 
 hide_tone_staff {
-	id = 1050;
+	id = "tstv";  // 1050;
 	name.1033 = string("Hide tone contour staves");
 	bool
 }
 
 pitch9 {
-	id = 1062;
+	id = "pit9";  // 1062;
 	name.1033 = string("9-level pitches");
 	default = 0;
 	settings {
@@ -100,37 +100,37 @@ pitch9 {
 }
 
 viet {
-	id = 1029;
+	id = "viet";  // 1029;
 	name.x409 = string("Vietnamese-style diacritics");
 	bool
 }
 
 rom {
-	id = 1041;
+	id = "romn";  // 1041;
 	name.1033 = string("Romanian-style diacritics");
 	bool
 }
 
 chinantec_tone {
-	id = 1057;
+	id = "chtn";  // 1057;
 	name.1033 = string("Chinantec tones");
 	bool
 }
 
 bridging_diac {
-	id = 1052;
+	id = "brig";  // 1052;
 	name.1033 = string("Bridging diacritics");
 	bool
 }
 
 barred_bowl {
-	id = 1031;
+	id = "bowl";  // 1031;
 	name.1033 = string("Barred-bowl forms");
 	bool
 }
 
 literacy {
-	id = 1032;
+	id = "litr";  // 1032;
 	name.1033 = string("Literacy alternates");
 	bool
 	// to create the hacked literacy font, use this line instead:
@@ -139,14 +139,14 @@ literacy {
 
 #if 1 // FONT != DOULOSfont
 slant_italic {
-  id = 1053;
+  id = "ital";  // 1053;
   name.1033 = string("Slant italic specials");
   bool
 }
 #endif // !DOULOSfont
 
 eng {
-	id = 1024;
+	id = "Engs";  // 1024;
 	name.1033 = string("Uppercase Eng alternates");
 	default = descender;
 	settings {
@@ -170,7 +170,7 @@ eng {
 }
 
 ramshorn {
-	id = 1025;
+	id = "ramh";  // 1025;
 	name.1033 = string("Rams horn alternates");
 	default = small;
 	settings {
@@ -190,7 +190,7 @@ ramshorn {
 }
 
 ogonek {
-	id = 1043;
+	id = "ogon";  // 1043;
 	name.1033 = string("Ogonek alternate");
 	default = ipa;
 	settings {
@@ -206,7 +206,7 @@ ogonek {
 }
 
 h_stroke {
-	id = 1038;
+	id = "Hstk";  // 1038;
 	name.1033 = string("Capital H-stroke alternate");
 	default = horizontal;
 	settings {
@@ -222,7 +222,7 @@ h_stroke {
 }
 
 ltnjstroke {
-	id = 1049;
+	id = "Jstk";  // 1049;
 	name.1033 = string("J stroke hook alternate");
 	default = noSerif;
 	settings {
@@ -238,7 +238,7 @@ ltnjstroke {
 }    
 
 n_hook {
-	id = 1035;
+	id = "N_hk";  // 1035;
 	name.1033 = string("Capital N-left-hook alternate");
 	default = ucStyle;
 	settings {
@@ -254,7 +254,7 @@ n_hook {
 }
 
 open_o {
-	id = 1059;
+	id = "opnO";  // 1059;
 	name.1033 = string("Open-O alternate");
 	default = bottomSerif;
 	settings {
@@ -270,7 +270,7 @@ open_o {
 }
 
 p_hook {
-	id = 1040;
+	id = "p_hk";  // 1040;
 	name.1033 = string("Small p-hook alternate");
 	default = left_hook;
 	settings {
@@ -286,7 +286,7 @@ p_hook {
 }
 
 r_tail {
-	id = 1039;
+	id = "R_tl";  // 1039;
 	name.1033 = string("Capital R-tail alternate");
 	default = UCstyle;
 	settings {
@@ -302,7 +302,7 @@ r_tail {
 }
 
 t_hook {
-	id = 1037;
+	id = "t_hk";  // 1037;
 	name.1033 = string("Capital T-hook alternate");
 	default = left_hook;
 	settings {
@@ -318,7 +318,7 @@ t_hook {
 }
 
 v_hook {
-	id = 1033;
+	id = "v_hk";  // 1033;
 	name.1033 = string("Small v-hook alternate");
 	default = curved;
 	settings {
@@ -334,7 +334,7 @@ v_hook {
 }
 
 y_hook {
-	id = 1034;
+	id = "Y_hk";  // 1034;
 	name.1033 = string("Capital Y-hook alternate");
 	default = right_hook;
 	settings {
@@ -350,7 +350,7 @@ y_hook {
 }
 
 ezh_curl {
-	id = 1036;
+	id = "ezhc";  // 1036;
 	name.1033 = string("Small ezh-curl alternate");
 	default = small;
 	settings {
@@ -366,7 +366,7 @@ ezh_curl {
 }
 
 ezh {
-	id = 1042;
+	id = "Ezhr";  // 1042;
 	name.1033 = string("Capital Ezh alternates");
 	default = ipa;
 	settings {
@@ -382,7 +382,7 @@ ezh {
 }
 
 ou {
-	id = 1045;
+	id = "opOU";  // 1045;
 	name.1033 = string("OU alternates");
 	default = closed;
 	settings {
@@ -398,7 +398,7 @@ ou {
 }
 
 mongol_e {
-	id = 1027;
+	id = "mone";  // 1027;
 	name.1033 = string("Cyrillic E alternates");
 	bool
 }
@@ -414,7 +414,7 @@ cyr_curs_ital {
 #endif // !DOULOSfont
 
 apostrophe {
-	id = 1044;
+	id = "apos";  // 1044;
 	name.1033 = string("Modifier apostrophe alternates");
 	default = small;
 	settings {
@@ -449,7 +449,7 @@ ltnglottalstop {
 *************/
 
 modlowcolon {
-	id = 1047;
+	id = "coln";  // 1047;
 	name.1033 = string("Modifier colon alternate");
 	default = tight;
 	settings {
@@ -465,19 +465,19 @@ modlowcolon {
 }
 	
 short_breve {
-	id = 1028;
+	id = "sbrv";  // 1028;
 	name.1033 = string("Combining breve Cyrillic form");
 	bool
 }
 
 cyrillic_shha {
-	id = 1056;
+	id = "shha";  // 1056;
 	name.1033 = string("Cyrillic shha alternate");
 	bool
 }
 
 emptyset {
-	id = 1046;
+	id = "empt";  // 1046;
 	name.1033 = string("Empty set alternates");
   default = circle;
   settings {
@@ -493,13 +493,13 @@ emptyset {
 }
 
 invis {
-	id = 1030;
+	id = "invs";  // 1030;
 	name.1033 = string("Show invisible characters");
 	bool
 }
 
 select_diac {
-	id = 1051;
+	id = "dsel";  // 1051;
 	name.1033 = string("Diacritic selection");
 	boolWDefTrue
 }
@@ -507,13 +507,13 @@ select_diac {
 
 #if SMALLCAPS
 smallcaps {
-	id = 2000;
+	id = "smcp";  // 2000;
 	name.1033 = string("Small Caps");
 	bool
 }
 
 allcaps {
-	id = 2001;
+	id = "alcp";  // 2001;
 	name.1033 = string("All Caps");
 	bool
 }
@@ -522,7 +522,7 @@ allcaps {
 
 #if DEBUG  
 debug {
-	id = 1099;
+	id = "dsel";  // 1099;
 	name.1033 = string("DeBuG");
 	bool
 }

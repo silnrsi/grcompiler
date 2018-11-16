@@ -494,9 +494,13 @@ g103e g1030 > g103e_1030:(1 3) _ / _ g1031? _;
 
 // there should be no gKill left now
 // gKill > _;
+// The compiler has been changed to require at least two slots in order to do a deletion, 
+// so I'm just getting rid of these rules.
+/***
 g200C > _;
 g200d > _;
 wj > _;
+***/
 
 endpass;
 

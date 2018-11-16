@@ -2990,7 +2990,7 @@ table(feature)
 
 
 shaddaKasra {
-id = 2001;
+id = "cv62";
 name.1033 = string("Shadda+kasra placement");
 settings {
 std {
@@ -3006,7 +3006,7 @@ default = std;
 }
 
 meemAlt {
-id = 2002;
+id = "cv44";
 name.1033 = string("Meem alternates");
 settings {
 std {
@@ -3022,7 +3022,7 @@ default = std;
 }
 
 hehAlt {
-id = 2003;
+id = "cv48";
 name.1033 = string("Heh alternates");
 settings {
 std {
@@ -3046,7 +3046,7 @@ default = std;
 }
 
 easternDigits {
-id = 2004;
+id = "cv82";
 name.1033 = string("Eastern digit alternates");
 settings {
 std {
@@ -3066,7 +3066,7 @@ default = std;
 }
 
 sukunAlt {
-id = 2005;
+id = "cv78";
 name.1033 = string("Sukun alternates");
 settings {
 std {
@@ -3086,7 +3086,7 @@ default = std;
 }
 
 headOfKhahAlt {
-id = 2009;
+id = "cv92";
 name.1033 = string("Dotless head of khah");
 settings {
 std {
@@ -3102,7 +3102,7 @@ default = std;
 }
 
 commaAlt {
-id = 2006;
+id = "cv84";
 name.1033 = string("Downward comma");
 settings {
 off {
@@ -3118,7 +3118,7 @@ default = off;
 }
 
 dammatanAlt {
-id = 2007;
+id = "cv72";
 name.1033 = string("Six-nine dammatan");
 settings {
 off {
@@ -3134,7 +3134,7 @@ default = off;
 }
 
 endOfAyah {
-id = 2008;
+id = "cv80";
 name.1033 = string("End of ayah");
 settings {
 std {
@@ -3154,7 +3154,7 @@ default = std;
 }
 
 kasraTcheh {
-id = 3000;
+id = "ktch";
 name.1033 = string("Kasra-tcheh adjustment");
 settings {
 raise {
@@ -3170,7 +3170,7 @@ default = raise;
 }
 
 selectDiac {
-id = 1051;
+id = "dsel";
 name.1033 = string("Diacritic selection");
 settings {
 off {
@@ -3186,7 +3186,7 @@ default = on;
 }
 
 invis {
-id = 1030;
+id = "invs";
 name.1033 = string("Show invisible characters");
 settings {
 off {
@@ -3299,17 +3299,28 @@ endif;
 #line 169
 endpass;
 
+table(glyph)
+
+cDualLinkFinAux = cDualLinkFin;
+cDualLinkFinAux -= zeroWidthJoiner;
+cDualLinkMedAux = cDualLinkMed;
+cDualLinkMedAux -= zeroWidthJoiner;
+cRightLinkIsoAux = cRightLinkIso;
+cRightLinkIsoAux -= zeroWidthJoiner;
+cRightLinkFinAux = cRightLinkFin;
+cRightLinkFinAux -= zeroWidthJoiner;
+endtable;
 
 pass(4)
-#line 182
+#line 193
 cLamIso cAlefIso > cLamIniPreAlef {user1 = false} cAlefFinPostLamIni / _ [ cAnyMarks [ cAnyMarks [ cAnyMarks cAnyMarks? ]? ]? ]? ^ _ ;
 cLamFin cAlefIso > cLamMedPreAlef {user1 = false} cAlefFinPostLamMed / _ [ cAnyMarks [ cAnyMarks [ cAnyMarks cAnyMarks? ]? ]? ]? ^ _ ;
 
 
 
 
-(cDualLinkIso cDualLinkFin absTatweel) (cDualLinkIso cRightLinkIso absTatweel) >
-(cDualLinkIni cDualLinkMed absTatweel) (cDualLinkFin cRightLinkFin absTatweel)
+(cDualLinkIso cDualLinkFinAux absTatweel) (cDualLinkIso cRightLinkIsoAux absTatweel) >
+(cDualLinkIni cDualLinkMedAux absTatweel) (cDualLinkFin cRightLinkFinAux absTatweel)
 / _ cDiaDigit? [ cAnyMarks [ cAnyMarks [ cAnyMarks cAnyMarks? ]? ]? ]? ^ _ ;
 
 
@@ -3413,7 +3424,7 @@ pass(1)
 
 cHasExit=L {user1 = true} cHasEntry=A {attach {to=@L; at=exit; with=entry}; insert=true}
 / ^ _ {user1 == false} [ cAnyMarks [ cAnyMarks [ cAnyMarks cAnyMarks? ]? ]? ]? _;
-#line 298
+#line 309
 cHasAlef=B cMatchesAlef {attach {to=@B; at=alef; with=alef_}; insert = true} / _ ^ _ ;
 
 
@@ -3437,7 +3448,7 @@ cTakesDiaDigitA=B cDiaDigitAbove {attach {to=@B; at=diaDigitA; with=diaDigitA_}}
 
 cHasDiaA=B cMatchesDiaA {attach {to=@B; at=diaA; with=diaA_}; insert = selectDiac}
 / _ ^ [ cAnyMarksBelow [ cAnyMarksBelow cAnyMarksBelow? ]? ]? _;
-#line 326
+#line 337
 cSign4=S
 cSignDigit=D4 { attach {to=@D3; at=digit; with=digit_ }; insert = true}
 cSignDigit=D3 { attach {to=@D2; at=digit; with=digit_ }; insert = true}
@@ -3521,7 +3532,7 @@ endpass;
 endtable;
 
 pass(3)
-#line 416
+#line 427
 cKafLikeIniMed [ cAnyMarks [ cAnyMarks [ cAnyMarks cAnyMarks? ]? ]? ]? absAutoKashida {kern.x = -30m} absRnoonMed {kern.x = -30m};
 
 

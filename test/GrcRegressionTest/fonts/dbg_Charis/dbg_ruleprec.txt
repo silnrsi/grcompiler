@@ -3,7 +3,9 @@ RULE PRECEDENCE
 
 TABLE: substitution
 
-PASS: 1
+PASS: 0 - no rules
+
+PASS: 1 (GDL #1)
 
 0 - RULE 1.0, CharisRules.gdh(264):  gFE20  gFE21  >  g0361:(3 10)  _   /  ANY  ANY  ^  _  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  ;
 
@@ -494,7 +496,7 @@ PASS: 1
 162 - RULE 1.153, CharisPitches.gdh(609):  if (pitch9 < 2) g_pitchSpace  >  g_noPitchSpace   /  ANY  ANY  _  ; endif; 
 
 
-PASS: 2
+PASS: 2 (GDL #2)
 
 0 - RULE 2.0, CharisRules.gdh(588):  cno_Dotless  >  cDotless   /  ANY  _  cnUDia  cnUDia  cnUDia  cnUDia  cUDia  ;
 
@@ -672,7 +674,9 @@ PASS: 2
 
 TABLE: positioning
 
-PASS: 3
+PASS: 0 - no rules
+
+PASS: 3 (GDL #1)
 
 0 - RULE 3.2, CharisRules.gdh(639):  if (select_diac) cTakesHDia  cHDia {  attach {to = @1; at = H; with = HM; } insert = 1; user1 = 1;  }   /  ^  _  cnHDia  cnHDia  cnHDia  cnHDia  _{ user1 == 0 }  ; endif; 
 
@@ -833,7 +837,7 @@ PASS: 3
 52 - RULE 3.52, CharisRules.gdh(655):  cBridgeDiac { advance.x = 0;  }  ;
 
 
-PASS: 4
+PASS: 4 (GDL #2)
 
 0 - RULE 4.0, CharisRules.gdh(668):  cUDblDia { shift.y = ((@1.bb.top max @8.bb.top) - @7.bb.bottom) + 205; shift.x = (@8.bb.width - @1.bb.width) / 2; insert = 1;  }   /  cTakesUDia  cDia  cDia  cDia  cDia  cDia  _  cTakesUDia  ;
 
@@ -889,7 +893,7 @@ PASS: 4
 17 - RULE 4.17, CharisRules.gdh(674):  cUDblDia { shift.y = (@8.bb.top - @7.bb.bottom) + 205; insert = 1;  }   /  ANY  ANY  ANY  ANY  ANY  ANY  _  cTakesUDia  ;
 
 
-PASS: 5
+PASS: 5 (GDL #3)
 
 0 - RULE 5.0, CharisRules.gdh(684):  g035F { shift.y = ((@1.bb.bottom min @8.bb.bottom) - @7.bb.top) - 205; shift.x = (@8.bb.width - @1.bb.width) / 2; insert = 1;  }   /  cTakesLDia  cDia  cDia  cDia  cDia  cDia  _  cTakesLDia  ;
 

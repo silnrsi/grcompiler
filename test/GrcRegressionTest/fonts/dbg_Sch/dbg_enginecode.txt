@@ -7,6 +7,8 @@ PASS: 0
 
 PASS CONSTRAINTS: none
 
+NO RULES
+
 PASS: 1
 
 PASS CONSTRAINTS: none
@@ -261,7 +263,7 @@ PASS: 4
 
 PASS CONSTRAINTS: none
 
-RULE 4.0, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.0, SchMain.gdl(193):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 52 19
@@ -279,7 +281,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.1, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.1, SchMain.gdl(193):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 52 19
@@ -296,7 +298,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.2, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.2, SchMain.gdl(193):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 52 19
@@ -312,7 +314,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.3, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  ^  _  ;
+RULE 4.3, SchMain.gdl(193):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 52 19
@@ -327,7 +329,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.4, SchMain.gdl(182):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  ^  _  ;
+RULE 4.4, SchMain.gdl(193):  cLamIso  cAlefIso  >  cLamIniPreAlef { user1 = 0;  }  cAlefFinPostLamIni   /  _  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 52 19
@@ -341,7 +343,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.5, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.5, SchMain.gdl(194):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 51 20
@@ -359,7 +361,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.6, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.6, SchMain.gdl(194):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 51 20
@@ -376,7 +378,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.7, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.7, SchMain.gdl(194):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 51 20
@@ -392,7 +394,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.8, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  ^  _  ;
+RULE 4.8, SchMain.gdl(194):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 51 20
@@ -407,7 +409,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.9, SchMain.gdl(183):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  ^  _  ;
+RULE 4.9, SchMain.gdl(194):  cLamFin  cAlefIso  >  cLamMedPreAlef { user1 = 0;  }  cAlefFinPostLamMed   /  _  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 51 20
@@ -421,7 +423,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.10, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.10, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -438,7 +440,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.11, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.11, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -454,7 +456,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.12, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.12, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cDiaDigit  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -469,7 +471,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.13, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  cAnyMarks  ^  _  ;
+RULE 4.13, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cDiaDigit  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -483,7 +485,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.14, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cDiaDigit  ^  _  ;
+RULE 4.14, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cDiaDigit  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -496,7 +498,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.15, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.15, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -512,7 +514,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.16, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.16, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cAnyMarks  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -527,7 +529,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.17, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  cAnyMarks  ^  _  ;
+RULE 4.17, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cAnyMarks  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -541,7 +543,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.18, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  cAnyMarks  ^  _  ;
+RULE 4.18, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  cAnyMarks  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -554,7 +556,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.19, SchMain.gdl(188):  *GC4*  *GC5*  >  *GC2*  *GC3*   /  _  ^  _  ;
+RULE 4.19, SchMain.gdl(199):  *GC12*  *GC13*  >  *GC10*  *GC11*   /  _  ^  _  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 43 1
@@ -566,7 +568,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 4.20, SchMain.gdl(195):  cSignTakes4  cDigitNormal  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign4  cDigitMedium  cDigitMedium  cDigitMedium  cDigitMedium  ;
+RULE 4.20, SchMain.gdl(206):  cSignTakes4  cDigitNormal  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign4  cDigitMedium  cDigitMedium  cDigitMedium  cDigitMedium  ;
 
 ACTIONS:
 PutGlyph(V1&2) 28
@@ -583,7 +585,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.21, SchMain.gdl(198):  cSignTakes3Medium  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign3Medium  cDigitMedium  cDigitMedium  cDigitMedium  ;
+RULE 4.21, SchMain.gdl(209):  cSignTakes3Medium  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign3Medium  cDigitMedium  cDigitMedium  cDigitMedium  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 57 26
@@ -598,7 +600,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.22, SchMain.gdl(201):  cSignTakes3Small  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign3Small  cDigitSmall  cDigitSmall  cDigitSmall  ;
+RULE 4.22, SchMain.gdl(212):  cSignTakes3Small  cDigitNormal  cDigitNormal  cDigitNormal  >  cSign3Small  cDigitSmall  cDigitSmall  cDigitSmall  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 58 27
@@ -613,7 +615,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.23, SchMain.gdl(204):  cSignTakes2  cDigitNormal  cDigitNormal  >  cSign2  cDigitMedium  cDigitMedium  ;
+RULE 4.23, SchMain.gdl(215):  cSignTakes2  cDigitNormal  cDigitNormal  >  cSign2  cDigitMedium  cDigitMedium  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 56 25
@@ -626,7 +628,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 4.24, SchMain.gdl(207):  cSignTakes1  cDigitNormal  >  cSign1  cDigitMedium  ;
+RULE 4.24, SchMain.gdl(218):  cSignTakes1  cDigitNormal  >  cSign1  cDigitMedium  ;
 
 ACTIONS:
 PutSubs(V1&2) 0 55 24
@@ -641,7 +643,7 @@ PASS: 5
 
 PASS CONSTRAINTS: none
 
-RULE 5.0, SchMain.gdl(214):  absSuperscriptAlef  >  absSuperscriptAlef__large   /  cNeedsLargeDaggerAlef  _  ;
+RULE 5.0, SchMain.gdl(225):  absSuperscriptAlef  >  absSuperscriptAlef__large   /  cNeedsLargeDaggerAlef  _  ;
 
 ACTIONS:
 PutGlyph(V1&2) 5
@@ -650,7 +652,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 5.1, SchMain.gdl(217):  if (selectDiac) cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3) { comp.base.ref = @2; comp.hamza.ref = @3;  }  _   /  ANY  _  _  ; endif; 
+RULE 5.1, SchMain.gdl(228):  if (selectDiac) cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3) { comp.base.ref = @2; comp.hamza.ref = @3;  }  _   /  ANY  _  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 53 35
@@ -668,7 +670,7 @@ CONSTRAINTS:
 PushFeat 10 0
 PopRet
 
-RULE 5.2, SchMain.gdl(220):  if (!(selectDiac)) cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3)  _   /  ANY  _  _  ; endif; 
+RULE 5.2, SchMain.gdl(231):  if (!(selectDiac)) cNeedsLoweredHamza  absHamzaAbove  >  cWithLoweredHamza:(2 3)  _   /  ANY  _  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 53 35
@@ -683,7 +685,7 @@ PushFeat 10 0
 Not
 PopRet
 
-RULE 5.3, SchMain.gdl(226):  if (meemAlt == 1) cno_Meem  >  cMeemSindhi   /  ANY  _  ; endif; 
+RULE 5.3, SchMain.gdl(237):  if (meemAlt == 1) cno_Meem  >  cMeemSindhi   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 63 21
@@ -696,7 +698,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 5.4, SchMain.gdl(230):  if (hehAlt == 1) cno_Heh  >  cHehKurdish   /  ANY  _  ; endif; 
+RULE 5.4, SchMain.gdl(241):  if (hehAlt == 1) cno_Heh  >  cHehKurdish   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 62 16
@@ -709,7 +711,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 5.5, SchMain.gdl(233):  if (hehAlt == 2) cno_Heh  >  cHehSindhi   /  ANY  _  ; endif; 
+RULE 5.5, SchMain.gdl(244):  if (hehAlt == 2) cno_Heh  >  cHehSindhi   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 62 17
@@ -722,7 +724,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 5.6, SchMain.gdl(236):  if (hehAlt == 3) cno_Heh  >  cHehUrdu   /  ANY  _  ; endif; 
+RULE 5.6, SchMain.gdl(247):  if (hehAlt == 3) cno_Heh  >  cHehUrdu   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 62 18
@@ -735,7 +737,7 @@ PushByte 3
 Equal
 PopRet
 
-RULE 5.7, SchMain.gdl(240):  if (easternDigits == 1) cEasternDigit  >  cEasternDigitSindhi   /  ANY  _  ; endif; 
+RULE 5.7, SchMain.gdl(251):  if (easternDigits == 1) cEasternDigit  >  cEasternDigitSindhi   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 48 12
@@ -748,7 +750,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 5.8, SchMain.gdl(243):  if (easternDigits == 2) cEasternDigit  >  cEasternDigitUrdu   /  ANY  _  ; endif; 
+RULE 5.8, SchMain.gdl(254):  if (easternDigits == 2) cEasternDigit  >  cEasternDigitUrdu   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 48 13
@@ -761,7 +763,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 5.9, SchMain.gdl(247):  if (sukunAlt == 1) cno_Sukun  >  cSukunDownOpen   /  ANY  _  ; endif; 
+RULE 5.9, SchMain.gdl(258):  if (sukunAlt == 1) cno_Sukun  >  cSukunDownOpen   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 30
@@ -774,7 +776,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 5.10, SchMain.gdl(250):  if (sukunAlt == 2) cno_Sukun  >  cSukunLeftOpen   /  ANY  _  ; endif; 
+RULE 5.10, SchMain.gdl(261):  if (sukunAlt == 2) cno_Sukun  >  cSukunLeftOpen   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 31
@@ -787,7 +789,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 5.11, SchMain.gdl(254):  if (headOfKhahAlt == 1) cno_OpenLeft  >  cOpenLeft   /  ANY  _  ; endif; 
+RULE 5.11, SchMain.gdl(265):  if (headOfKhahAlt == 1) cno_OpenLeft  >  cOpenLeft   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 22
@@ -800,7 +802,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 5.12, SchMain.gdl(258):  if (commaAlt) cno_Downward  >  cDownward   /  ANY  _  ; endif; 
+RULE 5.12, SchMain.gdl(269):  if (commaAlt) cno_Downward  >  cDownward   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 61 11
@@ -811,7 +813,7 @@ CONSTRAINTS:
 PushFeat 6 0
 PopRet
 
-RULE 5.13, SchMain.gdl(262):  if (dammatanAlt) cno_SixNine  >  cSixNine   /  ANY  _  ; endif; 
+RULE 5.13, SchMain.gdl(273):  if (dammatanAlt) cno_SixNine  >  cSixNine   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 29
@@ -822,7 +824,7 @@ CONSTRAINTS:
 PushFeat 7 0
 PopRet
 
-RULE 5.14, SchMain.gdl(266):  if (endOfAyah == 1) cEndOfAyah  >  cEndOfAyahCircle   /  ANY  _  ; endif; 
+RULE 5.14, SchMain.gdl(277):  if (endOfAyah == 1) cEndOfAyah  >  cEndOfAyahCircle   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 49 14
@@ -835,7 +837,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 5.15, SchMain.gdl(269):  if (endOfAyah == 2) cEndOfAyah  >  cEndOfAyahSquare   /  ANY  _  ; endif; 
+RULE 5.15, SchMain.gdl(280):  if (endOfAyah == 2) cEndOfAyah  >  cEndOfAyahSquare   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutSubs(V1&2) 0 49 15
@@ -848,7 +850,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 5.16, SchMain.gdl(275):  if (!(invis)) cInvisible  >  zeroWidthSpace { dir = @2.dir;  }   /  ANY  _  ; endif; 
+RULE 5.16, SchMain.gdl(286):  if (!(invis)) cInvisible  >  zeroWidthSpace { dir = @2.dir;  }   /  ANY  _  ; endif; 
 
 ACTIONS:
 PutGlyph(V1&2) 36
@@ -866,7 +868,7 @@ PASS: 6
 
 PASS CONSTRAINTS: none
 
-RULE 6.0, SchMain.gdl(398):  cKafLikeIniMed  _  >  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  absRnoonMed  ;
+RULE 6.0, SchMain.gdl(409):  cKafLikeIniMed  _  >  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  absRnoonMed  ;
 
 ACTIONS:
 PutCopy 0
@@ -883,7 +885,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.1, SchMain.gdl(398):  cKafLikeIniMed  _  >  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  absRnoonMed  ;
+RULE 6.1, SchMain.gdl(409):  cKafLikeIniMed  _  >  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  absRnoonMed  ;
 
 ACTIONS:
 PutCopy 0
@@ -899,7 +901,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.2, SchMain.gdl(398):  cKafLikeIniMed  _  >  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  absRnoonMed  ;
+RULE 6.2, SchMain.gdl(409):  cKafLikeIniMed  _  >  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  absRnoonMed  ;
 
 ACTIONS:
 PutCopy 0
@@ -914,7 +916,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.3, SchMain.gdl(398):  cKafLikeIniMed  _  >  @1  absAutoKashida:4   /  _  cAnyMarks  _  absRnoonMed  ;
+RULE 6.3, SchMain.gdl(409):  cKafLikeIniMed  _  >  @1  absAutoKashida:4   /  _  cAnyMarks  _  absRnoonMed  ;
 
 ACTIONS:
 PutCopy 0
@@ -928,7 +930,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.4, SchMain.gdl(398):  cKafLikeIniMed  _  >  @1  absAutoKashida:3   /  _  _  absRnoonMed  ;
+RULE 6.4, SchMain.gdl(409):  cKafLikeIniMed  _  >  @1  absAutoKashida:3   /  _  _  absRnoonMed  ;
 
 ACTIONS:
 PutCopy 0
@@ -941,82 +943,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.5, SchMain.gdl(399):  absFarsiYehIni  _  >  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  *GC8*  ;
-
-ACTIONS:
-PutCopy 0
-Next
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-Insert
-PutGlyph(V1&2) 4
-Assoc 1 1
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 6.6, SchMain.gdl(399):  absFarsiYehIni  _  >  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  *GC8*  ;
-
-ACTIONS:
-PutCopy 0
-Next
-CopyNext
-CopyNext
-CopyNext
-Insert
-PutGlyph(V1&2) 4
-Assoc 1 1
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 6.7, SchMain.gdl(399):  absFarsiYehIni  _  >  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  *GC8*  ;
-
-ACTIONS:
-PutCopy 0
-Next
-CopyNext
-CopyNext
-Insert
-PutGlyph(V1&2) 4
-Assoc 1 1
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 6.8, SchMain.gdl(399):  absFarsiYehIni  _  >  @1  absAutoKashida:4   /  _  cAnyMarks  _  *GC8*  ;
-
-ACTIONS:
-PutCopy 0
-Next
-CopyNext
-Insert
-PutGlyph(V1&2) 4
-Assoc 1 1
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 6.9, SchMain.gdl(399):  absFarsiYehIni  _  >  @1  absAutoKashida:3   /  _  _  *GC8*  ;
-
-ACTIONS:
-PutCopy 0
-Next
-Insert
-PutGlyph(V1&2) 4
-Assoc 1 1
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 6.10, SchMain.gdl(400):  *GC9*  _  >  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  absRrehFin  ;
+RULE 6.5, SchMain.gdl(410):  absFarsiYehIni  _  >  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  *GC16*  ;
 
 ACTIONS:
 PutCopy 0
@@ -1033,7 +960,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.11, SchMain.gdl(400):  *GC9*  _  >  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  absRrehFin  ;
+RULE 6.6, SchMain.gdl(410):  absFarsiYehIni  _  >  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  *GC16*  ;
 
 ACTIONS:
 PutCopy 0
@@ -1049,7 +976,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.12, SchMain.gdl(400):  *GC9*  _  >  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  absRrehFin  ;
+RULE 6.7, SchMain.gdl(410):  absFarsiYehIni  _  >  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  *GC16*  ;
 
 ACTIONS:
 PutCopy 0
@@ -1064,7 +991,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.13, SchMain.gdl(400):  *GC9*  _  >  @1  absAutoKashida:4   /  _  cAnyMarks  _  absRrehFin  ;
+RULE 6.8, SchMain.gdl(410):  absFarsiYehIni  _  >  @1  absAutoKashida:4   /  _  cAnyMarks  _  *GC16*  ;
 
 ACTIONS:
 PutCopy 0
@@ -1078,7 +1005,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 6.14, SchMain.gdl(400):  *GC9*  _  >  @1  absAutoKashida:3   /  _  _  absRrehFin  ;
+RULE 6.9, SchMain.gdl(410):  absFarsiYehIni  _  >  @1  absAutoKashida:3   /  _  _  *GC16*  ;
 
 ACTIONS:
 PutCopy 0
@@ -1091,7 +1018,82 @@ RetZero
 
 CONSTRAINTS: none
 
-PASS 7: bidi
+RULE 6.10, SchMain.gdl(411):  *GC17*  _  >  @1  absAutoKashida:7   /  _  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  absRrehFin  ;
+
+ACTIONS:
+PutCopy 0
+Next
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph(V1&2) 4
+Assoc 1 1
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.11, SchMain.gdl(411):  *GC17*  _  >  @1  absAutoKashida:6   /  _  cAnyMarks  cAnyMarks  cAnyMarks  _  absRrehFin  ;
+
+ACTIONS:
+PutCopy 0
+Next
+CopyNext
+CopyNext
+CopyNext
+Insert
+PutGlyph(V1&2) 4
+Assoc 1 1
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.12, SchMain.gdl(411):  *GC17*  _  >  @1  absAutoKashida:5   /  _  cAnyMarks  cAnyMarks  _  absRrehFin  ;
+
+ACTIONS:
+PutCopy 0
+Next
+CopyNext
+CopyNext
+Insert
+PutGlyph(V1&2) 4
+Assoc 1 1
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.13, SchMain.gdl(411):  *GC17*  _  >  @1  absAutoKashida:4   /  _  cAnyMarks  _  absRrehFin  ;
+
+ACTIONS:
+PutCopy 0
+Next
+CopyNext
+Insert
+PutGlyph(V1&2) 4
+Assoc 1 1
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 6.14, SchMain.gdl(411):  *GC17*  _  >  @1  absAutoKashida:3   /  _  _  absRrehFin  ;
+
+ACTIONS:
+PutCopy 0
+Next
+Insert
+PutGlyph(V1&2) 4
+Assoc 1 1
+Next
+RetZero
+
+CONSTRAINTS: none
+
+PASS 10: bidi
 
 TABLE: positioning
 
@@ -1099,11 +1101,13 @@ PASS: 0
 
 PASS CONSTRAINTS: none
 
-PASS: 8
+NO RULES
+
+PASS: 7
 
 PASS CONSTRAINTS: none
 
-RULE 8.0, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
+RULE 7.0, SchMain.gdl(302):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -1140,7 +1144,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 8.1, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
+RULE 7.1, SchMain.gdl(302):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  cAnyMarks  cAnyMarks  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -1176,7 +1180,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 8.2, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  cAnyMarks  _  ;
+RULE 7.2, SchMain.gdl(302):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  cAnyMarks  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -1211,7 +1215,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 8.3, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  _  ;
+RULE 7.3, SchMain.gdl(302):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  cAnyMarks  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -1245,7 +1249,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 8.4, SchMain.gdl(291):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  _  ;
+RULE 7.4, SchMain.gdl(302):  cHasExit { user1 = 1;  }  cHasEntry {  attach {to = @1; at = exit; with = entry; } insert = 1;  }   /  ^  _{ user1 == 0 }  _  ;
 
 ACTIONS:
 PutCopy 0
@@ -1278,7 +1282,7 @@ PushByte 0
 Equal
 PopRet
 
-RULE 8.5, SchMain.gdl(298):  cHasAlef  cMatchesAlef {  attach {to = @1; at = alef; with = alef_; } insert = 1;  }   /  _  ^  _  ;
+RULE 7.5, SchMain.gdl(309):  cHasAlef  cMatchesAlef {  attach {to = @1; at = alef; with = alef_; } insert = 1;  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1303,7 +1307,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.6, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 7.6, SchMain.gdl(312):  absShadda  *GC14* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1337,7 +1341,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.7, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 7.7, SchMain.gdl(312):  absShadda  *GC14* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1370,7 +1374,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.8, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
+RULE 7.8, SchMain.gdl(312):  absShadda  *GC14* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1402,7 +1406,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.9, SchMain.gdl(301):  absShadda  *GC6* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 7.9, SchMain.gdl(312):  absShadda  *GC14* {  attach {to = @1; at.x = diaA.x; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1433,7 +1437,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.10, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 7.10, SchMain.gdl(317):  absHamzaAbove  *GC15* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1469,7 +1473,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.11, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 7.11, SchMain.gdl(317):  absHamzaAbove  *GC15* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1504,7 +1508,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.12, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
+RULE 7.12, SchMain.gdl(317):  absHamzaAbove  *GC15* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1538,7 +1542,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.13, SchMain.gdl(306):  absHamzaAbove  *GC7* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 7.13, SchMain.gdl(317):  absHamzaAbove  *GC15* {  attach {to = @1; at.x = diaA.x + 40; at.y = diaA.y - 80; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1571,7 +1575,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.14, SchMain.gdl(314):  cTakesDiaDigitA  cDiaDigitAbove {  attach {to = @1; at = diaDigitA; with = diaDigitA_; }  }   /  _  ^  _  ;
+RULE 7.14, SchMain.gdl(325):  cTakesDiaDigitA  cDiaDigitAbove {  attach {to = @1; at = diaDigitA; with = diaDigitA_; }  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1594,7 +1598,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.15, SchMain.gdl(319):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 7.15, SchMain.gdl(330):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1622,7 +1626,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.16, SchMain.gdl(319):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
+RULE 7.16, SchMain.gdl(330):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1649,7 +1653,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.17, SchMain.gdl(319):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
+RULE 7.17, SchMain.gdl(330):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  cAnyMarksBelow  _  ;
 
 ACTIONS:
 CopyNext
@@ -1675,7 +1679,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.18, SchMain.gdl(319):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 7.18, SchMain.gdl(330):  cHasDiaA  cMatchesDiaA {  attach {to = @1; at = diaA; with = diaA_; } insert = selectDiac;  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1700,7 +1704,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 8.19, SchMain.gdl(326):  cSign4  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @5; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
+RULE 7.19, SchMain.gdl(337):  cSign4  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @5; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
 
 ACTIONS:
 CopyNext
@@ -1772,7 +1776,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 8.20, SchMain.gdl(332):  cSign3  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
+RULE 7.20, SchMain.gdl(343):  cSign3  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @4; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
 
 ACTIONS:
 CopyNext
@@ -1828,7 +1832,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 8.21, SchMain.gdl(337):  cSign2  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
+RULE 7.21, SchMain.gdl(348):  cSign2  cSignDigit {  attach {to = @3; at = digit; with = digit_; } insert = 1;  }  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
 
 ACTIONS:
 CopyNext
@@ -1868,7 +1872,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 8.22, SchMain.gdl(341):  cSign1  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
+RULE 7.22, SchMain.gdl(352):  cSign1  cSignDigit {  attach {to = @1; at = digit; with = digit_; } insert = 1;  }  ;
 
 ACTIONS:
 CopyNext
@@ -1892,11 +1896,11 @@ RetZero
 
 CONSTRAINTS: none
 
-PASS: 9
+PASS: 8
 
 PASS CONSTRAINTS: none
 
-RULE 9.0, SchMain.gdl(350):  cHasDia2B  cMatchesDia2B {  attach {to = @1; at = dia2B; with = dia2B_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 8.0, SchMain.gdl(361):  cHasDia2B  cMatchesDia2B {  attach {to = @1; at = dia2B; with = dia2B_; } insert = selectDiac;  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1921,7 +1925,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 9.1, SchMain.gdl(356):  cTakesDiaDigitB  cDiaDigitBelow {  attach {to = @1; at = diaDigitB; with = diaDigitB_; }  }   /  _  ^  _  ;
+RULE 8.1, SchMain.gdl(367):  cTakesDiaDigitB  cDiaDigitBelow {  attach {to = @1; at = diaDigitB; with = diaDigitB_; }  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -1944,7 +1948,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 9.2, SchMain.gdl(361):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  cAnyMarksAbove  cAnyMarksAbove  _  ;
+RULE 8.2, SchMain.gdl(372):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  cAnyMarksAbove  cAnyMarksAbove  _  ;
 
 ACTIONS:
 CopyNext
@@ -1972,7 +1976,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 9.3, SchMain.gdl(361):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  cAnyMarksAbove  _  ;
+RULE 8.3, SchMain.gdl(372):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  cAnyMarksAbove  _  ;
 
 ACTIONS:
 CopyNext
@@ -1999,7 +2003,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 9.4, SchMain.gdl(361):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  _  ;
+RULE 8.4, SchMain.gdl(372):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  cAnyMarksAbove  _  ;
 
 ACTIONS:
 CopyNext
@@ -2025,7 +2029,7 @@ PopRet
 
 CONSTRAINTS: none
 
-RULE 9.5, SchMain.gdl(361):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  _  ;
+RULE 8.5, SchMain.gdl(372):  cHasDiaB  cMatchesDiaB {  attach {to = @1; at = diaB; with = diaB_; } insert = selectDiac;  }   /  _  ^  _  ;
 
 ACTIONS:
 CopyNext
@@ -2050,11 +2054,11 @@ PopRet
 
 CONSTRAINTS: none
 
-PASS: 10
+PASS: 9
 
 PASS CONSTRAINTS: none
 
-RULE 10.0, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.0, SchMain.gdl(427):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2082,7 +2086,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.1, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.1, SchMain.gdl(427):  cKafLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2109,7 +2113,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.2, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.2, SchMain.gdl(427):  cKafLikeIniMed  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2135,7 +2139,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.3, SchMain.gdl(416):  cKafLikeIniMed  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;
+RULE 9.3, SchMain.gdl(427):  cKafLikeIniMed  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2160,7 +2164,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.4, SchMain.gdl(416):  cKafLikeIniMed  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;
+RULE 9.4, SchMain.gdl(427):  cKafLikeIniMed  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  absRnoonMed { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2184,37 +2188,10 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.5, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.5, SchMain.gdl(430):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC18* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte -30
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte -30
-Add
-AttrSet advance_x
-Next
-PutCopy 0
-PushByte -30
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte -30
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.6, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;
-
-ACTIONS:
 CopyNext
 CopyNext
 CopyNext
@@ -2239,7 +2216,34 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.7, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.6, SchMain.gdl(430):  absFarsiYehIni  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC18* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte -30
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte -30
+Add
+AttrSet advance_x
+Next
+PutCopy 0
+PushByte -30
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte -30
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.7, SchMain.gdl(430):  absFarsiYehIni  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC18* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2265,7 +2269,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.8, SchMain.gdl(419):  absFarsiYehIni  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;
+RULE 9.8, SchMain.gdl(430):  absFarsiYehIni  cAnyMarks  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC18* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2290,7 +2294,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.9, SchMain.gdl(419):  absFarsiYehIni  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC10* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;
+RULE 9.9, SchMain.gdl(430):  absFarsiYehIni  absAutoKashida { shift.x = -30; advance.x = aw + -30;  }  *GC18* { shift.x = -30; advance.x = aw + -30;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2314,7 +2318,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.10, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.10, SchMain.gdl(433):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2342,7 +2346,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.11, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.11, SchMain.gdl(433):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2369,7 +2373,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.12, SchMain.gdl(422):  *GC11*  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.12, SchMain.gdl(433):  *GC19*  cAnyMarks  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2395,7 +2399,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.13, SchMain.gdl(422):  *GC11*  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  ;
+RULE 9.13, SchMain.gdl(433):  *GC19*  cAnyMarks  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2420,7 +2424,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.14, SchMain.gdl(422):  *GC11*  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  ;
+RULE 9.14, SchMain.gdl(433):  *GC19*  absAutoKashida { shift.x = -40; advance.x = aw + -40;  }  absRrehFin { shift.x = -40; advance.x = aw + -40;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2444,7 +2448,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.15, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.15, SchMain.gdl(439):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2464,7 +2468,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.16, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.16, SchMain.gdl(439):  absAlef  cAnyMarks  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2483,7 +2487,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.17, SchMain.gdl(428):  absAlef  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
+RULE 9.17, SchMain.gdl(439):  absAlef  cAnyMarks  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2501,7 +2505,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.18, SchMain.gdl(428):  absAlef  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 9.18, SchMain.gdl(439):  absAlef  cAnyMarks  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2518,7 +2522,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.19, SchMain.gdl(428):  absAlef  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
+RULE 9.19, SchMain.gdl(439):  absAlef  absRreh { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2534,7 +2538,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.20, SchMain.gdl(431):  *GC12*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.20, SchMain.gdl(442):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC21*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2551,7 +2555,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.21, SchMain.gdl(431):  *GC12*  cAnyMarks  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.21, SchMain.gdl(442):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  *GC21*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2567,7 +2571,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.22, SchMain.gdl(431):  *GC12*  cAnyMarks  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.22, SchMain.gdl(442):  *GC20*  cAnyMarks  cAnyMarks  *GC21*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2582,7 +2586,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.23, SchMain.gdl(431):  *GC12*  cAnyMarks  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  ;
+RULE 9.23, SchMain.gdl(442):  *GC20*  cAnyMarks  *GC21*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2596,7 +2600,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.24, SchMain.gdl(431):  *GC12*  *GC13*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  ;
+RULE 9.24, SchMain.gdl(442):  *GC20*  *GC21*  absNameMarker { shift.y = 220;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2609,7 +2613,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.25, SchMain.gdl(436):  *GC14*  cDiaDigitAbove  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 9.25, SchMain.gdl(447):  *GC22*  cDiaDigitAbove  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  *GC23*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2627,7 +2631,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.26, SchMain.gdl(436):  *GC14*  cDiaDigitAbove  cAnyMarks  cAnyMarks  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.26, SchMain.gdl(447):  *GC22*  cDiaDigitAbove  cAnyMarks  cAnyMarks  cAnyMarks  *GC23*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2644,7 +2648,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.27, SchMain.gdl(436):  *GC14*  cDiaDigitAbove  cAnyMarks  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.27, SchMain.gdl(447):  *GC22*  cDiaDigitAbove  cAnyMarks  cAnyMarks  *GC23*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2660,7 +2664,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.28, SchMain.gdl(436):  *GC14*  cDiaDigitAbove  cAnyMarks  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.28, SchMain.gdl(447):  *GC22*  cDiaDigitAbove  cAnyMarks  *GC23*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2675,7 +2679,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.29, SchMain.gdl(436):  *GC14*  cDiaDigitAbove  *GC15*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  ;
+RULE 9.29, SchMain.gdl(447):  *GC22*  cDiaDigitAbove  *GC23*  absNameMarker { shift.x = 275;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2689,7 +2693,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.30, SchMain.gdl(441):  cNoonGhunna  *GC17* { shift.y = -75;  }   /  *GC16*  _  _  ;
+RULE 9.30, SchMain.gdl(452):  cNoonGhunna  *GC25* { shift.y = -75;  }   /  *GC24*  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2701,7 +2705,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.31, SchMain.gdl(443):  cNoonGhunna  *GC18* { shift.y = -150;  }   /  ANY  _  _  ;
+RULE 9.31, SchMain.gdl(454):  cNoonGhunna  *GC26* { shift.y = -150;  }   /  ANY  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2713,7 +2717,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.32, SchMain.gdl(447):  if (kasraTcheh == 2) cBehLikeIniMed  absKasra { shift.x = -60; shift.y = 125;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 9.32, SchMain.gdl(458):  if (kasraTcheh == 2) cBehLikeIniMed  absKasra { shift.x = -60; shift.y = 125;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -2732,7 +2736,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 10.33, SchMain.gdl(448):  if (kasraTcheh == 2) cBehLikeIniMed  absKasratan { shift.x = -100; shift.y = 30;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 9.33, SchMain.gdl(459):  if (kasraTcheh == 2) cBehLikeIniMed  absKasratan { shift.x = -100; shift.y = 30;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -2751,7 +2755,7 @@ PushByte 2
 Equal
 PopRet
 
-RULE 10.34, SchMain.gdl(451):  if (kasraTcheh == 1) cBehLikeIniMed  absKasra { shift.x = -40; shift.y = -200;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 9.34, SchMain.gdl(462):  if (kasraTcheh == 1) cBehLikeIniMed  absKasra { shift.x = -40; shift.y = -200;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -2770,7 +2774,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 10.35, SchMain.gdl(452):  if (kasraTcheh == 1) cBehLikeIniMed  absKasratan { shift.x = -60; shift.y = -130;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
+RULE 9.35, SchMain.gdl(463):  if (kasraTcheh == 1) cBehLikeIniMed  absKasratan { shift.x = -60; shift.y = -130;  }  cTchehLikeFin   /  ANY  _  _  _  ; endif; 
 
 ACTIONS:
 CopyNext
@@ -2789,7 +2793,7 @@ PushByte 1
 Equal
 PopRet
 
-RULE 10.36, SchMain.gdl(454):  cPehLikeIniMed  absKasra { shift.y = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;
+RULE 9.36, SchMain.gdl(465):  cPehLikeIniMed  absKasra { shift.y = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2802,7 +2806,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.37, SchMain.gdl(455):  cPehLikeIniMed  absKasratan { shift.x = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;
+RULE 9.37, SchMain.gdl(466):  cPehLikeIniMed  absKasratan { shift.x = -50;  }  cTchehLikeFin   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2815,7 +2819,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.38, SchMain.gdl(456):  cTehLikeIniMed  absKasratan { shift.x = -80;  }  cTchehLikeFin   /  ANY  _  _  _  ;
+RULE 9.38, SchMain.gdl(467):  cTehLikeIniMed  absKasratan { shift.x = -80;  }  cTchehLikeFin   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2828,7 +2832,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.39, SchMain.gdl(459):  absAlef  absMaddahAbove { shift.x = -130;  }  absGaf { shift.x = 30; advance.x = aw + 30;  }   /  ANY  _  _  _  ;
+RULE 9.39, SchMain.gdl(470):  absAlef  absMaddahAbove { shift.x = -130;  }  absGaf { shift.x = 30; advance.x = aw + 30;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2848,7 +2852,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.40, SchMain.gdl(460):  absAlef  absMaddahAbove { shift.x = -120;  }  absGafIni { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 9.40, SchMain.gdl(471):  absAlef  absMaddahAbove { shift.x = -120;  }  absGafIni { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2868,7 +2872,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.41, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.41, SchMain.gdl(474):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2888,7 +2892,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.42, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.42, SchMain.gdl(474):  cBehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2907,7 +2911,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.43, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  ;
+RULE 9.43, SchMain.gdl(474):  cBehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2925,7 +2929,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.44, SchMain.gdl(463):  cBehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  ;
+RULE 9.44, SchMain.gdl(474):  cBehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2942,7 +2946,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.45, SchMain.gdl(463):  cBehLikeIniMed  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  ;
+RULE 9.45, SchMain.gdl(474):  cBehLikeIniMed  absRehBarFin { shift.x = 50; advance.x = aw + 50;  }   /  ANY  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2958,7 +2962,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.46, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.46, SchMain.gdl(475):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2978,7 +2982,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.47, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.47, SchMain.gdl(475):  cPehLikeIniMed  cAnyMarks  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -2997,7 +3001,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.48, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
+RULE 9.48, SchMain.gdl(475):  cPehLikeIniMed  cAnyMarks  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3015,7 +3019,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.49, SchMain.gdl(464):  cPehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 9.49, SchMain.gdl(475):  cPehLikeIniMed  cAnyMarks  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3032,7 +3036,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.50, SchMain.gdl(464):  cPehLikeIniMed  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
+RULE 9.50, SchMain.gdl(475):  cPehLikeIniMed  absRehBarFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3048,7 +3052,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.51, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  _  ;
+RULE 9.51, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3073,7 +3077,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.52, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
+RULE 9.52, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3097,7 +3101,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.53, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
+RULE 9.53, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3120,7 +3124,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.54, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 9.54, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3142,7 +3146,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.55, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.55, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3163,7 +3167,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.56, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
+RULE 9.56, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3187,93 +3191,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.57, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.58, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.59, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.60, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.61, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
+RULE 9.57, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3296,7 +3214,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.62, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+RULE 9.58, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3318,7 +3236,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.63, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.59, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3339,7 +3257,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.64, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.60, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3359,28 +3277,10 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.65, SchMain.gdl(467):  *GC19*  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.61, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.66, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
-
-ACTIONS:
 CopyNext
 CopyNext
 CopyNext
@@ -3400,9 +3300,10 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.67, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.62, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
 
 ACTIONS:
+CopyNext
 CopyNext
 CopyNext
 CopyNext
@@ -3421,64 +3322,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.68, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.69, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.70, SchMain.gdl(467):  *GC19*  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;
-
-ACTIONS:
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 65
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 65
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.71, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+RULE 9.63, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3499,7 +3343,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.72, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.64, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3519,7 +3363,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.73, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+RULE 9.65, SchMain.gdl(478):  *GC27*  cAnyMarks  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3538,7 +3382,89 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.74, SchMain.gdl(467):  *GC19*  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;
+RULE 9.66, SchMain.gdl(478):  *GC27*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.67, SchMain.gdl(478):  *GC27*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.68, SchMain.gdl(478):  *GC27*  cAnyMarks  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.69, SchMain.gdl(478):  *GC27*  cAnyMarks  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.70, SchMain.gdl(478):  *GC27*  cAnyMarks  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3556,7 +3482,85 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.75, SchMain.gdl(467):  *GC19*  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  ;
+RULE 9.71, SchMain.gdl(478):  *GC27*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.72, SchMain.gdl(478):  *GC27*  cMark2Above  cAnyMarks  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.73, SchMain.gdl(478):  *GC27*  cMark2Above  cAnyMarks  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.74, SchMain.gdl(478):  *GC27*  cMark2Above  cAnyMarks  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 65
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 65
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.75, SchMain.gdl(478):  *GC27*  cMark2Above  absJehRetro1Fin { shift.x = 65; advance.x = aw + 65;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3573,29 +3577,10 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.76, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
+RULE 9.76, SchMain.gdl(481):  *GC28*  cAnyMarks  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
-CopyNext
-CopyNext
-CopyNext
-CopyNext
-PutCopy 0
-PushByte 70
-AttrSet shift_x
-PushGlyphMetric aw 0 0
-PushByte 70
-Add
-AttrSet advance_x
-Next
-RetZero
-
-CONSTRAINTS: none
-
-RULE 10.77, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
-
-ACTIONS:
 CopyNext
 CopyNext
 CopyNext
@@ -3612,7 +3597,26 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.78, SchMain.gdl(470):  *GC20*  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
+RULE 9.77, SchMain.gdl(481):  *GC28*  cAnyMarks  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  _  ;
+
+ACTIONS:
+CopyNext
+CopyNext
+CopyNext
+CopyNext
+PutCopy 0
+PushByte 70
+AttrSet shift_x
+PushGlyphMetric aw 0 0
+PushByte 70
+Add
+AttrSet advance_x
+Next
+RetZero
+
+CONSTRAINTS: none
+
+RULE 9.78, SchMain.gdl(481):  *GC28*  cAnyMarks  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3630,7 +3634,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.79, SchMain.gdl(470):  *GC20*  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
+RULE 9.79, SchMain.gdl(481):  *GC28*  cAnyMarks  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  _  ;
 
 ACTIONS:
 CopyNext
@@ -3647,7 +3651,7 @@ RetZero
 
 CONSTRAINTS: none
 
-RULE 10.80, SchMain.gdl(470):  *GC20*  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
+RULE 9.80, SchMain.gdl(481):  *GC28*  cKehehLikeFin { shift.x = 70; advance.x = aw + 70;  }   /  ANY  _  _  ;
 
 ACTIONS:
 CopyNext

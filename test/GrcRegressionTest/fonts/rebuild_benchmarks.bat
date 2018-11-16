@@ -12,7 +12,7 @@ copy $_temp.gdl dbg_Charis
 copy gdlerr.txt dbg_Charis
 copy dbg_*.txt dbg_Charis
 
-grcompiler -D -v2 -p PigLatinMain.gdl PigLatinInput.ttf PigLatinBenchmark_v2.ttf
+grcompiler -D -v2 -p PigLatinMain.gdl PigLatinInput.ttf PigLatinBenchmark_v2.ttf "PigLatin GrRegTest V2"
 copy PigLatinBenchmark_v2.ttf dbg_PigLatin_v2
 copy PigLatinBenchmark_v2.gdx dbg_PigLatin_v2
 copy $_temp.gdl dbg_PigLatin_v2

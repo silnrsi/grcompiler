@@ -10,12 +10,11 @@ Create separate control file: no
 *******************************************************
 
 Table versions generated:
-  Silf: 3.0
-  Gloc: 1.0
-  Glat: 1.0
-  Feat: 1.0
-  Sill: 1.0
-
+ Silf:3.0
+ Gloc:1.0
+ Glat:1.0
+ Feat:1.0
+ Sill:1.0
 Minimal compiler version required: 3.0
 
 *******************************************************

@@ -3,7 +3,7 @@ RULE PRECEDENCE
 
 TABLE: linebreak
 
-PASS: 1
+PASS: 1 (GDL #0)
 
 0 - RULE 1.2, PadaukMain.gdl(411):  cTakesUDia { break = -30;  }  g103a { break = -50;  }   /  ANY  _  ^  g1039  cMed  cnTakesUDia  cnTakesUDia  cnTakesUDia  cnTakesUDia  _  ;
 
@@ -76,7 +76,9 @@ PASS: 1
 
 TABLE: substitution
 
-PASS: 2
+PASS: 0 - no rules
+
+PASS: 2 (GDL #1)
 
 0 - RULE 2.20, PadaukMain.gdl(464):  g1004  g103a  g1039  cUVowelNga  >  _  _  _  cNgaUVowel:(2 3 4 5)   /  ANY  _  _  _  ^  *GC1*  g1039  cMedBase  cClusMed  cClusMed  cClusMed  cClusMed  g1031  _  ;
 
@@ -294,7 +296,7 @@ PASS: 2
 71 - RULE 2.78, PadaukMain.gdl(492):  g103e  g1030  >  g103e_1030:(2 4)  _   /  ANY  _  g1031  _  ;
 
 
-72 - RULE 2.40, PadaukMain.gdl(466):  g1039  cMedBase  >  _  cMed:(1 2)   /  ANY  _  _  ;
+72 - RULE 2.40, PadaukMain.gdl(466):  g1039  cMedBase  >  _  cMed:(2 3)   /  ANY  _  _  ;
 
 
 73 - RULE 2.52, PadaukMain.gdl(481):  g103b  g103e  >  g103b_103e:(2 3)  _   /  ANY  _  _  ;
@@ -318,468 +320,461 @@ PASS: 2
 79 - RULE 2.79, PadaukMain.gdl(492):  g103e  g1030  >  g103e_1030:(2 3)  _   /  ANY  _  _  ;
 
 
-80 - RULE 2.80, PadaukMain.gdl(497):  g200c  >  _   /  ANY  _  ;
+PASS: 3 (GDL #2)
 
+0 - RULE 3.0, PadaukMain.gdl(538):  ANYGlyph  >  @3   /  cCons  g103a  ^  _{ order &gt; 1 }  ;
 
-81 - RULE 2.81, PadaukMain.gdl(498):  g200d  >  _   /  ANY  _  ;
 
+1 - RULE 3.1, PadaukMain.gdl(542):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph{ (order &gt; 1) &amp;&amp; (order &lt;= @2.order) }  ;
 
-82 - RULE 2.82, PadaukMain.gdl(499):  g2060  >  _   /  ANY  _  ;
 
+2 - RULE 3.2, PadaukMain.gdl(543):  _  >  g_circledash:2   /  ANY  ANYGlyph{ order == 0 }  _  ^  ANYGlyph{ order &gt; 1 }  ;
 
-PASS: 3
 
-0 - RULE 3.0, PadaukMain.gdl(534):  ANYGlyph  >  @3   /  cCons  g103a  ^  _{ order &gt; 1 }  ;
+PASS: 4 (GDL #3)
 
+0 - RULE 4.1, PadaukMain.gdl(571):  _  g1031  >  @12:12  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
 
-1 - RULE 3.1, PadaukMain.gdl(538):  _  >  g_circledash:2   /  ANY  ANYGlyph  _  ^  ANYGlyph{ (order &gt; 1) &amp;&amp; (order &lt;= @2.order) }  ;
 
+1 - RULE 4.2, PadaukMain.gdl(571):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;
 
-2 - RULE 3.2, PadaukMain.gdl(539):  _  >  g_circledash:2   /  ANY  ANYGlyph{ order == 0 }  _  ^  ANYGlyph{ order &gt; 1 }  ;
 
+2 - RULE 4.6, PadaukMain.gdl(571):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
 
-PASS: 4
 
-0 - RULE 4.1, PadaukMain.gdl(567):  _  g1031  >  @12:12  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+3 - RULE 4.11, PadaukMain.gdl(571):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
 
 
-1 - RULE 4.2, PadaukMain.gdl(567):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;
+4 - RULE 4.3, PadaukMain.gdl(571):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  _  ;
 
 
-2 - RULE 4.6, PadaukMain.gdl(567):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+5 - RULE 4.7, PadaukMain.gdl(571):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  _  ;
 
 
-3 - RULE 4.11, PadaukMain.gdl(567):  _  g1031  >  @11:11  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+6 - RULE 4.12, PadaukMain.gdl(571):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;
 
 
-4 - RULE 4.3, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  cClusDia  _  ;
+7 - RULE 4.16, PadaukMain.gdl(571):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
 
 
-5 - RULE 4.7, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  cClusDia  _  ;
+8 - RULE 4.25, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  c103e  cUSpace  ;
 
 
-6 - RULE 4.12, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  cClusDia  _  ;
+9 - RULE 4.33, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  c103e  cUSpace  ;
 
 
-7 - RULE 4.16, PadaukMain.gdl(567):  _  g1031  >  @10:10  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  cClusDia  _  ;
+10 - RULE 4.4, PadaukMain.gdl(571):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  _  ;
 
 
-8 - RULE 4.25, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  c103e  cUSpace  ;
+11 - RULE 4.8, PadaukMain.gdl(571):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  _  ;
 
 
-9 - RULE 4.33, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  c103e  cUSpace  ;
+12 - RULE 4.13, PadaukMain.gdl(571):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  _  ;
 
 
-10 - RULE 4.4, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  cClusDia  _  ;
+13 - RULE 4.17, PadaukMain.gdl(571):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  _  ;
 
 
-11 - RULE 4.8, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  cClusDia  _  ;
+14 - RULE 4.26, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  cUSpace  ;
 
 
-12 - RULE 4.13, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  cClusDia  _  ;
+15 - RULE 4.27, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103e  cUSpace  ;
 
 
-13 - RULE 4.17, PadaukMain.gdl(567):  _  g1031  >  @9:9  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  cClusDia  _  ;
+16 - RULE 4.29, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  c103e  cUSpace  ;
 
 
-14 - RULE 4.26, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103d  cUSpace  ;
+17 - RULE 4.34, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  cUSpace  ;
 
 
-15 - RULE 4.27, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  c103e  cUSpace  ;
+18 - RULE 4.35, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103e  cUSpace  ;
 
 
-16 - RULE 4.29, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  c103e  cUSpace  ;
+19 - RULE 4.37, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  c103e  cUSpace  ;
 
 
-17 - RULE 4.34, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103d  cUSpace  ;
+20 - RULE 4.76, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cUVowel  cCons  ;
 
 
-18 - RULE 4.35, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  c103e  cUSpace  ;
+21 - RULE 4.5, PadaukMain.gdl(571):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  _  ;
 
 
-19 - RULE 4.37, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  c103e  cUSpace  ;
+22 - RULE 4.9, PadaukMain.gdl(571):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  _  ;
 
 
-20 - RULE 4.76, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cUVowel  cCons  ;
+23 - RULE 4.14, PadaukMain.gdl(571):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  _  ;
 
 
-21 - RULE 4.5, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cMed  _  ;
+24 - RULE 4.18, PadaukMain.gdl(571):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  _  ;
 
 
-22 - RULE 4.9, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  cClusDia  _  ;
+25 - RULE 4.21, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  c103b  _  ;
 
 
-23 - RULE 4.14, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  cClusDia  _  ;
+26 - RULE 4.28, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  cUSpace  ;
 
 
-24 - RULE 4.18, PadaukMain.gdl(567):  _  g1031  >  @8:8  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  cClusDia  _  ;
+27 - RULE 4.30, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  cUSpace  ;
 
 
-25 - RULE 4.21, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  c103b  _  ;
+28 - RULE 4.31, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103e  cUSpace  ;
 
 
-26 - RULE 4.28, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  cUSpace  ;
+29 - RULE 4.36, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  cUSpace  ;
 
 
-27 - RULE 4.30, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103d  cUSpace  ;
+30 - RULE 4.38, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  cUSpace  ;
 
 
-28 - RULE 4.31, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  c103e  cUSpace  ;
+31 - RULE 4.39, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103e  cUSpace  ;
 
 
-29 - RULE 4.36, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  cUSpace  ;
+32 - RULE 4.41, PadaukMain.gdl(585):  _  c103c_nar  >  c103c_naralt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  cMedNar  _  ;
 
 
-30 - RULE 4.38, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103d  cUSpace  ;
+33 - RULE 4.43, PadaukMain.gdl(586):  _  c103c_nar  >  c103c_widalt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  cMed  _  ;
 
 
-31 - RULE 4.39, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  c103e  cUSpace  ;
+34 - RULE 4.45, PadaukMain.gdl(587):  _  c103c_nar  >  @8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  c103b  _  ;
 
 
-32 - RULE 4.41, PadaukMain.gdl(581):  _  c103c_nar  >  c103c_naralt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  cMedNar  _  ;
+35 - RULE 4.49, PadaukMain.gdl(588):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  c103b  _  ;
 
 
-33 - RULE 4.43, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_widalt$8:8  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  cMed  _  ;
+36 - RULE 4.53, PadaukMain.gdl(595):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cLVowelAll  ;
 
 
-34 - RULE 4.45, PadaukMain.gdl(583):  _  c103c_nar  >  @8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  c103b  _  ;
+37 - RULE 4.60, PadaukMain.gdl(599):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cUVowel  cLVowel  ;
 
 
-35 - RULE 4.49, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$8:8  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  c103b  _  ;
+38 - RULE 4.62, PadaukMain.gdl(608):  g1030  >  @4   /  c103c_only  cConsSVowel  cUVowel  _  ;
 
 
-36 - RULE 4.53, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cLVowelAll  ;
+39 - RULE 4.77, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cCons  ;
 
 
-37 - RULE 4.60, PadaukMain.gdl(595):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cUVowel  cLVowel  ;
+40 - RULE 4.78, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cCons  ;
 
 
-38 - RULE 4.62, PadaukMain.gdl(604):  g1030  >  @4   /  c103c_only  cConsSVowel  cUVowel  _  ;
+41 - RULE 4.80, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cUVowel  cCons  ;
 
 
-39 - RULE 4.77, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  g1031  cCons  ;
+42 - RULE 4.10, PadaukMain.gdl(571):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  _  ;
 
 
-40 - RULE 4.78, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cUVowel  cCons  ;
+43 - RULE 4.15, PadaukMain.gdl(571):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  _  ;
 
 
-41 - RULE 4.80, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cUVowel  cCons  ;
+44 - RULE 4.19, PadaukMain.gdl(571):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  _  ;
 
 
-42 - RULE 4.10, PadaukMain.gdl(567):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  c103c  cCons  _  ;
+45 - RULE 4.22, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  ;
 
 
-43 - RULE 4.15, PadaukMain.gdl(567):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cMed  _  ;
+46 - RULE 4.23, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  c103b  _  ;
 
 
-44 - RULE 4.19, PadaukMain.gdl(567):  _  g1031  >  @7:7  _   /  ANY  ANY  ANY  _  ^  cCons  cClusDia  _  ;
+47 - RULE 4.32, PadaukMain.gdl(583):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  cUSpace  ;
 
 
-45 - RULE 4.22, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  cMed  _  ;
+48 - RULE 4.40, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  cUSpace  ;
 
 
-46 - RULE 4.23, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  c103b  _  ;
+49 - RULE 4.42, PadaukMain.gdl(585):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  _  ;
 
 
-47 - RULE 4.32, PadaukMain.gdl(579):  _  c103c_nar  >  c103c_naralt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  cUSpace  ;
+50 - RULE 4.44, PadaukMain.gdl(586):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  _  ;
 
 
-48 - RULE 4.40, PadaukMain.gdl(580):  _  c103c_nar  >  c103c_widalt$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  cUSpace  ;
+51 - RULE 4.46, PadaukMain.gdl(587):  _  c103c_nar  >  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  ;
 
 
-49 - RULE 4.42, PadaukMain.gdl(581):  _  c103c_nar  >  c103c_naralt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  g103a  _  ;
+52 - RULE 4.47, PadaukMain.gdl(587):  _  c103c_nar  >  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;
 
 
-50 - RULE 4.44, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_widalt$7:7  _   /  ANY  ANY  ANY  ^  _  cConsWide  g103a  _  ;
+53 - RULE 4.50, PadaukMain.gdl(588):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  _  ;
 
 
-51 - RULE 4.46, PadaukMain.gdl(583):  _  c103c_nar  >  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMedNar  _  ;
+54 - RULE 4.51, PadaukMain.gdl(588):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;
 
 
-52 - RULE 4.47, PadaukMain.gdl(583):  _  c103c_nar  >  @7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;
+55 - RULE 4.54, PadaukMain.gdl(595):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cLVowelAll  ;
 
 
-53 - RULE 4.50, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  cMed  _  ;
+56 - RULE 4.55, PadaukMain.gdl(595):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cUVowel  cLVowelAll  ;
 
 
-54 - RULE 4.51, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$7:7  _   /  ANY  ANY  ANY  ^  _  cConsNar  c103b  _  ;
+57 - RULE 4.61, PadaukMain.gdl(599):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cLVowel  ;
 
 
-55 - RULE 4.54, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103e  cLVowelAll  ;
+58 - RULE 4.63, PadaukMain.gdl(608):  g1030  >  @4   /  ANY  c103c_only  cConsSVowel  _  ;
 
 
-56 - RULE 4.55, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cUVowel  cLVowelAll  ;
+59 - RULE 4.64, PadaukMain.gdl(609):  cLVowel  >  cLVowelM   /  ANY  ^  cConsSVowel  cUVowel  _  ;
 
 
-57 - RULE 4.61, PadaukMain.gdl(595):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  cMed  cLVowel  ;
+60 - RULE 4.66, PadaukMain.gdl(610):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
 
 
-58 - RULE 4.63, PadaukMain.gdl(604):  g1030  >  @4   /  ANY  c103c_only  cConsSVowel  _  ;
+61 - RULE 4.68, PadaukMain.gdl(611):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
 
 
-59 - RULE 4.64, PadaukMain.gdl(605):  cLVowel  >  cLVowelM   /  ANY  ^  cConsSVowel  cUVowel  _  ;
+62 - RULE 4.70, PadaukMain.gdl(612):  g103d_103e  >  g103d_103e_small   /  ANY  c103c  cCons  _  ;
 
 
-60 - RULE 4.66, PadaukMain.gdl(606):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
+63 - RULE 4.71, PadaukMain.gdl(613):  cUTakesMa  g1036  >  cUWithMa:(4 6)  _   /  ANY  ANY  ANY  _  cLVowel  _  ;
 
 
-61 - RULE 4.68, PadaukMain.gdl(607):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:6   /  ANY  ANY  ANY  ^  _  cUVowel  _  ;
+64 - RULE 4.79, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cCons  ;
 
 
-62 - RULE 4.70, PadaukMain.gdl(608):  g103d_103e  >  g103d_103e_small   /  ANY  c103c  cCons  _  ;
+65 - RULE 4.81, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cCons  ;
 
 
-63 - RULE 4.71, PadaukMain.gdl(609):  cUTakesMa  g1036  >  cUWithMa:(4 6)  _   /  ANY  ANY  ANY  _  cLVowel  _  ;
+66 - RULE 4.82, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cUVowel  cCons  ;
 
 
-64 - RULE 4.79, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  c103e  cCons  ;
+67 - RULE 4.84, PadaukMain.gdl(628):  g103e  >  g103e_alt   /  ANY  ^  c103c  cConsSVowel  _  ;
 
 
-65 - RULE 4.81, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g1031  cCons  ;
+68 - RULE 4.0, PadaukMain.gdl(564):  g1014  >  g1014_alt   /  ANY  ANY  *GC2*  _  ;
 
 
-66 - RULE 4.82, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cUVowel  cCons  ;
+69 - RULE 4.20, PadaukMain.gdl(571):  _  g1031  >  @6:6  _   /  ANY  ANY  ANY  _  ^  cCons  _  ;
 
 
-67 - RULE 4.84, PadaukMain.gdl(624):  g103e  >  g103e_alt   /  ANY  ^  c103c  cConsSVowel  _  ;
+70 - RULE 4.24, PadaukMain.gdl(582):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  ;
 
 
-68 - RULE 4.0, PadaukMain.gdl(560):  g1014  >  g1014_alt   /  ANY  ANY  *GC2*  _  ;
+71 - RULE 4.48, PadaukMain.gdl(587):  _  c103c_nar  >  @6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;
 
 
-69 - RULE 4.20, PadaukMain.gdl(567):  _  g1031  >  @6:6  _   /  ANY  ANY  ANY  _  ^  cCons  _  ;
+72 - RULE 4.52, PadaukMain.gdl(588):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;
 
 
-70 - RULE 4.24, PadaukMain.gdl(578):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsWide  _  ;
+73 - RULE 4.56, PadaukMain.gdl(595):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cLVowelAll  ;
 
 
-71 - RULE 4.48, PadaukMain.gdl(583):  _  c103c_nar  >  @6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;
+74 - RULE 4.57, PadaukMain.gdl(596):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103d  ;
 
 
-72 - RULE 4.52, PadaukMain.gdl(584):  _  c103c_nar  >  c103c_wide$6:6  _   /  ANY  ANY  ANY  ^  _  cConsNar  _  ;
+75 - RULE 4.58, PadaukMain.gdl(597):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103b  ;
 
 
-73 - RULE 4.56, PadaukMain.gdl(591):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  cLVowelAll  ;
+76 - RULE 4.59, PadaukMain.gdl(598):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  g103e  ;
 
 
-74 - RULE 4.57, PadaukMain.gdl(592):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103d  ;
+77 - RULE 4.65, PadaukMain.gdl(609):  cLVowel  >  cLVowelM   /  ANY  ANY  ^  cConsSVowel  _  ;
 
 
-75 - RULE 4.58, PadaukMain.gdl(593):  g101b  >  g101b_alt   /  ANY  ANY  ANY  ^  _  c103b  ;
+78 - RULE 4.67, PadaukMain.gdl(610):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
 
 
-76 - RULE 4.59, PadaukMain.gdl(594):  g101b  >  g101b_long   /  ANY  ANY  ANY  ^  _  g103e  ;
+79 - RULE 4.69, PadaukMain.gdl(611):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
 
 
-77 - RULE 4.65, PadaukMain.gdl(605):  cLVowel  >  cLVowelM   /  ANY  ANY  ^  cConsSVowel  _  ;
+80 - RULE 4.72, PadaukMain.gdl(613):  cUTakesMa  g1036  >  cUWithMa:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
 
 
-78 - RULE 4.67, PadaukMain.gdl(606):  g1014  cLVowel  >  g1014_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
+81 - RULE 4.73, PadaukMain.gdl(619):  g1014  >  g1014_alt   /  ANY  ANY  ANY  ^  _  t1014  ;
 
 
-79 - RULE 4.69, PadaukMain.gdl(607):  g100a  cLVowel  >  g100a_alt:4  cLVowelM:5   /  ANY  ANY  ANY  ^  _  _  ;
+82 - RULE 4.74, PadaukMain.gdl(620):  g100a  >  g100a_alt   /  ANY  ANY  ANY  ^  _  t100a  ;
 
 
-80 - RULE 4.72, PadaukMain.gdl(609):  cUTakesMa  g1036  >  cUWithMa:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
+83 - RULE 4.75, PadaukMain.gdl(621):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g103a  ;
 
 
-81 - RULE 4.73, PadaukMain.gdl(615):  g1014  >  g1014_alt   /  ANY  ANY  ANY  ^  _  t1014  ;
+84 - RULE 4.83, PadaukMain.gdl(622):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cCons  ;
 
 
-82 - RULE 4.74, PadaukMain.gdl(616):  g100a  >  g100a_alt   /  ANY  ANY  ANY  ^  _  t100a  ;
+85 - RULE 4.85, PadaukMain.gdl(629):  g103e  >  g103e_alt   /  ANY  ANY  cConsSlantH  _  ;
 
 
-83 - RULE 4.75, PadaukMain.gdl(617):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  g103a  ;
-
-
-84 - RULE 4.83, PadaukMain.gdl(618):  g1009  >  g1025   /  ANY  ANY  ANY  ^  _  cCons  ;
-
-
-85 - RULE 4.85, PadaukMain.gdl(625):  g103e  >  g103e_alt   /  ANY  ANY  cConsSlantH  _  ;
-
-
-86 - RULE 4.86, PadaukMain.gdl(631):  g102b  g103a  >  g102b_103a:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
+86 - RULE 4.86, PadaukMain.gdl(635):  g102b  g103a  >  g102b_103a:(4 5)  _   /  ANY  ANY  ANY  _  _  ;
 
 
 TABLE: positioning
 
-PASS: 5
+PASS: 0 - no rules
 
-0 - RULE 5.5, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _{ user1 == 0 }  ;
+PASS: 5 (GDL #1)
 
+0 - RULE 5.5, PadaukMain.gdl(712):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _{ user1 == 0 }  ;
 
-1 - RULE 5.9, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _{ user1 == 0 }  ;
 
+1 - RULE 5.9, PadaukMain.gdl(714):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  cUDia  _{ user1 == 0 }  ;
 
-2 - RULE 5.15, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _{ user1 == 0 }  ;
 
+2 - RULE 5.15, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  c1036  _{ user1 == 0 }  ;
 
-3 - RULE 5.6, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _{ user1 == 0 }  ;
 
+3 - RULE 5.6, PadaukMain.gdl(712):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _{ user1 == 0 }  ;
 
-4 - RULE 5.7, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _{ user1 == 0 }  ;
 
+4 - RULE 5.7, PadaukMain.gdl(712):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  cUDia  _{ user1 == 0 }  ;
 
-5 - RULE 5.10, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _{ user1 == 0 }  ;
 
+5 - RULE 5.10, PadaukMain.gdl(714):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  c103e_dia  _{ user1 == 0 }  ;
 
-6 - RULE 5.11, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _{ user1 == 0 }  ;
 
+6 - RULE 5.11, PadaukMain.gdl(714):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  cUDia  _{ user1 == 0 }  ;
 
-7 - RULE 5.16, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _{ user1 == 0 }  ;
 
+7 - RULE 5.16, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  cLVowelM  _{ user1 == 0 }  ;
 
-8 - RULE 5.17, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _{ user1 == 0 }  ;
 
+8 - RULE 5.17, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  c1036  _{ user1 == 0 }  ;
 
-9 - RULE 5.19, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _{ user1 == 0 }  ;
 
+9 - RULE 5.19, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  c1036  _{ user1 == 0 }  ;
 
-10 - RULE 5.23, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _{ user1 == 0 }  ;
 
+10 - RULE 5.23, PadaukMain.gdl(720):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  c1036  _{ user1 == 0 }  ;
 
-11 - RULE 5.30, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @6; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _{ user1 == 0 }  _  ;
 
+11 - RULE 5.30, PadaukMain.gdl(731):  cTakesUDia  cUDia {  attach {to = @6; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _{ user1 == 0 }  _  ;
 
-12 - RULE 5.43, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _{ user1 == 0 }  ;
 
+12 - RULE 5.43, PadaukMain.gdl(770):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  cnTakesLDia  _{ user1 == 0 }  ;
 
-13 - RULE 5.1, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  cUDia  _{ user1 == 0 }  ;
 
+13 - RULE 5.1, PadaukMain.gdl(710):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  cUDia  _{ user1 == 0 }  ;
 
-14 - RULE 5.8, PadaukMain.gdl(708):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  _{ user1 == 0 }  ;
 
+14 - RULE 5.8, PadaukMain.gdl(712):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cMed  _{ user1 == 0 }  ;
 
-15 - RULE 5.12, PadaukMain.gdl(710):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _{ user1 == 0 }  ;
 
+15 - RULE 5.12, PadaukMain.gdl(714):  c103c  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  c103e_dia  _{ user1 == 0 }  ;
 
-16 - RULE 5.13, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _{ user1 == 0 }  ;
 
+16 - RULE 5.13, PadaukMain.gdl(716):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  cUDia  _{ user1 == 0 }  ;
 
-17 - RULE 5.18, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  _{ user1 == 0 }  ;
 
+17 - RULE 5.18, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cUVowel  _{ user1 == 0 }  ;
 
-18 - RULE 5.20, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _{ user1 == 0 }  ;
 
+18 - RULE 5.20, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  cLVowelM  _{ user1 == 0 }  ;
 
-19 - RULE 5.21, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  c1036  _{ user1 == 0 }  ;
 
+19 - RULE 5.21, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  c1036  _{ user1 == 0 }  ;
 
-20 - RULE 5.24, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _{ user1 == 0 }  ;
 
+20 - RULE 5.24, PadaukMain.gdl(720):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUVowel  cLVowelM  _{ user1 == 0 }  ;
 
-21 - RULE 5.25, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  c1036  _{ user1 == 0 }  ;
 
+21 - RULE 5.25, PadaukMain.gdl(720):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  c1036  _{ user1 == 0 }  ;
 
-22 - RULE 5.31, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @5; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _{ user1 == 0 }  _  ;
 
+22 - RULE 5.31, PadaukMain.gdl(731):  cTakesUDia  cUDia {  attach {to = @5; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  cnTakesUDia  _{ user1 == 0 }  _  ;
 
-23 - RULE 5.39, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _{ user1 == 0 }  ;
 
+23 - RULE 5.39, PadaukMain.gdl(747):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  cnTakesUDia  _{ user1 == 0 }  ;
 
-24 - RULE 5.44, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _{ user1 == 0 }  ;
 
+24 - RULE 5.44, PadaukMain.gdl(770):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  cnTakesLDia  _{ user1 == 0 }  ;
 
-25 - RULE 5.47, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  g103a  _{ user1 == 0 }  ;
 
+25 - RULE 5.47, PadaukMain.gdl(777):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  g103a  _{ user1 == 0 }  ;
 
-26 - RULE 5.2, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  _{ user1 == 0 }  ;
 
+26 - RULE 5.2, PadaukMain.gdl(710):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ^  c103c_only  _  _{ user1 == 0 }  ;
 
-27 - RULE 5.3, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _{ user1 == 0 }  ;
 
+27 - RULE 5.3, PadaukMain.gdl(710):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _{ user1 == 0 }  ;
 
-28 - RULE 5.14, PadaukMain.gdl(712):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  _{ user1 == 0 }  ;
 
+28 - RULE 5.14, PadaukMain.gdl(716):  c103c_mix  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cConsSVowel  _{ user1 == 0 }  ;
 
-29 - RULE 5.22, PadaukMain.gdl(714):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  _{ user1 == 0 }  ;
 
+29 - RULE 5.22, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  *GC3*  _{ user1 == 0 }  ;
 
-30 - RULE 5.26, PadaukMain.gdl(716):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  _{ user1 == 0 }  ;
 
+30 - RULE 5.26, PadaukMain.gdl(720):  c101b  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cLVowelM  _{ user1 == 0 }  ;
 
-31 - RULE 5.27, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _{ user1 == 0 }  ;
 
+31 - RULE 5.27, PadaukMain.gdl(722):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cUDia  _{ user1 == 0 }  ;
 
-32 - RULE 5.32, PadaukMain.gdl(727):  cTakesUDia  cUDia {  attach {to = @4; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  _{ user1 == 0 }  _  ;
 
+32 - RULE 5.32, PadaukMain.gdl(731):  cTakesUDia  cUDia {  attach {to = @4; at = US; with = UM; } user1 = 1;  }  cLVowel   /  ANY  ^  _  _{ user1 == 0 }  _  ;
 
-33 - RULE 5.33, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _{ user1 == 0 }  ;
 
+33 - RULE 5.33, PadaukMain.gdl(741):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _{ user1 == 0 }  ;
 
-34 - RULE 5.35, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBDDia  _{ user1 == 0 }  ;
 
+34 - RULE 5.35, PadaukMain.gdl(743):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBDDia  _{ user1 == 0 }  ;
 
-35 - RULE 5.37, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _{ user1 == 0 }  ;
 
+35 - RULE 5.37, PadaukMain.gdl(745):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  cnTakesBSDia  _{ user1 == 0 }  ;
 
-36 - RULE 5.40, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  _{ user1 == 0 }  ;
 
+36 - RULE 5.40, PadaukMain.gdl(747):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  cnTakesUDia  _{ user1 == 0 }  ;
 
-37 - RULE 5.45, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  _{ user1 == 0 }  ;
 
+37 - RULE 5.45, PadaukMain.gdl(770):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  cnTakesLDia  _{ user1 == 0 }  ;
 
-38 - RULE 5.48, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  _{ user1 == 0 }  ;
 
+38 - RULE 5.48, PadaukMain.gdl(777):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  cMed  _{ user1 == 0 }  ;
 
-39 - RULE 5.49, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  g103a  _{ user1 == 0 }  ;
 
+39 - RULE 5.49, PadaukMain.gdl(777):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  g103a  _{ user1 == 0 }  ;
 
-40 - RULE 5.4, PadaukMain.gdl(706):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+40 - RULE 5.4, PadaukMain.gdl(710):  cConsSVowel  g1037 {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-41 - RULE 5.28, PadaukMain.gdl(718):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+41 - RULE 5.28, PadaukMain.gdl(722):  c101b  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-42 - RULE 5.29, PadaukMain.gdl(720):  cLeftLDot  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+42 - RULE 5.29, PadaukMain.gdl(724):  cLeftLDot  g1037 {  attach {to = @2; at = LLS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-43 - RULE 5.34, PadaukMain.gdl(737):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+43 - RULE 5.34, PadaukMain.gdl(741):  cTakesBSDia  cBSDia {  attach {to = @2; at = BSS; with = BSM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-44 - RULE 5.36, PadaukMain.gdl(739):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+44 - RULE 5.36, PadaukMain.gdl(743):  cTakesBDDia  cBDDia {  attach {to = @2; at = BDS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-45 - RULE 5.38, PadaukMain.gdl(741):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+45 - RULE 5.38, PadaukMain.gdl(745):  cTakesBSDia  cBDDia {  attach {to = @2; at = BSS; with = BDM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-46 - RULE 5.41, PadaukMain.gdl(743):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+46 - RULE 5.41, PadaukMain.gdl(747):  cTakesUDia  cUDia {  attach {to = @2; at = US; with = UM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-47 - RULE 5.42, PadaukMain.gdl(751):  cTakesRDia  cRDia {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+47 - RULE 5.42, PadaukMain.gdl(755):  cTakesRDia  cRDia {  attach {to = @2; at = RS; with = RM; } user1 = 1; insert = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-48 - RULE 5.46, PadaukMain.gdl(766):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+48 - RULE 5.46, PadaukMain.gdl(770):  cTakesLDia  cLDia {  attach {to = @2; at = LS; with = LM; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-49 - RULE 5.50, PadaukMain.gdl(773):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
+49 - RULE 5.50, PadaukMain.gdl(777):  cCons  cYMed {  attach {to = @2; } user1 = 1;  }   /  ANY  ^  _  _{ user1 == 0 }  ;
 
-50 - RULE 5.0, PadaukMain.gdl(696):  c103c { advance.x = advx; user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  ;
 
+50 - RULE 5.0, PadaukMain.gdl(700):  c103c { advance.x = advx; user2 = 1;  }   /  ANY  ^  _{ user2 == 0 }  ;
 
-PASS: 6
 
-0 - RULE 6.2, PadaukMain.gdl(794):  cConsNar   /  g102b_103a  _  cLowDia  cUDia  ;
+PASS: 6 (GDL #2)
 
+0 - RULE 6.2, PadaukMain.gdl(798):  cConsNar   /  g102b_103a  _  cLowDia  cUDia  ;
 
-1 - RULE 6.3, PadaukMain.gdl(794):  cConsNar   /  g102b_103a  _  cUDia  ;
 
+1 - RULE 6.3, PadaukMain.gdl(798):  cConsNar   /  g102b_103a  _  cUDia  ;
 
-2 - RULE 6.0, PadaukMain.gdl(791):  g101b_alt { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }  cHasRkern { shift.x = -(rkern);  }   /  ANY  _  _  ;
 
+2 - RULE 6.0, PadaukMain.gdl(795):  g101b_alt { shift.x = @3.rkern + 10; advance.x = aw + (@3.rkern + 10);  }  cHasRkern { shift.x = -(rkern);  }   /  ANY  _  _  ;
 
-3 - RULE 6.1, PadaukMain.gdl(793):  c102b { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }   /  cUDia  _  ;
 
+3 - RULE 6.1, PadaukMain.gdl(797):  c102b { shift.x = xkern / 2; advance.x = aw + (xkern / 2);  }   /  cUDia  _  ;
 
-4 - RULE 6.4, PadaukMain.gdl(795):  cCons { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
 
+4 - RULE 6.4, PadaukMain.gdl(799):  cCons { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
 
-5 - RULE 6.5, PadaukMain.gdl(796):  g1031 { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
 
+5 - RULE 6.5, PadaukMain.gdl(800):  g1031 { shift.x = -(@1.xkern); advance.x = aw + -(@1.xkern);  }   /  g102b_103a  _  ;
 
-6 - RULE 6.6, PadaukMain.gdl(797):  cRDia { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }   /  cTakesRDia  _  ;
 
+6 - RULE 6.6, PadaukMain.gdl(801):  cRDia { shift.x = ((((@1.aw + @1.advance.x) - advance.x) / 2) + @1.position.x) - position.x;  }   /  cTakesRDia  _  ;
 
-7 - RULE 6.7, PadaukMain.gdl(798):  cUVowel { advance.x = 0;  }   /  c103b  _  ;
+
+7 - RULE 6.7, PadaukMain.gdl(802):  cUVowel { advance.x = 0;  }   /  c103b  _  ;
 

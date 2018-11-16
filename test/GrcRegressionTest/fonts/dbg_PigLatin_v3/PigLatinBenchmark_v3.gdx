@@ -279,7 +279,7 @@
       <glyphAttrValue name="*skipPasses*" value="1" />
       <glyphAttrValue name="breakweight" value="30" />
     </glyph>
-    <glyph glyphid="67" className="g_aIns" usv="U+0061">
+    <glyph glyphid="67" className="g_aIns" usv="U+0061" inFile="PigLatinMain.gdl" atLine="34">
       <glyphAttrValue name="*skipPasses*" value="1" />
       <glyphAttrValue name="breakweight" value="30" />
     </glyph>
@@ -375,7 +375,7 @@
       <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="30" />
     </glyph>
-    <glyph glyphid="91" className="g_yIns" usv="U+0079">
+    <glyph glyphid="91" className="g_yIns" usv="U+0079" inFile="PigLatinMain.gdl" atLine="35">
       <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="30" />
     </glyph>
