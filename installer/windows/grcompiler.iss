@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Graphite Compiler
-AppVerName=Graphite Compiler 5.0.2
+AppVerName=Graphite Compiler 5.1
 AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
@@ -14,7 +14,7 @@ DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
 AllowNoIcons=yes
 ; installer file name:
-OutputBaseFilename=grcompiler_setup_5_0_2
+OutputBaseFilename=grcompiler_setup_5_1
 Compression=lzma
 SolidCompression=yes
 
