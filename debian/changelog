@@ -1,3 +1,9 @@
+grcompiler (5.1-1~palaso1) trusty; urgency=medium
+
+  * New upstream release
+
+ -- Daniel Glassey <wdg@debian.org>  Wed, 14 Nov 2018 09:03:18 +0700
+
 grcompiler (5.0.2-1~palaso1) trusty; urgency=medium
 
   * New upstream release
