@@ -14,7 +14,7 @@ GRC_GEN_SRC=.\compiler\Generic
 GRC_LIB_SRC=.\compiler
 TTF_LIB_SRC=.\compiler
 ICU_BIN=.\icu\bin
-ICU_BIN49=.\icu\bin49
+
 
 !IF "$(CFG)" == ""
 CFG=RELEASE
@@ -26,10 +26,9 @@ OUTDIR=.\release
 INTDIR=.\release_temp
 
 all : "$(OUTDIR)\$(TARGET).exe"
-	- copy $(ICU_BIN)\icuuc56.dll $(OUTDIR)\icuuc56.dll
-	- copy $(ICU_BIN)\icudt56.dll $(OUTDIR)\icudt56.dll
-	- copy $(ICU_BIN49)\icuuc49.dll $(OUTDIR)\icuuc49.dll
-	- copy $(ICU_BIN49)\icudt49.dll $(OUTDIR)\icudt49.dll
+	- copy $(ICU_BIN)\icuuc63.dll $(OUTDIR)\icuuc63.dll
+	- copy $(ICU_BIN)\icudt63.dll $(OUTDIR)\icudt63.dll
+
 
 clean :
     @- rd /s/q $(INTDIR)
@@ -37,7 +36,7 @@ clean :
 realclean : clean
     @- rd /s/q $(OUTDIR)
 
-CPP_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/source/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+CPP_PROJ=/Zc:wchar_t- /nologo /MT /W3 /GR /EHsc /O2 /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "NDEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib icuuc.lib /nologo /subsystem:console /incremental:no /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" /LIBPATH:".\icu\lib\"
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
@@ -48,10 +47,9 @@ OUTDIR=.\debug
 INTDIR=.\debug_temp
 
 all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
-	- copy $(ICU_BIN)\icuuc56d.dll $(OUTDIR)\icuuc56d.dll
-	- copy $(ICU_BIN)\icudt56.dll $(OUTDIR)\icudt56.dll
-	- copy $(ICU_BIN49)\icuuc49.dll $(OUTDIR)\icuuc49.dll
-	- copy $(ICU_BIN49)\icudt49.dll $(OUTDIR)\icudt49.dll
+	- copy $(ICU_BIN)\icuuc63d.dll $(OUTDIR)\icuuc63d.dll
+	- copy $(ICU_BIN)\icudt63.dll $(OUTDIR)\icudt63.dll
+
 
 clean :
     @- rd /s/q $(INTDIR)
@@ -59,7 +57,7 @@ clean :
 realclean : clean
     @- rd /s/q $(OUTDIR)
 
-CPP_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/source/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
+CPP_PROJ=/nologo /MTd /W3 /Gm /GR /EHsc /RTC1 /ZI /Od /I "./compiler" /I "./compiler/grammar" /I "./compiler/Grammar/Antlr" /I "./compiler/generic" /I "./icu/include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /c 
 RSC_PROJ=/l 0x409 /fo"$(INTDIR)\$(TARGET).res" /d "_DEBUG"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib icuucd.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET).pdb" /debug /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" /pdbtype:sept /LIBPATH:".\icu\lib\"
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
