@@ -25430,21 +25430,7 @@
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
     </glyph>
-    <glyph glyphid="2676" className="g9Pitch33" inFile="CharisPitches.gdh" atLine="359">
-      <glyphAttrValue name="*actualForPseudo*" value="2344" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="28" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p1.bottom" value="-900" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p1.left" value="0" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p1.right" value="540" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p2.top" value="2450" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="component.p2.bottom" value="-900" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="component.p2.left" value="540" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
-    </glyph>
-    <glyph glyphid="2677" className="g9Pitch11" inFile="CharisPitches.gdh" atLine="337">
+    <glyph glyphid="2676" className="g9Pitch11" inFile="CharisPitches.gdh" atLine="337">
       <glyphAttrValue name="*actualForPseudo*" value="2324" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="28" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -25458,7 +25444,7 @@
       <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
       <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
     </glyph>
-    <glyph glyphid="2678" className="g9Pitch22" inFile="CharisPitches.gdh" atLine="348">
+    <glyph glyphid="2677" className="g9Pitch22" inFile="CharisPitches.gdh" atLine="348">
       <glyphAttrValue name="*actualForPseudo*" value="2334" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="28" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -25472,8 +25458,8 @@
       <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
       <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
     </glyph>
-    <glyph glyphid="2679" className="g9Pitch55" inFile="CharisPitches.gdh" atLine="381">
-      <glyphAttrValue name="*actualForPseudo*" value="2364" inFile="" atLine="0" />
+    <glyph glyphid="2678" className="g9Pitch33" inFile="CharisPitches.gdh" atLine="359">
+      <glyphAttrValue name="*actualForPseudo*" value="2344" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="28" />
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
@@ -25486,8 +25472,22 @@
       <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
       <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
     </glyph>
-    <glyph glyphid="2680" className="g9Pitch44" inFile="CharisPitches.gdh" atLine="370">
+    <glyph glyphid="2679" className="g9Pitch44" inFile="CharisPitches.gdh" atLine="370">
       <glyphAttrValue name="*actualForPseudo*" value="2354" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="28" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p1.bottom" value="-900" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p1.left" value="0" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p1.right" value="540" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p2.top" value="2450" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="component.p2.bottom" value="-900" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="component.p2.left" value="540" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
+    </glyph>
+    <glyph glyphid="2680" className="g9Pitch55" inFile="CharisPitches.gdh" atLine="381">
+      <glyphAttrValue name="*actualForPseudo*" value="2364" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="28" />
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
@@ -25514,7 +25514,21 @@
       <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
       <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
     </glyph>
-    <glyph glyphid="2682" className="g9Pitch88" inFile="CharisPitches.gdh" atLine="414">
+    <glyph glyphid="2682" className="g9Pitch77" inFile="CharisPitches.gdh" atLine="403">
+      <glyphAttrValue name="*actualForPseudo*" value="2384" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="28" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p1.bottom" value="-900" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p1.left" value="0" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p1.right" value="540" inFile="CharisPitches.gdh" atLine="453" />
+      <glyphAttrValue name="component.p2.top" value="2450" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="component.p2.bottom" value="-900" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="component.p2.left" value="540" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
+      <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
+    </glyph>
+    <glyph glyphid="2683" className="g9Pitch88" inFile="CharisPitches.gdh" atLine="414">
       <glyphAttrValue name="*actualForPseudo*" value="2394" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="28" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -25528,22 +25542,8 @@
       <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
       <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
     </glyph>
-    <glyph glyphid="2683" className="g9Pitch99" inFile="CharisPitches.gdh" atLine="425">
+    <glyph glyphid="2684" className="g9Pitch99" inFile="CharisPitches.gdh" atLine="425">
       <glyphAttrValue name="*actualForPseudo*" value="2404" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="28" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p1.bottom" value="-900" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p1.left" value="0" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p1.right" value="540" inFile="CharisPitches.gdh" atLine="453" />
-      <glyphAttrValue name="component.p2.top" value="2450" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="component.p2.bottom" value="-900" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="component.p2.left" value="540" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="component.p2.right" value="1080" inFile="CharisPitches.gdh" atLine="454" />
-      <glyphAttrValue name="order" value="0" inFile="CharisMain.gdl" atLine="6" />
-    </glyph>
-    <glyph glyphid="2684" className="g9Pitch77" inFile="CharisPitches.gdh" atLine="403">
-      <glyphAttrValue name="*actualForPseudo*" value="2384" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="28" />
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="component.p1.top" value="2450" inFile="CharisPitches.gdh" atLine="453" />
@@ -41747,7 +41747,7 @@
       <member glyphid="2404" index="0" inFile="CharisPitches.gdh" atLine="335" />
     </class>
     <class name="g9Pitch11">
-      <member glyphid="2677" index="0" inFile="CharisPitches.gdh" atLine="337" />
+      <member glyphid="2676" index="0" inFile="CharisPitches.gdh" atLine="337" />
     </class>
     <class name="g9Pitch12">
       <member glyphid="2325" index="0" inFile="CharisPitches.gdh" atLine="338" />
@@ -41777,7 +41777,7 @@
       <member glyphid="2333" index="0" inFile="CharisPitches.gdh" atLine="347" />
     </class>
     <class name="g9Pitch22">
-      <member glyphid="2678" index="0" inFile="CharisPitches.gdh" atLine="348" />
+      <member glyphid="2677" index="0" inFile="CharisPitches.gdh" atLine="348" />
     </class>
     <class name="g9Pitch23">
       <member glyphid="2335" index="0" inFile="CharisPitches.gdh" atLine="349" />
@@ -41807,7 +41807,7 @@
       <member glyphid="2343" index="0" inFile="CharisPitches.gdh" atLine="358" />
     </class>
     <class name="g9Pitch33">
-      <member glyphid="2676" index="0" inFile="CharisPitches.gdh" atLine="359" />
+      <member glyphid="2678" index="0" inFile="CharisPitches.gdh" atLine="359" />
     </class>
     <class name="g9Pitch34">
       <member glyphid="2345" index="0" inFile="CharisPitches.gdh" atLine="360" />
@@ -41837,7 +41837,7 @@
       <member glyphid="2353" index="0" inFile="CharisPitches.gdh" atLine="369" />
     </class>
     <class name="g9Pitch44">
-      <member glyphid="2680" index="0" inFile="CharisPitches.gdh" atLine="370" />
+      <member glyphid="2679" index="0" inFile="CharisPitches.gdh" atLine="370" />
     </class>
     <class name="g9Pitch45">
       <member glyphid="2355" index="0" inFile="CharisPitches.gdh" atLine="371" />
@@ -41867,7 +41867,7 @@
       <member glyphid="2363" index="0" inFile="CharisPitches.gdh" atLine="380" />
     </class>
     <class name="g9Pitch55">
-      <member glyphid="2679" index="0" inFile="CharisPitches.gdh" atLine="381" />
+      <member glyphid="2680" index="0" inFile="CharisPitches.gdh" atLine="381" />
     </class>
     <class name="g9Pitch56">
       <member glyphid="2365" index="0" inFile="CharisPitches.gdh" atLine="382" />
@@ -41927,7 +41927,7 @@
       <member glyphid="2383" index="0" inFile="CharisPitches.gdh" atLine="402" />
     </class>
     <class name="g9Pitch77">
-      <member glyphid="2684" index="0" inFile="CharisPitches.gdh" atLine="403" />
+      <member glyphid="2682" index="0" inFile="CharisPitches.gdh" atLine="403" />
     </class>
     <class name="g9Pitch78">
       <member glyphid="2385" index="0" inFile="CharisPitches.gdh" atLine="404" />
@@ -41957,7 +41957,7 @@
       <member glyphid="2393" index="0" inFile="CharisPitches.gdh" atLine="413" />
     </class>
     <class name="g9Pitch88">
-      <member glyphid="2682" index="0" inFile="CharisPitches.gdh" atLine="414" />
+      <member glyphid="2683" index="0" inFile="CharisPitches.gdh" atLine="414" />
     </class>
     <class name="g9Pitch89">
       <member glyphid="2395" index="0" inFile="CharisPitches.gdh" atLine="415" />
@@ -41987,7 +41987,7 @@
       <member glyphid="2403" index="0" inFile="CharisPitches.gdh" atLine="424" />
     </class>
     <class name="g9Pitch99">
-      <member glyphid="2683" index="0" inFile="CharisPitches.gdh" atLine="425" />
+      <member glyphid="2684" index="0" inFile="CharisPitches.gdh" atLine="425" />
     </class>
     <class name="c9PitchX" subClassIndexLhs="135">
       <member glyphid="2324" index="0" inFile="CharisPitches.gdh" atLine="428" />
@@ -42001,7 +42001,7 @@
       <member glyphid="2404" index="8" inFile="CharisPitches.gdh" atLine="428" />
     </class>
     <class name="c9Pitch1X" subClassIndexRhs="1">
-      <member glyphid="2677" index="0" inFile="CharisPitches.gdh" atLine="430" />
+      <member glyphid="2676" index="0" inFile="CharisPitches.gdh" atLine="430" />
       <member glyphid="2325" index="1" inFile="CharisPitches.gdh" atLine="430" />
       <member glyphid="2326" index="2" inFile="CharisPitches.gdh" atLine="430" />
       <member glyphid="2327" index="3" inFile="CharisPitches.gdh" atLine="430" />
@@ -42013,7 +42013,7 @@
     </class>
     <class name="c9Pitch2X" subClassIndexRhs="2">
       <member glyphid="2333" index="0" inFile="CharisPitches.gdh" atLine="431" />
-      <member glyphid="2678" index="1" inFile="CharisPitches.gdh" atLine="431" />
+      <member glyphid="2677" index="1" inFile="CharisPitches.gdh" atLine="431" />
       <member glyphid="2335" index="2" inFile="CharisPitches.gdh" atLine="431" />
       <member glyphid="2336" index="3" inFile="CharisPitches.gdh" atLine="431" />
       <member glyphid="2337" index="4" inFile="CharisPitches.gdh" atLine="431" />
@@ -42025,7 +42025,7 @@
     <class name="c9Pitch3X" subClassIndexRhs="3">
       <member glyphid="2342" index="0" inFile="CharisPitches.gdh" atLine="432" />
       <member glyphid="2343" index="1" inFile="CharisPitches.gdh" atLine="432" />
-      <member glyphid="2676" index="2" inFile="CharisPitches.gdh" atLine="432" />
+      <member glyphid="2678" index="2" inFile="CharisPitches.gdh" atLine="432" />
       <member glyphid="2345" index="3" inFile="CharisPitches.gdh" atLine="432" />
       <member glyphid="2346" index="4" inFile="CharisPitches.gdh" atLine="432" />
       <member glyphid="2347" index="5" inFile="CharisPitches.gdh" atLine="432" />
@@ -42037,7 +42037,7 @@
       <member glyphid="2351" index="0" inFile="CharisPitches.gdh" atLine="433" />
       <member glyphid="2352" index="1" inFile="CharisPitches.gdh" atLine="433" />
       <member glyphid="2353" index="2" inFile="CharisPitches.gdh" atLine="433" />
-      <member glyphid="2680" index="3" inFile="CharisPitches.gdh" atLine="433" />
+      <member glyphid="2679" index="3" inFile="CharisPitches.gdh" atLine="433" />
       <member glyphid="2355" index="4" inFile="CharisPitches.gdh" atLine="433" />
       <member glyphid="2356" index="5" inFile="CharisPitches.gdh" atLine="433" />
       <member glyphid="2357" index="6" inFile="CharisPitches.gdh" atLine="433" />
@@ -42049,7 +42049,7 @@
       <member glyphid="2361" index="1" inFile="CharisPitches.gdh" atLine="434" />
       <member glyphid="2362" index="2" inFile="CharisPitches.gdh" atLine="434" />
       <member glyphid="2363" index="3" inFile="CharisPitches.gdh" atLine="434" />
-      <member glyphid="2679" index="4" inFile="CharisPitches.gdh" atLine="434" />
+      <member glyphid="2680" index="4" inFile="CharisPitches.gdh" atLine="434" />
       <member glyphid="2365" index="5" inFile="CharisPitches.gdh" atLine="434" />
       <member glyphid="2366" index="6" inFile="CharisPitches.gdh" atLine="434" />
       <member glyphid="2367" index="7" inFile="CharisPitches.gdh" atLine="434" />
@@ -42073,7 +42073,7 @@
       <member glyphid="2381" index="3" inFile="CharisPitches.gdh" atLine="436" />
       <member glyphid="2382" index="4" inFile="CharisPitches.gdh" atLine="436" />
       <member glyphid="2383" index="5" inFile="CharisPitches.gdh" atLine="436" />
-      <member glyphid="2684" index="6" inFile="CharisPitches.gdh" atLine="436" />
+      <member glyphid="2682" index="6" inFile="CharisPitches.gdh" atLine="436" />
       <member glyphid="2385" index="7" inFile="CharisPitches.gdh" atLine="436" />
       <member glyphid="2386" index="8" inFile="CharisPitches.gdh" atLine="436" />
     </class>
@@ -42085,7 +42085,7 @@
       <member glyphid="2391" index="4" inFile="CharisPitches.gdh" atLine="437" />
       <member glyphid="2392" index="5" inFile="CharisPitches.gdh" atLine="437" />
       <member glyphid="2393" index="6" inFile="CharisPitches.gdh" atLine="437" />
-      <member glyphid="2682" index="7" inFile="CharisPitches.gdh" atLine="437" />
+      <member glyphid="2683" index="7" inFile="CharisPitches.gdh" atLine="437" />
       <member glyphid="2395" index="8" inFile="CharisPitches.gdh" atLine="437" />
     </class>
     <class name="c9Pitch9X" subClassIndexRhs="9">
@@ -42097,10 +42097,10 @@
       <member glyphid="2401" index="5" inFile="CharisPitches.gdh" atLine="438" />
       <member glyphid="2402" index="6" inFile="CharisPitches.gdh" atLine="438" />
       <member glyphid="2403" index="7" inFile="CharisPitches.gdh" atLine="438" />
-      <member glyphid="2683" index="8" inFile="CharisPitches.gdh" atLine="438" />
+      <member glyphid="2684" index="8" inFile="CharisPitches.gdh" atLine="438" />
     </class>
     <class name="c9PitchX1">
-      <member glyphid="2677" index="0" inFile="CharisPitches.gdh" atLine="440" />
+      <member glyphid="2676" index="0" inFile="CharisPitches.gdh" atLine="440" />
       <member glyphid="2333" index="1" inFile="CharisPitches.gdh" atLine="440" />
       <member glyphid="2342" index="2" inFile="CharisPitches.gdh" atLine="440" />
       <member glyphid="2351" index="3" inFile="CharisPitches.gdh" atLine="440" />
@@ -42112,7 +42112,7 @@
     </class>
     <class name="c9PitchX2">
       <member glyphid="2325" index="0" inFile="CharisPitches.gdh" atLine="441" />
-      <member glyphid="2678" index="1" inFile="CharisPitches.gdh" atLine="441" />
+      <member glyphid="2677" index="1" inFile="CharisPitches.gdh" atLine="441" />
       <member glyphid="2343" index="2" inFile="CharisPitches.gdh" atLine="441" />
       <member glyphid="2352" index="3" inFile="CharisPitches.gdh" atLine="441" />
       <member glyphid="2361" index="4" inFile="CharisPitches.gdh" atLine="441" />
@@ -42124,7 +42124,7 @@
     <class name="c9PitchX3">
       <member glyphid="2326" index="0" inFile="CharisPitches.gdh" atLine="442" />
       <member glyphid="2335" index="1" inFile="CharisPitches.gdh" atLine="442" />
-      <member glyphid="2676" index="2" inFile="CharisPitches.gdh" atLine="442" />
+      <member glyphid="2678" index="2" inFile="CharisPitches.gdh" atLine="442" />
       <member glyphid="2353" index="3" inFile="CharisPitches.gdh" atLine="442" />
       <member glyphid="2362" index="4" inFile="CharisPitches.gdh" atLine="442" />
       <member glyphid="2371" index="5" inFile="CharisPitches.gdh" atLine="442" />
@@ -42136,7 +42136,7 @@
       <member glyphid="2327" index="0" inFile="CharisPitches.gdh" atLine="443" />
       <member glyphid="2336" index="1" inFile="CharisPitches.gdh" atLine="443" />
       <member glyphid="2345" index="2" inFile="CharisPitches.gdh" atLine="443" />
-      <member glyphid="2680" index="3" inFile="CharisPitches.gdh" atLine="443" />
+      <member glyphid="2679" index="3" inFile="CharisPitches.gdh" atLine="443" />
       <member glyphid="2363" index="4" inFile="CharisPitches.gdh" atLine="443" />
       <member glyphid="2372" index="5" inFile="CharisPitches.gdh" atLine="443" />
       <member glyphid="2381" index="6" inFile="CharisPitches.gdh" atLine="443" />
@@ -42148,7 +42148,7 @@
       <member glyphid="2337" index="1" inFile="CharisPitches.gdh" atLine="444" />
       <member glyphid="2346" index="2" inFile="CharisPitches.gdh" atLine="444" />
       <member glyphid="2355" index="3" inFile="CharisPitches.gdh" atLine="444" />
-      <member glyphid="2679" index="4" inFile="CharisPitches.gdh" atLine="444" />
+      <member glyphid="2680" index="4" inFile="CharisPitches.gdh" atLine="444" />
       <member glyphid="2373" index="5" inFile="CharisPitches.gdh" atLine="444" />
       <member glyphid="2382" index="6" inFile="CharisPitches.gdh" atLine="444" />
       <member glyphid="2391" index="7" inFile="CharisPitches.gdh" atLine="444" />
@@ -42172,7 +42172,7 @@
       <member glyphid="2357" index="3" inFile="CharisPitches.gdh" atLine="446" />
       <member glyphid="2366" index="4" inFile="CharisPitches.gdh" atLine="446" />
       <member glyphid="2375" index="5" inFile="CharisPitches.gdh" atLine="446" />
-      <member glyphid="2684" index="6" inFile="CharisPitches.gdh" atLine="446" />
+      <member glyphid="2682" index="6" inFile="CharisPitches.gdh" atLine="446" />
       <member glyphid="2393" index="7" inFile="CharisPitches.gdh" atLine="446" />
       <member glyphid="2402" index="8" inFile="CharisPitches.gdh" atLine="446" />
     </class>
@@ -42184,7 +42184,7 @@
       <member glyphid="2367" index="4" inFile="CharisPitches.gdh" atLine="447" />
       <member glyphid="2376" index="5" inFile="CharisPitches.gdh" atLine="447" />
       <member glyphid="2385" index="6" inFile="CharisPitches.gdh" atLine="447" />
-      <member glyphid="2682" index="7" inFile="CharisPitches.gdh" atLine="447" />
+      <member glyphid="2683" index="7" inFile="CharisPitches.gdh" atLine="447" />
       <member glyphid="2403" index="8" inFile="CharisPitches.gdh" atLine="447" />
     </class>
     <class name="c9PitchX9">
@@ -42196,10 +42196,10 @@
       <member glyphid="2377" index="5" inFile="CharisPitches.gdh" atLine="448" />
       <member glyphid="2386" index="6" inFile="CharisPitches.gdh" atLine="448" />
       <member glyphid="2395" index="7" inFile="CharisPitches.gdh" atLine="448" />
-      <member glyphid="2683" index="8" inFile="CharisPitches.gdh" atLine="448" />
+      <member glyphid="2684" index="8" inFile="CharisPitches.gdh" atLine="448" />
     </class>
     <class name="c9PitchXX">
-      <member glyphid="2677" index="0" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2676" index="0" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2325" index="1" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2326" index="2" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2327" index="3" inFile="CharisPitches.gdh" atLine="452" />
@@ -42209,7 +42209,7 @@
       <member glyphid="2331" index="7" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2332" index="8" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2333" index="9" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2678" index="10" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2677" index="10" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2335" index="11" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2336" index="12" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2337" index="13" inFile="CharisPitches.gdh" atLine="452" />
@@ -42219,7 +42219,7 @@
       <member glyphid="2341" index="17" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2342" index="18" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2343" index="19" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2676" index="20" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2678" index="20" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2345" index="21" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2346" index="22" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2347" index="23" inFile="CharisPitches.gdh" atLine="452" />
@@ -42229,7 +42229,7 @@
       <member glyphid="2351" index="27" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2352" index="28" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2353" index="29" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2680" index="30" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2679" index="30" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2355" index="31" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2356" index="32" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2357" index="33" inFile="CharisPitches.gdh" atLine="452" />
@@ -42239,7 +42239,7 @@
       <member glyphid="2361" index="37" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2362" index="38" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2363" index="39" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2679" index="40" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2680" index="40" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2365" index="41" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2366" index="42" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2367" index="43" inFile="CharisPitches.gdh" atLine="452" />
@@ -42259,7 +42259,7 @@
       <member glyphid="2381" index="57" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2382" index="58" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2383" index="59" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2684" index="60" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2682" index="60" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2385" index="61" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2386" index="62" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2387" index="63" inFile="CharisPitches.gdh" atLine="452" />
@@ -42269,7 +42269,7 @@
       <member glyphid="2391" index="67" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2392" index="68" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2393" index="69" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2682" index="70" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2683" index="70" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2395" index="71" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2396" index="72" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2397" index="73" inFile="CharisPitches.gdh" atLine="452" />
@@ -42279,7 +42279,7 @@
       <member glyphid="2401" index="77" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2402" index="78" inFile="CharisPitches.gdh" atLine="452" />
       <member glyphid="2403" index="79" inFile="CharisPitches.gdh" atLine="452" />
-      <member glyphid="2683" index="80" inFile="CharisPitches.gdh" atLine="452" />
+      <member glyphid="2684" index="80" inFile="CharisPitches.gdh" atLine="452" />
     </class>
     <class name="g9Pitch1_Lines">
       <member glyphid="2406" index="0" inFile="CharisPitches.gdh" atLine="459" />
@@ -42568,7 +42568,7 @@
       <member glyphid="2384" index="7" inFile="CharisPitches.gdh" atLine="564" />
       <member glyphid="2394" index="8" inFile="CharisPitches.gdh" atLine="564" />
       <member glyphid="2404" index="9" inFile="CharisPitches.gdh" atLine="564" />
-      <member glyphid="2677" index="10" inFile="CharisPitches.gdh" atLine="565" />
+      <member glyphid="2676" index="10" inFile="CharisPitches.gdh" atLine="565" />
       <member glyphid="2325" index="11" inFile="CharisPitches.gdh" atLine="565" />
       <member glyphid="2326" index="12" inFile="CharisPitches.gdh" atLine="565" />
       <member glyphid="2327" index="13" inFile="CharisPitches.gdh" atLine="565" />
@@ -42578,7 +42578,7 @@
       <member glyphid="2331" index="17" inFile="CharisPitches.gdh" atLine="565" />
       <member glyphid="2332" index="18" inFile="CharisPitches.gdh" atLine="565" />
       <member glyphid="2333" index="19" inFile="CharisPitches.gdh" atLine="566" />
-      <member glyphid="2678" index="20" inFile="CharisPitches.gdh" atLine="566" />
+      <member glyphid="2677" index="20" inFile="CharisPitches.gdh" atLine="566" />
       <member glyphid="2335" index="21" inFile="CharisPitches.gdh" atLine="566" />
       <member glyphid="2336" index="22" inFile="CharisPitches.gdh" atLine="566" />
       <member glyphid="2337" index="23" inFile="CharisPitches.gdh" atLine="566" />
@@ -42588,7 +42588,7 @@
       <member glyphid="2341" index="27" inFile="CharisPitches.gdh" atLine="566" />
       <member glyphid="2342" index="28" inFile="CharisPitches.gdh" atLine="567" />
       <member glyphid="2343" index="29" inFile="CharisPitches.gdh" atLine="567" />
-      <member glyphid="2676" index="30" inFile="CharisPitches.gdh" atLine="567" />
+      <member glyphid="2678" index="30" inFile="CharisPitches.gdh" atLine="567" />
       <member glyphid="2345" index="31" inFile="CharisPitches.gdh" atLine="567" />
       <member glyphid="2346" index="32" inFile="CharisPitches.gdh" atLine="567" />
       <member glyphid="2347" index="33" inFile="CharisPitches.gdh" atLine="567" />
@@ -42598,7 +42598,7 @@
       <member glyphid="2351" index="37" inFile="CharisPitches.gdh" atLine="568" />
       <member glyphid="2352" index="38" inFile="CharisPitches.gdh" atLine="568" />
       <member glyphid="2353" index="39" inFile="CharisPitches.gdh" atLine="568" />
-      <member glyphid="2680" index="40" inFile="CharisPitches.gdh" atLine="568" />
+      <member glyphid="2679" index="40" inFile="CharisPitches.gdh" atLine="568" />
       <member glyphid="2355" index="41" inFile="CharisPitches.gdh" atLine="568" />
       <member glyphid="2356" index="42" inFile="CharisPitches.gdh" atLine="568" />
       <member glyphid="2357" index="43" inFile="CharisPitches.gdh" atLine="568" />
@@ -42608,7 +42608,7 @@
       <member glyphid="2361" index="47" inFile="CharisPitches.gdh" atLine="569" />
       <member glyphid="2362" index="48" inFile="CharisPitches.gdh" atLine="569" />
       <member glyphid="2363" index="49" inFile="CharisPitches.gdh" atLine="569" />
-      <member glyphid="2679" index="50" inFile="CharisPitches.gdh" atLine="569" />
+      <member glyphid="2680" index="50" inFile="CharisPitches.gdh" atLine="569" />
       <member glyphid="2365" index="51" inFile="CharisPitches.gdh" atLine="569" />
       <member glyphid="2366" index="52" inFile="CharisPitches.gdh" atLine="569" />
       <member glyphid="2367" index="53" inFile="CharisPitches.gdh" atLine="569" />
@@ -42628,7 +42628,7 @@
       <member glyphid="2381" index="67" inFile="CharisPitches.gdh" atLine="571" />
       <member glyphid="2382" index="68" inFile="CharisPitches.gdh" atLine="571" />
       <member glyphid="2383" index="69" inFile="CharisPitches.gdh" atLine="571" />
-      <member glyphid="2684" index="70" inFile="CharisPitches.gdh" atLine="571" />
+      <member glyphid="2682" index="70" inFile="CharisPitches.gdh" atLine="571" />
       <member glyphid="2385" index="71" inFile="CharisPitches.gdh" atLine="571" />
       <member glyphid="2386" index="72" inFile="CharisPitches.gdh" atLine="571" />
       <member glyphid="2387" index="73" inFile="CharisPitches.gdh" atLine="572" />
@@ -42638,7 +42638,7 @@
       <member glyphid="2391" index="77" inFile="CharisPitches.gdh" atLine="572" />
       <member glyphid="2392" index="78" inFile="CharisPitches.gdh" atLine="572" />
       <member glyphid="2393" index="79" inFile="CharisPitches.gdh" atLine="572" />
-      <member glyphid="2682" index="80" inFile="CharisPitches.gdh" atLine="572" />
+      <member glyphid="2683" index="80" inFile="CharisPitches.gdh" atLine="572" />
       <member glyphid="2395" index="81" inFile="CharisPitches.gdh" atLine="572" />
       <member glyphid="2396" index="82" inFile="CharisPitches.gdh" atLine="573" />
       <member glyphid="2397" index="83" inFile="CharisPitches.gdh" atLine="573" />
@@ -42648,7 +42648,7 @@
       <member glyphid="2401" index="87" inFile="CharisPitches.gdh" atLine="573" />
       <member glyphid="2402" index="88" inFile="CharisPitches.gdh" atLine="573" />
       <member glyphid="2403" index="89" inFile="CharisPitches.gdh" atLine="573" />
-      <member glyphid="2683" index="90" inFile="CharisPitches.gdh" atLine="573" />
+      <member glyphid="2684" index="90" inFile="CharisPitches.gdh" atLine="573" />
     </class>
     <class name="cLinesXXX" subClassIndexRhs="28">
       <member glyphid="2405" index="0" inFile="CharisPitches.gdh" atLine="575" />
@@ -42754,7 +42754,7 @@
       <member glyphid="2384" index="7" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2394" index="8" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2404" index="9" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2677" index="10" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2676" index="10" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2325" index="11" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2326" index="12" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2327" index="13" inFile="CharisPitches.gdh" atLine="602" />
@@ -42764,7 +42764,7 @@
       <member glyphid="2331" index="17" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2332" index="18" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2333" index="19" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2678" index="20" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2677" index="20" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2335" index="21" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2336" index="22" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2337" index="23" inFile="CharisPitches.gdh" atLine="602" />
@@ -42774,7 +42774,7 @@
       <member glyphid="2341" index="27" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2342" index="28" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2343" index="29" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2676" index="30" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2678" index="30" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2345" index="31" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2346" index="32" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2347" index="33" inFile="CharisPitches.gdh" atLine="602" />
@@ -42784,7 +42784,7 @@
       <member glyphid="2351" index="37" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2352" index="38" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2353" index="39" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2680" index="40" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2679" index="40" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2355" index="41" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2356" index="42" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2357" index="43" inFile="CharisPitches.gdh" atLine="602" />
@@ -42794,7 +42794,7 @@
       <member glyphid="2361" index="47" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2362" index="48" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2363" index="49" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2679" index="50" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2680" index="50" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2365" index="51" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2366" index="52" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2367" index="53" inFile="CharisPitches.gdh" atLine="602" />
@@ -42814,7 +42814,7 @@
       <member glyphid="2381" index="67" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2382" index="68" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2383" index="69" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2684" index="70" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2682" index="70" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2385" index="71" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2386" index="72" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2387" index="73" inFile="CharisPitches.gdh" atLine="602" />
@@ -42824,7 +42824,7 @@
       <member glyphid="2391" index="77" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2392" index="78" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2393" index="79" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2682" index="80" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2683" index="80" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2395" index="81" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2396" index="82" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2397" index="83" inFile="CharisPitches.gdh" atLine="602" />
@@ -42834,7 +42834,7 @@
       <member glyphid="2401" index="87" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2402" index="88" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2403" index="89" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2683" index="90" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2684" index="90" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2685" index="91" inFile="CharisPitches.gdh" atLine="602" />
     </class>
     <class name="*GC9*">
@@ -42848,7 +42848,7 @@
       <member glyphid="2384" index="7" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2394" index="8" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2404" index="9" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2677" index="10" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2676" index="10" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2325" index="11" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2326" index="12" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2327" index="13" inFile="CharisPitches.gdh" atLine="602" />
@@ -42858,7 +42858,7 @@
       <member glyphid="2331" index="17" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2332" index="18" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2333" index="19" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2678" index="20" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2677" index="20" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2335" index="21" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2336" index="22" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2337" index="23" inFile="CharisPitches.gdh" atLine="602" />
@@ -42868,7 +42868,7 @@
       <member glyphid="2341" index="27" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2342" index="28" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2343" index="29" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2676" index="30" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2678" index="30" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2345" index="31" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2346" index="32" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2347" index="33" inFile="CharisPitches.gdh" atLine="602" />
@@ -42878,7 +42878,7 @@
       <member glyphid="2351" index="37" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2352" index="38" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2353" index="39" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2680" index="40" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2679" index="40" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2355" index="41" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2356" index="42" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2357" index="43" inFile="CharisPitches.gdh" atLine="602" />
@@ -42888,7 +42888,7 @@
       <member glyphid="2361" index="47" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2362" index="48" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2363" index="49" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2679" index="50" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2680" index="50" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2365" index="51" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2366" index="52" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2367" index="53" inFile="CharisPitches.gdh" atLine="602" />
@@ -42908,7 +42908,7 @@
       <member glyphid="2381" index="67" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2382" index="68" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2383" index="69" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2684" index="70" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2682" index="70" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2385" index="71" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2386" index="72" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2387" index="73" inFile="CharisPitches.gdh" atLine="602" />
@@ -42918,7 +42918,7 @@
       <member glyphid="2391" index="77" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2392" index="78" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2393" index="79" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2682" index="80" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2683" index="80" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2395" index="81" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2396" index="82" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2397" index="83" inFile="CharisPitches.gdh" atLine="602" />
@@ -42928,7 +42928,7 @@
       <member glyphid="2401" index="87" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2402" index="88" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="2403" index="89" inFile="CharisPitches.gdh" atLine="602" />
-      <member glyphid="2683" index="90" inFile="CharisPitches.gdh" atLine="602" />
+      <member glyphid="2684" index="90" inFile="CharisPitches.gdh" atLine="602" />
       <member glyphid="3" index="91" inFile="CharisPitches.gdh" atLine="602" />
     </class>
     <class name="*GC10*" subClassIndexLhs="128">
@@ -42937,7 +42937,7 @@
     </class>
     <class name="*GC11*">
       <member glyphid="2324" index="0" inFile="CharisPitches.gdh" atLine="617" />
-      <member glyphid="2677" index="1" inFile="CharisPitches.gdh" atLine="617" />
+      <member glyphid="2676" index="1" inFile="CharisPitches.gdh" atLine="617" />
       <member glyphid="2333" index="2" inFile="CharisPitches.gdh" atLine="617" />
       <member glyphid="2342" index="3" inFile="CharisPitches.gdh" atLine="617" />
       <member glyphid="2351" index="4" inFile="CharisPitches.gdh" atLine="617" />
@@ -42950,7 +42950,7 @@
     <class name="*GC12*">
       <member glyphid="2334" index="0" inFile="CharisPitches.gdh" atLine="618" />
       <member glyphid="2325" index="1" inFile="CharisPitches.gdh" atLine="618" />
-      <member glyphid="2678" index="2" inFile="CharisPitches.gdh" atLine="618" />
+      <member glyphid="2677" index="2" inFile="CharisPitches.gdh" atLine="618" />
       <member glyphid="2343" index="3" inFile="CharisPitches.gdh" atLine="618" />
       <member glyphid="2352" index="4" inFile="CharisPitches.gdh" atLine="618" />
       <member glyphid="2361" index="5" inFile="CharisPitches.gdh" atLine="618" />
@@ -42963,7 +42963,7 @@
       <member glyphid="2344" index="0" inFile="CharisPitches.gdh" atLine="619" />
       <member glyphid="2326" index="1" inFile="CharisPitches.gdh" atLine="619" />
       <member glyphid="2335" index="2" inFile="CharisPitches.gdh" atLine="619" />
-      <member glyphid="2676" index="3" inFile="CharisPitches.gdh" atLine="619" />
+      <member glyphid="2678" index="3" inFile="CharisPitches.gdh" atLine="619" />
       <member glyphid="2353" index="4" inFile="CharisPitches.gdh" atLine="619" />
       <member glyphid="2362" index="5" inFile="CharisPitches.gdh" atLine="619" />
       <member glyphid="2371" index="6" inFile="CharisPitches.gdh" atLine="619" />
@@ -42976,7 +42976,7 @@
       <member glyphid="2327" index="1" inFile="CharisPitches.gdh" atLine="620" />
       <member glyphid="2336" index="2" inFile="CharisPitches.gdh" atLine="620" />
       <member glyphid="2345" index="3" inFile="CharisPitches.gdh" atLine="620" />
-      <member glyphid="2680" index="4" inFile="CharisPitches.gdh" atLine="620" />
+      <member glyphid="2679" index="4" inFile="CharisPitches.gdh" atLine="620" />
       <member glyphid="2363" index="5" inFile="CharisPitches.gdh" atLine="620" />
       <member glyphid="2372" index="6" inFile="CharisPitches.gdh" atLine="620" />
       <member glyphid="2381" index="7" inFile="CharisPitches.gdh" atLine="620" />
@@ -42989,7 +42989,7 @@
       <member glyphid="2337" index="2" inFile="CharisPitches.gdh" atLine="621" />
       <member glyphid="2346" index="3" inFile="CharisPitches.gdh" atLine="621" />
       <member glyphid="2355" index="4" inFile="CharisPitches.gdh" atLine="621" />
-      <member glyphid="2679" index="5" inFile="CharisPitches.gdh" atLine="621" />
+      <member glyphid="2680" index="5" inFile="CharisPitches.gdh" atLine="621" />
       <member glyphid="2373" index="6" inFile="CharisPitches.gdh" atLine="621" />
       <member glyphid="2382" index="7" inFile="CharisPitches.gdh" atLine="621" />
       <member glyphid="2391" index="8" inFile="CharisPitches.gdh" atLine="621" />
@@ -43015,7 +43015,7 @@
       <member glyphid="2357" index="4" inFile="CharisPitches.gdh" atLine="623" />
       <member glyphid="2366" index="5" inFile="CharisPitches.gdh" atLine="623" />
       <member glyphid="2375" index="6" inFile="CharisPitches.gdh" atLine="623" />
-      <member glyphid="2684" index="7" inFile="CharisPitches.gdh" atLine="623" />
+      <member glyphid="2682" index="7" inFile="CharisPitches.gdh" atLine="623" />
       <member glyphid="2393" index="8" inFile="CharisPitches.gdh" atLine="623" />
       <member glyphid="2402" index="9" inFile="CharisPitches.gdh" atLine="623" />
     </class>
@@ -43028,7 +43028,7 @@
       <member glyphid="2367" index="5" inFile="CharisPitches.gdh" atLine="624" />
       <member glyphid="2376" index="6" inFile="CharisPitches.gdh" atLine="624" />
       <member glyphid="2385" index="7" inFile="CharisPitches.gdh" atLine="624" />
-      <member glyphid="2682" index="8" inFile="CharisPitches.gdh" atLine="624" />
+      <member glyphid="2683" index="8" inFile="CharisPitches.gdh" atLine="624" />
       <member glyphid="2403" index="9" inFile="CharisPitches.gdh" atLine="624" />
     </class>
     <class name="*GC19*">
@@ -43041,7 +43041,7 @@
       <member glyphid="2377" index="6" inFile="CharisPitches.gdh" atLine="625" />
       <member glyphid="2386" index="7" inFile="CharisPitches.gdh" atLine="625" />
       <member glyphid="2395" index="8" inFile="CharisPitches.gdh" atLine="625" />
-      <member glyphid="2683" index="9" inFile="CharisPitches.gdh" atLine="625" />
+      <member glyphid="2684" index="9" inFile="CharisPitches.gdh" atLine="625" />
     </class>
     <class name="*GC20*">
       <member glyphid="2675" index="0" />
@@ -43058,14 +43058,14 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="75" />
     </feature>
     <feature name="pitch9" featureID="1885959225" featureIDstring="pit9" index="2" inFile="CharisFeatures.gdh" atLine="78" >
+      <featureSetting name="ligated" value="0" inFile="CharisFeatures.gdh" atLine="84" />
+      <featureSetting name="tramlines" value="1" inFile="CharisFeatures.gdh" atLine="88" />
       <featureSetting name="nonLigated" value="2" inFile="CharisFeatures.gdh" atLine="93" />
       <featureSetting name="tramNonLigated" value="3" inFile="CharisFeatures.gdh" atLine="96" />
-      <featureSetting name="ligated" value="0" inFile="CharisFeatures.gdh" atLine="84" />
-      <featureSetting name="tramlines" value="1" inFile="CharisFeatures.gdh" atLine="89" />
     </feature>
     <feature name="viet" featureID="1986618740" featureIDstring="viet" index="3" inFile="CharisFeatures.gdh" atLine="102" >
-      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="105" />
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="105" />
+      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="105" />
     </feature>
     <feature name="rom" featureID="1919905134" featureIDstring="romn" index="4" inFile="CharisFeatures.gdh" atLine="108" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="111" />
@@ -43084,8 +43084,8 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="129" />
     </feature>
     <feature name="literacy" featureID="1818850418" featureIDstring="litr" index="8" inFile="CharisFeatures.gdh" atLine="132" >
-      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="135" />
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="135" />
+      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="135" />
     </feature>
     <feature name="slant_italic" featureID="1769234796" featureIDstring="ital" index="9" inFile="CharisFeatures.gdh" atLine="141" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="144" />
@@ -43093,66 +43093,66 @@
     </feature>
     <feature name="eng" featureID="1164863347" featureIDstring="Engs" index="10" inFile="CharisFeatures.gdh" atLine="148" >
       <featureSetting name="descender" value="0" inFile="CharisFeatures.gdh" atLine="155" />
-      <featureSetting name="short" value="3" inFile="CharisFeatures.gdh" atLine="162" />
+      <featureSetting name="base" value="1" inFile="CharisFeatures.gdh" atLine="158" />
       <featureSetting name="capital" value="2" inFile="CharisFeatures.gdh" atLine="166" />
-      <featureSetting name="base" value="1" inFile="CharisFeatures.gdh" atLine="159" />
+      <featureSetting name="short" value="3" inFile="CharisFeatures.gdh" atLine="162" />
     </feature>
     <feature name="ramshorn" featureID="1918987624" featureIDstring="ramh" index="11" inFile="CharisFeatures.gdh" atLine="172" >
-      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="178" />
-      <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="182" />
+      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="179" />
+      <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="183" />
       <featureSetting name="gamma" value="2" inFile="CharisFeatures.gdh" atLine="186" />
     </feature>
     <feature name="ogonek" featureID="1869049710" featureIDstring="ogon" index="12" inFile="CharisFeatures.gdh" atLine="192" >
-      <featureSetting name="americanist" value="1" inFile="CharisFeatures.gdh" atLine="202" />
       <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="199" />
+      <featureSetting name="americanist" value="1" inFile="CharisFeatures.gdh" atLine="203" />
     </feature>
     <feature name="h_stroke" featureID="1215525995" featureIDstring="Hstk" index="13" inFile="CharisFeatures.gdh" atLine="208" >
       <featureSetting name="horizontal" value="0" inFile="CharisFeatures.gdh" atLine="214" />
-      <featureSetting name="vertical" value="1" inFile="CharisFeatures.gdh" atLine="219" />
+      <featureSetting name="vertical" value="1" inFile="CharisFeatures.gdh" atLine="218" />
     </feature>
     <feature name="ltnjstroke" featureID="1249080427" featureIDstring="Jstk" index="14" inFile="CharisFeatures.gdh" atLine="224" >
-      <featureSetting name="noSerif" value="0" inFile="CharisFeatures.gdh" atLine="230" />
+      <featureSetting name="noSerif" value="0" inFile="CharisFeatures.gdh" atLine="231" />
       <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="234" />
     </feature>
     <feature name="n_hook" featureID="1314875499" featureIDstring="N_hk" index="15" inFile="CharisFeatures.gdh" atLine="240" >
       <featureSetting name="ucStyle" value="0" inFile="CharisFeatures.gdh" atLine="246" />
-      <featureSetting name="lcStyle" value="1" inFile="CharisFeatures.gdh" atLine="251" />
+      <featureSetting name="lcStyle" value="1" inFile="CharisFeatures.gdh" atLine="250" />
     </feature>
     <feature name="open_o" featureID="1869639247" featureIDstring="opnO" index="16" inFile="CharisFeatures.gdh" atLine="256" >
-      <featureSetting name="bottomSerif" value="0" inFile="CharisFeatures.gdh" atLine="262" />
+      <featureSetting name="bottomSerif" value="0" inFile="CharisFeatures.gdh" atLine="263" />
       <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="266" />
     </feature>
     <feature name="p_hook" featureID="1885300843" featureIDstring="p_hk" index="17" inFile="CharisFeatures.gdh" atLine="272" >
-      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="283" />
       <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="279" />
+      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="282" />
     </feature>
     <feature name="r_tail" featureID="1381987436" featureIDstring="R_tl" index="18" inFile="CharisFeatures.gdh" atLine="288" >
-      <featureSetting name="LCstyle" value="1" inFile="CharisFeatures.gdh" atLine="298" />
-      <featureSetting name="UCstyle" value="0" inFile="CharisFeatures.gdh" atLine="295" />
+      <featureSetting name="UCstyle" value="0" inFile="CharisFeatures.gdh" atLine="294" />
+      <featureSetting name="LCstyle" value="1" inFile="CharisFeatures.gdh" atLine="299" />
     </feature>
     <feature name="t_hook" featureID="1952409707" featureIDstring="t_hk" index="19" inFile="CharisFeatures.gdh" atLine="304" >
-      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="310" />
-      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="314" />
+      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="311" />
+      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="315" />
     </feature>
     <feature name="v_hook" featureID="1985964139" featureIDstring="v_hk" index="20" inFile="CharisFeatures.gdh" atLine="320" >
       <featureSetting name="curved" value="0" inFile="CharisFeatures.gdh" atLine="326" />
       <featureSetting name="straight" value="1" inFile="CharisFeatures.gdh" atLine="330" />
     </feature>
     <feature name="y_hook" featureID="1499424875" featureIDstring="Y_hk" index="21" inFile="CharisFeatures.gdh" atLine="336" >
+      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="342" />
       <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="346" />
-      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="343" />
     </feature>
     <feature name="ezh_curl" featureID="1702520931" featureIDstring="ezhc" index="22" inFile="CharisFeatures.gdh" atLine="352" >
       <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="359" />
       <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="362" />
     </feature>
     <feature name="ezh" featureID="1165650034" featureIDstring="Ezhr" index="23" inFile="CharisFeatures.gdh" atLine="368" >
-      <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="374" />
+      <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="375" />
       <featureSetting name="rev_sigma" value="1" inFile="CharisFeatures.gdh" atLine="379" />
     </feature>
     <feature name="ou" featureID="1869631317" featureIDstring="opOU" index="24" inFile="CharisFeatures.gdh" atLine="384" >
       <featureSetting name="closed" value="0" inFile="CharisFeatures.gdh" atLine="390" />
-      <featureSetting name="open" value="1" inFile="CharisFeatures.gdh" atLine="395" />
+      <featureSetting name="open" value="1" inFile="CharisFeatures.gdh" atLine="394" />
     </feature>
     <feature name="mongol_e" featureID="1836019301" featureIDstring="mone" index="25" inFile="CharisFeatures.gdh" atLine="400" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="403" />
@@ -43160,27 +43160,27 @@
     </feature>
     <feature name="apostrophe" featureID="1634758515" featureIDstring="apos" index="26" inFile="CharisFeatures.gdh" atLine="416" >
       <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="423" />
-      <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="427" />
+      <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="426" />
     </feature>
     <feature name="modlowcolon" featureID="1668246638" featureIDstring="coln" index="27" inFile="CharisFeatures.gdh" atLine="451" >
-      <featureSetting name="tight" value="0" inFile="CharisFeatures.gdh" atLine="458" />
-      <featureSetting name="wide" value="1" inFile="CharisFeatures.gdh" atLine="461" />
+      <featureSetting name="tight" value="0" inFile="CharisFeatures.gdh" atLine="457" />
+      <featureSetting name="wide" value="1" inFile="CharisFeatures.gdh" atLine="462" />
     </feature>
     <feature name="short_breve" featureID="1935831670" featureIDstring="sbrv" index="28" inFile="CharisFeatures.gdh" atLine="467" >
-      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="470" />
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="470" />
+      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="470" />
     </feature>
     <feature name="cyrillic_shha" featureID="1936222305" featureIDstring="shha" index="29" inFile="CharisFeatures.gdh" atLine="473" >
-      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="476" />
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="476" />
+      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="476" />
     </feature>
     <feature name="emptyset" featureID="1701671028" featureIDstring="empt" index="30" inFile="CharisFeatures.gdh" atLine="479" >
-      <featureSetting name="zero" value="1" inFile="CharisFeatures.gdh" atLine="490" />
-      <featureSetting name="circle" value="0" inFile="CharisFeatures.gdh" atLine="486" />
+      <featureSetting name="circle" value="0" inFile="CharisFeatures.gdh" atLine="485" />
+      <featureSetting name="zero" value="1" inFile="CharisFeatures.gdh" atLine="489" />
     </feature>
     <feature name="invis" featureID="1768846963" featureIDstring="invs" index="31" inFile="CharisFeatures.gdh" atLine="495" >
-      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="498" />
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="498" />
+      <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="498" />
     </feature>
     <feature name="select_diac" featureID="1685284204" featureIDstring="dsel" index="32" inFile="CharisFeatures.gdh" atLine="501" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="504" />

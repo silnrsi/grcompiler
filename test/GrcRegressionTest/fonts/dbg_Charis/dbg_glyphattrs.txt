@@ -24606,21 +24606,6 @@ GLYPH ATTRIBUTE VALUES
 
 
 2676  [0x0a74]
-   *actualForPseudo* = 2344 [0x0928  / ]
-   *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
-   breakweight = 30 [0x001e]
-   component.p1 = 35 [0x0023]
-   component.p2 = 39 [0x0027]
-   component.p1.top = 2450 [0x0992]
-   component.p1.bottom = -900 [0xfc7c]
-   component.p1.right = 540 [0x021c]
-   component.p2.top = 2450 [0x0992]
-   component.p2.bottom = -900 [0xfc7c]
-   component.p2.left = 540 [0x021c]
-   component.p2.right = 1080 [0x0438]
-
-
-2677  [0x0a75]
    *actualForPseudo* = 2324 [0x0914  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
@@ -24635,7 +24620,7 @@ GLYPH ATTRIBUTE VALUES
    component.p2.right = 1080 [0x0438]
 
 
-2678  [0x0a76]
+2677  [0x0a75]
    *actualForPseudo* = 2334 [0x091e  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
@@ -24650,8 +24635,23 @@ GLYPH ATTRIBUTE VALUES
    component.p2.right = 1080 [0x0438]
 
 
+2678  [0x0a76]
+   *actualForPseudo* = 2344 [0x0928  / ]
+   *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
+   breakweight = 30 [0x001e]
+   component.p1 = 35 [0x0023]
+   component.p2 = 39 [0x0027]
+   component.p1.top = 2450 [0x0992]
+   component.p1.bottom = -900 [0xfc7c]
+   component.p1.right = 540 [0x021c]
+   component.p2.top = 2450 [0x0992]
+   component.p2.bottom = -900 [0xfc7c]
+   component.p2.left = 540 [0x021c]
+   component.p2.right = 1080 [0x0438]
+
+
 2679  [0x0a77]
-   *actualForPseudo* = 2364 [0x093c  / ]
+   *actualForPseudo* = 2354 [0x0932  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
    component.p1 = 35 [0x0023]
@@ -24666,7 +24666,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 2680  [0x0a78]
-   *actualForPseudo* = 2354 [0x0932  / ]
+   *actualForPseudo* = 2364 [0x093c  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
    component.p1 = 35 [0x0023]
@@ -24696,7 +24696,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 2682  [0x0a7a]
-   *actualForPseudo* = 2394 [0x095a  / ]
+   *actualForPseudo* = 2384 [0x0950  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
    component.p1 = 35 [0x0023]
@@ -24711,7 +24711,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 2683  [0x0a7b]
-   *actualForPseudo* = 2404 [0x0964  / ]
+   *actualForPseudo* = 2394 [0x095a  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
    component.p1 = 35 [0x0023]
@@ -24726,7 +24726,7 @@ GLYPH ATTRIBUTE VALUES
 
 
 2684  [0x0a7c]
-   *actualForPseudo* = 2384 [0x0950  / ]
+   *actualForPseudo* = 2404 [0x0964  / ]
    *skipPasses* = 28 [0x001c  /  0 0 1 1 1]
    breakweight = 30 [0x001e]
    component.p1 = 35 [0x0023]

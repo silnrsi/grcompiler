@@ -13615,8 +13615,8 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1198" className="uniSheenRetro2" inFile="SchGlyphs.gdh" atLine="2108">
-      <glyphAttrValue name="*actualForPseudo*" value="364" inFile="" atLine="0" />
+    <glyph glyphid="1198" className="uniJeemRetro1" inFile="SchGlyphs.gdh" atLine="2106">
+      <glyphAttrValue name="*actualForPseudo*" value="352" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="directionality" value="0" />
@@ -13631,23 +13631,15 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1200" className="uniJeemRetro3" inFile="SchGlyphs.gdh" atLine="2110">
-      <glyphAttrValue name="*actualForPseudo*" value="354" inFile="" atLine="0" />
+    <glyph glyphid="1200" className="uniSheenRetro2" inFile="SchGlyphs.gdh" atLine="2108">
+      <glyphAttrValue name="*actualForPseudo*" value="364" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="directionality" value="0" />
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1201" className="uniAlefEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2120">
-      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="510" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-    </glyph>
-    <glyph glyphid="1202" className="uniJehRetro1" inFile="SchGlyphs.gdh" atLine="2109">
+    <glyph glyphid="1201" className="uniJehRetro1" inFile="SchGlyphs.gdh" atLine="2109">
       <glyphAttrValue name="*actualForPseudo*" value="303" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13655,7 +13647,15 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1203" className="uniAlefEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2121">
+    <glyph glyphid="1202" className="uniJeemRetro3" inFile="SchGlyphs.gdh" atLine="2110">
+      <glyphAttrValue name="*actualForPseudo*" value="354" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="510" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+    </glyph>
+    <glyph glyphid="1203" className="uniAlefEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2120">
       <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13663,7 +13663,7 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1204" className="uniFarsiYehEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2122">
+    <glyph glyphid="1204" className="uniAlefEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2121">
       <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13671,7 +13671,7 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1205" className="uniFarsiYehEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2123">
+    <glyph glyphid="1205" className="uniFarsiYehEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2122">
       <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13679,7 +13679,7 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1206" className="uniFarsiYehEasternFourBelow" inFile="SchGlyphs.gdh" atLine="2124">
+    <glyph glyphid="1206" className="uniFarsiYehEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2123">
       <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13687,7 +13687,7 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1207" className="uniWawEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2125">
+    <glyph glyphid="1207" className="uniFarsiYehEasternFourBelow" inFile="SchGlyphs.gdh" atLine="2124">
       <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13695,15 +13695,7 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1208" className="uniJeemRetro1" inFile="SchGlyphs.gdh" atLine="2106">
-      <glyphAttrValue name="*actualForPseudo*" value="352" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="510" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-    </glyph>
-    <glyph glyphid="1209" className="uniHahEasternFourBelow" inFile="SchGlyphs.gdh" atLine="2129">
+    <glyph glyphid="1208" className="uniWawEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2125">
       <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="510" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13711,7 +13703,47 @@
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
     </glyph>
-    <glyph glyphid="1210" className="absTwoDiaDigitAbove" inFile="SchGlyphs.gdh" atLine="2134">
+    <glyph glyphid="1209" className="uniWawEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2126">
+      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="510" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+    </glyph>
+    <glyph glyphid="1210" className="uniYehBarreeEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2127">
+      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="510" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+    </glyph>
+    <glyph glyphid="1211" className="uniYehBarreeEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2128">
+      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="510" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+    </glyph>
+    <glyph glyphid="1212" className="uniHahEasternFourBelow" inFile="SchGlyphs.gdh" atLine="2129">
+      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="510" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+    </glyph>
+    <glyph glyphid="1213" className="uniSeenEasternFourBelow" inFile="SchGlyphs.gdh" atLine="2130">
+      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="510" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+    </glyph>
+    <glyph glyphid="1214" className="absTwoDiaDigitAbove" inFile="SchGlyphs.gdh" atLine="2134">
       <glyphAttrValue name="*actualForPseudo*" value="1057" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="447" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13723,7 +13755,7 @@
       <glyphAttrValue name="diaDigitA_.x" value="150" inFile="SchGlyphs.gdh" atLine="2158" />
       <glyphAttrValue name="diaDigitA_.y" value="185" inFile="SchGlyphs.gdh" atLine="2158" />
     </glyph>
-    <glyph glyphid="1211" className="absThreeDiaDigitAbove" inFile="SchGlyphs.gdh" atLine="2135">
+    <glyph glyphid="1215" className="absThreeDiaDigitAbove" inFile="SchGlyphs.gdh" atLine="2135">
       <glyphAttrValue name="*actualForPseudo*" value="1058" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="447" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13735,67 +13767,7 @@
       <glyphAttrValue name="diaDigitA_.x" value="164" inFile="SchGlyphs.gdh" atLine="2158" />
       <glyphAttrValue name="diaDigitA_.y" value="193" inFile="SchGlyphs.gdh" atLine="2158" />
     </glyph>
-    <glyph glyphid="1212" className="absFourDiaDigitBelow" inFile="SchGlyphs.gdh" atLine="2137">
-      <glyphAttrValue name="*actualForPseudo*" value="1059" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="367" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-      <glyphAttrValue name="diaB.x" value="164" inFile="SchGlyphs.gdh" atLine="2163" />
-      <glyphAttrValue name="diaB.y" value="181" inFile="SchGlyphs.gdh" atLine="2163" />
-      <glyphAttrValue name="diaDigitB_.x" value="164" inFile="SchGlyphs.gdh" atLine="2162" />
-      <glyphAttrValue name="diaDigitB_.y" value="648" inFile="SchGlyphs.gdh" atLine="2162" />
-    </glyph>
-    <glyph glyphid="1213" className="uniYehBarreeEasternTwoAbove" inFile="SchGlyphs.gdh" atLine="2127">
-      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="510" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-    </glyph>
-    <glyph glyphid="1214" className="absFourDiaDigitBelow__urdu" inFile="SchGlyphs.gdh" atLine="2139">
-      <glyphAttrValue name="*actualForPseudo*" value="1060" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="383" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-      <glyphAttrValue name="diaB.x" value="165" inFile="SchGlyphs.gdh" atLine="2163" />
-      <glyphAttrValue name="diaB.y" value="212" inFile="SchGlyphs.gdh" atLine="2163" />
-      <glyphAttrValue name="diaDigitB_.x" value="165" inFile="SchGlyphs.gdh" atLine="2162" />
-      <glyphAttrValue name="diaDigitB_.y" value="608" inFile="SchGlyphs.gdh" atLine="2162" />
-    </glyph>
-    <glyph glyphid="1215" className="uniWawEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2126">
-      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="510" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-    </glyph>
-    <glyph glyphid="1216" className="absFourDiaDigitAbove__urdu" inFile="SchGlyphs.gdh" atLine="2138">
-      <glyphAttrValue name="*actualForPseudo*" value="1060" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="447" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-      <glyphAttrValue name="diaA.x" value="165" inFile="SchGlyphs.gdh" atLine="2159" />
-      <glyphAttrValue name="diaA.y" value="608" inFile="SchGlyphs.gdh" atLine="2159" />
-      <glyphAttrValue name="diaDigitA_.x" value="165" inFile="SchGlyphs.gdh" atLine="2158" />
-      <glyphAttrValue name="diaDigitA_.y" value="212" inFile="SchGlyphs.gdh" atLine="2158" />
-    </glyph>
-    <glyph glyphid="1217" className="uniSeenEasternFourBelow" inFile="SchGlyphs.gdh" atLine="2130">
-      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="510" />
-      <glyphAttrValue name="breakweight" value="30" />
-      <glyphAttrValue name="directionality" value="0" />
-      <glyphAttrValue name="mirror.glyph" value="0" />
-      <glyphAttrValue name="mirror.isEncoded" value="0" />
-    </glyph>
-    <glyph glyphid="1218" className="absFourDiaDigitAbove" inFile="SchGlyphs.gdh" atLine="2136">
+    <glyph glyphid="1216" className="absFourDiaDigitAbove" inFile="SchGlyphs.gdh" atLine="2136">
       <glyphAttrValue name="*actualForPseudo*" value="1059" inFile="" atLine="0" />
       <glyphAttrValue name="*skipPasses*" value="431" />
       <glyphAttrValue name="breakweight" value="30" />
@@ -13807,13 +13779,41 @@
       <glyphAttrValue name="diaDigitA_.x" value="164" inFile="SchGlyphs.gdh" atLine="2158" />
       <glyphAttrValue name="diaDigitA_.y" value="181" inFile="SchGlyphs.gdh" atLine="2158" />
     </glyph>
-    <glyph glyphid="1219" className="uniYehBarreeEasternThreeAbove" inFile="SchGlyphs.gdh" atLine="2128">
-      <glyphAttrValue name="*actualForPseudo*" value="35" inFile="" atLine="0" />
-      <glyphAttrValue name="*skipPasses*" value="510" />
+    <glyph glyphid="1217" className="absFourDiaDigitBelow" inFile="SchGlyphs.gdh" atLine="2137">
+      <glyphAttrValue name="*actualForPseudo*" value="1059" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="367" />
       <glyphAttrValue name="breakweight" value="30" />
       <glyphAttrValue name="directionality" value="0" />
       <glyphAttrValue name="mirror.glyph" value="0" />
       <glyphAttrValue name="mirror.isEncoded" value="0" />
+      <glyphAttrValue name="diaB.x" value="164" inFile="SchGlyphs.gdh" atLine="2163" />
+      <glyphAttrValue name="diaB.y" value="181" inFile="SchGlyphs.gdh" atLine="2163" />
+      <glyphAttrValue name="diaDigitB_.x" value="164" inFile="SchGlyphs.gdh" atLine="2162" />
+      <glyphAttrValue name="diaDigitB_.y" value="648" inFile="SchGlyphs.gdh" atLine="2162" />
+    </glyph>
+    <glyph glyphid="1218" className="absFourDiaDigitAbove__urdu" inFile="SchGlyphs.gdh" atLine="2138">
+      <glyphAttrValue name="*actualForPseudo*" value="1060" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="447" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+      <glyphAttrValue name="diaA.x" value="165" inFile="SchGlyphs.gdh" atLine="2159" />
+      <glyphAttrValue name="diaA.y" value="608" inFile="SchGlyphs.gdh" atLine="2159" />
+      <glyphAttrValue name="diaDigitA_.x" value="165" inFile="SchGlyphs.gdh" atLine="2158" />
+      <glyphAttrValue name="diaDigitA_.y" value="212" inFile="SchGlyphs.gdh" atLine="2158" />
+    </glyph>
+    <glyph glyphid="1219" className="absFourDiaDigitBelow__urdu" inFile="SchGlyphs.gdh" atLine="2139">
+      <glyphAttrValue name="*actualForPseudo*" value="1060" inFile="" atLine="0" />
+      <glyphAttrValue name="*skipPasses*" value="383" />
+      <glyphAttrValue name="breakweight" value="30" />
+      <glyphAttrValue name="directionality" value="0" />
+      <glyphAttrValue name="mirror.glyph" value="0" />
+      <glyphAttrValue name="mirror.isEncoded" value="0" />
+      <glyphAttrValue name="diaB.x" value="165" inFile="SchGlyphs.gdh" atLine="2163" />
+      <glyphAttrValue name="diaB.y" value="212" inFile="SchGlyphs.gdh" atLine="2163" />
+      <glyphAttrValue name="diaDigitB_.x" value="165" inFile="SchGlyphs.gdh" atLine="2162" />
+      <glyphAttrValue name="diaDigitB_.y" value="608" inFile="SchGlyphs.gdh" atLine="2162" />
     </glyph>
     <glyph glyphid="1220">
       <glyphAttrValue name="*skipPasses*" value="511" />
@@ -16505,26 +16505,26 @@
       <member glyphid="1196" index="0" inFile="SchGlyphs.gdh" atLine="2077" />
     </class>
     <class name="uniJeemRetro1">
-      <member glyphid="1208" index="0" inFile="SchGlyphs.gdh" atLine="2106" />
+      <member glyphid="1198" index="0" inFile="SchGlyphs.gdh" atLine="2106" />
     </class>
     <class name="uniTchehRetro2">
       <member glyphid="1199" index="0" inFile="SchGlyphs.gdh" atLine="2107" />
     </class>
     <class name="uniSheenRetro2">
-      <member glyphid="1198" index="0" inFile="SchGlyphs.gdh" atLine="2108" />
+      <member glyphid="1200" index="0" inFile="SchGlyphs.gdh" atLine="2108" />
     </class>
     <class name="uniJehRetro1">
-      <member glyphid="1202" index="0" inFile="SchGlyphs.gdh" atLine="2109" />
+      <member glyphid="1201" index="0" inFile="SchGlyphs.gdh" atLine="2109" />
     </class>
     <class name="uniJeemRetro3">
-      <member glyphid="1200" index="0" inFile="SchGlyphs.gdh" atLine="2110" />
+      <member glyphid="1202" index="0" inFile="SchGlyphs.gdh" atLine="2110" />
     </class>
     <class name="cUnencodedChar" subClassIndexLhs="59">
-      <member glyphid="1208" index="0" inFile="SchGlyphs.gdh" atLine="2113" />
+      <member glyphid="1198" index="0" inFile="SchGlyphs.gdh" atLine="2113" />
       <member glyphid="1199" index="1" inFile="SchGlyphs.gdh" atLine="2113" />
-      <member glyphid="1198" index="2" inFile="SchGlyphs.gdh" atLine="2113" />
-      <member glyphid="1202" index="3" inFile="SchGlyphs.gdh" atLine="2113" />
-      <member glyphid="1200" index="4" inFile="SchGlyphs.gdh" atLine="2113" />
+      <member glyphid="1200" index="2" inFile="SchGlyphs.gdh" atLine="2113" />
+      <member glyphid="1201" index="3" inFile="SchGlyphs.gdh" atLine="2113" />
+      <member glyphid="1202" index="4" inFile="SchGlyphs.gdh" atLine="2113" />
     </class>
     <class name="cUnencodedGlyph" subClassIndexRhs="32">
       <member glyphid="352" index="0" inFile="SchGlyphs.gdh" atLine="2114" />
@@ -16534,68 +16534,68 @@
       <member glyphid="354" index="4" inFile="SchGlyphs.gdh" atLine="2114" />
     </class>
     <class name="uniAlefEasternTwoAbove">
-      <member glyphid="1201" index="0" inFile="SchGlyphs.gdh" atLine="2120" />
+      <member glyphid="1203" index="0" inFile="SchGlyphs.gdh" atLine="2120" />
     </class>
     <class name="uniAlefEasternThreeAbove">
-      <member glyphid="1203" index="0" inFile="SchGlyphs.gdh" atLine="2121" />
+      <member glyphid="1204" index="0" inFile="SchGlyphs.gdh" atLine="2121" />
     </class>
     <class name="uniFarsiYehEasternTwoAbove">
-      <member glyphid="1204" index="0" inFile="SchGlyphs.gdh" atLine="2122" />
+      <member glyphid="1205" index="0" inFile="SchGlyphs.gdh" atLine="2122" />
     </class>
     <class name="uniFarsiYehEasternThreeAbove">
-      <member glyphid="1205" index="0" inFile="SchGlyphs.gdh" atLine="2123" />
+      <member glyphid="1206" index="0" inFile="SchGlyphs.gdh" atLine="2123" />
     </class>
     <class name="uniFarsiYehEasternFourBelow">
-      <member glyphid="1206" index="0" inFile="SchGlyphs.gdh" atLine="2124" />
+      <member glyphid="1207" index="0" inFile="SchGlyphs.gdh" atLine="2124" />
     </class>
     <class name="uniWawEasternTwoAbove">
-      <member glyphid="1207" index="0" inFile="SchGlyphs.gdh" atLine="2125" />
+      <member glyphid="1208" index="0" inFile="SchGlyphs.gdh" atLine="2125" />
     </class>
     <class name="uniWawEasternThreeAbove">
-      <member glyphid="1215" index="0" inFile="SchGlyphs.gdh" atLine="2126" />
+      <member glyphid="1209" index="0" inFile="SchGlyphs.gdh" atLine="2126" />
     </class>
     <class name="uniYehBarreeEasternTwoAbove">
-      <member glyphid="1213" index="0" inFile="SchGlyphs.gdh" atLine="2127" />
+      <member glyphid="1210" index="0" inFile="SchGlyphs.gdh" atLine="2127" />
     </class>
     <class name="uniYehBarreeEasternThreeAbove">
-      <member glyphid="1219" index="0" inFile="SchGlyphs.gdh" atLine="2128" />
+      <member glyphid="1211" index="0" inFile="SchGlyphs.gdh" atLine="2128" />
     </class>
     <class name="uniHahEasternFourBelow">
-      <member glyphid="1209" index="0" inFile="SchGlyphs.gdh" atLine="2129" />
+      <member glyphid="1212" index="0" inFile="SchGlyphs.gdh" atLine="2129" />
     </class>
     <class name="uniSeenEasternFourBelow">
-      <member glyphid="1217" index="0" inFile="SchGlyphs.gdh" atLine="2130" />
+      <member glyphid="1213" index="0" inFile="SchGlyphs.gdh" atLine="2130" />
     </class>
     <class name="absTwoDiaDigitAbove">
-      <member glyphid="1210" index="0" inFile="SchGlyphs.gdh" atLine="2134" />
+      <member glyphid="1214" index="0" inFile="SchGlyphs.gdh" atLine="2134" />
     </class>
     <class name="absThreeDiaDigitAbove">
-      <member glyphid="1211" index="0" inFile="SchGlyphs.gdh" atLine="2135" />
+      <member glyphid="1215" index="0" inFile="SchGlyphs.gdh" atLine="2135" />
     </class>
     <class name="absFourDiaDigitAbove">
-      <member glyphid="1218" index="0" inFile="SchGlyphs.gdh" atLine="2136" />
+      <member glyphid="1216" index="0" inFile="SchGlyphs.gdh" atLine="2136" />
     </class>
     <class name="absFourDiaDigitBelow">
-      <member glyphid="1212" index="0" inFile="SchGlyphs.gdh" atLine="2137" />
+      <member glyphid="1217" index="0" inFile="SchGlyphs.gdh" atLine="2137" />
     </class>
     <class name="absFourDiaDigitAbove__urdu">
-      <member glyphid="1216" index="0" inFile="SchGlyphs.gdh" atLine="2138" />
+      <member glyphid="1218" index="0" inFile="SchGlyphs.gdh" atLine="2138" />
     </class>
     <class name="absFourDiaDigitBelow__urdu">
-      <member glyphid="1214" index="0" inFile="SchGlyphs.gdh" atLine="2139" />
+      <member glyphid="1219" index="0" inFile="SchGlyphs.gdh" atLine="2139" />
     </class>
     <class name="cUnencodedChar2Parts" subClassIndexLhs="60">
-      <member glyphid="1201" index="0" inFile="SchGlyphs.gdh" atLine="2142" />
-      <member glyphid="1203" index="1" inFile="SchGlyphs.gdh" atLine="2142" />
-      <member glyphid="1204" index="2" inFile="SchGlyphs.gdh" atLine="2142" />
-      <member glyphid="1205" index="3" inFile="SchGlyphs.gdh" atLine="2143" />
-      <member glyphid="1206" index="4" inFile="SchGlyphs.gdh" atLine="2143" />
-      <member glyphid="1207" index="5" inFile="SchGlyphs.gdh" atLine="2143" />
-      <member glyphid="1215" index="6" inFile="SchGlyphs.gdh" atLine="2144" />
-      <member glyphid="1213" index="7" inFile="SchGlyphs.gdh" atLine="2144" />
-      <member glyphid="1219" index="8" inFile="SchGlyphs.gdh" atLine="2144" />
-      <member glyphid="1209" index="9" inFile="SchGlyphs.gdh" atLine="2145" />
-      <member glyphid="1217" index="10" inFile="SchGlyphs.gdh" atLine="2145" />
+      <member glyphid="1203" index="0" inFile="SchGlyphs.gdh" atLine="2142" />
+      <member glyphid="1204" index="1" inFile="SchGlyphs.gdh" atLine="2142" />
+      <member glyphid="1205" index="2" inFile="SchGlyphs.gdh" atLine="2142" />
+      <member glyphid="1206" index="3" inFile="SchGlyphs.gdh" atLine="2143" />
+      <member glyphid="1207" index="4" inFile="SchGlyphs.gdh" atLine="2143" />
+      <member glyphid="1208" index="5" inFile="SchGlyphs.gdh" atLine="2143" />
+      <member glyphid="1209" index="6" inFile="SchGlyphs.gdh" atLine="2144" />
+      <member glyphid="1210" index="7" inFile="SchGlyphs.gdh" atLine="2144" />
+      <member glyphid="1211" index="8" inFile="SchGlyphs.gdh" atLine="2144" />
+      <member glyphid="1212" index="9" inFile="SchGlyphs.gdh" atLine="2145" />
+      <member glyphid="1213" index="10" inFile="SchGlyphs.gdh" atLine="2145" />
     </class>
     <class name="cUnencodedGlyphPart1" subClassIndexRhs="33">
       <member glyphid="257" index="0" inFile="SchGlyphs.gdh" atLine="2147" />
@@ -16611,35 +16611,35 @@
       <member glyphid="357" index="10" inFile="SchGlyphs.gdh" atLine="2148" />
     </class>
     <class name="cUnencodedGlyphPart2" subClassIndexRhs="34">
-      <member glyphid="1210" index="0" inFile="SchGlyphs.gdh" atLine="2150" />
-      <member glyphid="1211" index="1" inFile="SchGlyphs.gdh" atLine="2150" />
-      <member glyphid="1210" index="2" inFile="SchGlyphs.gdh" atLine="2150" />
-      <member glyphid="1211" index="3" inFile="SchGlyphs.gdh" atLine="2151" />
-      <member glyphid="1212" index="4" inFile="SchGlyphs.gdh" atLine="2151" />
-      <member glyphid="1210" index="5" inFile="SchGlyphs.gdh" atLine="2151" />
-      <member glyphid="1211" index="6" inFile="SchGlyphs.gdh" atLine="2152" />
-      <member glyphid="1210" index="7" inFile="SchGlyphs.gdh" atLine="2152" />
-      <member glyphid="1211" index="8" inFile="SchGlyphs.gdh" atLine="2152" />
-      <member glyphid="1212" index="9" inFile="SchGlyphs.gdh" atLine="2153" />
-      <member glyphid="1218" index="10" inFile="SchGlyphs.gdh" atLine="2153" />
+      <member glyphid="1214" index="0" inFile="SchGlyphs.gdh" atLine="2150" />
+      <member glyphid="1215" index="1" inFile="SchGlyphs.gdh" atLine="2150" />
+      <member glyphid="1214" index="2" inFile="SchGlyphs.gdh" atLine="2150" />
+      <member glyphid="1215" index="3" inFile="SchGlyphs.gdh" atLine="2151" />
+      <member glyphid="1217" index="4" inFile="SchGlyphs.gdh" atLine="2151" />
+      <member glyphid="1214" index="5" inFile="SchGlyphs.gdh" atLine="2151" />
+      <member glyphid="1215" index="6" inFile="SchGlyphs.gdh" atLine="2152" />
+      <member glyphid="1214" index="7" inFile="SchGlyphs.gdh" atLine="2152" />
+      <member glyphid="1215" index="8" inFile="SchGlyphs.gdh" atLine="2152" />
+      <member glyphid="1217" index="9" inFile="SchGlyphs.gdh" atLine="2153" />
+      <member glyphid="1216" index="10" inFile="SchGlyphs.gdh" atLine="2153" />
     </class>
     <class name="cDiaDigitAbove">
-      <member glyphid="1210" index="0" inFile="SchGlyphs.gdh" atLine="2156" />
-      <member glyphid="1211" index="1" inFile="SchGlyphs.gdh" atLine="2156" />
-      <member glyphid="1218" index="2" inFile="SchGlyphs.gdh" atLine="2156" />
-      <member glyphid="1216" index="3" inFile="SchGlyphs.gdh" atLine="2157" />
+      <member glyphid="1214" index="0" inFile="SchGlyphs.gdh" atLine="2156" />
+      <member glyphid="1215" index="1" inFile="SchGlyphs.gdh" atLine="2156" />
+      <member glyphid="1216" index="2" inFile="SchGlyphs.gdh" atLine="2156" />
+      <member glyphid="1218" index="3" inFile="SchGlyphs.gdh" atLine="2157" />
     </class>
     <class name="cDiaDigitBelow">
-      <member glyphid="1212" index="0" inFile="SchGlyphs.gdh" atLine="2161" />
-      <member glyphid="1214" index="1" inFile="SchGlyphs.gdh" atLine="2161" />
+      <member glyphid="1217" index="0" inFile="SchGlyphs.gdh" atLine="2161" />
+      <member glyphid="1219" index="1" inFile="SchGlyphs.gdh" atLine="2161" />
     </class>
     <class name="cDiaDigit">
-      <member glyphid="1210" index="0" inFile="SchGlyphs.gdh" atLine="2165" />
-      <member glyphid="1211" index="1" inFile="SchGlyphs.gdh" atLine="2165" />
-      <member glyphid="1218" index="2" inFile="SchGlyphs.gdh" atLine="2165" />
-      <member glyphid="1216" index="3" inFile="SchGlyphs.gdh" atLine="2165" />
-      <member glyphid="1212" index="4" inFile="SchGlyphs.gdh" atLine="2165" />
-      <member glyphid="1214" index="5" inFile="SchGlyphs.gdh" atLine="2165" />
+      <member glyphid="1214" index="0" inFile="SchGlyphs.gdh" atLine="2165" />
+      <member glyphid="1215" index="1" inFile="SchGlyphs.gdh" atLine="2165" />
+      <member glyphid="1216" index="2" inFile="SchGlyphs.gdh" atLine="2165" />
+      <member glyphid="1218" index="3" inFile="SchGlyphs.gdh" atLine="2165" />
+      <member glyphid="1217" index="4" inFile="SchGlyphs.gdh" atLine="2165" />
+      <member glyphid="1219" index="5" inFile="SchGlyphs.gdh" atLine="2165" />
     </class>
     <class name="cTakesDiaDigitA">
       <member glyphid="257" index="0" inFile="SchGlyphs.gdh" atLine="2191" />
@@ -17776,8 +17776,8 @@
       <member glyphid="1059" index="6" inFile="SchGlyphs.gdh" atLine="2572" />
       <member glyphid="1062" index="7" inFile="SchGlyphs.gdh" atLine="2572" />
       <member glyphid="1064" index="8" inFile="SchGlyphs.gdh" atLine="2572" />
-      <member glyphid="1218" index="9" inFile="SchGlyphs.gdh" atLine="2573" />
-      <member glyphid="1212" index="10" inFile="SchGlyphs.gdh" atLine="2574" />
+      <member glyphid="1216" index="9" inFile="SchGlyphs.gdh" atLine="2573" />
+      <member glyphid="1217" index="10" inFile="SchGlyphs.gdh" atLine="2574" />
     </class>
     <class name="cEasternDigitUrdu" subClassIndexRhs="13">
       <member glyphid="994" index="0" inFile="SchGlyphs.gdh" atLine="2578" />
@@ -17789,8 +17789,8 @@
       <member glyphid="1060" index="6" inFile="SchGlyphs.gdh" atLine="2580" />
       <member glyphid="1063" index="7" inFile="SchGlyphs.gdh" atLine="2580" />
       <member glyphid="1065" index="8" inFile="SchGlyphs.gdh" atLine="2580" />
-      <member glyphid="1216" index="9" inFile="SchGlyphs.gdh" atLine="2581" />
-      <member glyphid="1214" index="10" inFile="SchGlyphs.gdh" atLine="2582" />
+      <member glyphid="1218" index="9" inFile="SchGlyphs.gdh" atLine="2581" />
+      <member glyphid="1219" index="10" inFile="SchGlyphs.gdh" atLine="2582" />
     </class>
     <class name="cEasternDigitSindhi" subClassIndexRhs="12">
       <member glyphid="993" index="0" inFile="SchGlyphs.gdh" atLine="2586" />
@@ -17802,8 +17802,8 @@
       <member glyphid="1059" index="6" inFile="SchGlyphs.gdh" atLine="2588" />
       <member glyphid="1063" index="7" inFile="SchGlyphs.gdh" atLine="2588" />
       <member glyphid="1065" index="8" inFile="SchGlyphs.gdh" atLine="2588" />
-      <member glyphid="1218" index="9" inFile="SchGlyphs.gdh" atLine="2589" />
-      <member glyphid="1212" index="10" inFile="SchGlyphs.gdh" atLine="2590" />
+      <member glyphid="1216" index="9" inFile="SchGlyphs.gdh" atLine="2589" />
+      <member glyphid="1217" index="10" inFile="SchGlyphs.gdh" atLine="2590" />
     </class>
     <class name="cno_Heh" subClassIndexLhs="62">
       <member glyphid="433" index="0" inFile="SchGlyphs.gdh" atLine="2607" />
@@ -18961,10 +18961,10 @@
       <member glyphid="1194" index="702" inFile="SchAPClasses.gdh" atLine="152" />
       <member glyphid="1195" index="703" inFile="SchAPClasses.gdh" atLine="153" />
       <member glyphid="1196" index="704" inFile="SchAPClasses.gdh" atLine="153" />
-      <member glyphid="1210" index="705" inFile="SchAPClasses.gdh" atLine="154" />
-      <member glyphid="1211" index="706" inFile="SchAPClasses.gdh" atLine="154" />
-      <member glyphid="1218" index="707" inFile="SchAPClasses.gdh" atLine="154" />
-      <member glyphid="1216" index="708" inFile="SchAPClasses.gdh" atLine="154" />
+      <member glyphid="1214" index="705" inFile="SchAPClasses.gdh" atLine="154" />
+      <member glyphid="1215" index="706" inFile="SchAPClasses.gdh" atLine="154" />
+      <member glyphid="1216" index="707" inFile="SchAPClasses.gdh" atLine="154" />
+      <member glyphid="1218" index="708" inFile="SchAPClasses.gdh" atLine="154" />
     </class>
     <class name="cHasDiaB">
       <member glyphid="254" index="0" inFile="SchAPClasses.gdh" atLine="158" />
@@ -19647,8 +19647,8 @@
       <member glyphid="1194" index="677" inFile="SchAPClasses.gdh" atLine="297" />
       <member glyphid="1195" index="678" inFile="SchAPClasses.gdh" atLine="298" />
       <member glyphid="1196" index="679" inFile="SchAPClasses.gdh" atLine="298" />
-      <member glyphid="1212" index="680" inFile="SchAPClasses.gdh" atLine="299" />
-      <member glyphid="1214" index="681" inFile="SchAPClasses.gdh" atLine="299" />
+      <member glyphid="1217" index="680" inFile="SchAPClasses.gdh" atLine="299" />
+      <member glyphid="1219" index="681" inFile="SchAPClasses.gdh" atLine="299" />
     </class>
     <class name="cHasAlef">
       <member glyphid="262" index="0" inFile="SchAPClasses.gdh" atLine="304" />
@@ -22300,56 +22300,56 @@
 
   <features>
     <feature name="shaddaKasra" featureID="1668691506" featureIDstring="cv62" index="0" inFile="SchFeatures.gdh" atLine="27" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="32" />
-      <featureSetting name="sindhiUrdu" value="1" inFile="SchFeatures.gdh" atLine="37" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="33" />
+      <featureSetting name="sindhiUrdu" value="1" inFile="SchFeatures.gdh" atLine="36" />
     </feature>
     <feature name="meemAlt" featureID="1668690996" featureIDstring="cv44" index="1" inFile="SchFeatures.gdh" atLine="43" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="49" />
-      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="52" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="48" />
+      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="53" />
     </feature>
     <feature name="hehAlt" featureID="1668691000" featureIDstring="cv48" index="2" inFile="SchFeatures.gdh" atLine="59" >
-      <featureSetting name="urdu" value="3" inFile="SchFeatures.gdh" atLine="77" />
-      <featureSetting name="sindhi" value="2" inFile="SchFeatures.gdh" atLine="72" />
       <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="65" />
       <featureSetting name="kurdish" value="1" inFile="SchFeatures.gdh" atLine="68" />
+      <featureSetting name="sindhi" value="2" inFile="SchFeatures.gdh" atLine="73" />
+      <featureSetting name="urdu" value="3" inFile="SchFeatures.gdh" atLine="76" />
     </feature>
     <feature name="easternDigits" featureID="1668692018" featureIDstring="cv82" index="3" inFile="SchFeatures.gdh" atLine="83" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="88" />
-      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="92" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="89" />
+      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="93" />
       <featureSetting name="urdu" value="2" inFile="SchFeatures.gdh" atLine="96" />
     </feature>
     <feature name="sukunAlt" featureID="1668691768" featureIDstring="cv78" index="4" inFile="SchFeatures.gdh" atLine="103" >
       <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="109" />
       <featureSetting name="jasmDown" value="1" inFile="SchFeatures.gdh" atLine="112" />
-      <featureSetting name="jasmLeft" value="2" inFile="SchFeatures.gdh" atLine="116" />
+      <featureSetting name="jasmLeft" value="2" inFile="SchFeatures.gdh" atLine="117" />
     </feature>
     <feature name="headOfKhahAlt" featureID="1668692274" featureIDstring="cv92" index="5" inFile="SchFeatures.gdh" atLine="123" >
       <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="128" />
       <featureSetting name="openLeft" value="1" inFile="SchFeatures.gdh" atLine="132" />
     </feature>
     <feature name="commaAlt" featureID="1668692020" featureIDstring="cv84" index="6" inFile="SchFeatures.gdh" atLine="139" >
+      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="144" />
       <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="149" />
-      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="145" />
     </feature>
     <feature name="dammatanAlt" featureID="1668691762" featureIDstring="cv72" index="7" inFile="SchFeatures.gdh" atLine="155" >
-      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="161" />
+      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="160" />
       <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="164" />
     </feature>
     <feature name="endOfAyah" featureID="1668692016" featureIDstring="cv80" index="8" inFile="SchFeatures.gdh" atLine="171" >
-      <featureSetting name="square" value="2" inFile="SchFeatures.gdh" atLine="184" />
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="176" />
       <featureSetting name="circle" value="1" inFile="SchFeatures.gdh" atLine="180" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="176" />
+      <featureSetting name="square" value="2" inFile="SchFeatures.gdh" atLine="185" />
     </feature>
     <feature name="kasraTcheh" featureID="1802789736" featureIDstring="ktch" index="9" inFile="SchFeatures.gdh" atLine="191" >
       <featureSetting name="lower" value="1" inFile="SchFeatures.gdh" atLine="200" />
       <featureSetting name="raise" value="2" inFile="SchFeatures.gdh" atLine="196" />
     </feature>
     <feature name="selectDiac" featureID="1685284204" featureIDstring="dsel" index="10" inFile="SchFeatures.gdh" atLine="207" >
-      <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="216" />
       <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="212" />
+      <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="216" />
     </feature>
     <feature name="invis" featureID="1768846963" featureIDstring="invs" index="11" inFile="SchFeatures.gdh" atLine="223" >
-      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="228" />
+      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="229" />
       <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="232" />
     </feature>
     <feature name="lang" featureID="1" index="12" >

@@ -679,18 +679,11 @@ g103c g103e g1030 > @r @h @u / _=r _=h g1031? cUVowel? _=u;
 g103c g102f > g103c_102f_narr:(1 4) _ / _ g1031? cUVowel? _;
 g103e g102f > g103e_102f:(1 4) _ / _ g1031? cUVowel? _;
 g103e g1030 > g103e_1030:(1 3) _ / _ g1031? _;
-
-
-
-
-g200c > _;
-g200d > _;
-g2060 > _;
-
+#line 505
 endpass;
-#line 527
+#line 531
 pass(2);
-#line 534
+#line 538
 ANYGlyph > @3 / cCons g103a ^ _{order > 1};
 
 
@@ -699,13 +692,13 @@ _ > g_circledash:1 / ANYGlyph _ ^ ANYGlyph{order > 1 && order <= @1.order};
 _ > g_circledash:1 / ANYGlyph{order == 0} _ ^ ANYGlyph{order > 1};
 
 endpass;
-#line 554
+#line 558
 pass(3);
-#line 560
+#line 564
 g1014 > g1014_alt / (c103c_nar, c103c_naralt) _ ;
-#line 567
+#line 571
 _ g1031 > @e:e _ / _ ^ c103c? cCons cMed? [[[[cClusDia]? cClusDia]? cClusDia]? cClusDia]? _=e;
-#line 578
+#line 582
 _ c103c_nar > c103c_wide:r$r _ / ^ _ cConsWide cMed? c103b? _=r;
 _ c103c_nar > c103c_naralt:r$r _ / ^ _ cConsNar cMedNar? _=r c103d? c103e? cUSpace;
 _ c103c_nar > c103c_widalt:r$r _ / ^ _ cConsWide cMed? _=r c103d? c103e? cUSpace;
@@ -713,74 +706,74 @@ _ c103c_nar > c103c_naralt:r$r _ / ^ _ cConsNar g103a cMedNar? _=r;
 _ c103c_nar > c103c_widalt:r$r _ / ^ _ cConsWide g103a cMed? _=r;
 _ c103c_nar > @r:r _ / ^ _ cConsNar cMedNar? c103b? _=r;
 _ c103c_nar > c103c_wide:r$r _ / ^ _ cConsNar cMed? c103b? _=r;
-#line 591
+#line 595
 g101b > g101b_alt / ^ _ c103e? cUVowel? cLVowelAll;
 g101b > g101b_alt / ^ _ c103d;
 g101b > g101b_alt / ^ _ c103b;
 g101b > g101b_long / ^ _ g103e;
 g101b > g101b_long / ^ _ cMed cUVowel? cLVowel;
-#line 604
+#line 608
 g1030 > @u / c103c_only cConsSVowel cUVowel? _=u ^;
 cLVowel > cLVowelM / ^ cConsSVowel cUVowel? _;
 g1014 cLVowel > g1014_alt:(1) cLVowelM:(3) / ^ _ cUVowel? _;
 g100a cLVowel > g100a_alt:(1) cLVowelM:(3) / ^ _ cUVowel? _;
 g103d_103e > g103d_103e_small / c103c cCons _;
 cUTakesMa g1036 > cUWithMa:(1 3) _ / _ cLVowel? _;
-#line 615
+#line 619
 g1014 > g1014_alt / ^ _ t1014;
 g100a > g100a_alt / ^ _ t100a;
 g1009 > g1025 / ^ _ g103a;
 g1009 > g1025 / ^ _ c103e? g1031? cUVowel? cCons;
-#line 624
+#line 628
 g103e > g103e_alt / ^ c103c cConsSVowel _;
 g103e > g103e_alt / cConsSlantH _;
-#line 631
+#line 635
 g102b g103a > g102b_103a:(1 2) _;
 
 endpass;
 
 endtable;
-#line 686
+#line 690
 table(positioning);
 
 pass(1);
-#line 696
+#line 700
 c103c {advance.x = advx; user2 = 1} / ^ _{user2 == 0};
-#line 706
-cConsSVowel g1037 {attach {to = @2; at = LS; with = LM}; user1 = 1} / ^ c103c_only? _ cUDia? _{user1 == 0};
-#line 708
-c103c g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cConsSVowel cMed c103e_dia? cUDia? _{user1 == 0};
 #line 710
-c103c g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cConsSVowel cMed? c103e_dia cUDia? _{user1 == 0};
+cConsSVowel g1037 {attach {to = @2; at = LS; with = LM}; user1 = 1} / ^ c103c_only? _ cUDia? _{user1 == 0};
 #line 712
-c103c_mix g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cConsSVowel cUDia? _{user1 == 0};
+c103c g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cConsSVowel cMed c103e_dia? cUDia? _{user1 == 0};
 #line 714
-c101b g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ (cMed, cClusDia) cUVowel? cLVowelM? c1036? _{user1 == 0};
+c103c g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cConsSVowel cMed? c103e_dia cUDia? _{user1 == 0};
 #line 716
-c101b g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cUVowel? cLVowelM c1036? _{user1 == 0};
+c103c_mix g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cConsSVowel cUDia? _{user1 == 0};
 #line 718
-c101b g1037 {attach {to = @1; at = LLS; with = LM}; user1 = 1} / ^ _ cUDia? _{user1 == 0};
+c101b g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ (cMed, cClusDia) cUVowel? cLVowelM? c1036? _{user1 == 0};
 #line 720
+c101b g1037 {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ cUVowel? cLVowelM c1036? _{user1 == 0};
+#line 722
+c101b g1037 {attach {to = @1; at = LLS; with = LM}; user1 = 1} / ^ _ cUDia? _{user1 == 0};
+#line 724
 cLeftLDot g1037 {attach {to = @1; at = LLS; with = LM}; user1 = 1} / ^ _ _ {user1 == 0};
-#line 727
+#line 731
 cTakesUDia cUDia {attach {to = @u; at = US; with = UM}; user1 = 1} cLVowel / ^ _ [[cnTakesUDia]? cnTakesUDia]? _{user1 == 0} _=u;
-#line 737
-cTakesBSDia cBSDia {attach {to = @1; at = BSS; with = BSM}; user1 = 1} / ^ _ [cnTakesBSDia]? _{user1 == 0};
-#line 739
-cTakesBDDia cBDDia {attach {to = @1; at = BDS; with = BDM}; user1 = 1} / ^ _ [cnTakesBDDia]? _{user1 == 0};
 #line 741
-cTakesBSDia cBDDia {attach {to = @1; at = BSS; with = BDM}; user1 = 1} / ^ _ [cnTakesBSDia]? _{user1 == 0};
+cTakesBSDia cBSDia {attach {to = @1; at = BSS; with = BSM}; user1 = 1} / ^ _ [cnTakesBSDia]? _{user1 == 0};
 #line 743
+cTakesBDDia cBDDia {attach {to = @1; at = BDS; with = BDM}; user1 = 1} / ^ _ [cnTakesBDDia]? _{user1 == 0};
+#line 745
+cTakesBSDia cBDDia {attach {to = @1; at = BSS; with = BDM}; user1 = 1} / ^ _ [cnTakesBSDia]? _{user1 == 0};
+#line 747
 cTakesUDia cUDia {attach {to = @1; at = US; with = UM}; user1 = 1} / ^ _ [[cnTakesUDia]? cnTakesUDia]? _{user1 == 0};
-#line 751
+#line 755
 cTakesRDia cRDia {attach {to = @1; at = RS; with = RM}; user1 = 1; insert = 1} / ^ _ _=r{user1 == 0};
-#line 766
+#line 770
 cTakesLDia cLDia {attach {to = @1; at = LS; with = LM}; user1 = 1} / ^ _ [[[cnTakesLDia]? cnTakesLDia]? cnTakesLDia]? _{user1 == 0};
-#line 773
+#line 777
 cCons cYMed {attach.to = @1; user1 = 1} / ^ _ cMed? g103a? _{user1 == 0};
 
 endpass;
-#line 789
+#line 793
 pass(2);
 
 g101b_alt {kern.x = @2.rkern + 10m} cHasRkern {shift.x = -rkern};
@@ -791,7 +784,7 @@ cCons {kern.x = -@a.xkern} / g102b_103a=a _;
 g1031 {kern.x = -@a.xkern} / g102b_103a=a _;
 cRDia {shift.x = (@r.advancewidth + @r.advance.x - advance.x) / 2 + @r.position.x - position.x} / cTakesRDia=r _;
 cUVowel {advance.x = 0m} / c103b _ ;
-#line 805
+#line 809
 endpass;
 
 endtable;
