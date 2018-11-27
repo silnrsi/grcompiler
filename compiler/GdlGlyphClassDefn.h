@@ -20,7 +20,11 @@ Description:
 class GdlGlyphDefn;
 //class PseudoLess;
 //typedef std::set<GdlGlyphDefn *, PseudoLess> PseudoSet; // PseudoLess isn't implemented adquately yet
-typedef std::set<GdlGlyphDefn *> PseudoSet;
+
+// A set makes more sense, but its iterator processes items in a random order, which makes it impossible
+// to generate identical fonts for the regression tests. So we use a vector instead.
+//typedef std::set<GdlGlyphDefn *> PseudoSet;
+typedef std::vector<GdlGlyphDefn *> PseudoSet;
 
 //class ReplClassLess;
 //typedef std::set<GdlGlyphClassDefn *, ReplClassLess> ReplacementClassSet;

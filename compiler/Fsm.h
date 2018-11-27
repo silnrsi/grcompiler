@@ -18,7 +18,7 @@ Description:
 #define FSM_INCLUDED
 
 
-typedef std::set<GdlGlyphClassDefn *> SourceClassSet;	// hungarian: scs
+typedef std::set<GdlGlyphClassDefn *> SourceClassSet;	    // hungarian: scs
 typedef std::vector<FsmMachineClass *> * MachineClassList;	// hungarian: mcl
 
 void OutputNumber(std::ostream& strmOut, int nValue, int nSpaces);

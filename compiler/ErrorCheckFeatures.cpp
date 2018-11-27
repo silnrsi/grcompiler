@@ -74,6 +74,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 
 		if (pfeat->ErrorCheck())
 		{
+			pfeat->SortFeatSettings();
 			pfeat->SetStdStyleFlag();
 			pfeat->FillInBoolean(pcman->SymbolTable());
 			pfeat->ErrorCheckContd();

@@ -130,6 +130,30 @@ bool GdlFeatureDefn::ErrorCheck()
 }
 
 /*----------------------------------------------------------------------------------------------
+	Sort the feature settings by their value.
+	This is only needed to make output font deterministic for the sake of regression testing.
+----------------------------------------------------------------------------------------------*/
+void GdlFeatureDefn::SortFeatSettings()
+{
+	if (m_vpfset.size() > 1) {
+		for (int ifset1 = 0; ifset1 < m_vpfset.size() - 1; ifset1++)
+		{
+			int nVal1 = m_vpfset[ifset1]->Value();
+			for (int ifset2 = ifset1 + 1; ifset2 < m_vpfset.size(); ifset2++)
+			{
+				int nVal2 = m_vpfset[ifset2]->Value();
+				if (nVal1 > nVal2)
+				{
+					GdlFeatureSetting * pfsetTemp = m_vpfset[ifset1];
+					m_vpfset[ifset1] = m_vpfset[ifset2];
+					m_vpfset[ifset2] = pfsetTemp;
+				}
+			}
+		}
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
 	Determine if this style is the standard style; if so, set the flag.
 ----------------------------------------------------------------------------------------------*/
 void GdlFeatureDefn::SetStdStyleFlag()

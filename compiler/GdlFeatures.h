@@ -216,6 +216,7 @@ public:
 public:
 	//	Pre-compiler:
 	bool ErrorCheck();
+	void SortFeatSettings();
 	void SetStdStyleFlag();
 	void FillInBoolean(GrcSymbolTable * psymtbl);
 	void ErrorCheckContd();

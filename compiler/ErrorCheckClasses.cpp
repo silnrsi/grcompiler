@@ -192,23 +192,26 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 		++itset)
 	{
 		GdlGlyphDefn * pglfPseudo = *itset;
-		pglfPseudo->SetAssignedPseudo(wFirstFree++);
+		if (pglfPseudo)  // vector has many empty items in it
+		{
+			pglfPseudo->SetAssignedPseudo(wFirstFree++);
 
-		unsigned int nUnicode = pglfPseudo->UnicodeInput();
-		if (nUnicode == 0)
-			;	// no Unicode input specified
-		else if (setnUnicode.find(nUnicode) != setnUnicode.end()) // is a member
-		{
-			//	Duplicate pseudo mapping.
-			g_errorList.AddError(4103, pglfPseudo, pglfPseudo->CodepointString(),
-				"Duplicate Unicode input -> pseudo assignment.");
-		}
-		else
-		{
-			m_vnUnicodeForPseudo.push_back(nUnicode);
-			m_vwPseudoForUnicode.push_back(pglfPseudo->AssignedPseudo());
-			setnUnicode.insert(nUnicode);
-			m_nMaxPseudoUnicode = max(m_nMaxPseudoUnicode, nUnicode);
+			unsigned int nUnicode = pglfPseudo->UnicodeInput();
+			if (nUnicode == 0)
+				;	// no Unicode input specified
+			else if (setnUnicode.find(nUnicode) != setnUnicode.end()) // is a member
+			{
+				//	Duplicate pseudo mapping.
+				g_errorList.AddError(4103, pglfPseudo, pglfPseudo->CodepointString(),
+					"Duplicate Unicode input -> pseudo assignment.");
+			}
+			else
+			{
+				m_vnUnicodeForPseudo.push_back(nUnicode);
+				m_vwPseudoForUnicode.push_back(pglfPseudo->AssignedPseudo());
+				setnUnicode.insert(nUnicode);
+				m_nMaxPseudoUnicode = max(m_nMaxPseudoUnicode, nUnicode);
+			}
 		}
 	}
 	//	Handle auto-pseudos.
@@ -273,8 +276,16 @@ void GdlGlyphDefn::ExplicitPseudos(PseudoSet & setpglf, bool /*fProcessClasses*/
 	if (m_glft == kglftPseudo)
 	{
 		Assert(m_pglfOutput);
-		GdlGlyphDefn * p = this;	// kludge until Set can handle const args.
-		setpglf.insert(p);
+
+		// Old std::set implementation:
+		//GdlGlyphDefn * p = this;	// kludge until Set can handle const args.
+		//setpglf.insert(p);  
+
+		for (int i = 0; i < setpglf.size(); i++) {
+			if (setpglf[i] == this)
+				return;  // already there
+		}
+		setpglf.push_back(this);
 	}
 }
 
