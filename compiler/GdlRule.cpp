@@ -37,7 +37,7 @@ DEFINE_THIS_FILE
 
 /*----------------------------------------------------------------------------------------------
 	Given a slot alias, find the corresponding index in the rule's list. Return -1 if the
-	name could not be found.
+	name could not be found. The indices are 1-based.
 ----------------------------------------------------------------------------------------------*/
 int GdlRule::LookupAliasIndex(std::string sta)
 {

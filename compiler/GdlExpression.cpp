@@ -295,13 +295,14 @@ bool GdlSlotRefExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vecto
 	if (m_srNumber == -1)
 	{
 		sr = prule->LookupAliasIndex(m_staName);
-		if (sr < 1)
-		{
-			g_errorList.AddError(1102, this,
-				"Undefined slot alias: ",
-				m_staName);
-			return false;
-		}
+	}
+	if (sr < 1)
+	{
+		// Redundant error, but better safe than sorry.
+		g_errorList.AddError(1102, this,
+			"Undefined slot alias: ",
+			m_staName);
+		return false;
 	}
 
 	if (vfOmit[sr-1])
