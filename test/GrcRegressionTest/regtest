@@ -18,7 +18,7 @@ storing log info in logfile and exiting with the number of errors
   -d|--dir=dir              Use dir for intermediate test files
   -g|--compiler=grcompiler  command to use to run grcompiler [grcompiler]
   -h|--help                 print this help and exit
-  -i|--icu=version          Gives icu version or uses icu-config * 10 to guess
+  -i|--icu=version          Gives icu version or uses pkg-config to determine
   -k|--keep                 keep temporary files
   -o|--output= logfile      file to log to [regtest.log]
   -p|--preprocessor=gdlpp   command to run the gdlpp []
@@ -39,7 +39,7 @@ my ($dir) = $ARGV[0] || '.';
 my (@fonts) = sort glob("$dir/*Input.ttf");
 my ($outf) = IO::File->new("> $opts{output}") || die "Can't create $opts{output}";
 my ($f, $errors);
-$opts{icu} ||= `icu-config --version` * 10;
+$opts{icu} ||= `pkg-config --modversion icu-i18n`;
 my (@icudirs) = reverse sort map {s/^.*?(\d+)$/$1/o; $_} glob("$dir/icu*");
 
 foreach $f (@fonts)

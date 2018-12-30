@@ -34,6 +34,7 @@ AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
+PKG_PROG_PKG_CONFIG
 
 AC_PATH_PROG(LSB_RELEASE, lsb_release, no)
 
@@ -44,21 +45,14 @@ if test "$DOCBOOK2MAN" = no; then
     AC_MSG_FAILURE([Could not find a program to process XML man pages])
 fi
 
-# ICU configuration
-AC_ARG_VAR(ICU_CONFIG, [Check for ICU configuration helper])
-AC_CHECK_PROGS(ICU_CONFIG, icu-config, no)
+# Check packages needed
+PKG_CHECK_MODULES([ICU], [icu-i18n > 3.6])
+LIBS="$LIBS $ICU_LIBS"
 
 # Set default language for tests
 
 AC_LANG(C++)
-
 # Checks for libraries.
-
-if test "$ICU_CONFIG" == no; then
-    AC_MSG_FAILURE([Could not find icu-config])
-else
-    LIBS="$LIBS `$ICU_CONFIG --ldflags-libsonly`"
-fi
 
 # Checks for header files.
 # need to check for icu .h files as in unicode/uchar.h
