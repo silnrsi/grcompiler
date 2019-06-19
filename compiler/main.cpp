@@ -338,7 +338,7 @@ int main(int argc, char * argv[])
 	{
 		// Calculate the length of the path part of the output file name.
 		int cchOutputPath = strlen(rgchOutputFile);
-		while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\')
+		while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\' && rgchOutputFile[cchOutputPath] != '/')
 			cchOutputPath--;
 		char rgchOutputPath[128];
 		memset(rgchOutputPath, 0, isizeof(char) * 128);
