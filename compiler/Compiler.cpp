@@ -258,7 +258,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRu
 
 	//	Go back and fill in number of bytes to skip if we are not at the 
 	//	appropriate context item.
-	vbOutput[ibSkipLoc - 1] = vbOutput.size() - ibSkipLoc;
+	vbOutput[ibSkipLoc - 1] = (byte)((int)vbOutput.size() - ibSkipLoc);
 
 	if (fNeedAnd)
 		vbOutput.push_back(kopAnd);
@@ -455,7 +455,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	if (m_vnAssocs.size() > 0)
 	{
 		vbOutput.push_back(kopAssoc);
-		vbOutput.push_back(m_vnAssocs.size());
+		vbOutput.push_back((byte)m_vnAssocs.size());
 		for (size_t in = 0; in < m_vnAssocs.size(); in++)
 		{
 			Assert(m_vnAssocs[in] >= 0);	// can't associate with an inserted item

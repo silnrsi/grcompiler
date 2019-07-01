@@ -281,7 +281,7 @@ void GdlGlyphDefn::ExplicitPseudos(PseudoSet & setpglf, bool /*fProcessClasses*/
 		//GdlGlyphDefn * p = this;	// kludge until Set can handle const args.
 		//setpglf.insert(p);  
 
-		for (int i = 0; i < setpglf.size(); i++) {
+		for (size_t i = 0; i < setpglf.size(); i++) {
 			if (setpglf[i] == this)
 				return;  // already there
 		}

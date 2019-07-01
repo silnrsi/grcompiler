@@ -136,10 +136,10 @@ bool GdlFeatureDefn::ErrorCheck()
 void GdlFeatureDefn::SortFeatSettings()
 {
 	if (m_vpfset.size() > 1) {
-		for (int ifset1 = 0; ifset1 < m_vpfset.size() - 1; ifset1++)
+		for (size_t ifset1 = 0; ifset1 < m_vpfset.size() - 1; ifset1++)
 		{
 			int nVal1 = m_vpfset[ifset1]->Value();
-			for (int ifset2 = ifset1 + 1; ifset2 < m_vpfset.size(); ifset2++)
+			for (size_t ifset2 = ifset1 + 1; ifset2 < m_vpfset.size(); ifset2++)
 			{
 				int nVal2 = m_vpfset[ifset2]->Value();
 				if (nVal1 > nVal2)

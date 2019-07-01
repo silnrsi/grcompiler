@@ -907,11 +907,11 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	{	// Regular does not include the subfamily in the full font name.
 		pchwFullName = new uint16[cchwFamilyName + 1];
 		utf16cpy(pchwFullName, pchwFamilyName);
-		cchwFullName = cchwFamilyName;
+		cchwFullName = (uint16)cchwFamilyName;
 	}
 	else
 	{	// Other styles do include subfamily in the full font name.
-		cchwFullName = cchwFamilyName + cbSubFamily / sizeof(utf16) + 1; // 1 - room for space
+		cchwFullName = (uint16)(cchwFamilyName + cbSubFamily / sizeof(utf16) + 1); // 1 - room for space
 		pchwFullName = new uint16[cchwFullName + 1];
 		if (!pchwFullName)
 			return false;
@@ -922,7 +922,7 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	}
 	
 	// Build the Postscript name: familyname-subfamily, with certain chars stripped out.
-	cchwPSName = cchwFamilyName + cchwSubFamily + 1; // 1 = hyphen
+	cchwPSName = (uint16)(cchwFamilyName + cchwSubFamily + 1); // +1 = hyphen
 	pchwPSName = new uint16[cchwPSName + 1];
 	if (!pchwPSName)
 		return false;
@@ -949,7 +949,7 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	}
 	
 	// Build the unique name: vendor: fullname: date
-	cchwUniqueName = cchwVendor + cchwFullName + cchwDate + 4;
+	cchwUniqueName = (uint16)(cchwVendor + cchwFullName + cchwDate + 4);
 	pchwUniqueName = new utf16[cchwUniqueName + 1];
 	utf16ncpy(pchwUniqueName, rgchwVendor, cchwVendor);
 	utf16ncpy(pchwUniqueName + cchwVendor, ": ", 2);
@@ -1014,7 +1014,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 	uint16 ibStrOffsetOld = read(pTbl->string_offset);
 	NameRecord * pOldRecord = pTbl->name_record;
 
-	uint16 crecNew = crecOld + (vstuExtNames.size() * vpec.size());
+	uint16 crecNew = (uint16)(crecOld + (int)(vstuExtNames.size() * vpec.size()));
 
 	NameRecord * pNewRecord;
 
@@ -1104,7 +1104,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 		if (pbStr)
 		{
 			// Copy in the new string.
-			cbStr = cchwStr * vpec[ipec].cbBytesPerChar;
+			cbStr = (uint16)(cchwStr * (vpec[ipec].cbBytesPerChar));
 			pNewRecord[irec].length = read(cbStr);
 			if (ppec->cbBytesPerChar == sizeof(utf16))
 			{
@@ -1147,7 +1147,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 			pNewRecord[irec].platform_specific_id = read(ppec->encodingID);
 			pNewRecord[irec].language_id = read(vnLangIds[istring]);
 			pNewRecord[irec].name_id = read(vnNameTblIds[istring]);
-			uint16 cbStr = vstuExtNames[istring].length() * ppec->cbBytesPerChar;
+			uint16 cbStr = (uint16)(vstuExtNames[istring].length() * ppec->cbBytesPerChar);
 
 			// Convert the language IDs appropriately for the platform.
 			uint16 platform_id = pNewRecord[irec].platform_id;
@@ -3613,7 +3613,7 @@ long GrcBinaryStream::SeekPadLong(long ibOffset)
 	seekp(ibOffset);
 	if (cPad)
 		write("\0\0\0", cPad);
-	return tellp();
+	return (long)tellp();
 }
 
 /*----------------------------------------------------------------------------------------------

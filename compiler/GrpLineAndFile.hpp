@@ -127,7 +127,7 @@ public:
 #else
 		char chSlash = '/';
 #endif // _WIN32
-		for (int ich = 0; ich < staResult.length(); ich++)
+		for (size_t ich = 0; ich < staResult.length(); ich++)
 		{
 			if (staResult[ich] == '\\' || staResult[ich] == '/')
 				staResult[ich] = chSlash;

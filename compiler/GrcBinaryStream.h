@@ -49,7 +49,7 @@ public:
 
 	long Position()
 	{
-		return tellp();
+		return (long)tellp();
 	}
 
 	void SetPosition(long lPos)
