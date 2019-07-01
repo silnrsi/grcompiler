@@ -36,11 +36,11 @@ DEFINE_THIS_FILE
 /*----------------------------------------------------------------------------------------------
 	Generate the finite state machine for each pass.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::GenerateFsms()
+void GrcManager::GenerateFsms(char * pchOutputPath)
 {
 	m_prndr->GenerateFsms(this);
 	if (OutputDebugFiles())
-		DebugFsm();
+		DebugFsm(pchOutputPath);
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -1028,10 +1028,13 @@ void GdlPass::WalkFsmMachineClasses()
 /*----------------------------------------------------------------------------------------------
 	Write a text version of the FSMs out to a file.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugFsm()
+void GrcManager::DebugFsm(char * pchOutputPath)
 {
+	std::string staOutputFilename(pchOutputPath);
+	staOutputFilename.append("/dbg_fsm.txt");
+
 	std::ofstream strmOut;
-	strmOut.open("dbg_fsm.txt");
+	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(3151, NULL,

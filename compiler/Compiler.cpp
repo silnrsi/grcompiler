@@ -67,13 +67,13 @@ bool GrcManager::PreCompile(GrcFont * pfont)
 }
 
 
-bool GrcManager::Compile(GrcFont * /*pfont*/)
+bool GrcManager::Compile(GrcFont * /*pfont*/, char * pchOutputPath)
 {
 	if (IncludePassOptimizations())
 		PassOptimizations();
 	if (this->IsVerbose())
 		std::cout << "[Generating FSMs: ";
-	GenerateFsms();
+	GenerateFsms(pchOutputPath);
 	if (this->IsVerbose())
 		std::cout << "]\n";
 	CalculateContextOffsets();	// after max-rule-context has been set
@@ -795,10 +795,14 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 /*----------------------------------------------------------------------------------------------
 	Output a list of rules ordered by precedence.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugRulePrecedence()
+void GrcManager::DebugRulePrecedence(char * pchOutputPath)
 {
+
+	std::string staOutputFilename(pchOutputPath);
+	staOutputFilename.append("/dbg_ruleprec.txt");
+
 	std::ofstream strmOut;
-	strmOut.open("dbg_ruleprec.txt");
+	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6101, NULL,
@@ -904,10 +908,13 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 /*----------------------------------------------------------------------------------------------
 	Output a text version of the engine code to the stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugEngineCode()
+void GrcManager::DebugEngineCode(char * pchOutputPath)
 {
+	std::string staOutputFilename(pchOutputPath);
+	staOutputFilename.append("/dbg_enginecode.txt");
+
 	std::ofstream strmOut;
-	strmOut.open("dbg_enginecode.txt");
+	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6102, NULL,
@@ -1462,10 +1469,13 @@ std::string GdlRule::ProcessStateDebugString(int pstat)
 /*----------------------------------------------------------------------------------------------
 	Output a list of glyph attributes.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugGlyphAttributes()
+void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 {
+	std::string staOutputFilename(pchOutputPath);
+	staOutputFilename.append("/dbg_glyphattrs.txt");
+
 	std::ofstream strmOut;
-	strmOut.open("dbg_glyphattrs.txt");
+	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6103, NULL,
@@ -1897,10 +1907,13 @@ void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, b
 /*----------------------------------------------------------------------------------------------
 	Output a list of all the classes and their members.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugClasses()
+void GrcManager::DebugClasses(char * pchOutputPath)
 {
+	std::string staOutputFilename(pchOutputPath);
+	staOutputFilename.append("/dbg_classes.txt");
+
 	std::ofstream strmOut;
-	strmOut.open("dbg_classes.txt");
+	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6104, NULL,
@@ -1996,12 +2009,15 @@ void GdlRenderer::DebugClasses(std::ostream & strmOut,
 	Output the contents of the -cmap-, the mapping from unicode-to-glyph ID and vice-versa.
 	Also include any pseudo-glyphs.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugCmap(GrcFont * pfont)
+void GrcManager::DebugCmap(GrcFont * pfont, char * pchOutputPath)
 {
 	bool fSuppPlaneChars = pfont->AnySupplementaryPlaneChars();
 
+	std::string staOutputFilename(pchOutputPath);
+	staOutputFilename.append("/dbg_cmap.txt");
+
 	std::ofstream strmOut;
-	strmOut.open("dbg_cmap.txt");
+	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
 		g_errorList.AddError(6105, NULL,
@@ -2521,7 +2537,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 	std::vector<std::string> vstaSingleMemberClassFiles;
 	std::vector<int> vnSingleMemberClassLines;
 	m_prndr->RecordSingleMemberClasses(vstaSingleMemberClasses,
-		vstaSingleMemberClassFiles, vnSingleMemberClassLines);
+		vstaSingleMemberClassFiles, vnSingleMemberClassLines, staPathToCur);
 
 	int fxdGlatVersion = TableVersion(ktiGlat);
 
@@ -2604,16 +2620,17 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 
 /*--------------------------------------------------------------------------------------------*/
 void GdlRenderer::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses,
-	std::vector<std::string> & vstaFiles, std::vector<int> & vnLines)
+	std::vector<std::string> & vstaFiles, std::vector<int> & vnLines, std::string staPathToCur)
 {
 	for (size_t ipglfc = 0; ipglfc < m_vpglfc.size(); ipglfc++)
 	{
-		m_vpglfc[ipglfc]->RecordSingleMemberClasses(vstaSingleMemberClasses, vstaFiles, vnLines);
+		m_vpglfc[ipglfc]->RecordSingleMemberClasses(vstaSingleMemberClasses, vstaFiles, vnLines,
+			staPathToCur);
 	}
 }
 
 void GdlGlyphClassDefn::RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses,
-	std::vector<std::string> & vstaFiles, std::vector<int> & vnLines)
+	std::vector<std::string> & vstaFiles, std::vector<int> & vnLines, std::string staPathToCur)
 {
 	FlattenMyGlyphList();
 	if (m_vgidFlattened.size() == 1)
@@ -2630,7 +2647,7 @@ void GdlGlyphClassDefn::RecordSingleMemberClasses(std::vector<std::string> & vst
 			vstaSingleMemberClasses[gid] = this->Name();
 			if (!m_lnf.NotSet())
 			{
-				vstaFiles[gid] = m_lnf.File();
+				vstaFiles[gid] = m_lnf.FileWithPath(staPathToCur);
 				vnLines[gid] = m_lnf.OriginalLine();
 			}
 		}
@@ -2864,7 +2881,7 @@ void GdlRule::DebugXml(GrcManager * pcman, std::ofstream & strmOut, std::string 
 	int nPassNum, int nRuleNum)
 {
 	strmOut << "      <rule id=\"" << nPassNum << "." << nRuleNum
-		<< "\" inFile=\"" << LineAndFile().File()
+		<< "\" inFile=\"" << LineAndFile().FileWithPath(staPathToCur)
 		<< "\" atLine=\"" << LineAndFile().OriginalLine()
 		<< "\" preAnys=\"" << m_critPrependedAnys
 		<< "\"\n            prettyPrint=\"";
@@ -3280,7 +3297,7 @@ std::string GrcManager::pathFromOutputToCurrent(char * rgchCurDir, char * rgchOu
 ----------------------------------------------------------------------------------------------*/
 char GrcManager::splitPath(char * rgchPath, std::vector<std::string> & vstaResult)
 {
-	char chSep = '/';
+	char chSep = '/';  // unknown
 	char * pch = rgchPath;
 	char * pchStart = rgchPath;
 	while (*pch != 0 || pch > pchStart)
@@ -3289,6 +3306,8 @@ char GrcManager::splitPath(char * rgchPath, std::vector<std::string> & vstaResul
 		{
 			if (*pch == '\\')
 				chSep = '\\';
+			else if (*pch == '/')
+				chSep = '/';
 
 			char rgchBuf[64];
 			memset(rgchBuf, 0, 64);

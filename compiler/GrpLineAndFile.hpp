@@ -120,6 +120,19 @@ public:
 			staResult = staPath;
 			staResult.append(m_staFile);
 		}
+
+		// Make all the slashes consistent.
+#ifdef _WIN32
+		char chSlash = '\\';
+#else
+		char chSlash = '/';
+#endif // _WIN32
+		for (int ich = 0; ich < staResult.length(); ich++)
+		{
+			if (staResult[ich] == '\\' || staResult[ich] == '/')
+				staResult[ich] = chSlash;
+		}
+
 		return staResult;
 	}
 

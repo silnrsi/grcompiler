@@ -334,13 +334,14 @@ int main(int argc, char * argv[])
 		}
 	}
 
+	char rgchOutputPath[128];
+
 	if (!fFatalErr)
 	{
 		// Calculate the length of the path part of the output file name.
 		int cchOutputPath = strlen(rgchOutputFile);
 		while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\' && rgchOutputFile[cchOutputPath] != '/')
 			cchOutputPath--;
-		char rgchOutputPath[128];
 		memset(rgchOutputPath, 0, isizeof(char) * 128);
 		memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); /* don't include \ */
 
@@ -429,15 +430,16 @@ int main(int argc, char * argv[])
 	{
 		if (g_cman.IsVerbose())
 			std::cout << "Compiling...\n";
-		g_cman.Compile(pfont);
+		g_cman.Compile(pfont, rgchOutputPath);
 		if (g_cman.OutputDebugFiles())
 		{
-			g_cman.DebugEngineCode();
-			g_cman.DebugRulePrecedence();
-			g_cman.DebugGlyphAttributes();
-			g_cman.DebugClasses();
-			//g_cman.DebugOutput();
-			g_cman.DebugCmap(pfont);
+
+			g_cman.DebugEngineCode(rgchOutputPath);
+			g_cman.DebugRulePrecedence(rgchOutputPath);
+			g_cman.DebugGlyphAttributes(rgchOutputPath);
+			g_cman.DebugClasses(rgchOutputPath);
+			//g_cman.DebugOutput(rgchOutputPath);
+			g_cman.DebugCmap(pfont, rgchOutputPath);
 			if (g_cman.IsVerbose())
 				std::cout << "Debug files generated.\n";
 		}

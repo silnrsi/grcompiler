@@ -226,7 +226,7 @@ public:
 	void DebugXmlFeatures(std::ofstream & strmOut, std::string staPathToCur);
 	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);
 	void RecordSingleMemberClasses(std::vector<std::string> & vstaSingleMemberClasses,
-		std::vector<std::string> & vstaFiles, std::vector<int> & vnLines);
+		std::vector<std::string> & vstaFiles, std::vector<int> & vnLines, std::string staPathToCur);
 
 	//	Output:
 	void OutputReplacementClasses(int fxdSilfVersion,

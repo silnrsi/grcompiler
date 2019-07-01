@@ -334,7 +334,7 @@ protected:
 public:
 	//	Pre-compiler:
 	bool PreCompile(GrcFont *);
-	bool Compile(GrcFont *);
+	bool Compile(GrcFont *, char * pchOutputPath);
 
 protected:
 	bool PreCompileFeatures(GrcFont *);
@@ -389,7 +389,7 @@ protected:
 public:
 	//	Compiler:
 	int SlotAttributeIndex(Symbol psym);
-	void GenerateFsms();
+	void GenerateFsms(char * pchOutputPath);
 	////void InitializeFsmArrays();
 	std::vector<GdlGlyphClassDefn *> * FsmClassesForPass(int nPassID);
 	void CalculateContextOffsets();
@@ -456,15 +456,15 @@ public:
 	}
 
 	//	debuggers:
-	void DebugEngineCode();
-	void DebugRulePrecedence();
-	void DebugGlyphAttributes();
-	void DebugClasses();
-	void DebugFsm();
+	void DebugEngineCode(char * pchOutputPath);
+	void DebugRulePrecedence(char * pchOutputPath);
+	void DebugGlyphAttributes(char * pchOutputPath);
+	void DebugClasses(char * pchOutputPath);
+	void DebugFsm(char * pchOutputPath);
 	bool DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGdlFilePaths);
 	////void WalkFsmMachineClasses();
 	void DebugOutput();
-	void DebugCmap(GrcFont * pfont);
+	void DebugCmap(GrcFont * pfont, char * pchOutputPath);
 	void WriteCmapItem(std::ofstream & strmOut,
 		unsigned int nUnicode, bool fSuppPlaneChars, utf16 wGlyphID, bool fUnicodeToGlyph,
 		bool fPseudo, bool fInCmap);
