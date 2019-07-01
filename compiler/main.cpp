@@ -153,7 +153,7 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (c) 2002-2018, by SIL International.  All rights reserved.\n";
+			<< "Copyright (c) 2002-2019, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
