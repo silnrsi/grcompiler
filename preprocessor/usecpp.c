@@ -295,7 +295,7 @@ char GetPrefs(struct fppTag **tagptr, char **string)
   unsigned  Length_U;
 /*  char     *PrefsBuffer_PC;*//*NOT USED*/
   char ret= 0;
-  char *environ;
+  char *env_var;
 
   *string = NULL;
 
@@ -321,11 +321,11 @@ char GetPrefs(struct fppTag **tagptr, char **string)
   }
 
 #ifdef GDLPP
-  if((environ = getenv("GDLPP_PREFS"))) {
+  if((env_var = getenv("GDLPP_PREFS"))) {
 #else
-  if((environ = getenv("CPP_PREFS"))) {
+  if((env_var = getenv("CPP_PREFS"))) {
 #endif
-    ret= !DoString(tagptr, environ);
+    ret= !DoString(tagptr, env_var);
     if(ret && *string)
       free( *string );
   }
