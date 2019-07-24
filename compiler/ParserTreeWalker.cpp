@@ -3673,7 +3673,7 @@ void GrcManager::DebugParseTree(RefAST ast)
 	strmOut.open("dbg_parsetree.txt");
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(6106, NULL,
+		g_errorList.AddWarning(6506, NULL,
 			"Error in writing to file ",
 			"dbg_parsetree.txt");
 		return;

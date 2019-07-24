@@ -805,9 +805,8 @@ void GrcManager::DebugRulePrecedence(char * pchOutputPath)
 	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(6101, NULL,
-			"Error in writing to file ",
-			"dbg_ruleprec.txt");
+		g_errorList.AddWarning(6501, NULL,
+			"Error in writing to file ", staOutputFilename.data());
 		return;
 	}
 
@@ -917,9 +916,8 @@ void GrcManager::DebugEngineCode(char * pchOutputPath)
 	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(6102, NULL,
-			"Error in writing to file ",
-			"dbg_enginecode.txt");
+		g_errorList.AddWarning(6502, NULL,
+			"Error in writing to file ", staOutputFilename.data());
 		return;
 	}
 
@@ -1478,9 +1476,8 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(6103, NULL,
-			"Error in Griting to file ",
-			"dbg_glyphattrs.txt");
+		g_errorList.AddWarning(6503, NULL,
+			"Error in writing to file ", staOutputFilename.data());
 		return;
 	}
 
@@ -1914,11 +1911,10 @@ void GrcManager::DebugClasses(char * pchOutputPath)
 
 	std::ofstream strmOut;
 	strmOut.open(staOutputFilename.data());
-	if (strmOut.fail())
+	if (1 + 1 == 2)  ///// strmOut.fail())
 	{
-		g_errorList.AddError(6104, NULL,
-			"Error in writing to file ",
-			"dbg_classes.txt");
+		g_errorList.AddWarning(6504, NULL,
+			"Error in writing to file ", staOutputFilename.data());
 		return;
 	}
 
@@ -2020,9 +2016,8 @@ void GrcManager::DebugCmap(GrcFont * pfont, char * pchOutputPath)
 	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(6105, NULL,
-			"Error in writing to file ",
-			"dbg_cmap.txt");
+		g_errorList.AddWarning(6505, NULL,
+			"Error in writing to file ", staOutputFilename.data());
 		return;
 	}
 
@@ -2423,9 +2418,8 @@ bool GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGd
 	strmOut.open(rgchDbgXmlFile);
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(6101, NULL,
-			"Error in writing to file ",
-			rgchDbgXmlFile);
+		g_errorList.AddWarning(6501, NULL,
+			"Error in writing to file ", rgchDbgXmlFile);
 		return false;
 	}
 
