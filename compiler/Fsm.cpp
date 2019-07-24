@@ -1037,9 +1037,8 @@ void GrcManager::DebugFsm(char * pchOutputPath)
 	strmOut.open(staOutputFilename.data());
 	if (strmOut.fail())
 	{
-		g_errorList.AddError(3151, NULL,
-			"Error in writing to file ",
-			"dbg_fsm.txt");
+		g_errorList.AddWarning(6507, NULL,
+			"Error in writing to file ", staOutputFilename.data());
 		return;
 	}
 

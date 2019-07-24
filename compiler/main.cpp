@@ -430,13 +430,13 @@ int main(int argc, char * argv[])
 	{
 		if (g_cman.IsVerbose())
 			std::cout << "Compiling...\n";
+		if (strlen(rgchOutputPath) == 0)
+		{
+			rgchOutputPath[0] = '.'; rgchOutputPath[1] = 0; // avoid empty path on Linux
+		}
 		g_cman.Compile(pfont, rgchOutputPath);
 		if (g_cman.OutputDebugFiles())
 		{
-			if (strlen(rgchOutputPath) == 0)
-			{
-				rgchOutputPath[0] = '.'; rgchOutputPath[1] = 0; // avoid empty path on Linux
-			}
 			g_cman.DebugEngineCode(rgchOutputPath);
 			g_cman.DebugRulePrecedence(rgchOutputPath);
 			g_cman.DebugGlyphAttributes(rgchOutputPath);

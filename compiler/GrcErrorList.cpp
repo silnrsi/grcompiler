@@ -48,7 +48,7 @@ error checking:
 compilation:	highest error: 5101 / highest warning: 5509
 		OutputToFont
 
-test and debug: none (start at 6101) / highest warning: 6506
+test and debug: none (start at 6101) / highest warning: 6507
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
 /***********************************************************************************************
