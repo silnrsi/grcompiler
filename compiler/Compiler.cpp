@@ -1911,7 +1911,7 @@ void GrcManager::DebugClasses(char * pchOutputPath)
 
 	std::ofstream strmOut;
 	strmOut.open(staOutputFilename.data());
-	if (1 + 1 == 2)  ///// strmOut.fail())
+	if (strmOut.fail())
 	{
 		g_errorList.AddWarning(6504, NULL,
 			"Error in writing to file ", staOutputFilename.data());
