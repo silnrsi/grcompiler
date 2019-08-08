@@ -864,7 +864,12 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 				|| (prit->OutputSymbol() && prit->OutputSymbol()->FitsSymbolType(ksymtSpecialAt)));
 			prit->SetAssocsVector(vfAssocs);
 			if (prit->OutputSymbol() && prit->OutputSymbol()->FitsSymbolType(ksymtSpecialAt))
-				vfAssocs[irit] = true;
+			{
+				GdlSubstitutionItem * pritSub = dynamic_cast<GdlSubstitutionItem*>(prit);
+				//int iritSub = pritSub->m_pritSelInput->m_iritContextPos;
+				int iritSub = pritSub->m_pexpSelector->SlotNumber() - 1; // convert to zero-based
+				vfAssocs[iritSub] = true;
+			}
 		}
 	}
 
