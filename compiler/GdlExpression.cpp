@@ -1773,11 +1773,16 @@ GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 		if (!pgax->Defined(wGlyphID, nAttrID))
 		{
+			std::string staExplain = "";
+			if (m_psymName->IsMirrorAttr())
+				staExplain = " (Mirror attributes are only defined when Bidi = true)";
+
 			g_errorList.AddError(2129, this,
 				"The glyph attribute ",
 				m_psymName->FullName(),
 				" is not defined for glyph ",
-				GdlGlyphDefn::GlyphIDString(wGlyphID));
+				GdlGlyphDefn::GlyphIDString(wGlyphID),
+				staExplain);
 			return NULL;
 		}
 		else if (setpsym.find(m_psymName) != setpsym.end()) // is a member

@@ -1096,23 +1096,23 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 
 	//	Assign the first batch of IDs to the built-in attributes;
 	//	this is an optimization for the Graphite2 engine.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1, cpass, fCollFix);
+	m_psymtbl->AssignInternalGlyphAttrIDs(this, m_psymtbl, m_vpsymGlyphAttrs, kgappBuiltIn, -1, -1, -1, cpass);
 	m_cpsymBuiltIn = m_vpsymGlyphAttrs.size();
 
 	//	Assign the next batch of IDs to component bases (ie, component.X).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1, 0, fCollFix);
+	m_psymtbl->AssignInternalGlyphAttrIDs(this, m_psymtbl, m_vpsymGlyphAttrs, kgappCompBase, -1, -1, -1, 0);
 	m_cpsymComponents = m_vpsymGlyphAttrs.size() - m_cpsymBuiltIn;
 
 	//	Assign the next batch to component box fields. (ie, component.X.top/bottom/left/right).
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappCompBox,
-		m_cpsymBuiltIn, m_cpsymComponents, -1, 0, fCollFix);
+	m_psymtbl->AssignInternalGlyphAttrIDs(this, m_psymtbl, m_vpsymGlyphAttrs, kgappCompBox,
+		m_cpsymBuiltIn, m_cpsymComponents, -1, 0);
 
 	//	Assign the next batch to the justification attributes.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappJustify, -1, -1,
-		NumJustLevels(), 0, fCollFix);
+	m_psymtbl->AssignInternalGlyphAttrIDs(this, m_psymtbl, m_vpsymGlyphAttrs, kgappJustify, -1, -1,
+		NumJustLevels(), 0);
 
 	//	Finally, assign IDs to everything else.
-	m_psymtbl->AssignInternalGlyphAttrIDs(m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1, 0, fCollFix);
+	m_psymtbl->AssignInternalGlyphAttrIDs(this, m_psymtbl, m_vpsymGlyphAttrs, kgappOther, -1, -1, -1, 0);
 
 	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
@@ -1133,6 +1133,7 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 /*----------------------------------------------------------------------------------------------
 	Loop through the symbol table, assigning internal IDs to each glyph attribute.
 	Arguments:
+		pcman				- to access flags
 		psymtblMain			- main, top-level symbol table
 		vpsymGlyphAttrIDs	- list of assigned symbols
 		gapp				- 1: process built-in attributes
@@ -1145,10 +1146,14 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 		cJLevels			- only used on pass 4
 		cpass				- only used in pass 1
 ----------------------------------------------------------------------------------------------*/
-bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
+bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTable * psymtblMain,
 	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, int cpsymBuiltIn, int cpsymComponents,
-	int cJLevels, int cpass, bool fCollFix)
+	int cJLevels, int cpass)
 {
+	bool fCollFix = pcman->Renderer()->HasCollisionPass();
+	bool fBidi = pcman->Renderer()->Bidi();
+	bool fPassOpt = pcman->IncludePassOptimizations();
+
 	if (gapp == kgappJustify)
 	{
 		//	Justification attributes must be put in a specific order, with the corresponding
@@ -1234,8 +1239,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				//	component bases.
 			}
 			else
-				psym->m_psymtblSubTable->AssignInternalGlyphAttrIDs(psymtblMain,
-					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels, 0, fCollFix);
+				psym->m_psymtblSubTable->AssignInternalGlyphAttrIDs(pcman, psymtblMain,
+					vpsymGlyphAttrIDs, gapp, cpsymBuiltIn, cpsymComponents, cJLevels, 0);
 		}
 		else if (!psym->IsGeneric() &&
 			psym->FitsSymbolType(ksymtGlyphAttr))
@@ -1346,13 +1351,19 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 				|| psym->FieldIs(0, "*actualForPseudo*")
 				|| psym->FieldIs(0, "*skipPasses*")))
 		{
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
-			if (psym->FieldIs(0, "*skipPasses*") && cpass > kPassPerSPbitmap)
-			{
-				Symbol psym2 = PreDefineSymbol(GrcStructName("*skipPasses2*"), ksymtGlyphAttr, kexptNumber);
-				psym2->m_fGeneric = true;
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym2);
-				Assert(psym2->InternalID() == psym->InternalID() + 1);
+			if (psym->FieldIs(0, "*skipPasses*") && !fPassOpt) {
+				// Leave undefined, so it doesn't get output to Silf table and confuse OTS.
+				psym->SetInternalID(0);
+			}
+			else {
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym);
+				if (psym->FieldIs(0, "*skipPasses*") && cpass > kPassPerSPbitmap)
+				{
+					Symbol psym2 = PreDefineSymbol(GrcStructName("*skipPasses2*"), ksymtGlyphAttr, kexptNumber);
+					psym2->m_fGeneric = true;
+					AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psym2);
+					Assert(psym2->InternalID() == psym->InternalID() + 1);
+				}
 			}
 		}
 		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
@@ -1361,11 +1372,19 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcSymbolTable * psymtblMain,
 		{
 			//	Put mirror.glyph first, immediately followed by mirror.isEncoded.
 			Symbol psymGlyph = psymtblMain->FindSymbol(GrcStructName("mirror", "glyph"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGlyph);
 			Symbol psymIsEnc = psymtblMain->FindSymbol(GrcStructName("mirror", "isEncoded"));
-			AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymIsEnc);
-			Assert(psymGlyph->InternalID() != 0);
-			Assert(psymGlyph->InternalID() + 1 == psymIsEnc->InternalID());
+			if (fBidi)
+			{
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymGlyph);
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymIsEnc);
+				Assert(psymGlyph->InternalID() != 0);
+				Assert(psymGlyph->InternalID() + 1 == psymIsEnc->InternalID());
+			}
+			else
+			{
+				psymGlyph->SetInternalID(0);
+				psymIsEnc->SetInternalID(0);
+			}
 		}
 		else if (gapp == kgappBuiltIn && psym->FitsSymbolType(ksymtGlyphAttr)
 			&& psym->FieldCount() > 1

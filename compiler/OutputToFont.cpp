@@ -3028,7 +3028,10 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	long lCodeOffsets = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
-		pbstrm->WriteByte(m_nCollisionThreshold);
+		if (pcman->Renderer()->HasCollisionPass())
+			pbstrm->WriteByte(m_nCollisionThreshold);
+		else
+			pbstrm->WriteByte(0);  // avoid OTS griping about superfluous data fields
 
 		lCodeOffsets = pbstrm->Position();
 		// pass constraint byte count
