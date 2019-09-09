@@ -1285,7 +1285,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTab
 			}
 			else if (gapp == kgappOther && psym->IsIgnorableOffsetAttr() && !g_cman.OffsetAttrs())
 			{
-				// Ignore
+				// Ignore - but set the internal ID so we can recognize it.
+				psym->Generic()->SetInternalID(kInvalid);
 			}
 			else if (gapp == kgappOther && !psym->IsComponentBoxField())
 			{

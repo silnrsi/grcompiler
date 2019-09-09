@@ -398,3 +398,6 @@ enum {
 	kakNoSpace = 2
 };
 
+enum {
+	kInvalid = 0x3FFFFFFF
+};

@@ -100,6 +100,15 @@ void GrcGlyphAttrMatrix::Clear(utf16 wGlyphID, int nAttrID, int nStyle)
 ----------------------------------------------------------------------------------------------*/
 bool GrcGlyphAttrMatrix::GpointDefined(utf16 wGlyphID, int nAttrID, int nStyle)
 {
+	// This is a bit of a kludge. When OffsetAttrs() is off, the superfluous attributes like
+	// gpoint and xoffset and yoffset don't get assigned attribute IDs. But in an obscure case,
+	// the symbol may exist and there is an attempt to read it, which crashes because the
+	// ID is invalid. (This can happen when xyz.gpoint is defined on one class and xyz.x/y
+	// are defined on another.) So we set the index to a recognizable invalid value.
+	// See AssignInternalGlyphAttrIDs().
+	if (nAttrID == kInvalid)
+		return false;
+
 	return Defined(wGlyphID, nAttrID, nStyle);
 
 //	if (!Defined(wGlyphID, nAttrID, nStyle))
