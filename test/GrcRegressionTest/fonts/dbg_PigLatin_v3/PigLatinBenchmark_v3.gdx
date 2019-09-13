@@ -6,8 +6,6 @@
     <glyphAttr name="*skipPasses*" attrId="1" type="bitmap" />
     <glyphAttr name="breakweight" attrId="2" type="bw" />
     <glyphAttr name="directionality" attrId="3" type="dircode" />
-    <glyphAttr name="mirror.glyph" attrId="4" type="gid" />
-    <glyphAttr name="mirror.isEncoded" attrId="5" type="boolean" />
   </glyphAttrs>
 
   <glyphs>

@@ -3,405 +3,336 @@
 
   <glyphAttrs>
     <glyphAttr name="*actualForPseudo*" attrId="0" type="gid" />
-    <glyphAttr name="*skipPasses*" attrId="1" type="integer" />
-    <glyphAttr name="breakweight" attrId="2" type="bw" />
-    <glyphAttr name="directionality" attrId="3" type="dircode" />
-    <glyphAttr name="mirror.glyph" attrId="4" type="gid" />
-    <glyphAttr name="mirror.isEncoded" attrId="5" type="boolean" />
-    <glyphAttr name="BDS.x" attrId="6" type="point" />
-    <glyphAttr name="BDS.gpoint" attrId="7" type="point" />
-    <glyphAttr name="BDS.xoffset" attrId="8" type="point" />
-    <glyphAttr name="BDS.y" attrId="9" type="point" />
-    <glyphAttr name="BDS.yoffset" attrId="10" type="point" />
-    <glyphAttr name="BSS.x" attrId="11" type="point" />
-    <glyphAttr name="BSS.gpoint" attrId="12" type="point" />
-    <glyphAttr name="BSS.xoffset" attrId="13" type="point" />
-    <glyphAttr name="BSS.y" attrId="14" type="point" />
-    <glyphAttr name="BSS.yoffset" attrId="15" type="point" />
-    <glyphAttr name="LS.x" attrId="16" type="point" />
-    <glyphAttr name="LS.gpoint" attrId="17" type="point" />
-    <glyphAttr name="LS.xoffset" attrId="18" type="point" />
-    <glyphAttr name="LS.y" attrId="19" type="point" />
-    <glyphAttr name="LS.yoffset" attrId="20" type="point" />
-    <glyphAttr name="RM.x" attrId="21" type="point" />
-    <glyphAttr name="RM.gpoint" attrId="22" type="point" />
-    <glyphAttr name="RM.xoffset" attrId="23" type="point" />
-    <glyphAttr name="RM.y" attrId="24" type="point" />
-    <glyphAttr name="RM.yoffset" attrId="25" type="point" />
-    <glyphAttr name="US.x" attrId="26" type="point" />
-    <glyphAttr name="US.gpoint" attrId="27" type="point" />
-    <glyphAttr name="US.xoffset" attrId="28" type="point" />
-    <glyphAttr name="US.y" attrId="29" type="point" />
-    <glyphAttr name="US.yoffset" attrId="30" type="point" />
-    <glyphAttr name="order" attrId="31" type="integer" />
-    <glyphAttr name="LLS.x" attrId="32" type="point" />
-    <glyphAttr name="LLS.gpoint" attrId="33" type="point" />
-    <glyphAttr name="LLS.xoffset" attrId="34" type="point" />
-    <glyphAttr name="LLS.y" attrId="35" type="point" />
-    <glyphAttr name="LLS.yoffset" attrId="36" type="point" />
-    <glyphAttr name="BDM.x" attrId="37" type="point" />
-    <glyphAttr name="BDM.gpoint" attrId="38" type="point" />
-    <glyphAttr name="BDM.xoffset" attrId="39" type="point" />
-    <glyphAttr name="BDM.y" attrId="40" type="point" />
-    <glyphAttr name="BDM.yoffset" attrId="41" type="point" />
-    <glyphAttr name="BSM.x" attrId="42" type="point" />
-    <glyphAttr name="BSM.gpoint" attrId="43" type="point" />
-    <glyphAttr name="BSM.xoffset" attrId="44" type="point" />
-    <glyphAttr name="BSM.y" attrId="45" type="point" />
-    <glyphAttr name="BSM.yoffset" attrId="46" type="point" />
-    <glyphAttr name="UM.x" attrId="47" type="point" />
-    <glyphAttr name="UM.gpoint" attrId="48" type="point" />
-    <glyphAttr name="UM.xoffset" attrId="49" type="point" />
-    <glyphAttr name="UM.y" attrId="50" type="point" />
-    <glyphAttr name="UM.yoffset" attrId="51" type="point" />
-    <glyphAttr name="dotS.x" attrId="52" type="point" />
-    <glyphAttr name="dotS.gpoint" attrId="53" type="point" />
-    <glyphAttr name="dotS.xoffset" attrId="54" type="point" />
-    <glyphAttr name="dotS.y" attrId="55" type="point" />
-    <glyphAttr name="dotS.yoffset" attrId="56" type="point" />
-    <glyphAttr name="advx" attrId="57" type="em-units" />
-    <glyphAttr name="xkern" attrId="58" type="em-units" />
-    <glyphAttr name="rkern" attrId="59" type="em-units" />
-    <glyphAttr name="LM.x" attrId="60" type="point" />
-    <glyphAttr name="LM.gpoint" attrId="61" type="point" />
-    <glyphAttr name="LM.xoffset" attrId="62" type="point" />
-    <glyphAttr name="LM.y" attrId="63" type="point" />
-    <glyphAttr name="LM.yoffset" attrId="64" type="point" />
-    <glyphAttr name="RS.x" attrId="65" type="point" />
-    <glyphAttr name="RS.gpoint" attrId="66" type="point" />
-    <glyphAttr name="RS.xoffset" attrId="67" type="point" />
-    <glyphAttr name="RS.y" attrId="68" type="point" />
-    <glyphAttr name="RS.yoffset" attrId="69" type="point" />
+    <glyphAttr name="breakweight" attrId="1" type="bw" />
+    <glyphAttr name="directionality" attrId="2" type="dircode" />
+    <glyphAttr name="BDS.x" attrId="3" type="point" />
+    <glyphAttr name="BDS.gpoint" attrId="4" type="point" />
+    <glyphAttr name="BDS.xoffset" attrId="5" type="point" />
+    <glyphAttr name="BDS.y" attrId="6" type="point" />
+    <glyphAttr name="BDS.yoffset" attrId="7" type="point" />
+    <glyphAttr name="BSS.x" attrId="8" type="point" />
+    <glyphAttr name="BSS.gpoint" attrId="9" type="point" />
+    <glyphAttr name="BSS.xoffset" attrId="10" type="point" />
+    <glyphAttr name="BSS.y" attrId="11" type="point" />
+    <glyphAttr name="BSS.yoffset" attrId="12" type="point" />
+    <glyphAttr name="LS.x" attrId="13" type="point" />
+    <glyphAttr name="LS.gpoint" attrId="14" type="point" />
+    <glyphAttr name="LS.xoffset" attrId="15" type="point" />
+    <glyphAttr name="LS.y" attrId="16" type="point" />
+    <glyphAttr name="LS.yoffset" attrId="17" type="point" />
+    <glyphAttr name="RM.x" attrId="18" type="point" />
+    <glyphAttr name="RM.gpoint" attrId="19" type="point" />
+    <glyphAttr name="RM.xoffset" attrId="20" type="point" />
+    <glyphAttr name="RM.y" attrId="21" type="point" />
+    <glyphAttr name="RM.yoffset" attrId="22" type="point" />
+    <glyphAttr name="US.x" attrId="23" type="point" />
+    <glyphAttr name="US.gpoint" attrId="24" type="point" />
+    <glyphAttr name="US.xoffset" attrId="25" type="point" />
+    <glyphAttr name="US.y" attrId="26" type="point" />
+    <glyphAttr name="US.yoffset" attrId="27" type="point" />
+    <glyphAttr name="order" attrId="28" type="integer" />
+    <glyphAttr name="LLS.x" attrId="29" type="point" />
+    <glyphAttr name="LLS.gpoint" attrId="30" type="point" />
+    <glyphAttr name="LLS.xoffset" attrId="31" type="point" />
+    <glyphAttr name="LLS.y" attrId="32" type="point" />
+    <glyphAttr name="LLS.yoffset" attrId="33" type="point" />
+    <glyphAttr name="BDM.x" attrId="34" type="point" />
+    <glyphAttr name="BDM.gpoint" attrId="35" type="point" />
+    <glyphAttr name="BDM.xoffset" attrId="36" type="point" />
+    <glyphAttr name="BDM.y" attrId="37" type="point" />
+    <glyphAttr name="BDM.yoffset" attrId="38" type="point" />
+    <glyphAttr name="BSM.x" attrId="39" type="point" />
+    <glyphAttr name="BSM.gpoint" attrId="40" type="point" />
+    <glyphAttr name="BSM.xoffset" attrId="41" type="point" />
+    <glyphAttr name="BSM.y" attrId="42" type="point" />
+    <glyphAttr name="BSM.yoffset" attrId="43" type="point" />
+    <glyphAttr name="UM.x" attrId="44" type="point" />
+    <glyphAttr name="UM.gpoint" attrId="45" type="point" />
+    <glyphAttr name="UM.xoffset" attrId="46" type="point" />
+    <glyphAttr name="UM.y" attrId="47" type="point" />
+    <glyphAttr name="UM.yoffset" attrId="48" type="point" />
+    <glyphAttr name="dotS.x" attrId="49" type="point" />
+    <glyphAttr name="dotS.gpoint" attrId="50" type="point" />
+    <glyphAttr name="dotS.xoffset" attrId="51" type="point" />
+    <glyphAttr name="dotS.y" attrId="52" type="point" />
+    <glyphAttr name="dotS.yoffset" attrId="53" type="point" />
+    <glyphAttr name="advx" attrId="54" type="em-units" />
+    <glyphAttr name="xkern" attrId="55" type="em-units" />
+    <glyphAttr name="rkern" attrId="56" type="em-units" />
+    <glyphAttr name="LM.x" attrId="57" type="point" />
+    <glyphAttr name="LM.gpoint" attrId="58" type="point" />
+    <glyphAttr name="LM.xoffset" attrId="59" type="point" />
+    <glyphAttr name="LM.y" attrId="60" type="point" />
+    <glyphAttr name="LM.yoffset" attrId="61" type="point" />
+    <glyphAttr name="RS.x" attrId="62" type="point" />
+    <glyphAttr name="RS.gpoint" attrId="63" type="point" />
+    <glyphAttr name="RS.xoffset" attrId="64" type="point" />
+    <glyphAttr name="RS.y" attrId="65" type="point" />
+    <glyphAttr name="RS.yoffset" attrId="66" type="point" />
   </glyphAttrs>
 
   <glyphs>
     <glyph glyphid="0" className="g__notdef" inFile="PadaukGlyphs.gdh" atLine="6">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="6" />
     </glyph>
     <glyph glyphid="1" className="g__null" inFile="PadaukGlyphs.gdh" atLine="7">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="7" />
     </glyph>
     <glyph glyphid="2" className="g_nonmarkingreturn" inFile="PadaukGlyphs.gdh" atLine="8">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="8" />
     </glyph>
     <glyph glyphid="3" className="g_space" usv="U+0020" inFile="PadaukGlyphs.gdh" atLine="9">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="187" />
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="9" />
     </glyph>
     <glyph glyphid="4" className="g_exclam" usv="U+0021" inFile="PadaukGlyphs.gdh" atLine="10">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="10" />
     </glyph>
     <glyph glyphid="5" className="g_quotedbl" usv="U+0022" inFile="PadaukGlyphs.gdh" atLine="11">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="11" />
     </glyph>
     <glyph glyphid="6" className="g_numbersign" usv="U+0023" inFile="PadaukGlyphs.gdh" atLine="12">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="12" />
     </glyph>
     <glyph glyphid="7" className="g_dollar" usv="U+0024" inFile="PadaukGlyphs.gdh" atLine="13">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="13" />
     </glyph>
     <glyph glyphid="8" className="g_percent" usv="U+0025" inFile="PadaukGlyphs.gdh" atLine="14">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="14" />
     </glyph>
     <glyph glyphid="9" className="g_ampersand" usv="U+0026" inFile="PadaukGlyphs.gdh" atLine="15">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="15" />
     </glyph>
     <glyph glyphid="10" className="g_quotesingle" usv="U+0027" inFile="PadaukGlyphs.gdh" atLine="16">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="16" />
     </glyph>
     <glyph glyphid="11" className="g_parenleft" usv="U+0028" inFile="PadaukGlyphs.gdh" atLine="17">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="196" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="17" />
     </glyph>
     <glyph glyphid="12" className="g_parenright" usv="U+0029" inFile="PadaukGlyphs.gdh" atLine="18">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="197" />
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="18" />
     </glyph>
     <glyph glyphid="13" className="g_asterisk" usv="U+002A" inFile="PadaukGlyphs.gdh" atLine="19">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="19" />
     </glyph>
     <glyph glyphid="14" className="g_plus" usv="U+002B" inFile="PadaukGlyphs.gdh" atLine="20">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="20" />
     </glyph>
     <glyph glyphid="15" className="g_comma" usv="U+002C" inFile="PadaukGlyphs.gdh" atLine="21">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="21" />
     </glyph>
     <glyph glyphid="16" className="g_hyphen" usv="U+002D" inFile="PadaukGlyphs.gdh" atLine="22">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="22" />
     </glyph>
     <glyph glyphid="17" className="g_period" usv="U+002E" inFile="PadaukGlyphs.gdh" atLine="23">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="23" />
     </glyph>
     <glyph glyphid="18" className="g_slash" usv="U+002F" inFile="PadaukGlyphs.gdh" atLine="24">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="24" />
     </glyph>
     <glyph glyphid="19" className="g_zero" usv="U+0030" inFile="PadaukGlyphs.gdh" atLine="25">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="25" />
     </glyph>
     <glyph glyphid="20" className="g_one" usv="U+0031" inFile="PadaukGlyphs.gdh" atLine="26">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="26" />
     </glyph>
     <glyph glyphid="21" className="g_two" usv="U+0032" inFile="PadaukGlyphs.gdh" atLine="27">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="27" />
     </glyph>
     <glyph glyphid="22" className="g_three" usv="U+0033" inFile="PadaukGlyphs.gdh" atLine="28">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="28" />
     </glyph>
     <glyph glyphid="23" className="g_four" usv="U+0034" inFile="PadaukGlyphs.gdh" atLine="29">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="29" />
     </glyph>
     <glyph glyphid="24" className="g_five" usv="U+0035" inFile="PadaukGlyphs.gdh" atLine="30">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="30" />
     </glyph>
     <glyph glyphid="25" className="g_six" usv="U+0036" inFile="PadaukGlyphs.gdh" atLine="31">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="31" />
     </glyph>
     <glyph glyphid="26" className="g_seven" usv="U+0037" inFile="PadaukGlyphs.gdh" atLine="32">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="32" />
     </glyph>
     <glyph glyphid="27" className="g_eight" usv="U+0038" inFile="PadaukGlyphs.gdh" atLine="33">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="33" />
     </glyph>
     <glyph glyphid="28" className="g_nine" usv="U+0039" inFile="PadaukGlyphs.gdh" atLine="34">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="34" />
     </glyph>
     <glyph glyphid="29" className="g_colon" usv="U+003A" inFile="PadaukGlyphs.gdh" atLine="35">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="35" />
     </glyph>
     <glyph glyphid="30" className="g_semicolon" usv="U+003B" inFile="PadaukGlyphs.gdh" atLine="36">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="36" />
     </glyph>
     <glyph glyphid="31" className="g_less" usv="U+003C" inFile="PadaukGlyphs.gdh" atLine="37">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="37" />
     </glyph>
     <glyph glyphid="32" className="g_equal" usv="U+003D" inFile="PadaukGlyphs.gdh" atLine="38">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="38" />
     </glyph>
     <glyph glyphid="33" className="g_greater" usv="U+003E" inFile="PadaukGlyphs.gdh" atLine="39">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="39" />
     </glyph>
     <glyph glyphid="34" className="g_question" usv="U+003F" inFile="PadaukGlyphs.gdh" atLine="40">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="40" />
     </glyph>
     <glyph glyphid="35" className="g_at" usv="U+0040" inFile="PadaukGlyphs.gdh" atLine="41">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="41" />
     </glyph>
     <glyph glyphid="36" className="g__a" usv="U+0041" inFile="PadaukGlyphs.gdh" atLine="42">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="42" />
     </glyph>
     <glyph glyphid="37" className="g__b" usv="U+0042" inFile="PadaukGlyphs.gdh" atLine="43">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="43" />
     </glyph>
     <glyph glyphid="38" className="g__c" usv="U+0043" inFile="PadaukGlyphs.gdh" atLine="44">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="44" />
     </glyph>
     <glyph glyphid="39" className="g__d" usv="U+0044" inFile="PadaukGlyphs.gdh" atLine="45">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="45" />
     </glyph>
     <glyph glyphid="40" className="g__e" usv="U+0045" inFile="PadaukGlyphs.gdh" atLine="46">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="46" />
     </glyph>
     <glyph glyphid="41" className="g__f" usv="U+0046" inFile="PadaukGlyphs.gdh" atLine="47">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="47" />
     </glyph>
     <glyph glyphid="42" className="g__g" usv="U+0047" inFile="PadaukGlyphs.gdh" atLine="48">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="48" />
     </glyph>
     <glyph glyphid="43" className="g__h" usv="U+0048" inFile="PadaukGlyphs.gdh" atLine="49">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="49" />
     </glyph>
     <glyph glyphid="44" className="g__i" usv="U+0049" inFile="PadaukGlyphs.gdh" atLine="50">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="50" />
     </glyph>
     <glyph glyphid="45" className="g__j" usv="U+004A" inFile="PadaukGlyphs.gdh" atLine="51">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="51" />
     </glyph>
     <glyph glyphid="46" className="g__k" usv="U+004B" inFile="PadaukGlyphs.gdh" atLine="52">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="52" />
     </glyph>
     <glyph glyphid="47" className="g__l" usv="U+004C" inFile="PadaukGlyphs.gdh" atLine="53">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="53" />
     </glyph>
     <glyph glyphid="48" className="g__m" usv="U+004D" inFile="PadaukGlyphs.gdh" atLine="54">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="54" />
     </glyph>
     <glyph glyphid="49" className="g__n" usv="U+004E" inFile="PadaukGlyphs.gdh" atLine="55">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="55" />
     </glyph>
     <glyph glyphid="50" className="g__o" usv="U+004F" inFile="PadaukGlyphs.gdh" atLine="56">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="56" />
     </glyph>
     <glyph glyphid="51" className="g__p" usv="U+0050" inFile="PadaukGlyphs.gdh" atLine="57">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="57" />
     </glyph>
     <glyph glyphid="52" className="g__q" usv="U+0051" inFile="PadaukGlyphs.gdh" atLine="58">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="58" />
     </glyph>
     <glyph glyphid="53" className="g__r" usv="U+0052" inFile="PadaukGlyphs.gdh" atLine="59">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="59" />
     </glyph>
     <glyph glyphid="54" className="g__s" usv="U+0053" inFile="PadaukGlyphs.gdh" atLine="60">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="60" />
     </glyph>
     <glyph glyphid="55" className="g__t" usv="U+0054" inFile="PadaukGlyphs.gdh" atLine="61">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="61" />
     </glyph>
     <glyph glyphid="56" className="g__u" usv="U+0055" inFile="PadaukGlyphs.gdh" atLine="62">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="62" />
     </glyph>
     <glyph glyphid="57" className="g__v" usv="U+0056" inFile="PadaukGlyphs.gdh" atLine="63">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="63" />
     </glyph>
     <glyph glyphid="58" className="g__w" usv="U+0057" inFile="PadaukGlyphs.gdh" atLine="64">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="64" />
     </glyph>
     <glyph glyphid="59" className="g__x" usv="U+0058" inFile="PadaukGlyphs.gdh" atLine="65">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="65" />
     </glyph>
     <glyph glyphid="60" className="g__y" usv="U+0059" inFile="PadaukGlyphs.gdh" atLine="66">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="66" />
     </glyph>
     <glyph glyphid="61" className="g__z" usv="U+005A" inFile="PadaukGlyphs.gdh" atLine="67">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="67" />
     </glyph>
     <glyph glyphid="62" className="g_bracketleft" usv="U+005B" inFile="PadaukGlyphs.gdh" atLine="68">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="68" />
     </glyph>
     <glyph glyphid="63" className="g_backslash" usv="U+005C" inFile="PadaukGlyphs.gdh" atLine="69">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="69" />
     </glyph>
     <glyph glyphid="64" className="g_bracketright" usv="U+005D" inFile="PadaukGlyphs.gdh" atLine="70">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="70" />
     </glyph>
     <glyph glyphid="65" className="g_asciicircum" usv="U+005E" inFile="PadaukGlyphs.gdh" atLine="71">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="71" />
       <glyphAttrValue name="UM.x" value="226" inFile="PadaukGlyphs.gdh" atLine="71" />
@@ -410,207 +341,166 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="71" />
     </glyph>
     <glyph glyphid="66" className="g_underscore" usv="U+005F" inFile="PadaukGlyphs.gdh" atLine="72">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="72" />
     </glyph>
     <glyph glyphid="67" className="g_grave" usv="U+0060" inFile="PadaukGlyphs.gdh" atLine="73">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="73" />
     </glyph>
     <glyph glyphid="68" className="g_a" usv="U+0061" inFile="PadaukGlyphs.gdh" atLine="74">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="74" />
     </glyph>
     <glyph glyphid="69" className="g_b" usv="U+0062" inFile="PadaukGlyphs.gdh" atLine="75">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="75" />
     </glyph>
     <glyph glyphid="70" className="g_c" usv="U+0063" inFile="PadaukGlyphs.gdh" atLine="76">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="76" />
     </glyph>
     <glyph glyphid="71" className="g_d" usv="U+0064" inFile="PadaukGlyphs.gdh" atLine="77">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="77" />
     </glyph>
     <glyph glyphid="72" className="g_e" usv="U+0065" inFile="PadaukGlyphs.gdh" atLine="78">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="78" />
     </glyph>
     <glyph glyphid="73" className="g_f" usv="U+0066" inFile="PadaukGlyphs.gdh" atLine="79">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="79" />
     </glyph>
     <glyph glyphid="74" className="g_g" usv="U+0067" inFile="PadaukGlyphs.gdh" atLine="80">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="80" />
     </glyph>
     <glyph glyphid="75" className="g_h" usv="U+0068" inFile="PadaukGlyphs.gdh" atLine="81">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="81" />
     </glyph>
     <glyph glyphid="76" className="g_i" usv="U+0069" inFile="PadaukGlyphs.gdh" atLine="82">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="82" />
     </glyph>
     <glyph glyphid="77" className="g_j" usv="U+006A" inFile="PadaukGlyphs.gdh" atLine="83">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="83" />
     </glyph>
     <glyph glyphid="78" className="g_k" usv="U+006B" inFile="PadaukGlyphs.gdh" atLine="84">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="84" />
     </glyph>
     <glyph glyphid="79" className="g_l" usv="U+006C" inFile="PadaukGlyphs.gdh" atLine="85">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="85" />
     </glyph>
     <glyph glyphid="80" className="g_m" usv="U+006D" inFile="PadaukGlyphs.gdh" atLine="86">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="86" />
     </glyph>
     <glyph glyphid="81" className="g_n" usv="U+006E" inFile="PadaukGlyphs.gdh" atLine="87">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="87" />
     </glyph>
     <glyph glyphid="82" className="g_o" usv="U+006F" inFile="PadaukGlyphs.gdh" atLine="88">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="88" />
     </glyph>
     <glyph glyphid="83" className="g_p" usv="U+0070" inFile="PadaukGlyphs.gdh" atLine="89">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="89" />
     </glyph>
     <glyph glyphid="84" className="g_q" usv="U+0071" inFile="PadaukGlyphs.gdh" atLine="90">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="90" />
     </glyph>
     <glyph glyphid="85" className="g_r" usv="U+0072" inFile="PadaukGlyphs.gdh" atLine="91">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="91" />
     </glyph>
     <glyph glyphid="86" className="g_s" usv="U+0073" inFile="PadaukGlyphs.gdh" atLine="92">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="92" />
     </glyph>
     <glyph glyphid="87" className="g_t" usv="U+0074" inFile="PadaukGlyphs.gdh" atLine="93">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="93" />
     </glyph>
     <glyph glyphid="88" className="g_u" usv="U+0075" inFile="PadaukGlyphs.gdh" atLine="94">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="94" />
     </glyph>
     <glyph glyphid="89" className="g_v" usv="U+0076" inFile="PadaukGlyphs.gdh" atLine="95">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="95" />
     </glyph>
     <glyph glyphid="90" className="g_w" usv="U+0077" inFile="PadaukGlyphs.gdh" atLine="96">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="96" />
     </glyph>
     <glyph glyphid="91" className="g_x" usv="U+0078" inFile="PadaukGlyphs.gdh" atLine="97">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="97" />
     </glyph>
     <glyph glyphid="92" className="g_y" usv="U+0079" inFile="PadaukGlyphs.gdh" atLine="98">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="98" />
     </glyph>
     <glyph glyphid="93" className="g_z" usv="U+007A" inFile="PadaukGlyphs.gdh" atLine="99">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="99" />
     </glyph>
     <glyph glyphid="94" className="g_braceleft" usv="U+007B" inFile="PadaukGlyphs.gdh" atLine="100">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="100" />
     </glyph>
     <glyph glyphid="95" className="g_bar" usv="U+007C" inFile="PadaukGlyphs.gdh" atLine="101">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="101" />
     </glyph>
     <glyph glyphid="96" className="g_braceright" usv="U+007D" inFile="PadaukGlyphs.gdh" atLine="102">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="102" />
     </glyph>
     <glyph glyphid="97" className="g_asciitilde" usv="U+007E" inFile="PadaukGlyphs.gdh" atLine="103">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="103" />
     </glyph>
     <glyph glyphid="98" className="g_multiply" usv="U+00D7" inFile="PadaukGlyphs.gdh" atLine="104">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="104" />
     </glyph>
     <glyph glyphid="99" className="g_quotedblleft" usv="U+201C" inFile="PadaukGlyphs.gdh" atLine="105">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="196" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="105" />
     </glyph>
     <glyph glyphid="100" className="g_quotedblright" usv="U+201D" inFile="PadaukGlyphs.gdh" atLine="106">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="197" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="106" />
     </glyph>
     <glyph glyphid="101" className="g_quoteleft" usv="U+2018" inFile="PadaukGlyphs.gdh" atLine="107">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="196" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="107" />
     </glyph>
     <glyph glyphid="102" className="g_quoteright" usv="U+2019" inFile="PadaukGlyphs.gdh" atLine="108">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="197" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="108" />
     </glyph>
     <glyph glyphid="103" className="g_endash" usv="U+2013" inFile="PadaukGlyphs.gdh" atLine="109">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="109" />
     </glyph>
     <glyph glyphid="104" className="g_emdash" usv="U+2014" inFile="PadaukGlyphs.gdh" atLine="110">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="110" />
     </glyph>
     <glyph glyphid="105" className="g_notequal" usv="U+2260" inFile="PadaukGlyphs.gdh" atLine="111">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="111" />
     </glyph>
     <glyph glyphid="106" className="g_circledash" usv="U+25CC" inFile="PadaukGlyphs.gdh" atLine="112">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="318" inFile="PadaukGlyphs.gdh" atLine="112" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="112" />
@@ -632,7 +522,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="112" />
     </glyph>
     <glyph glyphid="107" className="g1000" usv="U+1000" inFile="PadaukGlyphs.gdh" atLine="113">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="508" inFile="PadaukGlyphs.gdh" atLine="113" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="113" />
@@ -657,7 +546,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="113" />
     </glyph>
     <glyph glyphid="108" className="g1000_med" inFile="PadaukGlyphs.gdh" atLine="114">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="886" inFile="PadaukGlyphs.gdh" atLine="114" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="114" />
@@ -678,7 +566,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="114" />
     </glyph>
     <glyph glyphid="109" className="g1000_1001_103b" inFile="PadaukGlyphs.gdh" atLine="115">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1236" inFile="PadaukGlyphs.gdh" atLine="115" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="115" />
@@ -703,7 +590,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="115" />
     </glyph>
     <glyph glyphid="110" className="g1000_103b_1015_103a" inFile="PadaukGlyphs.gdh" atLine="116">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="RM.x" value="0" inFile="PadaukGlyphs.gdh" atLine="116" />
       <glyphAttrValue name="RM.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="116" />
@@ -712,7 +598,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="116" />
     </glyph>
     <glyph glyphid="111" className="g1001" usv="U+1001" inFile="PadaukGlyphs.gdh" atLine="117">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="283" inFile="PadaukGlyphs.gdh" atLine="117" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="117" />
@@ -733,7 +618,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="117" />
     </glyph>
     <glyph glyphid="112" className="g1001_med" inFile="PadaukGlyphs.gdh" atLine="118">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="556" inFile="PadaukGlyphs.gdh" atLine="118" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="118" />
@@ -754,7 +638,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="118" />
     </glyph>
     <glyph glyphid="113" className="g1002" usv="U+1002" inFile="PadaukGlyphs.gdh" atLine="119">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="119" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="119" />
@@ -775,7 +658,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="119" />
     </glyph>
     <glyph glyphid="114" className="g1002_med" inFile="PadaukGlyphs.gdh" atLine="120">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="565" inFile="PadaukGlyphs.gdh" atLine="120" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="120" />
@@ -796,7 +678,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="120" />
     </glyph>
     <glyph glyphid="115" className="g1003" usv="U+1003" inFile="PadaukGlyphs.gdh" atLine="121">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="495" inFile="PadaukGlyphs.gdh" atLine="121" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="121" />
@@ -821,7 +702,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="121" />
     </glyph>
     <glyph glyphid="116" className="g1003_med" inFile="PadaukGlyphs.gdh" atLine="122">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="883" inFile="PadaukGlyphs.gdh" atLine="122" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="122" />
@@ -842,7 +722,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="122" />
     </glyph>
     <glyph glyphid="117" className="g1004" usv="U+1004" inFile="PadaukGlyphs.gdh" atLine="123">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="123" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="123" />
@@ -863,7 +742,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="123" />
     </glyph>
     <glyph glyphid="118" className="g1004_med" inFile="PadaukGlyphs.gdh" atLine="124">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="124" />
       <glyphAttrValue name="UM.x" value="-92" inFile="PadaukGlyphs.gdh" atLine="124" />
@@ -872,7 +750,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="124" />
     </glyph>
     <glyph glyphid="119" className="g1004_med_102d" inFile="PadaukGlyphs.gdh" atLine="125">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="125" />
       <glyphAttrValue name="UM.x" value="-296" inFile="PadaukGlyphs.gdh" atLine="125" />
@@ -881,7 +758,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="125" />
     </glyph>
     <glyph glyphid="120" className="g1004_med_102e" inFile="PadaukGlyphs.gdh" atLine="126">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="126" />
       <glyphAttrValue name="UM.x" value="-296" inFile="PadaukGlyphs.gdh" atLine="126" />
@@ -890,7 +766,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="126" />
     </glyph>
     <glyph glyphid="121" className="g1004_med_1036" inFile="PadaukGlyphs.gdh" atLine="127">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="10" inFile="PadaukGlyphs.gdh" atLine="127" />
       <glyphAttrValue name="UM.x" value="-258" inFile="PadaukGlyphs.gdh" atLine="127" />
@@ -899,7 +774,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="127" />
     </glyph>
     <glyph glyphid="122" className="g1005" usv="U+1005" inFile="PadaukGlyphs.gdh" atLine="128">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="288" inFile="PadaukGlyphs.gdh" atLine="128" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="128" />
@@ -920,7 +794,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="128" />
     </glyph>
     <glyph glyphid="123" className="g1005_med" inFile="PadaukGlyphs.gdh" atLine="129">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="556" inFile="PadaukGlyphs.gdh" atLine="129" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="129" />
@@ -941,7 +814,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="129" />
     </glyph>
     <glyph glyphid="124" className="g1006" usv="U+1006" inFile="PadaukGlyphs.gdh" atLine="130">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="495" inFile="PadaukGlyphs.gdh" atLine="130" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="130" />
@@ -966,7 +838,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="130" />
     </glyph>
     <glyph glyphid="125" className="g1006_med" inFile="PadaukGlyphs.gdh" atLine="131">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="877" inFile="PadaukGlyphs.gdh" atLine="131" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="131" />
@@ -987,7 +858,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="131" />
     </glyph>
     <glyph glyphid="126" className="g1007" usv="U+1007" inFile="PadaukGlyphs.gdh" atLine="132">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="286" inFile="PadaukGlyphs.gdh" atLine="132" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="132" />
@@ -1008,7 +878,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="132" />
     </glyph>
     <glyph glyphid="127" className="g1007_med" inFile="PadaukGlyphs.gdh" atLine="133">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="532" inFile="PadaukGlyphs.gdh" atLine="133" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="133" />
@@ -1029,7 +898,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="133" />
     </glyph>
     <glyph glyphid="128" className="g1008" usv="U+1008" inFile="PadaukGlyphs.gdh" atLine="134">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="810" inFile="PadaukGlyphs.gdh" atLine="134" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="134" />
@@ -1054,7 +922,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="134" />
     </glyph>
     <glyph glyphid="129" className="g1008_med" inFile="PadaukGlyphs.gdh" atLine="135">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="135" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="135" />
@@ -1075,7 +942,6 @@
       <glyphAttrValue name="dotS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="135" />
     </glyph>
     <glyph glyphid="130" className="g1009" usv="U+1009" inFile="PadaukGlyphs.gdh" atLine="136">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="450" inFile="PadaukGlyphs.gdh" atLine="136" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="136" />
@@ -1100,7 +966,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="136" />
     </glyph>
     <glyph glyphid="131" className="g1009_102c" inFile="PadaukGlyphs.gdh" atLine="137">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1063" inFile="PadaukGlyphs.gdh" atLine="137" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="137" />
@@ -1121,7 +986,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="137" />
     </glyph>
     <glyph glyphid="132" className="g100a" usv="U+100A" inFile="PadaukGlyphs.gdh" atLine="138">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="1063" inFile="PadaukGlyphs.gdh" atLine="138" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="138" />
@@ -1142,7 +1006,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="138" />
     </glyph>
     <glyph glyphid="133" className="g100a_alt" inFile="PadaukGlyphs.gdh" atLine="139">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BDS.x" value="486" inFile="PadaukGlyphs.gdh" atLine="139" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="139" />
@@ -1167,7 +1030,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="139" />
     </glyph>
     <glyph glyphid="134" className="g100b" usv="U+100B" inFile="PadaukGlyphs.gdh" atLine="140">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="657" inFile="PadaukGlyphs.gdh" atLine="140" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="140" />
@@ -1188,7 +1050,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="140" />
     </glyph>
     <glyph glyphid="135" className="g100b_alt" inFile="PadaukGlyphs.gdh" atLine="141">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BDS.x" value="60" inFile="PadaukGlyphs.gdh" atLine="141" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="141" />
@@ -1217,7 +1078,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="141" />
     </glyph>
     <glyph glyphid="136" className="g100b_med" inFile="PadaukGlyphs.gdh" atLine="142">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="415" inFile="PadaukGlyphs.gdh" atLine="142" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="142" />
@@ -1238,7 +1098,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="142" />
     </glyph>
     <glyph glyphid="137" className="g100b_100b" inFile="PadaukGlyphs.gdh" atLine="143">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="657" inFile="PadaukGlyphs.gdh" atLine="143" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="143" />
@@ -1259,7 +1118,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="143" />
     </glyph>
     <glyph glyphid="138" className="g100b_100c" inFile="PadaukGlyphs.gdh" atLine="144">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="642" inFile="PadaukGlyphs.gdh" atLine="144" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="144" />
@@ -1280,7 +1138,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="144" />
     </glyph>
     <glyph glyphid="139" className="g100c" usv="U+100C" inFile="PadaukGlyphs.gdh" atLine="145">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="657" inFile="PadaukGlyphs.gdh" atLine="145" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="145" />
@@ -1301,7 +1158,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="145" />
     </glyph>
     <glyph glyphid="140" className="g100c_med" inFile="PadaukGlyphs.gdh" atLine="146">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="900" inFile="PadaukGlyphs.gdh" atLine="146" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="146" />
@@ -1322,7 +1178,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="146" />
     </glyph>
     <glyph glyphid="141" className="g100d" usv="U+100D" inFile="PadaukGlyphs.gdh" atLine="147">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="30" inFile="PadaukGlyphs.gdh" atLine="147" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="147" />
@@ -1351,7 +1206,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="147" />
     </glyph>
     <glyph glyphid="142" className="g100d_med" inFile="PadaukGlyphs.gdh" atLine="148">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="426" inFile="PadaukGlyphs.gdh" atLine="148" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="148" />
@@ -1372,7 +1226,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="148" />
     </glyph>
     <glyph glyphid="143" className="g100d_100d" inFile="PadaukGlyphs.gdh" atLine="149">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="627" inFile="PadaukGlyphs.gdh" atLine="149" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="149" />
@@ -1393,7 +1246,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="149" />
     </glyph>
     <glyph glyphid="144" className="g100d_100e" inFile="PadaukGlyphs.gdh" atLine="150">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="454" inFile="PadaukGlyphs.gdh" atLine="150" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="150" />
@@ -1418,7 +1270,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="150" />
     </glyph>
     <glyph glyphid="145" className="g100e" usv="U+100E" inFile="PadaukGlyphs.gdh" atLine="151">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="285" inFile="PadaukGlyphs.gdh" atLine="151" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="151" />
@@ -1439,7 +1290,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="151" />
     </glyph>
     <glyph glyphid="146" className="g100f" usv="U+100F" inFile="PadaukGlyphs.gdh" atLine="152">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="516" inFile="PadaukGlyphs.gdh" atLine="152" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="152" />
@@ -1464,7 +1314,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="152" />
     </glyph>
     <glyph glyphid="147" className="g100f_med" inFile="PadaukGlyphs.gdh" atLine="153">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="907" inFile="PadaukGlyphs.gdh" atLine="153" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="153" />
@@ -1485,7 +1334,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="153" />
     </glyph>
     <glyph glyphid="148" className="g100f_100b" inFile="PadaukGlyphs.gdh" atLine="154">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="963" inFile="PadaukGlyphs.gdh" atLine="154" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="154" />
@@ -1510,7 +1358,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="154" />
     </glyph>
     <glyph glyphid="149" className="g100f_100d" inFile="PadaukGlyphs.gdh" atLine="155">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="84" inFile="PadaukGlyphs.gdh" atLine="155" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="155" />
@@ -1535,7 +1382,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="155" />
     </glyph>
     <glyph glyphid="150" className="g1010" usv="U+1010" inFile="PadaukGlyphs.gdh" atLine="156">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="501" inFile="PadaukGlyphs.gdh" atLine="156" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="156" />
@@ -1560,7 +1406,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="156" />
     </glyph>
     <glyph glyphid="151" className="g1010_med" inFile="PadaukGlyphs.gdh" atLine="157">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="867" inFile="PadaukGlyphs.gdh" atLine="157" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="157" />
@@ -1581,7 +1426,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="157" />
     </glyph>
     <glyph glyphid="152" className="g1010_103d_med" inFile="PadaukGlyphs.gdh" atLine="158">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="555" inFile="PadaukGlyphs.gdh" atLine="158" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="158" />
@@ -1602,7 +1446,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="158" />
     </glyph>
     <glyph glyphid="153" className="g1011" usv="U+1011" inFile="PadaukGlyphs.gdh" atLine="159">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="495" inFile="PadaukGlyphs.gdh" atLine="159" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="159" />
@@ -1627,7 +1470,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="159" />
     </glyph>
     <glyph glyphid="154" className="g1011_med" inFile="PadaukGlyphs.gdh" atLine="160">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="877" inFile="PadaukGlyphs.gdh" atLine="160" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="160" />
@@ -1648,7 +1490,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="160" />
     </glyph>
     <glyph glyphid="155" className="g1012" usv="U+1012" inFile="PadaukGlyphs.gdh" atLine="161">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="267" inFile="PadaukGlyphs.gdh" atLine="161" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="161" />
@@ -1669,7 +1510,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="161" />
     </glyph>
     <glyph glyphid="156" className="g1012_med" inFile="PadaukGlyphs.gdh" atLine="162">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="526" inFile="PadaukGlyphs.gdh" atLine="162" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="162" />
@@ -1690,7 +1530,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="162" />
     </glyph>
     <glyph glyphid="157" className="g1013" usv="U+1013" inFile="PadaukGlyphs.gdh" atLine="163">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="288" inFile="PadaukGlyphs.gdh" atLine="163" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="163" />
@@ -1711,7 +1550,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="163" />
     </glyph>
     <glyph glyphid="158" className="g1013_med" inFile="PadaukGlyphs.gdh" atLine="164">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="556" inFile="PadaukGlyphs.gdh" atLine="164" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="164" />
@@ -1732,7 +1570,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="164" />
     </glyph>
     <glyph glyphid="159" className="g1014" usv="U+1014" inFile="PadaukGlyphs.gdh" atLine="165">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="474" inFile="PadaukGlyphs.gdh" atLine="165" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="165" />
@@ -1753,7 +1590,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="165" />
     </glyph>
     <glyph glyphid="160" className="g1014_alt" inFile="PadaukGlyphs.gdh" atLine="166">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="271" inFile="PadaukGlyphs.gdh" atLine="166" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="166" />
@@ -1774,7 +1610,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="166" />
     </glyph>
     <glyph glyphid="161" className="g1014_med" inFile="PadaukGlyphs.gdh" atLine="167">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="522" inFile="PadaukGlyphs.gdh" atLine="167" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="167" />
@@ -1795,7 +1630,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="167" />
     </glyph>
     <glyph glyphid="162" className="g1014_1010_103b" inFile="PadaukGlyphs.gdh" atLine="168">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="997" inFile="PadaukGlyphs.gdh" atLine="168" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="168" />
@@ -1816,7 +1650,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="168" />
     </glyph>
     <glyph glyphid="163" className="g1014_1010_103c" inFile="PadaukGlyphs.gdh" atLine="169">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="841" inFile="PadaukGlyphs.gdh" atLine="169" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="169" />
@@ -1833,7 +1666,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="169" />
     </glyph>
     <glyph glyphid="164" className="g1015" usv="U+1015" inFile="PadaukGlyphs.gdh" atLine="170">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="170" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="170" />
@@ -1854,7 +1686,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="170" />
     </glyph>
     <glyph glyphid="165" className="g1015_med" inFile="PadaukGlyphs.gdh" atLine="171">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="565" inFile="PadaukGlyphs.gdh" atLine="171" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="171" />
@@ -1875,7 +1706,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="171" />
     </glyph>
     <glyph glyphid="166" className="g1016" usv="U+1016" inFile="PadaukGlyphs.gdh" atLine="172">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="172" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="172" />
@@ -1896,7 +1726,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="172" />
     </glyph>
     <glyph glyphid="167" className="g1016_med" inFile="PadaukGlyphs.gdh" atLine="173">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="-89" inFile="PadaukGlyphs.gdh" atLine="173" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="173" />
@@ -1913,7 +1742,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="173" />
     </glyph>
     <glyph glyphid="168" className="g1017" usv="U+1017" inFile="PadaukGlyphs.gdh" atLine="174">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="174" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="174" />
@@ -1934,7 +1762,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="174" />
     </glyph>
     <glyph glyphid="169" className="g1017_med" inFile="PadaukGlyphs.gdh" atLine="175">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="565" inFile="PadaukGlyphs.gdh" atLine="175" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="175" />
@@ -1955,7 +1782,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="175" />
     </glyph>
     <glyph glyphid="170" className="g1018" usv="U+1018" inFile="PadaukGlyphs.gdh" atLine="176">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="492" inFile="PadaukGlyphs.gdh" atLine="176" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="176" />
@@ -1980,7 +1806,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="176" />
     </glyph>
     <glyph glyphid="171" className="g1018_med" inFile="PadaukGlyphs.gdh" atLine="177">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="874" inFile="PadaukGlyphs.gdh" atLine="177" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="177" />
@@ -2001,7 +1826,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="177" />
     </glyph>
     <glyph glyphid="172" className="g1019" usv="U+1019" inFile="PadaukGlyphs.gdh" atLine="178">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="294" inFile="PadaukGlyphs.gdh" atLine="178" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="178" />
@@ -2022,7 +1846,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="178" />
     </glyph>
     <glyph glyphid="173" className="g1019_med" inFile="PadaukGlyphs.gdh" atLine="179">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="565" inFile="PadaukGlyphs.gdh" atLine="179" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="179" />
@@ -2043,7 +1866,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="179" />
     </glyph>
     <glyph glyphid="174" className="g101a" usv="U+101A" inFile="PadaukGlyphs.gdh" atLine="180">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="504" inFile="PadaukGlyphs.gdh" atLine="180" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="180" />
@@ -2068,7 +1890,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="180" />
     </glyph>
     <glyph glyphid="175" className="g103b" usv="U+103B" inFile="PadaukGlyphs.gdh" atLine="181">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="181" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="181" />
@@ -2093,7 +1914,6 @@
       <glyphAttrValue name="dotS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="181" />
     </glyph>
     <glyph glyphid="176" className="g103b_103d" inFile="PadaukGlyphs.gdh" atLine="182">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="182" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="182" />
@@ -2118,7 +1938,6 @@
       <glyphAttrValue name="dotS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="182" />
     </glyph>
     <glyph glyphid="177" className="g103b_103d_103e" inFile="PadaukGlyphs.gdh" atLine="183">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="183" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="183" />
@@ -2143,7 +1962,6 @@
       <glyphAttrValue name="dotS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="183" />
     </glyph>
     <glyph glyphid="178" className="g103b_103e" inFile="PadaukGlyphs.gdh" atLine="184">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="184" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="184" />
@@ -2168,7 +1986,6 @@
       <glyphAttrValue name="dotS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="184" />
     </glyph>
     <glyph glyphid="179" className="g101b" usv="U+101B" inFile="PadaukGlyphs.gdh" atLine="185">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="87" inFile="PadaukGlyphs.gdh" atLine="185" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="185" />
@@ -2197,7 +2014,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="185" />
     </glyph>
     <glyph glyphid="180" className="g101b_alt" inFile="PadaukGlyphs.gdh" atLine="186">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BDS.x" value="247" inFile="PadaukGlyphs.gdh" atLine="186" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="186" />
@@ -2226,7 +2042,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="186" />
     </glyph>
     <glyph glyphid="181" className="g101b_long" inFile="PadaukGlyphs.gdh" atLine="187">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BDS.x" value="247" inFile="PadaukGlyphs.gdh" atLine="187" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="187" />
@@ -2255,7 +2070,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="187" />
     </glyph>
     <glyph glyphid="182" className="g103c" usv="U+103C" inFile="PadaukGlyphs.gdh" atLine="188">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="841" inFile="PadaukGlyphs.gdh" atLine="188" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="188" />
@@ -2277,7 +2091,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="188" />
     </glyph>
     <glyph glyphid="183" className="g103c_alt_narr" inFile="PadaukGlyphs.gdh" atLine="189">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="841" inFile="PadaukGlyphs.gdh" atLine="189" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="189" />
@@ -2299,7 +2112,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="189" />
     </glyph>
     <glyph glyphid="184" className="g103c_alt_wide" inFile="PadaukGlyphs.gdh" atLine="190">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1263" inFile="PadaukGlyphs.gdh" atLine="190" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="190" />
@@ -2321,7 +2133,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="190" />
     </glyph>
     <glyph glyphid="185" className="g103c_wide" inFile="PadaukGlyphs.gdh" atLine="191">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1263" inFile="PadaukGlyphs.gdh" atLine="191" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="191" />
@@ -2343,7 +2154,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="191" />
     </glyph>
     <glyph glyphid="186" className="g103c_103d_narr" inFile="PadaukGlyphs.gdh" atLine="192">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="796" inFile="PadaukGlyphs.gdh" atLine="192" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="192" />
@@ -2361,7 +2171,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="192" />
     </glyph>
     <glyph glyphid="187" className="g103c_103d_wide" inFile="PadaukGlyphs.gdh" atLine="193">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1198" inFile="PadaukGlyphs.gdh" atLine="193" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="193" />
@@ -2383,7 +2192,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="193" />
     </glyph>
     <glyph glyphid="188" className="g103c_103d_alt_narr" inFile="PadaukGlyphs.gdh" atLine="194">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="796" inFile="PadaukGlyphs.gdh" atLine="194" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="194" />
@@ -2401,7 +2209,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="194" />
     </glyph>
     <glyph glyphid="189" className="g103c_103d_alt_wide" inFile="PadaukGlyphs.gdh" atLine="195">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1198" inFile="PadaukGlyphs.gdh" atLine="195" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="195" />
@@ -2423,7 +2230,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="195" />
     </glyph>
     <glyph glyphid="190" className="g103c_102f_narr" inFile="PadaukGlyphs.gdh" atLine="196">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="781" inFile="PadaukGlyphs.gdh" atLine="196" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="196" />
@@ -2445,7 +2251,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="196" />
     </glyph>
     <glyph glyphid="191" className="g103c_102f_wide" inFile="PadaukGlyphs.gdh" atLine="197">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1195" inFile="PadaukGlyphs.gdh" atLine="197" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="197" />
@@ -2467,7 +2272,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="197" />
     </glyph>
     <glyph glyphid="192" className="g103c_102f_alt_narr" inFile="PadaukGlyphs.gdh" atLine="198">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="781" inFile="PadaukGlyphs.gdh" atLine="198" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="198" />
@@ -2489,7 +2293,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="198" />
     </glyph>
     <glyph glyphid="193" className="g103c_102f_alt_wide" inFile="PadaukGlyphs.gdh" atLine="199">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1195" inFile="PadaukGlyphs.gdh" atLine="199" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="199" />
@@ -2511,7 +2314,6 @@
       <glyphAttrValue name="RS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="199" />
     </glyph>
     <glyph glyphid="194" className="g101c" usv="U+101C" inFile="PadaukGlyphs.gdh" atLine="200">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="480" inFile="PadaukGlyphs.gdh" atLine="200" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="200" />
@@ -2536,7 +2338,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="200" />
     </glyph>
     <glyph glyphid="195" className="g101c_med" inFile="PadaukGlyphs.gdh" atLine="201">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="853" inFile="PadaukGlyphs.gdh" atLine="201" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="201" />
@@ -2557,7 +2358,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="201" />
     </glyph>
     <glyph glyphid="196" className="g101d" usv="U+101D" inFile="PadaukGlyphs.gdh" atLine="202">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="286" inFile="PadaukGlyphs.gdh" atLine="202" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="202" />
@@ -2578,7 +2378,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="202" />
     </glyph>
     <glyph glyphid="197" className="g103d" usv="U+103D" inFile="PadaukGlyphs.gdh" atLine="203">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="144" inFile="PadaukGlyphs.gdh" atLine="203" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="203" />
@@ -2599,7 +2398,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="203" />
     </glyph>
     <glyph glyphid="198" className="g103d_103e" inFile="PadaukGlyphs.gdh" atLine="204">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="610" inFile="PadaukGlyphs.gdh" atLine="204" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="204" />
@@ -2620,7 +2418,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="204" />
     </glyph>
     <glyph glyphid="199" className="g103d_103e_small" inFile="PadaukGlyphs.gdh" atLine="205">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="5" inFile="PadaukGlyphs.gdh" atLine="205" />
       <glyphAttrValue name="BSM.x" value="361" inFile="PadaukGlyphs.gdh" atLine="205" />
@@ -2629,7 +2426,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="205" />
     </glyph>
     <glyph glyphid="200" className="g101e" usv="U+101E" inFile="PadaukGlyphs.gdh" atLine="206">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="492" inFile="PadaukGlyphs.gdh" atLine="206" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="206" />
@@ -2654,7 +2450,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="206" />
     </glyph>
     <glyph glyphid="201" className="g101e_med" inFile="PadaukGlyphs.gdh" atLine="207">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="874" inFile="PadaukGlyphs.gdh" atLine="207" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="207" />
@@ -2675,7 +2470,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="207" />
     </glyph>
     <glyph glyphid="202" className="g101e_1010_103c" inFile="PadaukGlyphs.gdh" atLine="208">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="1263" inFile="PadaukGlyphs.gdh" atLine="208" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="208" />
@@ -2692,7 +2486,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="208" />
     </glyph>
     <glyph glyphid="203" className="g103f" usv="U+103F" inFile="PadaukGlyphs.gdh" atLine="209">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="702" inFile="PadaukGlyphs.gdh" atLine="209" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="209" />
@@ -2717,7 +2510,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="209" />
     </glyph>
     <glyph glyphid="204" className="g101f" usv="U+101F" inFile="PadaukGlyphs.gdh" atLine="210">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="504" inFile="PadaukGlyphs.gdh" atLine="210" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="210" />
@@ -2742,7 +2534,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="210" />
     </glyph>
     <glyph glyphid="205" className="g103e" usv="U+103E" inFile="PadaukGlyphs.gdh" atLine="211">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="144" inFile="PadaukGlyphs.gdh" atLine="211" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="211" />
@@ -2763,7 +2554,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="211" />
     </glyph>
     <glyph glyphid="206" className="g103e_alt" inFile="PadaukGlyphs.gdh" atLine="212">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="73" inFile="PadaukGlyphs.gdh" atLine="212" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="212" />
@@ -2784,7 +2574,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="212" />
     </glyph>
     <glyph glyphid="207" className="g103e_102f" inFile="PadaukGlyphs.gdh" atLine="213">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="466" inFile="PadaukGlyphs.gdh" atLine="213" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="213" />
@@ -2806,7 +2595,6 @@
       <glyphAttrValue name="rkern" value="78" inFile="PadaukGlyphs.gdh" atLine="213" />
     </glyph>
     <glyph glyphid="208" className="g103e_1030" inFile="PadaukGlyphs.gdh" atLine="214">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="609" inFile="PadaukGlyphs.gdh" atLine="214" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="214" />
@@ -2828,7 +2616,6 @@
       <glyphAttrValue name="rkern" value="90" inFile="PadaukGlyphs.gdh" atLine="214" />
     </glyph>
     <glyph glyphid="209" className="g1020" usv="U+1020" inFile="PadaukGlyphs.gdh" atLine="215">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="654" inFile="PadaukGlyphs.gdh" atLine="215" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="215" />
@@ -2849,7 +2636,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="215" />
     </glyph>
     <glyph glyphid="210" className="g1021" usv="U+1021" inFile="PadaukGlyphs.gdh" atLine="216">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="465" inFile="PadaukGlyphs.gdh" atLine="216" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="216" />
@@ -2874,7 +2660,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="216" />
     </glyph>
     <glyph glyphid="211" className="g1021_med" inFile="PadaukGlyphs.gdh" atLine="217">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="874" inFile="PadaukGlyphs.gdh" atLine="217" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="217" />
@@ -2895,7 +2680,6 @@
       <glyphAttrValue name="BDM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="217" />
     </glyph>
     <glyph glyphid="212" className="g1023" usv="U+1023" inFile="PadaukGlyphs.gdh" atLine="218">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="993" inFile="PadaukGlyphs.gdh" atLine="218" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="218" />
@@ -2916,12 +2700,10 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="218" />
     </glyph>
     <glyph glyphid="213" className="g1024" usv="U+1024" inFile="PadaukGlyphs.gdh" atLine="219">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="219" />
     </glyph>
     <glyph glyphid="214" className="g1025" usv="U+1025" inFile="PadaukGlyphs.gdh" atLine="220">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="276" inFile="PadaukGlyphs.gdh" atLine="220" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="220" />
@@ -2938,7 +2720,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="220" />
     </glyph>
     <glyph glyphid="215" className="g1026" usv="U+1026" inFile="PadaukGlyphs.gdh" atLine="221">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="276" inFile="PadaukGlyphs.gdh" atLine="221" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="221" />
@@ -2951,7 +2732,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="221" />
     </glyph>
     <glyph glyphid="216" className="g1027" usv="U+1027" inFile="PadaukGlyphs.gdh" atLine="222">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="222" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="222" />
@@ -2968,7 +2748,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="222" />
     </glyph>
     <glyph glyphid="217" className="g1028" usv="U+1028" inFile="PadaukGlyphs.gdh" atLine="223">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="223" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="223" />
@@ -2985,7 +2764,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="223" />
     </glyph>
     <glyph glyphid="218" className="g1029" usv="U+1029" inFile="PadaukGlyphs.gdh" atLine="224">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BDS.x" value="664" inFile="PadaukGlyphs.gdh" atLine="224" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="224" />
@@ -3011,12 +2789,10 @@
       <glyphAttrValue name="advx" value="1174" inFile="PadaukGlyphs.gdh" atLine="224" />
     </glyph>
     <glyph glyphid="219" className="g102a" usv="U+102A" inFile="PadaukGlyphs.gdh" atLine="225">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="225" />
     </glyph>
     <glyph glyphid="220" className="g102c" usv="U+102C" inFile="PadaukGlyphs.gdh" atLine="226">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="133" inFile="PadaukGlyphs.gdh" atLine="226" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="226" />
@@ -3037,7 +2813,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="226" />
     </glyph>
     <glyph glyphid="221" className="g102b" usv="U+102B" inFile="PadaukGlyphs.gdh" atLine="227">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="96" inFile="PadaukGlyphs.gdh" atLine="227" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="227" />
@@ -3051,7 +2826,6 @@
       <glyphAttrValue name="xkern" value="270" inFile="PadaukGlyphs.gdh" atLine="227" />
     </glyph>
     <glyph glyphid="222" className="g102b_103a" inFile="PadaukGlyphs.gdh" atLine="228">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="96" inFile="PadaukGlyphs.gdh" atLine="228" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="228" />
@@ -3065,7 +2839,6 @@
       <glyphAttrValue name="xkern" value="270" inFile="PadaukGlyphs.gdh" atLine="228" />
     </glyph>
     <glyph glyphid="223" className="g102d" usv="U+102D" inFile="PadaukGlyphs.gdh" atLine="229">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="229" />
       <glyphAttrValue name="UM.x" value="-179" inFile="PadaukGlyphs.gdh" atLine="229" />
@@ -3074,7 +2847,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="229" />
     </glyph>
     <glyph glyphid="224" className="g102d_1036" inFile="PadaukGlyphs.gdh" atLine="230">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="230" />
       <glyphAttrValue name="UM.x" value="-269" inFile="PadaukGlyphs.gdh" atLine="230" />
@@ -3083,7 +2855,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="230" />
     </glyph>
     <glyph glyphid="225" className="g102e" usv="U+102E" inFile="PadaukGlyphs.gdh" atLine="231">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="231" />
       <glyphAttrValue name="UM.x" value="-182" inFile="PadaukGlyphs.gdh" atLine="231" />
@@ -3092,7 +2863,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="231" />
     </glyph>
     <glyph glyphid="226" className="g102f" usv="U+102F" inFile="PadaukGlyphs.gdh" atLine="232">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="235" inFile="PadaukGlyphs.gdh" atLine="232" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="232" />
@@ -3109,7 +2879,6 @@
       <glyphAttrValue name="order" value="9" inFile="PadaukGlyphs.gdh" atLine="232" />
     </glyph>
     <glyph glyphid="227" className="g102f_med" inFile="PadaukGlyphs.gdh" atLine="233">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="233" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="233" />
@@ -3131,7 +2900,6 @@
       <glyphAttrValue name="rkern" value="2" inFile="PadaukGlyphs.gdh" atLine="233" />
     </glyph>
     <glyph glyphid="228" className="g1030" usv="U+1030" inFile="PadaukGlyphs.gdh" atLine="234">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="384" inFile="PadaukGlyphs.gdh" atLine="234" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="234" />
@@ -3148,7 +2916,6 @@
       <glyphAttrValue name="order" value="9" inFile="PadaukGlyphs.gdh" atLine="234" />
     </glyph>
     <glyph glyphid="229" className="g1030_med" inFile="PadaukGlyphs.gdh" atLine="235">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="399" inFile="PadaukGlyphs.gdh" atLine="235" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="235" />
@@ -3170,7 +2937,6 @@
       <glyphAttrValue name="rkern" value="43" inFile="PadaukGlyphs.gdh" atLine="235" />
     </glyph>
     <glyph glyphid="230" className="g1031" usv="U+1031" inFile="PadaukGlyphs.gdh" atLine="236">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="236" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="236" />
@@ -3191,7 +2957,6 @@
       <glyphAttrValue name="order" value="7" inFile="PadaukGlyphs.gdh" atLine="236" />
     </glyph>
     <glyph glyphid="231" className="g1032" usv="U+1032" inFile="PadaukGlyphs.gdh" atLine="237">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="237" />
       <glyphAttrValue name="UM.x" value="-192" inFile="PadaukGlyphs.gdh" atLine="237" />
@@ -3200,7 +2965,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="237" />
     </glyph>
     <glyph glyphid="232" className="g1033" usv="U+1033" inFile="PadaukGlyphs.gdh" atLine="238">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="238" />
       <glyphAttrValue name="UM.x" value="-179" inFile="PadaukGlyphs.gdh" atLine="238" />
@@ -3209,7 +2973,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="238" />
     </glyph>
     <glyph glyphid="233" className="g1034" usv="U+1034" inFile="PadaukGlyphs.gdh" atLine="239">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="8" inFile="PadaukGlyphs.gdh" atLine="239" />
       <glyphAttrValue name="UM.x" value="-138" inFile="PadaukGlyphs.gdh" atLine="239" />
@@ -3218,7 +2981,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="239" />
     </glyph>
     <glyph glyphid="234" className="g1036" usv="U+1036" inFile="PadaukGlyphs.gdh" atLine="240">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="10" inFile="PadaukGlyphs.gdh" atLine="240" />
       <glyphAttrValue name="UM.x" value="-74" inFile="PadaukGlyphs.gdh" atLine="240" />
@@ -3227,7 +2989,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="240" />
     </glyph>
     <glyph glyphid="235" className="g1037" usv="U+1037" inFile="PadaukGlyphs.gdh" atLine="241">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="13" inFile="PadaukGlyphs.gdh" atLine="241" />
       <glyphAttrValue name="LM.x" value="-74" inFile="PadaukGlyphs.gdh" atLine="241" />
@@ -3236,12 +2997,10 @@
       <glyphAttrValue name="LM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="241" />
     </glyph>
     <glyph glyphid="236" className="g1038" usv="U+1038" inFile="PadaukGlyphs.gdh" atLine="242">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="14" inFile="PadaukGlyphs.gdh" atLine="242" />
     </glyph>
     <glyph glyphid="237" className="g103a" usv="U+103A" inFile="PadaukGlyphs.gdh" atLine="243">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="299" />
       <glyphAttrValue name="order" value="12" inFile="PadaukGlyphs.gdh" atLine="243" />
       <glyphAttrValue name="UM.x" value="-231" inFile="PadaukGlyphs.gdh" atLine="243" />
@@ -3250,7 +3009,6 @@
       <glyphAttrValue name="UM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="243" />
     </glyph>
     <glyph glyphid="238" className="g1039" usv="U+1039" inFile="PadaukGlyphs.gdh" atLine="244">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-50" inFile="PadaukMain.gdl" atLine="189" />
       <glyphAttrValue name="BSS.x" value="144" inFile="PadaukGlyphs.gdh" atLine="244" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="244" />
@@ -3271,7 +3029,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="244" />
     </glyph>
     <glyph glyphid="239" className="g1040" usv="U+1040" inFile="PadaukGlyphs.gdh" atLine="245">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="245" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="245" />
@@ -3288,7 +3045,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="245" />
     </glyph>
     <glyph glyphid="240" className="g1041" usv="U+1041" inFile="PadaukGlyphs.gdh" atLine="246">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="418" inFile="PadaukGlyphs.gdh" atLine="246" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="246" />
@@ -3309,7 +3065,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="246" />
     </glyph>
     <glyph glyphid="241" className="g1042" usv="U+1042" inFile="PadaukGlyphs.gdh" atLine="247">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="252" inFile="PadaukGlyphs.gdh" atLine="247" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="247" />
@@ -3326,7 +3081,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="247" />
     </glyph>
     <glyph glyphid="242" className="g1043" usv="U+1043" inFile="PadaukGlyphs.gdh" atLine="248">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="279" inFile="PadaukGlyphs.gdh" atLine="248" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="248" />
@@ -3343,7 +3097,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="248" />
     </glyph>
     <glyph glyphid="243" className="g1044" usv="U+1044" inFile="PadaukGlyphs.gdh" atLine="249">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="297" inFile="PadaukGlyphs.gdh" atLine="249" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="249" />
@@ -3360,7 +3113,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="249" />
     </glyph>
     <glyph glyphid="244" className="g1045" usv="U+1045" inFile="PadaukGlyphs.gdh" atLine="250">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="283" inFile="PadaukGlyphs.gdh" atLine="250" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="250" />
@@ -3377,7 +3129,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="250" />
     </glyph>
     <glyph glyphid="245" className="g1046" usv="U+1046" inFile="PadaukGlyphs.gdh" atLine="251">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="251" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="251" />
@@ -3394,7 +3145,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="251" />
     </glyph>
     <glyph glyphid="246" className="g1047" usv="U+1047" inFile="PadaukGlyphs.gdh" atLine="252">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="286" inFile="PadaukGlyphs.gdh" atLine="252" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="252" />
@@ -3411,12 +3161,10 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="252" />
     </glyph>
     <glyph glyphid="247" className="g1048" usv="U+1048" inFile="PadaukGlyphs.gdh" atLine="253">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="253" />
     </glyph>
     <glyph glyphid="248" className="g1049" usv="U+1049" inFile="PadaukGlyphs.gdh" atLine="254">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="194" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="254" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="254" />
@@ -3433,17 +3181,14 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="254" />
     </glyph>
     <glyph glyphid="249" className="g104a" usv="U+104A" inFile="PadaukGlyphs.gdh" atLine="255">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="188" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="255" />
     </glyph>
     <glyph glyphid="250" className="g104b" usv="U+104B" inFile="PadaukGlyphs.gdh" atLine="256">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="188" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="256" />
     </glyph>
     <glyph glyphid="251" className="g104c" usv="U+104C" inFile="PadaukGlyphs.gdh" atLine="257">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="193" />
       <glyphAttrValue name="BSS.x" value="624" inFile="PadaukGlyphs.gdh" atLine="257" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="257" />
@@ -3456,22 +3201,18 @@
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="257" />
     </glyph>
     <glyph glyphid="252" className="g104d" usv="U+104D" inFile="PadaukGlyphs.gdh" atLine="258">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="193" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="258" />
     </glyph>
     <glyph glyphid="253" className="g104e" usv="U+104E" inFile="PadaukGlyphs.gdh" atLine="259">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="193" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="259" />
     </glyph>
     <glyph glyphid="254" className="g104f" usv="U+104F" inFile="PadaukGlyphs.gdh" atLine="260">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="193" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="260" />
     </glyph>
     <glyph glyphid="255" className="g105a" usv="U+105A" inFile="PadaukGlyphs.gdh" atLine="261">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="292" inFile="PadaukGlyphs.gdh" atLine="261" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="261" />
@@ -3492,7 +3233,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="261" />
     </glyph>
     <glyph glyphid="256" className="g105a_med" inFile="PadaukGlyphs.gdh" atLine="262">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="376" inFile="PadaukGlyphs.gdh" atLine="262" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="262" />
@@ -3513,7 +3253,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="262" />
     </glyph>
     <glyph glyphid="257" className="g105b" usv="U+105B" inFile="PadaukGlyphs.gdh" atLine="263">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="286" inFile="PadaukGlyphs.gdh" atLine="263" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="263" />
@@ -3534,7 +3273,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="263" />
     </glyph>
     <glyph glyphid="258" className="g105b_med" inFile="PadaukGlyphs.gdh" atLine="264">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="250" inFile="PadaukGlyphs.gdh" atLine="264" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="264" />
@@ -3559,7 +3297,6 @@
       <glyphAttrValue name="dotS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="264" />
     </glyph>
     <glyph glyphid="259" className="g105c" usv="U+105C" inFile="PadaukGlyphs.gdh" atLine="265">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="286" inFile="PadaukGlyphs.gdh" atLine="265" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="265" />
@@ -3580,7 +3317,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="265" />
     </glyph>
     <glyph glyphid="260" className="g105c_med" inFile="PadaukGlyphs.gdh" atLine="266">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="556" inFile="PadaukGlyphs.gdh" atLine="266" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="266" />
@@ -3601,7 +3337,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="266" />
     </glyph>
     <glyph glyphid="261" className="g105d" usv="U+105D" inFile="PadaukGlyphs.gdh" atLine="267">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BSS.x" value="294" inFile="PadaukGlyphs.gdh" atLine="267" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="267" />
@@ -3622,7 +3357,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="267" />
     </glyph>
     <glyph glyphid="262" className="g105e" usv="U+105E" inFile="PadaukGlyphs.gdh" atLine="268">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="144" inFile="PadaukGlyphs.gdh" atLine="268" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="268" />
@@ -3643,7 +3377,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="268" />
     </glyph>
     <glyph glyphid="263" className="g105f" usv="U+105F" inFile="PadaukGlyphs.gdh" atLine="269">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="144" inFile="PadaukGlyphs.gdh" atLine="269" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="269" />
@@ -3664,7 +3397,6 @@
       <glyphAttrValue name="BSM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="269" />
     </glyph>
     <glyph glyphid="264" className="g1060" usv="U+1060" inFile="PadaukGlyphs.gdh" atLine="270">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="2" inFile="PadaukGlyphs.gdh" atLine="270" />
       <glyphAttrValue name="LM.x" value="-180" inFile="PadaukGlyphs.gdh" atLine="270" />
@@ -3673,7 +3405,6 @@
       <glyphAttrValue name="LM.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="270" />
     </glyph>
     <glyph glyphid="265" className="g1061" usv="U+1061" inFile="PadaukGlyphs.gdh" atLine="271">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-15" inFile="PadaukMain.gdl" atLine="212" />
       <glyphAttrValue name="BDS.x" value="87" inFile="PadaukGlyphs.gdh" atLine="271" />
       <glyphAttrValue name="BDS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="271" />
@@ -3702,7 +3433,6 @@
       <glyphAttrValue name="LLS.yoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="271" />
     </glyph>
     <glyph glyphid="266" className="g1062" usv="U+1062" inFile="PadaukGlyphs.gdh" atLine="272">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="192" inFile="PadaukGlyphs.gdh" atLine="272" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="272" />
@@ -3719,7 +3449,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="272" />
     </glyph>
     <glyph glyphid="267" className="g1063" usv="U+1063" inFile="PadaukGlyphs.gdh" atLine="273">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="276" inFile="PadaukGlyphs.gdh" atLine="273" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="273" />
@@ -3740,7 +3469,6 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="273" />
     </glyph>
     <glyph glyphid="268" className="g1064" usv="U+1064" inFile="PadaukGlyphs.gdh" atLine="274">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="BSS.x" value="192" inFile="PadaukGlyphs.gdh" atLine="274" />
       <glyphAttrValue name="BSS.xoffset" value="0" inFile="PadaukGlyphs.gdh" atLine="274" />
@@ -3757,31 +3485,25 @@
       <glyphAttrValue name="order" value="1" inFile="PadaukGlyphs.gdh" atLine="274" />
     </glyph>
     <glyph glyphid="269" className="g200b" usv="U+200B" inFile="PadaukGlyphs.gdh" atLine="275">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="10" inFile="PadaukMain.gdl" atLine="186" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="275" />
     </glyph>
     <glyph glyphid="270" className="g200c" usv="U+200C" inFile="PadaukGlyphs.gdh" atLine="276">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="276" />
     </glyph>
     <glyph glyphid="271" className="g200d" usv="U+200D" inFile="PadaukGlyphs.gdh" atLine="277">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="179" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="277" />
     </glyph>
     <glyph glyphid="272" className="g2060" usv="U+2060" inFile="PadaukGlyphs.gdh" atLine="278">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="-30" inFile="PadaukMain.gdl" atLine="191" />
       <glyphAttrValue name="order" value="0" inFile="PadaukGlyphs.gdh" atLine="278" />
     </glyph>
     <glyph glyphid="273" className="*GC4*">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="30" />
     </glyph>
     <glyph glyphid="274">
-      <glyphAttrValue name="*skipPasses*" value="0" />
       <glyphAttrValue name="breakweight" value="30" />
     </glyph>
   </glyphs>

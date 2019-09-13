@@ -4,8 +4,6 @@ GLYPH ATTRIBUTE IDS
 1: *skipPasses*
 2: breakweight
 3: directionality
-4: mirror.glyph
-5: mirror.isEncoded
 
 
 

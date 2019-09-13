@@ -6,95 +6,93 @@
     <glyphAttr name="*skipPasses*" attrId="1" type="bitmap" />
     <glyphAttr name="breakweight" attrId="2" type="bw" />
     <glyphAttr name="directionality" attrId="3" type="dircode" />
-    <glyphAttr name="mirror.glyph" attrId="4" type="gid" />
-    <glyphAttr name="mirror.isEncoded" attrId="5" type="boolean" />
-    <glyphAttr name="component.p1" attrId="6" type="unknown" />
-    <glyphAttr name="component.p2" attrId="7" type="unknown" />
-    <glyphAttr name="component.f1" attrId="8" type="unknown" />
-    <glyphAttr name="component.f2" attrId="9" type="unknown" />
-    <glyphAttr name="component.f3" attrId="10" type="unknown" />
-    <glyphAttr name="component.p1.top" attrId="11" type="comp" />
-    <glyphAttr name="component.p1.bottom" attrId="12" type="comp" />
-    <glyphAttr name="component.p1.left" attrId="13" type="comp" />
-    <glyphAttr name="component.p1.right" attrId="14" type="comp" />
-    <glyphAttr name="component.p2.top" attrId="15" type="comp" />
-    <glyphAttr name="component.p2.bottom" attrId="16" type="comp" />
-    <glyphAttr name="component.p2.left" attrId="17" type="comp" />
-    <glyphAttr name="component.p2.right" attrId="18" type="comp" />
-    <glyphAttr name="component.f1.top" attrId="19" type="comp" />
-    <glyphAttr name="component.f1.bottom" attrId="20" type="comp" />
-    <glyphAttr name="component.f1.left" attrId="21" type="comp" />
-    <glyphAttr name="component.f1.right" attrId="22" type="comp" />
-    <glyphAttr name="component.f2.top" attrId="23" type="comp" />
-    <glyphAttr name="component.f2.bottom" attrId="24" type="comp" />
-    <glyphAttr name="component.f2.left" attrId="25" type="comp" />
-    <glyphAttr name="component.f2.right" attrId="26" type="comp" />
-    <glyphAttr name="component.f3.top" attrId="27" type="comp" />
-    <glyphAttr name="component.f3.bottom" attrId="28" type="comp" />
-    <glyphAttr name="component.f3.left" attrId="29" type="comp" />
-    <glyphAttr name="component.f3.right" attrId="30" type="comp" />
-    <glyphAttr name="order" attrId="31" type="integer" />
-    <glyphAttr name="H.x" attrId="32" type="point" />
-    <glyphAttr name="H.y" attrId="33" type="point" />
-    <glyphAttr name="L.x" attrId="34" type="point" />
-    <glyphAttr name="L.y" attrId="35" type="point" />
-    <glyphAttr name="O.x" attrId="36" type="point" />
-    <glyphAttr name="O.y" attrId="37" type="point" />
-    <glyphAttr name="R.x" attrId="38" type="point" />
-    <glyphAttr name="R.y" attrId="39" type="point" />
-    <glyphAttr name="U.x" attrId="40" type="point" />
-    <glyphAttr name="U.y" attrId="41" type="point" />
-    <glyphAttr name="C11.x" attrId="42" type="point" />
-    <glyphAttr name="C11.y" attrId="43" type="point" />
-    <glyphAttr name="C12.x" attrId="44" type="point" />
-    <glyphAttr name="C12.y" attrId="45" type="point" />
-    <glyphAttr name="C22.x" attrId="46" type="point" />
-    <glyphAttr name="C22.y" attrId="47" type="point" />
-    <glyphAttr name="L11.x" attrId="48" type="point" />
-    <glyphAttr name="L11.y" attrId="49" type="point" />
-    <glyphAttr name="L12.x" attrId="50" type="point" />
-    <glyphAttr name="L12.y" attrId="51" type="point" />
-    <glyphAttr name="L13.x" attrId="52" type="point" />
-    <glyphAttr name="L13.y" attrId="53" type="point" />
-    <glyphAttr name="L22.x" attrId="54" type="point" />
-    <glyphAttr name="L22.y" attrId="55" type="point" />
-    <glyphAttr name="L23.x" attrId="56" type="point" />
-    <glyphAttr name="L23.y" attrId="57" type="point" />
-    <glyphAttr name="L33.x" attrId="58" type="point" />
-    <glyphAttr name="L33.y" attrId="59" type="point" />
-    <glyphAttr name="U11.x" attrId="60" type="point" />
-    <glyphAttr name="U11.y" attrId="61" type="point" />
-    <glyphAttr name="U12.x" attrId="62" type="point" />
-    <glyphAttr name="U12.y" attrId="63" type="point" />
-    <glyphAttr name="U13.x" attrId="64" type="point" />
-    <glyphAttr name="U13.y" attrId="65" type="point" />
-    <glyphAttr name="U22.x" attrId="66" type="point" />
-    <glyphAttr name="U22.y" attrId="67" type="point" />
-    <glyphAttr name="U23.x" attrId="68" type="point" />
-    <glyphAttr name="U23.y" attrId="69" type="point" />
-    <glyphAttr name="U33.x" attrId="70" type="point" />
-    <glyphAttr name="U33.y" attrId="71" type="point" />
-    <glyphAttr name="RM.x" attrId="72" type="point" />
-    <glyphAttr name="RM.y" attrId="73" type="point" />
-    <glyphAttr name="TL.x" attrId="74" type="point" />
-    <glyphAttr name="TL.y" attrId="75" type="point" />
-    <glyphAttr name="TML.x" attrId="76" type="point" />
-    <glyphAttr name="TML.y" attrId="77" type="point" />
-    <glyphAttr name="UM.x" attrId="78" type="point" />
-    <glyphAttr name="UM.y" attrId="79" type="point" />
-    <glyphAttr name="LM.x" attrId="80" type="point" />
-    <glyphAttr name="LM.y" attrId="81" type="point" />
-    <glyphAttr name="HM.x" attrId="82" type="point" />
-    <glyphAttr name="HM.y" attrId="83" type="point" />
-    <glyphAttr name="OM.x" attrId="84" type="point" />
-    <glyphAttr name="OM.y" attrId="85" type="point" />
-    <glyphAttr name="C13.x" attrId="86" type="point" />
-    <glyphAttr name="C13.y" attrId="87" type="point" />
-    <glyphAttr name="C23.x" attrId="88" type="point" />
-    <glyphAttr name="C23.y" attrId="89" type="point" />
-    <glyphAttr name="C33.x" attrId="90" type="point" />
-    <glyphAttr name="C33.y" attrId="91" type="point" />
-    <glyphAttr name="tone" attrId="92" type="integer" />
+    <glyphAttr name="component.p1" attrId="4" type="unknown" />
+    <glyphAttr name="component.p2" attrId="5" type="unknown" />
+    <glyphAttr name="component.f1" attrId="6" type="unknown" />
+    <glyphAttr name="component.f2" attrId="7" type="unknown" />
+    <glyphAttr name="component.f3" attrId="8" type="unknown" />
+    <glyphAttr name="component.p1.top" attrId="9" type="comp" />
+    <glyphAttr name="component.p1.bottom" attrId="10" type="comp" />
+    <glyphAttr name="component.p1.left" attrId="11" type="comp" />
+    <glyphAttr name="component.p1.right" attrId="12" type="comp" />
+    <glyphAttr name="component.p2.top" attrId="13" type="comp" />
+    <glyphAttr name="component.p2.bottom" attrId="14" type="comp" />
+    <glyphAttr name="component.p2.left" attrId="15" type="comp" />
+    <glyphAttr name="component.p2.right" attrId="16" type="comp" />
+    <glyphAttr name="component.f1.top" attrId="17" type="comp" />
+    <glyphAttr name="component.f1.bottom" attrId="18" type="comp" />
+    <glyphAttr name="component.f1.left" attrId="19" type="comp" />
+    <glyphAttr name="component.f1.right" attrId="20" type="comp" />
+    <glyphAttr name="component.f2.top" attrId="21" type="comp" />
+    <glyphAttr name="component.f2.bottom" attrId="22" type="comp" />
+    <glyphAttr name="component.f2.left" attrId="23" type="comp" />
+    <glyphAttr name="component.f2.right" attrId="24" type="comp" />
+    <glyphAttr name="component.f3.top" attrId="25" type="comp" />
+    <glyphAttr name="component.f3.bottom" attrId="26" type="comp" />
+    <glyphAttr name="component.f3.left" attrId="27" type="comp" />
+    <glyphAttr name="component.f3.right" attrId="28" type="comp" />
+    <glyphAttr name="order" attrId="29" type="integer" />
+    <glyphAttr name="H.x" attrId="30" type="point" />
+    <glyphAttr name="H.y" attrId="31" type="point" />
+    <glyphAttr name="L.x" attrId="32" type="point" />
+    <glyphAttr name="L.y" attrId="33" type="point" />
+    <glyphAttr name="O.x" attrId="34" type="point" />
+    <glyphAttr name="O.y" attrId="35" type="point" />
+    <glyphAttr name="R.x" attrId="36" type="point" />
+    <glyphAttr name="R.y" attrId="37" type="point" />
+    <glyphAttr name="U.x" attrId="38" type="point" />
+    <glyphAttr name="U.y" attrId="39" type="point" />
+    <glyphAttr name="C11.x" attrId="40" type="point" />
+    <glyphAttr name="C11.y" attrId="41" type="point" />
+    <glyphAttr name="C12.x" attrId="42" type="point" />
+    <glyphAttr name="C12.y" attrId="43" type="point" />
+    <glyphAttr name="C22.x" attrId="44" type="point" />
+    <glyphAttr name="C22.y" attrId="45" type="point" />
+    <glyphAttr name="L11.x" attrId="46" type="point" />
+    <glyphAttr name="L11.y" attrId="47" type="point" />
+    <glyphAttr name="L12.x" attrId="48" type="point" />
+    <glyphAttr name="L12.y" attrId="49" type="point" />
+    <glyphAttr name="L13.x" attrId="50" type="point" />
+    <glyphAttr name="L13.y" attrId="51" type="point" />
+    <glyphAttr name="L22.x" attrId="52" type="point" />
+    <glyphAttr name="L22.y" attrId="53" type="point" />
+    <glyphAttr name="L23.x" attrId="54" type="point" />
+    <glyphAttr name="L23.y" attrId="55" type="point" />
+    <glyphAttr name="L33.x" attrId="56" type="point" />
+    <glyphAttr name="L33.y" attrId="57" type="point" />
+    <glyphAttr name="U11.x" attrId="58" type="point" />
+    <glyphAttr name="U11.y" attrId="59" type="point" />
+    <glyphAttr name="U12.x" attrId="60" type="point" />
+    <glyphAttr name="U12.y" attrId="61" type="point" />
+    <glyphAttr name="U13.x" attrId="62" type="point" />
+    <glyphAttr name="U13.y" attrId="63" type="point" />
+    <glyphAttr name="U22.x" attrId="64" type="point" />
+    <glyphAttr name="U22.y" attrId="65" type="point" />
+    <glyphAttr name="U23.x" attrId="66" type="point" />
+    <glyphAttr name="U23.y" attrId="67" type="point" />
+    <glyphAttr name="U33.x" attrId="68" type="point" />
+    <glyphAttr name="U33.y" attrId="69" type="point" />
+    <glyphAttr name="RM.x" attrId="70" type="point" />
+    <glyphAttr name="RM.y" attrId="71" type="point" />
+    <glyphAttr name="TL.x" attrId="72" type="point" />
+    <glyphAttr name="TL.y" attrId="73" type="point" />
+    <glyphAttr name="TML.x" attrId="74" type="point" />
+    <glyphAttr name="TML.y" attrId="75" type="point" />
+    <glyphAttr name="UM.x" attrId="76" type="point" />
+    <glyphAttr name="UM.y" attrId="77" type="point" />
+    <glyphAttr name="LM.x" attrId="78" type="point" />
+    <glyphAttr name="LM.y" attrId="79" type="point" />
+    <glyphAttr name="HM.x" attrId="80" type="point" />
+    <glyphAttr name="HM.y" attrId="81" type="point" />
+    <glyphAttr name="OM.x" attrId="82" type="point" />
+    <glyphAttr name="OM.y" attrId="83" type="point" />
+    <glyphAttr name="C13.x" attrId="84" type="point" />
+    <glyphAttr name="C13.y" attrId="85" type="point" />
+    <glyphAttr name="C23.x" attrId="86" type="point" />
+    <glyphAttr name="C23.y" attrId="87" type="point" />
+    <glyphAttr name="C33.x" attrId="88" type="point" />
+    <glyphAttr name="C33.y" attrId="89" type="point" />
+    <glyphAttr name="tone" attrId="90" type="integer" />
   </glyphAttrs>
 
   <glyphs>
@@ -43058,9 +43056,9 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="75" />
     </feature>
     <feature name="pitch9" featureID="1885959225" featureIDstring="pit9" index="2" inFile="CharisFeatures.gdh" atLine="78" >
-      <featureSetting name="ligated" value="0" inFile="CharisFeatures.gdh" atLine="84" />
-      <featureSetting name="tramlines" value="1" inFile="CharisFeatures.gdh" atLine="88" />
-      <featureSetting name="nonLigated" value="2" inFile="CharisFeatures.gdh" atLine="93" />
+      <featureSetting name="ligated" value="0" inFile="CharisFeatures.gdh" atLine="85" />
+      <featureSetting name="nonLigated" value="2" inFile="CharisFeatures.gdh" atLine="92" />
+      <featureSetting name="tramlines" value="1" inFile="CharisFeatures.gdh" atLine="89" />
       <featureSetting name="tramNonLigated" value="3" inFile="CharisFeatures.gdh" atLine="96" />
     </feature>
     <feature name="viet" featureID="1986618740" featureIDstring="viet" index="3" inFile="CharisFeatures.gdh" atLine="102" >
@@ -43092,18 +43090,18 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="144" />
     </feature>
     <feature name="eng" featureID="1164863347" featureIDstring="Engs" index="10" inFile="CharisFeatures.gdh" atLine="148" >
-      <featureSetting name="descender" value="0" inFile="CharisFeatures.gdh" atLine="155" />
       <featureSetting name="base" value="1" inFile="CharisFeatures.gdh" atLine="158" />
+      <featureSetting name="descender" value="0" inFile="CharisFeatures.gdh" atLine="154" />
       <featureSetting name="capital" value="2" inFile="CharisFeatures.gdh" atLine="166" />
       <featureSetting name="short" value="3" inFile="CharisFeatures.gdh" atLine="162" />
     </feature>
     <feature name="ramshorn" featureID="1918987624" featureIDstring="ramh" index="11" inFile="CharisFeatures.gdh" atLine="172" >
-      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="179" />
+      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="178" />
       <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="183" />
-      <featureSetting name="gamma" value="2" inFile="CharisFeatures.gdh" atLine="186" />
+      <featureSetting name="gamma" value="2" inFile="CharisFeatures.gdh" atLine="187" />
     </feature>
     <feature name="ogonek" featureID="1869049710" featureIDstring="ogon" index="12" inFile="CharisFeatures.gdh" atLine="192" >
-      <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="199" />
+      <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="198" />
       <featureSetting name="americanist" value="1" inFile="CharisFeatures.gdh" atLine="203" />
     </feature>
     <feature name="h_stroke" featureID="1215525995" featureIDstring="Hstk" index="13" inFile="CharisFeatures.gdh" atLine="208" >
@@ -43111,7 +43109,7 @@
       <featureSetting name="vertical" value="1" inFile="CharisFeatures.gdh" atLine="218" />
     </feature>
     <feature name="ltnjstroke" featureID="1249080427" featureIDstring="Jstk" index="14" inFile="CharisFeatures.gdh" atLine="224" >
-      <featureSetting name="noSerif" value="0" inFile="CharisFeatures.gdh" atLine="231" />
+      <featureSetting name="noSerif" value="0" inFile="CharisFeatures.gdh" atLine="230" />
       <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="234" />
     </feature>
     <feature name="n_hook" featureID="1314875499" featureIDstring="N_hk" index="15" inFile="CharisFeatures.gdh" atLine="240" >
@@ -43119,36 +43117,36 @@
       <featureSetting name="lcStyle" value="1" inFile="CharisFeatures.gdh" atLine="250" />
     </feature>
     <feature name="open_o" featureID="1869639247" featureIDstring="opnO" index="16" inFile="CharisFeatures.gdh" atLine="256" >
-      <featureSetting name="bottomSerif" value="0" inFile="CharisFeatures.gdh" atLine="263" />
-      <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="266" />
+      <featureSetting name="bottomSerif" value="0" inFile="CharisFeatures.gdh" atLine="262" />
+      <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="267" />
     </feature>
     <feature name="p_hook" featureID="1885300843" featureIDstring="p_hk" index="17" inFile="CharisFeatures.gdh" atLine="272" >
-      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="279" />
+      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="278" />
       <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="282" />
     </feature>
     <feature name="r_tail" featureID="1381987436" featureIDstring="R_tl" index="18" inFile="CharisFeatures.gdh" atLine="288" >
       <featureSetting name="UCstyle" value="0" inFile="CharisFeatures.gdh" atLine="294" />
-      <featureSetting name="LCstyle" value="1" inFile="CharisFeatures.gdh" atLine="299" />
+      <featureSetting name="LCstyle" value="1" inFile="CharisFeatures.gdh" atLine="298" />
     </feature>
     <feature name="t_hook" featureID="1952409707" featureIDstring="t_hk" index="19" inFile="CharisFeatures.gdh" atLine="304" >
       <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="311" />
-      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="315" />
+      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="314" />
     </feature>
     <feature name="v_hook" featureID="1985964139" featureIDstring="v_hk" index="20" inFile="CharisFeatures.gdh" atLine="320" >
       <featureSetting name="curved" value="0" inFile="CharisFeatures.gdh" atLine="326" />
-      <featureSetting name="straight" value="1" inFile="CharisFeatures.gdh" atLine="330" />
+      <featureSetting name="straight" value="1" inFile="CharisFeatures.gdh" atLine="331" />
     </feature>
     <feature name="y_hook" featureID="1499424875" featureIDstring="Y_hk" index="21" inFile="CharisFeatures.gdh" atLine="336" >
       <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="342" />
       <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="346" />
     </feature>
     <feature name="ezh_curl" featureID="1702520931" featureIDstring="ezhc" index="22" inFile="CharisFeatures.gdh" atLine="352" >
-      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="359" />
+      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="358" />
       <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="362" />
     </feature>
     <feature name="ezh" featureID="1165650034" featureIDstring="Ezhr" index="23" inFile="CharisFeatures.gdh" atLine="368" >
       <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="375" />
-      <featureSetting name="rev_sigma" value="1" inFile="CharisFeatures.gdh" atLine="379" />
+      <featureSetting name="rev_sigma" value="1" inFile="CharisFeatures.gdh" atLine="378" />
     </feature>
     <feature name="ou" featureID="1869631317" featureIDstring="opOU" index="24" inFile="CharisFeatures.gdh" atLine="384" >
       <featureSetting name="closed" value="0" inFile="CharisFeatures.gdh" atLine="390" />
@@ -43159,7 +43157,7 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="403" />
     </feature>
     <feature name="apostrophe" featureID="1634758515" featureIDstring="apos" index="26" inFile="CharisFeatures.gdh" atLine="416" >
-      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="423" />
+      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="422" />
       <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="426" />
     </feature>
     <feature name="modlowcolon" featureID="1668246638" featureIDstring="coln" index="27" inFile="CharisFeatures.gdh" atLine="451" >
@@ -43175,7 +43173,7 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="476" />
     </feature>
     <feature name="emptyset" featureID="1701671028" featureIDstring="empt" index="30" inFile="CharisFeatures.gdh" atLine="479" >
-      <featureSetting name="circle" value="0" inFile="CharisFeatures.gdh" atLine="485" />
+      <featureSetting name="circle" value="0" inFile="CharisFeatures.gdh" atLine="486" />
       <featureSetting name="zero" value="1" inFile="CharisFeatures.gdh" atLine="489" />
     </feature>
     <feature name="invis" featureID="1768846963" featureIDstring="invs" index="31" inFile="CharisFeatures.gdh" atLine="495" >
