@@ -147,6 +147,7 @@ void GdlFeatureDefn::SortFeatSettings()
 					GdlFeatureSetting * pfsetTemp = m_vpfset[ifset1];
 					m_vpfset[ifset1] = m_vpfset[ifset2];
 					m_vpfset[ifset2] = pfsetTemp;
+					nVal1 = m_vpfset[ifset1]->Value();
 				}
 			}
 		}

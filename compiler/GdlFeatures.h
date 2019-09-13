@@ -227,6 +227,15 @@ public:
 	}
 	void RecordDebugInfo();
 
+	void KludgeDebugSettings() {
+		std::cout << this->Name() << " : ";
+		if (m_vpfset.size() > 0) {
+			for (size_t ifset = 0; ifset < m_vpfset.size(); ifset++)
+				std::cout << m_vpfset[ifset]->Name() << " " << m_vpfset[ifset]->Value() << " | ";
+		}
+		std::cout << "\n";
+	}
+
 	//	Compiler
 	int InternalID()
 	{
