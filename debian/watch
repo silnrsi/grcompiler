@@ -1,2 +1,3 @@
-version=3
-http://sf.net/silgraphite/grcompiler-(.+)\.tar\.gz
+version=4
+opts=filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/grcompiler-$1\.tar\.gz/ \
+  https://github.com/silnrsi/grcompiler/tags .*/v?(\d\S+)\.tar\.gz
