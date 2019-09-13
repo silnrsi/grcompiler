@@ -22300,56 +22300,56 @@
 
   <features>
     <feature name="shaddaKasra" featureID="1668691506" featureIDstring="cv62" index="0" inFile="SchFeatures.gdh" atLine="27" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="32" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="33" />
       <featureSetting name="sindhiUrdu" value="1" inFile="SchFeatures.gdh" atLine="36" />
     </feature>
     <feature name="meemAlt" featureID="1668690996" featureIDstring="cv44" index="1" inFile="SchFeatures.gdh" atLine="43" >
       <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="48" />
-      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="53" />
+      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="52" />
     </feature>
     <feature name="hehAlt" featureID="1668691000" featureIDstring="cv48" index="2" inFile="SchFeatures.gdh" atLine="59" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="64" />
-      <featureSetting name="kurdish" value="1" inFile="SchFeatures.gdh" atLine="68" />
-      <featureSetting name="sindhi" value="2" inFile="SchFeatures.gdh" atLine="73" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="65" />
+      <featureSetting name="kurdish" value="1" inFile="SchFeatures.gdh" atLine="69" />
+      <featureSetting name="sindhi" value="2" inFile="SchFeatures.gdh" atLine="72" />
       <featureSetting name="urdu" value="3" inFile="SchFeatures.gdh" atLine="77" />
     </feature>
     <feature name="easternDigits" featureID="1668692018" featureIDstring="cv82" index="3" inFile="SchFeatures.gdh" atLine="83" >
       <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="88" />
-      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="92" />
-      <featureSetting name="urdu" value="2" inFile="SchFeatures.gdh" atLine="96" />
+      <featureSetting name="sindhi" value="1" inFile="SchFeatures.gdh" atLine="93" />
+      <featureSetting name="urdu" value="2" inFile="SchFeatures.gdh" atLine="97" />
     </feature>
     <feature name="sukunAlt" featureID="1668691768" featureIDstring="cv78" index="4" inFile="SchFeatures.gdh" atLine="103" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="109" />
-      <featureSetting name="jasmDown" value="1" inFile="SchFeatures.gdh" atLine="113" />
-      <featureSetting name="jasmLeft" value="2" inFile="SchFeatures.gdh" atLine="116" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="108" />
+      <featureSetting name="jasmDown" value="1" inFile="SchFeatures.gdh" atLine="112" />
+      <featureSetting name="jasmLeft" value="2" inFile="SchFeatures.gdh" atLine="117" />
     </feature>
     <feature name="headOfKhahAlt" featureID="1668692274" featureIDstring="cv92" index="5" inFile="SchFeatures.gdh" atLine="123" >
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="129" />
-      <featureSetting name="openLeft" value="1" inFile="SchFeatures.gdh" atLine="132" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="128" />
+      <featureSetting name="openLeft" value="1" inFile="SchFeatures.gdh" atLine="133" />
     </feature>
     <feature name="commaAlt" featureID="1668692020" featureIDstring="cv84" index="6" inFile="SchFeatures.gdh" atLine="139" >
-      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="145" />
+      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="144" />
       <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="149" />
     </feature>
     <feature name="dammatanAlt" featureID="1668691762" featureIDstring="cv72" index="7" inFile="SchFeatures.gdh" atLine="155" >
-      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="161" />
+      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="160" />
       <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="164" />
     </feature>
     <feature name="endOfAyah" featureID="1668692016" featureIDstring="cv80" index="8" inFile="SchFeatures.gdh" atLine="171" >
-      <featureSetting name="circle" value="1" inFile="SchFeatures.gdh" atLine="181" />
-      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="176" />
+      <featureSetting name="std" value="0" inFile="SchFeatures.gdh" atLine="177" />
+      <featureSetting name="circle" value="1" inFile="SchFeatures.gdh" atLine="180" />
       <featureSetting name="square" value="2" inFile="SchFeatures.gdh" atLine="184" />
     </feature>
     <feature name="kasraTcheh" featureID="1802789736" featureIDstring="ktch" index="9" inFile="SchFeatures.gdh" atLine="191" >
-      <featureSetting name="lower" value="1" inFile="SchFeatures.gdh" atLine="201" />
+      <featureSetting name="lower" value="1" inFile="SchFeatures.gdh" atLine="200" />
       <featureSetting name="raise" value="2" inFile="SchFeatures.gdh" atLine="196" />
     </feature>
     <feature name="selectDiac" featureID="1685284204" featureIDstring="dsel" index="10" inFile="SchFeatures.gdh" atLine="207" >
       <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="212" />
-      <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="216" />
+      <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="217" />
     </feature>
     <feature name="invis" featureID="1768846963" featureIDstring="invs" index="11" inFile="SchFeatures.gdh" atLine="223" >
-      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="229" />
+      <featureSetting name="off" value="0" inFile="SchFeatures.gdh" atLine="228" />
       <featureSetting name="on" value="1" inFile="SchFeatures.gdh" atLine="232" />
     </feature>
     <feature name="lang" featureID="1" index="12" >
