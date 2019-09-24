@@ -32,7 +32,7 @@ void EngineVersion(int * nMajor, int * nMinor, int * nBugFix);
 // Maximum table versions handled by this engine:
 enum {
 
-	kSilfVersion		= 0x00030001,
+	kSilfVersion		= 0x00050000,
 	kRuleVersion		= 0x00030001,
 	kGlatVersion		= 0x00020000,
 	kGlocVersion		= 0x00010000,

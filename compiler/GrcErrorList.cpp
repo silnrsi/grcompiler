@@ -294,7 +294,7 @@ void GrcErrorList::WriteErrorsToStream(std::ostream& strmOut,
 void WriteTableDescriptionString(std::ostream& strmOut, TableId ti)
 {
     uint32 nTag = TtfUtil::TableIdTag(ti);
-    char csTagStr[] = {' ', (char)(nTag >> 24), (char)(nTag >> 16), (char)(nTag >> 8), (char)nTag, ':', 0};
+    char csTagStr[] = {' ', (char)(nTag >> 24), (char)(nTag >> 16), (char)(nTag >> 8), (char)nTag, ':', ' ', 0 };
     double dCompressionRatio = g_cman.CompressionRatio(ti);
     strmOut << csTagStr << VersionString(g_cman.TableVersion(ti));
 

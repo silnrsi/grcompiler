@@ -2112,15 +2112,22 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 {
 	int fxdResult = fxdSilfSpecVersion;
 
-	if (m_tcCompressor != ktcNone && fxdSilfSpecVersion < 0x00050000)
+	if (m_tcCompressor != ktcNone && fxdResult < 0x00050000)
 	{
 	    fxdResult = 0x00050000;
 	}
-	else if (m_prndr->HasCollisionPass() && fxdSilfSpecVersion < 0x00040001)
+	if (m_prndr->HasCollisionPass() && fxdResult < 0x00040001)
 	{
 		fxdResult = 0x00040001;
 	}
-	else
+	if (this->IncludePassOptimizations() && fxdResult < 0x00040000)
+	{
+		// Although earlier versions of the Silf table have space for the skip-passes attribute,
+		// OTS will complain if the value is anything other than zero. So bump up the version
+		// to match.
+		fxdResult = 0x00040000;
+	}
+	if (fxdResult < 0x00040000)
 	{
 		//	Calculate it based on what is needed to handle the size of the class map
 		//	(replacement class data).
