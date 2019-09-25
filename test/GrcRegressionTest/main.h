@@ -108,11 +108,11 @@ std::wstring StringFromNameTable(const gr::byte * pNameTbl, int nLangID, int nNa
 int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFont * pfontTest);
 void CompareSilfTables(int & errCnt, TestCase * ptcase, GrIStream & grstrmB, GrIStream & grstrmT,
 	int * pchwMaxGlyphID);
-void CompareClassMaps(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream & grstrmT);
+void CompareClassMaps(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream & grstrmT, int fxdSilfVersion);
 void ComparePasses(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream & grstrmT,
    int fxdSilfVersionB, int fxdSilfVersionT, int cPasses,
    int lSubTableStartB, int lSubTableStartT, int * prgnPassOffsets);
-int CompareFsmTables(int & ec, TestCase * ptcase,
+int CompareFsm(int & ec, TestCase * ptcase,
 	GrIStream & grstrmGlatB, GrIStream & grstrmGlocB,
 	int fxdSilfVersionB, int fxdSilfVersionT, int iPass);
 void CompareGlatAndGlocTables(int & errCnt, TestCase * ptcase, int chwMaxGlyphID,

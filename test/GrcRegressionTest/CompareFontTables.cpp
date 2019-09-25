@@ -501,9 +501,9 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 		OutputError(ec, ptcase, "ERROR: Silf table - first reordered pass");
 
 	gr::byte bT, bB;
-	//	line-break flag
+	//	flags
 	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
-		OutputError(ec, ptcase, "ERROR: Silf table - line-break flag");
+		OutputError(ec, ptcase, "ERROR: Silf table - flags");
 
 	//	range of possible cross-line-boundary contextualization
 	if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
@@ -532,12 +532,21 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 
 	if (fxdSilfVersionB >= 0x00020000 && fxdSilfVersionT >= 0x00020000)
 	{
-		// reserved
-		grstrmB.ReadByteFromFont();
-		grstrmB.ReadByteFromFont();
+		if (fxdSilfVersionB >= 0x00040000) {
+			if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
+				OutputError(ec, ptcase, "ERROR: Silf table - mirroring attrs");
+			if ((bB = grstrmB.ReadByteFromFont()) != (bT = grstrmT.ReadByteFromFont()))
+				OutputError(ec, ptcase, "ERROR: Silf table - skip-passes attr");
+		}
+		else
+		{
+			// reserved
+			grstrmB.ReadByteFromFont();
+			grstrmT.ReadByteFromFont();
 
-		grstrmT.ReadByteFromFont();
-		grstrmT.ReadByteFromFont();
+			grstrmB.ReadByteFromFont();
+			grstrmT.ReadByteFromFont();
+		}		
 
 		//	justification levels
 		int cJLevels = grstrmB.ReadByteFromFont();
@@ -612,11 +621,21 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 	if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
 		OutputError(ec, ptcase, "ERROR: Silf table - supported directions");
 
+	if (fxdSilfVersionB >= 0x00040001)
+	{
+		if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+			OutputError(ec, ptcase, "ERROR: Silf table - collision attributes");
+	}
+	else
+	{
+		// reserved
+		grstrmB.ReadByteFromFont();
+		grstrmT.ReadByteFromFont();
+	}
+
 	//	reserved
 	grstrmB.ReadByteFromFont();
 	grstrmB.ReadByteFromFont();
-	grstrmB.ReadByteFromFont();
-	grstrmT.ReadByteFromFont();
 	grstrmT.ReadByteFromFont();
 	grstrmT.ReadByteFromFont();
 
@@ -730,7 +749,7 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 			OutputError(ec, ptcase, "ERROR: Silf table = pseudo value", i);
 	}
 
-	CompareClassMaps(ec, ptcase, grstrmB, grstrmT);
+	CompareClassMaps(ec, ptcase, grstrmB, grstrmT, fxdSilfVersionB);
 
 	if (fPassesOk)
 		ComparePasses(ec, ptcase, grstrmB, grstrmT,
@@ -741,7 +760,8 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 /*----------------------------------------------------------------------------------------------
 	Compare the class tables.
 ----------------------------------------------------------------------------------------------*/
-void CompareClassMaps(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream & grstrmT)
+void CompareClassMaps(int & ec, TestCase * ptcase,
+	GrIStream & grstrmB, GrIStream & grstrmT, int fxdSilfVersion)
 {
 	// number of classes
 	int cClasses = grstrmB.ReadUShortFromFont();
@@ -760,12 +780,22 @@ void CompareClassMaps(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStrea
 	}
 
 	// offsets
-	data16 * wOffsets = new data16[cClasses + 1];
+	int * nOffsets = new int[cClasses + 1];
 	bool fOffsetsOk = true;
 	for (int i = 0; i <= cClasses; i++)
 	{
-		wOffsets[i] = grstrmB.ReadUShortFromFont();
-		if (wOffsets[i] != grstrmT.ReadUShortFromFont())
+		bool fErr;
+		if (fxdSilfVersion < 0x00040000)
+		{
+			nOffsets[i] = (int)grstrmB.ReadUShortFromFont();
+			fErr = (nOffsets[i] != grstrmT.ReadUShortFromFont());
+		}
+		else
+		{
+			nOffsets[i] = grstrmB.ReadIntFromFont();
+			fErr = (nOffsets[i] != grstrmT.ReadIntFromFont());
+		}
+		if (fErr)
 		{
 			OutputError(ec, ptcase, "ERROR: class map - offset", i);
 			fOffsetsOk = false;
@@ -773,23 +803,23 @@ void CompareClassMaps(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStrea
 	}
 	if (!fOffsetsOk)
 	{
-		delete[] wOffsets;
+		delete[] nOffsets;
 		return;
 	}
 
 	int iClass = 0;
-	int ibOffset = 4 + (2 * (cClasses + 1));
+	int ibOffset = (fxdSilfVersion < 0x00040000) ? 4 + (2 * (cClasses + 1)) : 4 + (4 * (cClasses + 1));
 	while (iClass < cClasses)
 	{
 		bool fLinear = (iClass < cClassesLinear);
 		if (fLinear)
 		{
-			int cGlyphs = (wOffsets[iClass + 1] - wOffsets[iClass]) >> 1; // divided by 2
+			int cGlyphs = (nOffsets[iClass + 1] - nOffsets[iClass]) >> 1; // divided by 2
 			for (int ig = 0; ig < cGlyphs; ig++)
 			{
 				if (grstrmB.ReadUShortFromFont() != grstrmT.ReadUShortFromFont())
 					OutputError(ec, ptcase, "ERROR: class map - glyph of class", iClass);
-				ibOffset += 2; // 2 bytes
+				ibOffset += 2; // 2 bytes per glyph ID
 			}
 		}
 		else
@@ -813,14 +843,15 @@ void CompareClassMaps(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStrea
 					OutputError(ec, ptcase, "ERROR: Silf table - glyph ID in class", iClass);
 				if (grstrmB.ReadUShortFromFont() != grstrmT.ReadUShortFromFont())
 					OutputError(ec, ptcase, "ERROR: Silf table - glyph index in class", iClass);
-				ibOffset += 4;
+				ibOffset += 4; // glyph ID + index in class
 			}
 		}
 		iClass++;
-		Assert(ibOffset == wOffsets[iClass]);
+		Assert(ibOffset == nOffsets[iClass]);
 	}
 
-	delete[] wOffsets;
+	//delete[] wOffsets;
+	delete[] nOffsets;
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -890,12 +921,12 @@ void ComparePasses(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream &
 		}
 
 		//	offset to rule constraint code, relative to start of subtable
-		//int nConstraintOffset = grstrmB.ReadIntFromFont();
-		grstrmB.ReadIntFromFont();
+		int nConstraintOffset = grstrmB.ReadIntFromFont();
+		//grstrmB.ReadIntFromFont();
 		grstrmT.ReadIntFromFont();
 		//	offset to action code, relative to start of subtable
-		//int nActionOffset = grstrmB.ReadIntFromFont();
-		grstrmB.ReadIntFromFont();
+		int nActionOffset = grstrmB.ReadIntFromFont();
+		//grstrmB.ReadIntFromFont();
 		grstrmT.ReadIntFromFont();
 		//	offset to debug strings; 0 if stripped
 		//int nDebugOffset = grstrmB.ReadIntFromFont();
@@ -914,7 +945,7 @@ void ComparePasses(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream &
 			// Otherwise assume that's where we are!
 			Assert(lFsmPosT == -1);
 
-		int cFsmCells = CompareFsmTables(ec, ptcase, grstrmB, grstrmT, fxdSilfVersionB, fxdSilfVersionT, iPass);
+		int cFsmCells = CompareFsm(ec, ptcase, grstrmB, grstrmT, fxdSilfVersionB, fxdSilfVersionT, iPass);
 
 		//	rule sort keys
 		int irul;
@@ -931,31 +962,35 @@ void ComparePasses(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream &
 				OutputError(ec, ptcase, "ERROR: pass", iPass, ", rule pre-mod-context", irul);
 		}
 
+		if (fxdSilfVersionB >= 0x00050000)
+		{
+			if (grstrmB.ReadByteFromFont() != grstrmT.ReadByteFromFont())
+				OutputError(ec, ptcase, "ERROR: pass", iPass, "- collision threshold");
+		}
+		else if (fxdSilfVersionB >= 0x00020000)
+		{
+			int x1 = grstrmB.ReadByteFromFont();
+			int x2 = grstrmT.ReadByteFromFont();
+		}
+
 		//	constraint offset for pass-level constraints
-		int cbPassConstraintsB, cbPassConstraintsT = 0;
+		int cbPassConstraintsB = 0;
 		if (fxdSilfVersionB >= 0x00020000)
 		{
-			grstrmB.ReadByteFromFont();
-			cbPassConstraintsB = grstrmB.ReadUShortFromFont();				
+			if (grstrmB.ReadUShortFromFont() != grstrmT.ReadUShortFromFont())
+				OutputError(ec, ptcase, "ERROR: pass", iPass, ", pass-level constraint offset");				
 		}
-		if (fxdSilfVersionB >= 0x00020000)
-		{
-			grstrmT.ReadByteFromFont();
-			cbPassConstraintsT = grstrmT.ReadUShortFromFont();
-		}
-		if (cbPassConstraintsB != cbPassConstraintsT)
-			OutputError(ec, ptcase, "ERROR: pass", iPass, ", pass-level constraint offset");
 
 		//	constraint and action offsets for rules
 		data16 cbConstraints;
-		for (irul = 0; irul <= crul; irul++)
+		for (irul = 0; irul <= crul; irul++)  // N + 1
 		{
 			cbConstraints = grstrmB.ReadUShortFromFont(); // save the last item, it gives the total
 			if (cbConstraints != grstrmT.ReadUShortFromFont())
 				OutputError(ec, ptcase, "ERROR: pass", iPass, ", rule constraint offset", irul);
 		}
 		data16 cbActions;
-		for (irul = 0; irul <= crul; irul++)
+		for (irul = 0; irul <= crul; irul++)  // N + 1
 		{
 			cbActions = grstrmB.ReadUShortFromFont(); // save the last item, it gives the total
 			if (cbActions != grstrmT.ReadUShortFromFont())
@@ -1029,9 +1064,9 @@ void ComparePasses(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStream &
 }
 
 /*----------------------------------------------------------------------------------------------
-	Compare the FSM tables.
+	Compare the FSMs.
 ----------------------------------------------------------------------------------------------*/
-int CompareFsmTables(int & ec, TestCase * ptcase,
+int CompareFsm(int & ec, TestCase * ptcase,
 	GrIStream & grstrmB, GrIStream & grstrmT,
 	int fxdSilfVersionB, int fxdSilfVersionT, int iPass)
 {
