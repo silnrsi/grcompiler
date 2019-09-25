@@ -754,8 +754,8 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 }
 
 /*----------------------------------------------------------------------------------------------
-	Return a date string that can be used to generate the unique name. The format returned
-	is dd-Mmm-yyyy.
+	Return a date string that can be used to generate the unique name. Currently just the year
+	is returned.
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::BuildDateString(utf16 * stuDate)
 {
@@ -774,9 +774,11 @@ void GrcManager::BuildDateString(utf16 * stuDate)
 	char tempDate[20];
 	time_t currentTime;
 	time(&currentTime);
-	strftime(tempDate, 20, "%d-%b-%Y", localtime(&currentTime));
+	//strftime(tempDate, 20, "%d-%b-%Y", localtime(&currentTime));
+	strftime(tempDate, 20, "%Y", localtime(&currentTime));
 	std::copy(tempDate, tempDate + strlen(tempDate), stuDate);
-	stuDate[11] = 0;
+	//stuDate[11] = 0;
+	stuDate[4] = 0;
 #endif
 }
 
@@ -3041,10 +3043,10 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 			pbstrm->WriteByte(0);  // avoid OTS griping about superfluous data fields
 
 		lCodeOffsets = pbstrm->Position();
-		// pass constraint byte count
+		// pass constraint byte count - save a space for the value
 		pbstrm->WriteShort(0);
 	}
-	for (i = 0; i <= signed(m_vprule.size()); i++)
+	for (i = 0; i <= signed(m_vprule.size()); i++)  // N + 1
 	{
 		pbstrm->WriteShort(0);
 		pbstrm->WriteShort(0);
