@@ -29,7 +29,7 @@ deleteTestFonts :
 # Note: something in grcompiler chokes when we use $(FONTS)\SchTest.ttf
 
 $(FONTS)\SchTest.ttf :
-	$(GRCEXE)\grcompiler -D -v2 $(FONTS)\SchMain.gdl $(FONTS)\SchInput.ttf SchTest.ttf
+	$(GRCEXE)\grcompiler -D -v4 $(FONTS)\SchMain.gdl $(FONTS)\SchInput.ttf SchTest.ttf
     
 $(FONTS)\CharisTest.ttf :
 	$(GRCEXE)\grcompiler -D -v2 $(FONTS)\CharisMain.gdl $(FONTS)\CharisInput.ttf CharisTest.ttf

@@ -4,19 +4,23 @@ GDL file: PigLatinMain.gdl
 Input font file: PigLatinInput.ttf
 Output font file: PigLatinBenchmark_v3.ttf
 Output font family: PigLatin GrcRegTest
-Silf table version: 3.0
+Silf table version: 4.0
 Create separate control file: no
 
 *******************************************************
 
-Table versions generated:
- Silf:3.0
- Gloc:1.0
- Glat:1.0
- Feat:1.0
- Sill:1.0
-Minimal compiler version required: 3.0
+warning(5504): Version 3.0 of the Silf table is inadequate for your specification; version 4.0 will be generated instead.
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 0 warnings
+Table versions generated:
+ Silf: 4.0
+ Gloc: 1.0
+ Glat: 1.0
+ Feat: 1.0
+ Sill: 1.0
+Minimal compiler version required: 4.2
+
+*******************************************************
+
+Compilation succeeded - 0 errors, 1 warning

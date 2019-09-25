@@ -1,4 +1,4 @@
-grcompiler -D -v2 SchMain.gdl SchInput.ttf SchBenchmark.ttf
+grcompiler -D -v4 SchMain.gdl SchInput.ttf SchBenchmark.ttf
 copy SchBenchmark.ttf dbg_Sch
 copy SchBenchmark.gdx dbg_Sch
 copy $_temp.gdl dbg_Sch

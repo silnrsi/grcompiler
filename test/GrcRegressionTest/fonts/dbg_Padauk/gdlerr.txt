@@ -16,11 +16,11 @@ PadaukMain.gdl(487) : warning(3529): Item 1: no slot was associated with deleted
 *******************************************************
 
 Table versions generated:
- Silf:3.0
- Gloc:1.0
- Glat:1.0
- Feat:1.0
- Sill:1.0
+ Silf: 3.0
+ Gloc: 1.0
+ Glat: 1.0
+ Feat: 1.0
+ Sill: 1.0
 Minimal compiler version required: 3.0
 
 *******************************************************

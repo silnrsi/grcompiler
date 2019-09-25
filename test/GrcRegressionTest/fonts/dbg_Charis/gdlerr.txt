@@ -4,22 +4,23 @@ GDL file: CharisMain.gdl
 Input font file: CharisInput.ttf
 Output font file: CharisBenchmark.ttf
 Output font family: Charis GrcRegTest
-Silf table version: 2.0
+Silf table version: 4.0
 Create separate control file: no
 
 *******************************************************
 
+warning(5504): Version 2.0 of the Silf table is inadequate for your specification; version 4.0 will be generated instead.
 
 *******************************************************
 
 Table versions generated:
- Silf:2.0
- Gloc:1.0
- Glat:1.0
- Feat:2.0
- Sill:1.0
-Minimal compiler version required: 2.0
+ Silf: 4.0
+ Gloc: 1.0
+ Glat: 1.0
+ Feat: 2.0
+ Sill: 1.0
+Minimal compiler version required: 4.2
 
 *******************************************************
 
-Compilation succeeded - 0 errors, 0 warnings (128 warnings ignored)
+Compilation succeeded - 0 errors, 1 warning (128 warnings ignored)

@@ -43059,7 +43059,7 @@
       <featureSetting name="ligated" value="0" inFile="CharisFeatures.gdh" atLine="85" />
       <featureSetting name="tramlines" value="1" inFile="CharisFeatures.gdh" atLine="88" />
       <featureSetting name="nonLigated" value="2" inFile="CharisFeatures.gdh" atLine="93" />
-      <featureSetting name="tramNonLigated" value="3" inFile="CharisFeatures.gdh" atLine="96" />
+      <featureSetting name="tramNonLigated" value="3" inFile="CharisFeatures.gdh" atLine="97" />
     </feature>
     <feature name="viet" featureID="1986618740" featureIDstring="viet" index="3" inFile="CharisFeatures.gdh" atLine="102" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="105" />
@@ -43090,26 +43090,26 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="144" />
     </feature>
     <feature name="eng" featureID="1164863347" featureIDstring="Engs" index="10" inFile="CharisFeatures.gdh" atLine="148" >
-      <featureSetting name="descender" value="0" inFile="CharisFeatures.gdh" atLine="155" />
-      <featureSetting name="base" value="1" inFile="CharisFeatures.gdh" atLine="158" />
-      <featureSetting name="capital" value="2" inFile="CharisFeatures.gdh" atLine="167" />
+      <featureSetting name="descender" value="0" inFile="CharisFeatures.gdh" atLine="154" />
+      <featureSetting name="base" value="1" inFile="CharisFeatures.gdh" atLine="159" />
+      <featureSetting name="capital" value="2" inFile="CharisFeatures.gdh" atLine="166" />
       <featureSetting name="short" value="3" inFile="CharisFeatures.gdh" atLine="162" />
     </feature>
     <feature name="ramshorn" featureID="1918987624" featureIDstring="ramh" index="11" inFile="CharisFeatures.gdh" atLine="172" >
-      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="179" />
+      <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="178" />
       <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="183" />
-      <featureSetting name="gamma" value="2" inFile="CharisFeatures.gdh" atLine="186" />
+      <featureSetting name="gamma" value="2" inFile="CharisFeatures.gdh" atLine="187" />
     </feature>
     <feature name="ogonek" featureID="1869049710" featureIDstring="ogon" index="12" inFile="CharisFeatures.gdh" atLine="192" >
       <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="198" />
-      <featureSetting name="americanist" value="1" inFile="CharisFeatures.gdh" atLine="203" />
+      <featureSetting name="americanist" value="1" inFile="CharisFeatures.gdh" atLine="202" />
     </feature>
     <feature name="h_stroke" featureID="1215525995" featureIDstring="Hstk" index="13" inFile="CharisFeatures.gdh" atLine="208" >
       <featureSetting name="horizontal" value="0" inFile="CharisFeatures.gdh" atLine="214" />
-      <featureSetting name="vertical" value="1" inFile="CharisFeatures.gdh" atLine="219" />
+      <featureSetting name="vertical" value="1" inFile="CharisFeatures.gdh" atLine="218" />
     </feature>
     <feature name="ltnjstroke" featureID="1249080427" featureIDstring="Jstk" index="14" inFile="CharisFeatures.gdh" atLine="224" >
-      <featureSetting name="noSerif" value="0" inFile="CharisFeatures.gdh" atLine="230" />
+      <featureSetting name="noSerif" value="0" inFile="CharisFeatures.gdh" atLine="231" />
       <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="234" />
     </feature>
     <feature name="n_hook" featureID="1314875499" featureIDstring="N_hk" index="15" inFile="CharisFeatures.gdh" atLine="240" >
@@ -43117,32 +43117,32 @@
       <featureSetting name="lcStyle" value="1" inFile="CharisFeatures.gdh" atLine="250" />
     </feature>
     <feature name="open_o" featureID="1869639247" featureIDstring="opnO" index="16" inFile="CharisFeatures.gdh" atLine="256" >
-      <featureSetting name="bottomSerif" value="0" inFile="CharisFeatures.gdh" atLine="262" />
-      <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="267" />
+      <featureSetting name="bottomSerif" value="0" inFile="CharisFeatures.gdh" atLine="263" />
+      <featureSetting name="topSerif" value="1" inFile="CharisFeatures.gdh" atLine="266" />
     </feature>
     <feature name="p_hook" featureID="1885300843" featureIDstring="p_hk" index="17" inFile="CharisFeatures.gdh" atLine="272" >
-      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="279" />
+      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="278" />
       <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="282" />
     </feature>
     <feature name="r_tail" featureID="1381987436" featureIDstring="R_tl" index="18" inFile="CharisFeatures.gdh" atLine="288" >
-      <featureSetting name="UCstyle" value="0" inFile="CharisFeatures.gdh" atLine="294" />
+      <featureSetting name="UCstyle" value="0" inFile="CharisFeatures.gdh" atLine="295" />
       <featureSetting name="LCstyle" value="1" inFile="CharisFeatures.gdh" atLine="299" />
     </feature>
     <feature name="t_hook" featureID="1952409707" featureIDstring="t_hk" index="19" inFile="CharisFeatures.gdh" atLine="304" >
       <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="311" />
-      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="315" />
+      <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="314" />
     </feature>
     <feature name="v_hook" featureID="1985964139" featureIDstring="v_hk" index="20" inFile="CharisFeatures.gdh" atLine="320" >
       <featureSetting name="curved" value="0" inFile="CharisFeatures.gdh" atLine="327" />
       <featureSetting name="straight" value="1" inFile="CharisFeatures.gdh" atLine="330" />
     </feature>
     <feature name="y_hook" featureID="1499424875" featureIDstring="Y_hk" index="21" inFile="CharisFeatures.gdh" atLine="336" >
-      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="343" />
+      <featureSetting name="left_hook" value="0" inFile="CharisFeatures.gdh" atLine="342" />
       <featureSetting name="right_hook" value="1" inFile="CharisFeatures.gdh" atLine="346" />
     </feature>
     <feature name="ezh_curl" featureID="1702520931" featureIDstring="ezhc" index="22" inFile="CharisFeatures.gdh" atLine="352" >
       <featureSetting name="small" value="0" inFile="CharisFeatures.gdh" atLine="358" />
-      <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="363" />
+      <featureSetting name="large" value="1" inFile="CharisFeatures.gdh" atLine="362" />
     </feature>
     <feature name="ezh" featureID="1165650034" featureIDstring="Ezhr" index="23" inFile="CharisFeatures.gdh" atLine="368" >
       <featureSetting name="ipa" value="0" inFile="CharisFeatures.gdh" atLine="374" />
@@ -43150,7 +43150,7 @@
     </feature>
     <feature name="ou" featureID="1869631317" featureIDstring="opOU" index="24" inFile="CharisFeatures.gdh" atLine="384" >
       <featureSetting name="closed" value="0" inFile="CharisFeatures.gdh" atLine="390" />
-      <featureSetting name="open" value="1" inFile="CharisFeatures.gdh" atLine="394" />
+      <featureSetting name="open" value="1" inFile="CharisFeatures.gdh" atLine="395" />
     </feature>
     <feature name="mongol_e" featureID="1836019301" featureIDstring="mone" index="25" inFile="CharisFeatures.gdh" atLine="400" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="403" />
@@ -43162,7 +43162,7 @@
     </feature>
     <feature name="modlowcolon" featureID="1668246638" featureIDstring="coln" index="27" inFile="CharisFeatures.gdh" atLine="451" >
       <featureSetting name="tight" value="0" inFile="CharisFeatures.gdh" atLine="457" />
-      <featureSetting name="wide" value="1" inFile="CharisFeatures.gdh" atLine="462" />
+      <featureSetting name="wide" value="1" inFile="CharisFeatures.gdh" atLine="461" />
     </feature>
     <feature name="short_breve" featureID="1935831670" featureIDstring="sbrv" index="28" inFile="CharisFeatures.gdh" atLine="467" >
       <featureSetting name="ffalse" value="0" inFile="CharisFeatures.gdh" atLine="470" />
@@ -43173,7 +43173,7 @@
       <featureSetting name="ftrue" value="1" inFile="CharisFeatures.gdh" atLine="476" />
     </feature>
     <feature name="emptyset" featureID="1701671028" featureIDstring="empt" index="30" inFile="CharisFeatures.gdh" atLine="479" >
-      <featureSetting name="circle" value="0" inFile="CharisFeatures.gdh" atLine="485" />
+      <featureSetting name="circle" value="0" inFile="CharisFeatures.gdh" atLine="486" />
       <featureSetting name="zero" value="1" inFile="CharisFeatures.gdh" atLine="489" />
     </feature>
     <feature name="invis" featureID="1768846963" featureIDstring="invs" index="31" inFile="CharisFeatures.gdh" atLine="495" >
