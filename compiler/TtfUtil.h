@@ -26,7 +26,7 @@ Description:
 
 #include <cstddef>
 #include <stdexcept>
-#include "GrPlatform.h"
+#include "Generic/GrPlatform.h"
 
 // Enumeration used to specify a table in a TTF file
 enum TableId
