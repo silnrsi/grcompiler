@@ -40,7 +40,7 @@ AC_PATH_PROG(LSB_RELEASE, lsb_release, no)
 
 # docbook2man utility
 AC_ARG_VAR(DOCBOOK2MAN, [Program used to process XML man pages])
-AC_CHECK_PROGS(DOCBOOK2MAN, docbook2x-man docbook2man, no)
+AC_CHECK_PROGS(DOCBOOK2MAN, docbook2x-man, no)
 if test "$DOCBOOK2MAN" = no; then
     AC_MSG_FAILURE([Could not find a program to process XML man pages])
 fi

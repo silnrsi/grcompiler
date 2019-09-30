@@ -17,11 +17,11 @@ GrcRegressionTest_SOURCES = \
         GrcRtFileFont.h \
         GrcRtFileFont.cpp \
         GrcRegressionTest.cpp \
-        TtfUtil.cpp \
-        TtfUtil.h \
         FileInput.h \
         FontTableCache.h \
-        TtfTypes.h \
+        $(top_srcdir)/../../compiler/TtfUtil.cpp \
+        $(top_srcdir)/../../compiler/TtfUtil.h \
+        $(top_srcdir)/../../compiler/TtfTypes.h \
         fonts \
         regtest
 
