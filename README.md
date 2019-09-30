@@ -7,7 +7,7 @@ interpret.
 
 ## BUILDING
 
-The grcompiler can currently be built with sever build scripts.  The primary
+The grcompiler can currently be built with several build systems.  The primary
 cross-platform build system is CMake.  We require CMake 3.0 or above.
 
 ### CMake
@@ -27,15 +27,15 @@ cross-platform build system is CMake.  We require CMake 3.0 or above.
     ```
     CMake will automatically detect your build system and generate a project for
     that. You may wish to specify a build system other than the automatically
-    detected one, for examples if you have multiple versions of Visual Studio
-    installed or other toolchains such as MinGW you wish build under. To do this
+    detected one, for example, if you have multiple versions of Visual Studio
+    installed or other toolchain such as MinGW you wish build under. To do this
     pass the `-G <generator name>` option to the initial cmake configuration call,
-    for example for Visual Studio 8:
+    for example for Visual Studio 8:  
     ```
     cmake -G "Visual Studio 12 2013" -DCMAKE_BUILD_TYPE=Release ..
     ```
 
-    or for MinGW
+    or for MinGW:  
     ```
     cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release ..
     ```
@@ -45,12 +45,14 @@ cross-platform build system is CMake.  We require CMake 3.0 or above.
     ```
     cmake --build .
     ```
-    When building with using the Visual Studio generator you will need to append
-    `--config Debug` or `--config Release` for your debug and release builds
-    respectively to the end of above command. Depending on your chosen generator
-    the next step varies, for MS Visual Studio projects you will need to run 
-    `cmake --build . --target RUN_TESTS` but for all other generators: 
-    `cmake --build . --target test` will be sufficient.
+    When building using the Visual Studio generator you will need to append
+    `--config Debug` or `--config Release` for your debug or release builds,
+    respectively, to the above command. Depending on your chosen generator the
+    next step varies, for MS Visual Studio projects you will need to run:   
+    `cmake --build . --target RUN_TESTS`  
+    but for all other generators:  
+    `cmake --build . --target test`  
+    will be sufficient.
 
 4. Installation
     ```
@@ -86,7 +88,7 @@ It is possible to use clang to build and test Graphite. Use this build command:
 CC=clang CXX=clang++ cmake ..
 cmake --build .
 ```
-You will need libc++ libc++-abi.
+You will need libc++ and libc++-abi packages.
 
 #### Windows specific details
 
@@ -98,7 +100,7 @@ more information and instructions at
 
 #### For Unix style system with autotools
 
-The grcompiler project uses GNU autobuild tools to manage building and 
+The grcompiler project can use GNU autobuild tools to manage building and 
 installation, please see the INSTALL file for more details.
 
 
@@ -138,9 +140,8 @@ You should use your distributions package manager to install icu-dev package.
 #### Windows
 
 The Graphite compiler requires library modules from ICU. You will need to
-download the ICU source code from the following web site:
-
-    http://www.icu-project.org/download/
+download the ICU source code from the following web site:  
+http://www.icu-project.org/download/
     
 There is a VisualStudio file in the source\allinone directory that can be
 used to build the binaries. The "common" project is the one to build.
