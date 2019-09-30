@@ -1,0 +1,52 @@
+#editor backups
+*~
+*.bak
+*.swp
+
+#autotools build litter
+m4
+autom4te.cache
+config
+configure
+config.status
+config.log
+aclocal.m4
+libtool
+Makefile.in
+Makefile
+
+# MS tool build litter
+nmake*
+release/
+debug/
+
+#CMake
+build*/**
+
+# Object, intermediate & deliverable files
+*.o
+*.lo
+*.Plo
+*.la
+*.pyc
+*.tgz
+*.sha1sum
+
+# IDE project files
+# Atom
+.atom-build.yml
+.atom-dbg.cson
+# Vim/Emacs
+.tags
+.tags_swap
+.libs/
+.deps/
+.externalToolBuilders
+# Eclipse
+.cproject
+.project
+.pydevproject
+.settings
+# VS Code
+.vscode/
+*.code-workspace
