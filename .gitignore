@@ -32,6 +32,9 @@ build*/**
 *.tgz
 *.sha1sum
 
+# Project specific files
+test/GrcRegressionTest/fonts/gdlerr.txt
+
 # IDE project files
 # Atom
 .atom-build.yml
