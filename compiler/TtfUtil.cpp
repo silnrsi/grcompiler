@@ -383,7 +383,7 @@ size_t  MaxCompositeLevelCount(const void * pMaxp)
 
 	Note: this method is not currently used by the Graphite engine.
 ----------------------------------------------------------------------------------------------*/
-size_t LocaGlyphCount(size_t lLocaSize, const void * pHead) throw(std::domain_error)
+size_t LocaGlyphCount(size_t lLocaSize, const void * pHead)
 {
 
 	const Sfnt::FontHeader * pTable 
@@ -806,7 +806,7 @@ int PostLookup(const void * pPost, size_t lPostSize, const void * pMaxp, const c
 	defaults to 0.
 	Return true if successful, false otherwise. 
 ----------------------------------------------------------------------------------------------*/
-void SwapWString(void * pWStr, size_t nSize /* = 0 */) throw (std::invalid_argument)
+void SwapWString(void * pWStr, size_t nSize /* = 0 */)
 {
 	if (pWStr == 0)
 		throw std::invalid_argument("null pointer given");
@@ -1135,7 +1135,7 @@ unsigned int Cmap310NextCodepoint(const void *pCmap310, unsigned int nUnicodeId,
 ----------------------------------------------------------------------------------------------*/
 size_t LocaLookup(gr::gid16 nGlyphId, 
 		const void * pLoca, size_t lLocaSize, 
-		const void * pHead) throw (std::out_of_range)
+		const void * pHead)
 {
 	const Sfnt::FontHeader * pTable = reinterpret_cast<const Sfnt::FontHeader *>(pHead);
 

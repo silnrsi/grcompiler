@@ -371,7 +371,7 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
     }
 
     char *dst_ptr = reinterpret_cast<char *>(dest);
-    ICONV_CONST char *src_ptr = const_cast<char *>(source);
+    char *src_ptr = const_cast<char *>(source);
     dst_count *= sizeof(unsigned short);    
     const size_t dst_size = dst_count;
 
