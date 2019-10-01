@@ -83,7 +83,8 @@ cmake --build test
 ```
 You will need g++-multilib support.
 
-It is possible to use clang to build and test Graphite. Use this build command:
+It is possible to use clang to build and test grcompiler and gdlpp. Use this
+build command:
 ```
 CC=clang CXX=clang++ cmake ..
 cmake --build .

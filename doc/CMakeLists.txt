@@ -2,7 +2,7 @@ project(docs)
 
 find_program(DOCBOOK2MAN NAMES docbook2x-man)
 
-configure_file(gdlpp.1.in gdlpp.1)
+configure_file(gdlpp.1.in gdlpp.1 COPYONLY)
 set(DOC_DEPENDS ${PROJECT_BINARY_DIR}/gdlpp.1)
 file(GLOB DOCS *.pdf)
 set(DOCS ${DOCS} README.gdlpp)
