@@ -137,6 +137,17 @@ this deletes the libraries as well.
 
 You should use your distributions package manager to install icu-dev package.
 
+- CMake:
+    It will automatically find the system dev package installed by you package
+    manager. Setting the CMake variable ICU_ROOT to an abolute path will
+    override this process and use the built copy located at the provided path.
+    This can be set by passing `-DICU_ROOT=<path to built ICU files>` to the
+    `cmake` configuration invocation.
+- autotools:
+    This will auto detect the icu installation via the use of pkg-config
+    To overide the detection you need to provide compiler and linker flags via
+    the ICU_CFLAGS and ICU_LIBS environment variables.
+
 
 #### Windows
 
@@ -148,9 +159,8 @@ There is a VisualStudio file in the source\allinone directory that can be
 used to build the binaries. The "common" project is the one to build.
 
 - CMake:  
-    Will require the ICU_ROOT variable to be set which can be done at 
-    project generation time by passing 
-    `-DICU_ROOT=<path to built ICU files>` to the `cmake` invocation.
+    The CMakeLists.txt will automatically fetch the icu4c.v140 nuget package
+    for you and also a copy of nuget if it's not installed.  
 
 - Nmake:  
     The only modules that are needed at this time are icuuc.lib and icuuc63.dll
