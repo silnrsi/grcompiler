@@ -1,7 +1,7 @@
 project(compiler)
 
 if (NUGET AND NOT ICU_ROOT)
-    file(GLOB ICU_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140")
+    file(GLOB ICU_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140.[0-9]*")
     set(ICU_ROOT ${ICU_ROOT}/build/native)
 
     find_library(ICU_I18N_LIBRARY 
@@ -17,11 +17,11 @@ if (NUGET AND NOT ICU_ROOT)
         HINTS ${ICU_ROOT}
         PATH_SUFFIXES include
         DOC "ICU include directory")
-    set(ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140.redist/build/native/bin/${CMAKE_VS_PLATFORM_NAME}")
+    file(GLOB ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140.redist.[0-9]*")
+    set(ICU_REDIST_ROOT "${ICU_REDIST_ROOT}/build/native/bin/${CMAKE_VS_PLATFORM_NAME}")
 else()
 	find_package(ICU REQUIRED COMPONENTS uc i18n)
 endif()
-
 
 add_subdirectory(Generic)
 add_subdirectory(Grammar)
@@ -66,7 +66,7 @@ if  (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         COMPILE_OPTIONS "/Zc:wchar_t-;/W3;/GR;/EHsc"
         COMPILE_DEFINITIONS "_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINDOWS;WIN32")
     
-    add_custom_command(TARGET grcompiler POST_BUILD
+    add_custom_command(TARGET grcompiler POST_BUILD 
         COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${ICU_REDIST_ROOT}/$<CONFIGURATION>"
             $<TARGET_FILE_DIR:grcompiler>)
