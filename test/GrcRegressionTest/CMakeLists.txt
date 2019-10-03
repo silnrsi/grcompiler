@@ -42,7 +42,7 @@ function(test_font FONT VERSION)
         COMMAND grcompiler -q -v${VERSION} -e ${PROJECT_BINARY_DIR}/${OUT_FONT}.gdlerr.txt ${FONT_SOURCE_DIR}/${FONT}Main.gdl ${FONT_SOURCE_DIR}/${FONT}Input.ttf ${OUT_FONT})
     set_tests_properties(compile_${OUT_FONT} PROPERTIES
         ENVIRONMENT GDLPP=$<TARGET_FILE:gdlpp>
-        ATTACHED_FILES ${PROJECT_BINARY_DIR}/${OUT_FONT}.gdlerr.log
+#        ATTACHED_FILES ${PROJECT_BINARY_DIR}/${OUT_FONT}.gdlerr.log
         REQUIRED_FILES "${FONT_SOURCE_DIR}/${FONT}Input.ttf;${FONT_SOURCE_DIR}/${FONT}Main.gdl"
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
 
@@ -53,7 +53,7 @@ function(test_font FONT VERSION)
     set_tests_properties(GrcRegressionTest_${BENCHMARK_NAME} PROPERTIES
         DEPENDS compile_${OUT_FONT}
         REQUIRED_FILES "${FONT_SOURCE_DIR}/${BENCHMARK};${OUT_FONT}"
-        ATTACHED_FILES ${PROJECT_BINARY_DIR}/${BENCHMARK_NAME}.grcregtest.log
+#        ATTACHED_FILES ${PROJECT_BINARY_DIR}/${BENCHMARK_NAME}.grcregtest.log
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
     
     # Compare the output to the expected output
