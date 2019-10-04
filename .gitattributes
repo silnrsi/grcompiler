@@ -3,6 +3,7 @@
 
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
+*.bat text
 *.c text
 *.cfg text
 *.cpp text
@@ -12,6 +13,7 @@
 *.h text
 *.json text
 *.log text
+*.mak text
 *.md text
 *.sh text
 *.svg text
