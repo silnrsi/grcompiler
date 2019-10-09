@@ -2,6 +2,8 @@ SUBDIRS = doc preprocessor compiler test
 
 EXTRA_DIST = license makefile.mak
 
+README: README.md
+
 dist-hook:
 	find $(distdir) -name ".svn" | xargs rm -rf
 
