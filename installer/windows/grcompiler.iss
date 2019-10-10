@@ -26,8 +26,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Graphite1\grcompiler\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\release\icuuc56.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\release\icudt56.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Graphite1\grcompiler\release\icuuc63.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Graphite1\grcompiler\release\icudt63.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; Don't need this because the ICU stuff is built with /MT:
 ;Source: "C:\Windows\system32\msvcr71.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Graphite1\grcompiler\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -39,7 +39,7 @@ Source: "C:\Graphite1\grcompiler\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: i
 Source: "C:\Graphite1\grcompiler\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\Graphite1\grcompiler\doc\GDL_BNF.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\Graphite1\grcompiler\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\GTF_4_0.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "C:\Graphite1\grcompiler\doc\GTF_6_0.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\Graphite1\grcompiler\doc\StackMachineCommands.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\Graphite1\grcompiler\doc\TransductionLog.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "C:\Graphite1\grcompiler\installer\example\stddr.ttf"; DestDir: "{app}\example"; Flags: ignoreversion
