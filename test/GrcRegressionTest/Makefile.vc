@@ -8,8 +8,6 @@ TARGET=GrcRegressionTest
 REGT_SRC=.
 REGT_RES=.
 
-GENERIC_DIR=..\..\compiler\Generic
-
 !IF "$(CFG)" == ""
 CFG=DEBUG
 !ENDIF 
@@ -36,6 +34,8 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
 
 OUTDIR=.\debug
 INTDIR=.\debug_temp
+COMPILER_DIR=..\..\compiler
+GENERIC_DIR=..\..\compiler\Generic
 
 all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
 
@@ -67,6 +67,18 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc"
    $(CPP) @<<
    $(CPP_PROJ) $< 
 <<
+
+
+{$(COMPILER_DIR)}.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+{$(COMPILER_DIR)}.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
 
 {$(GENERIC_DIR)}.cpp{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -117,10 +129,10 @@ BSC32_SBRS= \
 
 "$(INTDIR)\GrcRegressionTest.obj"  "$(INTDIR)\GrcRegressionTest.sbr" : "$(REGT_SRC)\GrcRegressionTest.cpp" "$(INTDIR)"
 "$(INTDIR)\CompareFontTables.obj"  "$(INTDIR)\CompareFontTables.sbr" : "$(REGT_SRC)\CompareFontTables.cpp" "$(INTDIR)"
-"$(INTDIR)\GrcRtFileFont.obj"  "$(INTDIR)\GrcRtFileFont.sbr" : "$(REGT_SRC)\GrcRtFileFont.cpp" "$(INTDIR)"
-"$(INTDIR)\TtfUtil.obj"  "$(INTDIR)\TtfUtil.sbr" : "$(REGT_SRC)\TtfUtil.cpp" "$(INTDIR)"
-"$(INTDIR)\FileInput.obj"  "$(INTDIR)\FileInput.sbr" : "$(REGT_SRC)\FileInput.cpp" "$(INTDIR)"
-"$(INTDIR)\Platform.obj"  "$(INTDIR)\Platform.sbr" : "$(GENERIC_DIR)\Platform.cpp" "$(INTDIR)"
+"$(INTDIR)\GrcRtFileFont.obj"      "$(INTDIR)\GrcRtFileFont.sbr"     : "$(REGT_SRC)\GrcRtFileFont.cpp"     "$(INTDIR)"
+"$(INTDIR)\TtfUtil.obj"            "$(INTDIR)\TtfUtil.sbr"           : "$(COMPILER_DIR)\TtfUtil.cpp"       "$(INTDIR)"
+"$(INTDIR)\FileInput.obj"          "$(INTDIR)\FileInput.sbr"         : "$(REGT_SRC)\FileInput.cpp"         "$(INTDIR)"
+"$(INTDIR)\Platform.obj"           "$(INTDIR)\Platform.sbr"          : "$(GENERIC_DIR)\Platform.cpp"       "$(INTDIR)"
 
 
 
