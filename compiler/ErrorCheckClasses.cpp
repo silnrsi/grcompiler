@@ -1394,14 +1394,15 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTab
 			if (fCollFix)
 			{
 				//	Put collision.flags first, immediately followed by the others in a specific order.
+				//	This must match the assumptions in the engine.
 				Symbol psymColFlags = psymtblMain->FindSymbol(GrcStructName("collision", "flags"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColFlags);
 				Symbol psymColMinX = psymtblMain->FindSymbol(GrcStructName("collision", "min", "x"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMinX);
-				Symbol psymColMaxX = psymtblMain->FindSymbol(GrcStructName("collision", "max", "x"));
-				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMaxX);
 				Symbol psymColMinY = psymtblMain->FindSymbol(GrcStructName("collision", "min", "y"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMinY);
+				Symbol psymColMaxX = psymtblMain->FindSymbol(GrcStructName("collision", "max", "x"));
+				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMaxX);
 				Symbol psymColMaxY = psymtblMain->FindSymbol(GrcStructName("collision", "max", "y"));
 				AddGlyphAttrSymbolInMap(vpsymGlyphAttrIDs, psymColMaxY);
 				Symbol psymColMargin = psymtblMain->FindSymbol(GrcStructName("collision", "margin"));
