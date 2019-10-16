@@ -2189,14 +2189,15 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 				VersionString(fxdResult),
 				" will be generated instead.");
 
-		else
-			g_errorList.AddWarning(5505, NULL,
-				"Version ",
-				VersionString(fxdResult),
-				" of the Silf table will be generated.");
+//		else
+//			g_errorList.AddWarning(5505, NULL,
+//				"Version ",
+//				VersionString(fxdResult),
+//				" of the Silf table will be generated.");
 	}
 
 	SetTableVersion(ktiSilf, fxdResult);
+
 	return fxdResult;
 }
 
