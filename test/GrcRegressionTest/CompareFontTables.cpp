@@ -1160,16 +1160,14 @@ void CompareGlatAndGlocTables(int & ec, TestCase * ptcase, int wMaxGlyphID,
 	GrIStream & grstrmGlatB, GrIStream & grstrmGlocB,
 	GrIStream & grstrmGlatT, GrIStream & grstrmGlocT)
 {
-	Assert(ReadVersion(grstrmGlatB) == 0x00010000);
-	Assert(ReadVersion(grstrmGlocB) == 0x00010000);
-	if (ReadVersion(grstrmGlatT) != 0x00010000)
+	if (ReadVersion(grstrmGlatB) != ReadVersion(grstrmGlatT))
 	{
-		OutputError(ec, ptcase, "ERROR: unknown Glat table version");
+		OutputError(ec, ptcase, "ERROR: Glat table versions do not match.");
 		return;
 	}
-	if (ReadVersion(grstrmGlocT) != 0x00010000)
+	if (ReadVersion(grstrmGlocB) != ReadVersion(grstrmGlocT))
 	{
-		OutputError(ec, ptcase, "ERROR: unknown Gloc table version");
+		OutputError(ec, ptcase, "ERROR: Gloc table versions do not match.");
 		return;
 	}
 
