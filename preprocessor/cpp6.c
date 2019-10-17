@@ -661,6 +661,7 @@ DEFBUF *lookid(struct Global *global,
   int isrecurse;	/* For #define foo foo	*/
   
   nhash = 0;
+  temp = 0;
   if ((isrecurse = (c == DEF_MAGIC)))   /* If recursive macro   */
     c = get(global);                    /* hack, skip DEF_MAGIC */
   ct = 0;
