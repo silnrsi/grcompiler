@@ -10,6 +10,11 @@ add_executable(GrcRegressionTest
     $<TARGET_OBJECTS:TtfUtil>)
 target_link_libraries(GrcRegressionTest generic)
 
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    target_compile_options(GrcRegressionTest PRIVATE /W3 /EHsc)
+endif()
+
+
 set(FONT_SOURCE_DIR ${PROJECT_SOURCE_DIR}/fonts)
 
 function(compile_test FONT VERSION PSNAME)

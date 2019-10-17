@@ -5,18 +5,20 @@ if (NUGET AND NOT ICU_ROOT)
     set(ICU_ROOT ${ICU_ROOT}/build/native)
 
     find_library(ICU_I18N_LIBRARY 
-        NAMES icuin icui18n 
+        NAMES icuin icuind icui18n icui18nd
         PATHS "${ICU_ROOT}/lib/${CMAKE_VS_PLATFORM_NAME}/${CMAKE_BUILD_TYPE}"
         NO_DEFAULT_PATH)
     find_library(ICU_UC_LIBRARY
-        NAMES icuuc
+        NAMES icuuc icuucd
         PATHS "${ICU_ROOT}/lib/${CMAKE_VS_PLATFORM_NAME}/${CMAKE_BUILD_TYPE}"
         NO_DEFAULT_PATH)
     find_path(ICU_INCLUDE_DIR
         NAMES "unicode/utypes.h"
-        HINTS ${ICU_ROOT}
+        PATHS ${ICU_ROOT}
         PATH_SUFFIXES include
+        NO_DEFAULT_PATH
         DOC "ICU include directory")
+
     file(GLOB ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140.redist.[0-9]*")
     set(ICU_REDIST_ROOT "${ICU_REDIST_ROOT}/build/native/bin/${CMAKE_VS_PLATFORM_NAME}")
 else()
@@ -61,10 +63,8 @@ add_executable(grcompiler
     main.cpp)
 target_link_libraries(grcompiler ${ICU_I18N_LIBRARY} ${ICU_UC_LIBRARY} generic parser lz4)
 
-if  (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    set_target_properties(grcompiler PROPERTIES
-        COMPILE_OPTIONS "/Zc:wchar_t-;/W3;/GR;/EHsc"
-        COMPILE_DEFINITIONS "_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINDOWS;WIN32")
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    target_compile_options(grcompiler PRIVATE /Zc:wchar_t- /W3 /EHsc)
     
     add_custom_command(TARGET grcompiler POST_BUILD 
         COMMAND ${CMAKE_COMMAND} -E copy_directory
