@@ -53,6 +53,7 @@ protected:
 	//	Instance variables:
 	std::wstring	m_stuName;
 	utf16			m_wLanguageID;
+	
 };
 
 /*----------------------------------------------------------------------------------------------
@@ -146,6 +147,7 @@ public:
 	//	Constructors & destructors:
 	GdlFeatureDefn()
 	{
+		m_nID = 0;
 		m_fStdStyles = false;
 		m_fStdLang = false;
 		m_fIDSet = false;
@@ -182,10 +184,17 @@ public:
 	{
 		m_fStdLang = true;
 		m_nID = kfidStdLang;
+		AddAltID(kfidStdLang);
 	}
 
 	utf16 SetNameTblIds(utf16 wFirst, uint8 * pNameTbl, // return next id to use
 		std::vector<GdlFeatureDefn *> & vpfeatInput);
+
+	void AddAltID(unsigned int n)
+	{
+		m_vnIDs.push_back(n);
+	}
+
 
 	//	Getters:
 	std::string Name()
@@ -208,6 +217,11 @@ public:
 	bool NameTblInfo(std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
 		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,
 		int nNameTblIdMinNew, int nNameIdNoName);
+	void AltIDs(std::vector<unsigned int> & vn)
+	{
+		vn = m_vnIDs;
+	}
+	size_t NumAltIDs() { return m_vnIDs.size(); }
 
 	GdlFeatureSetting * FindSetting(std::string sta);
 	GdlFeatureSetting * FindOrAddSetting(std::string, GrpLineAndFile & lnf);
@@ -216,6 +230,7 @@ public:
 public:
 	//	Pre-compiler:
 	bool ErrorCheck();
+	void SortFeatIDs();
 	void SortFeatSettings();
 	void SetStdStyleFlag();
 	void FillInBoolean(GrcSymbolTable * psymtbl);
@@ -265,6 +280,8 @@ protected:
 	std::vector<GdlExtName>		m_vextname;
 	std::vector<GdlFeatureSetting *>	m_vpfset;
 	int					 		m_nDefault;
+
+	std::vector<unsigned int>	m_vnIDs;  // including alternate IDs; main ID must be first
 
 	bool m_fIDSet;
 	bool m_fDefaultSet;		// if still false at the end, we need to

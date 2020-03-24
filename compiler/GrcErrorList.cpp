@@ -24,7 +24,7 @@ parsing - highest error: 1196 / highest warning: 1520
 		PostParser
 
 error checking:
-	general - highest error: 2167 / highest warning: 2536
+	general - highest error: 2168 / highest warning: 2537
 		GdlExpression
 		GrcMasterTable
 		GrcSymTable

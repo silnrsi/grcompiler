@@ -3367,38 +3367,62 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 	std::vector<int> vnOffsets;
 	std::vector<long> vlOffsetPos;
 
-	//	number of features
-	pbstrm->WriteShort(m_vpfeat.size());
+	size_t ifeat;
+	size_t iID;
+
+	//	number of features actually written to the font, including duplicates
+	int cfeatout = 0;
+	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
+	{
+		cfeatout += m_vpfeat[ifeat]->NumAltIDs();
+	}
+	pbstrm->WriteShort(cfeatout);
 
 	//	reserved
 	pbstrm->WriteShort(0);
 	pbstrm->WriteInt(0);
 
-	size_t ifeat;
+	size_t ifeatout = 0;   // index of feature output, taking duplicates into account
+
 	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
-		//	feature id
-		if (fxdVersion >= 0x00020000)
-			pbstrm->WriteInt(m_vpfeat[ifeat]->ID());
-		else
-			pbstrm->WriteShort(m_vpfeat[ifeat]->ID());
+		// Output an identical feature for each alternate ID.
+		std::vector<unsigned int> vnIDs;
+		m_vpfeat[ifeat]->AltIDs(vnIDs);  // main ID is first in the list
 
-		//	number of settings
-		pbstrm->WriteShort(m_vpfeat[ifeat]->NumberOfSettings());
+		for (iID = 0; iID < vnIDs.size(); iID++)
+		{
+			//	feature id
+			if (fxdVersion >= 0x00020000)
+				pbstrm->WriteInt(vnIDs[iID]);
+			else
+				pbstrm->WriteShort(vnIDs[iID]);
 
-		if (fxdVersion >= 0x00020000)
-			pbstrm->WriteShort(0); // pad bytes
+			//	number of settings
+			pbstrm->WriteShort(m_vpfeat[ifeat]->NumberOfSettings());
 
-		//	offset to setting--fill in later
-		vlOffsetPos.push_back(pbstrm->Position());
-		pbstrm->WriteInt(0);
+			if (fxdVersion >= 0x00020000)
+				pbstrm->WriteShort(0); // pad bytes
 
-		//	flags
-		pbstrm->WriteShort(0x8000);	// all our features are mutually exclusive
+			//	offset to setting--fill in later
+			vlOffsetPos.push_back(pbstrm->Position());
+			pbstrm->WriteInt(0);
 
-		//	name index for feature name
-		pbstrm->WriteShort(m_vpfeat[ifeat]->NameTblId());
+			//	flags
+			if (iID > 0)
+				pbstrm->WriteShort(0x8800);	// bit 0800 = hidden feature (probably a duplicate)
+			else
+				pbstrm->WriteShort(0x8000);	// bit 8000 - all our features are mutually exclusive
+
+			//	name index for feature name
+			pbstrm->WriteShort(m_vpfeat[ifeat]->NameTblId());
+
+			ifeatout++;
+		}
 	}
+
+	Assert(ifeatout == cfeatout);
+	Assert(vlOffsetPos.size() == cfeatout);
 
 	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
 	{
@@ -3412,10 +3436,18 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 
 	long lSavePos = pbstrm->Position();
 
+	ifeatout = 0;
 	for (ifeat = 0; ifeat < vnOffsets.size(); ifeat++)
 	{
-		pbstrm->SetPosition(vlOffsetPos[ifeat]);
-		pbstrm->WriteInt(vnOffsets[ifeat]);
+//		std::vector<unsigned int> vnIDs;
+//		m_vpfeat[ifeat]->AltIDs(vnIDs);
+		for (iID = 0; iID < m_vpfeat[ifeat]->NumAltIDs(); iID++)
+		{
+			pbstrm->SetPosition(vlOffsetPos[ifeatout]);
+			pbstrm->WriteInt(vnOffsets[ifeat]);
+
+			ifeatout++;
+		}
 	}
 
 	pbstrm->SetPosition(lSavePos);

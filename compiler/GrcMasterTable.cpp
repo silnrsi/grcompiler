@@ -201,7 +201,7 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 		if (psym->FieldIs(1, "id"))
 		{
 			//	feature.id
-			if (psym->FieldCount() == 2)
+			if (psym->FieldCount() >= 2)
 			{
 				unsigned int nID;
 				if (!pexp->ResolveToFeatureID(&nID))
@@ -216,13 +216,28 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 					pfeat->SetID(nID);	// set it anyway, to avoid extra error message
 				}
 				else
-					pfeat->SetID(nID);
+				{
+					if (psym->FieldCount() == 2) // main ID alternate, not alternate
+					{
+						if (pfeat->ID() != 0)
+							g_errorList.AddError(2168, pexp, "Duplicate main feature ID");
+						else
+							pfeat->SetID(nID);
+					}
+					else
+					{
+						std::string staAltName = psym->FieldAt(2);
+						if (staAltName.substr(0, 6) != "hidden")
+							g_errorList.AddWarning(2537, pexp,
+								"Alternate feature ID should be listed using 'id.hidden'");
+					}
+					pfeat->AddAltID(nID);
+				}
 			}
 			else
 				g_errorList.AddError(2149, pexp,
 					"Invalid feature id statement");
 		}
-
 		else if (psym->FieldIs(1, "default"))
 		{
 			//	feature.default

@@ -49,31 +49,40 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 	for (size_t ipfeat = 0; ipfeat < m_vpfeat.size(); ipfeat++)
 	{
 		GdlFeatureDefn * pfeat = m_vpfeat[ipfeat];
-		unsigned int nID = pfeat->ID();
-		if (setID.find(nID) != setID.end()) // is a member
+		std::vector<unsigned int> vnIDs;
+		pfeat->AltIDs(vnIDs);
+		for (size_t iID = 0; iID < vnIDs.size(); iID++)
 		{
-			char rgch[20];
-			if (nID > 0x00FFFFFF)
+			unsigned int nID = vnIDs[iID];
+			if (setID.find(nID) != setID.end()) // is a member
 			{
-				// What in the world is this code trying to do? Fix it...
-				char rgchID[5];
-				memcpy(rgch, &nID, 4);
-				rgchID[0] = rgch[3]; rgchID[1] = rgch[2]; rgchID[2] = rgch[1]; rgchID[3] = rgch[0];
-				rgchID[4] = 0;
-				std::string staTmp("'");
-				staTmp.append(rgchID);
-				staTmp.append("'");
-				memcpy(rgch, staTmp.data(), staTmp.length() + 1);
+				char rgch[20];
+				if (nID > 0x00FFFFFF)
+				{
+					// What in the world is this code trying to do? Convert a numerical ID to...??? Fix it...
+					char rgchID[5];
+					memcpy(rgch, &nID, 4);
+					rgchID[0] = rgch[3]; rgchID[1] = rgch[2]; rgchID[2] = rgch[1]; rgchID[3] = rgch[0];
+					rgchID[4] = 0;
+					std::string staTmp("'");
+					staTmp.append(rgchID);
+					staTmp.append("'");
+					memcpy(rgch, staTmp.data(), staTmp.length() + 1);
+				}
+				else
+					itoa(nID, rgch, 10);
+				g_errorList.AddError(3152, pfeat, "Duplicate feature ID: ", rgch);
 			}
 			else
-				itoa(nID, rgch, 10);
-			g_errorList.AddError(3152, pfeat, "Duplicate feature ID: ", rgch);
+				setID.insert(nID);
+
+			if (nID > 0x0000FFFF)
+				*pfxdFeatVersion = 0x00020000;
 		}
-		else
-			setID.insert(nID);
 
 		if (pfeat->ErrorCheck())
 		{
+			pfeat->SortFeatIDs();
 			pfeat->SortFeatSettings();
 			pfeat->SetStdStyleFlag();
 			pfeat->FillInBoolean(pcman->SymbolTable());
@@ -83,10 +92,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 			pfeat->RecordDebugInfo();
 		}
 
-		if (nID > 0x0000FFFF)
-			*pfxdFeatVersion = 0x00020000;
-
-		nInternalID++;
+		nInternalID++;  // note that duplicate features all have the same internal ID
 	}
 
 	if (m_vpfeat.size() > kMaxFeatures)

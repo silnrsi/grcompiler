@@ -155,6 +155,25 @@ void GdlFeatureDefn::SortFeatSettings()
 }
 
 /*----------------------------------------------------------------------------------------------
+	Put the name ID first in the list of alternates.
+----------------------------------------------------------------------------------------------*/
+void GdlFeatureDefn::SortFeatIDs()
+{
+	if (NumAltIDs() > 1)
+	{
+		for (size_t i = 1; i < m_vnIDs.size(); i++)
+		{
+			if (m_vnIDs[i] == this->m_nID)
+			{
+				m_vnIDs[i] = m_vnIDs[0];
+				m_vnIDs[0] = m_nID;
+				break;
+			}
+		}
+	}
+}
+
+/*----------------------------------------------------------------------------------------------
 	Determine if this style is the standard style; if so, set the flag.
 ----------------------------------------------------------------------------------------------*/
 void GdlFeatureDefn::SetStdStyleFlag()
