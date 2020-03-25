@@ -88,11 +88,11 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 			pfeat->FillInBoolean(pcman->SymbolTable());
 			pfeat->ErrorCheckContd();
 			pfeat->CalculateDefault();
-			pfeat->AssignInternalID(nInternalID);
+			pfeat->AssignInternalID(nInternalID); 
 			pfeat->RecordDebugInfo();
-		}
 
-		nInternalID++;  // note that duplicate features all have the same internal ID
+			nInternalID += vnIDs.size();  // each alternate ID has its own internal ID
+		}
 	}
 
 	if (m_vpfeat.size() > kMaxFeatures)

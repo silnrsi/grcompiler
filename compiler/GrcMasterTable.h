@@ -111,7 +111,7 @@ public:
 
 	//	Post-parser:
 protected:
-	void SetupFeatures(GdlFeatureDefn * pfeat);
+	void SetupFeatures(GdlFeatureDefn * pfeat, GrcSymbolTable * psymtbl);
 	void SetupGlyphAttrs(GdlGlyphClassDefn * pglfc);
 public:
 	void SetupNameDefns(NameDefnMap & hmNameMap);
@@ -180,7 +180,7 @@ public:
 
 public:
 	//	Post-parser:
-	void SetupFeatures();
+	void SetupFeatures(GrcSymbolTable * psymtbl);
 	void SetupGlyphAttrs();
 
 	//	Pre-compiler:

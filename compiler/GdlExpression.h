@@ -594,6 +594,8 @@ public:
 	virtual bool TestsJustification();
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
+	std::string StringValue() { return m_staValue; }
+
 	//	Compiler:
 	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,

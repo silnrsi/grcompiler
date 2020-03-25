@@ -159,7 +159,7 @@ GrcMasterValueList * GrcMasterTable::ValueListFor(Symbol psym)
     Set up the data and settings for all the features from the
 	master feature table.
 ----------------------------------------------------------------------------------------------*/
-void GrcMasterTable::SetupFeatures()
+void GrcMasterTable::SetupFeatures(GrcSymbolTable * psymtbl)
 {
 	for (ValueListMap::iterator itvlistmap = EntriesBegin();
 		itvlistmap != EntriesEnd();
@@ -173,7 +173,7 @@ void GrcMasterTable::SetupFeatures()
 		GdlFeatureDefn * pfeat = dynamic_cast<GdlFeatureDefn*>(psymFeatName->Data());
 		Assert(pfeat);
 
-		pmvl->SetupFeatures(pfeat);
+		pmvl->SetupFeatures(pfeat, psymtbl);
 	}
 }
 
@@ -181,7 +181,7 @@ void GrcMasterTable::SetupFeatures()
 	Initialize a GdlFeatureDefn with its settings from the
 	master feature table.
 ----------------------------------------------------------------------------------------------*/
-void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
+void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat, GrcSymbolTable * psymtbl)
 {
 	std::string fName = pfeat->Name();
 
@@ -232,6 +232,13 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat)
 								"Alternate feature ID should be listed using 'id.hidden'");
 					}
 					pfeat->AddAltID(nID);
+
+					// This is something of a kludge. Create a symbol that looks like "featname__abcd" where abcd is the
+					// string version of the ID.
+					GdlStringExpression * pexpString = dynamic_cast<GdlStringExpression *>(pexp);
+					if (pexpString) {
+						psym->CreateFeatAltIDSymbol(psymtbl, pfeat, pexpString);
+					}
 				}
 			}
 			else

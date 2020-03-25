@@ -136,6 +136,25 @@ Symbol GrcSymbolTable::AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFil
 }
 
 /*----------------------------------------------------------------------------------------------
+	Add a symbol representing an alternate feature name to the main symbol table.
+	The symbol is of the form f_fname_fid (eg, f_smallcaps_smcp).
+----------------------------------------------------------------------------------------------*/
+Symbol GrcSymbolTable::AddFeatureAltSymbol(GdlFeatureDefn * pfeat,
+	const GrcStructName & xns, GrpLineAndFile const& lnf)
+{
+	Assert(m_cLevel == 0);
+	Assert(xns.NumFields() == 1);
+
+	Symbol psymAdded = AddSymbolAux(xns, ksymtFeature, ksymtInvalid, lnf);
+	Assert(!psymAdded->HasData());
+	psymAdded->SetData(pfeat);
+	psymAdded->SetExpType(kexptNumber);
+
+	return psymAdded;
+
+}
+
+/*----------------------------------------------------------------------------------------------
     Add a symbol that is the name of a language to the main symbol table (if it is not already
 	there). Also, ensure that it has an GdlLanguageDefn as its data.
 ----------------------------------------------------------------------------------------------*/
@@ -1158,6 +1177,66 @@ bool GrcSymbolTableEntry::IsIgnorableOffsetAttr()
 	return (!IsSequenceAttr()
 		&& (m_staFieldName == "gpoint" || m_staFieldName == "xoffset"
 				|| m_staFieldName == "yoffset"));
+}
+
+/*----------------------------------------------------------------------------------------------
+	If the symbol is a feature ID represents one of the alternate IDs
+	for a feature, return the index of that alternate in the feature's list.
+	Such a name looks like featureName__idxx.
+	Otherwise return -1;
+
+	Must match CreateFeatAltIDSymbol.
+----------------------------------------------------------------------------------------------*/
+int GrcSymbolTableEntry::IsFeatAltID()
+{
+	Assert(FitsSymbolType(ksymtFeature));
+
+	GdlFeatureDefn * pfeat = this->FeatureDefnData();
+
+	if (!pfeat)
+		return -1;
+	if (m_staFieldName == pfeat->Name())
+		return 0;
+	if (m_staFieldName.substr(m_staFieldName.length() - 6, 2) != "__")
+		return -1;
+
+	//char ch = m_staFieldName[m_staFieldName.length() - 5];
+	//if (ch != '_')
+	//	return -1;
+	////ch = m_staFieldName[m_staFieldName.length() - 6];
+	//if (m_staFieldName[m_staFieldName.length() - 6] != '_')
+	//	return -1;
+
+	std::string staAltID = m_staFieldName.substr(m_staFieldName.length() - 4, 4);  // last four chars
+	GdlStringExpression expString(staAltID.c_str(), 0);
+	unsigned int nID;
+	expString.ResolveToFeatureID(&nID);
+
+	std::vector<unsigned int> vnIDs;
+	pfeat->AltIDs(vnIDs);
+	for (size_t i = 0; i < pfeat->NumAltIDs(); i++)
+	{
+		if (vnIDs[i] == nID)
+			return i;
+	}
+	return -1;
+}
+
+/*----------------------------------------------------------------------------------------------
+	Create a feature symbol that maps to an alternate IDs. It looks like featureName__idxx.
+
+	Must match IsFeatAltID.
+----------------------------------------------------------------------------------------------*/
+void GrcSymbolTableEntry::CreateFeatAltIDSymbol(GrcSymbolTable * psymtbl, GdlFeatureDefn * pfeat,
+	GdlStringExpression * pexpString)
+{
+	std::string staValue = pexpString->StringValue();
+	GrpLineAndFile lnf = pexpString->LineAndFile();
+	std::string staNewSymbol;
+	staNewSymbol.append(pfeat->Name());
+	staNewSymbol.append("__");
+	staNewSymbol.append(staValue);
+	psymtbl->AddFeatureAltSymbol(pfeat, staNewSymbol, lnf);
 }
 
 /*----------------------------------------------------------------------------------------------

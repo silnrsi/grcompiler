@@ -20,6 +20,7 @@ Description:
 class GrcSymbolTable;
 class GrcSymbolTableEntry;
 class GrcStructName;
+class GdlStringExpression;
 
 typedef GrcSymbolTableEntry* Symbol;	// hungarian: psym
 
@@ -168,6 +169,9 @@ public:
 	bool IsPseudoSlotAttr();
 	bool IsPassKeySlot();
 	bool IsIgnorableOffsetAttr();
+	
+	int IsFeatAltID();
+	void CreateFeatAltIDSymbol(GrcSymbolTable * psymtbl, GdlFeatureDefn * pfeat, GdlStringExpression * pexpString);
 
 	Symbol SubField(std::string);
 	bool HasSubFields()
@@ -348,6 +352,7 @@ public:
 	Symbol AddClassSymbol(const GrcStructName & xns, GrpLineAndFile const&,
 		GlyphClassType nodetyp = kglfctUnion);
 	Symbol AddFeatureSymbol(const GrcStructName & xns, GrpLineAndFile const&);
+	Symbol AddFeatureAltSymbol(GdlFeatureDefn * pfeat, const GrcStructName & xns, GrpLineAndFile const& lnf);
 	Symbol AddLanguageSymbol(const GrcStructName & xns, GrpLineAndFile const& lnf);
 	Symbol AddGlyphAttrSymbol(const GrcStructName & xns, GrpLineAndFile const&,
 		ExpressionType expt, bool fMetric = false);

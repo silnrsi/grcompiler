@@ -310,7 +310,7 @@ GdlGlyphClassDefn * GrcManager::AddAnonymousClass(GrpLineAndFile const& lnf)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::ProcessMasterTables()
 {
-	m_mtbFeatures->SetupFeatures();
+	m_mtbFeatures->SetupFeatures(m_psymtbl);
 	m_mtbGlyphAttrs->SetupGlyphAttrs();
 	m_mvlNameStrings->SetupNameDefns(m_prndr->NameAssignmentsMap());
 }
