@@ -1,0 +1,68 @@
+			SILGRAPHITE COMPILER
+
+The SIL Graphite compiler builds a Graphite enabled font from a smart font
+description, written in GDL (Graphite Description Language) and a TrueType
+font by adding extra TrueType tables to it which the Graphite engine can 
+interpret.
+
+INSTALL
+
+UNIX style systems:
+
+The grcompiler project uses GNU autobuild tools to manage building and 
+installation, please see the INSTALL file for more details.
+
+Win32 based systems:
+
+to build release binaries:
+
+    nmake -f makefile.mak
+    
+to build debug binaries:
+
+    nmake CFG=DEBUG -f makefile.mak
+    
+In each case two executabales are built:
+    gdlpp	- The GDL preprocessor
+    grcompiler	- The GDL to smart font compiler.
+
+Cleaning up, to remove all .obj files without removing the binaries:
+
+    nmake -f makefile.mak clean
+
+To remove the binaries as well:
+
+    nmake -f makefile.mak realclean
+
+this deletes the libraries as well.
+
+
+ICU
+
+The Graphite compiler requires library modules from ICU. We are currently
+using version 3.6. You will need to download the ICU source code from the
+following web site:
+
+    http://www.icu-project.org/download/
+    
+There is a VisualStudio file in the source\allinone directory that can be
+used to build the binaries. The "common" project is the one to build.
+
+The only modules that are needed at this time are icuuc.lib and icuuc36.dll
+(icuucd.lib and icuuc36d.dll for the debug version). The .lib files
+are apparently stubs that call the DLLs. The following source header
+files are needed as well:
+
+- uchar.h (#included in main.h)
+- pwin32.h
+- uconfig.h
+- umachine.h
+- urename.h
+- utf8.h
+- utf16.h
+- utf.h
+- utf_old.h
+- utypes.h
+- uversion.h
+
+The makefile expects to find these in icu/source/common.

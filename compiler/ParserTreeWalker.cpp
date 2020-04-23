@@ -104,7 +104,10 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	    return false;
 	}
 	strcpy(pszPreProcErr, staOutputPath.c_str());
-	strcpy(pszPreProcErr + cchOutputPath, _T("\\$_gdlpp_stderr.txt"));
+	if (cchOutputPath > 0)
+		{strcpy(pszPreProcErr + cchOutputPath, _T("\\$_gdlpp_stderr.txt"));}
+	else
+		{strcpy(pszPreProcErr + cchOutputPath, _T("$_gdlpp_stderr.txt"));}		
 	FILE * pFilePreProcErr = fopen(pszPreProcErr, "w+");
 	if (!pFilePreProcErr)
 	{
@@ -121,32 +124,16 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	}
 	
 	PROCESS_INFORMATION procinfo = {0};
-
 	achar rgchErrorCode[20];
 
-#ifdef UNICODE
-	// Note: this bit of code has not been tested; also we need to add the path name.
-	wchar_t rgchrFileName[200];
-	Platform_AnsiToUnicode(staFileName.data(), staFileName.length(), rgchrFileName, 200);
-	std::wstring strCommandLine(L"gdlpp "); // no, use staGdlppFile instead
-	if (m_fVerbose)
-		strCommandLine = L"\" -V \"";
-	strCommandLine += rgchrFileName;
-	strCommandLine += L"\"";
-#else
 	std::string strCommandLine(_T("\""));
 	strCommandLine += staGdlppFile;
-	//if (m_fVerbose)
-	//	 strCommandLine += _T("gdlpp -V ");
-	//else
-	//	strCommandLine += _T("gdlpp ");
 	if (m_fVerbose)
 		strCommandLine += _T("\" -V \"");
 	else
 		strCommandLine += _T("\" \"");
 	strCommandLine += staFileName;
 	strCommandLine += _T("\"");
-#endif
 
 	strCommandLine += _T(" $_temp.gdl");	// output file
 
