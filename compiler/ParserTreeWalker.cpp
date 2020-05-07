@@ -263,15 +263,18 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 	schar * pch = rgch;
 	//	Skip the first 4 lines--copyright info, etc.
 	unsigned int nLinesSkipped = 0;
-	while (nLinesSkipped < 4 && (unsigned int)(pch - rgch) < cbRead)
+	while (nLinesSkipped < 2 && (unsigned int)(pch - rgch) < cbRead)
 	{
-		if (*pch == 0x0D && *(pch+1) == 0x0A)
+		if (*pch == 0x0A)
 		{
 			nLinesSkipped++;
-			pch++;
+			// pch++;
 		}
 		pch++;
 	}
+
+	// example of line to parse:
+	// cpp: "PigLatinInput.gdl", line 17: Error: #endif must be in an #if
 	schar * pchFileMin;
 	schar * pchFileLim;
 	schar * pchLineNoMin;
@@ -286,8 +289,10 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 
 	while ((unsigned int)(pch - rgch) < cbRead)
 	{
-		pchFileMin = pch;
-		while (*pch != '(')
+		pchFileMin = pch + strlen(_T("cpp: \""));
+		Assert(strcmp(pch, _T("cpp: \"")));
+		pch = pchFileMin;
+		while (*pch != '\"')
 		{
 			pch++;
 			if ((unsigned int)(pch - rgch) >= cbRead)
@@ -297,9 +302,10 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 			}
 		}
 		pchFileLim = pch;
-		pch++;	// skip the '('
-		pchLineNoMin = pch;
-		while (*pch != ')')
+
+		pch++;	// skip the '"'
+		pchLineNoMin = pch + strlen(_T(", line "));
+		while (*pch != ':')
 		{
 			pch++;
 			if ((unsigned int)(pch - rgch) >= cbRead)
@@ -309,18 +315,16 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 			}
 		}
 		pchLineNoLim = pch;
-		pch++;	// skip the ')'
+
+		pch++;	// skip the ':'
 
 		Assert(*pch == ' ');
-		Assert(*(pch + 1) == ':');
-		Assert(*(pch + 2) == ' ');
 
-		while (*pch == ' ' || *pch == ':')
+		while (*pch == ' ')
 			pch++;
 
 		bool fFatal;
-
-		if (*pch == 'w')
+		if (*pch == 'W')
 		{
 			Assert(*(pch+1) == 'a');
 			Assert(*(pch+2) == 'r');
@@ -328,13 +332,13 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 		}
 		else
 		{
-			Assert((*pch == 'e' && *(pch+1) == 'r' && *(pch+2) == 'r') ||	// error
-				(*pch == 'f' && *(pch+1) == 'a' && *(pch+2) == 't'));		// fatal error
+			Assert((*pch == 'E' && *(pch+1) == 'r' && *(pch+2) == 'r') ||	// error
+				(*pch == 'F' && *(pch+1) == 'a' && *(pch+2) == 't'));		// fatal error
 			fFatal = true;
 		}
 
 		pchMsgMin = pch;
-		while (*pch != 0x0D)
+		while (*pch != 0x0A)
 			pch++;
 		pchMsgLim = pch;
 
