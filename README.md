@@ -57,7 +57,7 @@ build all three executables and can run the regression tests.
     CMake will automatically detect your build system and generate a project for
     that. You may wish to specify a build system other than the automatically
     detected one -- for example, if you have multiple versions of Visual Studio
-    installed or another toolchain, such as MinGW, you wish build under. To do this
+    installed or another toolchain, such as MinGW, you wish to build under. To do this
     pass the `-G <generator name>` option to the initial cmake configuration call,
     for example for Visual Studio 2019:  
     ```
@@ -154,7 +154,8 @@ Project is advisable.
 If development with cmake is preferred, in Visual Studio 2019,`File-Open-CMake...`
 can be used to open the CMakeCache.txt file. Using `File-Open Folder...' is not
 advisable, since the Ninja project generator will be used. It seems buggy.
-It's harder to specify the arguments to use for debugging with cmake development.
+FWIW, it's harder to specify the arguments to use for debugging with cmake 
+development compared to using the sln file.
 
 ### Older build systems
 
@@ -241,8 +242,8 @@ The Graphite compiler requires library modules from ICU.
 - Nmake:  
     You will need to download the ICU binaries from the following web  
     site: http://site.icu-project.org/download/  
-    - Create an icu folder under the grcompiler folder and unzip the
-    archive into it.  
+    - Create an icu folder under this project's top level folder and unzip
+    the archive into it.  
     - makefile.mak copies the needed binaries to the folder where grcompiler
     is built. You may need to modify the file names for the icu/bin/*.dll
     files in makefile.mak since the file names include the version number
