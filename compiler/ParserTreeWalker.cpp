@@ -332,13 +332,13 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 		}
 		else
 		{
-			Assert((*pch == 'E' && *(pch+1) == 'r' && *(pch+2) == 'r') ||	// error
-				(*pch == 'F' && *(pch+1) == 'a' && *(pch+2) == 't'));		// fatal error
+			Assert((*pch == 'E' && *(pch+1) == 'r' && *(pch+2) == 'r') ||	// Error
+				(*pch == 'F' && *(pch+1) == 'a' && *(pch+2) == 't'));		// Fatal error
 			fFatal = true;
 		}
 
 		pchMsgMin = pch;
-		while (*pch != 0x0A)
+		while (*pch != 0x0A && (unsigned int)(pch - rgch) < cbRead)
 			pch++;
 		pchMsgLim = pch;
 
@@ -360,7 +360,7 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 
 
 LNextLine:
-		while (*pch != 0x0A)
+		while (*pch != 0x0A && (unsigned int)(pch - rgch) < cbRead)
 			pch++;
 		pch++;
 	}
