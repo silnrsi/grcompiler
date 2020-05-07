@@ -8,20 +8,21 @@ interpret.
 This project contains three executables: grcompiler, gdlpp, and 
 GrcRegressionTest. This project also depends on the International Components
 for Unicode (ICU) library. ANTLR is used to generate the GDL parser, though 
-most developers can use the provided generated files. See the 
-compiler/antlr folder.
+most developers can use the provided generated files. (See the 
+compiler/Grammar/Antlr folder.) LZ4 is also used to compress some TrueType 
+tables.
 
 - gdlpp is a preprocessor for the GDL language that grcompiler invokes during
-compilation. On Windows it should be specified using the GDLPP environment
-variable (TIP: Do not put quotes around the path to gdlpp.exe. DOS-style short
-path naming may be needed.) or placed in the same folder as grcompiler.
-On Linux, it should be on the user's path.
+compilation. On Linux, it should be on the user's path. On Windows, the full
+path to it should be specified using the GDLPP environment variable
+(TIP: Do not put quotes around the path to gdlpp.exe. DOS-style short path 
+naming may be needed.) or placed in the same folder as grcompiler.
 
 - GrcRegressionTest is used to regression test grcompiler against a set of
 reference GDL files and fonts. The regression tests are typically ran using project
 files (see below).
 
-## GDLPP details
+### GDLPP details
 
 WARNING: File inclusion is relative to the current working directory when
 grcompiler (or gdlpp) is ran. (It is NOT relative to the folder containing the
@@ -48,29 +49,29 @@ build all three executables and can run the regression tests.
     cd build
     ```
 
-2. Generate project files for your build system
+2. Generate project files for your build system  
     You may need to specify the CMAKE_BUILD_TYPE as some Windows generators require it.
     ```
     cmake -DCMAKE_BUILD_TYPE=Release ..
     ```
     CMake will automatically detect your build system and generate a project for
     that. You may wish to specify a build system other than the automatically
-    detected one, for example, if you have multiple versions of Visual Studio
-    installed or other toolchain such as MinGW you wish build under. To do this
+    detected one -- for example, if you have multiple versions of Visual Studio
+    installed or another toolchain, such as MinGW, you wish build under. To do this
     pass the `-G <generator name>` option to the initial cmake configuration call,
-    for example for Visual Studio 8:  
+    for example for Visual Studio 2019:  
     ```
     cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
     ```
-    (Typically, for Visual Studio 2019, 64-bit tools will be used to build 
+    (Typically, for Visual Studio 2019, this will configure 64-bit tools to build
     64-bit .exe files.)
 
     or for MinGW:  
     ```
     cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release ..
     ```
-    TIPS: You can get a list of generators CMakes supports with `cmake --help`.
-    If you want to run `cmake` with different options, you should do so in an 
+    TIPS: You can get a list of generators CMakes supports with `cmake --help`.  
+    If you want to run `cmake` with different options, you should do so in an
     empty folder.
 
 3. Build grcompiler binaries
@@ -98,7 +99,7 @@ build all three executables and can run the regression tests.
     only really makes sense on a Unix system or if build as a dependency
     as part of another Windows project.
 
-5. Rebuilds
+5. Rebuilds  
     You can clean the project with:
     ```
     cmake --build . --target clean
@@ -169,7 +170,7 @@ The CMake approach above is strongly encouraged.
 The choice of 32- or 64-bit build tools and targets is made by building
 from the appropriate Visual Studio command prompt.
 
-To build grcomiler release binaries, from the compiler folder:  
+To build grcomiler release binaries, from the `compiler` folder:  
     ```
     nmake -f makefile.mak
     ```
@@ -178,7 +179,8 @@ To build grcompiler debug binaries:
     ```
     nmake CFG=DEBUG -f makefile.mak
     ```
-WARNING: A debug build for ICU from source will be needed too.  
+
+WARNING: A debug build for ICU from source will be needed too (see below).  
 
 Cleaning up, to remove all .obj files without removing the binaries:  
     ```
@@ -190,22 +192,23 @@ To remove the binaries as well:
     nmake -f makefile.mak realclean
     ```
 
-this deletes the libraries as well.  
+This deletes the libraries as well.  
 
-To build gdlpp, from the preprocessor folder:  
-....```
-....nmake -f gdlpp.mak
-....```
+To build gdlpp, from the `preprocessor` folder:  
+    ```
+    nmake -f gdlpp.mak
+    ```
 
 To build GrcRegressionTest and run regression tests,  
-from the test/GrcRegressionTest folder:  
-....```
+from the `test/GrcRegressionTest` folder:  
+    ```
     nmake -f Makefile.vc
     cd fonts
     nmake -f regtest.mak
-....```
-To use Visual Studio, setup a new makefile project and add cmds for building,
-debugging, testing using the makefiles indicated above.
+    ```
+
+To use Visual Studio, setup a new makefile project and add commands
+for building, testing, and debugging using the makefiles indicated above.
 
 ## DEPENDENCIES
 ### ICU
@@ -233,18 +236,18 @@ The Graphite compiler requires library modules from ICU.
 - CMake:  
     The CMakeLists.txt will automatically fetch the icu4c.v140 nuget package
     for you and also a copy of nuget if it's not installed. Modify
-    packages.config.in to update the version.  
+    `packages.config.in` to update the version.  
 
 - Nmake:  
     You will need to download the ICU binaries from the following web  
-    site: http://www.icu-project.org/download/  
-    Create an icu folder under the repository root folder and unzip the
+    site: http://site.icu-project.org/download/  
+    - Create an icu folder under the grcompiler folder and unzip the
     archive into it.  
-    makefile.mak copies the needed binaries to the folder where grcompiler
+    - makefile.mak copies the needed binaries to the folder where grcompiler
     is built. You may need to modify the file names for the icu/bin/*.dll
-    files in makefile.mak since the file names includes the version numberof
-    of icu.
-    The icu project only supplies release versions of the binaries. So, to
+    files in makefile.mak since the file names include the version number
+    of icu.  
+    - The icu project only supplies release versions of the binaries. So, to
     build a debug version of grcompiler, icu binaries have to be built
     from source and makefile.mak adjusted to use them. In the icu source,
     there is a VisualStudio file in the source\allinone directory that can be
