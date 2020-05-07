@@ -217,14 +217,14 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat, GrcSymbolTable * 
 				}
 				else
 				{
-					if (psym->FieldCount() == 2) // main ID alternate, not alternate
+					if (psym->FieldCount() == 2) // main ID, not alternate
 					{
 						if (pfeat->ID() != 0)
 							g_errorList.AddError(2168, pexp, "Duplicate main feature ID");
 						else
 							pfeat->SetID(nID);
 					}
-					else
+					else // alternate
 					{
 						std::string staAltName = psym->FieldAt(2);
 						if (staAltName.substr(0, 6) != "hidden")

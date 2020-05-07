@@ -97,11 +97,19 @@ bool GdlFeatureDefn::ErrorCheck()
 	//	Feature with no ID: fatal error
 	if (m_fIDSet == false)
 	{
-		g_errorList.AddError(3158, this,
-			"No id specified for feature ",
-			m_staName);
-		m_fFatalError = true;
-		return false;
+		if (m_nID == 0 && m_vnIDs.size() > 0) // use the first alternate if that's all there is
+		{
+			m_nID = m_vnIDs[0];
+			m_fIDSet = true;
+		}
+		else
+		{
+			g_errorList.AddError(3158, this,
+				"No id specified for feature ",
+				m_staName);
+			m_fFatalError = true;
+			return false;
+		}
 	}
 
 	//	Duplicate IDs in feature settings: fatal error
