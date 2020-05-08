@@ -25,6 +25,7 @@ Compiler versions:
 	5.0		- collision fixing (Glat table 3.0, Gloc table 1.1; feat-set operator;
 				Silf table 4.1 for collision fixing, 5.0 for compression)
 	5.1		- disallow duplicates in LHS classes that are used for substitution; added -e option
+	5.2		- many changes (see GitHub commit history)
 				
 -------------------------------------------------------------------------------*//*:End Ignore*/
 
@@ -145,7 +146,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 5.1";
+		std::cout << "Graphite Compiler Version 5.2";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -153,7 +154,7 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (c) 2002-2019, by SIL International.  All rights reserved.\n";
+			<< "Copyright (c) 2002-2020, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)
