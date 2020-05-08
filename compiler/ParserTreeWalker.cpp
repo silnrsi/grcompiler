@@ -289,8 +289,11 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 
 	while ((unsigned int)(pch - rgch) < cbRead)
 	{
-		pchFileMin = pch + strlen(_T("cpp: \""));
-		Assert(strcmp(pch, _T("cpp: \"")));
+		// pchFileMin = pch + strlen(_T("cpp: \"")); _T is undefined on Linux
+		pchFileMin = pch + 6;
+		// Assert(strcmp(pch, _T("cpp: \"")));
+		Assert((*pch == 'c' && *(pch + 1) == 'p' && *(pch + 2) == 'p' &&
+			*(pch + 3) == ':' && *(pch + 4) == ' ' && *(pch + 5) == '\"'));
 		pch = pchFileMin;
 		while (*pch != '\"')
 		{
@@ -304,7 +307,8 @@ void GrcManager::RecordPreProcessorErrors(FILE * pFilePreProcErr)
 		pchFileLim = pch;
 
 		pch++;	// skip the '"'
-		pchLineNoMin = pch + strlen(_T(", line "));
+		// pchLineNoMin = pch + strlen(_T(", line "));
+		pchLineNoMin = pch + 7;
 		while (*pch != ':')
 		{
 			pch++;
