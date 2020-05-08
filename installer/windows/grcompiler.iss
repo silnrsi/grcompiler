@@ -3,18 +3,18 @@
 
 [Setup]
 AppName=Graphite Compiler
-AppVerName=Graphite Compiler 5.1
+AppVerName=Graphite Compiler 5.2
 AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
 AppUpdatesURL=http://graphite.sil.org/
-DefaultDirName=C:Program Files\Graphite Compiler
+DefaultDirName=C:\Program Files (x86)\Graphite Compiler
 ; Start Menu item name:
 DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
 AllowNoIcons=yes
 ; installer file name:
-OutputBaseFilename=grcompiler_setup_5_1
+OutputBaseFilename=grcompiler_setup_5_2
 Compression=lzma
 SolidCompression=yes
 
@@ -25,26 +25,27 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Graphite1\grcompiler\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\release\icuuc63.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\release\icudt63.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\release\icuuc65.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\release\icudt65.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; Don't need this because the ICU stuff is built with /MT:
 ;Source: "C:\Windows\system32\msvcr71.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\installer\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\installer\gr_buildbat.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\CompilerDebugFiles.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\GDL_BNF.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\GTF_6_0.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\StackMachineCommands.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\doc\TransductionLog.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\installer\example\stddr.ttf"; DestDir: "{app}\example"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\installer\example\allcaps.gdl"; DestDir: "{app}\example"; Flags: ignoreversion
-Source: "C:\Graphite1\grcompiler\installer\example\makecaps.wpx"; DestDir: "{app}\example"; Flags: ignoreversion
+Source: "..\..\release\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\installer\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "..\..\installer\gr_buildbat.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\doc\CompilerDebugFiles.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\DuplicateFeatureIDs.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\GDL_BNF.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\GTF_6_0.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\StackMachineCommands.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\doc\TransductionLog.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
+Source: "..\..\installer\example\stddr.ttf"; DestDir: "{app}\example"; Flags: ignoreversion
+Source: "..\..\installer\example\allcaps.gdl"; DestDir: "{app}\example"; Flags: ignoreversion
+Source: "..\..\installer\example\allcaps_test.html"; DestDir: "{app}\example"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
