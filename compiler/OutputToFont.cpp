@@ -3409,7 +3409,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 			pbstrm->WriteInt(0);
 
 			//	flags
-			if (iID > 0)
+			if (iID > 0 || ! m_vpfeat[ifeat]->HasPublicID())
 				pbstrm->WriteShort(0x8800);	// bit 0800 = hidden feature (probably a duplicate)
 			else
 				pbstrm->WriteShort(0x8000);	// bit 8000 - all our features are mutually exclusive

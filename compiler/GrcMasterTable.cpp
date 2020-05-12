@@ -221,8 +221,10 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat, GrcSymbolTable * 
 					{
 						if (pfeat->ID() != 0)
 							g_errorList.AddError(2168, pexp, "Duplicate main feature ID");
-						else
+						else {
 							pfeat->SetID(nID);
+							pfeat->SetHasPublicID(true);
+						}
 					}
 					else // alternate
 					{

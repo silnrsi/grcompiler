@@ -1187,27 +1187,30 @@ bool GrcSymbolTableEntry::IsIgnorableOffsetAttr()
 
 	Must match CreateFeatAltIDSymbol.
 ----------------------------------------------------------------------------------------------*/
-int GrcSymbolTableEntry::IsFeatAltID()
-{
+int GrcSymbolTableEntry::FeatAltIDIndex() {
 	Assert(FitsSymbolType(ksymtFeature));
-
 	GdlFeatureDefn * pfeat = this->FeatureDefnData();
+	return GrcSymbolTableEntry::FeatAltIDIndex_forFeat(pfeat, this->m_staFieldName);
+}
 
+// static version (not actually needed):
+int GrcSymbolTableEntry::FeatAltIDIndex_forFeat(GdlFeatureDefn * pfeat, std::string featID)
+{
 	if (!pfeat)
 		return -1;
-	if (m_staFieldName == pfeat->Name())
+	if (featID == pfeat->Name())
 		return 0;
-	if (m_staFieldName.substr(m_staFieldName.length() - 6, 2) != "__")
+	if (featID.substr(featID.length() - 6, 2) != "__")
 		return -1;
 
-	//char ch = m_staFieldName[m_staFieldName.length() - 5];
+	//char ch = m_staFieldName[featID.length() - 5];
 	//if (ch != '_')
 	//	return -1;
-	////ch = m_staFieldName[m_staFieldName.length() - 6];
-	//if (m_staFieldName[m_staFieldName.length() - 6] != '_')
+	////ch = m_staFieldName[featID.length() - 6];
+	//if (m_staFieldName[featID.length() - 6] != '_')
 	//	return -1;
 
-	std::string staAltID = m_staFieldName.substr(m_staFieldName.length() - 4, 4);  // last four chars
+	std::string staAltID = featID.substr(featID.length() - 4, 4);  // last four chars
 	GdlStringExpression expString(staAltID.c_str(), 0);
 	unsigned int nID;
 	expString.ResolveToFeatureID(&nID);
@@ -1225,7 +1228,7 @@ int GrcSymbolTableEntry::IsFeatAltID()
 /*----------------------------------------------------------------------------------------------
 	Create a feature symbol that maps to an alternate IDs. It looks like featureName__idxx.
 
-	Must match IsFeatAltID.
+	Must match FeatAltIDIndex.
 ----------------------------------------------------------------------------------------------*/
 void GrcSymbolTableEntry::CreateFeatAltIDSymbol(GrcSymbolTable * psymtbl, GdlFeatureDefn * pfeat,
 	GdlStringExpression * pexpString)

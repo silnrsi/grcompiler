@@ -3134,7 +3134,7 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 		vbOutput.push_back(kopPushFeat);
 		GdlFeatureDefn * pfeat = m_psymName->FeatureDefnData();
 		Assert(pfeat);
-		int nAltOffset = m_psymName->IsFeatAltID();
+		int nAltOffset = m_psymName->FeatAltIDIndex();
 		Assert(nAltOffset >= 0);
 		vbOutput.push_back(pfeat->InternalID() + nAltOffset);
 		vbOutput.push_back(nSelOffset);

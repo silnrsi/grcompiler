@@ -155,6 +155,7 @@ public:
 		m_fFatalError = false;
 		m_pfsetDefault = NULL;
 		m_wNameTblId = 0xFFFF;
+		m_fHasPublicID = false;
 	}
 
 	~GdlFeatureDefn()
@@ -195,6 +196,8 @@ public:
 		m_vnIDs.push_back(n);
 	}
 
+	void SetHasPublicID(bool f) { m_fHasPublicID = f;  }
+
 
 	//	Getters:
 	std::string Name()
@@ -226,6 +229,8 @@ public:
 	GdlFeatureSetting * FindSetting(std::string sta);
 	GdlFeatureSetting * FindOrAddSetting(std::string, GrpLineAndFile & lnf);
 	GdlFeatureSetting * FindSettingWithValue(int n);
+
+	bool HasPublicID() { return m_fHasPublicID; }
 
 public:
 	//	Pre-compiler:
@@ -292,6 +297,8 @@ protected:
 
 	bool m_fStdLang;		// true if this is the special system "lang" feature whose
 							// possible values are language IDs.
+
+	bool m_fHasPublicID;	// set to true if there is a non-hidden ID
 
 	//	for compiler:
 	bool m_fFatalError;		// fatal error in this feature definition
