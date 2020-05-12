@@ -203,9 +203,9 @@ To build gdlpp, from the `preprocessor` folder:
 To build GrcRegressionTest and run regression tests,  
 from the `test/GrcRegressionTest` folder:  
     ```
-    nmake -f Makefile.vc
-    cd fonts
-    nmake -f regtest.mak
+    nmake -f Makefile.vc  
+    cd fonts  
+    nmake -f regtest.mak  
     ```
 
 To use Visual Studio, setup a new makefile project and add commands
