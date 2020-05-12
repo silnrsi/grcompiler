@@ -1,3 +1,9 @@
+grcompiler (5.2-1ubuntu1) bionic; urgency=medium
+
+  * New upstream release
+
+ -- Nicolas Spalinger <nicolas.spalinger@sil.org>  Tue, 12 May 2020 10:26:15 +0200
+
 grcompiler (5.1-1~palaso1) trusty; urgency=medium
 
   * New upstream release
