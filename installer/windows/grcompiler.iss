@@ -26,8 +26,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "..\..\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\release\icuuc65.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\release\icudt65.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\release\icuuc66.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\release\icudt66.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; Don't need this because the ICU stuff is built with /MT:
 ;Source: "C:\Windows\system32\msvcr71.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\release\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion

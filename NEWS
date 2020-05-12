@@ -1,0 +1,17 @@
+XX October 2015  Sharon Correll
+  Release v 5.0
+  
+18 August 2014  Sharon Correll
+	Release v 4.3.1
+
+26 July 2012  Sharon Correll
+	Release v 4.2
+	
+4 Oct 2011  Sharon Correll
+	Release v 4.1
+	
+6 Jan 2006	Tim Eves
+	Succefully built on Mac OS X, binary runs, though probably not able 
+	to produce Graphite fonts yet due potential TruType font file reading
+	problems.
+
