@@ -1189,18 +1189,14 @@ bool GrcSymbolTableEntry::IsIgnorableOffsetAttr()
 ----------------------------------------------------------------------------------------------*/
 int GrcSymbolTableEntry::FeatAltIDIndex() {
 	Assert(FitsSymbolType(ksymtFeature));
-	GdlFeatureDefn * pfeat = this->FeatureDefnData();
-	return GrcSymbolTableEntry::FeatAltIDIndex_forFeat(pfeat, this->m_staFieldName);
-}
 
-// static version (not actually needed):
-int GrcSymbolTableEntry::FeatAltIDIndex_forFeat(GdlFeatureDefn * pfeat, std::string featID)
-{
+	GdlFeatureDefn * pfeat = this->FeatureDefnData();
+
 	if (!pfeat)
 		return -1;
-	if (featID == pfeat->Name())
+	if (m_staFieldName == pfeat->Name())
 		return 0;
-	if (featID.substr(featID.length() - 6, 2) != "__")
+	if (m_staFieldName.substr(m_staFieldName.length() - 6, 2) != "__")
 		return -1;
 
 	//char ch = m_staFieldName[featID.length() - 5];
@@ -1210,7 +1206,7 @@ int GrcSymbolTableEntry::FeatAltIDIndex_forFeat(GdlFeatureDefn * pfeat, std::str
 	//if (m_staFieldName[featID.length() - 6] != '_')
 	//	return -1;
 
-	std::string staAltID = featID.substr(featID.length() - 4, 4);  // last four chars
+	std::string staAltID = m_staFieldName.substr(m_staFieldName.length() - 4, 4);  // last four chars
 	GdlStringExpression expString(staAltID.c_str(), 0);
 	unsigned int nID;
 	expString.ResolveToFeatureID(&nID);

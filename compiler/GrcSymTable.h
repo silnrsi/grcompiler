@@ -171,7 +171,6 @@ public:
 	bool IsIgnorableOffsetAttr();
 	
 	int FeatAltIDIndex();
-	static int GrcSymbolTableEntry::FeatAltIDIndex_forFeat(GdlFeatureDefn *, std::string);
 	void CreateFeatAltIDSymbol(GrcSymbolTable * psymtbl, GdlFeatureDefn * pfeat, GdlStringExpression * pexpString);
 
 	Symbol SubField(std::string);
