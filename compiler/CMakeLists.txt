@@ -1,29 +1,19 @@
 project(compiler)
+cmake_policy(SET CMP0074 NEW)
 
-if (NUGET AND NOT ICU_ROOT)
-    file(GLOB ICU_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140.[0-9]*")
-    set(ICU_ROOT ${ICU_ROOT}/build/native)
+if (DEFINED NUGET)
+    file(GLOB _icu_nuget_libs_paths "${CMAKE_BINARY_DIR}/packages/icu4c.v*/build/native/lib/*/*")
+    file(GLOB _icu_nuget_incs_paths "${CMAKE_BINARY_DIR}/packages/icu4c.v*/build/native/include")
+    file(GLOB ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v*.redist.*/build/native/bin")
+    set(ICU_REDIST_ROOT "${ICU_REDIST_ROOT}/${CMAKE_VS_PLATFORM_NAME}")
 
-    find_library(ICU_I18N_LIBRARY 
-        NAMES icuin icuind icui18n icui18nd
-        PATHS "${ICU_ROOT}/lib/${CMAKE_VS_PLATFORM_NAME}/${CMAKE_BUILD_TYPE}"
-        NO_DEFAULT_PATH)
-    find_library(ICU_UC_LIBRARY
-        NAMES icuuc icuucd
-        PATHS "${ICU_ROOT}/lib/${CMAKE_VS_PLATFORM_NAME}/${CMAKE_BUILD_TYPE}"
-        NO_DEFAULT_PATH)
-    find_path(ICU_INCLUDE_DIR
-        NAMES "unicode/utypes.h"
-        PATHS ${ICU_ROOT}
-        PATH_SUFFIXES include
-        NO_DEFAULT_PATH
-        DOC "ICU include directory")
-
-    file(GLOB ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v140.redist.[0-9]*")
-    set(ICU_REDIST_ROOT "${ICU_REDIST_ROOT}/build/native/bin/${CMAKE_VS_PLATFORM_NAME}")
-else()
-	find_package(ICU REQUIRED COMPONENTS uc i18n)
+    set(ICU_ROOT
+        ${_icu_nuget_libs_paths}
+        ${_icu_nuget_incs_paths}
+        ${ICU_ROOT})
 endif()
+
+find_package(ICU REQUIRED COMPONENTS uc i18n)
 
 add_subdirectory(Generic)
 add_subdirectory(Grammar)
@@ -65,11 +55,13 @@ target_link_libraries(grcompiler ${ICU_I18N_LIBRARY} ${ICU_UC_LIBRARY} generic p
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_compile_options(grcompiler PRIVATE /Zc:wchar_t- /W3 /EHsc)
-    
-    add_custom_command(TARGET grcompiler POST_BUILD 
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${ICU_REDIST_ROOT}/$<CONFIGURATION>"
-            $<TARGET_FILE_DIR:grcompiler>)
+
+    if (DEFINED NUGET)
+        add_custom_command(TARGET grcompiler POST_BUILD 
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${ICU_REDIST_ROOT}/$<CONFIGURATION>"
+                $<TARGET_FILE_DIR:grcompiler>)
+    endif()
 endif()
 
 install(TARGETS grcompiler RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
