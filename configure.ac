@@ -5,7 +5,7 @@ AC_CONFIG_SRCDIR(compiler/GrpParser.g)
 AC_CONFIG_AUX_DIR(admin)
 
 # setup automake
-AM_INIT_AUTOMAKE([foreign -Wall -Werror])
+AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
 
 # System checks.
