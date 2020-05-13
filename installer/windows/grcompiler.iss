@@ -36,7 +36,6 @@ Source: "..\..\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
 ;Source: "..\..\installer\gr_buildbat.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\doc\CompilerDebugFiles.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\CppDoc.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "..\..\doc\DuplicateFeatureIDs.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\GDL.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\GDL_BNF.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion

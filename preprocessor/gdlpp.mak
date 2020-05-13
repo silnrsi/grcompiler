@@ -12,10 +12,10 @@ INTDIR=..\release_temp
 
 all : "$(OUTDIR)\$(TARGET).exe"
 
-CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "NDEBUG" /D "WIN32" /D "UNIX" /D "unix" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "NDEBUG" /D "WIN32" /D "UNIX" /D "unix" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /D "_CRT_SECURE_NO_WARNINGS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:no /pdb:"$(OUTDIR)\$(TARGET).pdb" /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" 
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
-	
+
 !ELSEIF  "$(CFG)" == "DEBUG"
 
 OUTDIR=..\debug
@@ -23,7 +23,7 @@ INTDIR=..\debug_temp
 
 all : "$(OUTDIR)\$(TARGET).exe" "$(OUTDIR)\$(TARGET).bsc"
 
-CPP_PROJ=/nologo /MLd /W3 /GX /Gm /ZI /Od /D "_DEBUG" /D "WIN32" /D "UNIX" /D "unix" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FR"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MLd /W3 /GX /Gm /ZI /Od /D "_DEBUG" /D "WIN32" /D "UNIX" /D "unix" /D "_CONSOLE" /D "_MBCS" /D "GDLPP" /D "_CRT_SECURE_NO_WARNINGS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FR"$(INTDIR)\\" /FD /GZ /c 
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\$(TARGET).pdb" /debug /pdbtype:sept /machine:I386 /out:"$(OUTDIR)\$(TARGET).exe" 
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\$(TARGET).bsc" 
 

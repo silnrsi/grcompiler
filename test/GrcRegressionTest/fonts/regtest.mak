@@ -3,6 +3,7 @@
 
 RTEXE = ..\Debug
 GRCEXE = ..\..\..\Release
+# GRCEXE = ..\..\..\Debug
 FONTS = .
 
 TEST_FONTS =\
@@ -26,7 +27,6 @@ deleteTestFonts :
 	- del .\grcregtest.log
 	- del .\regtest.log
 
-# Note: something in grcompiler chokes when we use $(FONTS)\SchTest.ttf
 
 $(FONTS)\SchTest.ttf :
 	$(GRCEXE)\grcompiler -D -v4 $(FONTS)\SchMain.gdl $(FONTS)\SchInput.ttf SchTest.ttf
