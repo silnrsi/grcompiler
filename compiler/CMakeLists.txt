@@ -11,9 +11,11 @@ if (DEFINED NUGET)
         ${_icu_nuget_libs_paths}
         ${_icu_nuget_incs_paths}
         ${ICU_ROOT})
+    message(STATUS "Using NuGet ICU package.")
 endif()
 
 find_package(ICU REQUIRED COMPONENTS uc i18n)
+message(STATUS "ICU Libraries: " ${ICU_VERSION})
 
 add_subdirectory(Generic)
 add_subdirectory(Grammar)
@@ -56,10 +58,11 @@ target_link_libraries(grcompiler ${ICU_I18N_LIBRARY} ${ICU_UC_LIBRARY} generic p
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_compile_options(grcompiler PRIVATE /Zc:wchar_t- /W3 /EHsc)
 
-    if (DEFINED NUGET)
+    if (DEFINED ICU_REDIST_ROOT)
+        get_filename_component(ICU_REDIST_ROOT ${ICU_REDIST_ROOT} ABSOLUTE)
         add_custom_command(TARGET grcompiler POST_BUILD 
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${ICU_REDIST_ROOT}/$<CONFIGURATION>"
+                "${ICU_REDIST_ROOT}/$<$<BOOL:${NUGET}>:CONFIGURATION>"
                 $<TARGET_FILE_DIR:grcompiler>)
     endif()
 endif()

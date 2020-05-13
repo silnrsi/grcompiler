@@ -237,8 +237,16 @@ The Graphite compiler requires library modules from ICU.
 - CMake:  
     The CMakeLists.txt will automatically fetch the icu4c.v140 nuget package
     for you and also a copy of nuget if it's not installed. Modify
-    `packages.config.in` to update the version.  
-
+    `packages.config.in` to update the version.  Setting the ICU_ROOT CMake 
+    variable to the semicolon separated list of directories which contain the 
+    `.lib` stub files for the ICU DLLS and the include directory allows you to 
+    use the official pre-built ICU distribution. In addition you will need to 
+    set ICU_REDIST_ROOT to the path where the DLLs are if you want testing to 
+    work as the build script will need to copy them.
+    .e.g if you unzip the downloaded ICU distribution into a dir called `icu` 
+    in the top of the source tree you would pass these to `cmake`:
+    `-DICU_ROOT="..\icu\lib;..\icu\include"` and 
+    `-DICU_REDIST_ROOT="..\icu\bin"` in addition to the usual arguments.
 - Nmake:  
     You will need to download the ICU binaries from the following web  
     site: http://site.icu-project.org/download/  
