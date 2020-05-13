@@ -53,3 +53,19 @@ test/GrcRegressionTest/fonts/gdlerr.txt
 # VS Code
 .vscode/
 *.code-workspace
+
+# Project-specific stuff
+.vs/grcompiler/v15*
+debug_temp/
+release_temp/
+icu/
+test/GrcRegressionTest/Debug
+test/GrcRegressionTest/Debug_*
+test/GrcRegressionTest/Release
+test/GrcRegressionTest/debug_temp
+test/GrcRegressionTest/fonts/dbg_Charis
+test/GrcRegressionTest/fonts/dbg_Padauk
+test/GrcRegressionTest/fonts/dbg_PigLatin_v2
+test/GrcRegressionTest/fonts/dbg_PigLatin_v3
+test/GrcRegressionTest/fonts/dbg_Sch
+test/GrcRegressionTest/fonts/SAVE
