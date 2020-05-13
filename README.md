@@ -200,7 +200,7 @@ To build gdlpp, from the `preprocessor` folder:
     nmake -f gdlpp.mak
     ```
 
-To build GrcRegressionTest and run regression tests,  
+To build GrcRegressionTest and run regression tests, 
 from the `test/GrcRegressionTest` folder:  
     ```
     nmake -f Makefile.vc  
@@ -244,11 +244,11 @@ The Graphite compiler requires library modules from ICU.
     set ICU_REDIST_ROOT to the path where the DLLs are if you want testing to 
     work as the build script will need to copy them.
     .e.g if you unzip the downloaded ICU distribution into a dir called `icu` 
-    in the top of the source tree you would pass these to `cmake`:
+    in the top of the source tree you would pass these to `cmake`:  
     `-DICU_ROOT="..\icu\lib;..\icu\include"` and 
     `-DICU_REDIST_ROOT="..\icu\bin"` in addition to the usual arguments.
 - Nmake:  
-    You will need to download the ICU binaries from the following web  
+    You will need to download the ICU binaries from the following web 
     site: http://site.icu-project.org/download/  
     - Create an icu folder under this project's top level folder and unzip
     the archive into it.  
