@@ -2,27 +2,27 @@
 
 The SIL Graphite compiler builds a Graphite enabled font from a smart font
 description, written in GDL (Graphite Description Language) and a TrueType
-font by adding extra TrueType tables to it which the Graphite engine can 
+font by adding extra TrueType tables to it which the Graphite engine can
 interpret.
 
-This project contains three executables: grcompiler, gdlpp, and 
+This project contains three executables: grcompiler, gdlpp, and
 GrcRegressionTest. This project also depends on the International Components
-for Unicode (ICU) library. ANTLR is used to generate the GDL parser, though 
-most developers can use the provided generated files. (See the 
-compiler/Grammar/Antlr folder.) LZ4 is also used to compress some TrueType 
+for Unicode (ICU) library. ANTLR is used to generate the GDL parser, though
+most developers can use the provided generated files. (See the
+compiler/Grammar/Antlr folder.) LZ4 is also used to compress some TrueType
 tables.
 
 - gdlpp is a preprocessor for the GDL language that grcompiler invokes during
 compilation. On Linux, it should be on the user's path. On Windows, the full
 path to it should be specified using the GDLPP environment variable
-(TIP: Do not put quotes around the path to gdlpp.exe. DOS-style short path 
+(TIP: Do not put quotes around the path to gdlpp.exe. DOS-style short path
 naming may be needed.) or placed in the same folder as grcompiler.
 
 - GrcRegressionTest is used to regression test grcompiler against a set of
 reference GDL files and fonts. The regression tests are typically ran using project
 files (see below).
 
-### GDLPP details
+### GDLPP #include details
 
 WARNING: File inclusion is relative to the current working directory when
 grcompiler (or gdlpp) is ran. (It is NOT relative to the folder containing the
@@ -36,7 +36,7 @@ DOS-style short path naming if needed.
 ## BUILDING
 
 The grcompiler can currently be built with several build systems. The primary
-cross-platform build system is CMake.  We require CMake 3.0 or above. It will
+cross-platform build system is CMake.  We require CMake 3.11 or above. It will
 build all three executables and can run the regression tests.
 
 ### CMake
@@ -58,13 +58,13 @@ build all three executables and can run the regression tests.
     that. You may wish to specify a build system other than the automatically
     detected one -- for example, if you have multiple versions of Visual Studio
     installed or another toolchain, such as MinGW, you wish to build under. To do this
-    pass the `-G <generator name>` option to the initial cmake configuration call,
-    for example for Visual Studio 2019:  
+    pass the `-G <generator name>` option to the initial cmake configuration call.
+    On Windows it's often desirable to build 32-bit executables. To do this, pass
+    the `-A Win32` option.
+    For example for Visual Studio 2019:  
     ```
-    cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
+    cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release -A Win32 ..
     ```
-    (Typically, for Visual Studio 2019, this will configure 64-bit tools to build
-    64-bit .exe files.)
 
     or for MinGW:  
     ```
@@ -72,7 +72,8 @@ build all three executables and can run the regression tests.
     ```
     TIPS: You can get a list of generators CMakes supports with `cmake --help`.  
     If you want to run `cmake` with different options, you should do so in an
-    empty folder.
+    empty folder.  
+    See below if you want to use a specific version of ICU.
 
 3. Build grcompiler binaries
     ```
@@ -200,13 +201,11 @@ To build gdlpp, from the `preprocessor` folder:
     nmake -f gdlpp.mak
     ```
 
-To build GrcRegressionTest and run regression tests, 
+To build GrcRegressionTest and run regression tests,  
 from the `test/GrcRegressionTest` folder:  
-    ```
-    nmake -f Makefile.vc  
-    cd fonts  
-    nmake -f regtest.mak  
-    ```
+    `nmake -f Makefile.vc`  
+    `cd fonts`  
+    `nmake -f regtest.mak`  
 
 To use Visual Studio, setup a new makefile project and add commands
 for building, testing, and debugging using the makefiles indicated above.
