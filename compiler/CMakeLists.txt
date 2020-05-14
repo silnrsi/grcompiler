@@ -62,7 +62,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         get_filename_component(ICU_REDIST_ROOT ${ICU_REDIST_ROOT} ABSOLUTE)
         add_custom_command(TARGET grcompiler POST_BUILD 
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${ICU_REDIST_ROOT}/$<$<BOOL:${NUGET}>:CONFIGURATION>"
+                "${ICU_REDIST_ROOT}/$<$<BOOL:${NUGET}>:$<CONFIGURATION>>"
                 $<TARGET_FILE_DIR:grcompiler>)
     endif()
 endif()
