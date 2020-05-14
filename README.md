@@ -153,7 +153,7 @@ Project is advisable.
 - Right clicking on RUN_TESTS and Building will run the regression tests.
 
 If development with cmake is preferred, in Visual Studio 2019,`File-Open-CMake...`
-can be used to open the CMakeCache.txt file. Using `File-Open Folder...' is not
+can be used to open the CMakeCache.txt file. Using `File-Open Folder...` is not
 advisable, since the Ninja project generator will be used. It seems buggy.
 FWIW, it's harder to specify the arguments to use for debugging with cmake 
 development compared to using the sln file.
@@ -172,41 +172,41 @@ The CMake approach above is strongly encouraged.
 The choice of 32- or 64-bit build tools and targets is made by building
 from the appropriate Visual Studio command prompt.
 
-To build grcomiler release binaries, from the `compiler` folder:  
-    ```
-    nmake -f makefile.mak
-    ```
+To build grcomiler release binaries, from the `compiler` folder:
+```
+nmake -f makefile.mak
+```
 
-To build grcompiler debug binaries:  
-    ```
-    nmake CFG=DEBUG -f makefile.mak
-    ```
+To build grcompiler debug binaries:
+```
+nmake CFG=DEBUG -f makefile.mak
+```
 
 WARNING: A debug build for ICU from source will be needed too (see below).
 
-Cleaning up, to remove all .obj files without removing the binaries:  
-    ```
-    nmake -f makefile.mak clean
-    ```
+Cleaning up, to remove all .obj files without removing the binaries:
+```
+nmake -f makefile.mak clean
+```
 
-To remove the binaries as well:  
-    ```
-    nmake -f makefile.mak realclean
-    ```
+To remove the binaries as well:
+```
+nmake -f makefile.mak realclean
+```
 This deletes the libraries as well.  
 
-To build gdlpp, from the `preprocessor` folder:  
-    ```
-    nmake -f gdlpp.mak
-    ```
+To build gdlpp, from the `preprocessor` folder:
+```
+nmake -f gdlpp.mak
+```
 
 To build GrcRegressionTest and run regression tests, from the 
-`test/GrcRegressionTest` folder:  
-    ```
-    nmake -f Makefile.vc
-    cd fonts
-    nmake -f regtest.mak
-    ```
+`test/GrcRegressionTest` folder:
+```  
+nmake -f Makefile.vc  
+cd fonts  
+nmake -f regtest.mak  
+```  
 
 To use Visual Studio, setup a new makefile project and add commands
 for building, testing, and debugging using the makefiles indicated above.
@@ -254,15 +254,15 @@ You should use your distributions package manager to install icu-dev package.
     then it will automatically set `ICU_URL` to be recent release and proceed 
     as above, by downloading and using that archive.  
 - Nmake:
-    - Create an icu folder under this project's top level folder and unzip
-      the archive into it.  
-    - makefile.mak copies the needed binaries to the folder where grcompiler
-      is built. You may need to modify the file names for the icu/bin/*.dll
-      files in makefile.mak since the file names include the version number
-      of icu.  
-    - The icu project only supplies release versions of the binaries. So, when
-      building a debug version of grcompiler, it is linked to release versions
-      of the ICU dlls. To link to debug versions instead, icu binaries have to be
-      built from source and makefile.mak adjusted to use them. In the icu source,
-      there is a VisualStudio file in the source\allinone directory that can be
-      used to build the binaries. The "common" project is the one to build.
+  - Create an icu folder under this project's top level folder and unzip
+    the archive into it.  
+  - makefile.mak copies the needed binaries to the folder where grcompiler
+    is built. You may need to modify the file names for the icu/bin/*.dll
+    files in makefile.mak since the file names include the version number
+    of icu.  
+  - The icu project only supplies release versions of the binaries. So, when
+    building a debug version of grcompiler, it is linked to release versions
+    of the ICU dlls. To link to debug versions instead, icu binaries have to be
+    built from source and makefile.mak adjusted to use them. In the icu source,
+    there is a VisualStudio file in the source\allinone directory that can be
+    used to build the binaries. The "common" project is the one to build.
