@@ -14,16 +14,7 @@ if (NOT CMAKE_BUILD_TYPE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE Release)
 endif()
 
-string(REGEX MATCH "^https?://" _fetch_icu ${ICU_ROOT})
-if (_fetch_icu)
-FetchContent_Declare(
-    icu
-
-)
-
-endif()
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+if  (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS -DWIN32 -D_WINDOWS)
 
     if (NOT DEFINED ICU_ROOT)
@@ -32,7 +23,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
             file(DOWNLOAD https://dist.nuget.org/win-x86-commandline/latest/nuget.exe ${CMAKE_BINARY_DIR}/nuget.exe)
             find_program(NUGET nuget PATHS ${CMAKE_BINARY_DIR})
             if (NOT NUGET)
-                message(FATAL_ERROR "CMake could not find the nuget command line tool. Please install it or provide ICU_ROOT!")
+                message(FATAL_ERROR "CMake could not find the nuget command line tool. Please install it or provide ICU_ROOT.")
             endif()
         endif()
         
