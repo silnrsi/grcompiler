@@ -20,7 +20,7 @@ endif()
 if  (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS -DWIN32 -D_WINDOWS)
 
-    if (NOT DEFINED ICU_ROOT)
+    if (NOT DEFINED ICU_ROOT AND NOT DEFINED FETCHCONTENT_SOURCE_DIR_ICU)
         set(ICU_URL https://github.com/unicode-org/icu/releases/download/release-66-1/icu4c-66_1-Win32-MSVC2017.zip)
     endif()
 endif()

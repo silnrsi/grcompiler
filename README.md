@@ -19,8 +19,8 @@ path to it should be specified using the GDLPP environment variable
 naming may be needed.) or placed in the same folder as grcompiler.
 
 - GrcRegressionTest is used to regression test grcompiler against a set of
-reference GDL files and fonts. The regression tests are typically ran using project
-files (see below).
+reference GDL files and fonts. The regression tests are typically ran using 
+project files (see below).
 
 ### GDLPP #include details
 
@@ -129,20 +129,20 @@ You will need libc++ and libc++-abi packages.
 
 #### Windows specific details
 
-Visual Studio 2017 added support for handling CMake projects. You can find
+Visual Studio 2017 added support for handling CMake projects. You can find 
 more information and instructions at 
 [CMake projects in Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019).
 
-TIPS:
-- After generating the project files and optionally doing inital building and
-testing (above), the easiest way for Visual Studio developers to proceed is to
+TIPS:  
+- After generating the project files and optionally doing inital building and 
+testing (above), the easiest way for Visual Studio developers to proceed is to 
 open the `grcompiler.sln` file that cmake generates.
 
-- The Solution Explorer will contain projects for `grcompiler`, `gdlpp`, and
-`GrcRegressionTest`, as well as several other projects, some of which are just
+- The Solution Explorer will contain projects for `grcompiler`, `gdlpp`, and 
+`GrcRegressionTest`, as well as several other projects, some of which are just 
 empty standard test targets that cmake generates.
 
-- Do NOT switch the Solution Explorer to Folder View as that will cause cmake
+- Do NOT switch the Solution Explorer to Folder View as that will cause cmake 
 project generation to be redone using the Ninja generator (see below).
 
 - Right clicking on the grcompiler project and setting it as the Startup
@@ -182,7 +182,7 @@ To build grcompiler debug binaries:
     nmake CFG=DEBUG -f makefile.mak
     ```
 
-WARNING: A debug build for ICU from source will be needed too (see below).  
+WARNING: A debug build for ICU from source will be needed too (see below).
 
 Cleaning up, to remove all .obj files without removing the binaries:  
     ```
@@ -193,7 +193,6 @@ To remove the binaries as well:
     ```
     nmake -f makefile.mak realclean
     ```
-
 This deletes the libraries as well.  
 
 To build gdlpp, from the `preprocessor` folder:  
@@ -201,11 +200,13 @@ To build gdlpp, from the `preprocessor` folder:
     nmake -f gdlpp.mak
     ```
 
-To build GrcRegressionTest and run regression tests,  
-from the `test/GrcRegressionTest` folder:  
-    `nmake -f Makefile.vc`  
-    `cd fonts`  
-    `nmake -f regtest.mak`  
+To build GrcRegressionTest and run regression tests, from the 
+`test/GrcRegressionTest` folder:  
+    ```
+    nmake -f Makefile.vc
+    cd fonts
+    nmake -f regtest.mak
+    ```
 
 To use Visual Studio, setup a new makefile project and add commands
 for building, testing, and debugging using the makefiles indicated above.
@@ -213,16 +214,33 @@ for building, testing, and debugging using the makefiles indicated above.
 ## DEPENDENCIES
 ### ICU
 
+The grcompiler executable has a hard build dependency on ICU.  This 
+dependency may be satisfied via a system supplied dev package as is common on 
+Linux, or via a pre-built binary distribution archive available from the  the 
+[ICU4C project](http://site.icu-project.org/download/). 
+
+- CMake:
+    This will automatically download an unpack any archive URL passed to it 
+    via `ICU_URL`. It will search for ICU includes and libraries in the root 
+    of that archive expecting to find `include`, `lib` and `bin` directories.
+    If those dirs are deeper inside the archive (e.g. inside usr/local) then 
+    passing the relative archive path in `ICU_ROOT` will cause it search 
+    there. If you have a local binary copy, e.g. if you are patching ICU too, 
+    you can have it use that instead by passing the path in 
+    `FETCHCONTENT_SOURCE_DIR_ICU`. Lastly passing just `ICU_ROOT` as a 
+    semi-colon separated list of paths to search allows you to use a ICU 
+    distribution where executables, includes and libraries aren't neatly 
+    arranged. This might be the case if you want to pass both debug and 
+    release builds of ICU on Windows, in which case it will link the 
+    appopriate version.
+
 #### Linux
 
 You should use your distributions package manager to install icu-dev package.
 
 - CMake:
-    It will automatically find the system dev package installed by you package
-    manager. Setting the CMake variable ICU_ROOT to an abolute path will
-    override this process and use the built copy located at the provided path.
-    This can be set by passing `-DICU_ROOT=<path to built ICU files>` to the
-    `cmake` configuration invocation.
+    By default it will automatically find the system dev package installed by 
+    your package manager via the use of pkg-config.  
 - autotools:
     This will auto detect the icu installation via the use of pkg-config
     To overide the detection you need to provide compiler and linker flags via
@@ -231,34 +249,20 @@ You should use your distributions package manager to install icu-dev package.
 
 #### Windows
 
-The Graphite compiler requires library modules from ICU.
-
-- CMake:  
-    The CMakeLists.txt will automatically fetch the icu4c.v140 nuget package
-    for you and also a copy of nuget if it's not installed. Modify
-    `packages.config.in` to update the version.  Setting the ICU_ROOT CMake
-    variable to the semicolon separated list of directories which contain the
-    `.lib` stub files for the ICU DLLS and the include directory allows you to
-    use the official pre-built ICU distribution. In addition you will need to
-    set ICU_REDIST_ROOT to the path where the DLLs are if you want testing to
-    work as the build script will need to copy them.
-    .e.g if you unzip the downloaded ICU distribution into a dir called `icu`
-    in the top of the source tree you would pass these to `cmake`:  
-    `-DICU_ROOT="..\icu\lib;..\icu\include"` and 
-    `-DICU_REDIST_ROOT="..\icu\bin"` in addition to the usual arguments.
-- Nmake:  
-    You will need to download the ICU binaries from the following web
-    site: http://site.icu-project.org/download/  
+- CMake:
+    If no `ICU_URL` or `FETCHCONTENT_SOURCE_DIR_ICU` parameter are passed 
+    then it will automatically set `ICU_URL` to be recent release and proceed 
+    as above, by downloading and using that archive.  
+- Nmake:
     - Create an icu folder under this project's top level folder and unzip
-    the archive into it.  
+      the archive into it.  
     - makefile.mak copies the needed binaries to the folder where grcompiler
-    is built. You may need to modify the file names for the icu/bin/*.dll
-    files in makefile.mak since the file names include the version number
-    of icu.  
+      is built. You may need to modify the file names for the icu/bin/*.dll
+      files in makefile.mak since the file names include the version number
+      of icu.  
     - The icu project only supplies release versions of the binaries. So, when
-    building a debug version of grcompiler, it is linked to release versions
-    of the ICU dlls. To link to debug versions instead, icu binaries have to be
-    built from source and makefile.mak adjusted to use them. In the icu source,
-    there is a VisualStudio file in the source\allinone directory that can be
-    used to build the binaries. The "common" project is the one to build.
-    Good luck!
+      building a debug version of grcompiler, it is linked to release versions
+      of the ICU dlls. To link to debug versions instead, icu binaries have to be
+      built from source and makefile.mak adjusted to use them. In the icu source,
+      there is a VisualStudio file in the source\allinone directory that can be
+      used to build the binaries. The "common" project is the one to build.
