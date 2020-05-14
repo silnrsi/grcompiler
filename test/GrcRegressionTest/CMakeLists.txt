@@ -25,7 +25,7 @@ function(compile_test FONT VERSION PSNAME)
     add_test(NAME compile_${FONT}
         COMMAND grcompiler -D -v${VERSION} ${ARGN} -e ${PROJECT_BINARY_DIR}/${FONT}.gdlerr.txt ${FONT_SOURCE_DIR}/${_input}Main.gdl ${FONT_SOURCE_DIR}/${_input}Input.ttf ${FONT}.ttf ${PSNAME})
     set_tests_properties(compile_${FONT} PROPERTIES
-        ENVIRONMENT GDLPP=$<TARGET_FILE:gdlpp>
+        ENVIRONMENT "GDLPP=$<TARGET_FILE:gdlpp>;LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ICU_INCLUDE_DIR}/../lib"
 #        ATTACHED_FILES ${PROJECT_BINARY_DIR}/${FONT}.gdlerr.log
         REQUIRED_FILES "${FONT_SOURCE_DIR}/${_input}Input.ttf;${FONT_SOURCE_DIR}/${_input}Main.gdl"
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
@@ -50,21 +50,14 @@ function(compile_test FONT VERSION PSNAME)
 endfunction()
 
 function(get_icu_dirs)
-    if(ICU_INCLUDE_DIR AND EXISTS "${ICU_INCLUDE_DIR}/unicode/uvernum.h")
-        file(STRINGS "${ICU_INCLUDE_DIR}/unicode/uvernum.h" icu_header_str
-        REGEX "^#define[\t ]+U_ICU_VERSION[\t ]+\".*\".*")
-
-        string(REGEX REPLACE "^#define[\t ]+U_ICU_VERSION[\t ]+\"([^ \\n.]*)(\.[^ \\n]*)?\".*"
-        "\\1" icu_version_string "${icu_header_str}")
-    endif()
-
+    string(REGEX MATCH "^[0-9]+" icu_major_version ${ICU_VERSION})
     file(GLOB icuders RELATIVE ${FONT_SOURCE_DIR} CONFIGURE_DEPENDS 
         ${FONT_SOURCE_DIR}/icu*)
     list(TRANSFORM icuders REPLACE "icu([0-9]+)$" "\\1")
     list(SORT icuders)
     list(REVERSE icuders)
     foreach(ver IN LISTS icuders)
-        if (${ver} LESS_EQUAL ${icu_version_string})
+        if (${ver} LESS_EQUAL ${icu_major_version})
             list(APPEND ICUDIRS "${ver}")
         endif()
     endforeach()

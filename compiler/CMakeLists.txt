@@ -1,21 +1,29 @@
 project(compiler)
 cmake_policy(SET CMP0074 NEW)
 
-if (DEFINED NUGET)
-    file(GLOB _icu_nuget_libs_paths "${CMAKE_BINARY_DIR}/packages/icu4c.v*/build/native/lib/*/*")
-    file(GLOB _icu_nuget_incs_paths "${CMAKE_BINARY_DIR}/packages/icu4c.v*/build/native/include")
-    file(GLOB ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v*.redist.*/build/native/bin")
-    set(ICU_REDIST_ROOT "${ICU_REDIST_ROOT}/${CMAKE_VS_PLATFORM_NAME}")
+if (DEFINED ICU_URL)
+    FetchContent_Declare(icubinaries URL ${ICU_URL})
 
-    set(ICU_ROOT
-        ${_icu_nuget_libs_paths}
-        ${_icu_nuget_incs_paths}
-        ${ICU_ROOT})
-    message(STATUS "Using NuGet ICU package.")
+    FetchContent_GetProperties(icubinaries)
+    if (NOT icubinaries_POPULATED)
+        FetchContent_Populate(icubinaries)
+    endif()
+
+    if (icubinaries_POPULATED)
+        set(ICU_ROOT ${icubinaries_SOURCE_DIR}/${ICU_ROOT})
+    else()
+        set(ICU_ROOT "")
+    endif()
 endif()
 
-find_package(ICU REQUIRED COMPONENTS uc i18n)
+find_package(ICU REQUIRED COMPONENTS uc i18n data)
 message(STATUS "ICU Libraries: " ${ICU_VERSION})
+get_target_property(_icuuc_location ICU::uc IMPORTED_LOCATION)
+get_target_property(_icui18n_location ICU::i18n IMPORTED_LOCATION)
+get_target_property(_icudata_location ICU::data IMPORTED_LOCATION)
+message("ICU uc lib: " ${_icuuc_location})
+message("ICU i18n lib: " ${_icui18n_location})
+message("ICU data lib: " ${_icudata_location})
 
 add_subdirectory(Generic)
 add_subdirectory(Grammar)
@@ -53,16 +61,20 @@ add_executable(grcompiler
     PostParser.cpp 
     $<TARGET_OBJECTS:TtfUtil>
     main.cpp)
-target_link_libraries(grcompiler ${ICU_I18N_LIBRARY} ${ICU_UC_LIBRARY} generic parser lz4)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_compile_options(grcompiler PRIVATE /Zc:wchar_t- /W3 /EHsc)
+endif()
 
-    if (DEFINED ICU_REDIST_ROOT)
-        get_filename_component(ICU_REDIST_ROOT ${ICU_REDIST_ROOT} ABSOLUTE)
+target_link_libraries(grcompiler ICU::uc ICU::i18n generic parser lz4)
+
+if (icubinaries_POPULATED)
+    if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         add_custom_command(TARGET grcompiler POST_BUILD 
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${ICU_REDIST_ROOT}/$<$<BOOL:${NUGET}>:$<CONFIGURATION>>"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                $<TARGET_FILE:ICU::uc>
+                $<TARGET_FILE:ICU::i18n>
+                $<TARGET_FILE:ICU::data>
                 $<TARGET_FILE_DIR:grcompiler>)
     endif()
 endif()
