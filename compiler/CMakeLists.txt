@@ -1,4 +1,4 @@
-project(compiler)
+project(compiler VERSION 5.2)
 cmake_policy(SET CMP0074 NEW)
 
 if (DEFINED NUGET)

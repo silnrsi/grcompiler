@@ -1,4 +1,4 @@
-project(preprocessor)
+project(preprocessor VERSION 1.5.1)
 
 add_executable(gdlpp cpp1.c cpp2.c cpp3.c cpp4.c cpp5.c cpp6.c memory.c usecpp.c)
 target_compile_definitions(gdlpp PRIVATE 

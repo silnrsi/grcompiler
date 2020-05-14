@@ -40,5 +40,3 @@ add_subdirectory(doc)
 add_subdirectory(preprocessor)
 add_subdirectory(compiler)
 add_subdirectory(test)
-
-set(version 5.1)
