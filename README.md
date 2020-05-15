@@ -19,19 +19,24 @@ path to it should be specified using the GDLPP environment variable
 naming may be needed.) or placed in the same folder as grcompiler.
 
 - GrcRegressionTest is used to regression test grcompiler against a set of
-reference GDL files and fonts. The regression tests are typically ran using project
-files (see below).
+reference GDL files and fonts. The regression tests are typically ran using
+project files (see below).
 
 ### GDLPP #include details
 
-WARNING: File inclusion is relative to the current working directory when
-grcompiler (or gdlpp) is ran. (It is NOT relative to the folder containing the
-including file.)
+WARNING: On Windows, file inclusion is relative to the current working
+directory when grcompiler (or gdlpp) is ran **if the path to the including file
+is specified using backslashes**. (It is NOT relative to the folder containing
+the including file.) Linux-style forward slash path separators should be used
+even on Windows to avoid this, especially on the grcompiler command line where
+the path to a gdl file is specified.
 
 It's possible to specify a folder that gdlpp will use to find included files
-(such as stddef.gdh). Set the GDLPP_PREFS environment variable to 
+(such as stddef.gdh). Set the GDLPP_PREFS environment variable to
 `-I<folder path>`. There must be no space after `I` and no quote marks. Use
-DOS-style short path naming if needed.
+DOS-style short path naming if the path contains spaces. On Linux,
+`/usr/share/grcompiler` (PKGDATADIR) will be first in the include paths
+searched. Typically stddef.gdh will be installed there.
 
 ## BUILDING
 
@@ -182,7 +187,7 @@ To build grcompiler debug binaries:
     nmake CFG=DEBUG -f makefile.mak
     ```
 
-WARNING: A debug build for ICU from source will be needed too (see below).  
+TIP: A debug build for ICU from source may be needed too (see below).  
 
 Cleaning up, to remove all .obj files without removing the binaries:  
     ```
