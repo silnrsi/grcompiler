@@ -24,12 +24,12 @@ project files (see below).
 
 ### GDLPP #include details
 
-WARNING: On Windows, file inclusion is relative to the current working
-directory when grcompiler (or gdlpp) is ran **if the path to the including file
-is specified using backslashes**. (It is NOT relative to the folder containing
-the including file.) Linux-style forward slash path separators should be used
-even on Windows to avoid this, especially on the grcompiler command line where
-the path to a gdl file is specified.
+WARNING: On Windows, a longstanging bug has recently been fixed. File inclusion
+will now be relative to the including file. Users who previously did inclusion
+based on the current working directory will see changes if the current
+working director differs from the location of the including file. (Previously
+on Windows, file inclusion was relative to the current working directory when
+the path to the including file was specified using backslashes.)
 
 It's possible to specify a folder that gdlpp will use to find included files
 (such as stddef.gdh). Set the GDLPP_PREFS environment variable to
