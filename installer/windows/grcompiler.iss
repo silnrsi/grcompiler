@@ -41,7 +41,6 @@ Source: "..\..\doc\GDL_BNF.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\GraphiteOverview.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\GTF_6_0.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\doc\StackMachineCommands.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
-Source: "..\..\doc\TransductionLog.pdf"; DestDir: "{app}\doc"; Flags: ignoreversion
 Source: "..\..\installer\example\stddr.ttf"; DestDir: "{app}\example"; Flags: ignoreversion
 Source: "..\..\installer\example\allcaps.gdl"; DestDir: "{app}\example"; Flags: ignoreversion
 Source: "..\..\installer\example\allcaps_test.html"; DestDir: "{app}\example"; Flags: ignoreversion
