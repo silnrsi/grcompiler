@@ -214,21 +214,21 @@ for building, testing, and debugging using the makefiles indicated above.
 ## DEPENDENCIES
 ### ICU
 
-The grcompiler executable has a hard build dependency on ICU.  This 
-dependency may be satisfied via a system supplied dev package as is common on 
-Linux, or via a pre-built binary distribution archive available from the  the 
+The grcompiler executable has a hard build dependency on ICU. This
+dependency may be satisfied via a system supplied dev package as is common on
+Linux, or via a pre-built binary distribution archive available from the
 [ICU4C project](http://site.icu-project.org/download/). 
 
 - CMake:
-    This will automatically download an unpack any archive URL passed to it 
+    This will automatically download and unpack any archive URL passed to it
     via `ICU_URL`. It will search for ICU includes and libraries in the root 
     of that archive expecting to find `include`, `lib` and `bin` directories.
     If those dirs are deeper inside the archive (e.g. inside usr/local) then 
-    passing the relative archive path in `ICU_ROOT` will cause it search 
+    passing the relative archive path in `ICU_ROOT` will cause it to search
     there. If you have a local binary copy, e.g. if you are patching ICU too, 
     you can have it use that instead by passing the path in 
     `FETCHCONTENT_SOURCE_DIR_ICU`. Lastly passing just `ICU_ROOT` as a 
-    semi-colon separated list of paths to search allows you to use a ICU 
+    semi-colon separated list of paths to search allows you to use an ICU
     distribution where executables, includes and libraries aren't neatly 
     arranged. This might be the case if you want to pass both debug and 
     release builds of ICU on Windows, in which case it will link the 
@@ -250,9 +250,9 @@ You should use your distributions package manager to install icu-dev package.
 #### Windows
 
 - CMake:
-    If no `ICU_URL` or `FETCHCONTENT_SOURCE_DIR_ICU` parameter are passed 
-    then it will automatically set `ICU_URL` to be recent release and proceed 
-    as above, by downloading and using that archive.  
+    If no `ICU_URL`, `FETCHCONTENT_SOURCE_DIR_ICU` or `ICU_ROOT` parameter is
+    passed then it will automatically set `ICU_URL` to a recent release and
+    proceed as above, by downloading and using that archive.
 - Nmake:
   - Create an icu folder under this project's top level folder and unzip
     the archive into it.  
