@@ -1,20 +1,23 @@
 project(compiler VERSION 5.2)
 cmake_policy(SET CMP0074 NEW)
 
-if (DEFINED NUGET)
-    file(GLOB _icu_nuget_libs_paths "${CMAKE_BINARY_DIR}/packages/icu4c.v*/build/native/lib/*/*")
-    file(GLOB _icu_nuget_incs_paths "${CMAKE_BINARY_DIR}/packages/icu4c.v*/build/native/include")
-    file(GLOB ICU_REDIST_ROOT "${CMAKE_BINARY_DIR}/packages/icu4c.v*.redist.*/build/native/bin")
-    set(ICU_REDIST_ROOT "${ICU_REDIST_ROOT}/${CMAKE_VS_PLATFORM_NAME}")
+FetchContent_Declare(icu URL ${ICU_URL})
 
-    set(ICU_ROOT
-        ${_icu_nuget_libs_paths}
-        ${_icu_nuget_incs_paths}
-        ${ICU_ROOT})
-    message(STATUS "Using NuGet ICU package.")
+if (DEFINED ICU_URL OR DEFINED FETCHCONTENT_SOURCE_DIR_ICU)
+    FetchContent_GetProperties(icu)
+    if (NOT icu_POPULATED)
+        message(STATUS "Fetching: " ${ICU_URL})
+        FetchContent_Populate(icu)
+    endif()
+
+    if (icu_POPULATED)
+        set(ICU_ROOT ${icu_SOURCE_DIR}/${ICU_ROOT})
+    else()
+        set(ICU_ROOT "")
+    endif()
 endif()
 
-find_package(ICU REQUIRED COMPONENTS uc i18n)
+find_package(ICU REQUIRED COMPONENTS uc i18n data)
 message(STATUS "ICU Libraries: " ${ICU_VERSION})
 
 add_subdirectory(Generic)
@@ -53,16 +56,19 @@ add_executable(grcompiler
     PostParser.cpp 
     $<TARGET_OBJECTS:TtfUtil>
     main.cpp)
-target_link_libraries(grcompiler ${ICU_I18N_LIBRARY} ${ICU_UC_LIBRARY} generic parser lz4)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_compile_options(grcompiler PRIVATE /Zc:wchar_t- /W3 /EHsc)
+endif()
 
-    if (DEFINED ICU_REDIST_ROOT)
-        get_filename_component(ICU_REDIST_ROOT ${ICU_REDIST_ROOT} ABSOLUTE)
+target_link_libraries(grcompiler ICU::uc ICU::i18n generic parser lz4)
+
+if (icu_POPULATED)
+    if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+        file(GLOB_RECURSE _icu_dlls "${icu_SOURCE_DIR}/**${CMAKE_SHARED_LIBRARY_SUFFIX}")
         add_custom_command(TARGET grcompiler POST_BUILD 
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${ICU_REDIST_ROOT}/$<$<BOOL:${NUGET}>:$<CONFIGURATION>>"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                ${_icu_dlls}
                 $<TARGET_FILE_DIR:grcompiler>)
     endif()
 endif()
