@@ -24,14 +24,19 @@ project files (see below).
 
 ### GDLPP #include details
 
-WARNING: File inclusion is relative to the current working directory when
-grcompiler (or gdlpp) is ran. (It is NOT relative to the folder containing the
-including file.)
+WARNING: On Windows, grcompiler v5.2 fixes a longstanging bug. File inclusion
+will now be relative to the including file. Users who previously did inclusion
+relative to the current working directory will see changes if the current
+working director differs from the location of the including file. (Previously
+on Windows, file inclusion was relative to the current working directory when
+the path to the including file was specified using backslashes.)
 
 It's possible to specify a folder that gdlpp will use to find included files
-(such as stddef.gdh). Set the GDLPP_PREFS environment variable to 
+(such as stddef.gdh). Set the GDLPP_PREFS environment variable to
 `-I<folder path>`. There must be no space after `I` and no quote marks. Use
-DOS-style short path naming if needed.
+DOS-style short path naming if the path contains spaces. On Linux,
+`/usr/share/grcompiler` (PKGDATADIR) will be first in the include paths
+searched. Typically stddef.gdh will be installed there.
 
 ## BUILDING
 
@@ -182,7 +187,7 @@ To build grcompiler debug binaries:
 nmake CFG=DEBUG -f makefile.mak
 ```
 
-WARNING: A debug build for ICU from source will be needed too (see below).
+TIP: A debug build for ICU from source will be needed too (see below).
 
 Cleaning up, to remove all .obj files without removing the binaries:
 ```

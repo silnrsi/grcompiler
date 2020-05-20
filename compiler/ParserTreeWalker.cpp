@@ -126,6 +126,8 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	PROCESS_INFORMATION procinfo = {0};
 	achar rgchErrorCode[20];
 
+	// switch backslash path separators to forward slash for gdlpp
+	std::replace(staFileName.begin(), staFileName.end(), '\\', '/');
 	std::string strCommandLine(_T("\""));
 	strCommandLine += staGdlppFile;
 	if (m_fVerbose)
