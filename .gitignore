@@ -19,6 +19,7 @@ Makefile
 nmake*
 release/
 debug/
+release_save/
 
 #CMake
 build*/**
@@ -59,6 +60,7 @@ test/GrcRegressionTest/fonts/gdlerr.txt
 debug_temp/
 release_temp/
 icu/
+icu63/
 test/GrcRegressionTest/Debug
 test/GrcRegressionTest/Debug_*
 test/GrcRegressionTest/Release

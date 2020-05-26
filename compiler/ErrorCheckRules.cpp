@@ -770,7 +770,7 @@ void GdlRuleTable::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfon
 		grfrco = (kfrcoSetBreak | kfrcoSetDir | kfrcoPreBidi);
 	else if (m_psymName->LastFieldIs("substitution"))
 		grfrco = (kfrcoLb | kfrcoSubst | kfrcoSetCompRef | kfrcoSetDir |
-					kfrcoSetInsert | kfrcoPreBidi);
+					kfrcoPreBidi);   // kfrcoSetInsert | 
 	else if (m_psymName->LastFieldIs("justification"))
 		grfrco = (kfrcoNeedJust | kfrcoLb | kfrcoSubst | kfrcoSetCompRef |
 					kfrcoSetInsert);
@@ -1439,7 +1439,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		fOkay = false;
 	}
 
-	else if (m_psymName->IsMovement())
+	else if (m_psymName->IsMovement())  // shift, kern, advance
 	{
 		if ((grfrco & kfrcoSetPos) == 0)
 		{
@@ -1462,18 +1462,16 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	else if (m_psymName->IsAttachment())
 	{
-		// Go ahead and allow this - Graphite2 is happy with it and it is
-		// helpful in some circumstances.
-		//if ((grfrco & kfrcoSetPos) == 0)
-		//{
-		//	g_errorList.AddError(3122, this,
-		//		"Cannot set the ",
-		//		m_psymName->FullName(),
-		//		" attribute in the ",
-		//		psymTable->FullName(),
-		//		" table");
-		//	fOkay = false;
-		//}
+		if ((grfrco & kfrcoSetPos) == 0)
+		{
+			g_errorList.AddError(3122, this,
+				"Cannot set the ",
+				m_psymName->FullName(),
+				" attribute in the ",
+				psymTable->FullName(),
+				" table");
+			fOkay = false;
+		}
 		GdlGlyphClassDefn * pglfcTmp = prit->OutputSymbol()->GlyphClassDefnData();
 		if (pglfcTmp && pglfcTmp->IncludesGlyph(g_cman.LbGlyphId()))
 		{
@@ -1535,7 +1533,17 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	else if (m_psymName->DoesJustification())
 	{
-		if (grfrco & kfrcoPreBidi)
+		// Engine does not permit these in the substitution table.
+		if (grfrco & kfrcoSubst)
+		{
+			g_errorList.AddError(3173, this,
+				"Cannot set the ",
+				m_psymName->FullName(),
+				" in the ",
+				psymTable->FullName(),
+				" table");
+		}
+		else if (grfrco & kfrcoPreBidi)
 		{
 			if (m_psymName->LastFieldIs("width"))
 			{
@@ -1560,36 +1568,43 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 
 	else if (m_psymName->IsMeasureAttr())
 	{
-		// These can pretty much go anywhere, as far as I can see.
+		// Engine does not permit these in the substitution table.
+		if (grfrco & kfrcoSubst)
+		{
+			g_errorList.AddError(3173, this,
+				"Cannot set ",
+				m_psymName->FullName(),
+				" in the ",
+				psymTable->FullName(),
+				" table");
+		}
 	}
 
 	else if (m_psymName->IsCollisionAttr())
 	{
-		// You don't expect these in the substitution table, but they don't hurt,
-		// and they *could* go on the last substitution pass.
-		if ((grfrco & kfrcoSetPos) == 0)
+		// Engine does not permit these in the substitution table.
+		if (grfrco & kfrcoSubst)
 		{
-			g_errorList.AddWarning(3534, this,
-				"Setting a collision attribute (",
+			g_errorList.AddError(3173, this,
+				"Cannot set the ",
 				m_psymName->FullName(),
-				") in the ",
+				" attribute in the ",
 				psymTable->FullName(),
-				" table; normally these are set in the positioning table");
+				" table");
 		}
 	}
 
 	else if (m_psymName->IsSequenceAttr())
 	{
-		// You don't expect these in the substitution table, but they don't hurt,
-		// and they *could* go on the last substitution pass.
-		if ((grfrco & kfrcoSetPos) == 0)
+		// Engine does not permit these in the substitution table.
+		if (grfrco & kfrcoSubst)
 		{
-			g_errorList.AddWarning(3534, this,
-				"Setting a sequence attribute (",
+			g_errorList.AddError(3173, this,
+				"Cannot set the ",
 				m_psymName->FullName(),
-				") in the ",
+				" attribute in the ",
 				psymTable->FullName(),
-				" table; normally these are set in the positioning table");
+				" table");
 		}
 	}
 
