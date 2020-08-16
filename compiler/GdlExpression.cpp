@@ -488,15 +488,13 @@ bool GdlStringExpression::ResolveToFeatureID(unsigned int * pnRet)
 	if (m_staValue.length() > 4)
 		return false;
 
-	union {
-		char rgch[4];
-		unsigned int n;
-	} featid;
 	// The way we do the assignments ensures the characters are left-aligned
 	// in the 4-byte integer (ie, occupying the most significant bytes).
-	for (size_t ich = 0; ich < 4; ich++)
-		featid.rgch[3-ich] = (ich < m_staValue.length()) ? m_staValue[ich] : 0;
-	*pnRet = featid.n;
+	unsigned int id = 0;
+	for(auto c : m_staValue) { id <<= 8; id += c; }
+	id <<= 8*(4-m_staValue.length());
+
+	*pnRet = id;
 	return true;
 }
 
