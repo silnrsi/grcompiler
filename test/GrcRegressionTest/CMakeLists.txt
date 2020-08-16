@@ -8,6 +8,7 @@ add_executable(GrcRegressionTest
     GrcRtFileFont.cpp 
     GrcRegressionTest.cpp 
     $<TARGET_OBJECTS:TtfUtil>)
+target_compile_definitions(GrcRegressionTest PRIVATE $<${BIGENDIAN_SYSTEM}:WORDS_BIGENDIAN>)
 target_link_libraries(GrcRegressionTest generic)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")

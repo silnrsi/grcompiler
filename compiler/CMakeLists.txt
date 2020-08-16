@@ -27,6 +27,7 @@ add_subdirectory(LZ4)
 include_directories(Generic Grammar LZ4 ${ICU_INCLUDE_DIR})
 
 add_library(TtfUtil OBJECT TtfUtil.cpp)
+target_compile_definitions(TtfUtil PUBLIC $<${BIGENDIAN_SYSTEM}:WORDS_BIGENDIAN>)
 
 add_executable(grcompiler 
     Compiler.cpp 
@@ -56,12 +57,11 @@ add_executable(grcompiler
     PostParser.cpp 
     $<TARGET_OBJECTS:TtfUtil>
     main.cpp)
-
+target_compile_definitions(grcompiler PRIVATE $<${BIGENDIAN_SYSTEM}:WORDS_BIGENDIAN>)
+target_link_libraries(grcompiler ICU::uc ICU::i18n generic parser lz4)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_compile_options(grcompiler PRIVATE /Zc:wchar_t- /W3 /EHsc)
 endif()
-
-target_link_libraries(grcompiler ICU::uc ICU::i18n generic parser lz4)
 
 if (icu_POPULATED)
     if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
