@@ -3253,15 +3253,13 @@ void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 	if (pviritInput)
 		nOffset = (*pviritInput)[m_nIOIndex] - iritCurrent;
 
-	char bOffset = (char)nOffset;
-	Assert((int)bOffset == nOffset);	// no truncation error
-
+	Assert(-128 <= nOffset && nOffset < 128); // Check this fits in 8 bits.
 	//	If this happens to be the value of an attach.to attribute, current or following
 	//	slot needs to have insert = false set.
 	*pnValue = nOffset;
 
 	vbOutput.push_back(kopPushByte);
-	vbOutput.push_back(bOffset);
+	vbOutput.push_back(*reinterpret_cast<gr::byte *>(&nOffset));
 }
 
 /*--------------------------------------------------------------------------------------------*/
