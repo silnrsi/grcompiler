@@ -417,7 +417,7 @@ protected:
 	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
 		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 		std::vector<uint16> & vnNameTblIds, 
-		uint16 * pchwFamilyName, uint16 cchwFamilyName, std::vector<PlatEncChange> & vpec,
+		uint16 * pchwFamilyName, size_t cchwFamilyName, std::vector<PlatEncChange> & vpec,
 		int nNameTblMinNew);
 	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
