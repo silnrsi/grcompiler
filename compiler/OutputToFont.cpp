@@ -18,9 +18,13 @@ Description:
 #include "main.h"
 #include "LZ4/lz4hc.h"
 
+#include <algorithm>
+#include <codecvt>
+#include <locale>
 #include <time.h>
 #include <memory>
 #include <sstream>
+#include <string>
 
 #pragma hdrstop
 #undef THIS_FILE
@@ -650,8 +654,6 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			Assert(pchwFamilyNameNew);
 
 			// Generate the new full-font name, the postscript name, and the unique name.
-
-			std::wstring stuFullName, stuPostscriptName, stuUniqueName;
 			ibSubFamilyOffset = (irecSubFamily == -1) ? 0 : read(pRecord[irecSubFamily].offset) + ibStrOffset;
 			cbSubFamily = (irecSubFamily == -1) ? 0 : read(pRecord[irecSubFamily].length);
 			ibVendorOffset = (irecVendor == -1) ? 0 : read(pRecord[irecVendor].offset) + ibStrOffset;
@@ -677,17 +679,17 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			if (irecFullName > -1)
 			{
 				dbStringDiff -= read(pRecord[irecFullName].length);
-				dbStringDiff += ppec->cchwFullName * ppec->cbBytesPerChar;
+				dbStringDiff += ppec->stuFullName.length() * ppec->cbBytesPerChar;
 			}
 			if (irecUniqueName > -1)
 			{
 				dbStringDiff -= read(pRecord[irecUniqueName].length);
-				dbStringDiff += ppec->cchwUniqueName * ppec->cbBytesPerChar;
+				dbStringDiff += ppec->stuUniqueName.length() * ppec->cbBytesPerChar;
 			}
 			if (irecPSName > -1)
 			{
 				dbStringDiff -= read(pRecord[irecPSName].length);
-				dbStringDiff += ppec->cchwPostscriptName * ppec->cbBytesPerChar;
+				dbStringDiff += ppec->stuPostscriptName.length() * ppec->cbBytesPerChar;
 			}
 			if (irecPrefFamily > -1)
 			{
@@ -697,7 +699,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			if (irecCompatibleFull > -1)
 			{
 				dbStringDiff -= read(pRecord[irecCompatibleFull].length);
-				dbStringDiff += ppec->cchwFullName * ppec->cbBytesPerChar;
+				dbStringDiff += ppec->stuFullName.length() * ppec->cbBytesPerChar;
 			}
 
 			cbNewStringData += dbStringDiff;
@@ -705,12 +707,9 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 		else
 		{
 			// Font name is not changing, but we do have to output feature strings.
-			ppec->pchwFullName = NULL;
-			ppec->pchwUniqueName = NULL;
-			ppec->pchwPostscriptName = NULL;
-			ppec->cchwFullName = 0;
-			ppec->cchwUniqueName = 0;
-			ppec->cchwPostscriptName = 0;
+			ppec->stuFullName.clear();
+			ppec->stuUniqueName.clear();
+			ppec->stuPostscriptName.clear();
 		}
 	}
 
@@ -742,13 +741,6 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	*pcbNameTbl = cbTblNew;
 	delete [] *ppNameTbl;	// old table
 	*ppNameTbl = pTblNew;
-
-	for (size_t ipec = 0; ipec < vpecToChange.size(); ipec++)
-	{
-		delete vpecToChange[ipec].pchwFullName;
-		delete vpecToChange[ipec].pchwUniqueName;
-		delete vpecToChange[ipec].pchwPostscriptName;
-	}
 
 	return true;
 }
@@ -849,124 +841,61 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	uint8 * pchVendor, uint16 cbVendor,
 	PlatEncChange * ppec)
 {
-	uint16 * pchwFullName, * pchwUniqueName, * pchwPSName;
-	uint16 cchwFullName, cchwUniqueName, cchwPSName;
-
-	size_t cchwDate = utf16len(stuDate);
-
 	Assert(pchwFamilyName);
+	std::u16string sub_family, vendor;
 
 	// TODO: properly handle the Macintosh encoding, which is not really ANSI.
+	if (f8bitTable)
+	{
+		#if _MSC_VER >= 1900
+		std::wstring_convert<std::codecvt_utf8<int16_t>, int16_t> convert;
+		#else
+		std::wstring_convert<std::codecvt_utf8<char16_t>, char16_t> convert;
+		#endif
 
+		auto s16 = convert.from_bytes(std::string(reinterpret_cast<char const *>(pchSubFamily), cbSubFamily));
+		sub_family.assign(reinterpret_cast<char16_t const *>(s16.data()), s16.length());
+
+		s16 = convert.from_bytes(std::string(reinterpret_cast<char const *>(pchVendor), cbVendor));
+		vendor.assign(reinterpret_cast<char16_t const *>(s16.data()), s16.length());
+	}
+	else
+	{
+		sub_family.assign(reinterpret_cast<char16_t const *>(pchSubFamily), cbSubFamily/sizeof(char16_t));
+		std::transform(sub_family.begin(), sub_family.end(), sub_family.begin(), read<uint16>);
+
+		vendor.assign(reinterpret_cast<char16_t const *>(pchVendor), cbVendor/sizeof(char16_t));
+		std::transform(vendor.begin(), vendor.end(), vendor.begin(), read<uint16>);
+	}
+	
 	// Check for "Regular" or "Standard" subfamily
-	utf16 rgchwSubFamily[128];
-	bool fRegular;
-	int cchwSubFamily;
-	if (cbSubFamily == 0)
-	{
-		fRegular = true;
-		cchwSubFamily = 0;
-	}
-	else
-	{
-		if (f8bitTable)
-			Platform_AnsiToUnicode((char *)pchSubFamily, cbSubFamily, rgchwSubFamily, cbSubFamily);
-		else
-		{
-			utf16ncpy(rgchwSubFamily, (utf16 *)pchSubFamily, cbSubFamily);
-			TtfUtil::SwapWString(rgchwSubFamily, cbSubFamily);
-		}
-		cchwSubFamily = (f8bitTable) ? cbSubFamily : cbSubFamily / sizeof(utf16);
-		rgchwSubFamily[cchwSubFamily] = 0;
-		fRegular = utf16ncmp(rgchwSubFamily, "Regular", 7) || utf16ncmp(rgchwSubFamily, "Standard", 8);
-	}
-
-	// Get vendor name, if any.
-	utf16 * rgchwVendor;
-	if (cbVendor == 0)
-	{
-		rgchwVendor = new utf16[15];
-		utf16ncpy(rgchwVendor, "Unknown Vendor", 14);
-		cbVendor = (f8bitTable) ? 14 : 14 * sizeof(utf16); // pretend
-	}
-	else
-	{
-		rgchwVendor = new utf16[cbVendor + 1];
-		if (f8bitTable)
-			Platform_AnsiToUnicode((char *)pchVendor, cbVendor, rgchwVendor, cbVendor);
-		else
-		{
-			utf16ncpy(rgchwVendor, (utf16 *)pchVendor, cbVendor);
-			TtfUtil::SwapWString(rgchwVendor, cbVendor);
-		}
-	}
-	int cchwVendor = (f8bitTable) ? cbVendor : cbVendor / sizeof(utf16);
-	rgchwVendor[cchwVendor] = 0;
+	bool const fRegular = sub_family.empty() || sub_family == u"Regular" || sub_family == u"Standard";
+	std::u16string date = reinterpret_cast<char16_t const *>(stuDate);
+	if (vendor.empty())
+		vendor = u"Unknown Vendor";
 
 	// Build the full font name: familyname+subfamily
 	// or (if subfamily = Regular/Standard) familyname
-	if (fRegular)
-	{	// Regular does not include the subfamily in the full font name.
-		pchwFullName = new uint16[cchwFamilyName + 1];
-		utf16cpy(pchwFullName, pchwFamilyName);
-		cchwFullName = (uint16)cchwFamilyName;
-	}
-	else
-	{	// Other styles do include subfamily in the full font name.
-		cchwFullName = (uint16)(cchwFamilyName + cbSubFamily / sizeof(utf16) + 1); // 1 - room for space
-		pchwFullName = new uint16[cchwFullName + 1];
-		if (!pchwFullName)
-			return false;
-		utf16ncpy(pchwFullName, pchwFamilyName, cchwFamilyName);
-		pchwFullName[cchwFamilyName] = 0x0020; // space
-		utf16ncpy(pchwFullName + cchwFamilyName + 1, rgchwSubFamily, cchwSubFamily);
-		pchwFullName[cchwFullName] = 0;
-	}
+	// Regular style only includes the family name in the full font name.
+	std::u16string const full_name = std::u16string(reinterpret_cast<char16_t const *>(pchwFamilyName), cchwFamilyName)
+									// Other styles do include subfamily in the full font name.
+									+ (fRegular ? u"" : u' ' +  sub_family); 
 	
 	// Build the Postscript name: familyname-subfamily, with certain chars stripped out.
-	cchwPSName = (uint16)(cchwFamilyName + cchwSubFamily + 1); // +1 = hyphen
-	pchwPSName = new uint16[cchwPSName + 1];
-	if (!pchwPSName)
-		return false;
-	utf16ncpy(pchwPSName, pchwFamilyName, cchwFamilyName);
-	if (cbSubFamily == 0)
-		cchwPSName--; // no hyphen
-	else
-	{
-		pchwPSName[cchwFamilyName] = 0x002D; // hyphen
-		utf16ncpy(pchwPSName + cchwFamilyName + 1, rgchwSubFamily, cchwSubFamily);
-	}
-	pchwPSName[cchwPSName] = 0;
-	// Allow only chars 33 - 126, minus the following: / % ( ) < > [ ] { }
-	int cchMove = 1;
-	for (utf16 * pch = pchwPSName + cchwPSName - 1; pch >= pchwPSName; pch--, cchMove++)
-	{
-		if (*pch < 33 || *pch > 126 || *pch == '/' || *pch == '%' || *pch == '('
-			|| *pch == ')' || *pch == '<' || *pch == '>' || *pch == '[' || *pch == ']'
-			|| *pch == '{' || *pch == '}')
-		{
-			utf16ncpy(pch, pch + 1, cchMove);
-			cchwPSName--;
-		}
-	}
+	std::u16string ps_name = std::u16string(reinterpret_cast<char16_t const *>(pchwFamilyName), cchwFamilyName)
+							 + (sub_family.empty() ? u"" : u'-' + sub_family);
+	ps_name.erase(
+		std::remove_if(ps_name.begin(), ps_name.end(), [](char16_t const c) {
+			return c < 33 || c > 126  || c == '/' || c == '%' || c == '(' || c == ')'
+				    || c == '<' || c == '>' || c == '[' || c == ']' || c == '{' || c == '}'; }),
+		ps_name.end());
 	
 	// Build the unique name: vendor: fullname: date
-	cchwUniqueName = (uint16)(cchwVendor + cchwFullName + cchwDate + 4);
-	pchwUniqueName = new utf16[cchwUniqueName + 1];
-	utf16ncpy(pchwUniqueName, rgchwVendor, cchwVendor);
-	utf16ncpy(pchwUniqueName + cchwVendor, ": ", 2);
-	utf16ncpy(pchwUniqueName + cchwVendor + 2, pchwFullName, cchwFullName);
-	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName, ": ", 2);
-	utf16ncpy(pchwUniqueName + cchwVendor + 2 + cchwFullName + 2, stuDate, cchwDate);
-	pchwUniqueName[cchwUniqueName] = 0;
-	delete[] rgchwVendor;
+	std::u16string const unique_name = vendor + u": " + full_name + u": " + date;
 	
-	ppec->pchwFullName = pchwFullName;
-	ppec->cchwFullName = cchwFullName;
-	ppec->pchwUniqueName = pchwUniqueName;
-	ppec->cchwUniqueName = cchwUniqueName;
-	ppec->pchwPostscriptName = pchwPSName;
-	ppec->cchwPostscriptName = cchwPSName;
+	ppec->stuFullName = full_name;
+	ppec->stuUniqueName = unique_name;
+	ppec->stuPostscriptName = ps_name;
 	
 	return true;
 }
@@ -1073,7 +1002,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
         uint16 cbStr = 0;
 		uint8 * pbStr = NULL;
 		if (ipec < signed(vpec.size())
-			&& ppec->pchwFullName // this is a platform+encoding where we need to change the font
+			&& !ppec->stuFullName.empty() // this is a platform+encoding where we need to change the font
 			&& ppec->platformID == read(pOldRecord[irec].platform_id)
 			&& ppec->encodingID == read(pOldRecord[irec].platform_specific_id)
 			&& ppec->engLangID == read(pOldRecord[irec].language_id))
@@ -1088,16 +1017,16 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 				break;
 			case n_fullname:
 			case n_compatiblefull:
-				pbStr = (uint8 *)vpec[ipec].pchwFullName;
-				cchwStr = vpec[ipec].cchwFullName;
+				pbStr = (uint8 *)vpec[ipec].stuFullName.data();
+				cchwStr = vpec[ipec].stuFullName.length();
 				break;
 			case n_uniquename:
-				pbStr = (uint8 *)vpec[ipec].pchwUniqueName;
-				cchwStr = vpec[ipec].cchwUniqueName;
+				pbStr = (uint8 *)vpec[ipec].stuUniqueName.data();
+				cchwStr = vpec[ipec].stuUniqueName.length();
 				break;
 			case n_postscript:
-				pbStr = (uint8 *)vpec[ipec].pchwPostscriptName;
-				cchwStr = vpec[ipec].cchwPostscriptName;
+				pbStr = (uint8 *)vpec[ipec].stuPostscriptName.data();
+				cchwStr = vpec[ipec].stuPostscriptName.length();
 				break;
 			default:
 				break;

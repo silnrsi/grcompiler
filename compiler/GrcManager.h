@@ -32,12 +32,9 @@ struct PlatEncChange
 	uint16 encodingID;
 	uint16 engLangID;
 	bool fChangeName;
-	utf16 * pchwFullName;
-	utf16 * pchwUniqueName;
-	utf16 * pchwPostscriptName;
-	size_t cchwFullName;
-	size_t cchwUniqueName;
-	size_t cchwPostscriptName;
+	std::u16string stuFullName;
+	std::u16string stuUniqueName;
+	std::u16string stuPostscriptName;
 };
 
 
