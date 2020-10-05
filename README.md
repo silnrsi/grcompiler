@@ -24,7 +24,7 @@ project files (see below).
 
 ### GDLPP #include details
 
-WARNING: On Windows, grcompiler v5.2 fixes a longstanging bug. File inclusion
+WARNING: On Windows, grcompiler v5.2 fixes a longstanding bug. File inclusion
 will now be relative to the including file. Users who previously did inclusion
 relative to the current working directory will see changes if the current
 working director differs from the location of the including file. (Previously
