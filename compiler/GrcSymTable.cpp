@@ -1620,9 +1620,9 @@ int GrcSymbolTableEntry::SlotAttrEngineCodeOp()
 		else if (staField1 == "fix")
 		{
 			if (staField2 == "x")
-				return kslatColMinX;
+				return kslatColFixX;
 			else if (staField2 == "y")
-				return kslatColMinY;
+				return kslatColFixY;
 			else
 			{
 				Assert(false);
