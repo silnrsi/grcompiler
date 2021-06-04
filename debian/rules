@@ -4,13 +4,10 @@ export DH_VERBOSE=1
 DEB_BUILD_OPTIONS=nocheck
 
 %:
-	dh $@ --parallel --with autoreconf --as-needed
+	dh $@ -Scmake --parallel
 
 override_dh_compress:
 	dh_compress -X.pdf
 
 override_dh_auto_test:
 	@echo $@
-
-override_dh_autoreconf:
-	dh_autoreconf autoreconf -- -i -f 
