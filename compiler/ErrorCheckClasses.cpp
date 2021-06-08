@@ -1441,8 +1441,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTab
 
 				Assert(psymColFlags->InternalID() != 0);
 				Assert(psymColFlags->InternalID() + 1 == psymColMinX->InternalID());
-				Assert(psymColFlags->InternalID() + 2 == psymColMaxX->InternalID());
-				Assert(psymColFlags->InternalID() + 3 == psymColMinY->InternalID());
+				Assert(psymColFlags->InternalID() + 2 == psymColMinY->InternalID());
+				Assert(psymColFlags->InternalID() + 3 == psymColMaxX->InternalID());
 				Assert(psymColFlags->InternalID() + 4 == psymColMaxY->InternalID());
 				Assert(psymColFlags->InternalID() + 5 == psymColMargin->InternalID());
 				Assert(psymColFlags->InternalID() + 6 == psymColMarginWt->InternalID());
