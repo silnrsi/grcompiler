@@ -64,9 +64,16 @@ build all three executables and can run the regression tests.
     detected one -- for example, if you have multiple versions of Visual Studio
     installed or another toolchain, such as MinGW, you wish to build under. To do this
     pass the `-G <generator name>` option to the initial cmake configuration call.
-    On Windows it's often desirable to build 32-bit executables. To do this, pass
-    the `-A Win32` option.
-    For example for Visual Studio 2019:  
+    If you want to build for a specific platform, and your tool chain support this, you
+    can pass the `-A <platform-name>` option. A common use is to allow you to choose 
+    between 32 or 64 bit builds:  
+    
+      OS      | 32 bit | 64 bit 
+      ------- | ------ | ------
+      Linux   |  x86   | amd64  
+      Windows | Win32  | Win64
+     
+    For example for Visual Studio 2019 32 bit:
     ```
     cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release -A Win32 ..
     ```
