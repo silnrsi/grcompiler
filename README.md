@@ -70,8 +70,8 @@ build all three executables and can run the regression tests.
     
       OS      | 32 bit | 64 bit 
       ------- | ------ | ------
-      Linux   |  x86   | amd64  
-      Windows | Win32  | Win64
+      Linux   | x86    | amd64  
+      Windows | Win32  | x64
      
     For example for Visual Studio 2019 32 bit:
     ```
