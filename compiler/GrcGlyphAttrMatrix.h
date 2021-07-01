@@ -53,7 +53,7 @@ public:
 	{
 	}
 
-	~GrcAssignment()
+	virtual ~GrcAssignment()
 	{
 		// Not responsible for deleting the expression.
 	}

@@ -15,6 +15,7 @@ Description:
 /***********************************************************************************************
 	Include files
 ***********************************************************************************************/
+#include <cassert>
 #include "main.h"
 
 #ifdef _MSC_VER
@@ -2539,9 +2540,9 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 	Symbol psymCollisionFlags = pcman->SymbolTable()->FindSymbol(GrcStructName("collision", "flags"));
 	Symbol psymEquals = pcman->SymbolTable()->FindSymbol("=");
 
-	GdlExpression * pexpFlagsOld = NULL;
-	GdlExpression * pexpRange = NULL;
-	GdlExpression * pexpPriority = NULL;
+	GdlExpression * pexpFlagsOld = nullptr;
+	GdlExpression * pexpRange = nullptr;
+	GdlExpression * pexpPriority = nullptr;
 	if (ipavsFlags >= 0)
 		pexpFlagsOld = m_vpavs[ipavsFlags]->m_pexpValue->Clone();
 	if (ipavsRange >= 0)
@@ -2550,7 +2551,7 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 		pexpPriority = m_vpavs[ipavsPriority]->m_pexpValue->Clone();
 
 	Symbol psymPlus = pcman->SymbolTable()->FindSymbol("+");
-	GdlExpression * pexpFlagsTemp;
+	GdlExpression * pexpFlagsTemp = nullptr;
 	GdlExpression * pexpFlags;
 	SymbolSet setpsymBogus;
 	bool fCanSub;
@@ -2569,6 +2570,7 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 	else if (pexpPriority)
 		pexpFlagsTemp = pexpPriority;
 
+	assert(pexpFlagsTemp);
 	pexpFlags = pexpFlagsTemp->SimplifyAndUnscale(pcman->GlyphAttrMatrix(), -1, setpsymBogus, pfont, false, &fCanSub);
 	if (pexpFlagsTemp != pexpFlags)
 		delete pexpFlagsTemp;

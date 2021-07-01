@@ -163,16 +163,10 @@ inline bool GrIsBadWritePtr(const void *const, const unsigned int)
 
 size_t Platform_UnicodeToANSI(const utf16 * prgchwSrc, size_t cchwSrc, char * prgchsDst, size_t cchsDst);
 size_t Platform_AnsiToUnicode(const char * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst);
-//size_t Platform_UnicodeToANSI(const wchar * prgchwSrc, size_t cchwSrc, char * prgchsDst, size_t cchsDst);
-//size_t Platform_AnsiToUnicode(const char * prgchsSrc, size_t cchsSrc, wchar * prgchwDst, size_t cchwDst);
-size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, int cchsSrc, utf16 * prgchwDst, int cchwDst);
+size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst);
 
 utf16 *utf16cpy(utf16 *dest, const utf16 *src);
-utf16 *utf16cpy(utf16 *dest, const char *src);
-utf16 *utf16cpy(utf16 *dest, const utf32 *src);
-
 utf16 *utf16ncpy(utf16 *dest, const utf16 *src, size_t n);
-utf16 *utf16ncpy(utf16 *dest, const char *src, size_t n);
 
 #ifdef UTF16DEBUG
 void utf16Output(const utf16 *input);

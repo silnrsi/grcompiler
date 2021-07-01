@@ -2363,12 +2363,11 @@ bool GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGd
 {
 	// Current working directory, for calculating file paths in GDX file:
 	char rgchCurWkDir[128];
-	char * pchBogus = getcwd(rgchCurWkDir, 128); // Linux requires assignment
+	(void)getcwd(rgchCurWkDir, 128);
 
 	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
 	// a .gdx extension.
 	int cchLen = strlen(pchOutputFilename);
-	char * pchOut = pchOutputFilename;
 	char rgchDbgXmlFile[128];
 	char rgchOutputPath[128];
 	memset(rgchDbgXmlFile, 0, 128 * sizeof(char));
@@ -2832,7 +2831,7 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::st
 	if (!ValidPass())
 		return;
 
-	int temp = PassDebuggerNumber();
+	PassDebuggerNumber();
 	Assert(PassDebuggerNumber() != 0);
 
 	strmOut << "    <pass table=\"" << psymTableName->FullName()
@@ -3462,8 +3461,7 @@ void GdlGlyphClassDefn::MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned
 			GdlExpression * pexp = pgax->GetExpression(m_vgidFlattened[igid], nAttrIdSkipP);
 			Assert(pexp);
 			int nValue;
-			bool f = pexp->ResolveToInteger(&nValue, false);
-			Assert(f); // this better be an integer!
+			pexp->ResolveToInteger(&nValue, false);
 			nValue = (unsigned int)nValue & nMask;
 			GdlNumericExpression * pexpNum = dynamic_cast<GdlNumericExpression *>(pexp);
 			Assert(pexpNum);

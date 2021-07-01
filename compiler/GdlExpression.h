@@ -1018,9 +1018,9 @@ public:
 		:	GdlExpression(exp),
 			m_psymName(exp.m_psymName),
 			m_nClusterLevel(exp.m_nClusterLevel),
+			m_fGlyphAttr(exp.m_fGlyphAttr),
 			m_nInternalID(exp.m_nInternalID),
-			m_nSubIndex(exp.m_nSubIndex),
-			m_fGlyphAttr(exp.m_fGlyphAttr)
+			m_nSubIndex(exp.m_nSubIndex)
 	{
 		m_pexpSelector =
 			(exp.m_pexpSelector) ?

@@ -44,6 +44,7 @@
  *******/
 
 #include <stdarg.h>
+#include <stdint.h>
 #include "memory.h"
 
 struct Global {
@@ -163,8 +164,8 @@ struct Global {
    * include[] stores the -X and -x files.
    */
   char  *include[NINCLUDE];
-  char  includeshow[NINCLUDE]; /* show it or not! */
-  char  included;
+  uint8_t  includeshow[NINCLUDE]; /* show it or not! */
+  uint8_t  included;
 
   /*
    * This is the table used to predefine target machine and operating

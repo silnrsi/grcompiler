@@ -78,8 +78,9 @@ SOFTWARE.
  *			ling of tokens following ##. Added new meaning of #.
  */
 
+#include  <ctype.h>
+#include  <stdint.h>
 #include	<stdio.h>
-#include	<ctype.h>
 #include	"cppdef.h"
 #include	"cpp.h"
 
@@ -200,7 +201,7 @@ ReturnCode dodefine(struct Global *global)
 	quoting = 1;		        /* Maybe quoting op.	*/
 	continue;
       }
-      while (global->workp > global->work && type[global->workp[-1]] == SPA)
+      while (global->workp > global->work && type[(uint8_t)global->workp[-1]] == SPA)
 	--global->workp;		/* Erase leading spaces */
       if((ret=save(global, TOK_SEP)))     /* Stuff a delimiter    */
 	return(ret);

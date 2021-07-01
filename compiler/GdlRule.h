@@ -160,16 +160,16 @@ class GdlRuleItem : public GdlObject
 public:
 	//	Constructors & destructors:
 	GdlRuleItem()
-		:	m_psymInput(NULL),
+		:	m_iritContextPos(-1),
+			m_psymInput(NULL),
 			m_pexpConstraint(NULL),
-			m_iritContextPos(-1),
 			m_iritContextPosOrig(-1)
 	{
 	}
 	GdlRuleItem(Symbol psym)
-		:	m_psymInput(psym),
+		:	m_iritContextPos(-1),
+			m_psymInput(psym),
 			m_pexpConstraint(NULL),
-			m_iritContextPos(-1),
 			m_iritContextPosOrig(-1)
 	{
 	}

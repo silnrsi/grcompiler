@@ -26,8 +26,6 @@ Description:
 ----------------------------------------------------------------------------------------------*/
 int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFont * pfontTest)
 {
-	bool fOk = false;
-
 	int ec = 0; // error count
 
 	// benchmark font buffers
@@ -174,6 +172,7 @@ int CompareFontTables(TestCase * ptcase, GrcRtFileFont * pfontBmark, GrcRtFileFo
 
 	// Silf
 	try {
+		pSilfTblT = NULL;
 		if ((pSilfTblB = static_cast<const gr::byte *> (pfontBmark->getTable(TtfUtil::TableIdTag(ktiSilf), &cbSilfSzB))) == NULL)
 			OutputError(ec, ptcase, "ERROR: benchmark font has empty Silf table");
 		else

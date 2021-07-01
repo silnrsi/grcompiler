@@ -2066,11 +2066,9 @@ DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
 		break;
 
 	default:
-		if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
-			dircDefault = kdircWhiteSpace;
-		else
-			dircDefault = kdircNeutral;	// don't know
-			*pfInitFailed = (bool)Bidi();		// we only care about the failure if this is a bidi font
+		// various kinds of spaces
+		dircDefault = nUnicode >= 0x2000 && nUnicode <= 0x200b ? kdircWhiteSpace : kdircNeutral;
+		*pfInitFailed = (bool)Bidi();		// we only care about the failure if this is a bidi font
 		break;
 	}
 

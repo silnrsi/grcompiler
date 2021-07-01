@@ -47,7 +47,9 @@ char* program_invocation_name;
 char* program_invocation_short_name;
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
