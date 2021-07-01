@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "GrPlatform.h"
 
 
@@ -9,18 +11,27 @@ namespace gr
 
 size_t Platform_UnicodeToANSI(const utf16 * prgchwSrc, size_t cchwSrc, char * prgchsDst, size_t cchsDst)
 {
-	return ::WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)prgchwSrc, cchwSrc, prgchsDst, cchsDst, NULL, NULL);
+	auto const _cchwSrc = static_cast<int>(cchwSrc), _cchsDst = static_cast<int>(cchsDst); 
+	assert(_cchwSrc == cchwSrc || _cchwSrc >= -1);
+	assert(_cchsDst == cchsDst || _cchsDst >= -1);
+	return ::WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)prgchwSrc, _cchwSrc, prgchsDst, _cchsDst, NULL, NULL);
 }
 
 size_t Platform_AnsiToUnicode(const char * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst)
 {
-	return ::MultiByteToWideChar(CP_ACP, 0, prgchsSrc, cchsSrc, (LPWSTR)prgchwDst, cchwDst);
+	auto const _cchsSrc = static_cast<int>(cchsSrc), _cchwDst = static_cast<int>(cchwDst); 
+	assert(_cchsSrc == cchsSrc || _cchsSrc >= -1);
+	assert(_cchwDst == cchwDst || _cchwDst >= -1);
+	return ::MultiByteToWideChar(CP_ACP, 0, prgchsSrc, _cchsSrc, (LPWSTR)prgchwDst, _cchwDst);
 }
 
-size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, int cchsSrc,
-	utf16 * prgchwDst, int cchwDst)
+size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, size_t cchsSrc,
+	utf16 * prgchwDst, size_t cchwDst)
 {
-	return ::MultiByteToWideChar(nCodePage, 0, prgchsSrc, cchsSrc, (LPWSTR)prgchwDst, cchwDst);
+	auto const _cchsSrc = static_cast<int>(cchsSrc), _cchwDst = static_cast<int>(cchwDst); 
+	assert(_cchsSrc == cchsSrc || _cchsSrc >= -1);
+	assert(_cchwDst == cchwDst || _cchwDst >= -1);
+	return ::MultiByteToWideChar(nCodePage, 0, prgchsSrc, _cchsSrc, (LPWSTR)prgchwDst, _cchwDst);
 }
 
 size_t utf8len(const char *s)
