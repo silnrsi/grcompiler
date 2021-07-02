@@ -40,13 +40,13 @@
 typedef struct MemInfo {
   struct MemInfo *prev;
   struct MemInfo *next;
-  int size;
+  size_t size;
 } MemInfo;
 
 void Free(void *);
 void FreeAll(void);
-void *Malloc(int);
-void *Realloc(void *, int);
+void *Malloc(size_t);
+void *Realloc(void *, size_t);
 #ifdef DEBUG
 void CheckMem(void *);
 #endif

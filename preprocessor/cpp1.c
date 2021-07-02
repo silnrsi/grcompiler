@@ -223,7 +223,7 @@ INLINE FILE_LOCAL ReturnCode cppmain(struct Global *);
 
 int PREFIX fppPreProcess(REG(a0) struct fppTag *tags)
 {
-  int i=0;
+  intptr_t i=0;
   ReturnCode ret;       /* cpp return code */
   struct Global *global;
 

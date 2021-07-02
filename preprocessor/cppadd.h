@@ -403,7 +403,7 @@ void dumpstack(OPTAB[NEXP], register OPTAB *, int [NEXP], register int *);
 void skipnl(struct Global *);
 int skipws(struct Global *);
 ReturnCode macroid(struct Global *, int *);
-ReturnCode getfile(struct Global *, int, char *, FILEINFO **);
+ReturnCode getfile(struct Global *, size_t, char *, FILEINFO **);
 DEFBUF *lookid(struct Global *, int );
 DEFBUF *defendel(struct Global *, char *, int);
 #if DEBUG
@@ -413,6 +413,6 @@ void dumpadef(char *, register DEFBUF *);
 ReturnCode openfile(struct Global *,char *);
 int cget(struct Global *);
 void deldefines(struct Global *);
-char *Getmem(struct Global *, int);
+char *Getmem(struct Global *, size_t);
 ReturnCode openinclude(struct Global *, char *, int);
 ReturnCode expstuff(struct Global *, char *, char *);

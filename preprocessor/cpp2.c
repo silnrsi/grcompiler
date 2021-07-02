@@ -694,7 +694,7 @@ ReturnCode openinclude( struct Global *global,
 
     char **incptr;
     char tmpname[NWORK]; /* Filename work area    */
-    int len;
+    size_t len;
 /*    ReturnCode ret; *//*NOT USED*/
 
     #if HOST == SYS_AMIGADOS
