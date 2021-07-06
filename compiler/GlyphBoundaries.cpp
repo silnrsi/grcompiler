@@ -181,6 +181,16 @@ void GlyphBoundaries::AddPoint(int icellX, int icellY, int mx, int my, float dx,
 	float dSum, dDiff;
 	NormalizeSumAndDiff(mSum, mDiff, &dSum, &dDiff);
 
+	// Fix rounding errors that occur in 64-bit build.
+	if (dx < 0.0) dx = 0.0;
+	if (dy < 0.0) dy = 0.0;
+	if (dSum < 0.0) dSum = 0.0;
+	if (dDiff < 0.0) dDiff = 0.0;
+	if (dx > 1.0) dx = 1.0;
+	if (dy > 1.0) dy = 1.0;
+	if (dSum > 1.0) dSum = 1.0;
+	if (dDiff > 1.0) dDiff = 1.0;
+
 	// Calculate mins and maxes.
     if (pgbcell->m_dValues[gbcLeft] == gbcUndef || dx < pgbcell->m_dValues[gbcLeft])
 		pgbcell->m_dValues[gbcLeft] = dx;
