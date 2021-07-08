@@ -3,18 +3,15 @@
  * ----------------------------------------------------------------------------
  *
  * Project: Frexx C Preprocessor
- * $Source: /cvsroot/silgraphite/silgraphite/src/GrCompiler/GdlPp/cpp.h,v $
- * $Revision: 1.1 $
- * $Date: 2003/04/21 21:24:18 $
- * $Author: wardak $
+ * $Source: /home/user/start/cpp/RCS/cpp.h,v $
+ * $Revision: 1.3 $
+ * $Date: 1993/12/06 13:51:20 $
+ * $Author: start $
  * $State: Exp $
- * $Locker:  $
+ * $Locker: start $
  *
  * ----------------------------------------------------------------------------
  * $Log: cpp.h,v $
- * Revision 1.1  2003/04/21 21:24:18  wardak
- * Add files for the GDL pre-processor (gdlpp.exe).
- *
  * Revision 1.3  1993/12/06  13:51:20  start
  * A lot of new stuff (too much to mention)
  *
@@ -36,18 +33,20 @@
  * In general, definitions in this file should not be changed.
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifndef toupper
-#define toupper(c) ((c) + ('A' - 'a'))
-#endif /* no toupper */
-#ifndef tolower
-#define tolower(c) ((c) + ('a' - 'A'))
-#endif /* no tolower */
 
-#ifndef TRUE
-#define TRUE		1
-#define FALSE		0
+#ifndef fpp_toupper
+#define fpp_toupper(c) ((c) + ('A' - 'a'))
+#endif /* no fpp_toupper */
+#ifndef fpp_tolower
+#define fpp_tolower(c) ((c) + ('a' - 'A'))
+#endif /* no fpp_tolower */
+
+#ifndef FPP_TRUE
+#define FPP_TRUE		1
+#define FPP_FALSE		0
 #endif
 #ifndef EOS
 /*
@@ -55,7 +54,7 @@
  */
 #define EOS		'\0'            /* End of string                */
 #endif
-#define EOF_CHAR	0		/* Returned by get() on eof     */
+#define EOF_CHAR	0		/* Returned by fpp_get() on eof     */
 #define NULLST		((char *) NULL) /* Pointer to nowhere (linted)  */
 #define DEF_NOARGS	(-1)            /* #define foo vs #define foo() */
 
@@ -142,9 +141,9 @@
 /*
  * These bits are set in ifstack[]
  */
-#define WAS_COMPILING	1		/* TRUE if compile set at entry */
-#define ELSE_SEEN	2		/* TRUE when #else processed	*/
-#define TRUE_SEEN	4		/* TRUE when #if TRUE processed */
+#define WAS_COMPILING	1		/* FPP_TRUE if compile set at entry */
+#define ELSE_SEEN	2		/* FPP_TRUE when #else processed	*/
+#define FPP_TRUE_SEEN	4		/* FPP_TRUE when #if FPP_TRUE processed */
 
 /*
  * Define bits for the basic types and their adjectives
@@ -205,7 +204,7 @@ typedef struct sizes {
  */
 
 #ifdef	nomacarg
-#define cput		output		/* cput concatenates tokens	*/
+#define cput		generate		/* cput concatenates tokens	*/
 #else
 #if COMMENT_INVISIBLE
 #define cput(c)         { if (c != TOK_SEP && c != COM_SEP) putchar(c); }

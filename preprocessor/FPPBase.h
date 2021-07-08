@@ -3,21 +3,15 @@
  * ----------------------------------------------------------------------------
  *
  * Project: Frexx C Preprocessor
- * $Source: /cvsroot/silgraphite/silgraphite/src/GrCompiler/GdlPp/FPPBase.h,v $
- * $Revision: 1.2 $
- * $Date: 2003/07/17 10:16:34 $
- * $Author: mhosken $
+ * $Source: /home/user/start/cpp/RCS/FPPBase.h,v $
+ * $Revision: 1.3 $
+ * $Date: 1993/12/06 13:51:20 $
+ * $Author: start $
  * $State: Exp $
- * $Locker:  $
+ * $Locker: start $
  *
  * ----------------------------------------------------------------------------
  * $Log: FPPBase.h,v $
- * Revision 1.2  2003/07/17 10:16:34  mhosken
- * Main linux port checkin
- *
- * Revision 1.1  2003/04/21 21:24:18  wardak
- * Add files for the GDL pre-processor (gdlpp.exe).
- *
  * Revision 1.3  1993/12/06  13:51:20  start
  * A lot of new stuff (too much to mention)
  *
@@ -38,7 +32,7 @@
 /*
 **   $Filename: libraries/FPPbase.h $
 **   $Release: 1.0 $
-**   $Date: 2003/07/17 10:16:34 $
+**   $Date: 1993/12/06 13:51:20 $
 **
 **   (C) Copyright 1992, 1993 by FrexxWare
 **       All Rights Reserved
@@ -49,8 +43,8 @@
 
 struct FPPBase {
   struct Library LibNode;
-  Ubyte Flags;
-  Ubyte pad;
+  UBYTE Flags;
+  UBYTE pad;
   /* long word aligned */
   ULONG SysLib;
   ULONG DosLib;

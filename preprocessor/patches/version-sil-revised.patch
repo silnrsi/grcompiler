@@ -1,0 +1,10 @@
+diff --git a/preprocessor/cppdef.h b/preprocessor/cppdef.h
+index 26ba17b..e865041 100644
+--- a/preprocessor/cppdef.h
++++ b/preprocessor/cppdef.h
+@@ -380,4 +380,5 @@
+ 
+ #define VERSION_TEXT "Frexx C Preprocessor v1.5.1 " \
+ "Copyright (C) by FrexxWare 1993 - 2002.\n" \
++"Revised by SIL International for Graphite Description Language, " \
+ "Compiled " __DATE__ "\n"

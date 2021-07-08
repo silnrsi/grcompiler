@@ -1,0 +1,13 @@
+diff --git a/preprocessor/usecpp.c b/preprocessor/usecpp.c
+index 702e93c..45cf717 100644
+--- a/preprocessor/usecpp.c
++++ b/preprocessor/usecpp.c
+@@ -301,7 +301,7 @@ char GetPrefs(struct fppTag **tagptr, char **string)
+     }
+   }
+ 
+-  if((env = getenv("CPP_PREFS"))) {
++  if((env = getenv("GDLPP_PREFS"))) {
+     ret= !DoString(tagptr, env);
+     if(ret && *string)
+       free( *string );

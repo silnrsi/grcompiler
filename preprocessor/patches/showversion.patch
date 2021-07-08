@@ -1,0 +1,39 @@
+diff --git a/preprocessor/cpp1.c b/preprocessor/cpp1.c
+index d076441..b754c61 100644
+--- a/preprocessor/cpp1.c
++++ b/preprocessor/cpp1.c
+@@ -112,7 +112,7 @@ int fppPreProcess(struct fppTag *tags)
+   global->warnillegalcpp = FPP_FALSE;
+   global->outputLINE = FPP_TRUE;
+   global->warnnoinclude = FPP_TRUE;
+-  global->showversion = FPP_TRUE;
++  global->showversion = FPP_FALSE;
+   global->showincluded = FPP_FALSE;
+   global->showspace = FPP_FALSE;
+   global->nestcomments = FPP_FALSE;
+diff --git a/preprocessor/cpp3.c b/preprocessor/cpp3.c
+index 68f8cb2..9a2099e 100644
+--- a/preprocessor/cpp3.c
++++ b/preprocessor/cpp3.c
+@@ -129,7 +129,7 @@ int fpp_dooptions(struct Global *global, struct fppTag *tags)
+       global->showincluded = tags->data?1:0;
+       break;
+     case FPPTAG_SHOWVERSION:
+-      global->showversion = tags->data?1:0;
++      global->showversion = tags->data?0:1;
+       break;
+     case FPPTAG_WARNILLEGALCPP:
+       global->warnillegalcpp = tags->data?1:0;
+diff --git a/preprocessor/usecpp.c b/preprocessor/usecpp.c
+index 702e93c..fd1ead1 100644
+--- a/preprocessor/usecpp.c
++++ b/preprocessor/usecpp.c
+@@ -586,7 +586,7 @@ int SetOptions(int argc, char **argv, struct fppTag **tagptr)
+ 		  "  -S\tSpecify sizes for #if sizeof\n"
+ 		  "  -t\tThis function should not get an initial function\n"
+ 		  "  -U\tUndefine symbol\n"
+-		  "  -V\tDon't output version information\n"
++		  "  -V\tOutput version information\n"
+ 		  "  -W\tOutput all #defines\n"
+                   "  -WWW\tWeb mode preprocessing\n"
+ 		  "  -w\tOnly output #defines\n"
