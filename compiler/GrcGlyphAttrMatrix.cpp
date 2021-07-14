@@ -147,7 +147,7 @@ GrcLigComponentList::GrcLigComponentList(size_t cvGlyphIDs)
 ----------------------------------------------------------------------------------------------*/
 GrcLigComponentList::~GrcLigComponentList()
 {
-	for (int i = 0; i < m_cvGlyphIDs; ++i)
+	for (auto i = 0; i < m_cvGlyphIDs; ++i)
 	{
 		if (m_prgplcmap[i])
 			delete m_prgplcmap[i];

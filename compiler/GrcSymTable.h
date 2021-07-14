@@ -487,12 +487,12 @@ public:
 		return m_vstaFields[i] == sta;
 	}
 
-	void InsertField(int i, std::string sta)
+	void InsertField(size_t i, std::string sta)
 	{
 		Assert(i <= static_cast<int>(m_vstaFields.size()));
 		m_vstaFields.insert(m_vstaFields.begin() + i, sta);
 	}
-	void DeleteField(int i)
+	void DeleteField(size_t i)
 	{
 		Assert(i < static_cast<int>(m_vstaFields.size()));
 		m_vstaFields.erase(m_vstaFields.begin() + i);

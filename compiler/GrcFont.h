@@ -39,10 +39,10 @@ public:
 	~GrcFont(); //Review: should this be virtual?
 	int Init(GrcManager *); // must call before using any of the below methods; clean up handled by dtor
 
-	void GetFontFamilyName(utf16 * rgchwName, int cchMax);
+	void GetFontFamilyName(utf16 * rgchwName, size_t cchMax);
 
 	utf16 FirstFreeGlyph();
-	int AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID);
+	size_t AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID);
 
 	void GetGlyphsFromCmap(utf16 * rgchwUniToGlyphID);
 	unsigned int UnicodeFromCodePage(utf16 wCodePage, utf16 wCodePoint, GdlObject * pgdlobj);
@@ -154,8 +154,8 @@ public:
 protected:
 	int OpenFile(void);
 	int CloseFile(void);
-	int ReadData(gr::byte ** ppData, long lnOffset, long lnSize);
-	int ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, gr::byte ** ppTable, long * plnSize);
+	int ReadData(gr::byte ** ppData, ptrdiff_t lnOffset, size_t lnSize);
+	int ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, gr::byte ** ppTable, size_t * plnSize);
 	int ReadTable(gr::byte*& pTable);
 
 	bool IsGraphiteFont(void * pHdr, void * pTableDir);
@@ -173,25 +173,25 @@ protected:
 	FILE *m_pFile;
 	
 	gr::byte * m_pCmap;
-	long m_cCmap;
+	size_t m_cCmap;
 	gr::byte * m_pGlyf;
-	long m_cGlyf;
+	size_t m_cGlyf;
 	gr::byte * m_pHead;
-	long m_cHead;
+	size_t m_cHead;
 	gr::byte * m_pHhea;
-	long m_cHhea;
+	size_t m_cHhea;
 	gr::byte * m_pHmtx;
-	long m_cHmtx;
+	size_t m_cHmtx;
 	gr::byte * m_pLoca;
-	long m_cLoca;
+	size_t m_cLoca;
 	gr::byte * m_pMaxp;
-	long m_cMaxp;
+	size_t m_cMaxp;
 	gr::byte * m_pOs2;
-	long m_cOs2;
+	size_t m_cOs2;
 	gr::byte * m_pPost;
-	long m_cPost;
+	size_t m_cPost;
 	gr::byte * m_pName;
-	long m_cName;
+	size_t m_cName;
 
 	// point to MS cmap subtables within m_pCmap for MS data
 	// try to use the 3-10 pointer first. this is for MS UCS-4 encoding (UTF-32)

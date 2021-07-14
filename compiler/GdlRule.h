@@ -249,7 +249,7 @@ public:
 	virtual void ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool>& vfOmit, std::vector<int>& vnNewIndices,
 		GdlRule * prule);
-	virtual void CheckSelectors(GdlRule * prule, int irit, int crit);
+	virtual void CheckSelectors(GdlRule * prule, int irit, size_t crit);
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -625,7 +625,7 @@ public:
 protected:
 	virtual void ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual void CheckSelectors(GdlRule * prule, int irit, int crit);
+	virtual void CheckSelectors(GdlRule * prule, int irit, size_t crit);
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -878,7 +878,7 @@ protected:
 	void GenerateOptRanges(
 		std::vector<GdlRule*>&	vpruleNewList,
 		std::vector<bool>	&	vfOmitRange,
-		size_t					irangeCurr);
+		int					irangeCurr);
 	void GenerateOneRuleVersion(
 		std::vector<GdlRule*>&	vpruleNewList,
 		std::vector<bool>	&	vfOmitRange);

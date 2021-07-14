@@ -411,7 +411,7 @@ inline size_t ConvertText(const utf16 * prgchwSrc, size_t cchwSrc, schar * prgch
 	At the moment, this is not available.
 	}
 ----------------------------------------------------------------------------------------------*/
-inline int ConvertText(const schar * prgchsSrc, int cchsSrc, utf16 * prgchwDst, int cchwDst)
+inline size_t ConvertText(const schar * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst)
 {
 	AssertArray(prgchsSrc, cchsSrc);
 	AssertArray(prgchwDst, cchwDst);

@@ -145,7 +145,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 
 	std::vector<unsigned int> vnAutoUnicode;
 	std::vector<utf16> vwAutoGlyphID;
-	int cAutoPseudos = (m_prndr->AutoPseudo()) ?
+	size_t cAutoPseudos = (m_prndr->AutoPseudo()) ?
 		pfont->AutoPseudos(vnAutoUnicode, vwAutoGlyphID) :
 		0;
 

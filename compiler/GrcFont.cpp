@@ -56,7 +56,7 @@ GrcFont::GrcFont(char * pchFontFile) :
 	m_nMaxGlyfId(-1) 
 {
 	AssertPtr(pchFontFile);
-	int cch = pchFontFile ? strlen(pchFontFile) + 1: 0;
+	auto cch = pchFontFile ? strlen(pchFontFile) + 1: 0;
 	if (cch)
 	{
 		m_pchFileName =  new char[cch];
@@ -279,7 +279,7 @@ int GrcFont::Init(GrcManager * pcman)
 /*----------------------------------------------------------------------------------------------
 	Get the font name out of the name table
 ----------------------------------------------------------------------------------------------*/
-void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
+void GrcFont::GetFontFamilyName(utf16 * rgchwName, size_t cchMax)
 {
 	size_t lOffset;
 	size_t lSize;
@@ -295,7 +295,7 @@ void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
 		}
 	}
 
-	int cchw = (lSize / sizeof(utf16)) + 1;
+	auto cchw = (lSize / sizeof(utf16)) + 1;
 	cchw = min(cchw, cchMax);
 	memcpy(rgchwName, (gr::byte *)m_pName + lOffset, lSize);
 	rgchwName[cchw - 1] = 0;  // zero terminate
@@ -334,7 +334,7 @@ utf16 GrcFont::FirstFreeGlyph()
 	Fill in the arrays with the pairs of ambiguous unicode values and assigned glyph IDs.
 	Return the number found.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID)
+size_t GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID)
 {
 #ifdef _DEBUG
 	if (m_fDebug)
@@ -347,10 +347,10 @@ int GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf1
 	
 	// Fill the vectors with Unicode values that have duplicate glyph IDs and with the
 	// glyph IDs that parallel the Unicode values.
-	size_t nSize = m_vnCollisions.size();
-	for (size_t i = 0; i < nSize; i++)
+	auto nSize = m_vnCollisions.size();
+	for (auto const collision: m_vnCollisions)
 	{
-		unsigned int nUnicode = m_vnCollisions[i];
+		unsigned int nUnicode = collision;
 		vnUnicode.push_back(nUnicode);
 		utf16 wchGlyph = GlyphFromCmap(nUnicode, NULL);
 		vwGlyphID.push_back(wchGlyph);
@@ -826,7 +826,7 @@ int GrcFont::CloseFile()
 	Read a data from the font storing the data in ppData.
 	Return true if successful, otherwise false.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
+int GrcFont::ReadData(gr::byte ** ppData, ptrdiff_t lnOffset, size_t lnSize)
 {
 	*ppData = new gr::byte[lnSize];
 	if (!*ppData)
@@ -835,7 +835,7 @@ int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
 			"Memory failure: could not allocate ppData array while reading font file");
 		return false;
 	}
-	if (fseek(m_pFile, lnOffset, SEEK_SET))
+	if (fseek(m_pFile, long(lnOffset), SEEK_SET))
 	{
 		g_errorList.AddError(126, NULL, 
 			"Could not seek to correct place in font file");
@@ -855,7 +855,7 @@ int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
 	Return true if successful, otherwise false. On false, also generate an error message.
 ----------------------------------------------------------------------------------------------*/
 int GrcFont::ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, 
-	gr::byte ** ppTable, long * plnSize)
+	gr::byte ** ppTable, size_t * plnSize)
 {
 	size_t lnOffset, lnSize;
 
