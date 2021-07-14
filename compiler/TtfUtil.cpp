@@ -177,7 +177,7 @@ bool GetTableDirInfo(const void * pHdr, size_t & lOffset, size_t & lSize)
 	const Sfnt::OffsetSubTable * pOffsetTable
 		= reinterpret_cast<const Sfnt::OffsetSubTable *>(pHdr);
 
-	lOffset = sizeof(Sfnt::OffsetSubTable) - sizeof(Sfnt::OffsetSubTable::table_directory);
+	lOffset = offsetof(Sfnt::OffsetSubTable, table_directory);
 	lSize   = read(pOffsetTable->num_tables) 
 		* sizeof(Sfnt::OffsetSubTable::Entry);
 	

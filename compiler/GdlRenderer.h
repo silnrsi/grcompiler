@@ -230,12 +230,12 @@ public:
 
 	//	Output:
 	void OutputReplacementClasses(int fxdSilfVersion,
-		std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
+		std::vector<GdlGlyphClassDefn *> & vpglfc, size_t cpglfcLinear,
 		GrcBinaryStream * pbstrm);
 	void CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);
-	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-		std::vector<int> & vnOffsets);
+	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
+		std::vector<intptr_t> & vnOffsets);
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
 		std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
 		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,

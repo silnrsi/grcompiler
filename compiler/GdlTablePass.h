@@ -164,8 +164,8 @@ public:
 
 	//	Output:
 	size_t TotalNumGlyphSubRanges();
-	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart);
-	void GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList);
+	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart);
+	void GenerateRuleMaps(std::vector<intptr_t> & vnOffsets, std::vector<intptr_t> & vnRuleList);
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
 
 	//	debuggers:
@@ -319,8 +319,8 @@ public:
 
 	//	Output
 	int CountPasses();
-	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-		std::vector<int> & vnOffsets);
+	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
+		std::vector<intptr_t> & vnOffsets);
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);

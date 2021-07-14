@@ -3592,9 +3592,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Check that there is no overlap or interference between lhs ranges and
 	//	context ranges.
-
-	size_t iirit;
-	for (iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
+	for (auto iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
 	{
 		if (!m_vfOptRangeContext[iirit])
 		{
@@ -3638,7 +3636,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Now do the conversion.
 
-	for (iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
+	for (auto iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
 	{
 		if (!m_vfOptRangeContext[iirit])
 		{

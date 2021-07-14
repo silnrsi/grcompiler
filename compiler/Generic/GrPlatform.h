@@ -116,29 +116,6 @@ typedef signed int       sdata32;	// generic 32-bit data
 
 typedef std::ios_base::openmode openmode_t;
 
-/*************************************************************************************
- Offsets and addresses. AddrOf is useful for taking the address of an object
- that overloads the & operator.
-*************************************************************************************/
-#if defined(_WIN32)
-#undef	offsetof
-#define	offsetof(cls,fld)	((int)&((cls *)0)->fld)
-#endif
-
-// #ifndef NO_ASM
-// #define addrsafe_offsetof(cls,fld) reinterpret_cast<int>(AddrOf(((cls *)0)->fld))
-// 
-// template<typename T> inline T * AddrOf(T & x) {
-// 	T * pt;
-// 	__asm
-// 	{
-// 		mov eax,x
-// 		mov pt,eax
-// 	}
-// 	return pt;
-// }
-// #endif
-
 
 inline bool GrIsBadStringPtrW(const utf16 *const pszw, const long)
 {
