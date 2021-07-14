@@ -94,8 +94,8 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	// Search MSDN for "Creating a Child Process with Redirected Input and Output" for 
 	// more proper way. Using the C RTL is much easier than the proper way with the Win API.
 	
-	int cchOutputPath = strlen(staOutputPath.data());
-	int cchPreProcErr = cchOutputPath + strlen(_T("\\$_gdlpp_stderr.txt")) + 1;
+	auto cchOutputPath = strlen(staOutputPath.data());
+	auto cchPreProcErr = cchOutputPath + strlen(_T("\\$_gdlpp_stderr.txt")) + 1;
 	char * pszPreProcErr = new char[cchPreProcErr];
 	memset(pszPreProcErr, 0, cchPreProcErr);
 	if (!pszPreProcErr)
@@ -381,8 +381,8 @@ LNextLine:
 ----------------------------------------------------------------------------------------------*/
 std::string GrcManager::PreProcName(std::string sta)
 {
-	int ichMin;
-	int ichLim = sta.length();
+	size_t ichMin;
+	size_t ichLim = sta.length();
 	
 	for ( ; ichLim >= 0 && sta[ichLim] != '\\' && sta[ichLim] != '.'; ichLim--)
 		;
@@ -733,7 +733,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 			}
 			
 			std::string sta = astValue->getText();
-			int cb = sta.length();
+			auto cb = sta.length();
 			if (cb > 4)
 			{
 				g_errorList.AddError(1131, NULL,
@@ -761,7 +761,7 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 		{
 			char rgch1[20];
 			char rgch2[20];
-			itoa(m_prndr->NumScriptTags(), rgch1, 10);
+			itoa(int(m_prndr->NumScriptTags()), rgch1, 10);
 			itoa(kMaxScriptTags, rgch2, 10);
 			g_errorList.AddError(1132, NULL,
 				"Number of script tags (",
@@ -3580,7 +3580,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Make a mapping from lhs/rhs items to corresponding indices in the context.
 	std::vector<int> viritToContext;
-	for (size_t iritT = 0; iritT < m_vprit.size(); iritT++)
+	for (auto iritT = 0; iritT < m_vprit.size(); iritT++)
 	{
 		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem*>(m_vprit[iritT]);
 		if (pritset)
