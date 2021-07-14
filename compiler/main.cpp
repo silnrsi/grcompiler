@@ -483,11 +483,11 @@ int main(int argc, char * argv[])
 		rgchOutputFile, staFamily,
 		VersionString(g_cman.SilfTableVersion()), g_cman.SeparateControlFile());
 
-	int cerrFatal = g_errorList.NumberOfErrors();
-	int cerrWarning = g_errorList.NumberOfWarnings();
-	int cerrWarningGiven = g_errorList.NumberOfWarningsGiven();	// ie, not ignored
-	cerrFatal = cerrFatal - cerrWarning;
-	int cerrWarningIgnored = cerrWarning - cerrWarningGiven;
+	auto cerrFatal = g_errorList.NumberOfErrors();
+	auto cerrWarning = g_errorList.NumberOfWarnings();
+	auto cerrWarningGiven = g_errorList.NumberOfWarningsGiven();	// ie, not ignored
+	cerrFatal -= cerrWarning;
+	auto cerrWarningIgnored = cerrWarning - cerrWarningGiven;
 
 	if (cerrFatal > 0)
 	{

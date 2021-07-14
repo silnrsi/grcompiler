@@ -641,7 +641,7 @@ public:
 		Get the length, i.e., the number of char or utf16 characters (as opposed to a count of
 		logical characters.
 	------------------------------------------------------------------------------------------*/
-	int Length(void) const
+	size_t Length(void) const
 	{
 		AssertObj(this);
 		return m_pbuf->Cch();
@@ -1747,7 +1747,7 @@ protected:
 			AssertPtr(this);
 			Assert(0 <= m_crefMinusOne);
 			Assert(m_cb >= 0);
-			Assert(0 == m_cb % isizeof(XChar));
+			Assert(0 == m_cb % sizeof(XChar));
 			AssertArray(m_rgch, m_cb / sizeof(XChar) + 1);
 			Assert(0 == m_rgch[m_cb / sizeof(XChar)]);
 			return true;

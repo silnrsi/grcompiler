@@ -83,7 +83,7 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 #endif
 {
 #ifdef _WIN32
-	STARTUPINFO sui = {isizeof(sui)};
+	STARTUPINFO sui = {sizeof(sui)};
 	//Apparently not needed for DOS programs:
 	//sui.wShowWindow = SW_HIDE;
 	//sui.dwFlags = STARTF_USESHOWWINDOW;
