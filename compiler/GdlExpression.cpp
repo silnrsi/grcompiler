@@ -1265,7 +1265,7 @@ GdlExpression * GdlStringExpression::ConvertFeatureSettingValue(GdlFeatureDefn *
 	if (pfeat->IsLanguageFeature())
 	{
 		int nValue = 0;
-		int cb = m_staValue.length();
+		auto cb = m_staValue.length();
 		if (m_staValue.length() > 4)
 		{
 			g_errorList.AddError(2115, this,
@@ -1892,7 +1892,7 @@ GdlExpression * GdlStringExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * /*p
 /*----------------------------------------------------------------------------------------------
 	Return the number of glyphs in the class.
 ----------------------------------------------------------------------------------------------*/
-int GdlClassMemberExpression::ValueCount()
+size_t GdlClassMemberExpression::ValueCount()
 {
 	GdlDefn * pgdl = m_psymName->Data();
 	GdlGlyphClassDefn * pglfc = dynamic_cast<GdlGlyphClassDefn *>(pgdl);

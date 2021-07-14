@@ -394,7 +394,7 @@ public:
 	//	Pre-compiler methods:
 	bool AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTable * psymtblMain,
 		std::vector<Symbol> & vpsymGlyphAttrIDs,
-		int nPass, int cpsymBuiltIn, int cpsymComponents, int nMaxJLevel, int cpass);
+		int nPass, size_t cpsymBuiltIn, size_t cpsymComponents, size_t nMaxJLevel, size_t cpass);
 	Symbol BaseLigComponent();
 
 	//	Debuggers:
@@ -474,7 +474,7 @@ public:
 	}
 
 	//	General:
-	int NumFields() const
+	size_t NumFields() const
 	{
 		return m_vstaFields.size();
 	}

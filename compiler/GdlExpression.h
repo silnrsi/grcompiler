@@ -1180,7 +1180,7 @@ public:
 		GdlExpression ** ppexpGpoint,
 		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset);
 
-	int ValueCount();
+	size_t ValueCount();
 
 	// Compiler:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);

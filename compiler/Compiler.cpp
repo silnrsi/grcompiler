@@ -131,9 +131,9 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 
 	bool fSetInsertToFalse = false;
 	bool fBackUpOneMore = false;
-	int iritFirstModItem = m_critPrependedAnys + m_critPreModContext;
+	int iritFirstModItem = int(m_critPrependedAnys + m_critPreModContext);
 	int irit;
-	for (irit = m_critPrependedAnys; irit < signed(m_vprit.size()); irit++)
+	for (irit = int(m_critPrependedAnys); irit < m_vprit.size(); ++irit)
 	{
 		if (iritFirstModItem <= irit && irit < signed(iritLimMod))
 		{
@@ -251,7 +251,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRu
 	vbOutput.push_back(kopCntxtItem);
 	vbOutput.push_back(iritByte - iritFirstModItem);
 	vbOutput.push_back(0); // place holder
-	int ibSkipLoc = vbOutput.size();
+	auto ibSkipLoc = vbOutput.size();
 	int nBogus;
 	m_pexpConstraint->GenerateEngineCode(fxdRuleVersion, vbOutput, irit, &viritInput, irit,
 		fInserting, -1, &nBogus);
@@ -709,7 +709,7 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 		return;
 	}
 
-	for (size_t ipass = 0; ipass < m_vppass.size(); ipass++)
+	for (int ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
 		GdlPass * ppass = m_vppass[ipass];
 
@@ -733,7 +733,7 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 		int cPostTmp = ppass->MaxPostLBSlots();
 
 		//	Loop backwards through all the passes in this table, calculating the ranges.
-		for (int ipassPrev = ipass; ipassPrev-- > 0; )
+		for (auto ipassPrev = ipass; ipassPrev-- > 0; )
 		{
 			GdlPass * ppassPrev = m_vppass[ipassPrev];
 			if (fPos)
@@ -764,7 +764,7 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 			GdlRuleTable * prultblPrev = ((itbl == 2) ? prultbl2 : prultbl1);
 			if (prultblPrev)
 			{
-				for (int ipassPrev = prultblPrev->NumberOfPasses(); ipassPrev-- > 0; )
+				for (auto ipassPrev = prultblPrev->NumberOfPasses(); ipassPrev-- > 0; )
 				{
 					GdlPass * ppassPrev = prultblPrev->m_vppass[ipassPrev];
 
@@ -867,7 +867,7 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 	// and secondarily by their location in the file (rule number--smallest first).
 	std::vector<int> viruleSorted;
 	std::vector<int> vnKeys;
-	for (size_t irule1 = 0; irule1 < m_vprule.size(); irule1++)
+	for (int irule1 = 0; irule1 < m_vprule.size(); irule1++)
 	{
 		int nSortKey1 = m_vprule[irule1]->SortKey();
 		size_t iirule2;
@@ -1522,7 +1522,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 		
 			bool fAnyNonZero = false;
 
-			for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+			for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 			{
 				int nValue = FinalAttrValue(wGlyphID, nAttrID);
 
@@ -1892,7 +1892,7 @@ void GdlAttrValueSpec::PrettyPrintAttach(GrcManager * pcman, std::ostream & strm
 }
 
 void GdlAttrValueSpec::PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
-	bool * /*pfAtt*/, bool * /*pfAttAt*/, bool * /*pfAttWith*/, int /*cpavs*/)
+	bool * /*pfAtt*/, bool * /*pfAttAt*/, bool * /*pfAttWith*/, size_t /*cpavs*/)
 {
 	strmOut << m_psymName->FullAbbrev();
 	strmOut << " " << m_psymOperator->FullAbbrev() << " ";
@@ -2320,8 +2320,8 @@ void GrcManager::CmapAndInverse(GrcFont * pfont,
 	int cnUni, utf16 * rgchwUniToGlyphID, unsigned int * rgnGlyphIDToUni,
 	std::vector<unsigned int> & vnXUniForPsd, std::vector<utf16> & vwXPsdForUni)
 {
-	memset(rgchwUniToGlyphID, 0, (cnUni * isizeof(utf16)));
-	memset(rgnGlyphIDToUni, 0, (0x10000 * isizeof(int)));
+	memset(rgchwUniToGlyphID, 0, (cnUni * sizeof(utf16)));
+	memset(rgnGlyphIDToUni, 0, (0x10000 * sizeof(int)));
 
 	pfont->GetGlyphsFromCmap(rgchwUniToGlyphID);
 
@@ -2367,7 +2367,7 @@ bool GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGd
 
 	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
 	// a .gdx extension.
-	int cchLen = strlen(pchOutputFilename);
+	auto cchLen = strlen(pchOutputFilename);
 	char rgchDbgXmlFile[128];
 	char rgchOutputPath[128];
 	memset(rgchDbgXmlFile, 0, 128 * sizeof(char));
@@ -2555,7 +2555,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				<< "\" atLine=\"" << vnSingleMemberClassLines[wGlyphID];
 		strmOut<< "\"" << ">\n";
 	
-		for (size_t nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+		for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 		{
 			int nValue = FinalAttrValue(wGlyphID, nAttrID);
 
@@ -2676,7 +2676,7 @@ void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphID
 		strmOut << "\" subClassIndexRhs=\"" << m_nReplcmtOutID;
 	strmOut << "\">\n";
 
-	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, staPathToCur,
 			this, LineAndFileForMember(iglfd), cwGlyphIDs);
@@ -2860,7 +2860,7 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::st
 			strmOut << "        </passConstraints>\n";
 		}
 
-		for (size_t irule = 0; irule < m_vprule.size(); irule++)
+		for (int irule = 0; irule < m_vprule.size(); irule++)
 		{
 			m_vprule[irule]->DebugXml(pcman, strmOut, staPathToCur, PassDebuggerNumber(), irule);
 		}
@@ -3252,7 +3252,7 @@ std::string GrcManager::pathFromOutputToCurrent(char * rgchCurDir, char * rgchOu
 	}
 	else
 	{
-		int iCWDpath = vstaCurDir.size() - 1;	// index of the current directory in the path
+		auto iCWDpath = vstaCurDir.size() - 1;	// index of the current directory in the path
 		for (size_t istaOut = 0; istaOut < vstaOutputPath.size(); istaOut++)
 		{
 			if (strcmp(vstaOutputPath[istaOut].data(), "..") == 0)
@@ -3274,7 +3274,7 @@ std::string GrcManager::pathFromOutputToCurrent(char * rgchCurDir, char * rgchOu
 				vstaResultRev.push_back("..");
 		}
 
-		for (int ista = vstaResultRev.size() - 1; ista >= 0; ista--)
+		for (auto ista = vstaResultRev.size() - 1; ista >= 0; ista--)
 		{
 			staResult.append(vstaResultRev[ista]);
 			staResult.append(&chSep, 1);

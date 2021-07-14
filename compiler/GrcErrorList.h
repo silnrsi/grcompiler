@@ -257,7 +257,7 @@ public:
 		std::string * psta5, std::string * psta6, std::string * psta7, std::string * psta8);
 
 	void SortErrors();
-	int NumberOfErrors()
+	size_t NumberOfErrors()
 	{
 		return m_vperr.size();
 	}

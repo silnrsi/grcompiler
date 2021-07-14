@@ -295,7 +295,7 @@ void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
 		}
 	}
 
-	int cchw = (lSize / isizeof(utf16)) + 1;
+	int cchw = (lSize / sizeof(utf16)) + 1;
 	cchw = min(cchw, cchMax);
 	memcpy(rgchwName, (gr::byte *)m_pName + lOffset, lSize);
 	rgchwName[cchw - 1] = 0;  // zero terminate

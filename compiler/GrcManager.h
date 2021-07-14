@@ -83,7 +83,7 @@ public:
 	std::vector<Symbol> * GlyphAttrVec()	{ return &m_vpsymGlyphAttrs; }
 	GrcGlyphAttrMatrix * GlyphAttrMatrix()	{ return m_pgax; }
 	GrcLigComponentList * LigCompList()		{ return m_plclist; }
-	int NumGlyphs()							{ return m_cwGlyphIDs; }
+	size_t NumGlyphs()						{ return m_cwGlyphIDs; }
 	utf16 PhantomGlyph()					{ return m_wPhantom; }
 
 	int SilfTableVersion()
@@ -543,10 +543,10 @@ protected:
 	//	For compiler use:
 
 	int m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
-	int m_cwGlyphIDs;
+	size_t m_cwGlyphIDs;
 
-	int m_cpsymBuiltIn;		// total number of built-in attributes
-	int m_cpsymComponents;	// total number of ligature components encountered
+	size_t m_cpsymBuiltIn;		// total number of built-in attributes
+	size_t m_cpsymComponents;	// total number of ligature components encountered
 
 	//	Pseudo-code mappings: the two vectors form pairs of underlying unicode values and 
 	//	coresponding pseudo-glyph IDs.

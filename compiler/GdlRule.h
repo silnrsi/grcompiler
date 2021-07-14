@@ -118,7 +118,7 @@ private:
 public:
 	//	debuggers:
 	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
-		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs);
+		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, size_t cpavs);
 	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml);
 	void DebugXml(GrcManager * pcman, std::ostream & strmOut, std::string staPathToCur);
 
@@ -797,7 +797,7 @@ public:
 	}
 	int LookupAliasIndex(std::string sta);
 
-	int NumberOfSlots()
+	size_t NumberOfSlots()
 	{
 		return m_vprit.size();
 	}
@@ -865,7 +865,7 @@ public:
 	{
 		return m_vprit.size() == 0;
 	}
-	int ItemCount()
+	size_t ItemCount()
 	{
 		return m_vprit.size();
 	}
@@ -886,7 +886,7 @@ protected:
 
 public:
 	//	Pre-compiler:
-	int CountRulePreContexts();
+	size_t CountRulePreContexts();
 	void FixRulePreContexts(Symbol psymAnyClass, int critNeeded);
 
 	void FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
@@ -912,7 +912,7 @@ public:
 	int FindAutoAssocItem(bool fDelete);
 	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 		std::vector<utf16> & vwSpaceGlyphs);
-	int PrependedAnys() { return m_critPrependedAnys; }
+	size_t PrependedAnys() { return m_critPrependedAnys; }
 
 	//	Compiler:
 	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, 
@@ -921,11 +921,8 @@ public:
 		std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints);
 	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput);
 	GdlRuleItem * InputItem(int n);
-	int NumberOfInputItems();
-	int NumberOfPreModContextItems()
-	{
-		return m_critPreModContext;
-	}
+	size_t NumberOfInputItems();
+	size_t NumberOfPreModContextItems() { return m_critPreModContext; }
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
@@ -957,13 +954,13 @@ protected:
 
 	//	number of items in the context before the first modified item (original, before adding
 	//	ANY items)
-	int m_critPreModContext;
+	size_t m_critPreModContext;
 
 	//	number of ANY items that were prepended to the front of the rule
-	int m_critPrependedAnys;
+	size_t m_critPrependedAnys;
 
 	//	original context length
-	int m_critOriginal;
+	size_t m_critOriginal;
 
 	//	scan-advance, adjusted
 	int m_nOutputAdvance;

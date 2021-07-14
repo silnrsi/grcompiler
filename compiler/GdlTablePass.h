@@ -190,8 +190,8 @@ protected:
 	int m_nDir;
 	bool m_fFlipDir;
 
-	int m_critMinPreContext;
-	int m_critMaxPreContext;
+	size_t m_critMinPreContext;
+	size_t m_critMaxPreContext;
 
 	//	for compiler use:
 //	int m_nNumber2;		// with respect to all the passes in all tables
@@ -244,7 +244,7 @@ protected:
 
 public:
 	//	For test procedures:
-	int test_NumberOfRules()
+	size_t test_NumberOfRules()
 	{
 		return m_vprule.size();
 	}
@@ -280,7 +280,7 @@ public:
 	//	Setters:
 	void SetSubstitution(bool f)	{ m_fSubstitution = f; }
 
-	int NumberOfPasses()
+	size_t NumberOfPasses()
 	{
 		return m_vppass.size();
 	}

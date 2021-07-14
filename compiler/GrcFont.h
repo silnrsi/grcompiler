@@ -78,7 +78,7 @@ public:
 			m_pfont = pfont;
 			if (fAtEnd)
 			{
-				m_iBlock = m_pfont->CBlocks();
+				m_iBlock = int(m_pfont->CBlocks());
 				m_nUni = GRCFONT_END;
 			}
 			else
@@ -212,7 +212,7 @@ protected:
 	bool m_fDebug;
 
 	// for interator
-	int CBlocks()
+	size_t CBlocks()
 	{
 		Assert(m_vnMinUnicode.size() == m_vnLimUnicode.size());
 		return m_vnMinUnicode.size();

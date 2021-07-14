@@ -370,7 +370,7 @@ template<typename XChar>
 	}
 ----------------------------------------------------------------------------------------------*/
 
-inline int ConvertText(const utf16 * prgchwSrc, int cchwSrc, schar * prgchsDst, int cchsDst)
+inline size_t ConvertText(const utf16 * prgchwSrc, size_t cchwSrc, schar * prgchsDst, size_t cchsDst)
 {
 	AssertArray(prgchwSrc, cchwSrc);
 	AssertArray(prgchsDst, cchsDst);
@@ -444,7 +444,7 @@ template<typename XChar>
 	This does a binary search.
 ----------------------------------------------------------------------------------------------*/
 template<typename YChar>
-	inline int CychFitConvertedText(const YChar * prgych, int cych, int cxchMax)
+	inline size_t CychFitConvertedText(const YChar * prgych, size_t cych, size_t cxchMax)
 {
 	AssertArray(prgych, cych);
 	Assert(0 <= cxchMax);
@@ -454,8 +454,8 @@ template<typename YChar>
 
 	// The most common case is that each ych becomes a single xch, so test for this first.
 	if (cych > cxchMax &&
-		ConvertText(prgych, cxchMax, (typename CharDefns<YChar>::OtherChar *)NULL, 0) <= cxchMax &&
-		ConvertText(prgych, cxchMax + 1, (typename CharDefns<YChar>::OtherChar *)NULL, 0) > cxchMax)
+		ConvertText(prgych, cxchMax, nullptr, 0) <= cxchMax &&
+		ConvertText(prgych, cxchMax + 1, nullptr, 0) > cxchMax)
 	{
 		return cxchMax;
 	}
@@ -467,7 +467,7 @@ template<typename YChar>
 		int cychT = (unsigned int)(cychMin + cychLim + 1) / 2;
 		Assert(cychMin < cychT && cychT <= cychLim);
 
-		int cxchT = ConvertText(prgych, cychT, (typename CharDefns<YChar>::OtherChar *)NULL, 0);
+		int cxchT = ConvertText(prgych, cychT, nullptr, 0);
 		if (cxchT > cxchMax)
 			cychLim = cychT - 1;
 		else
@@ -1791,10 +1791,10 @@ protected:
 		}
 
 		// Return the count of characters.
-		int Cch(void)
+		size_t Cch(void)
 		{
 			Assert(0 == m_cb % sizeof(XChar));
-			return (unsigned int)m_cb / sizeof(XChar);
+			return m_cb / sizeof(XChar);
 		}
 	}; // End of StrBuffer.
 
@@ -1835,9 +1835,9 @@ protected:
 		AssertObj(this);
 	}
 
-	void _Replace(int ichMin, int ichLim, const XChar * prgchIns, XChar chIns, int cchIns);
+	void _Replace(int ichMin, int ichLim, const XChar * prgchIns, XChar chIns, size_t cchIns);
 		//int nCodePage);
-	void _Replace(int ichMin, int ichLim, const YChar * prgchIns, YChar chIns, int cchIns);
+	void _Replace(int ichMin, int ichLim, const YChar * prgchIns, YChar chIns, size_t cchIns);
 		//int nCodePage);
 	void _Copy(void);
 

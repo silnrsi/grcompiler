@@ -95,7 +95,7 @@ public:
 
 	void WriteToStream(std::ostream & strmOut, bool fNoPath)
 	{
-		int ich = m_staFile.length();
+		size_t ich = m_staFile.length();
 		// Strip off the file path.
 		while (fNoPath && ich > 0 && m_staFile[ich - 1] != '\\')
 			ich--;

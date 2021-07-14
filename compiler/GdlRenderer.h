@@ -75,7 +75,7 @@ public:
 		return fRet;
 	}
 
-	int NumScriptTags()
+	size_t NumScriptTags()
 	{
 		return m_vnScriptTags.size();
 	}
@@ -132,14 +132,14 @@ public:
 	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
 	bool CheckRecursiveGlyphClasses();
-	int ExplicitPseudos(PseudoSet & setpglf);
+	size_t ExplicitPseudos(PseudoSet & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
 	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
 	void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GrcLigComponentList * plclist);
 	void AssignGlyphAttrDefaultValues(GrcFont * pfont,
-		GrcGlyphAttrMatrix * pgax, int cwGlyphs,
+		GrcGlyphAttrMatrix * pgax, size_t cwGlyphs,
 		std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 		std::vector<GdlExpression *> & vpexpExtra,
 		std::vector<Symbol> & vpsymGlyphAttrs);

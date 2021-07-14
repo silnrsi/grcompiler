@@ -150,12 +150,12 @@ inline bool GrIsBadStringPtrA(const char *const psza, const long)
 	return !psza;
 }
 
-inline bool GrIsBadReadPtr(const void *const, const unsigned int)
+inline bool GrIsBadReadPtr(const void *const, const size_t)
 {
 	return false;
 }
 
-inline bool GrIsBadWritePtr(const void *const, const unsigned int)
+inline bool GrIsBadWritePtr(const void *const, const size_t)
 {
 	return false;
 }

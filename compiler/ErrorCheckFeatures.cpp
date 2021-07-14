@@ -91,7 +91,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 			pfeat->AssignInternalID(nInternalID); 
 			pfeat->RecordDebugInfo();
 
-			nInternalID += vnIDs.size();  // each alternate ID has its own internal ID
+			nInternalID += int(vnIDs.size());  // each alternate ID has its own internal ID
 		}
 	}
 
@@ -100,7 +100,7 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 		char rgchMax[20];
 		itoa(kMaxFeatures, rgchMax, 10);
 		char rgchCount[20];
-		itoa(m_vpfeat.size(), rgchCount, 10);
+		itoa(int(m_vpfeat.size()), rgchCount, 10);
 		g_errorList.AddError(3153, NULL,
 			"Number of features (",
 			rgchCount,
@@ -205,10 +205,10 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 void GdlRenderer::CheckLanguageFeatureSize()
 {
 	// 12 = table info, + 8 bytes per language
-	int cbSillSize = 12 + (m_vplang.size() * 8);
+	size_t cbSillSize = 12 + (m_vplang.size() * 8);
 	cbSillSize += 8; // bogus entry
 
-	for (size_t ilang = 0; ilang < m_vplang.size(); ilang++)
+	for (int ilang = 0; ilang < m_vplang.size(); ilang++)
 		cbSillSize += m_vplang[ilang]->NumberOfSettings() * 4; // 4 bytes per feature setting
 
 	if (cbSillSize >= 0x0000FFFF)

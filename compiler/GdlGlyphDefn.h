@@ -265,7 +265,7 @@ public:
 		char rgchHex[20];
 		itoa(int(wGlyphID), rgchHex, 16);
 		std::string staHex(rgchHex);
-		for (int ich = staHex.size(); ich < 4; ich++)
+		for (auto ich = staHex.size(); ich < 4; ++ich)
 			staRet += "0";
 		staRet += staHex;
 		staRet += "]";
@@ -279,7 +279,7 @@ public:
 		itoa(int(wUsv), rgch, 16);
 		std::string staNum(rgch);
 		std::string staRet;
-		for (int ich = staNum.size(); ich < 4; ich++)
+		for (auto ich = staNum.size(); ich < 4; ich++)
 			staRet += "0";
 		staRet += staNum;
 		return staRet;
@@ -291,7 +291,7 @@ public:
 		itoa(int(n), rgch, 16);
 		std::string staNum(rgch);
 		std::string staRet;
-		for (int ich = staNum.size(); ich < 4; ich++)
+		for (auto ich = staNum.size(); ich < 4; ++ich)
 			staRet += "0";
 		staRet += staNum;
 		return staRet;

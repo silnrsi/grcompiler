@@ -2940,11 +2940,11 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	else
 	{
 		//	minRulePreContext
-		pbstrm->WriteByte(m_critMinPreContext);
+		pbstrm->WriteByte(int(m_critMinPreContext));
 		//	maxRulePreContext
-		pbstrm->WriteByte(m_critMaxPreContext);
+		pbstrm->WriteByte(int(m_critMaxPreContext));
 		//	start states
-		Assert(m_critMaxPreContext - m_critMinPreContext + 1 == static_cast<int>(m_vrowStartStates.size()));
+		Assert(m_critMaxPreContext - m_critMinPreContext + 1 == m_vrowStartStates.size());
 		Assert(m_vrowStartStates[0] == 0);
 		for (i = 0; i < signed(m_vrowStartStates.size()); i++)
 			pbstrm->WriteShort(m_vrowStartStates[i]);

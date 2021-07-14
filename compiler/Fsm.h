@@ -174,7 +174,7 @@ public:
 		m_prgiCells[ifsmc] = ifsValue;
 	}
 
-	int NumberOfRulesMatched()
+	size_t NumberOfRulesMatched()
 	{
 		return m_setiruleMatched.size();
 	}
@@ -190,7 +190,7 @@ public:
 			m_setiruleMatched.insert(irule);
 	}
 
-	int NumberOfRulesSucceeded()
+	size_t NumberOfRulesSucceeded()
 	{
 		return m_setiruleSuccess.size();
 	}
@@ -289,7 +289,7 @@ public:
 
 	void AddState(int critSlotsMatched)
 	{
-		FsmState * pfstateNew = new FsmState(m_cfsmc, critSlotsMatched, m_vpfstate.size());
+		FsmState * pfstateNew = new FsmState(m_cfsmc, critSlotsMatched, int(m_vpfstate.size()));
 		m_vpfstate.push_back(pfstateNew);
 	}
 

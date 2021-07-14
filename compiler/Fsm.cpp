@@ -755,10 +755,10 @@ GdlRuleItem * GdlRule::InputItem(int n)
 	Return the number of input items in the rule, that is, the number of items minus the
 	number of insertions.
 ----------------------------------------------------------------------------------------------*/
-int GdlRule::NumberOfInputItems()
+size_t GdlRule::NumberOfInputItems()
 {
-	int cRet = 0;
-	for (size_t i = 0; i < m_vprit.size(); i++)
+	size_t cRet = 0;
+	for (auto i = 0; i < m_vprit.size(); i++)
 	{
 		if (m_vprit[i]->m_nInputIndex >= 0)
 			cRet++;
