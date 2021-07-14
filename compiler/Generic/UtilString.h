@@ -988,13 +988,13 @@ public:
 		same character type. A StrBase<> is equal to a string if they both contain the exact
 		sequence of characters and if both have the same character count.
 	------------------------------------------------------------------------------------------*/
-	bool Equals(const XChar * prgch, int cch) const
+	bool Equals(const XChar * prgch, size_t cch) const
 	{
 		AssertObj(this);
 		AssertArray(prgch, cch);
 		if (m_pbuf->m_cb != size_t(cch) * sizeof(XChar))
 			return false;
-		return 0 == memcmp(m_pbuf->m_rgch, prgch, cch * isizeof(XChar));
+		return 0 == memcmp(m_pbuf->m_rgch, prgch, cch * sizeof(XChar));
 	}
 
 	/*------------------------------------------------------------------------------------------
@@ -1503,7 +1503,7 @@ public:
 		substring in this StrBase<> that matches the substring, (prgch, cch), passed as
 		parameters. Return -1 if the substring is not found. This is case sensitive.
 	------------------------------------------------------------------------------------------*/
-	int FindStr(const XChar * prgch, int cch, int ichMin = 0) const
+	int FindStr(const XChar * prgch, size_t cch, int ichMin = 0) const
 	{
 		AssertObj(this);
 		AssertArray(prgch, cch);
@@ -1519,7 +1519,7 @@ public:
 		for (ich = ichMin; ich <= ichLast; ich++)
 		{
 			if (m_pbuf->m_rgch[ich] == prgch[0] &&
-				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * isizeof(XChar)))
+				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * sizeof(XChar)))
 			{
 				return ich;
 			}
@@ -1627,7 +1627,7 @@ public:
 		last substring in this StrBase<> that matches the substring, (prgch, cch), passed as
 		parameters. Return -1 if the substring is not found. This is case sensitive.
 	------------------------------------------------------------------------------------------*/
-	int ReverseFindStr(const XChar * prgch, int cch, int ichLast = 0x7FFFFFFF) const
+	int ReverseFindStr(const XChar * prgch, size_t cch, int ichLast = 0x7FFFFFFF) const
 	{
 		AssertObj(this);
 		AssertArray(prgch, cch);
@@ -1640,7 +1640,7 @@ public:
 		for (ich = ichLast; ich >= 0; --ich)
 		{
 			if (m_pbuf->m_rgch[ich] == prgch[0] &&
-				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * isizeof(XChar)))
+				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * sizeof(XChar)))
 			{
 				return ich;
 			}

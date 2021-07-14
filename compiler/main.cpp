@@ -114,8 +114,8 @@ int main(int argc, char * argv[])
 	char * pchFontFile = NULL;
 	char rgchOutputFile[128];
 	utf16 rgchwOutputFontFamily[128];
-	memset(rgchOutputFile, 0, isizeof(char) * 128);
-	memset(rgchwOutputFontFamily, 0, isizeof(utf16) * 128);
+	memset(rgchOutputFile, 0, sizeof *rgchOutputFile * 128);
+	memset(rgchwOutputFontFamily, 0, sizeof *rgchwOutputFontFamily * 128);
 
 	int cargExtra = 0;
 	bool fModFontName = false;
@@ -342,10 +342,10 @@ int main(int argc, char * argv[])
 	if (!fFatalErr)
 	{
 		// Calculate the length of the path part of the output file name.
-		int cchOutputPath = strlen(rgchOutputFile);
+		auto cchOutputPath = strlen(rgchOutputFile);
 		while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\' && rgchOutputFile[cchOutputPath] != '/')
 			cchOutputPath--;
-		memset(rgchOutputPath, 0, isizeof(char) * 128);
+		memset(rgchOutputPath, 0, sizeof *rgchOutputPath * 128);
 		memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); /* don't include \ */
 
 		if (g_cman.IsVerbose())

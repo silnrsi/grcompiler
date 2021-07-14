@@ -1194,27 +1194,27 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		return false;
 
 	// Initialize with minimal font table.
-	memcpy(prgOs2TblNew, pOs2TblMin, isizeof(uint8) * cbOs2TblMin);
+	memcpy(prgOs2TblNew, pOs2TblMin, sizeof(uint8) * cbOs2TblMin);
 
 	// Overwrite key fields with information from the source font.
 
 	// weight class: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 4, pOs2TblSrc + 4, isizeof(uint16));
+	memcpy(prgOs2TblNew + 4, pOs2TblSrc + 4, sizeof(uint16));
 
 	// fsType: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 8, pOs2TblSrc + 8, isizeof(uint16));
+	memcpy(prgOs2TblNew + 8, pOs2TblSrc + 8, sizeof(uint16));
 
 	// family class: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 30, pOs2TblSrc + 30, isizeof(uint16));
+	memcpy(prgOs2TblNew + 30, pOs2TblSrc + 30, sizeof(uint16));
 
 	// char range: 4 32-bit values (16 bytes)
-	memcpy(prgOs2TblNew + 42, pOs2TblSrc + 42, isizeof(uint8)*4 * 4);
+	memcpy(prgOs2TblNew + 42, pOs2TblSrc + 42, sizeof(uint8)*4 * 4);
 
 	// max Unicode value: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 64, pOs2TblSrc + 64, isizeof(uint16));
+	memcpy(prgOs2TblNew + 64, pOs2TblSrc + 64, sizeof(uint16));
 
 	// min Unicode value: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 66, pOs2TblSrc + 66, isizeof(uint16));
+	memcpy(prgOs2TblNew + 66, pOs2TblSrc + 66, sizeof(uint16));
 
 	// Write the result onto the output stream.
 	pbstrm->Write((char *)prgOs2TblNew, cbOs2TblMin);
@@ -1730,7 +1730,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	int * pnGlocOffset, int * pnGlocSize, int * pnGlatOffset, int * pnGlatSize)
 {
 	int * prgibGlyphOffsets = new int[m_cwGlyphIDs + 1];
-	memset(prgibGlyphOffsets, 0, isizeof(int)  * (m_cwGlyphIDs + 1));
+	memset(prgibGlyphOffsets, 0, sizeof(int)  * (m_cwGlyphIDs + 1));
 
 	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
 	int nAttrIdBw = psymBw->InternalID();
@@ -2207,18 +2207,18 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
 		//	offset of zeroth table relative to the start of this table
-		pbstrm->WriteInt(isizeof(int) * 3 + isizeof(utf16) * 2);
+		pbstrm->WriteInt(sizeof(int) * 3 + sizeof(utf16) * 2);
 	}
 	else if (fxdSilfVersion >= 0x00020000)
 	{
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
 		//	offset of zeroth table relative to the start of this table
-		pbstrm->WriteInt(isizeof(int) * 2 + isizeof(utf16) * 2);
+		pbstrm->WriteInt(sizeof(int) * 2 + sizeof(utf16) * 2);
 	}
 	else
 		//	offset of zeroth table relative to the start of this table
-		pbstrm->WriteInt(isizeof(int) + isizeof(utf16) + isizeof(int));
+		pbstrm->WriteInt(sizeof(int) + sizeof(utf16) + sizeof(int));
 
 	//	Sub-table
 
