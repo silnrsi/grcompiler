@@ -68,7 +68,7 @@ public:
 	bool MatchesOneSource(GdlGlyphClassDefn *);
 
 	//	Output:
-	int NumberOfRanges();
+	size_t NumberOfRanges();
 	utf16 OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm);
 
 protected:
@@ -121,7 +121,7 @@ class FsmState
 	friend class GdlPass;
 
 public:
-	FsmState(int ccol, int critSlots, int ifsIndex)
+	FsmState(size_t ccol, int critSlots, int ifsIndex)
 	{
 		Init(ccol, critSlots, ifsIndex);
 	}
@@ -134,7 +134,7 @@ public:
 		m_pfstateMerged = NULL;
 	}
 
-	void Init(int cfsmc, int critSlots, int ifsIndex)
+	void Init(size_t cfsmc, int critSlots, int ifsIndex)
 	{
 		m_cfsmc = cfsmc;
 		m_prgiCells = new int[cfsmc];
@@ -230,7 +230,7 @@ public:
 
 	bool AllCellsEmpty()
 	{
-		for (int ifsmc = 0; ifsmc < m_cfsmc; ifsmc++)
+		for (auto ifsmc = 0; ifsmc < m_cfsmc; ifsmc++)
 		{
 			if (m_prgiCells[ifsmc] != 0)
 				return false;
@@ -240,7 +240,7 @@ public:
 
 protected:
 	int m_critSlotsMatched;	// number of slots matched at this state
-	int m_cfsmc;			// number of machine classes, ie columns
+	size_t m_cfsmc;			// number of machine classes, ie columns
 	int m_ifsWorkIndex;		// working index of this state, as the FSM was originally
 							// generated (currently just used for debugging)
 	int m_ifsFinalIndex;	// adjusted index for final output form of FSM (-1 for merged
@@ -275,7 +275,7 @@ class FsmTable
 	friend class GdlPass;
 
 public:
-	FsmTable(int nPass, int cfsmc)
+	FsmTable(int nPass, size_t cfsmc)
 	{
 		m_nPass = nPass;
 		m_cfsmc = cfsmc;
@@ -283,8 +283,8 @@ public:
 
 	~FsmTable()
 	{
-		for (size_t ipfstate = 0; ipfstate < m_vpfstate.size(); ipfstate++)
-			delete m_vpfstate[ipfstate];
+		for (auto && pfstate: m_vpfstate)
+			delete pfstate;
 	}
 
 	void AddState(int critSlotsMatched)
@@ -307,19 +307,19 @@ public:
 		return m_vpfstate[ifs];
 	}
 
-	int RawNumberOfStates()
+	size_t RawNumberOfStates()
 	{
-		return signed(m_vpfstate.size());
+		return m_vpfstate.size();
 	}
 
-	int NumberOfColumns()
+	size_t NumberOfColumns()
 	{
 		return m_cfsmc;
 	}
 
 protected:
 	int m_nPass;	// the pass this table pertains to
-	int m_cfsmc;	// the number of machine classes, ie columns, in the table
+	size_t m_cfsmc;	// the number of machine classes, ie columns, in the table
 	std::vector<FsmState *> m_vpfstate;	// the rows
 };
 

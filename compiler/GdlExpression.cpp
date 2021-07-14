@@ -2621,7 +2621,7 @@ void GdlStringExpression::AdjustToIOIndices(std::vector<int> & /*virit*/, GdlRul
 ----------------------------------------------------------------------------------------------*/
 std::wstring GdlStringExpression::ConvertToUnicode()
 {
-	int cch = m_staValue.length();
+	auto cch = m_staValue.length();
 	const schar * pchs = m_staValue.data();
 	utf16 * pchw = new utf16[cch + 1];
 	Platform_8bitToUnicode(m_nCodepage, pchs, cch, pchw, cch);

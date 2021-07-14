@@ -150,20 +150,20 @@ public:
 		utf16 wGlyphID);
 	void InitializeFsmArrays();
 	void MergeIdenticalStates(int ifsFixMin, int ifsCheckMin, int ifsCheckLim);
-	int NumberOfFsmMachineClasses();
+	size_t NumberOfFsmMachineClasses();
 	void GetMachineClassesForRuleItem(GdlRule  * prule, int irit,
 		FsmMachineClassSet & setpfsmc);
 	int FindIdenticalState(int ifsToMatch, int ifsMin);
 	void ReorderFsmStates(GrcManager * pcman);
-	int NumStates();
-	int NumAcceptingStates();
-	int NumTransitionalStates();
-	int NumSuccessStates();
-	int NumFinalStates();
+	size_t NumStates();
+	size_t NumAcceptingStates();
+	size_t NumTransitionalStates();
+	size_t NumSuccessStates();
+	size_t NumFinalStates();
 	void GenerateStartStates(GrcManager * pcman);
 
 	//	Output:
-	int TotalNumGlyphSubRanges();
+	size_t TotalNumGlyphSubRanges();
 	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart);
 	void GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList);
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
