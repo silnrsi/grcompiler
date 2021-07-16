@@ -34,6 +34,7 @@
  */
 
 #include "Antlr/config.hpp"
+#include <cstddef>
 #include <vector>
 
 template <class T>
