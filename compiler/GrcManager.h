@@ -83,7 +83,7 @@ public:
 	std::vector<Symbol> * GlyphAttrVec()	{ return &m_vpsymGlyphAttrs; }
 	GrcGlyphAttrMatrix * GlyphAttrMatrix()	{ return m_pgax; }
 	GrcLigComponentList * LigCompList()		{ return m_plclist; }
-	int NumGlyphs()							{ return m_cwGlyphIDs; }
+	size_t NumGlyphs()						{ return m_cwGlyphIDs; }
 	utf16 PhantomGlyph()					{ return m_wPhantom; }
 
 	int SilfTableVersion()
@@ -411,21 +411,21 @@ protected:
 		int * piFamily, int * piSubFamily, int * piFullName,
 		int * piVendor, int * piPSName, int * piUniqueName, int * piPrefFamily, int * piCompatibleFull);
 	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName, size_t cchwFamilyName, utf16 * stuDate,
-		uint8 * pSubFamily, uint16 cbSubFamily,
-		uint8 * pVendor, uint16 cbVendor,
+		uint8 * pSubFamily, size_t cbSubFamily,
+		uint8 * pVendor, size_t cbVendor,
 		PlatEncChange *);
-	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
+	bool AddFeatsModFamilyAux(uint8 * pTblOld, size_t cbTblOld, uint8 * pTblNew, size_t cbTblNew, 
 		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 		std::vector<uint16> & vnNameTblIds, 
 		uint16 * pchwFamilyName, size_t cchwFamilyName, std::vector<PlatEncChange> & vpec,
-		int nNameTblMinNew);
-	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
-		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
-	bool OutputCmapTable(uint8 * pCmapTblSrc, uint32 cbCmapTblSrc,
+		size_t nNameTblMinNew);
+	bool OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
+		uint8 * pOs2TblMin, size_t cbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
+	bool OutputCmapTable(uint8 * pCmapTblSrc, size_t cbCmapTblSrc,
 		GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
-	int OutputCmap31Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom310,
+	size_t OutputCmap31Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom310,
 		bool * pfNeed310);
-	int OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom31);
+	size_t OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom31);
 	void OutputSileTable(GrcBinaryStream * pbstrm,
 		utf16 * pchStrFontFamily, char * pchSrcFileName, unsigned int luMasterChecksum,
 		unsigned int * pnCreateTime, unsigned int * pnModifyTime,
@@ -543,10 +543,10 @@ protected:
 	//	For compiler use:
 
 	int m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
-	int m_cwGlyphIDs;
+	size_t m_cwGlyphIDs;
 
-	int m_cpsymBuiltIn;		// total number of built-in attributes
-	int m_cpsymComponents;	// total number of ligature components encountered
+	size_t m_cpsymBuiltIn;		// total number of built-in attributes
+	size_t m_cpsymComponents;	// total number of ligature components encountered
 
 	//	Pseudo-code mappings: the two vectors form pairs of underlying unicode values and 
 	//	coresponding pseudo-glyph IDs.

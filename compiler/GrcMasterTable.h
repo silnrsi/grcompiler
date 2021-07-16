@@ -45,7 +45,7 @@ public:
 	{
 	}
 
-	~GdlAssignment()
+	virtual ~GdlAssignment()
 	{
 		if (m_pexp)
 			delete m_pexp;

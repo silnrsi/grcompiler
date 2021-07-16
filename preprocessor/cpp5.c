@@ -78,8 +78,9 @@ SOFTWARE.
  * 20-Aug-88	Ois	Conditionally compile sizeof stuff.
  */
 
-#include <stdio.h>
 #include <ctype.h>
+#include <stdint.h>
+#include <stdio.h>
 #include "cppdef.h"
 #include "cpp.h"
 
@@ -149,9 +150,9 @@ static char opdope[OP_MAX] = {
 #define S_QUEST 	1
 
 typedef struct optab {
-  char	op;			/* Operator			*/
-  char	prec;			/* Its precedence		*/
-  char	skip;			/* Short-circuit: TRUE to skip	*/
+  uint8_t	op;			/* Operator			*/
+  uint8_t	prec;			/* Its precedence		*/
+  uint8_t skip;			/* Short-circuit: TRUE to skip	*/
 } OPTAB;
      
 #ifdef	nomacargs

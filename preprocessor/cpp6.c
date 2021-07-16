@@ -572,7 +572,7 @@ char *savestring(struct Global *global, char *text)
 }
 
 ReturnCode getfile(struct Global *global,
-		   int bufsize, /* Line or define buffer size	*/
+		   size_t bufsize, /* Line or define buffer size	*/
 		   char *name,
 		   FILEINFO **file) /* File or macro name string	*/
 {
@@ -580,7 +580,7 @@ ReturnCode getfile(struct Global *global,
    * Common FILEINFO buffer initialization for a new file or macro.
    */
 
-  int size;
+  size_t size;
   
   size = strlen(name);                    	/* File/macro name      */
 
@@ -589,7 +589,7 @@ ReturnCode getfile(struct Global *global,
       size = strlen(name);
   }
 
-  *file = (FILEINFO *) Getmem(global, (int)(sizeof (FILEINFO) + bufsize + size));
+  *file = (FILEINFO *) Getmem(global, sizeof (FILEINFO) + bufsize + size);
   if(!*file)
     return(FPP_OUT_OF_MEMORY);
   (*file)->parent = global->infile;		/* Chain files together */
@@ -617,14 +617,14 @@ void Freemem(void *ptr)
 }
 
 
-char *Getmem(struct Global *global, int size)
+char *Getmem(struct Global *global, size_t size)
 {
   /*
    * Get a block of free memory.
    */
 
   char *result;
-  if ((result = (char *)Malloc((unsigned) size)) == NULL)
+  if ((result = (char *)Malloc(size)) == NULL)
     cfatal(global, FATAL_OUT_OF_MEMORY);
   return(result);
 }
@@ -701,9 +701,9 @@ DEFBUF *defendel(struct Global *global,
   DEFBUF *dp;
   DEFBUF **prevp;
   char *np;
-  int nhash;
+  uintptr_t nhash;
   int temp;
-  int size;
+  size_t size;
   
   for (nhash = 0, np = name; *np != EOS;)
     nhash += *np++;

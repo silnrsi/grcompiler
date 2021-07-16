@@ -202,8 +202,9 @@ SOFTWARE.
    to... eg. _ProgramName and _XCEXIT!
  */
 
-#include <stdio.h>
 #include <ctype.h>
+#include <stdint.h>
+#include <stdio.h>
 #include "cppdef.h"
 #include "cpp.h"
 
@@ -222,7 +223,7 @@ INLINE FILE_LOCAL ReturnCode cppmain(struct Global *);
 
 int PREFIX fppPreProcess(REG(a0) struct fppTag *tags)
 {
-  int i=0;
+  intptr_t i=0;
   ReturnCode ret;       /* cpp return code */
   struct Global *global;
 
@@ -366,7 +367,7 @@ ReturnCode cppmain(struct Global *global)
   char define = 0; /* probability of a function define phase in the program */
   char prev = 0; /* previous type */
   char go = 0;
-  char include = 0;
+  uint8_t include = 0;
   char initfunc = 0;
 
   /* Initialize for reading tokens */
@@ -480,7 +481,7 @@ ReturnCode cppmain(struct Global *global)
     unget(global);                      /* Reread the char.     */
     for (;;) {                          /* For the whole line,  */
       do {                              /* Token concat. loop   */
-	for (global->chpos = counter = 0; (type[(c = get(global))] == SPA);) {
+	for (global->chpos = counter = 0; type[(c = get(global))] == SPA;) {
 #if COMMENT_INVISIBLE
 	  if (c != COM_SEP)
 	    counter++;

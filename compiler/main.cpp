@@ -47,7 +47,9 @@ char* program_invocation_name;
 char* program_invocation_short_name;
 #endif
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -112,8 +114,8 @@ int main(int argc, char * argv[])
 	char * pchFontFile = NULL;
 	char rgchOutputFile[128];
 	utf16 rgchwOutputFontFamily[128];
-	memset(rgchOutputFile, 0, isizeof(char) * 128);
-	memset(rgchwOutputFontFamily, 0, isizeof(utf16) * 128);
+	memset(rgchOutputFile, 0, sizeof *rgchOutputFile * 128);
+	memset(rgchwOutputFontFamily, 0, sizeof *rgchwOutputFontFamily * 128);
 
 	int cargExtra = 0;
 	bool fModFontName = false;
@@ -340,10 +342,10 @@ int main(int argc, char * argv[])
 	if (!fFatalErr)
 	{
 		// Calculate the length of the path part of the output file name.
-		int cchOutputPath = strlen(rgchOutputFile);
+		auto cchOutputPath = strlen(rgchOutputFile);
 		while (cchOutputPath > 0 && rgchOutputFile[cchOutputPath] != '\\' && rgchOutputFile[cchOutputPath] != '/')
 			cchOutputPath--;
-		memset(rgchOutputPath, 0, isizeof(char) * 128);
+		memset(rgchOutputPath, 0, sizeof *rgchOutputPath * 128);
 		memcpy(rgchOutputPath, rgchOutputFile, cchOutputPath); /* don't include \ */
 
 		if (g_cman.IsVerbose())
@@ -481,11 +483,11 @@ int main(int argc, char * argv[])
 		rgchOutputFile, staFamily,
 		VersionString(g_cman.SilfTableVersion()), g_cman.SeparateControlFile());
 
-	int cerrFatal = g_errorList.NumberOfErrors();
-	int cerrWarning = g_errorList.NumberOfWarnings();
-	int cerrWarningGiven = g_errorList.NumberOfWarningsGiven();	// ie, not ignored
-	cerrFatal = cerrFatal - cerrWarning;
-	int cerrWarningIgnored = cerrWarning - cerrWarningGiven;
+	auto cerrFatal = g_errorList.NumberOfErrors();
+	auto cerrWarning = g_errorList.NumberOfWarnings();
+	auto cerrWarningGiven = g_errorList.NumberOfWarningsGiven();	// ie, not ignored
+	cerrFatal -= cerrWarning;
+	auto cerrWarningIgnored = cerrWarning - cerrWarningGiven;
 
 	if (cerrFatal > 0)
 	{

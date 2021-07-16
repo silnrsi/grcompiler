@@ -134,8 +134,8 @@ void GrcErrorList::SortErrors()
 
 	while (m_vperr.size() > 0)
 	{
-		int iperrNext = 0;
-		for (size_t iperrT = 1; iperrT < m_vperr.size(); iperrT++)
+		auto iperrNext = 0;
+		for (auto iperrT = 1; iperrT < m_vperr.size(); iperrT++)
 		{
 			GrpLineAndFile * plnfNext = &(m_vperr[iperrNext]->m_lnf);
 			///int nLineNext = m_vperr[iperrNext]->m_nLineNumber;
@@ -325,10 +325,10 @@ void GrcErrorList::WriteTableVersionsGenerated(std::ostream& strmOut)
 /*----------------------------------------------------------------------------------------------
 	Return the number of non-fatal errors.
 ----------------------------------------------------------------------------------------------*/
-int GrcErrorList::NumberOfWarnings()
+size_t GrcErrorList::NumberOfWarnings()
 {
 	int cerrRet = 0;
-	for (size_t ierr = 0; ierr < m_vperr.size(); ierr++)
+	for (auto ierr = 0; ierr < m_vperr.size(); ierr++)
 	{
 		if (!IsFatal(ierr))
 			cerrRet++;
@@ -340,10 +340,10 @@ int GrcErrorList::NumberOfWarnings()
 /*----------------------------------------------------------------------------------------------
 	Return the number of non-fatal errors that were not ignored.
 ----------------------------------------------------------------------------------------------*/
-int GrcErrorList::NumberOfWarningsGiven()
+size_t GrcErrorList::NumberOfWarningsGiven()
 {
 	int cerrRet = 0;
-	for (size_t ierr = 0; ierr < m_vperr.size(); ierr++)
+	for (auto ierr = 0; ierr < m_vperr.size(); ierr++)
 	{
 		if (!IsFatal(ierr) && !IgnoreWarning(m_vperr[ierr]->m_nID))
 			cerrRet++;
@@ -358,7 +358,7 @@ int GrcErrorList::NumberOfWarningsGiven()
 void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
 {
 	int iFound = -1;
-	for (size_t i = 0; i < m_vnIgnoreWarnings.size(); i++)
+	for (auto i = 0; i < m_vnIgnoreWarnings.size(); i++)
 	{
 		if (m_vnIgnoreWarnings[i] == nWarning)
 		{
@@ -392,9 +392,9 @@ void GrcErrorList::ClearIgnoreWarnings()
 ----------------------------------------------------------------------------------------------*/
 bool GrcErrorList::IgnoreWarning(int nWarning)
 {
-	for (size_t i = 0; i < m_vnIgnoreWarnings.size(); i++)
+	for (auto const nIgnoreWarn:  m_vnIgnoreWarnings)
 	{
-		if (m_vnIgnoreWarnings[i] == nWarning)
+		if (nIgnoreWarn == nWarning)
 			return true;
 	}
 	return false;

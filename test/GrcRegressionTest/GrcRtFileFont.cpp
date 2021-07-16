@@ -15,8 +15,6 @@ Description:
 #include "GrcRtFileFont.h"
 #include <stdio.h>
 
-#define isizeof(T) (sizeof(T))
-
 // TBD do this properly
 ////#define FUDGE_FACTOR 72
 ////#define fix26_6(x) (x >> 6) + (x & 32 ? (x > 0 ? 1 : 0) : (x < 0 ? -1 : 0))

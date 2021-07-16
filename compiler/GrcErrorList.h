@@ -257,7 +257,7 @@ public:
 		std::string * psta5, std::string * psta6, std::string * psta7, std::string * psta8);
 
 	void SortErrors();
-	int NumberOfErrors()
+	size_t NumberOfErrors()
 	{
 		return m_vperr.size();
 	}
@@ -269,8 +269,8 @@ public:
 		return m_fFatalError;
 	}
 
-	int NumberOfWarnings();
-	int NumberOfWarningsGiven();
+	size_t NumberOfWarnings();
+	size_t NumberOfWarningsGiven();
 
 	bool IsFatal(int iperr)
 	{
@@ -324,10 +324,8 @@ public:
 
 	void test_Clear()
 	{
-		for (size_t i = 0; i < m_vperr.size(); ++i)
-		{
-			delete m_vperr[i];
-		}
+		for (auto && err: m_vperr)
+			delete err;
 		m_vperr.clear();
 		m_fFatalError = false;
 	}

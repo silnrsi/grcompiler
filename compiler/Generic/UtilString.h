@@ -370,7 +370,7 @@ template<typename XChar>
 	}
 ----------------------------------------------------------------------------------------------*/
 
-inline int ConvertText(const utf16 * prgchwSrc, int cchwSrc, schar * prgchsDst, int cchsDst)
+inline size_t ConvertText(const utf16 * prgchwSrc, size_t cchwSrc, schar * prgchsDst, size_t cchsDst)
 {
 	AssertArray(prgchwSrc, cchwSrc);
 	AssertArray(prgchsDst, cchsDst);
@@ -411,7 +411,7 @@ inline int ConvertText(const utf16 * prgchwSrc, int cchwSrc, schar * prgchsDst, 
 	At the moment, this is not available.
 	}
 ----------------------------------------------------------------------------------------------*/
-inline int ConvertText(const schar * prgchsSrc, int cchsSrc, utf16 * prgchwDst, int cchwDst)
+inline size_t ConvertText(const schar * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst)
 {
 	AssertArray(prgchsSrc, cchsSrc);
 	AssertArray(prgchwDst, cchwDst);
@@ -444,7 +444,7 @@ template<typename XChar>
 	This does a binary search.
 ----------------------------------------------------------------------------------------------*/
 template<typename YChar>
-	inline int CychFitConvertedText(const YChar * prgych, int cych, int cxchMax)
+	inline size_t CychFitConvertedText(const YChar * prgych, size_t cych, size_t cxchMax)
 {
 	AssertArray(prgych, cych);
 	Assert(0 <= cxchMax);
@@ -454,8 +454,8 @@ template<typename YChar>
 
 	// The most common case is that each ych becomes a single xch, so test for this first.
 	if (cych > cxchMax &&
-		ConvertText(prgych, cxchMax, (typename CharDefns<YChar>::OtherChar *)NULL, 0) <= cxchMax &&
-		ConvertText(prgych, cxchMax + 1, (typename CharDefns<YChar>::OtherChar *)NULL, 0) > cxchMax)
+		ConvertText(prgych, cxchMax, nullptr, 0) <= cxchMax &&
+		ConvertText(prgych, cxchMax + 1, nullptr, 0) > cxchMax)
 	{
 		return cxchMax;
 	}
@@ -467,7 +467,7 @@ template<typename YChar>
 		int cychT = (unsigned int)(cychMin + cychLim + 1) / 2;
 		Assert(cychMin < cychT && cychT <= cychLim);
 
-		int cxchT = ConvertText(prgych, cychT, (typename CharDefns<YChar>::OtherChar *)NULL, 0);
+		int cxchT = ConvertText(prgych, cychT, nullptr, 0);
 		if (cxchT > cxchMax)
 			cychLim = cychT - 1;
 		else
@@ -641,7 +641,7 @@ public:
 		Get the length, i.e., the number of char or utf16 characters (as opposed to a count of
 		logical characters.
 	------------------------------------------------------------------------------------------*/
-	int Length(void) const
+	size_t Length(void) const
 	{
 		AssertObj(this);
 		return m_pbuf->Cch();
@@ -988,13 +988,13 @@ public:
 		same character type. A StrBase<> is equal to a string if they both contain the exact
 		sequence of characters and if both have the same character count.
 	------------------------------------------------------------------------------------------*/
-	bool Equals(const XChar * prgch, int cch) const
+	bool Equals(const XChar * prgch, size_t cch) const
 	{
 		AssertObj(this);
 		AssertArray(prgch, cch);
 		if (m_pbuf->m_cb != size_t(cch) * sizeof(XChar))
 			return false;
-		return 0 == memcmp(m_pbuf->m_rgch, prgch, cch * isizeof(XChar));
+		return 0 == memcmp(m_pbuf->m_rgch, prgch, cch * sizeof(XChar));
 	}
 
 	/*------------------------------------------------------------------------------------------
@@ -1503,7 +1503,7 @@ public:
 		substring in this StrBase<> that matches the substring, (prgch, cch), passed as
 		parameters. Return -1 if the substring is not found. This is case sensitive.
 	------------------------------------------------------------------------------------------*/
-	int FindStr(const XChar * prgch, int cch, int ichMin = 0) const
+	int FindStr(const XChar * prgch, size_t cch, int ichMin = 0) const
 	{
 		AssertObj(this);
 		AssertArray(prgch, cch);
@@ -1519,7 +1519,7 @@ public:
 		for (ich = ichMin; ich <= ichLast; ich++)
 		{
 			if (m_pbuf->m_rgch[ich] == prgch[0] &&
-				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * isizeof(XChar)))
+				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * sizeof(XChar)))
 			{
 				return ich;
 			}
@@ -1627,7 +1627,7 @@ public:
 		last substring in this StrBase<> that matches the substring, (prgch, cch), passed as
 		parameters. Return -1 if the substring is not found. This is case sensitive.
 	------------------------------------------------------------------------------------------*/
-	int ReverseFindStr(const XChar * prgch, int cch, int ichLast = 0x7FFFFFFF) const
+	int ReverseFindStr(const XChar * prgch, size_t cch, int ichLast = 0x7FFFFFFF) const
 	{
 		AssertObj(this);
 		AssertArray(prgch, cch);
@@ -1640,7 +1640,7 @@ public:
 		for (ich = ichLast; ich >= 0; --ich)
 		{
 			if (m_pbuf->m_rgch[ich] == prgch[0] &&
-				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * isizeof(XChar)))
+				0 == memcmp(m_pbuf->m_rgch + ich, prgch, cch * sizeof(XChar)))
 			{
 				return ich;
 			}
@@ -1747,7 +1747,7 @@ protected:
 			AssertPtr(this);
 			Assert(0 <= m_crefMinusOne);
 			Assert(m_cb >= 0);
-			Assert(0 == m_cb % isizeof(XChar));
+			Assert(0 == m_cb % sizeof(XChar));
 			AssertArray(m_rgch, m_cb / sizeof(XChar) + 1);
 			Assert(0 == m_rgch[m_cb / sizeof(XChar)]);
 			return true;
@@ -1791,10 +1791,10 @@ protected:
 		}
 
 		// Return the count of characters.
-		int Cch(void)
+		size_t Cch(void)
 		{
 			Assert(0 == m_cb % sizeof(XChar));
-			return (unsigned int)m_cb / sizeof(XChar);
+			return m_cb / sizeof(XChar);
 		}
 	}; // End of StrBuffer.
 
@@ -1835,9 +1835,9 @@ protected:
 		AssertObj(this);
 	}
 
-	void _Replace(int ichMin, int ichLim, const XChar * prgchIns, XChar chIns, int cchIns);
+	void _Replace(int ichMin, int ichLim, const XChar * prgchIns, XChar chIns, size_t cchIns);
 		//int nCodePage);
-	void _Replace(int ichMin, int ichLim, const YChar * prgchIns, YChar chIns, int cchIns);
+	void _Replace(int ichMin, int ichLim, const YChar * prgchIns, YChar chIns, size_t cchIns);
 		//int nCodePage);
 	void _Copy(void);
 

@@ -139,8 +139,8 @@ namespace gr
 
 #define AssertPtr(pv) Assert(ValidReadPtr(pv))
 #define AssertPtrN(pv) Assert(!(pv) || ValidReadPtr(pv))
-#define AssertArray(pv, cv) Assert((cv) >= 0 && ValidReadPtrSize((pv), isizeof(*(pv)) * (cv)))
-#define AssertArrayN(pv, cv) Assert((cv) >= 0 && (!(pv) || ValidReadPtrSize((pv), isizeof(*(pv)) * (cv))))
+#define AssertArray(pv, cv) Assert((cv) >= 0 && ValidReadPtrSize((pv), sizeof(*(pv)) * (cv)))
+#define AssertArrayN(pv, cv) Assert((cv) >= 0 && (!(pv) || ValidReadPtrSize((pv), sizeof(*(pv)) * (cv))))
 #define AssertPtrSize(pv, cb) Assert((cb) >= 0 && ValidReadPtrSize((pv), cb))
 
 #define AssertPfn(pfn) Assert(!IsBadCodePtr((FARPROC)(pfn)))

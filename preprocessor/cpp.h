@@ -37,6 +37,7 @@
  */
 
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #ifndef toupper
 #define toupper(c) ((c) + ('A' - 'a'))
@@ -170,8 +171,8 @@
 typedef struct defbuf {
 	struct defbuf	*link;		/* Next define in chain */
 	char		*repl;		/* -> replacement	*/
-	int		hash;		/* Symbol table hash	*/
-	int		nargs;		/* For define(args)     */
+	uintptr_t   hash;		/* Symbol table hash	*/
+	int			nargs;		/* For define(args)     */
 	char		name[1];	/* #define name 	*/
 } DEFBUF;
 

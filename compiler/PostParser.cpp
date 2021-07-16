@@ -97,17 +97,14 @@ bool GdlRenderer::ReplaceAliases()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::ReplaceAliases()
 {
-	size_t ippass;
-	for (ippass = 0; ippass < m_vppass.size(); ippass++)
+	for (auto ippass = 0; ippass < m_vppass.size(); ippass++)
 	{
 		if (m_vppass[ippass] == NULL)
 			m_vppass[ippass] = new GdlPass(ippass, 1, 0);	// bogus
 	}
 
-	for (ippass = 0; ippass < m_vppass.size(); ippass++)
-	{
-		m_vppass[ippass]->ReplaceAliases();
-	}
+	for (auto const ppass: m_vppass)
+		ppass->ReplaceAliases();
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -404,7 +401,7 @@ bool GdlRule::AdjustOptRanges()
 		irangeCurr		- current range in list being processed (toggled)
 ----------------------------------------------------------------------------------------------*/
 void GdlRule::GenerateOptRanges(std::vector<GdlRule*> & vpruleNewList,
-	std::vector<bool> & vfOmitRange, size_t irangeCurr)
+	std::vector<bool> & vfOmitRange, int irangeCurr)
 {
 	if (irangeCurr >= vfOmitRange.size())
 		//	We've got a complete set of omit flags for each of the optional ranges--
@@ -509,7 +506,7 @@ void GdlRule::GenerateOneRuleVersion(std::vector<GdlRule*> & vpruleNewList,
 		}
 	}
 	if (nNewScan > kMaxSlotsPerRule)
-		nNewScan = pruleNew->NumberOfSlots();
+		nNewScan = int(pruleNew->NumberOfSlots());
 	pruleNew->SetScanAdvance(nNewScan);
 
 	//	Copy all the constraints and the list of aliases.
@@ -682,20 +679,20 @@ void GdlPass::CheckSelectors()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::CheckSelectors()
 {
-	for (size_t irit = 0; irit < m_vprit.size(); irit++)
+	for (auto irit = 0; irit < m_vprit.size(); irit++)
 	{
 		m_vprit[irit]->CheckSelectors(this, irit, m_vprit.size());
 	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleItem::CheckSelectors(GdlRule * /*prule*/, int /*irit*/, int /*crit*/)
+void GdlRuleItem::CheckSelectors(GdlRule * /*prule*/, int /*irit*/, size_t /*crit*/)
 {
 	//	No selector--do nothing.
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int /*irit*/, int crit)
+void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int /*irit*/, size_t crit)
 {
 	if (m_psymOutput->FitsSymbolType(ksymtClass) ||
 		m_psymOutput->FitsSymbolType(ksymtSpecialAt))

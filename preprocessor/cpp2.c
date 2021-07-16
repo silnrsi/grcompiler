@@ -85,8 +85,9 @@ SOFTWARE.
  *              Added \n when those lines are passed.
  */
 
-#include    <stdio.h>
 #include    <ctype.h>
+#include    <stdint.h>
+#include    <stdio.h>
 #include    "cppdef.h"
 #include    "cpp.h"
 
@@ -288,7 +289,7 @@ ReturnCode control( struct Global *global,
              */
             global->line = atoi(global->work) - 1;     /* Reset line number    */
 
-            for( tp = global->work; isdigit(*tp) || type[*tp] == SPA; tp++)
+            for( tp = global->work; isdigit(*tp) || type[(uint8_t)*tp] == SPA; tp++)
                 ;             /* Skip over digits */
 
             if( *tp != EOS )
@@ -693,7 +694,7 @@ ReturnCode openinclude( struct Global *global,
 
     char **incptr;
     char tmpname[NWORK]; /* Filename work area    */
-    int len;
+    size_t len;
 /*    ReturnCode ret; *//*NOT USED*/
 
     #if HOST == SYS_AMIGADOS

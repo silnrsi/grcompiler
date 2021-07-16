@@ -17,6 +17,7 @@ Description:
 #ifndef STRHASH_INCLUDED
 #define STRHASH_INCLUDED
 
+#include <cstddef>
 
 /*----------------------------------------------------------------------------------------------
 	Functor class for computing a hash value from a StrAnsi object (ANSI string).
@@ -49,10 +50,10 @@ public:
 
 //	int operator () (BSTR bstrKey, int cchwKey = -1);
 
-	int operator () (StrAnsi * pstaKey, int cbKey)
+	int operator () (StrAnsi * pstaKey, size_t cbKey)
 	{
 		Assert(pstaKey);
-		Assert(cbKey == isizeof(StrAnsi));
+		Assert(cbKey == sizeof(StrAnsi));
 		return operator()(*pstaKey);
 	}
 };
@@ -84,20 +85,20 @@ public:
 		if ((NULL == psz1) || (NULL == psz2))
 			return false;
 
-		int cchs1 = staKey1.Length();
-		int cchs2 = staKey2.Length();
+		auto cchs1 = staKey1.Length();
+		auto cchs2 = staKey2.Length();
 		if (cchs1 != cchs2)
 			return false;
-		return (0 == memcmp(psz1, psz2, cchs1 * isizeof(schar)));
+		return (0 == memcmp(psz1, psz2, cchs1 * sizeof(schar)));
 	}
 
 //	bool operator () (StrAnsi & staKey1, BSTR bstrKey2, int cchwKey2 = -1);
 
-	bool operator () (StrAnsi * pstaKey1, StrAnsi * pstaKey2, int cbKey)
+	bool operator () (StrAnsi * pstaKey1, StrAnsi * pstaKey2, size_t cbKey)
 	{
 		Assert(pstaKey1);
 		Assert(pstaKey2);
-		Assert(cbKey == isizeof(StrAnsi));
+		Assert(cbKey == sizeof(StrAnsi));
 		return operator()(*pstaKey1, *pstaKey2);
 	}
 

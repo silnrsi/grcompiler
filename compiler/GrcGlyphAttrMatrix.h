@@ -53,7 +53,7 @@ public:
 	{
 	}
 
-	~GrcAssignment()
+	virtual ~GrcAssignment()
 	{
 		// Not responsible for deleting the expression.
 	}
@@ -97,7 +97,7 @@ Hungarian: gax
 class GrcGlyphAttrMatrix
 {
 public:
-	GrcGlyphAttrMatrix(int cGlyphIDs, int cGlyphAttrs, int cStyles)
+	GrcGlyphAttrMatrix(size_t cGlyphIDs, size_t cGlyphAttrs, size_t cStyles)
 	{
 		m_cGlyphAttrs = cGlyphAttrs;
 		m_cGlyphIDs = cGlyphIDs;
@@ -114,7 +114,7 @@ public:
 		Assert(wGlyphID < m_cGlyphIDs);
 		Assert(nAttrID < m_cGlyphAttrs);
 		Assert(nStyle < m_cStyles);
-		return (wGlyphID * m_cGlyphAttrs * m_cStyles +
+		return int(wGlyphID * m_cGlyphAttrs * m_cStyles +
 			(nAttrID * m_cStyles) +
 			nStyle);
 	}
@@ -176,9 +176,9 @@ public:
 
 protected:	
 	GrcAssignment * m_prgasgnx;	// matrix
-	int m_cGlyphAttrs;
-	int m_cGlyphIDs;
-	int m_cStyles;
+	size_t m_cGlyphAttrs;
+	size_t m_cGlyphIDs;
+	size_t m_cStyles;
 };
 
 /*----------------------------------------------------------------------------------------------
@@ -202,7 +202,7 @@ class GrcLigComponentList
 		std::vector<int> m_vinIDs;
 	};
 public:
-	GrcLigComponentList(int cvGlyphIDs);
+	GrcLigComponentList(size_t cvGlyphIDs);
 	~GrcLigComponentList();
 
 	int AddComponentFor(utf16 wGlyphID, Symbol psymComponent, GdlRenderer * prndr);
@@ -225,7 +225,7 @@ protected:
 //	std::vector<Symbol> m_vpsymDefinedComponents;
 
 	//	List of defined items for each glyph ID.
-	int m_cvGlyphIDs;
+	size_t m_cvGlyphIDs;
 	LigCompMap ** m_prgplcmap;
 };
 

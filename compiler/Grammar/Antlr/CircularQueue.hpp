@@ -34,6 +34,7 @@
  */
 
 #include "Antlr/config.hpp"
+#include <cstddef>
 #include <vector>
 
 template <class T>
@@ -53,7 +54,7 @@ public:
 		{ if (storage.size()>0) storage.erase(storage.begin()); }
 	void append(const T& t)
 		{ storage.push_back(t); }
-	int entries() const
+	size_t entries() const
 		{ return storage.size(); }
 
 private:

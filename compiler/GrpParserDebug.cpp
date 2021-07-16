@@ -14,7 +14,9 @@ Description:
 #include "Grp.h"
 #include "GrPlatform.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -61,9 +63,6 @@ void AST::Trace(std::ostream & strmOut, const char * s, int level)
 ----------------------------------------------------------------------------------------------*/
 const char * AST::debugString()
 {
-	if (this == NULL)
-		return "NULL";
-
 	GrpASTNode * wrNode = dynamic_cast<GrpASTNode *>(node);
 	if (wrNode)
 		return wrNode->debugString();
@@ -77,12 +76,6 @@ const char * AST::debugString()
 ----------------------------------------------------------------------------------------------*/
 const char * GrpASTNode::debugString()
 {
-	if (this == NULL)
-		return "NULL";
-
-//	if (!ValidReadPtr(this))
-//		return "corrupt";
-
 	switch (getType())
 	{
 	case EOF_:					return "EOF";

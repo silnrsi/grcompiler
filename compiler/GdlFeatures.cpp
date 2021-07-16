@@ -251,7 +251,7 @@ void GdlFeatureDefn::ErrorCheckContd()
 	}
 
 	//std::set<int> setnValues;
-	for (size_t ifset = 0; ifset < m_vpfset.size(); ++ifset)
+	for (auto ifset = 0; ifset < m_vpfset.size(); ++ifset)
 	{
 		//	Feature setting with no value set: warning
 		if (!m_vpfset[ifset]->m_fHasValue)
@@ -278,7 +278,7 @@ void GdlFeatureDefn::CalculateDefault()
 
 	if (m_fDefaultSet)
 	{
-		for (size_t ifset = 0; ifset < m_vpfset.size(); ++ifset)
+		for (auto ifset = 0; ifset < m_vpfset.size(); ++ifset)
 		{
 			if (m_vpfset[ifset]->m_nValue == m_nDefault)
 			{
@@ -300,7 +300,7 @@ void GdlFeatureDefn::CalculateDefault()
 
 	m_nDefault = m_vpfset[0]->m_nValue;
 	m_pfsetDefault = m_vpfset[0];
-	for (size_t ifset = 1; ifset < m_vpfset.size(); ++ifset)
+	for (auto ifset = 1; ifset < m_vpfset.size(); ++ifset)
 	{
 		if (m_vpfset[ifset]->m_nValue < m_nDefault)
 		{
@@ -327,7 +327,7 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst, uint8 * pNameTbl,
 	// Look for an existing name string that matches.
 	GdlFeatureDefn * pfeatInput = NULL;
 	std::vector<GdlFeatureSetting *> vpfsetInput;
-	for (size_t ifeat = 0; ifeat < vpfeatInput.size(); ifeat++)
+	for (auto ifeat = 0; ifeat < vpfeatInput.size(); ifeat++)
 	{
 		pfeatInput = vpfeatInput[ifeat];
 		vpfsetInput = pfeatInput->m_vpfset;
@@ -346,8 +346,8 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst, uint8 * pNameTbl,
 		vpfsetInput = vpfsetEmpty;
 	}
 
-	size_t cnFeatSet = m_vpfset.size();
-	for (size_t ifset = 0; ifset < cnFeatSet; ifset++)
+	auto cnFeatSet = m_vpfset.size();
+	for (auto ifset = 0; ifset < cnFeatSet; ifset++)
 	{
 		GdlFeatureSetting * pfset = m_vpfset[ifset];
 		stuBasic = pfset->FindBasicExtName();
@@ -490,8 +490,8 @@ bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
 	}
 
 	// Store data for all settings.
-	size_t cnSettings = m_vpfset.size();
-	for (size_t i = 0; i < cnSettings; i++)
+	auto cnSettings = m_vpfset.size();
+	for (auto i = 0; i < cnSettings; i++)
 	{
 		GdlFeatureSetting * pFeatSet = m_vpfset[i];
 		if (pFeatSet->NameTblId() >= nNameTblIdMinNew)
@@ -528,7 +528,7 @@ bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
 ----------------------------------------------------------------------------------------------*/
 std::wstring GdlFeatureDefn::FindBasicExtName()
 {
-	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	for (auto iextname = 0; iextname < m_vextname.size(); iextname++)
 	{
 		if (m_vextname[iextname].m_wLanguageID == 1033
 				|| m_vextname[iextname].m_wLanguageID == 0)
@@ -540,7 +540,7 @@ std::wstring GdlFeatureDefn::FindBasicExtName()
 
 std::wstring GdlFeatureSetting::FindBasicExtName() // find an English or language-neutral label
 {
-	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	for (auto iextname = 0; iextname < m_vextname.size(); iextname++)
 	{
 		if (m_vextname[iextname].m_wLanguageID == 1033
 				|| m_vextname[iextname].m_wLanguageID == 0)
@@ -555,9 +555,9 @@ std::wstring GdlFeatureSetting::FindBasicExtName() // find an English or languag
 ----------------------------------------------------------------------------------------------*/
 bool GdlFeatureDefn::HasExtName(std::wstring stuName)
 {
-	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	for (auto &extname: m_vextname)
 	{
-		if (m_vextname[iextname].m_stuName == stuName)
+		if (extname.m_stuName == stuName)
 			return true;
 	}
 	return false;
@@ -565,9 +565,9 @@ bool GdlFeatureDefn::HasExtName(std::wstring stuName)
 
 bool GdlFeatureSetting::HasExtName(std::wstring stuName)
 {
-	for (size_t iextname = 0; iextname < m_vextname.size(); iextname++)
+	for (auto const & extname: m_vextname)
 	{
-		if (m_vextname[iextname].m_stuName == stuName)
+		if (extname.m_stuName == stuName)
 			return true;
 	}
 	return false;
@@ -586,7 +586,7 @@ void GdlFeatureDefn::RecordDebugInfo()
 void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting * pfset,
 	int nFset, GrpLineAndFile & lnf)
 {
-	for (size_t ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
+	for (auto ifeat = 0; ifeat < m_vpfeat.size(); ++ifeat)
 	{
 		if (m_vpfeat[ifeat] == pfeat)
 		{

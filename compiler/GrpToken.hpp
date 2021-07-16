@@ -32,7 +32,7 @@ public:
 		return RefToken(new GrpToken);
 	}
 
-	virtual int getLine()
+	virtual int getLine() const
 	{
 		return m_lnf.PreProcessedLine();
 	}

@@ -150,22 +150,22 @@ public:
 		utf16 wGlyphID);
 	void InitializeFsmArrays();
 	void MergeIdenticalStates(int ifsFixMin, int ifsCheckMin, int ifsCheckLim);
-	int NumberOfFsmMachineClasses();
+	size_t NumberOfFsmMachineClasses();
 	void GetMachineClassesForRuleItem(GdlRule  * prule, int irit,
 		FsmMachineClassSet & setpfsmc);
 	int FindIdenticalState(int ifsToMatch, int ifsMin);
 	void ReorderFsmStates(GrcManager * pcman);
-	int NumStates();
-	int NumAcceptingStates();
-	int NumTransitionalStates();
-	int NumSuccessStates();
-	int NumFinalStates();
+	size_t NumStates();
+	size_t NumAcceptingStates();
+	size_t NumTransitionalStates();
+	size_t NumSuccessStates();
+	size_t NumFinalStates();
 	void GenerateStartStates(GrcManager * pcman);
 
 	//	Output:
-	int TotalNumGlyphSubRanges();
-	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart);
-	void GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList);
+	size_t TotalNumGlyphSubRanges();
+	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart);
+	void GenerateRuleMaps(std::vector<intptr_t> & vnOffsets, std::vector<intptr_t> & vnRuleList);
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
 
 	//	debuggers:
@@ -190,8 +190,8 @@ protected:
 	int m_nDir;
 	bool m_fFlipDir;
 
-	int m_critMinPreContext;
-	int m_critMaxPreContext;
+	size_t m_critMinPreContext;
+	size_t m_critMaxPreContext;
 
 	//	for compiler use:
 //	int m_nNumber2;		// with respect to all the passes in all tables
@@ -244,7 +244,7 @@ protected:
 
 public:
 	//	For test procedures:
-	int test_NumberOfRules()
+	size_t test_NumberOfRules()
 	{
 		return m_vprule.size();
 	}
@@ -280,7 +280,7 @@ public:
 	//	Setters:
 	void SetSubstitution(bool f)	{ m_fSubstitution = f; }
 
-	int NumberOfPasses()
+	size_t NumberOfPasses()
 	{
 		return m_vppass.size();
 	}
@@ -319,8 +319,8 @@ public:
 
 	//	Output
 	int CountPasses();
-	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-		std::vector<int> & vnOffsets);
+	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
+		std::vector<intptr_t> & vnOffsets);
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);

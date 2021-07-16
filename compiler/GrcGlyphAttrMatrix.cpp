@@ -134,10 +134,10 @@ bool GrcGlyphAttrMatrix::GpointDefined(utf16 wGlyphID, int nAttrID, int nStyle)
 /*----------------------------------------------------------------------------------------------
 	Constructor.
 ----------------------------------------------------------------------------------------------*/
-GrcLigComponentList::GrcLigComponentList(int cvGlyphIDs)
+GrcLigComponentList::GrcLigComponentList(size_t cvGlyphIDs)
 {
 	m_prgplcmap = new LigCompMap*[cvGlyphIDs];
-	memset(m_prgplcmap, 0, cvGlyphIDs * isizeof(LigCompMap*));
+	memset(m_prgplcmap, 0, cvGlyphIDs * sizeof(LigCompMap*));
 	m_cvGlyphIDs = cvGlyphIDs;
 }
 
@@ -147,7 +147,7 @@ GrcLigComponentList::GrcLigComponentList(int cvGlyphIDs)
 ----------------------------------------------------------------------------------------------*/
 GrcLigComponentList::~GrcLigComponentList()
 {
-	for (int i = 0; i < m_cvGlyphIDs; ++i)
+	for (auto i = 0; i < m_cvGlyphIDs; ++i)
 	{
 		if (m_prgplcmap[i])
 			delete m_prgplcmap[i];

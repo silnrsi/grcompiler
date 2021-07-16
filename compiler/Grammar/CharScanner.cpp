@@ -208,8 +208,8 @@ void CharScanner::match(const BitSet& b)
 
 void CharScanner::match(const std::string& s)
 {
-	int len = s.length();
-	for (int i=0; i<len; i++) {
+	auto len = s.length();
+	for (auto i=0; i<len; i++) {
 		if ( LA(1) != s[i] ) {
 			throw ScannerException(std::string("mismatched char: '") + charName(LA(1)) + "'", inputState->line);
 		}

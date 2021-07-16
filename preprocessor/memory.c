@@ -83,7 +83,7 @@ int malloc_count=0;
  */
 static struct MemInfo *MallocKey=NULL;
 
-void *Realloc(void *ptr, int size)
+void *Realloc(void *ptr, size_t size)
 {
   struct MemInfo *point;
   void *new;
@@ -108,7 +108,7 @@ void *Realloc(void *ptr, int size)
 }
 
 
-void *Malloc(int size)
+void *Malloc(size_t size)
 {
   char *alloc = NULL;
   struct MemInfo *point;

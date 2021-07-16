@@ -52,7 +52,7 @@ public:
 		m_vextname.erase(m_vextname.begin() + i);
 	}
 
-	int NameCount()
+	size_t NameCount()
 	{
 		 return m_vextname.size();
 	}

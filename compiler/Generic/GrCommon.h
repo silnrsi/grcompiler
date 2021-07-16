@@ -73,14 +73,7 @@ typedef schar	achar;
 typedef achar 	*Psz;
 //typedef const achar * Pcsz;
 
-
-
-// This is to make a signed isizeof operator, otherwise we get tons of warnings about
-// signed / unsigned mismatches.
-#define isizeof(T) (sizeof(T))
-
-#define SizeOfArray(rgt) (isizeof(rgt) / isizeof(rgt[0]))
-
+#define SizeOfArray(rgt) (sizeof(rgt) / sizeof *rgt)
 
 /***********************************************************************************************
 	Tests for valid strings and pointers.
@@ -98,28 +91,27 @@ inline bool ValidPsz(const schar *pszs)
 
 template<typename T> inline bool ValidReadPtr(T *pt)
 {
-	return pt != 0 && !GrIsBadReadPtr(pt, isizeof(T));
+	return pt != 0 && !GrIsBadReadPtr(pt, sizeof(T));
 }
 
 template<typename T> inline bool ValidWritePtr(T *pt)
 {
-	return pt != 0 && !GrIsBadWritePtr(pt, isizeof(T));
+	return pt != 0 && !GrIsBadWritePtr(pt, sizeof(T));
 }
 
-inline bool ValidReadPtrSize(const void *pv, int cb)
+inline bool ValidReadPtrSize(const void *pv, size_t cb)
 {
-	if (cb < 0)	return false;
 	if (cb == 0)	return true;
 
 	return pv != 0 && !GrIsBadReadPtr(pv, cb);
 }
 
-inline bool ValidWritePtrSize(void *pv, int cb)
+inline bool ValidWritePtrSize(void *pv, size_t cb)
 {
-//	if (!bstr || ::IsBadReadPtr((byte *)bstr - isizeof(int), isizeof(int) + isizeof(OLECHAR)))
+//	if (!bstr || ::IsBadReadPtr((byte *)bstr - sizeof(int), sizeof(int) + sizeof(OLECHAR)))
 //		return false;
 //	int cb = ((int *)bstr)[-1];
-//	if (::IsBadReadPtr((byte *)bstr - isizeof(int), isizeof(int) + isizeof(OLECHAR) + cb))
+//	if (::IsBadReadPtr((byte *)bstr - sizeof(int), sizeof(int) + sizeof(OLECHAR) + cb))
 //		return false;
 	if (cb < 0)	return false;
 	if (cb == 0)	return true;

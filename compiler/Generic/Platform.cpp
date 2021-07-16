@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "GrPlatform.h"
 
 
@@ -9,18 +11,27 @@ namespace gr
 
 size_t Platform_UnicodeToANSI(const utf16 * prgchwSrc, size_t cchwSrc, char * prgchsDst, size_t cchsDst)
 {
-	return ::WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)prgchwSrc, cchwSrc, prgchsDst, cchsDst, NULL, NULL);
+	auto const _cchwSrc = static_cast<int>(cchwSrc), _cchsDst = static_cast<int>(cchsDst); 
+	assert(_cchwSrc == cchwSrc || _cchwSrc >= -1);
+	assert(_cchsDst == cchsDst || _cchsDst >= -1);
+	return ::WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)prgchwSrc, _cchwSrc, prgchsDst, _cchsDst, NULL, NULL);
 }
 
 size_t Platform_AnsiToUnicode(const char * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst)
 {
-	return ::MultiByteToWideChar(CP_ACP, 0, prgchsSrc, cchsSrc, (LPWSTR)prgchwDst, cchwDst);
+	auto const _cchsSrc = static_cast<int>(cchsSrc), _cchwDst = static_cast<int>(cchwDst); 
+	assert(_cchsSrc == cchsSrc || _cchsSrc >= -1);
+	assert(_cchwDst == cchwDst || _cchwDst >= -1);
+	return ::MultiByteToWideChar(CP_ACP, 0, prgchsSrc, _cchsSrc, (LPWSTR)prgchwDst, _cchwDst);
 }
 
-size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, int cchsSrc,
-	utf16 * prgchwDst, int cchwDst)
+size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, size_t cchsSrc,
+	utf16 * prgchwDst, size_t cchwDst)
 {
-	return ::MultiByteToWideChar(nCodePage, 0, prgchsSrc, cchsSrc, (LPWSTR)prgchwDst, cchwDst);
+	auto const _cchsSrc = static_cast<int>(cchsSrc), _cchwDst = static_cast<int>(cchwDst); 
+	assert(_cchsSrc == cchsSrc || _cchsSrc >= -1);
+	assert(_cchwDst == cchwDst || _cchwDst >= -1);
+	return ::MultiByteToWideChar(nCodePage, 0, prgchsSrc, _cchsSrc, (LPWSTR)prgchwDst, _cchwDst);
 }
 
 size_t utf8len(const char *s)
@@ -148,25 +159,13 @@ void utf16Output(const utf16 *input)
 }
 #endif
 
-utf16 *utf16cpy(utf16 *dest, const utf16 *src)
-{
-	size_t srcsize = utf16len(src);
-	memcpy(dest, src, sizeof(utf16) * srcsize);
-	return dest;
-}
-
-
-utf16 *utf16ncpy(utf16 *dest, const utf16 *src, size_t n)
-{
-	memcpy(dest, src, sizeof(utf16) * std::min(utf16len(src, n), n));
-	return dest;
-}
-
+#if 0
 utf16 *utf16ncpy(utf16 *dest, const char *src, size_t n)
 {
 	Platform_AnsiToUnicode(src, strlen(src), dest, n);
 	return dest;
 }
+#endif
 
 size_t utf16len(const utf16 *s)
 {
@@ -196,7 +195,19 @@ size_t utf8len(const char *s)
 	return length;	
 }
 
+utf16 *utf16cpy(utf16 *dest, const utf16 *src)
+{
+    memcpy(dest, src, sizeof(utf16) * utf16len(src));
+    return dest;
+}
 
+utf16 *utf16ncpy(utf16 *dest, const utf16 *src, size_t n)
+{
+    memcpy(dest, src, sizeof(utf16) * std::min(utf16len(src, n), n));
+    return dest;
+}
+
+#if 0
 int utf16cmp(const utf16 *s1, const utf16 *s2)
 {
 	#ifdef UTF16DEBUG
@@ -299,6 +310,7 @@ int utf16ncmp(const utf16 *s1, const char *s2, size_t n)
 		return 1;
 	return 0;
 }
+#endif 
 
 
 size_t Platform_UnicodeToANSI(const utf16 *src, size_t src_len, char *dest, size_t dest_len)
@@ -335,10 +347,10 @@ size_t Platform_AnsiToUnicode(const char * src, size_t src_len, utf16 * dest, si
 	return dest_len;
 }
 
-size_t Platform_8bitToUnicode(int /*nCodePage*/, const char * prgchsSrc, int cchsSrc,
-	utf16 * prgchwDst, int cchwDst)
+size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, size_t cchsSrc,
+	utf16 * prgchwDst, size_t cchwDst)
 {
-	return Platform_AnsiToUnicode(prgchsSrc, cchsSrc, prgchwDst, cchwDst);
+	return MultiByteToWideChar(nCodePage, 0, prgchsSrc, cchsSrc, prgchwDst, cchwDst);
 }
 
 unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long, 
@@ -355,12 +367,14 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
 	return src_count*3;
 
     std::ostringstream oss; oss << "CP" << code_page;
-    const char* fromcode = oss.str().c_str();
+    auto const fromcode = oss.str();
 
-    short endian_test = 1;
-    const char* tocode = *(char*)&endian_test ? "UCS-2LE" : "UCS-2BE";
-
-    iconv_t cdesc = iconv_open(tocode, fromcode);
+#if WORDS_BIGENDIAN
+    auto const tocode = "UCS-2BE";
+#else
+    auto const tocode = "UCS-2LE";
+#endif
+    iconv_t cdesc = iconv_open(tocode, fromcode.c_str());
    
     if (cdesc == iconv_t(-1))
     {

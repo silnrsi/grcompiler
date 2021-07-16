@@ -92,7 +92,7 @@ GdlRuleItem * GdlRule::ContextItemAt(GrpLineAndFile & lnf, int irit,
 			prit = new GdlRuleItem(psymClass);
 		}
 		prit->SetLineAndFile(lnf);
-		prit->m_iritContextPos = m_vprit.size();
+		prit->m_iritContextPos = int(m_vprit.size());
 		prit->m_iritContextPosOrig = prit->m_iritContextPos;
 		m_vprit.push_back(prit);
 
@@ -255,7 +255,7 @@ LLbError:
 		pritNew = new GdlSetAttrItem(psymClassOrPlaceHolder);
 
 	pritNew->SetLineAndFile(lnf);
-	pritNew->m_iritContextPos = m_vprit.size();
+	pritNew->m_iritContextPos = int(m_vprit.size());
 	pritNew->m_iritContextPosOrig = pritNew->m_iritContextPos;
 
 	//	record the 1-based slot-alias value, if any
@@ -419,7 +419,7 @@ LLbError:
 			g_cman.SymbolTable()->FindSymbol("_"));
 
 	pritNew->SetLineAndFile(lnf);
-	pritNew->m_iritContextPos = m_vprit.size();
+	pritNew->m_iritContextPos = int(m_vprit.size());
 	pritNew->m_iritContextPosOrig = pritNew->m_iritContextPos;
 
 	//	record the 1-based slot-alias value, if any
@@ -521,16 +521,16 @@ void GdlSubstitutionItem::AddAssociation(GrpLineAndFile & lnf, std::string sta)
 int GdlRule::SortKey()
 {
 	//	Count insertions.
-	int critIns = 0;
-	for (size_t irit = 0; irit < m_vprit.size(); irit++)
+	size_t critIns = 0;
+	for (auto const & prit: m_vprit)
 	{
-		GdlSubstitutionItem * pritSub = dynamic_cast<GdlSubstitutionItem *>(m_vprit[irit]);
+		GdlSubstitutionItem * pritSub = dynamic_cast<GdlSubstitutionItem *>(prit);
 		if (pritSub)
 		{
-			Symbol psym = m_vprit[irit]->m_psymInput;
+			Symbol psym = prit->m_psymInput;
 			if (psym && psym->FitsSymbolType(ksymtSpecialUnderscore))
 				critIns++;
 		}
 	}
-	return m_critOriginal - critIns;	// original length of rule
+	return int(m_critOriginal - critIns);	// original length of rule
 }
