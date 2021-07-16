@@ -47,18 +47,16 @@ public:
 	int debug(int level)
 	{
 		int nLine = m_lnf.PreProcessedLine();
-		char rgch[20];
-		itoa(nLine, rgch, 10);
 		for (int l = 0; l < level; l++)
 			OutputDebugString(" ");
-		OutputDebugString(rgch);
+		OutputDebugString(std::to_string(nLine));
 		OutputDebugString("\n");
 		return nLine;
 	}
 #endif
 
 	//	Debugger:
-	const char * debugString();
+	std::string debugString() const;
 };
 
 

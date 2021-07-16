@@ -597,10 +597,8 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	int nNameTblId = max(nMaxNameId + 1, 256);
 	if (m_nNameTblStart != -1 && nNameTblId > m_nNameTblStart)
 	{
-		char rgch[20];
-		itoa(nNameTblId, rgch, 10);
 		g_errorList.AddWarning(5501, NULL,
-			"Feature strings must start at ", rgch, " in the name table");
+			"Feature strings must start at ", std::to_string(nNameTblId), " in the name table");
 	}
 	nNameTblId = max(nNameTblId, m_nNameTblStart);
 	int nNameTblMinNew = nNameTblId;
@@ -1096,10 +1094,8 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, size_t /*cbTblOld*/,
 				// TODO: Convert common Windows language codes to Macintosh
 				if (language_id != LG_USENG)
 				{
-					char rgch[20];
-					itoa(language_id, rgch, 10);
 					g_errorList.AddWarning(5506, NULL,
-						"Windows language ID ", rgch,
+						"Windows language ID ", std::to_string(language_id),
 						" cannot be converted to Macintosh; 0 (English) will be used");
 				}
 				pNewRecord[irec].language_id = 0;	// Macintosh English
@@ -1108,10 +1104,8 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, size_t /*cbTblOld*/,
 			{
 				if (language_id != LG_USENG)
 				{
-					char rgch[20];
-					itoa(language_id, rgch, 10);
 					g_errorList.AddWarning(5507, NULL,
-						"Windows language ID ", rgch,
+						"Windows language ID ", std::to_string(language_id),
 						" cannot be translated to Unicode 2.0; language 0 will be used");
 				}
 				pNewRecord[irec].language_id = 0;	// whatever, this is our best guess

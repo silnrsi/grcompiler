@@ -384,11 +384,9 @@ int main(int argc, char * argv[])
 				std::cout << "Please recompile with original (non-Graphite) font.\n";
 				// similar error msg already in g_errorList
 			}
-			std::cout << "Could not open font--error code = " << nFontError << "\n";
-			char rgch[20];
-			itoa(nFontError, rgch, 10);
+			std::cout << std::dec << "Could not open font--error code = " << nFontError << std::endl;
 			g_errorList.AddError(137, NULL,
-				"Could not open font--error code = ", rgch);
+				"Could not open font--error code = ", std::to_string(nFontError));
 		}
 	}
 
@@ -407,10 +405,8 @@ int main(int argc, char * argv[])
 			&& (g_cman.NameTableStart() < g_cman.NameTableStartMin()
 				|| g_cman.NameTableStart() > 32767))
 		{
-			char rgch[20];
-			itoa(g_cman.NameTableStart(), rgch, 10);
 			g_errorList.AddError(134, NULL,
-				"Invalid name table start ID: ", rgch,
+				"Invalid name table start ID: ", std::to_string(g_cman.NameTableStart()),
 				"; must be in range 256 - 32767.");
 		}
 		fFatalErr = g_errorList.AnyFatalErrors();
@@ -471,10 +467,8 @@ int main(int argc, char * argv[])
 		else
 		{
 			std::cout << "ERROR IN WRITING FONT FILE.\n";
-			char rgch[20];
-			itoa(nRet, rgch, 10);
 			g_errorList.AddError(135, NULL,
-				"Error in writing font file--error code = ", rgch);
+				"Error in writing font file--error code = ", std::to_string(nRet));
 		}
 	}
 
@@ -751,12 +745,7 @@ bool LooksLikeFontFamily(char * pch)
 ----------------------------------------------------------------------------------------------*/
 std::string VersionString(int fxdVersion)
 {
-	std::string sta = "";
-	char rgch[20];
-	itoa(fxdVersion >> 16, rgch, 10);
-	sta += rgch;
-	sta += ".";
-	itoa(fxdVersion & 0x0000FFFF, rgch, 10);
-	sta += rgch;
-	return sta;
+	return std::to_string(fxdVersion >> 16) 
+		 + '.' 
+		 + std::to_string(fxdVersion & 0x0000FFFF);
 }

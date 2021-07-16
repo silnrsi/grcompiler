@@ -1098,6 +1098,7 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 	int wFirst = 0;
 	int wLast = 0;
 	int ifsmcColCurr = -1;
+	strmOut.fill(' ');
 	for (int w = 0; w < kMaxTotalGlyphs + 1; w++)
 	{
 		utf16 wTmp = w;
@@ -1121,42 +1122,13 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 			if (ifsmcColCurr != -1)
 			{
 				wLast = w - 1;
-				//itoa(wFirst, rgch, 16);	// hex
-				//strmOut << "  0x";
-				//if (wFirst <= 0x0fff) strmOut << "0";
-				//if (wFirst <= 0x00ff) strmOut << "0";
-				//if (wFirst <= 0x000f) strmOut << "0";
-				
-				if (wFirst < 1000) strmOut << " ";
-				if (wFirst < 100) strmOut << " ";
-				if (wFirst < 10) strmOut << " ";
-				itoa(wFirst, rgch, 10);
-				strmOut << rgch;
+				strmOut << std::dec << std::setw(4) << wFirst;
+
 				if (wFirst < wLast)
-				{
-					//itoa(wLast, rgch, 16);	// hex
-					//strmOut << "..0x";
-					//if (wLast <= 0x0fff) strmOut << "0";
-					//if (wLast <= 0x00ff) strmOut << "0";
-					//if (wLast <= 0x000f) strmOut << "0";
-
-					strmOut << " ..";
-					if (wLast < 1000) strmOut << " ";
-					if (wLast < 100) strmOut << " ";
-					if (wLast < 10) strmOut << " ";
-					itoa(wLast, rgch, 10);
-					strmOut << rgch;
-				}
+					strmOut << " .." << std::setw(4) << wLast;
 				else
-					//strmOut << "        "; // hex
-					strmOut << "       ";
-
-//				if (w < 0x0100)
-//					strmOut << " '" << (char)w << "'";
-//				else
-//					strmOut << "    ";
-
-				strmOut << " => " << ifsmcColCurr << "\n";
+					strmOut << std::setw(11);
+				strmOut << " => " << ifsmcColCurr << std::endl;
 			}
 			//	Start a new group.
 			ifsmcColCurr = ifsmcColumn;
@@ -1167,7 +1139,7 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 	//	Output table with working indices.
 	/////DebugFsmTable(pcman, strmOut, true);
 
-	strmOut << "\n";
+	strmOut << std::endl;
 
 	//	Output table with final indices.	
 	DebugFsmTable(pcman, strmOut, false);

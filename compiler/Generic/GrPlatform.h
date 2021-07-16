@@ -170,9 +170,4 @@ unsigned short MultiByteToWideChar(unsigned long code_page, unsigned long,
 using namespace gr;
 #endif
 
-#if !defined(_WIN32)
-// Don't put this in the gr namespace; it confuses the compiler:
-char * itoa(int value, char *string, int radix);
-#endif
-
 #endif

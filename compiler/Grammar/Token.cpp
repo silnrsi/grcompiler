@@ -31,7 +31,6 @@
  */
 
 #include "Antlr/Token.hpp"
-#include "Antlr/String.hpp"
 
 RefToken Token::badToken(new Token(Token::INVALID_TYPE, "<no text>"));
 
@@ -86,7 +85,7 @@ void Token::setType(int t)
 
 std::string Token::toString() const
 {
-	return "[\""+getText()+"\",<"+type+">]";
+	return "[\""+getText()+"\",<"+std::to_string(type)+">]";
 }
 
 Token::~Token()

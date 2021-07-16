@@ -309,11 +309,9 @@ bool GdlSlotRefExpression::AdjustSlotRefs(std::vector<bool> & vfOmit, std::vecto
 	{
 		if (m_staName == "")
 		{
-			char rgch[20];
-			itoa(m_srNumber, rgch, 10);
 			g_errorList.AddError(1103, this,
 				"Optional item referenced: ",
-				rgch);
+				std::to_string(m_srNumber));
 		}
 		else
 			g_errorList.AddError(1103, this,
@@ -1075,13 +1073,11 @@ void GdlBinaryExpression::FixFeatureTestsInRules(GrcFont *pfont)
 				GdlFeatureSetting * pfset = pfeat->FindSettingWithValue(pexpnum->Value());
 				if (!pfset)
 				{
-					char rgch[20];
-					itoa(pexpnum->Value(), rgch, 10);
 					g_errorList.AddWarning(2514, this,
 						"Feature '",
 						pfeat->Name(),
 						"' has no setting with value ",
-						rgch,
+						std::to_string(pexpnum->Value()),
 						((pexpnum->m_munits >= kmunitDefault) ? "m" : ""));
 				}
 			}
@@ -1250,11 +1246,9 @@ GdlExpression * GdlNumericExpression::ConvertFeatureSettingValue(GdlFeatureDefn 
 GdlExpression * GdlSlotRefExpression::ConvertFeatureSettingValue(GdlFeatureDefn * /*pfeat*/, bool & fErr)
 {
 	//	Caller will replace slot-ref expression with numeric expression.
-	char rgch[20];
-	itoa(m_srNumber, rgch, 10);
 	g_errorList.AddWarning(2519, this,
 		"Inappropriate value of feature setting: @",
-		rgch);
+		std::to_string(m_srNumber));
 	GdlNumericExpression * pexpValue = new GdlNumericExpression(m_srNumber);
 	return pexpValue;
 }
@@ -1397,11 +1391,9 @@ void GdlLookupExpression::LookupExpCheck(bool fInIf, Symbol psymFeature)
 
 		if (m_pexpSelector)
 		{
-			char rgch[20];
-			itoa(m_pexpSelector->SlotNumber(), rgch, 10);
 			g_errorList.AddError(2122, this,
 				"Slot selectors are not permitted in 'if' statements: @",
-				rgch);
+				std::to_string(m_pexpSelector->SlotNumber()));
 		}
 	}
 }
@@ -1840,11 +1832,9 @@ GdlExpression * GdlClassMemberExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix 
 			int nValue = 0;
 			if (m_igid >= (signed)vgid.size())
 			{
-				char rgch[20];
-				itoa(m_igid, rgch, 10);
 				g_errorList.AddError(2164, this,
 					"Class sizes do not match; no corresponding glyph in class ", m_psymName->FullName(),
-					" for glyph #", rgch);
+					" for glyph #", std::to_string(m_igid));
 			}
 			else
 				nValue = vgid[m_igid];
@@ -1949,8 +1939,6 @@ void GdlCondExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 	std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit)
 {
-	char rgchItem[20];
-	itoa(irit+1, rgchItem, 10);
 	if (m_psymName->FitsSymbolType(ksymtGlyphAttr)
 		&& !m_psymName->FitsSymbolType(ksymtSlotAttr))	// treat it like a slot attribute
 	{													// if it could be either
@@ -1959,17 +1947,19 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 			nSel = m_pexpSelector->m_srNumber - 1;	// selectors are 1-based
 		else
 			nSel = irit;
+
+		auto const staItem = std::to_string(irit+1);
 		if (nSel < 0 || nSel >= signed(vpglfcInClasses.size()))
 		{
 			g_errorList.AddError(2131, this,
-				"Item ", rgchItem,
+				"Item ", staItem,
 				": glyph attribute selector out of range");
 			return;
 		}
 		else if (vpglfcInClasses[nSel] == NULL)
 		{
 			g_errorList.AddError(2132, this,
-				"Item ", rgchItem,
+				"Item ", staItem,
 				": no input class for selector");
 			return;
 		}
@@ -1986,7 +1976,7 @@ void GdlLookupExpression::CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		//	if (pglfc != vpglfcInClasses[nSel])
 		//	{
 		//		g_errorList.AddWarning(2522, this,
-		//			"Item ", rgchItem,
+		//			"Item ", staItem,
 		//			": Invalid glyph attribute: ",
 		//			m_psymName->FullName());
 		//	}
@@ -2071,10 +2061,8 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 			nSel = irit;
 		if (nSel < 0 || nSel >= signed(vpglfcInClasses.size()))
 		{
-			char rgch[20];
-			itoa(irit+1, rgch, 10);
 			g_errorList.AddError(2133, this,
-				"Item ", rgch,
+				"Item ", std::to_string(irit+1),
 				"slot selector on glyph attribute ",
 				m_psymName->FullName(),
 				" out of range");
@@ -2082,10 +2070,8 @@ void GdlLookupExpression::CheckCompleteAttachmentPoint(GrcManager * pcman,
 		}
 		else if (vpglfcInClasses[nSel] == NULL)
 		{
-			char rgch[20];
-			itoa(irit+1, rgch, 10);
 			g_errorList.AddError(2134, this,
-				"Item ", rgch,
+				"Item ", std::to_string(irit+1),
 				": no input class for selector on glyph attribute ",
 				m_psymName->FullName());
 			return;
@@ -2364,11 +2350,9 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer *
 						"Invalid slot attribute: ", m_psymName->FullName());
 				else if (nIndex >= kMaxUserDefinableSlotAttrs)
 				{
-					char rgch[20];
-					itoa(kMaxUserDefinableSlotAttrs, rgch, 10);
 					g_errorList.AddError(2138, this,
 						"Invalid slot attribute: ", m_psymName->FullName(),
-						"; maximum is ", rgch);
+						"; maximum is ", std::to_string(kMaxUserDefinableSlotAttrs));
 				}
 				else
 				{
@@ -2391,28 +2375,24 @@ bool GdlLookupExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer *
 
 	if (m_pexpSelector)
 	{
-		int sr = m_pexpSelector->SlotNumber();
-
-		char rgchSlotNumber[20];
-		itoa(sr, rgchSlotNumber, 10);
-
+		auto const sr = m_pexpSelector->SlotNumber();
+		auto const staSlotNumber = std::to_string(sr);
 		if (sr < 1 || sr > crit)
 		{
 			g_errorList.AddError(2140, this,
 				"Slot selector out of range: @",
-				rgchSlotNumber,
+				staSlotNumber,
 				".",
 				m_psymName->FullName());
 			return false;
 		}
-
 		//	Always okay to read the attribute of a line-break item or a deleted item.
 		//	Never okay to read the attribute of an inserted item.
 		else if (vfIns[sr - 1])
 		{
 			g_errorList.AddError(2141, this,
 				"Slot selector indicates an inserted item: @",
-				rgchSlotNumber,
+				staSlotNumber,
 				".",
 				m_psymName->FullName());
 			return false;
@@ -2437,44 +2417,39 @@ bool GdlSlotRefExpression::CheckRuleExpression(GrcFont * /*pfont*/, GdlRenderer 
 	std::vector<bool> & vfLb, std::vector<bool> & vfIns, std::vector<bool> & vfDel,
 	bool fValue, bool fValueIsInputSlot)
 {
-	char rgchSlotNumber[20];
-	itoa(m_srNumber, rgchSlotNumber, 10);
+	auto const staSlotNumber = std::to_string(m_srNumber);
 
 	if (m_srNumber < 1 || m_srNumber > signed(vfLb.size()))
 	{
 		g_errorList.AddError(2142, this,
 			"Slot reference out of range: @",
-			rgchSlotNumber);
+			staSlotNumber);
 		return false;
 	}
-
 	else if (fValue && vfLb[m_srNumber - 1])
 	{
 		//	Eg, attach.to = @2 or comp.X.ref = @2, where @2 is a LB slot
 		g_errorList.AddError(2143, this,
 			"Illegal reference to line-break slot: @",
-			rgchSlotNumber);
+			staSlotNumber);
 		return false;
 	}
-
 	else if ((!fValue || fValueIsInputSlot) && vfIns[m_srNumber - 1])
 	{
 		//	Eg, @1.bb.width or comp.X.ref = @1, where @1 is being inserted
 		g_errorList.AddError(2144, this,
 			"Illegal reference to inserted slot: @",
-			rgchSlotNumber);
+			staSlotNumber);
 		return false;
 	}
-
 	else if (fValue && !fValueIsInputSlot && vfDel[m_srNumber - 1])
 	{
 		//	Eg, attach.to = @3, where @3 is being deleted
 		g_errorList.AddError(2145, this,
 			"Illegal reference to deleted slot: @",
-			rgchSlotNumber);
+			staSlotNumber);
 		return false;
 	}
-
 	else
 		return true;
 }

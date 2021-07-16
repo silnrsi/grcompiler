@@ -209,10 +209,8 @@ void GrcMasterValueList::SetupFeatures(GdlFeatureDefn * pfeat, GrcSymbolTable * 
 						"Feature id must be an integer or string of 4 characters or less");
 				else if (nID == GdlFeatureDefn::kfidStdLang)
 				{
-					char rgch[20];
-					itoa(nID, rgch, 10);
 					g_errorList.AddError(2148, pexp,
-						"Feature ID ", rgch, " is a reserved value");
+						"Feature ID ", std::to_string(nID), " is a reserved value");
 					pfeat->SetID(nID);	// set it anyway, to avoid extra error message
 				}
 				else

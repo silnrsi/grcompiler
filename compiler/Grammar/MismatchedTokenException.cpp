@@ -31,7 +31,6 @@
  */
 
 #include "Antlr/MismatchedTokenException.hpp"
-#include "Antlr/String.hpp"
 
 MismatchedTokenException::MismatchedTokenException()
 : ParserException("Mismatched Token: expecting any AST node")
@@ -212,7 +211,7 @@ std::string MismatchedTokenException::tokenName(int tokenType) const
 		return "<Set of tokens>";
 	}
 	else if (tokenType < 0 || tokenType >= (int) tokenNames.size()) {
-		return std::string("<") + tokenType + ">";
+		return std::string("<") + std::to_string(tokenType) + ">";
 	}
 	else {
 		return tokenNames[tokenType];
@@ -220,7 +219,7 @@ std::string MismatchedTokenException::tokenName(int tokenType) const
 }
 
 std::string MismatchedTokenException::toString() const {
-	std::string s = (!token) ? std::string("") : std::string("line(")+getLine()+"), ";
+	std::string s = (!token) ? "" : "line(" + std::to_string(getLine()) + "), ";
 	s += getErrorMessage();
 	return s;
 }

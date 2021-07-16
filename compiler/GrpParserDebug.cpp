@@ -20,8 +20,6 @@ Description:
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
-static char intString[20];
-
 /*----------------------------------------------------------------------------------------------
 	Print the syntax tree to the standard output.
 ----------------------------------------------------------------------------------------------*/
@@ -35,8 +33,7 @@ void AST::Trace(std::ostream & strmOut, const char * s, int level)
 		for (int i = 0; i < level * 3; i++)
 			strmOut << " ";
 
-		if (s != 0)
-			strmOut << s;
+		if (s) strmOut << s;
 
 		GrpASTNode * grNode = dynamic_cast<GrpASTNode *>(getNode());
 		Assert(grNode);
@@ -47,11 +44,11 @@ void AST::Trace(std::ostream & strmOut, const char * s, int level)
 		int line = grNode->LineAndFile().PreProcessedLine();
 		if (line > 0)
 			strmOut << "  [line #" << line << "]";
-		strmOut << "\n";
+		strmOut << std::endl;
 
 		AST * pASTChild = getFirstChild();
 		if (pASTChild)
-			pASTChild->Trace(strmOut, 0, level + 1);
+			pASTChild->Trace(strmOut, nullptr, level + 1);
 
 		pAST = pAST->getNextSibling();
 	}
@@ -61,7 +58,7 @@ void AST::Trace(std::ostream & strmOut, const char * s, int level)
 /*----------------------------------------------------------------------------------------------
 	Answer a string describing the tree's root node.
 ----------------------------------------------------------------------------------------------*/
-const char * AST::debugString()
+std::string AST::debugString()
 {
 	GrpASTNode * wrNode = dynamic_cast<GrpASTNode *>(node);
 	if (wrNode)
@@ -74,7 +71,7 @@ const char * AST::debugString()
 /*----------------------------------------------------------------------------------------------
 	Answer a string describing the node's token type.
 ----------------------------------------------------------------------------------------------*/
-const char * GrpASTNode::debugString()
+std::string GrpASTNode::debugString() const
 {
 	switch (getType())
 	{
@@ -181,7 +178,6 @@ const char * GrpASTNode::debugString()
 	case Ztop:					return "Ztop";
 
 	default:
-		itoa(getType(), intString, 10);
-		return intString;
+		return std::to_string(getType());
 	}
 }

@@ -56,22 +56,10 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 			unsigned int nID = vnIDs[iID];
 			if (setID.find(nID) != setID.end()) // is a member
 			{
-				char rgch[20];
-				if (nID > 0x00FFFFFF)
-				{
-					// What in the world is this code trying to do? Convert a numerical ID to...??? Fix it...
-					char rgchID[5];
-					memcpy(rgch, &nID, 4);
-					rgchID[0] = rgch[3]; rgchID[1] = rgch[2]; rgchID[2] = rgch[1]; rgchID[3] = rgch[0];
-					rgchID[4] = 0;
-					std::string staTmp("'");
-					staTmp.append(rgchID);
-					staTmp.append("'");
-					memcpy(rgch, staTmp.data(), staTmp.length() + 1);
-				}
-				else
-					itoa(nID, rgch, 10);
-				g_errorList.AddError(3152, pfeat, "Duplicate feature ID: ", rgch);
+				auto stnID = nID > 0x00FFFFFF 
+					? '\'' +std::string{char(nID >> 24), char(nID >> 16), char(nID >> 8), char(nID)} + '\''
+					: std::to_string(nID);
+				g_errorList.AddError(3152, pfeat, "Duplicate feature ID: ", stnID);
 			}
 			else
 				setID.insert(nID);
@@ -97,15 +85,11 @@ bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, in
 
 	if (m_vpfeat.size() > kMaxFeatures)
 	{
-		char rgchMax[20];
-		itoa(kMaxFeatures, rgchMax, 10);
-		char rgchCount[20];
-		itoa(int(m_vpfeat.size()), rgchCount, 10);
 		g_errorList.AddError(3153, NULL,
 			"Number of features (",
-			rgchCount,
+			std::to_string(m_vpfeat.size()),
 			") exceeds maximum of ",
-			rgchMax);
+			std::to_string(kMaxFeatures));
 	}
 
 	return true;
@@ -163,11 +147,10 @@ bool GdlLangClass::PreCompile(GrcManager * pcman)
 				pfset = pfeat->FindSettingWithValue(nVal);
 				if (!pfset)
 				{
-					char rgchValue[20];
-					itoa(nVal, rgchValue, 10);
 					g_errorList.AddWarning(3523, NULL,
-						"Feature ", pfeat->Name(), " has no defined setting corresponding to value ",
-						rgchValue,
+						"Feature ", pfeat->Name(), 
+						" has no defined setting corresponding to value ",
+						std::to_string(nVal),
 						m_vlnf[ifasgn]);
 				}
 			}

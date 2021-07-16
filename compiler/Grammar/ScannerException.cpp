@@ -31,7 +31,6 @@
  */
 
 #include "Antlr/ScannerException.hpp"
-#include "Antlr/String.hpp"
 
 // what about the text of the current (bad) token?
 
@@ -66,6 +65,6 @@ int ScannerException::getLine() const
 
 std::string ScannerException::toString() const
 {
-	return std::string("line(")+line+"), "+getMessage();
+	return std::string("line(")+std::to_string(line)+"), "+getMessage();
 }
 

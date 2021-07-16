@@ -20,6 +20,5 @@ add_library(parser STATIC
 	ParserException.cpp 
 	ParserSharedInputState.cpp 
 	ScannerException.cpp 
-	String.cpp 
 	Token.cpp 
 	TokenBuffer.cpp)

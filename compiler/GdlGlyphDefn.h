@@ -257,44 +257,31 @@ public:
 
 	static std::string GlyphIDString(utf16 wGlyphID)
 	{
-		char rgch[20];
-		itoa(int(wGlyphID), rgch, 10);
-		std::string staRet(rgch);
-		staRet += " [0x";
+		std::ostringstream strmStr;
+		strmStr	<< wGlyphID 
+				<< " [0x" 
+				<< std::hex << std::setfill('0') << std::setw(4) 
+				<< wGlyphID << ']';
 
-		char rgchHex[20];
-		itoa(int(wGlyphID), rgchHex, 16);
-		std::string staHex(rgchHex);
-		for (auto ich = staHex.size(); ich < 4; ++ich)
-			staRet += "0";
-		staRet += staHex;
-		staRet += "]";
-
-		return staRet;
+		return strmStr.str();
 	}
 
 	static std::string UsvString(utf16 wUsv)
 	{
-		char rgch[20];
-		itoa(int(wUsv), rgch, 16);
-		std::string staNum(rgch);
-		std::string staRet;
-		for (auto ich = staNum.size(); ich < 4; ich++)
-			staRet += "0";
-		staRet += staNum;
-		return staRet;
+		std::ostringstream strmStr;
+		strmStr	<< std::hex << std::setfill('0') << std::setw(4) 
+				<< wUsv;
+
+		return strmStr.str();
 	}
 
 	static std::string CodepointIDString(int n)
 	{
-		char rgch[20];
-		itoa(int(n), rgch, 16);
-		std::string staNum(rgch);
-		std::string staRet;
-		for (auto ich = staNum.size(); ich < 4; ++ich)
-			staRet += "0";
-		staRet += staNum;
-		return staRet;
+		std::ostringstream strmStr;
+		strmStr	<< std::hex << std::setfill('0') << std::setw(4) 
+				<< n;
+
+		return strmStr.str();
 	}
 
 	virtual bool IncludesGlyph(utf16 w)
