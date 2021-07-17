@@ -445,8 +445,8 @@ void CompareSilfTables(int & ec, TestCase * ptcase, GrIStream & grstrmB, GrIStre
 	grstrmT.GetPositionInFont(&lSubTableStartT);
 
 	//	rule version
-	int fxdRuleVersionB = (fxdSilfVersionB >= 0x00030000) ? ReadVersion(grstrmB) : fxdSilfVersionB;
-	int fxdRuleVersionT = (fxdSilfVersionT >= 0x00030000) ? ReadVersion(grstrmT) : fxdSilfVersionT;
+	uint32_t fxdRuleVersionB = (fxdSilfVersionB >= 0x00030000) ? ReadVersion(grstrmB) : fxdSilfVersionB;
+	uint32_t fxdRuleVersionT = (fxdSilfVersionT >= 0x00030000) ? ReadVersion(grstrmT) : fxdSilfVersionT;
 
 	long lPassBlockPosB = -1;
 	long lPseudosPosB = -1;
@@ -1193,7 +1193,7 @@ void CompareGlatAndGlocTables(int & ec, TestCase * ptcase, int wMaxGlyphID,
 		OutputErrorWithValues(ec, ptcase, "ERROR: Gloc table - offset", 0, nOffsetB, nOffsetT);
 	int iAttrEntry = 0;
 	int cbGlatOffset = 4; // read version
-	for (int wGlyphID = 1; wGlyphID < wMaxGlyphID; wGlyphID++)
+	for (gid16 wGlyphID = 1; wGlyphID < wMaxGlyphID; wGlyphID++)
 	{
 		int nOffsetBnext = fLongFormatB ? grstrmGlocB.ReadIntFromFont() : grstrmGlocB.ReadUShortFromFont();
 		while (cbGlatOffset < nOffsetBnext)

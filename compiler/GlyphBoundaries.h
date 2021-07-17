@@ -85,7 +85,7 @@ class GlyphBoundaries
 
 public:
 	//	Constructors & destructors:
-	//GlyphBoundaries(GrcFont * pfont, utf16 wGlyphID)
+	//GlyphBoundaries(GrcFont * pfont, gid16 wGlyphID)
 	//	: m_pfont(pfont)
 	//{
 	//}
@@ -94,7 +94,7 @@ public:
 	{
 	}
 
-	void Initialize(utf16 wGlyphID)
+	void Initialize(gid16 wGlyphID)
 	{
 		m_wGlyphID = wGlyphID;
 	}

@@ -89,7 +89,7 @@ public:
 	virtual int ActualForPseudo(utf16 wPseudo) = 0;
 	virtual int GlyphIDCount() = 0;
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne) = 0;
-	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDsToClassMember(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true) = 0;
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
@@ -207,9 +207,9 @@ public:
 	virtual bool CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & vpglfcStack);
 	virtual void ExplicitPseudos(PseudoSet & setpglf, bool fProcessClasses);
 	virtual int ActualForPseudo(utf16 wPseudo);
-	virtual void AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDs(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
-	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDsToClassMember(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true);
 	virtual int GlyphIDCount();
@@ -390,7 +390,7 @@ public:
 	void AddSet(GdlGlyphClassMember * pglfd, GrpLineAndFile const& lnf);
 
 	// Pre-compiler:
-	virtual void AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDs(GrcFont * pfont, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo);
 	virtual void ComputeMembers();
 
@@ -434,7 +434,7 @@ public:
 	}
 
 	// Pre-compiler:
-	virtual void AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDs(GrcFont * pfont, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo);
 	virtual void ComputeMembers();
 

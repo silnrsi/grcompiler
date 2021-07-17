@@ -108,7 +108,7 @@ protected:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, int nIIndex, int iritAttachTo);
 	bool IsKeySlotAttr();
 
@@ -292,9 +292,9 @@ public:
 	virtual bool CanBeKeySlot() { return false; }
 	virtual bool IsInsertionSlot() { return false; }
 	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
-	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	void GenerateConstraintEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> & viritInput, int iritFirstModItem);
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
+	virtual void GenerateActionEngineCode(GrcManager *, uint32_t fxdRuleVersion,
 		std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 	static void GenerateInsertEqualsFalse(std::vector<gr::byte> & vbOutput);
@@ -513,10 +513,10 @@ public:
 	{
 		return (m_vpavs.size() > 0);
 	}
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
+	virtual void GenerateActionEngineCode(GrcManager *, uint32_t fxdRuleVersion,
 		std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
-	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, int nIIndex);
 
 	//	debuggers:
@@ -653,7 +653,7 @@ protected:
 		else
 			return true;
 	}
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateActionEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 	virtual bool IsInsertionSlot()
 	{
@@ -915,16 +915,16 @@ public:
 	//	Compiler:
 	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, 
 		unsigned int nAttrIdSkipP, int nPassID);	
-	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
+	void GenerateEngineCode(GrcManager *, uint32_t fxdRuleVersion,
 		std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints);
-	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput);
+	void GenerateConstraintEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput);
 	GdlRuleItem * InputItem(int n);
 	size_t NumberOfInputItems();
 	size_t NumberOfPreModContextItems() { return m_critPreModContext; }
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
-	static void DebugEngineCode(std::vector<gr::byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut);
+	static void DebugEngineCode(std::vector<gr::byte> & vb, uint32_t fxdRuleVersion, std::ostream & strmOut);
 	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml);
 	static std::string SlotAttributeDebugString(int slat);
 	static std::string GlyphMetricDebugString(int gmet);

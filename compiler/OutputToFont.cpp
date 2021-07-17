@@ -1750,7 +1750,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	}
 	Assert(fxdGlatVersion < 0x00030000 || fOutputOctaboxes);
 
-	int wGlyphID;
+	gid16 wGlyphID;
 	for (wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
 		vibGlyphOffsets[wGlyphID] = cbOutput;
@@ -1878,7 +1878,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 /*----------------------------------------------------------------------------------------------
 	Return the final attribute value, resolved to an integer.
 ----------------------------------------------------------------------------------------------*/
-int GrcManager::FinalAttrValue(utf16 wGlyphID, int nAttrID)
+int GrcManager::FinalAttrValue(gid16 wGlyphID, int nAttrID)
 {
 	if (m_cpsymBuiltIn <= nAttrID && nAttrID < m_cpsymBuiltIn + m_cpsymComponents)
 	{
@@ -1910,7 +1910,7 @@ int GrcManager::FinalAttrValue(utf16 wGlyphID, int nAttrID)
 	Convert the breakweight value to the one appropriate for the version of the table
 	being generated.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ConvertBwForVersion(int wGlyphID, int nAttrIdBw)
+void GrcManager::ConvertBwForVersion(gid16 wGlyphID, int nAttrIdBw)
 {
 	int lb = FinalAttrValue(wGlyphID, nAttrIdBw);
 	int lbOut;
@@ -2122,7 +2122,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 	stretchHW attribute. These are guaranteed to follow the list of stretch attributes (see
 	GrcSymbolTable::AssignInternalGlyphAttrIDs).
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::SplitLargeStretchValue(int wGlyphID, int nAttrIdJStr)
+void GrcManager::SplitLargeStretchValue(gid16 wGlyphID, int nAttrIdJStr)
 {
 	int cJLevels = NumJustLevels();
 
@@ -2811,7 +2811,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 	auto lPassStart = pbstrm->Position();
 
 	int fxdSilfVersion = pcman->VersionForTable(ktiSilf);
-	int fxdRuleVersion = pcman->VersionForRules();
+	uint32_t fxdRuleVersion = pcman->VersionForRules();
 
 	intptr_t nOffsetToPConstraint = 0;
 	size_t lOffsetToPConstraintPos = 0;
@@ -3077,7 +3077,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 	due to the way this method is used, we can assme the given glyph ID is the first glyph
 	in the range.
 ----------------------------------------------------------------------------------------------*/
-utf16 FsmMachineClass::OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm)
+utf16 FsmMachineClass::OutputRange(gid16 wGlyphID, GrcBinaryStream * pbstrm)
 {
 	for (auto iMin = 0; iMin < m_wGlyphs.size(); iMin++)
 	{
@@ -3561,7 +3561,7 @@ void GrcBinaryStream::WriteInt(intptr_t iOutput)
 	Seek to ibOffset then add zero padding for long alignment.
 	Return padded location.
 ----------------------------------------------------------------------------------------------*/
-size_t GrcBinaryStream::SeekPadLong(ptrdiff_t ibOffset)
+std::streamoff GrcBinaryStream::SeekPadLong(std::streamoff ibOffset)
 {
 	auto cPad = ((ibOffset + 3) & ~3) - ibOffset;
 	seekp(ibOffset);

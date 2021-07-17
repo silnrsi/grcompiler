@@ -1218,7 +1218,7 @@ bool GlyfContourEndPoints(const void * pSimpleGlyf, int * prgnContourEndPoint,
 	if (cContours < 0)
 		return false; // this method isn't supposed handle composite glyphs
 
-	for (size_t i = 0; i < cContours && i < cnPointsTotal; i++)
+	for (size_t i = 0; i < unsigned(cContours) && i < cnPointsTotal; i++)
 	{
 		prgnContourEndPoint[i] = read(pGlyph->end_pts_of_contours[i]);
 	}
@@ -1240,7 +1240,7 @@ bool GlyfContourEndPoints(const void * pSimpleGlyf, int * prgnContourEndPoint,
 		False could indicate a composite glyph
 ----------------------------------------------------------------------------------------------*/
 bool GlyfPoints(const void * pSimpleGlyf, int * prgnX, int * prgnY, 
-		char * prgbFlag, size_t cnPointsTotal, int & cnPoints)
+		char * prgbFlag, size_t cnPointsTotal, size_t & cnPoints)
 {
 	using namespace Sfnt;
 	
@@ -1249,7 +1249,7 @@ bool GlyfPoints(const void * pSimpleGlyf, int * prgnX, int * prgnY,
 	// return false for composite glyph
 	if (cContours <= 0)
 		return false;
-	int cPts = read(pGlyph->end_pts_of_contours[cContours - 1]) + 1;
+	size_t cPts = read(pGlyph->end_pts_of_contours[cContours - 1]) + 1;
 	if (cPts > cnPointsTotal)
 		return false;
 
@@ -1263,7 +1263,7 @@ bool GlyfPoints(const void * pSimpleGlyf, int * prgnX, int * prgnY,
 	pbGlyph += cbHints;
 
 	// load flags & point to first x coordinate
-	int iFlag = 0;
+	auto iFlag = 0U;
 	while (iFlag < cPts)
 	{
 		if (!(*pbGlyph & SimpleGlyph::Repeat))
@@ -1291,7 +1291,7 @@ bool GlyfPoints(const void * pSimpleGlyf, int * prgnX, int * prgnY,
 		return false;
 
 	// load x coordinates
-	iFlag = 0;
+	iFlag = 0U;
 	while (iFlag < cPts)
 	{
 		if (prgbFlag[iFlag] & SimpleGlyph::XShort)
@@ -1320,7 +1320,7 @@ bool GlyfPoints(const void * pSimpleGlyf, int * prgnX, int * prgnY,
 	}
 		
 	// load y coordinates
-	iFlag = 0;
+	iFlag = 0U;
 	while (iFlag < cPts)
 	{
 		if (prgbFlag[iFlag] & SimpleGlyph::YShort)
@@ -1809,7 +1809,7 @@ bool GlyfPoints(gr::gid16 nGlyphId, const void * pGlyf,
 		return false;
 
 	int cContours = GlyfContourCount(pSimpleGlyf);
-	int cActualPts;
+	size_t cActualPts;
 	if (cContours > 0)
 	{
 		if (!GlyfPoints(pSimpleGlyf, prgnX, prgnY, (char *)prgfOnCurve, cnPoints, cActualPts))
@@ -1851,7 +1851,7 @@ bool GlyfPoints(gr::gid16 nGlyphId, const void * pGlyf,
 				prgnContourEndPoint, cnEndPoints, prgnCurrentX, prgnCurrentY, (bool *)prgbCurrentFlag, 
 				cNestedPts))
 				return false;
-			cActualPts = int(cCurrentPoints - cNestedPts);
+			cActualPts = cCurrentPoints - cNestedPts;
 		} 
 		else
 		{
@@ -1870,7 +1870,7 @@ bool GlyfPoints(gr::gid16 nGlyphId, const void * pGlyf,
 		// apply transform - see main method note above
 		// do before attachment point calcs
 		if (!fIdTrans)
-			for (int j = 0; j < cActualPts; j++)
+			for (auto j = 0U; j < cActualPts; j++)
 			{
 				int x = prgnCurrentX[j]; // store before transform applied
 				int y = prgnCurrentY[j];
@@ -1902,7 +1902,7 @@ bool GlyfPoints(gr::gid16 nGlyphId, const void * pGlyf,
 			nXOff = prgnX[a] - prgnCurrentX[b];
 			nYOff = prgnY[a] - prgnCurrentY[b];
 		}
-		for (int j = 0; j < cActualPts; j++)
+		for (auto j = 0U; j < cActualPts; j++)
 		{
 			prgnCurrentX[j] += nXOff;
 			prgnCurrentY[j] += nYOff;

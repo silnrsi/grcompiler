@@ -129,12 +129,12 @@ public:
 	bool CheckSelectors();
 
 	//	Pre-compiler:
-	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
+	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, uint32_t * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
 	bool CheckRecursiveGlyphClasses();
 	size_t ExplicitPseudos(PseudoSet & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
-	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
+	bool AssignGlyphIDs(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
 	void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GrcLigComponentList * plclist);

@@ -139,15 +139,15 @@ public:
 		return m_nGlobalID + m_nPreBidiPass + 1;
 	}
 	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, unsigned int nAttrIdSkipP);
-	void GenerateEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbConstraints);
+	void GenerateEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbConstraints);
 	void GenerateFsm(GrcManager * pcman);
 	void GenerateFsmMachineClasses(GrcManager * pcman);
 	void GenerateFsmTable(GrcManager * pcman);
-	int AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID);
-	int MachineClassKey(utf16 wGlyphID, int nPassID);
-	void RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc);
+	int AssignGlyphIDToMachineClasses(gid16 wGlyphID, int nPassID);
+	int MachineClassKey(gid16 wGlyphID, int nPassID);
+	void RecordInclusionInClass(gid16 wGlyphID, GdlGlyphClassDefn * pglfc);
 	FsmMachineClass * MachineClassMatching(std::vector<FsmMachineClass *> & vpfsmc,
-		utf16 wGlyphID);
+		gid16 wGlyphID);
 	void InitializeFsmArrays();
 	void MergeIdenticalStates(int ifsFixMin, int ifsCheckMin, int ifsCheckLim);
 	size_t NumberOfFsmMachineClasses();
@@ -169,7 +169,7 @@ public:
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugFsmTable(GrcManager * pcman, std::ostream & strmOut, bool fWorking);
@@ -323,7 +323,7 @@ public:
 		std::vector<intptr_t> & vnOffsets);
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut);
 	void DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut, int ipassBidi);
 	void DebugFsm(GrcManager * pcman, std::ostream & strmOut);
 	void DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::string staPathToCur);

@@ -239,7 +239,7 @@ public:
 //	}
 	virtual int GlyphIDCount();
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne);
-	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDsToClassMember(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true);
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
@@ -255,7 +255,7 @@ public:
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		std::vector<GdlExpression *> & vpexpExtra);
 
-	static std::string GlyphIDString(utf16 wGlyphID)
+	static std::string GlyphIDString(gid16 wGlyphID)
 	{
 		std::ostringstream strmStr;
 		strmStr	<< wGlyphID 

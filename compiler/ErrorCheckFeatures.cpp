@@ -38,7 +38,7 @@ bool GrcManager::PreCompileFeatures(GrcFont * pfont)
 
 /*--------------------------------------------------------------------------------------------*/
 
-bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, int * pfxdFeatVersion)
+bool GdlRenderer::PreCompileFeatures(GrcManager * pcman, GrcFont * /*pfont*/, uint32_t * pfxdFeatVersion)
 {
 	*pfxdFeatVersion = 0x00010000;
 

@@ -61,7 +61,7 @@ void TokenBuffer::fill(int amount)
 {
 	syncConsume();
 	// Fill the buffer sufficiently to hold needed tokens
-	while (queue.entries() < amount + markerOffset) {
+	while (queue.entries() < size_t(amount + markerOffset)) {
 		// Append the next token
 		queue.append(input.nextToken());
 	}

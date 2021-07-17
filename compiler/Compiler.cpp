@@ -16,6 +16,7 @@ Description:
 /***********************************************************************************************
 	Include files
 ***********************************************************************************************/
+#include <numeric>
 #include "main.h"
 
 #ifdef _MSC_VER
@@ -108,7 +109,7 @@ void GrcManager::CalculateGlatVersion()
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints and actions of a rule.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
+void GdlRule::GenerateEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints)
 {
 	GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints);
@@ -131,18 +132,17 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 
 	bool fSetInsertToFalse = false;
 	bool fBackUpOneMore = false;
-	int iritFirstModItem = int(m_critPrependedAnys + m_critPreModContext);
-	int irit;
-	for (irit = int(m_critPrependedAnys); irit < m_vprit.size(); ++irit)
+	auto iritFirstModItem = m_critPrependedAnys + m_critPreModContext;
+	for (auto irit = m_critPrependedAnys; irit < m_vprit.size(); ++irit)
 	{
-		if (iritFirstModItem <= irit && irit < signed(iritLimMod))
+		if (iritFirstModItem <= irit && irit < iritLimMod)
 		{
-			m_vprit[irit]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, irit,
+			m_vprit[irit]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, int(irit),
 				&fSetInsertToFalse);
 		}
 
 		m_vprit[irit]->GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints,
-			irit, m_viritInput, iritFirstModItem);
+			int(irit), m_viritInput, int(iritFirstModItem));
 	}
 	if (fSetInsertToFalse)
 	{
@@ -150,17 +150,15 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 		//	set insert = false (due to some attachment). So here we create the code to
 		//	set the attribute, and then back up one to get the scan advance position back
 		//	to where it should be.
-		m_vprit[iritLimMod]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, irit,
+		m_vprit[iritLimMod]->GenerateActionEngineCode(pcman, fxdRuleVersion, vbActions, this, int(m_vprit.size()),
 			&fSetInsertToFalse);
 		Assert(!fSetInsertToFalse);
 		m_vprit[iritLimMod]->GenerateConstraintEngineCode(pcman, fxdRuleVersion, vbConstraints,
-			irit, m_viritInput, iritFirstModItem);
+			int(m_vprit.size()), m_viritInput, int(iritFirstModItem));
 		fBackUpOneMore = true;
 	}
 
-	if (vbConstraints.size() == 0)
-	{ }	// vbConstraints.Push(kopRetTrue); -- no, leave empty
-	else
+	if (!vbConstraints.empty())
 		vbConstraints.push_back(kopPopRet);
 
 	if (m_nOutputAdvance == -1)
@@ -199,7 +197,7 @@ void GdlRule::GenerateEngineCode(GrcManager * pcman, int fxdRuleVersion,
 	Generate engine code for the constraints of a given rule that were in -if- statements,
 	minus the final pop-and-return command.
 ----------------------------------------------------------------------------------------------*/
-void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
+void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
@@ -229,7 +227,7 @@ void GdlRule::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVe
 		viritInput			- input indices for items of this rule
 		irit				- index of item
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
+void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput,
 	int irit, std::vector<int> & viritInput, int iritFirstModItem)
 {
@@ -267,7 +265,7 @@ void GdlRuleItem::GenerateConstraintEngineCode(GrcManager * /*pcman*/, int fxdRu
 /*----------------------------------------------------------------------------------------------
 	Generate the engine code for the constraints of a pass.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
+void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput)
 {
 	if (m_vpexpConstraints.size() == 0)
@@ -292,7 +290,7 @@ void GdlPass::GenerateEngineCode(GrcManager * /*pcman*/, int fxdRuleVersion,
 /*----------------------------------------------------------------------------------------------
 	Generate engine code to perform the actions for a given item.
 ----------------------------------------------------------------------------------------------*/
-void GdlRuleItem::GenerateActionEngineCode(GrcManager * /*pcman*/, int /*fxdRuleVersion*/,
+void GdlRuleItem::GenerateActionEngineCode(GrcManager * /*pcman*/, uint32_t /*fxdRuleVersion*/,
 	std::vector<gr::byte> & vbOutput,
 	GdlRule * /*prule*/, int /*irit*/, bool * pfSetInsertToFalse)
 {
@@ -310,7 +308,7 @@ void GdlRuleItem::GenerateActionEngineCode(GrcManager * /*pcman*/, int /*fxdRule
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
+void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput,
 	GdlRule * /*prule*/, int irit, bool * pfSetInsertToFalse)
 {
@@ -332,7 +330,7 @@ void GdlSetAttrItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVer
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRuleVersion,
+void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput,
 	GdlRule * prule, int irit, bool * pfSetInsertToFalse)
 {
@@ -481,7 +479,7 @@ void GdlSubstitutionItem::GenerateActionEngineCode(GrcManager * pcman, int fxdRu
 	Generate engine code to set slot attributes. Return true if we need to set
 	insert = false on the following item (because this item makes a forward attachment).
 ----------------------------------------------------------------------------------------------*/
-bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
+bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput,
 	int irit, int nIIndex)
 {
@@ -498,7 +496,7 @@ bool GdlSetAttrItem::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVers
 }
 
 /*--------------------------------------------------------------------------------------------*/
-bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, int fxdRuleVersion,
+bool GdlAttrValueSpec::GenerateAttrSettingCode(GrcManager * pcman, uint32_t fxdRuleVersion,
 	std::vector<gr::byte> & vbOutput,
 	int irit, int nIIndex, int iritAttachTo)
 {
@@ -709,9 +707,9 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 		return;
 	}
 
-	for (int ipass = 0; ipass < m_vppass.size(); ++ipass)
+	for (auto ipass = m_vppass.cbegin(); ipass != m_vppass.cend(); ++ipass)
 	{
-		GdlPass * ppass = m_vppass[ipass];
+		auto const ppass = *ipass;;
 
 		if (ppass->HasLineBreaks())
 			*pfLineBreak = true;
@@ -733,9 +731,9 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 		int cPostTmp = ppass->MaxPostLBSlots();
 
 		//	Loop backwards through all the passes in this table, calculating the ranges.
-		for (auto ipassPrev = ipass; ipassPrev-- > 0; )
+		for (auto ipassPrev = std::make_reverse_iterator(ipass); ipassPrev != m_vppass.crend(); ++ipassPrev)
 		{
-			GdlPass * ppassPrev = m_vppass[ipassPrev];
+			GdlPass * ppassPrev = *ipassPrev;
 			if (fPos)
 			{
 				cPreTmp = std::max(cPreTmp, ppassPrev->MaxPreLBSlots());
@@ -759,14 +757,15 @@ void GdlRuleTable::CalculateContextOffsets(int * pcPreXlbContext, int * pcPostXl
 		}
 
 		//	Loop backwards through the previous table(s) also.
-		for (int itbl = 2; itbl > 0; itbl--)
+		for (size_t itbl = 2; itbl != 0; --itbl)
 		{
-			GdlRuleTable * prultblPrev = ((itbl == 2) ? prultbl2 : prultbl1);
+			GdlRuleTable * prultblPrev = itbl == 2 ? prultbl2 : prultbl1;
 			if (prultblPrev)
 			{
-				for (auto ipassPrev = prultblPrev->NumberOfPasses(); ipassPrev-- > 0; )
+				auto const & passes = prultblPrev->m_vppass;
+				for (auto ipassPrev = passes.crbegin(); ipassPrev != passes.crend(); ++ipassPrev)
 				{
-					GdlPass * ppassPrev = prultblPrev->m_vppass[ipassPrev];
+					GdlPass * ppassPrev = *ipassPrev;
 
 					if (ppassPrev->HasReprocessing())
 					{
@@ -863,43 +862,23 @@ void GdlPass::DebugRulePrecedence(GrcManager * pcman, std::ostream & strmOut)
 
 	strmOut << "\nPASS: " << PassDebuggerNumber() << " (GDL #" << this->m_nNumber << ")\n";
 
-	// Sort rules by their precedence: primarily by the number of items matched (largest first),
-	// and secondarily by their location in the file (rule number--smallest first).
-	std::vector<int> viruleSorted;
-	std::vector<int> vnKeys;
-	for (int irule1 = 0; irule1 < m_vprule.size(); irule1++)
-	{
-		int nSortKey1 = m_vprule[irule1]->SortKey();
-		size_t iirule2;
-		for (iirule2 = 0; iirule2 < viruleSorted.size(); iirule2++)
-		{
-			int nSortKey2 = vnKeys[iirule2];
-			if (nSortKey1 > nSortKey2 ||
-				(nSortKey1 == nSortKey2 && signed(irule1) < viruleSorted[iirule2]))
-			{
-				// Insert it.
-				viruleSorted.insert(viruleSorted.begin() + iirule2, irule1);
-				vnKeys.insert(vnKeys.begin() + iirule2, nSortKey1);
-				break;
-			}
-		}
-		if (iirule2 >= viruleSorted.size())
-		{
-			viruleSorted.push_back(irule1);
-			vnKeys.push_back(nSortKey1);
-		}
+	// Stable sort rules by their precedence: by the number of items matched (largest first).
+	std::vector<int> viruleSorted(m_vprule.size());
+	std::iota(viruleSorted.begin(), viruleSorted.end(), 0);
+	std::stable_sort(viruleSorted.begin(), viruleSorted.end(), [&](auto const a, auto const b){
+		return m_vprule[a]->SortKey() > m_vprule[b]->SortKey();
+	});
 
-		Assert(viruleSorted.size() == irule1 + 1);
-	}
-
-	int nPassNum = PassDebuggerNumber();
-	for (size_t iirule = 0; iirule < m_vprule.size(); iirule++)
+	auto const nPassNum = PassDebuggerNumber();
+	auto seq = 0u;
+	for (auto const irule: viruleSorted) 
 	{
-		strmOut << "\n" << iirule << " - RULE " << nPassNum << "." << viruleSorted[iirule] << ", ";
-		m_vprule[viruleSorted[iirule]]->LineAndFile().WriteToStream(strmOut, true);
+		auto & rule = *m_vprule[irule];
+		strmOut << "\n" << seq++ << " - RULE " << nPassNum << "." << irule << ", ";
+		rule.LineAndFile().WriteToStream(strmOut, true);
 		strmOut << ":  ";
 
-		m_vprule[viruleSorted[iirule]]->RulePrettyPrint(pcman, strmOut, false);
+		rule.RulePrettyPrint(pcman, strmOut, false);
 		strmOut << "\n\n";
 	}
 }
@@ -937,7 +916,7 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 {
 	GdlRuleTable * prultbl;
 
-	int fxdRuleVersion = pcman->VersionForRules();
+	uint32_t fxdRuleVersion = pcman->VersionForRules();
 
 	if ((prultbl = FindRuleTable("linebreak")) != NULL)
 		prultbl->DebugEngineCode(pcman, fxdRuleVersion, strmOut);
@@ -956,7 +935,7 @@ void GdlRenderer::DebugEngineCode(GrcManager * pcman, std::ostream & strmOut)
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
+void GdlRuleTable::DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut)
 {
 	strmOut << "\nTABLE: " << m_psymName->FullName() << "\n";
 	for (size_t ippass = 0; ippass < m_vppass.size(); ippass++)
@@ -966,7 +945,7 @@ void GdlRuleTable::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
+void GdlPass::DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut)
 {
 	int nPassNum = PassDebuggerNumber();
 	strmOut << "\nPASS: " << nPassNum << "\n";
@@ -999,7 +978,7 @@ void GdlPass::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut)
 {
 	std::vector<gr::byte> vbActions;
 	std::vector<gr::byte> vbConstraints;
@@ -1020,7 +999,7 @@ void GdlRule::DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostre
 	}
 }
 
-void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, int /*fxdRuleVersion*/, std::ostream & strmOut)
+void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, uint32_t /*fxdRuleVersion*/, std::ostream & strmOut)
 {
 	int ib = 0;
 	while (ib < signed(vb.size()))
@@ -1496,7 +1475,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 		}
 		strmOut << "\n\n\nGLYPH ATTRIBUTE VALUES\n\n";
 
-		for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
+		for (auto wGlyphID = 0U; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 		{
 			// Convert breakweight values depending on the table version to output.
 			ConvertBwForVersion(wGlyphID, nAttrIdBw);
@@ -1506,7 +1485,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 		
 			bool fAnyNonZero = false;
 
-			for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+			for (auto nAttrID = 0U; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 			{
 				int nValue = FinalAttrValue(wGlyphID, nAttrID);
 
@@ -2026,7 +2005,7 @@ void GrcManager::DebugCmap(GrcFont * pfont, char * pchOutputPath)
 			vnXUniForPsd, vwXPsdForUni);
 
 		unsigned int nUni;
-		utf16 wGlyphID;
+		gid16 wGlyphID;
 
 		strmOut << "UNICODE => GLYPH ID MAPPINGS\n\n";
 
@@ -2108,7 +2087,7 @@ void GrcManager::DebugCmap(GrcFont * pfont, char * pchOutputPath)
 }
 
 void GrcManager::WriteCmapItem(std::ofstream & strmOut,
-	unsigned int nUnicode, bool fSuppPlaneChars, utf16 wGlyphID, bool fUnicodeToGlyph,
+	unsigned int nUnicode, bool fSuppPlaneChars, gid16 wGlyphID, bool fUnicodeToGlyph,
 	bool fPseudo, bool fInCmap)
 {
 	if (fUnicodeToGlyph)
@@ -2208,7 +2187,7 @@ void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 	//unsigned int n;
 	//unsigned int nUnicode;
 	//utf16 w;
-	//utf16 wGlyphID;
+	//gid16 wGlyphID;
 	//utf16 wFirst; // wLast;
 
 	switch (m_glft)
@@ -2516,7 +2495,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 
 	int fxdGlatVersion = TableVersion(ktiGlat);
 
-	for (int wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
+	for (auto wGlyphID = 0U; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
 		// Convert breakweight values depending on the table version to output.
 		////ConvertBwForVersion(wGlyphID, nAttrIdBw);
@@ -2537,7 +2516,7 @@ void GrcManager::DebugXmlGlyphs(GrcFont * pfont, std::ofstream & strmOut,
 				<< "\" atLine=\"" << vnSingleMemberClassLines[wGlyphID];
 		strmOut<< "\"" << ">\n";
 	
-		for (int nAttrID = 0; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
+		for (auto nAttrID = 0U; nAttrID < m_vpsymGlyphAttrs.size(); nAttrID++)
 		{
 			int nValue = FinalAttrValue(wGlyphID, nAttrID);
 
@@ -2658,7 +2637,8 @@ void GdlGlyphClassDefn::DebugXmlClasses(std::ofstream & strmOut, int & cwGlyphID
 		strmOut << "\" subClassIndexRhs=\"" << m_nReplcmtOutID;
 	strmOut << "\">\n";
 
-	for (int iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+
+	for (auto iglfd = 0U; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->DebugXmlClassMembers(strmOut, staPathToCur,
 			this, LineAndFileForMember(iglfd), cwGlyphIDs);
@@ -2842,7 +2822,7 @@ void GdlPass::DebugXmlRules(GrcManager * pcman, std::ofstream & strmOut, std::st
 			strmOut << "        </passConstraints>\n";
 		}
 
-		for (int irule = 0; irule < m_vprule.size(); irule++)
+		for (auto irule = 0U; irule < m_vprule.size(); irule++)
 		{
 			m_vprule[irule]->DebugXml(pcman, strmOut, staPathToCur, PassDebuggerNumber(), irule);
 		}
@@ -3122,7 +3102,7 @@ void GdlAttrValueSpec::DebugXml(GrcManager * pcman, std::ostream & strmOut, std:
 /*----------------------------------------------------------------------------------------------
 	Output a number in hex format.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::DebugHex(std::ostream & strmOut, utf16 wGlyphID)
+void GrcManager::DebugHex(std::ostream & strmOut, gid16 wGlyphID)
 {
 	auto const flags = strmOut.flags(std::ios::hex); auto const fill = strmOut.fill();
 	strmOut << std::hex << std::noshowbase

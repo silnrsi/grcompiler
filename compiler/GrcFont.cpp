@@ -451,7 +451,7 @@ utf16 GrcFont::GlyphFromPostscript(std::string staPostscriptName, GdlObject * pg
 	first point on the path. Normally this path will only have one point.
 	Return -1 if the path is invalid.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * pgdlobj)
+int GrcFont::ConvertGPathToGPoint(gid16 wGlyphID, int nPathNumber, GdlObject * pgdlobj)
 {
 #ifdef _DEBUG
 	if (m_fDebug)
@@ -520,7 +520,7 @@ int GrcFont::DesignUnits()
 	Return INT_MIN or INT_MAX on error.
 	Review: does USE_MY_METRICS flag in a composist glyph override the hmtx table?
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlobj)
+int GrcFont::GetGlyphMetric(gid16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlobj)
 {
 	Assert(m_pFile);
 	Assert(m_pLoca);
@@ -659,7 +659,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	Engine will NOT be able to determine the coordinates for the point so the compiler should
 	do that (with GetXYAtPoint).
 ----------------------------------------------------------------------------------------------*/
-bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj)
+bool GrcFont::IsPointAlone(gid16 wGlyphID, int nPointNumber, GdlObject * pgdlobj)
 {
 	// these must be declared before goto statements
 	std::vector<int> vnEndPt;
@@ -703,7 +703,7 @@ bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj
 	Find the coordinates for a point on a glyph.
 	Return true if successful, otherwise false
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY, 
+int GrcFont::GetXYAtPoint(gid16 wGlyphID, int nPointNumber, int * mX, int * mY, 
 						  GdlObject * pgdlobj)
 {
 	std::vector<int> vnEndPt, vnX, vnY;
@@ -731,7 +731,7 @@ int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY,
 	Try to find an actual on-curve point that is within mPointRadius units of the given
 	x- and y-coordinates. If found, return the point number, otherwise return -1.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj)
+int GrcFont::GetPointAtXY(gid16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj)
 {
 	std::vector<int> vnEndPt, vnX, vnY;
 	std::vector<bool> vfOnCurve;
@@ -1002,7 +1002,7 @@ int GrcFont::ScanGlyfIds(void)
 	pvnEndPt - indexes where contours (or paths) end
 	Return true is successful. False otherwise.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
+int GrcFont::GetGlyfContours(gid16 wGlyphID, std::vector<int> * pvnEndPt)
 {
 	Assert(m_pFile);
 	Assert(m_pGlyf);
@@ -1047,7 +1047,7 @@ int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
 	pvfOnCurve - flag indicating if parallel coordinate is on curve or off
 	Return true is successful. False otherwise.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt, 
+int GrcFont::GetGlyfPts(gid16 wGlyphID, std::vector<int> * pvnEndPt, 
 	std::vector<int> * pvnX, std::vector<int> * pvnY, std::vector<bool> * pvfOnCurve)
 {
 	Assert(m_pFile);
