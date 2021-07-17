@@ -709,7 +709,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 				" allowed for input side of substitution");
 		}
 
-		utf16 wGlyphIDDup;
+		gid16 wGlyphIDDup;
         if (pglfc->HasDuplicateGlyphs(&wGlyphIDDup))
         {
             g_errorList.AddError(3172, this,

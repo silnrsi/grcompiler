@@ -115,7 +115,7 @@ namespace TtfUtil
 	bool GlyfContourEndPoints(const void * pSimpleGlyf, int * prgnContourEndPoint, 
 		size_t cnPointsTotal, int & cnPoints);
 	bool GlyfPoints(const void * pSimpleGlyf, int * prgnX, int * prgnY, 
-		char * prgbFlag, size_t cnPointsTotal, int & cnPoints);
+		char * prgbFlag, size_t cnPointsTotal, size_t & cnPoints);
 	
 	// primitive to find the glyph ids in a composite glyph
 	bool GetComponentGlyphIds(const void * pSimpleGlyf, int * prgnCompId, 

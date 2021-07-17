@@ -47,17 +47,17 @@ public:
 		write(static_cast<char *>(pbTable), cbSize);
 	}
 
-	size_t Position()
+	std::streamoff Position()
 	{
 		return tellp();
 	}
 
-	void SetPosition(size_t lPos)
+	void SetPosition(std::streamoff lPos)
 	{
 		seekp(lPos);
 	}
 
-	size_t SeekPadLong(ptrdiff_t ibOffset);
+	std::streamoff SeekPadLong(std::streamoff ibOffset);
 
 	void Close(void)
 	{

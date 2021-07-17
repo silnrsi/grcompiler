@@ -187,7 +187,7 @@ void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 	machine class it is a member of. Create a new machine class if there is not
 	one corresponding to the SCS. Return the column number of the machine class.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
+int GdlPass::AssignGlyphIDToMachineClasses(gid16 wGlyphID, int nPassID)
 {
 	SourceClassSet * pscsThisGlyph = m_rgscsInclusions + wGlyphID;
 	if (pscsThisGlyph->size() == 0)
@@ -266,7 +266,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 	map. The key is the sum of the ID's of the source classes in this glyph's set.
 	This key mechanism is just a convenient way of partioning the various vectors.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::MachineClassKey(utf16 wGlyphID, int nPassID)
+int GdlPass::MachineClassKey(gid16 wGlyphID, int nPassID)
 {
 	SourceClassSet * pscs = m_rgscsInclusions + wGlyphID;
 	int nKey = 0;
@@ -343,7 +343,7 @@ void FsmMachineClass::AddGlyph(utf16 w)
 	source-class-set for the given glyph, return it, otherwise return NULL.
 ----------------------------------------------------------------------------------------------*/
 FsmMachineClass * GdlPass::MachineClassMatching(std::vector<FsmMachineClass *> & vpfsmc,
-	utf16 wGlyphID)
+	gid16 wGlyphID)
 {
 	SourceClassSet * pscsForGlyph = m_rgscsInclusions + wGlyphID;
 
@@ -431,7 +431,7 @@ void GdlGlyphDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * p
 {
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 		ppass->RecordInclusionInClass(wGlyphID, pglfc);
 	}
 }
@@ -440,7 +440,7 @@ void GdlGlyphDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * p
 /*----------------------------------------------------------------------------------------------
 	Record the fact that the given glyph ID is a member of the given class.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc)
+void GdlPass::RecordInclusionInClass(gid16 wGlyphID, GdlGlyphClassDefn * pglfc)
 {
 	SourceClassSet * pscs = m_rgscsInclusions + wGlyphID;
 	if (pscs->find(pglfc) == pscs->end()) // not a member
@@ -728,7 +728,7 @@ void GdlGlyphDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 {
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 		FsmMachineClass * pfsmc = ppfsmcAssignments[wGlyphID];
 		if (setpfsmc.find(pfsmc) == setpfsmc.end()) // not a member
 		{

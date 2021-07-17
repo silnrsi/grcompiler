@@ -39,7 +39,7 @@ DEFINE_THIS_FILE
 /*----------------------------------------------------------------------------------------------
 	Get the attribute setter information for the given glyph and attribute.
 ----------------------------------------------------------------------------------------------*/
-void GrcGlyphAttrMatrix::Get(utf16 wGlyphID, int nAttrID, int nStyle,
+void GrcGlyphAttrMatrix::Get(gid16 wGlyphID, int nAttrID, int nStyle,
 	GdlExpression ** ppexp, int * pnPR, int * pmPrUnits, bool * pfOverride, bool * pfShadow,
 	GrpLineAndFile * plnf)
 {
@@ -56,7 +56,7 @@ void GrcGlyphAttrMatrix::Get(utf16 wGlyphID, int nAttrID, int nStyle,
 /*----------------------------------------------------------------------------------------------
 	Get the expression for the given glyph and attribute.
 ----------------------------------------------------------------------------------------------*/
-GdlExpression * GrcGlyphAttrMatrix::GetExpression(utf16 wGlyphID, int nAttrID, int nStyle)
+GdlExpression * GrcGlyphAttrMatrix::GetExpression(gid16 wGlyphID, int nAttrID, int nStyle)
 {
 	GrcAssignment * pasgnx = m_prgasgnx + Index(wGlyphID, nAttrID, nStyle);
 	return pasgnx->m_pexp;
@@ -66,7 +66,7 @@ GdlExpression * GrcGlyphAttrMatrix::GetExpression(utf16 wGlyphID, int nAttrID, i
 /*----------------------------------------------------------------------------------------------
 	Set the attribute setter information for the given glyph and attribute.
 ----------------------------------------------------------------------------------------------*/
-void GrcGlyphAttrMatrix::Set(utf16 wGlyphID, int nAttrID, int nStyle,
+void GrcGlyphAttrMatrix::Set(gid16 wGlyphID, int nAttrID, int nStyle,
 	GdlExpression * pexp, int nPR, int mPrUnits, bool fOverride, bool fShadow,
 	GrpLineAndFile const& lnf)
 {
@@ -84,7 +84,7 @@ void GrcGlyphAttrMatrix::Set(utf16 wGlyphID, int nAttrID, int nStyle,
 /*----------------------------------------------------------------------------------------------
 	Clear a superfluous attribute for the given glyph (eg, gpoint, when x and y are defined).
 ----------------------------------------------------------------------------------------------*/
-void GrcGlyphAttrMatrix::Clear(utf16 wGlyphID, int nAttrID, int nStyle)
+void GrcGlyphAttrMatrix::Clear(gid16 wGlyphID, int nAttrID, int nStyle)
 {
 	GrcAssignment * pasgnx = m_prgasgnx + Index(wGlyphID, nAttrID, nStyle);
 
@@ -98,7 +98,7 @@ void GrcGlyphAttrMatrix::Clear(utf16 wGlyphID, int nAttrID, int nStyle)
 	Currently not really needed, because we're using 0 as the "unset" value just like all
 	the other attributes.
 ----------------------------------------------------------------------------------------------*/
-bool GrcGlyphAttrMatrix::GpointDefined(utf16 wGlyphID, int nAttrID, int nStyle)
+bool GrcGlyphAttrMatrix::GpointDefined(gid16 wGlyphID, int nAttrID, int nStyle)
 {
 	// This is a bit of a kludge. When OffsetAttrs() is off, the superfluous attributes like
 	// gpoint and xoffset and yoffset don't get assigned attribute IDs. But in an obscure case,
@@ -160,7 +160,7 @@ GrcLigComponentList::~GrcLigComponentList()
 	Add a ligature component to the glyph's list, if it is not already there.
 	Return the internal ID.
 ----------------------------------------------------------------------------------------------*/
-int GrcLigComponentList::AddComponentFor(utf16 wGlyphID, Symbol psymComponent,
+int GrcLigComponentList::AddComponentFor(gid16 wGlyphID, Symbol psymComponent,
 	GdlRenderer * prndr)
 {
 	Assert(psymComponent->IsGeneric());
@@ -186,7 +186,7 @@ int GrcLigComponentList::AddComponentFor(utf16 wGlyphID, Symbol psymComponent,
 	If the ligature component with the given ID has been defined for the given glyph,
 	return true. Ensure that a LigCompMap is in place for the given glyph.
 ----------------------------------------------------------------------------------------------*/
-bool GrcLigComponentList::FindComponentFor(utf16 wGlyphID, int nID)
+bool GrcLigComponentList::FindComponentFor(gid16 wGlyphID, int nID)
 {
 	LigCompMap * plcmap = m_prgplcmap[wGlyphID];
 	if (!plcmap)

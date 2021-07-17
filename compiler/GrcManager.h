@@ -341,7 +341,7 @@ protected:
 
 	bool GeneratePseudoGlyphs(GrcFont *);
 	utf16 FirstFreeGlyph(GrcFont *);
-	void CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 wGlyphID);
+	void CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, gid16 wGlyphID);
 	void SortPseudoMappings();
 
 	bool AddAllGlyphsToTheAnyClass(GrcFont * pfont, std::map<utf16, utf16> & hmActualForPseudo);
@@ -355,7 +355,7 @@ protected:
 
 	bool AssignGlyphAttrsToClassMembers(GrcFont * pfont);
 	bool ProcessGlyphAttributes(GrcFont * pfont);
-	void ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID);
+	void ConvertBetweenXYAndGpoint(GrcFont * pfont, gid16 wGlyphID);
 	bool FinalGlyphAttrResolution(GrcFont * pfont);
 	void MinAndMaxGlyphAttrValues(int nAttrID,
 		int cJLevels, int nAttrIdJStr, int nAttrIdJShr, int nAttrIdJStep, int nAttrIdJWeight,
@@ -400,9 +400,9 @@ public:
 		size_t & cchwStringData, uint8 * pNameTbl);
 	int OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		utf16 * pchDstFontFamily, bool fModFontName, utf16 * pchSrcFontFamily);
-	int FinalAttrValue(utf16 wGlyphID, int nAttrID);
-	void ConvertBwForVersion(int wGlyphId, int nAttrIdBw);
-	void SplitLargeStretchValue(int wGlyphId, int nAttrIdJStr);
+	int FinalAttrValue(gid16 wGlyphID, int nAttrID);
+	void ConvertBwForVersion(gid16 wGlyphId, int nAttrIdBw);
+	void SplitLargeStretchValue(gid16 wGlyphId, int nAttrIdJStr);
 protected:
 	bool AddFeatsModFamily(uint16 * pchFamilyName, uint8 ** ppNameTbl, uint32 * pcbNameTbl);
 	void BuildDateString(utf16 * stuDate);
@@ -463,9 +463,9 @@ public:
 	void DebugOutput();
 	void DebugCmap(GrcFont * pfont, char * pchOutputPath);
 	void WriteCmapItem(std::ofstream & strmOut,
-		unsigned int nUnicode, bool fSuppPlaneChars, utf16 wGlyphID, bool fUnicodeToGlyph,
+		unsigned int nUnicode, bool fSuppPlaneChars, gid16 wGlyphID, bool fUnicodeToGlyph,
 		bool fPseudo, bool fInCmap);
-	static void DebugHex(std::ostream & strmOut, utf16 wGlyphID);
+	static void DebugHex(std::ostream & strmOut, gid16 wGlyphID);
 	static void DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit);
 	static std::string ExpressionDebugString(ExpressionType expt);
 protected:
@@ -530,7 +530,7 @@ protected:
 	// Also language classes:
 	std::vector<GdlLangClass *>	m_vplcls;
 
-	int m_fxdFeatVersion;	// version of feature table to generate
+	uint32_t m_fxdFeatVersion;	// version of feature table to generate
 
 	std::vector<GrcEnv> m_venv;
 	std::map<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass
@@ -542,7 +542,7 @@ protected:
 
 	//	For compiler use:
 
-	int m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
+	gid16 m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
 	size_t m_cwGlyphIDs;
 
 	size_t m_cpsymBuiltIn;		// total number of built-in attributes

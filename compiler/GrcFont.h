@@ -49,18 +49,18 @@ public:
 	utf16 GlyphFromCmap(unsigned int nUnicode, GdlObject * pgdlobj);
 	utf16 GlyphFromPostscript(std::string staPostscriptName, GdlObject * pgdlobj, bool fError);
 
-	int ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * pgdlobj);
+	int ConvertGPathToGPoint(gid16 wGlyphID, int nPathNumber, GdlObject * pgdlobj);
 
 	int ScaledToAbsolute(int nValue, int mScale);
 	int DesignUnits();
 
-	int GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlobj);
+	int GetGlyphMetric(gid16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlobj);
 
-	bool IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj);
-	int GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY, GdlObject * pgdlobj);
-	int GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj);
+	bool IsPointAlone(gid16 wGlyphID, int nPointNumber, GdlObject * pgdlobj);
+	int GetXYAtPoint(gid16 wGlyphID, int nPointNumber, int * mX, int * mY, GdlObject * pgdlobj);
+	int GetPointAtXY(gid16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj);
 
-	bool IsSpace(utf16 wGlyphID)
+	bool IsSpace(gid16 wGlyphID)
 	{
 		return TtfUtil::IsSpace(wGlyphID, m_pLoca, m_cLoca, m_pHead);
 	}
@@ -78,7 +78,7 @@ public:
 			m_pfont = pfont;
 			if (fAtEnd)
 			{
-				m_iBlock = int(m_pfont->CBlocks());
+				m_iBlock = static_cast<unsigned int>(m_pfont->CBlocks());
 				m_nUni = GRCFONT_END;
 			}
 			else
@@ -124,7 +124,7 @@ public:
 	protected:
 		GrcFont * m_pfont;
 		unsigned int m_nUni;   // current unicode codepoint
-		int m_iBlock; // which block of unicode is current
+		unsigned int m_iBlock; // which block of unicode is current
 	};
 
 	friend class iterator;
@@ -160,10 +160,10 @@ protected:
 
 	bool IsGraphiteFont(void * pHdr, void * pTableDir);
 	int ScanGlyfIds(void);
-	int GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt);
+	int GetGlyfContours(gid16 wGlyphID, std::vector<int> * pvnEndPt);
 
 public:
-	int GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt, 
+	int GetGlyfPts(gid16 wGlyphID, std::vector<int> * pvnEndPt, 
 		std::vector<int> * pvnX, std::vector<int> * pvnY, std::vector<bool> * pvfOnCurve);
 
 protected:

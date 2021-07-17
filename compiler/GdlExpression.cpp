@@ -1455,7 +1455,7 @@ void GdlStringExpression::LookupExpCheck(bool /*fInIf*/, Symbol psymFeature)
 							unmodified.
 ----------------------------------------------------------------------------------------------*/
 GdlExpression * GdlUnaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	bool fCanSubOperand;
@@ -1493,7 +1493,7 @@ GdlExpression * GdlUnaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlBinaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	bool fCanSubOperand1, fCanSubOperand2;
@@ -1544,7 +1544,7 @@ GdlExpression * GdlBinaryExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pga
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlCondExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	bool fCanSubTest, fCanSubTrue, fCanSubFalse;
@@ -1608,7 +1608,7 @@ GdlExpression * GdlCondExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
 
 /*--------------------------------------------------------------------------------------------*/
 GdlExpression * GdlLookupExpression::SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-	utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
+	gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont, bool fGAttrDefChk,
 	bool * pfCanSub)
 {
 	int nAttrID = -1;
@@ -2891,7 +2891,7 @@ bool GdlBinaryExpression::CheckAttachToLookup()
 							needs to decide how to handle the accompanying insert = false;
 							only slot references need to worry about it
 ----------------------------------------------------------------------------------------------*/
-void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+void GdlUnaryExpression::GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -2914,7 +2914,7 @@ void GdlUnaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+void GdlBinaryExpression::GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * /*pnValue*/)
 {
@@ -2975,7 +2975,7 @@ void GdlBinaryExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+void GdlCondExpression::GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -2990,7 +2990,7 @@ void GdlCondExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::b
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+void GdlLookupExpression::GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo, int * pnValue)
 {
@@ -3170,7 +3170,7 @@ void GdlLookupExpression::GenerateEngineCode(int fxdRuleVersion, std::vector<gr:
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlClassMemberExpression::GenerateEngineCode(int /*fxdRuleVersion*/,
+void GdlClassMemberExpression::GenerateEngineCode(uint32_t /*fxdRuleVersion*/,
 	std::vector<gr::byte> & vbOutput,
 	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
@@ -3207,7 +3207,7 @@ void GdlClassMemberExpression::GenerateEngineCode(int /*fxdRuleVersion*/,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
+void GdlNumericExpression::GenerateEngineCode(uint32_t /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
 	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 {
@@ -3243,7 +3243,7 @@ void GdlNumericExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
+void GdlSlotRefExpression::GenerateEngineCode(uint32_t /*fxdRuleVersion*/, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * pnValue)
 {
@@ -3264,7 +3264,7 @@ void GdlSlotRefExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vecto
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & /*vbOutput*/,
+void GdlStringExpression::GenerateEngineCode(uint32_t /*fxdRuleVersion*/, std::vector<gr::byte> & /*vbOutput*/,
 	int /*iritCurrent*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 	bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 {
@@ -3276,7 +3276,7 @@ void GdlStringExpression::GenerateEngineCode(int /*fxdRuleVersion*/, std::vector
 /*----------------------------------------------------------------------------------------------
 	If this expression is of the form ( (s & (~m)) | v), use the special setbits operator.
 ----------------------------------------------------------------------------------------------*/
-bool GdlBinaryExpression::GenerateSetBitsOp(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+bool GdlBinaryExpression::GenerateSetBitsOp(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 	int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 	bool fAttachAt, int iritAttachTo)
 {

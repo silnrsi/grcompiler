@@ -73,7 +73,7 @@ void InputBuffer::fill(int amount)
 {
 	syncConsume();
 	// Fill the buffer sufficiently to hold needed characters
-	while (queue.entries() < amount + markerOffset) {
+	while (queue.entries() < size_t(amount + markerOffset)) {
 		// Append the next character
 		queue.append(getChar());
 	}
