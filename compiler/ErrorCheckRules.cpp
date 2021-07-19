@@ -1079,18 +1079,8 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					}
 					else
 					{
-<<<<<<< HEAD
-<<<<<<< HEAD
 						auto const staAssoc = std::to_string(iritAssoc + 1 - prule->PrependedAnys());
-						for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
-=======
-						char rgch[20];
-						itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
-=======
-						auto const staAssoc = std::to_string(iritAssoc + 1 - prule->PrependedAnys());
->>>>>>> 99e5601 (Remove the use of deprecated itoa function)
 						for (auto irit = 0U; irit < prule->NumberOfSlots(); ++irit)
->>>>>>> 6648ffe (Fix more 32bit warnings)
 						{
 							GdlRuleItem * prit = prule->Item(irit);
 							if (prit->OutputSymbol()->FullName() != "ANY")
