@@ -106,6 +106,8 @@ typedef signed char      sdata8;
 typedef signed short int sdata16;	// generic 16-bit data
 typedef signed int       sdata32;	// generic 32-bit data
 
+using offset_t = std::streamoff;
+
 #ifndef NO_ASM
 #define NO_ASM
 #endif

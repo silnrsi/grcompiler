@@ -225,8 +225,7 @@ protected:
 //	std::vector<Symbol> m_vpsymDefinedComponents;
 
 	//	List of defined items for each glyph ID.
-	size_t m_cvGlyphIDs;
-	LigCompMap ** m_prgplcmap;
+	std::vector<LigCompMap *> m_vgplcmap;
 };
 
 

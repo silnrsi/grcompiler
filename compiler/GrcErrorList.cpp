@@ -135,7 +135,7 @@ void GrcErrorList::SortErrors()
 	while (m_vperr.size() > 0)
 	{
 		auto iperrNext = 0;
-		for (auto iperrT = 1; iperrT < m_vperr.size(); iperrT++)
+		for (auto iperrT = 1U; iperrT < m_vperr.size(); ++iperrT)
 		{
 			GrpLineAndFile * plnfNext = &(m_vperr[iperrNext]->m_lnf);
 			///int nLineNext = m_vperr[iperrNext]->m_nLineNumber;
@@ -328,7 +328,7 @@ void GrcErrorList::WriteTableVersionsGenerated(std::ostream& strmOut)
 size_t GrcErrorList::NumberOfWarnings()
 {
 	int cerrRet = 0;
-	for (auto ierr = 0; ierr < m_vperr.size(); ierr++)
+	for (auto ierr = 0U; ierr < m_vperr.size(); ++ierr)
 	{
 		if (!IsFatal(ierr))
 			cerrRet++;
@@ -343,7 +343,7 @@ size_t GrcErrorList::NumberOfWarnings()
 size_t GrcErrorList::NumberOfWarningsGiven()
 {
 	int cerrRet = 0;
-	for (auto ierr = 0; ierr < m_vperr.size(); ierr++)
+	for (auto ierr = 0U; ierr < m_vperr.size(); ++ierr)
 	{
 		if (!IsFatal(ierr) && !IgnoreWarning(m_vperr[ierr]->m_nID))
 			cerrRet++;
@@ -358,7 +358,7 @@ size_t GrcErrorList::NumberOfWarningsGiven()
 void GrcErrorList::SetIgnoreWarning(int nWarning, bool f)
 {
 	int iFound = -1;
-	for (auto i = 0; i < m_vnIgnoreWarnings.size(); i++)
+	for (auto i = 0U; i < m_vnIgnoreWarnings.size(); ++i)
 	{
 		if (m_vnIgnoreWarnings[i] == nWarning)
 		{

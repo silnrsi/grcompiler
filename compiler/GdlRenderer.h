@@ -165,8 +165,9 @@ public:
 	void CalculateSpaceContextuals(GrcFont * pfont);
 	int NumberOfPasses()
 	{
-		int cpass, cpassLB, cpassSub, cpassPos, cpassJust, ipassBidi;
-		CountPasses(&cpass, &cpassLB, &cpassSub, &cpassJust, &cpassPos, &ipassBidi);
+		size_t cpass, cpassLB, cpassSub, cpassPos, cpassJust;
+		int ipassBidi;
+		CountPasses(cpass, cpassLB, cpassSub, cpassJust, cpassPos, ipassBidi);
 		return cpass;
 	}
 
@@ -232,16 +233,16 @@ public:
 	void OutputReplacementClasses(int fxdSilfVersion,
 		std::vector<GdlGlyphClassDefn *> & vpglfc, size_t cpglfcLinear,
 		GrcBinaryStream * pbstrm);
-	void CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
-		int * pcpassJust, int * pcpassPos, int * pipassBidi);
-	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
-		std::vector<intptr_t> & vnOffsets);
+	void CountPasses(size_t & pcpass, size_t & pcpassLB, size_t & pcpassSub,
+		size_t & pcpassJust, size_t & pcpassPos, int & pipassBidi);
+	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, offset_t lTableStart,
+		std::vector<offset_t> & vnOffsets);
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
 		std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
 		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,
 		uint8 * pNameTbl, std::vector<GdlFeatureDefn *> & vpfeatInput);
-	void OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart, int fxdVersion);
-	void OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart);
+	void OutputFeatTable(GrcBinaryStream * pbstrm, offset_t lTableStart, int fxdVersion);
+	void OutputSillTable(GrcBinaryStream * pbstrm, offset_t lTableStart);
 
 protected:
 	//	Instance variables:

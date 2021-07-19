@@ -568,7 +568,7 @@ void GrcMasterValueList::SetupNameDefns(NameDefnMap & hmNameMap)
 			}
 
 			bool fFoundLang = false;
-			for (int iextname = 0; iextname < pndefn->NameCount(); ++iextname)
+			for (auto iextname = 0U; iextname < pndefn->NameCount(); ++iextname)
 			{
 				if (pndefn->ExtName(iextname)->LanguageID() == nLangID)
 				{

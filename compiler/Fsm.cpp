@@ -522,15 +522,15 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 
 	//	Create the start state, equivalent to no slots matched.
 	m_pfsm->AddState(0);
-	int ifsCurrent = 0;
+	unsigned int ifsCurrent = 0;
 
 	//	Index of the first state whose slot-count == the slot count of currState, ie, the
 	//	beginning of the state range which may need to be fixed up as we merge.
-	int ifsCurrSlotCntMin = 0;
+	unsigned int ifsCurrSlotCntMin = 0;
 
 	//	Index of first state whose slot-count == slot count of currState + 1, ie, the
 	//	beginning of the state range in which to check for duplicates.
-	int ifsNextSlotCntMin = 1;
+	unsigned int ifsNextSlotCntMin = 1;
 
 	while (ifsCurrent < m_pfsm->RawNumberOfStates())
 	{
@@ -538,7 +538,7 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 		int critSlotsMatched = pfstateCurr->SlotsMatched();
 		if (!pfstateCurr->HasBeenMerged())
 		{
-			for (auto iprule = 0; iprule < m_vprule.size(); iprule++)
+			for (auto iprule = 0U; iprule < m_vprule.size(); ++iprule)
 			{
 				GdlRule * prule = m_vprule[iprule];
 				if (ifsCurrent == 0	||	// for state #0, all rules are consider matched
@@ -758,9 +758,9 @@ GdlRuleItem * GdlRule::InputItem(int n)
 size_t GdlRule::NumberOfInputItems()
 {
 	size_t cRet = 0;
-	for (auto i = 0; i < m_vprit.size(); i++)
+	for (auto const prit: m_vprit)
 	{
-		if (m_vprit[i]->m_nInputIndex >= 0)
+		if (prit->m_nInputIndex >= 0)
 			cRet++;
 	}
 	return cRet;
@@ -784,8 +784,7 @@ void GdlPass::ReorderFsmStates(GrcManager * pcman)
 	int ifsFinal = 0;
 
 	//	First look for transitional non-success states.
-	int ifsWork;
-	for (ifsWork = 0; ifsWork < m_pfsm->RawNumberOfStates(); ifsWork++)
+	for (auto ifsWork = 0U; ifsWork < m_pfsm->RawNumberOfStates(); ++ifsWork)
 	{
 		FsmState * pfstate = m_pfsm->RawStateAt(ifsWork);
 		Assert(m_vifsWorkToFinal[ifsWork] == -1);
@@ -803,7 +802,7 @@ void GdlPass::ReorderFsmStates(GrcManager * pcman)
 	}
 
 	//	Next look for transitional success states.
-	for (ifsWork = 0; ifsWork < m_pfsm->RawNumberOfStates(); ifsWork++)
+	for (auto ifsWork = 0U; ifsWork < m_pfsm->RawNumberOfStates(); ++ifsWork)
 	{
 		FsmState * pfstate = m_pfsm->RawStateAt(ifsWork);
 		if (!pfstate->HasBeenMerged() && m_vifsWorkToFinal[ifsWork] == -1)
@@ -819,7 +818,7 @@ void GdlPass::ReorderFsmStates(GrcManager * pcman)
 	}
 
 	//	Last look for non-transitional success states.
-	for (ifsWork = 0; ifsWork < m_pfsm->RawNumberOfStates(); ifsWork++)
+	for (auto ifsWork = 0U; ifsWork < m_pfsm->RawNumberOfStates(); ++ifsWork)
 	{
 		FsmState * pfstate = m_pfsm->RawStateAt(ifsWork);
 		if (!pfstate->HasBeenMerged() && m_vifsWorkToFinal[ifsWork] == -1)
@@ -894,10 +893,9 @@ size_t GdlPass::NumStates()
 size_t GdlPass::NumAcceptingStates()
 {
 	size_t cRet = 0;
-	auto ifsLim = m_vifsFinalToWork.size();
-	for (auto ifs = 0; ifs < ifsLim; ifs++)
+	for (auto const fs: m_vifsFinalToWork)
 	{
-		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
+		FsmState * pfstate = m_pfsm->StateAt(fs);
 
 		Assert(!pfstate->HasBeenMerged());
 
@@ -914,10 +912,9 @@ size_t GdlPass::NumAcceptingStates()
 size_t GdlPass::NumSuccessStates()
 {
 	size_t cRet = 0;
-	auto ifsLim = m_vifsFinalToWork.size();
-	for (auto ifs = 0; ifs < ifsLim; ifs++)
+	for (auto const fs: m_vifsFinalToWork)
 	{
-		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
+		FsmState * pfstate = m_pfsm->StateAt(fs);
 
 		Assert(!pfstate->HasBeenMerged());
 
@@ -934,10 +931,9 @@ size_t GdlPass::NumSuccessStates()
 size_t GdlPass::NumTransitionalStates()
 {
 	size_t cRet = 0;
-	auto ifsLim = m_vifsFinalToWork.size();
-	for (auto ifs = 0; ifs < ifsLim; ifs++)
+	for (auto const fs: m_vifsFinalToWork)
 	{
-		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
+		FsmState * pfstate = m_pfsm->StateAt(fs);
 
 		Assert(!pfstate->HasBeenMerged());
 
@@ -954,10 +950,9 @@ size_t GdlPass::NumTransitionalStates()
 size_t GdlPass::NumFinalStates()
 {
 	size_t cRet = 0;
-	auto ifsLim = m_vifsFinalToWork.size();
-	for (auto ifs = 0; ifs < ifsLim; ifs++)
+	for (auto const fs: m_vifsFinalToWork)
 	{
-		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
+		FsmState * pfstate = m_pfsm->StateAt(fs);
 
 		Assert(!pfstate->HasBeenMerged());
 
@@ -985,7 +980,7 @@ void GdlPass::GenerateStartStates(GrcManager * pcman)
 
 	//	The first state is always zero.
 	int row = 0;
-	for (int i = 0; i < (m_critMaxPreContext - m_critMinPreContext + 1); i++)
+	for (auto i = 0U; i < (m_critMaxPreContext - m_critMinPreContext + 1); ++i)
 	{
 		if (ifsmcPhantom == -1)
 			m_vrowStartStates.push_back(0);
@@ -1192,20 +1187,20 @@ void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool
 		return;
 	}
 
-	auto cfsmc = m_pfsm->NumberOfColumns();
+	auto const cfsmc = m_pfsm->NumberOfColumns();
 	if (fWorking)
 		strmOut << "\nWorking Table:          ";
 	else
 		strmOut << "\nFinal Table:            ";
-	for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)	// column headers
+	for (auto ifsmc = 0U; ifsmc < cfsmc; ++ifsmc)	// column headers
 		OutputNumber(strmOut, ifsmc, 6);
 	strmOut << "\n                          ";
-	for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+	for (auto ifsmc = 0U; ifsmc < cfsmc; ++ifsmc)
 		strmOut << "- - - ";
 
 
 	auto ifsLim = (fWorking)? m_pfsm->RawNumberOfStates() : m_vifsFinalToWork.size();
-	for (auto ifs = 0; ifs < ifsLim; ifs++)
+	for (auto ifs = 0U; ifs < ifsLim; ++ifs)
 	{
 		FsmState * pfstate = (fWorking) ?
 			m_pfsm->RawStateAt(ifs) :
@@ -1222,7 +1217,7 @@ void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool
 		{
 			strmOut << "                        ";
 
-			for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+			for (auto ifsmc = 0U; ifsmc < cfsmc; ++ifsmc)
 			{
 				strmOut << " ";
 				int ifsmcValue = pfstate->CellValue(ifsmc);
@@ -1240,7 +1235,7 @@ void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool
 	}
 
 	strmOut << "\n                          ";
-	for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+	for (auto ifsmc = 0U; ifsmc < cfsmc; ++ifsmc)
 		strmOut << "- - - ";
 	strmOut << "\n\n";
 }
