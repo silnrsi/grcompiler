@@ -335,7 +335,7 @@ Symbol GrcSymbolTable::AddSymbolAux(const GrcStructName & xns,
 	Symbol psym = NULL;
 	GrcSymbolTable * psymtbl = this;
 
-	for (int i = 0; i < xns.NumFields(); ++i)
+	for (auto i = 0U; i < xns.NumFields(); ++i)
 	{
 		std::string staField = xns.FieldAt(i);
 
@@ -470,7 +470,7 @@ Symbol GrcSymbolTable::FindSymbol(const GrcStructName & xns)
 	GrcSymbolTable * psymtbl = this;
 	Symbol psym = NULL;
 
-	for (int i = 0; i < xns.NumFields(); ++i)
+	for (auto i = 0U; i < xns.NumFields(); ++i)
 	{
 		psym = psymtbl->FindField(xns.FieldAt(i));
 		if (psym == NULL)
@@ -1205,7 +1205,7 @@ int GrcSymbolTableEntry::FeatAltIDIndex() {
 
 	std::vector<unsigned int> vnIDs;
 	pfeat->AltIDs(vnIDs);
-	for (auto i = 0; i < pfeat->NumAltIDs(); i++)
+	for (auto i = 0U; i < pfeat->NumAltIDs(); ++i)
 	{
 		if (vnIDs[i] == nID)
 			return i;

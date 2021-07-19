@@ -3572,7 +3572,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Make a mapping from lhs/rhs items to corresponding indices in the context.
 	std::vector<int> viritToContext;
-	for (auto iritT = 0; iritT < m_vprit.size(); iritT++)
+	for (auto iritT = 0U; iritT < m_vprit.size(); ++iritT)
 	{
 		GdlSetAttrItem * pritset = dynamic_cast<GdlSetAttrItem*>(m_vprit[iritT]);
 		if (pritset)
@@ -3584,7 +3584,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Check that there is no overlap or interference between lhs ranges and
 	//	context ranges.
-	for (auto iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
+	for (auto iirit = 0U; iirit < m_viritOptRangeStart.size(); ++iirit)
 	{
 		if (!m_vfOptRangeContext[iirit])
 		{
@@ -3628,7 +3628,7 @@ void GdlRule::ConvertLhsOptRangesToContext()
 
 	//	Now do the conversion.
 
-	for (auto iirit = 0; iirit < m_viritOptRangeStart.size(); iirit++)
+	for (auto iirit = 0U; iirit < m_viritOptRangeStart.size(); ++iirit)
 	{
 		if (!m_vfOptRangeContext[iirit])
 		{

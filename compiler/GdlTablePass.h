@@ -164,8 +164,8 @@ public:
 
 	//	Output:
 	size_t TotalNumGlyphSubRanges();
-	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart);
-	void GenerateRuleMaps(std::vector<intptr_t> & vnOffsets, std::vector<intptr_t> & vnRuleList);
+	void OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, offset_t lTableStart);
+	void GenerateRuleMaps(std::vector<offset_t> & vnOffsets, std::vector<offset_t> & vnRuleList);
 	void OutputFsmTable(GrcBinaryStream * pbstrm);
 
 	//	debuggers:
@@ -318,9 +318,9 @@ public:
 	enum { kInfiniteXlbContext = 255 };
 
 	//	Output
-	int CountPasses();
-	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
-		std::vector<intptr_t> & vnOffsets);
+	size_t CountPasses();
+	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, offset_t lTableStart,
+		std::vector<offset_t> & vnOffsets);
 
 	//	debuggers:
 	void DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut);

@@ -191,8 +191,8 @@ void GdlRenderer::CheckLanguageFeatureSize()
 	size_t cbSillSize = 12 + (m_vplang.size() * 8);
 	cbSillSize += 8; // bogus entry
 
-	for (int ilang = 0; ilang < m_vplang.size(); ilang++)
-		cbSillSize += m_vplang[ilang]->NumberOfSettings() * 4; // 4 bytes per feature setting
+	for (auto const plang: m_vplang)
+		cbSillSize += plang->NumberOfSettings() * 4; // 4 bytes per feature setting
 
 	if (cbSillSize >= 0x0000FFFF)
 	{

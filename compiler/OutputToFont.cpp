@@ -218,8 +218,8 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	bstrmDst.Write(pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
 	
 	// Copy tables from input stream to output stream.
-	size_t ibTableOffset = 0;	// initialize to avoid warnings
-	size_t ibHeadOffset = 0;
+	offset_t ibTableOffset = 0,	// initialize to avoid warnings
+			 ibHeadOffset = 0;
 	size_t cbHeadSize = 0;
 	int iNameTbl = 0;
 	int iCmapTbl = -1;
@@ -232,7 +232,8 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	for (int iSrc = 0; iSrc < cTableCopy + cOldGraphiteTables; iSrc++)
 	{
 		// read table
-		uint32 ibOffset, cbSize;
+		offset_t ibOffset;
+		size_t cbSize;
 		cbSize = read(pDirEntryCopy[iSrc].length); // dir entries are word aligned already
 		ibOffset = read(pDirEntryCopy[iSrc].offset);
 		if (!(pbTable = new uint8[cbSize]))
@@ -263,9 +264,9 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			strmSrc.read((char *)pbTableSrc, cbSizeSrc);
 
 			bstrmDst.SetPosition(ibTableOffset);
-			if (!OutputOS2Table(pbTableSrc, cbSizeSrc, pbTable, cbSize, &bstrmDst, &cbSize))
+			if (!OutputOS2Table(pbTableSrc, cbSizeSrc, pbTable, cbSize, &bstrmDst, cbSize))
 				return 9;
-			pDirEntryOut[iOut].length = read(cbSize);
+			pDirEntryOut[iOut].length = read<uint32_t>(cbSize);
 
 			delete[] pbTableSrc;
 		}
@@ -281,10 +282,9 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 				return 10;
 			strmSrc.seekg(ibOffsetSrc);
 			strmSrc.read((char *)pbTableSrc, cbSizeSrc);
-
 			bstrmDst.SetPosition(ibTableOffset);
-			OutputCmapTable(pbTableSrc, cbSizeSrc, &bstrmDst, &cbSize);
-			pDirEntryOut[iOut].length = read(cbSize);
+			OutputCmapTable(pbTableSrc, cbSizeSrc, &bstrmDst, cbSize);
+			pDirEntryOut[iOut].length = read<uint32_t>(cbSize);
 
 			delete[] pbTableSrc;
 		}
@@ -294,9 +294,9 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			if (TableIdTag(ktiName) == tag)
 			{
 				iNameTbl = iOut;
-				if (!AddFeatsModFamily((fModFontName ? pchDstFontFamily : NULL), &pbTable, &cbSize))
+				if (!AddFeatsModFamily((fModFontName ? pchDstFontFamily : NULL), pbTable, cbSize))
 					return 11;
-				pDirEntryOut[iOut].length = read(cbSize);
+				pDirEntryOut[iOut].length = read<uint32_t>(cbSize);
 			}
 
 			// remember offset and size of head table to adjust the file checksum later
@@ -506,18 +506,18 @@ void GrcManager::ReadSourceFontFeatures(std::ifstream & strmSrc,
 	record. This issue was discovered close to release so large changes were rejected.
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
-	uint8 ** ppNameTbl, uint32 * pcbNameTbl)
+	uint8 * & pNameTbl, size_t & cbNameTbl)
 {
 	// Get the current date, which will be used to create the unique name.
 	utf16 stuDate[12];
 	BuildDateString(stuDate);
 	
-	uint32 cbTblOld = *pcbNameTbl;
+	auto const cbTblOld = cbNameTbl;
 
 	size_t cchwFamilyName = (pchwFamilyNameNew) ? utf16len(pchwFamilyNameNew) : 0;
 
 	// Interpret name table header:
-	FontNames * pTblOld = (FontNames *)(*ppNameTbl);
+	FontNames * pTblOld = reinterpret_cast<FontNames *>(pNameTbl);
 	uint16 cRecords = read(pTblOld->count);
 	uint16 ibStrOffset = read(pTblOld->string_offset);
 	NameRecord * pRecord = pTblOld->name_record;
@@ -610,7 +610,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	size_t cchwFeatStringData = 0;
 	if (!AssignFeatTableNameIds(nNameTblId, nNameTblMinNew,
 		vstuExtNames, vnLangIds, vnNameTblIds,
-		cchwFeatStringData, *ppNameTbl))
+		cchwFeatStringData, pNameTbl))
 	{
 		g_errorList.AddError(5101, NULL,
 			"Insufficient space available for feature strings in name table.");
@@ -738,9 +738,9 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	}
 
 	// Set the output args & clean up.
-	*pcbNameTbl = uint32(cbTblNew);
-	delete [] *ppNameTbl;	// old table
-	*ppNameTbl = pTblNew;
+	cbNameTbl = cbTblNew;
+	delete [] pNameTbl;	// old table
+	pNameTbl = pTblNew;
 
 	return true;
 }
@@ -1178,7 +1178,7 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, size_t /*cbOs2TblSrc*/,
 bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
 #endif
 	uint8 * pOs2TblMin, size_t cbOs2TblMin,
-	GrcBinaryStream * pbstrm, uint32 * pcbSizeRet)
+	GrcBinaryStream * pbstrm, size_t & cbSizeRet)
 {
 	Assert(cbOs2TblSrc >= 68); // number of bytes we may need to fiddle with
 	Assert(cbOs2TblMin >= 68);
@@ -1211,7 +1211,7 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
 
 	// Write the result onto the output stream.
 	pbstrm->Write(prgOs2TblNew, cbOs2TblMin);
-	*pcbSizeRet = int(cbOs2TblMin);
+	cbSizeRet = cbOs2TblMin;
 
 	delete[] prgOs2TblNew;
 
@@ -1223,7 +1223,7 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
 	source file, with every supported character pointing at some bogus glyph (ie, square box).
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, size_t /*cbCmapTblSrc*/,
-	GrcBinaryStream * pbstrm, uint32 * pcbSizeRet)
+	GrcBinaryStream * pbstrm, size_t & cbSizeRet)
 {
 	auto lPosStart = pbstrm->Position();
 
@@ -1262,8 +1262,8 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, size_t /*cbCmapTblSrc*/,
 	auto lPosOffset31 = pbstrm->Position();
 	pbstrm->WriteInt(0);	// offset
 
-	size_t 	lPos310Dir = pbstrm->Position(),
-			lPosOffset310 = 0;
+	offset_t 	lPos310Dir = pbstrm->Position(),
+					lPosOffset310 = 0;
 	if (pCmap_3_10)
 	{
 		pbstrm->WriteShort(3);	// platform ID
@@ -1318,7 +1318,7 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, size_t /*cbCmapTblSrc*/,
 		pbstrm->SetPosition(lPosEnd);
 	}
 
-	*pcbSizeRet = int(lPosEnd - lPosStart);
+	cbSizeRet = lPosEnd - lPosStart;
 	return true;
 }
 
@@ -1457,7 +1457,7 @@ size_t GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	auto lPosEnd = pbstrm->Position();
 
 	//	Fill in the length.
-	auto cb = lPosEnd - lPosStart;
+	size_t cb = lPosEnd - lPosStart;
 	pbstrm->SetPosition(lPosLen);
 	pbstrm->WriteShort(cb);
 
@@ -1671,7 +1671,7 @@ size_t GrcManager::OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * p
 
 	pbstrm->SetPosition(lPosEnd);
 
-	return cb;
+	return size_t(cb);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -1700,7 +1700,7 @@ void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
 	// source font family name
 	auto cchFontFamily = utf16len(pchSrcFontFamily);
 	pbstrm->WriteShort(cchFontFamily);
-	for (int ich = 0; ich < cchFontFamily; ich++)
+	for (auto ich = 0U; ich < cchFontFamily; ++ich)
 		pbstrm->WriteShort(pchSrcFontFamily[ich]);
 	pbstrm->WriteByte(0);
 
@@ -2238,8 +2238,9 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		pbstrm->WriteShort(0);
 
 	//	number of passes
-	int cpass, cpassLB, cpassSub, cpassPos, cpassJust, ipassBidi;
-	m_prndr->CountPasses(&cpass, &cpassLB, &cpassSub, &cpassJust, &cpassPos, &ipassBidi);
+	size_t cpass, cpassLB, cpassSub, cpassPos, cpassJust;
+	int ipassBidi;
+	m_prndr->CountPasses(cpass, cpassLB, cpassSub, cpassJust, cpassPos, ipassBidi);
 	pbstrm->WriteByte(cpass);
 	//	first substitution pass
 	pbstrm->WriteByte(cpassLB);
@@ -2375,8 +2376,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	auto cScriptTags = m_prndr->NumScriptTags();
 	pbstrm->WriteByte(cScriptTags);
 	//	array of script tags
-	int i;
-	for (i = 0; i < cScriptTags; i++)
+	for (auto i = 0U; i < cScriptTags; ++i)
 		pbstrm->WriteInt(m_prndr->ScriptTag(i));
 
 	//	line break glyph ID
@@ -2386,7 +2386,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	//	for now, write (cpass + 1) place holders
 	auto lPassOffsetsPos = pbstrm->Position();
 	auto nPassOffset = lPassOffsetsPos - lTableStartSub;
-	for (i = 0; i <= cpass; i++)
+	for (auto n = cpass+1; n; --n)
 		pbstrm->WriteInt(0);
 
 	//	number of pseudo mappings and search constants
@@ -2400,7 +2400,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->WriteShort(n - nPowerOf2);
 
 	//	array of unicode-to-pseudo mappings
-	for (i = 0; i < signed(m_vwPseudoForUnicode.size()); i++)
+	for (auto i = 0U; i < m_vwPseudoForUnicode.size(); ++i)
 	{
 		if (fxdSilfVersion < 0x00020000)
 			pbstrm->WriteShort(m_vnUnicodeForPseudo[i]);
@@ -2414,7 +2414,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		pbstrm);
 
 	//	passes
-	std::vector<intptr_t> vnPassOffsets;
+	std::vector<offset_t> vnPassOffsets;
 	m_prndr->OutputPasses(this, pbstrm, lTableStartSub, vnPassOffsets);
 	Assert(vnPassOffsets.size() == static_cast<size_t>(cpass + 1));
 
@@ -2430,8 +2430,8 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	}
 
 	pbstrm->SetPosition(lPassOffsetsPos);
-	for (i = 0; i < signed(vnPassOffsets.size()); i++)
-		pbstrm->WriteInt(vnPassOffsets[i]);
+	for (auto offset: vnPassOffsets)
+		pbstrm->WriteInt(offset);
 
 	pbstrm->SetPosition(lSavePos);
 
@@ -2518,7 +2518,7 @@ void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 	pbstrm->WriteShort(cpglfcLinear);
 
 	//	offsets to classes--fill in later; for now output (# classes + 1) place holders
-	std::vector<intptr_t> vnClassOffsets;
+	std::vector<offset_t> vnClassOffsets;
 	auto lOffsetPos = pbstrm->Position();
 	if (fxdSilfVersion < 0x00040000)
 		for (auto n = vpglfcReplcmt.size()+1; n; --n) pbstrm->WriteShort(0);
@@ -2527,7 +2527,7 @@ void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 
 	//	linear classes (output)
 	int cTmp = 0;
-	for (auto ipglfc = 0; ipglfc < cpglfcLinear; ipglfc++)
+	for (auto ipglfc = 0U; ipglfc < cpglfcLinear; ++ipglfc)
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
@@ -2591,13 +2591,12 @@ void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 	auto lSavePos = pbstrm->Position();
 
 	pbstrm->SetPosition(lOffsetPos);
-	for (size_t i = 0; i < vnClassOffsets.size(); i++)
-	{
-		if (fxdSilfVersion < 0x00040000)
-			pbstrm->WriteShort(vnClassOffsets[i]);
-		else
-			pbstrm->WriteInt(vnClassOffsets[i]);
-	}
+	if (fxdSilfVersion < 0x00040000)
+		for (auto offset: vnClassOffsets)
+			pbstrm->WriteShort(offset);
+	else
+		for (auto offset: vnClassOffsets)
+			pbstrm->WriteInt(offset);
 
 	pbstrm->SetPosition(lSavePos);
 }
@@ -2709,55 +2708,39 @@ void GdlGlyphDefn::AddGlyphsToSortedList(std::vector<utf16> & vwGlyphs, std::vec
 /*----------------------------------------------------------------------------------------------
 	Count the passes for output to the font table.
 ----------------------------------------------------------------------------------------------*/
-void GdlRenderer::CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
-	int * pcpassJust, int * pcpassPos, int * pipassBidi)
+void GdlRenderer::CountPasses(size_t & cpass, size_t & cpassLB, size_t & cpassSub,
+	size_t & cpassJust, size_t & cpassPos, int & ipassBidi)
 {
 	GdlRuleTable * prultbl;
 
-	if ((prultbl = FindRuleTable("linebreak")) != NULL)
-	{
-		*pcpassLB = prultbl->CountPasses();
-	}
-	else
-		*pcpassLB = 0;
+	prultbl = FindRuleTable("linebreak");
+	cpassLB = prultbl ? prultbl->CountPasses() : 0;
+	
+	prultbl = FindRuleTable("substitution");
+	cpassSub = prultbl ? prultbl->CountPasses() : 0;
 
-	if ((prultbl = FindRuleTable("substitution")) != NULL)
-	{
-		*pcpassSub = prultbl->CountPasses();
-	}
-	else
-		*pcpassSub = 0;
+	prultbl = FindRuleTable("justification");
+	cpassJust = prultbl ? prultbl->CountPasses() : 0;
 
-	if ((prultbl = FindRuleTable("justification")) != NULL)
-	{
-		*pcpassJust = prultbl->CountPasses();
-	}
-	else
-		*pcpassJust = 0;
+	prultbl = FindRuleTable("positioning");
+	cpassPos = prultbl ? prultbl->CountPasses() : 0;
 
-	if ((prultbl = FindRuleTable("positioning")) != NULL)
-	{
-		*pcpassPos = prultbl->CountPasses();
-	}
-	else
-		*pcpassPos = 0;
-
-	*pcpass = *pcpassLB + *pcpassSub + *pcpassJust + *pcpassPos;
+	cpass = cpassLB + cpassSub + cpassJust + cpassPos;
 
 	if (RawBidi() == kFullPass && !HasFlippedPass())
-		*pipassBidi = *pcpassLB + *pcpassSub;
+		ipassBidi = cpassLB + cpassSub;
 	else
-		*pipassBidi = -1;
+		ipassBidi = -1;
 }
 
 /*--------------------------------------------------------------------------------------------*/
-int GdlRuleTable::CountPasses()
+size_t GdlRuleTable::CountPasses()
 {
-	int cRet = 0;
+	size_t cRet = 0;
 
-	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
+	for (auto const ppass: m_vppass)
 	{
-		if (m_vppass[ipass]->ValidPass())
+		if (ppass->ValidPass())
 			cRet++;
 	}
 	return cRet;
@@ -2766,8 +2749,8 @@ int GdlRuleTable::CountPasses()
 /*----------------------------------------------------------------------------------------------
 	Output the passes to the stream.
 ----------------------------------------------------------------------------------------------*/
-void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
-	std::vector<intptr_t> & vnOffsets)
+void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, offset_t lTableStart,
+	std::vector<offset_t> & vnOffsets)
 {
 	GdlRuleTable * prultbl;
 
@@ -2789,8 +2772,8 @@ void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, siz
 
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
-	std::vector<intptr_t> & vnOffsets)
+void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, offset_t lTableStart,
+	std::vector<offset_t> & vnOffsets)
 {
 	for (auto const ppass: m_vppass)
 	{
@@ -2806,24 +2789,24 @@ void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, si
 /*----------------------------------------------------------------------------------------------
 	Output the contents of the pass to the stream.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart)
+void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, offset_t lTableStart)
 {
 	auto lPassStart = pbstrm->Position();
 
 	int fxdSilfVersion = pcman->VersionForTable(ktiSilf);
 	uint32_t fxdRuleVersion = pcman->VersionForRules();
 
-	intptr_t nOffsetToPConstraint = 0;
-	size_t lOffsetToPConstraintPos = 0;
+	offset_t	nOffsetToPConstraint = 0,
+					lOffsetToPConstraintPos = 0;
 
-	intptr_t nOffsetToConstraint = 0;
-	size_t lOffsetToConstraintPos = 0;
+	offset_t	nOffsetToConstraint = 0,
+					lOffsetToConstraintPos = 0;
 
-	intptr_t nOffsetToAction = 0;
-	size_t lOffsetToActionPos = 0;
+	offset_t	nOffsetToAction = 0,
+					lOffsetToActionPos = 0;
 
-	intptr_t nOffsetToDebugArrays = 0;
-	size_t lOffsetToDebugArraysPos = 0;
+	offset_t 	nOffsetToDebugArrays = 0,
+				   	lOffsetToDebugArraysPos = 0;
 
 	//	flags: bits 0-2 = collision fix; bits 3-4 = kern; bit 5 = flip direction
 	int nTemp = m_nCollisionFix | ((int)m_nAutoKern << 3 | m_fFlipDir << 5);
@@ -2901,14 +2884,13 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 	}
 
 	//	rule list and offsets
-	std::vector<intptr_t> vnOffsets;
-	std::vector<intptr_t> vnRuleList;
+	std::vector<offset_t> vnOffsets;
+	std::vector<offset_t> vnRuleList;
 	GenerateRuleMaps(vnOffsets, vnRuleList);
-	int i;
-	for (i = 0; i < signed(vnOffsets.size()); i++)
-		pbstrm->WriteShort(vnOffsets[i]);
-	for (i = 0; i < signed(vnRuleList.size()); i++)
-		pbstrm->WriteShort(vnRuleList[i]);
+	for (auto const offset: vnOffsets)
+		pbstrm->WriteShort(offset);
+	for (auto const rule: vnRuleList)
+		pbstrm->WriteShort(rule);
 
 	if (m_pfsm == NULL)
 	{
@@ -2927,26 +2909,26 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 		//	start states
 		Assert(m_critMaxPreContext - m_critMinPreContext + 1 == m_vrowStartStates.size());
 		Assert(m_vrowStartStates[0] == 0);
-		for (i = 0; i < signed(m_vrowStartStates.size()); i++)
-			pbstrm->WriteShort(m_vrowStartStates[i]);
+		for (auto const start: m_vrowStartStates)
+			pbstrm->WriteShort(start);
 	}
 
 	//	rule sort keys
-	for (i = 0; i < signed(m_vprule.size()); i++)
+	for (auto const prule: m_vprule)
 	{
-		pbstrm->WriteShort(m_vprule[i]->SortKey());
+		pbstrm->WriteShort(prule->SortKey());
 	}
 
 	//	pre-context item counts
-	for (i = 0; i < signed(m_vprule.size()); i++)
+	for (auto const prule: m_vprule)
 	{
-		pbstrm->WriteByte(m_vprule[i]->NumberOfPreModContextItems());
+		pbstrm->WriteByte(prule->NumberOfPreModContextItems());
 	}
 
 	//	action and constraint offsets--fill in later;
 	//	for now, write (# rules + 1) place holders
-	std::vector<intptr_t> vnActionOffsets;
-	std::vector<intptr_t> vnConstraintOffsets;
+	std::vector<offset_t> vnActionOffsets;
+	std::vector<offset_t> vnConstraintOffsets;
 	auto lCodeOffsets = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
@@ -2959,7 +2941,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 		// pass constraint byte count - save a space for the value
 		pbstrm->WriteShort(0);
 	}
-	for (i = 0; i <= signed(m_vprule.size()); i++)  // N + 1
+	for (auto n = m_vprule.size() + 1; n; --n)
 	{
 		pbstrm->WriteShort(0);
 		pbstrm->WriteShort(0);
@@ -3056,11 +3038,10 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 	pbstrm->SetPosition(lCodeOffsets);
 	if (fxdSilfVersion >= 0x00020000)
 		pbstrm->WriteShort(cbPassConstraint);
-	for (i = 0; i < signed(vnConstraintOffsets.size()); i++)
-		pbstrm->WriteShort(vnConstraintOffsets[i]);
-	for (i = 0; i < signed(vnActionOffsets.size()); i++)
-		pbstrm->WriteShort(vnActionOffsets[i]);
-
+	for (auto const offset: vnConstraintOffsets)
+		pbstrm->WriteShort(offset);
+	for (auto const offset: vnActionOffsets)
+		pbstrm->WriteShort(offset);
 	if (fxdSilfVersion >= 0x00030000)
 	{
 		pbstrm->SetPosition(lFsmOffsetPos);
@@ -3079,7 +3060,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lT
 ----------------------------------------------------------------------------------------------*/
 utf16 FsmMachineClass::OutputRange(gid16 wGlyphID, GrcBinaryStream * pbstrm)
 {
-	for (auto iMin = 0; iMin < m_wGlyphs.size(); iMin++)
+	for (auto iMin = 0U; iMin < m_wGlyphs.size(); ++iMin)
 	{
 		if (m_wGlyphs[iMin] == wGlyphID)
 		{
@@ -3121,7 +3102,7 @@ utf16 FsmMachineClass::OutputRange(gid16 wGlyphID, GrcBinaryStream * pbstrm)
 									6
 	(States 0 - 2 are omitted from the lists; only success states are included.)
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateRuleMaps(std::vector<intptr_t> & vnOffsets, std::vector<intptr_t> & vnRuleList)
+void GdlPass::GenerateRuleMaps(std::vector<offset_t> & vnOffsets, std::vector<offset_t> & vnRuleList)
 {
 	size_t ifsLim = m_vifsFinalToWork.size();
 	for (size_t ifs = 0; ifs < ifsLim; ifs++)
@@ -3140,7 +3121,7 @@ void GdlPass::GenerateRuleMaps(std::vector<intptr_t> & vnOffsets, std::vector<in
 				itset != pfstate->m_setiruleSuccess.end();
 				++itset)
 			{
-				for (size_t iirule = 0; iirule <= virule.size(); iirule++)
+				for (auto iirule = 0U; iirule <= virule.size(); ++iirule)
 				{
 					if (iirule == virule.size())
 					{
@@ -3188,7 +3169,7 @@ void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 			break;
 		}
 
-		for (int ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+		for (auto ifsmc = 0U; ifsmc < cfsmc; ++ifsmc)
 		{
 			int ifsmcValue = pfstate->CellValue(ifsmc);
 			if (m_pfsm->RawStateAt(ifsmcValue)->HasBeenMerged())
@@ -3275,8 +3256,8 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 	int fxdVersion)
 {
-	std::vector<intptr_t> vnOffsets;
-	std::vector<size_t> vlOffsetPos;
+	std::vector<offset_t> vnOffsets;
+	std::vector<offset_t> vlOffsetPos;
 
 	size_t ifeat;
 	size_t iID;
@@ -3429,17 +3410,16 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	pbstrm->WriteShort(nLog);
 	pbstrm->WriteShort(n - nPowerOf2);
 
-	int ilang;
-	for (ilang = 0; ilang < signed(m_vplang.size()); ilang++)
+	for (auto const plang: m_vplang)
 	{
 		//	language ID
-		unsigned int nCode = m_vplang[ilang]->Code();
+		unsigned int nCode = plang->Code();
 		char rgchCode[4];
 		memcpy(rgchCode, &nCode, 4);
 		pbstrm->Write(rgchCode, 4);
 
 		//	number of settings
-		pbstrm->WriteShort(m_vplang[ilang]->NumberOfSettings());
+		pbstrm->WriteShort(plang->NumberOfSettings());
 
 		//	offset to setting--fill in later
 		vlOffsetPos.push_back(pbstrm->Position());
@@ -3451,10 +3431,10 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	vlOffsetPos.push_back(pbstrm->Position());
 	pbstrm->WriteShort(0);
 
-	for (ilang = 0; ilang < m_vplang.size(); ilang++)
+	for (auto const plang: m_vplang)
 	{
 		vnOffsets.push_back(pbstrm->Position() - lTableStart);
-		m_vplang[ilang]->OutputSettings(pbstrm);
+		plang->OutputSettings(pbstrm);
 	}
 	vnOffsets.push_back(pbstrm->Position() - lTableStart); // offset of bogus entry gives length of last real one
 
@@ -3464,7 +3444,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 
 	auto lSavePos = pbstrm->Position();
 
-	for (ilang = 0; ilang < vnOffsets.size(); ilang++)
+	for (auto ilang = 0U; ilang < vnOffsets.size(); ++ilang)
 	{
 		pbstrm->SetPosition(vlOffsetPos[ilang]);
 		pbstrm->WriteShort(vnOffsets[ilang]);
@@ -3516,52 +3496,44 @@ void BinarySearchConstants(int n, int * pnPowerOf2, int * pnLog)
 /*----------------------------------------------------------------------------------------------
 	Write a byte to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcBinaryStream::WriteByte(intptr_t iOutput)
+template<typename T> 
+void GrcBinaryStream::WriteByte(T iOutput)
 {
-	Assert(((iOutput & 0xFFFFFF00) == 0xFFFFFF00) ||
-		((iOutput & 0xFFFFFF00) == 0x00000000));
-
-	char b = iOutput & 0xFFUL;
-	write(&b, 1);
+	char const b = char(iOutput & 0xFFU);
+	write(&b, sizeof(uint8_t));
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a short integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcBinaryStream::WriteShort(intptr_t iOutput)
+template<typename T> 
+void GrcBinaryStream::WriteShort(T iOutput)
 {
-	Assert(((iOutput & 0xFFFF0000) == 0xFFFF0000) ||
-		((iOutput & 0xFFFF0000) == 0x00000000));
-
-	//	big-endian format:
-	char b1 = (iOutput & 0x00FFUL);
-	char b2 = (iOutput & 0xFF00UL) >> 8;
-	write(&b2, 1);
-	write(&b1, 1);
+	char const be_short[] = {
+		char(iOutput >> 8 & 0xFFU), 
+		char(iOutput      & 0xFFU)};
+	write(be_short, sizeof(uint16_t));
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a standard integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcBinaryStream::WriteInt(intptr_t iOutput)
+template<typename T> 
+void GrcBinaryStream::WriteInt(T iOutput)
 {
-	//	big-endian format:
-	char b1 = uint8_t(iOutput & 0x000000FFUL),
-		 b2 = uint8_t((iOutput & 0x0000FF00UL) >> 8),
-		 b3 = uint8_t((iOutput & 0x00FF0000UL) >> 16),
-		 b4 = uint8_t((iOutput & 0xFF000000UL) >> 24);
-
-	write(&b4, 1);
-	write(&b3, 1);
-	write(&b2, 1);
-	write(&b1, 1);
+	char const be_long[] = {
+		char(iOutput >> 24 & 0xFFU), 
+		char(iOutput >> 16 & 0xFFU),
+		char(iOutput >>  8 & 0xFFU),
+		char(iOutput 	   & 0xFFU)};
+	write(be_long, sizeof(uint32_t));
 }
 
 /*----------------------------------------------------------------------------------------------
 	Seek to ibOffset then add zero padding for long alignment.
 	Return padded location.
 ----------------------------------------------------------------------------------------------*/
-std::streamoff GrcBinaryStream::SeekPadLong(std::streamoff ibOffset)
+offset_t GrcBinaryStream::SeekPadLong(offset_t ibOffset)
 {
 	auto cPad = ((ibOffset + 3) & ~3) - ibOffset;
 	seekp(ibOffset);
@@ -3573,45 +3545,37 @@ std::streamoff GrcBinaryStream::SeekPadLong(std::streamoff ibOffset)
 /*----------------------------------------------------------------------------------------------
 	Write a byte to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcSubStream::WriteByte(intptr_t iOutput)
+template<typename T>
+void GrcSubStream::WriteByte(T iOutput)
 {
-	Assert(((iOutput & 0xFFFFFF00) == 0xFFFFFF00) ||
-		((iOutput & 0xFFFFFF00) == 0x00000000));
-
-	char b = iOutput & 0xFFUL;
-	m_strm.write(&b, 1);
+	char const b = char(iOutput & 0xFFU);
+	m_strm.write(&b, sizeof(uint8_t));
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a short integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcSubStream::WriteShort(intptr_t iOutput)
+template<typename T>
+void GrcSubStream::WriteShort(T iOutput)
 {
-	Assert(((iOutput & 0xFFFF0000) == 0xFFFF0000) ||
-		((iOutput & 0xFFFF0000) == 0x00000000));
-
-	//	big-endian format:
-	char b1 = (iOutput & 0x00FFUL);
-	char b2 = (iOutput & 0xFF00UL) >> 8;
-	m_strm.write(&b2, 1);
-	m_strm.write(&b1, 1);
+	char const be_short[] = {
+		char(iOutput >> 8 & 0xFFU), 
+		char(iOutput      & 0xFFU)};
+	m_strm.write(be_short, sizeof(uint16_t));
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a standard integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcSubStream::WriteInt(intptr_t iOutput)
+template<typename T>
+void GrcSubStream::WriteInt(T iOutput)
 {
-	//	big-endian format:
-	char b1 = uint8_t(iOutput & 0x000000FFUL),
-		 b2 = uint8_t((iOutput & 0x0000FF00UL) >> 8),
-		 b3 = uint8_t((iOutput & 0x00FF0000UL) >> 16),
-		 b4 = uint8_t((iOutput & 0xFF000000UL) >> 24);
-
-	m_strm.write(&b4, 1);
-	m_strm.write(&b3, 1);
-	m_strm.write(&b2, 1);
-	m_strm.write(&b1, 1);
+	char const be_long[] = {
+		char(iOutput >> 24 & 0xFFU), 
+		char(iOutput >> 16 & 0xFFU),
+		char(iOutput >>  8 & 0xFFU),
+		char(iOutput 	   & 0xFFU)};
+	m_strm.write(be_long, sizeof(uint32_t));
 }
 
 /*----------------------------------------------------------------------------------------------

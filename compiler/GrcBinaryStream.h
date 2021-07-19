@@ -39,25 +39,26 @@ public:
 	}
 
 public:
-	void WriteByte(intptr_t);
-	void WriteShort(intptr_t);
-	void WriteInt(intptr_t);
-	void Write(void * pbTable, size_t cbSize)
+    template<typename T> void WriteByte(T);
+	template<typename T> void WriteShort(T);
+	template<typename T> void WriteInt(T);
+	
+    void Write(void * pbTable, size_t cbSize)
 	{
 		write(static_cast<char *>(pbTable), cbSize);
 	}
 
-	std::streamoff Position()
+	offset_t Position()
 	{
-		return tellp();
+		return offset_t(tellp());
 	}
 
-	void SetPosition(std::streamoff lPos)
+	void SetPosition(offset_t lPos)
 	{
-		seekp(lPos);
+		seekp(offset_t(lPos));
 	}
 
-	std::streamoff SeekPadLong(std::streamoff ibOffset);
+	offset_t SeekPadLong(offset_t ibOffset);
 
 	void Close(void)
 	{
@@ -74,9 +75,9 @@ Hungarian: substrm
 class GrcSubStream
 {
 public:
-	void WriteByte(intptr_t);
-	void WriteShort(intptr_t);
-	void WriteInt(intptr_t);
+	template<typename T> void WriteByte(T);
+	template<typename T> void WriteShort(T);
+	template<typename T> void WriteInt(T);
 
 public:
 	std::ostream m_strm;
