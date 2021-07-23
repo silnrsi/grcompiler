@@ -413,6 +413,7 @@ protected:
 	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName, size_t cchwFamilyName, utf16 * stuDate,
 		uint8 * pSubFamily, size_t cbSubFamily,
 		uint8 * pVendor, size_t cbVendor,
+		uint8* pUniqueName, size_t cbUniqueName,
 		PlatEncChange *);
 	bool AddFeatsModFamilyAux(uint8 * pTblOld, size_t cbTblOld, uint8 * pTblNew, size_t cbTblNew, 
 		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
