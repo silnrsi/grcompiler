@@ -525,6 +525,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 
 	uint16 ibSubFamilyOffset, cbSubFamily;
 	uint16 ibVendorOffset, cbVendor;
+	uint16 ibUniqueNameOffset, cbUniqueName;
 
 	int cbOldTblRecords = sizeof(FontNames) + (cRecords - 1) * sizeof(NameRecord);
 
@@ -658,12 +659,15 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			cbSubFamily = (irecSubFamily == -1) ? 0 : read(pRecord[irecSubFamily].length);
 			ibVendorOffset = (irecVendor == -1) ? 0 : read(pRecord[irecVendor].offset) + ibStrOffset;
 			cbVendor = (irecVendor == -1) ? 0 : read(pRecord[irecVendor].length);
+			ibUniqueNameOffset = (irecUniqueName == -1) ? 0 : read(pRecord[irecUniqueName].offset) + ibStrOffset;
+			cbUniqueName = (irecUniqueName == -1) ? 0 : read(pRecord[irecUniqueName].length);
 
 			// NB: Call below may allocate space which must be deleted at the end of this method.
 
 			if (!BuildFontNames((ppec->cbBytesPerChar == 1), pchwFamilyNameNew, cchwFamilyName, stuDate,
 				(uint8*)pTblOld + ibSubFamilyOffset, cbSubFamily,
 				(uint8*)pTblOld + ibVendorOffset, cbVendor,
+				(uint8*)pTblOld + ibUniqueNameOffset, cbUniqueName,
 				ppec))
 			{
 				return false;
@@ -839,10 +843,11 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	utf16 * stuDate,
 	uint8 * pchSubFamily, uint16 cbSubFamily,
 	uint8 * pchVendor, uint16 cbVendor,
+	uint8 * pchUniqueName, uint16 cbUniqueName,
 	PlatEncChange * ppec)
 {
 	Assert(pchwFamilyName);
-	std::u16string sub_family, vendor;
+	std::u16string sub_family, vendor, unique_name;
 
 	// TODO: properly handle the Macintosh encoding, which is not really ANSI.
 	if (f8bitTable)
@@ -858,6 +863,9 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 
 		s16 = convert.from_bytes(std::string(reinterpret_cast<char const *>(pchVendor), cbVendor));
 		vendor.assign(reinterpret_cast<char16_t const *>(s16.data()), s16.length());
+
+		s16 = convert.from_bytes(std::string(reinterpret_cast<char const*>(pchUniqueName), cbUniqueName));
+		unique_name.assign(reinterpret_cast<char16_t const*>(s16.data()), s16.length());
 	}
 	else
 	{
@@ -866,6 +874,9 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 
 		vendor.assign(reinterpret_cast<char16_t const *>(pchVendor), cbVendor/sizeof(char16_t));
 		std::transform(vendor.begin(), vendor.end(), vendor.begin(), read<uint16>);
+
+		unique_name.assign(reinterpret_cast<char16_t const*>(pchUniqueName), cbUniqueName / sizeof(char16_t));
+		std::transform(unique_name.begin(), unique_name.end(), unique_name.begin(), read<uint16>);
 	}
 	
 	// Check for "Regular" or "Standard" subfamily
@@ -891,7 +902,24 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 		ps_name.end());
 	
 	// Build the unique name: vendor: fullname: date
-	std::u16string const unique_name = vendor + u": " + full_name + u": " + date;
+	std::string::size_type n = unique_name.rfind(u":");
+	if (n != std::string::npos)
+	{ 	// Preserve the date from the input ttf if it's available
+		std::u16string date_field = unique_name.substr(n + 1);
+		std::u16string decade = date_field.substr(date_field.size() - 2);
+		if (std::isdigit(decade[0]) && std::isdigit(decade[1]))
+		{
+			unique_name = vendor + u": " + full_name + u": " + date_field;
+		}
+		else
+		{
+			unique_name = vendor + u": " + full_name + u": " + date;
+		}
+	}
+	else
+	{
+		unique_name = vendor + u": " + full_name + u": " + date;
+	}
 	
 	ppec->stuFullName = full_name;
 	ppec->stuUniqueName = unique_name;
