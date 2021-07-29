@@ -1213,7 +1213,7 @@ int GrcSymbolTableEntry::FeatAltIDIndex() {
 
 	std::vector<unsigned int> vnIDs;
 	pfeat->AltIDs(vnIDs);
-	for (size_t i = 0; i < pfeat->NumAltIDs(); i++)
+	for (auto i = 0; i < pfeat->NumAltIDs(); i++)
 	{
 		if (vnIDs[i] == nID)
 			return i;

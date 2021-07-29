@@ -83,7 +83,7 @@ public:
 	std::vector<Symbol> * GlyphAttrVec()	{ return &m_vpsymGlyphAttrs; }
 	GrcGlyphAttrMatrix * GlyphAttrMatrix()	{ return m_pgax; }
 	GrcLigComponentList * LigCompList()		{ return m_plclist; }
-	int NumGlyphs()							{ return m_cwGlyphIDs; }
+	size_t NumGlyphs()						{ return m_cwGlyphIDs; }
 	utf16 PhantomGlyph()					{ return m_wPhantom; }
 
 	int SilfTableVersion()
@@ -341,7 +341,7 @@ protected:
 
 	bool GeneratePseudoGlyphs(GrcFont *);
 	utf16 FirstFreeGlyph(GrcFont *);
-	void CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 wGlyphID);
+	void CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, gid16 wGlyphID);
 	void SortPseudoMappings();
 
 	bool AddAllGlyphsToTheAnyClass(GrcFont * pfont, std::map<utf16, utf16> & hmActualForPseudo);
@@ -355,7 +355,7 @@ protected:
 
 	bool AssignGlyphAttrsToClassMembers(GrcFont * pfont);
 	bool ProcessGlyphAttributes(GrcFont * pfont);
-	void ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID);
+	void ConvertBetweenXYAndGpoint(GrcFont * pfont, gid16 wGlyphID);
 	bool FinalGlyphAttrResolution(GrcFont * pfont);
 	void MinAndMaxGlyphAttrValues(int nAttrID,
 		int cJLevels, int nAttrIdJStr, int nAttrIdJShr, int nAttrIdJStep, int nAttrIdJWeight,
@@ -400,9 +400,9 @@ public:
 		size_t & cchwStringData, uint8 * pNameTbl);
 	int OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		utf16 * pchDstFontFamily, bool fModFontName, utf16 * pchSrcFontFamily);
-	int FinalAttrValue(utf16 wGlyphID, int nAttrID);
-	void ConvertBwForVersion(int wGlyphId, int nAttrIdBw);
-	void SplitLargeStretchValue(int wGlyphId, int nAttrIdJStr);
+	int FinalAttrValue(gid16 wGlyphID, int nAttrID);
+	void ConvertBwForVersion(gid16 wGlyphId, int nAttrIdBw);
+	void SplitLargeStretchValue(gid16 wGlyphId, int nAttrIdJStr);
 protected:
 	bool AddFeatsModFamily(uint16 * pchFamilyName, uint8 ** ppNameTbl, uint32 * pcbNameTbl);
 	void BuildDateString(utf16 * stuDate);
@@ -411,21 +411,21 @@ protected:
 		int * piFamily, int * piSubFamily, int * piFullName,
 		int * piVendor, int * piPSName, int * piUniqueName, int * piPrefFamily, int * piCompatibleFull);
 	bool BuildFontNames(bool f8bit, uint16 * pchFamilyName, size_t cchwFamilyName, utf16 * stuDate,
-		uint8 * pSubFamily, uint16 cbSubFamily,
-		uint8 * pVendor, uint16 cbVendor,
+		uint8 * pSubFamily, size_t cbSubFamily,
+		uint8 * pVendor, size_t cbVendor,
 		PlatEncChange *);
-	bool AddFeatsModFamilyAux(uint8 * pTblOld, uint32 cbTblOld, uint8 * pTblNew, uint32 cbTblNew, 
+	bool AddFeatsModFamilyAux(uint8 * pTblOld, size_t cbTblOld, uint8 * pTblNew, size_t cbTblNew, 
 		std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 		std::vector<uint16> & vnNameTblIds, 
 		uint16 * pchwFamilyName, size_t cchwFamilyName, std::vector<PlatEncChange> & vpec,
-		int nNameTblMinNew);
-	bool OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
-		uint8 * pOs2TblMin, uint32 chbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
-	bool OutputCmapTable(uint8 * pCmapTblSrc, uint32 cbCmapTblSrc,
+		size_t nNameTblMinNew);
+	bool OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
+		uint8 * pOs2TblMin, size_t cbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
+	bool OutputCmapTable(uint8 * pCmapTblSrc, size_t cbCmapTblSrc,
 		GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
-	int OutputCmap31Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom310,
+	size_t OutputCmap31Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom310,
 		bool * pfNeed310);
-	int OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom31);
+	size_t OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom31);
 	void OutputSileTable(GrcBinaryStream * pbstrm,
 		utf16 * pchStrFontFamily, char * pchSrcFileName, unsigned int luMasterChecksum,
 		unsigned int * pnCreateTime, unsigned int * pnModifyTime,
@@ -463,9 +463,9 @@ public:
 	void DebugOutput();
 	void DebugCmap(GrcFont * pfont, char * pchOutputPath);
 	void WriteCmapItem(std::ofstream & strmOut,
-		unsigned int nUnicode, bool fSuppPlaneChars, utf16 wGlyphID, bool fUnicodeToGlyph,
+		unsigned int nUnicode, bool fSuppPlaneChars, gid16 wGlyphID, bool fUnicodeToGlyph,
 		bool fPseudo, bool fInCmap);
-	static void DebugHex(std::ostream & strmOut, utf16 wGlyphID);
+	static void DebugHex(std::ostream & strmOut, gid16 wGlyphID);
 	static void DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit);
 	static std::string ExpressionDebugString(ExpressionType expt);
 protected:
@@ -530,7 +530,7 @@ protected:
 	// Also language classes:
 	std::vector<GdlLangClass *>	m_vplcls;
 
-	int m_fxdFeatVersion;	// version of feature table to generate
+	uint32_t m_fxdFeatVersion;	// version of feature table to generate
 
 	std::vector<GrcEnv> m_venv;
 	std::map<Symbol, int> m_hmpsymnCurrPass;	// for each table, the current pass
@@ -542,11 +542,11 @@ protected:
 
 	//	For compiler use:
 
-	int m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
-	int m_cwGlyphIDs;
+	gid16 m_wGlyphIDLim;	// lim of range of actual glyph IDs in the font
+	size_t m_cwGlyphIDs;
 
-	int m_cpsymBuiltIn;		// total number of built-in attributes
-	int m_cpsymComponents;	// total number of ligature components encountered
+	size_t m_cpsymBuiltIn;		// total number of built-in attributes
+	size_t m_cpsymComponents;	// total number of ligature components encountered
 
 	//	Pseudo-code mappings: the two vectors form pairs of underlying unicode values and 
 	//	coresponding pseudo-glyph IDs.

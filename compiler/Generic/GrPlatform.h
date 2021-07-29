@@ -116,29 +116,6 @@ typedef signed int       sdata32;	// generic 32-bit data
 
 typedef std::ios_base::openmode openmode_t;
 
-/*************************************************************************************
- Offsets and addresses. AddrOf is useful for taking the address of an object
- that overloads the & operator.
-*************************************************************************************/
-#if defined(_WIN32)
-#undef	offsetof
-#define	offsetof(cls,fld)	((int)&((cls *)0)->fld)
-#endif
-
-// #ifndef NO_ASM
-// #define addrsafe_offsetof(cls,fld) reinterpret_cast<int>(AddrOf(((cls *)0)->fld))
-// 
-// template<typename T> inline T * AddrOf(T & x) {
-// 	T * pt;
-// 	__asm
-// 	{
-// 		mov eax,x
-// 		mov pt,eax
-// 	}
-// 	return pt;
-// }
-// #endif
-
 
 inline bool GrIsBadStringPtrW(const utf16 *const pszw, const long)
 {
@@ -150,12 +127,12 @@ inline bool GrIsBadStringPtrA(const char *const psza, const long)
 	return !psza;
 }
 
-inline bool GrIsBadReadPtr(const void *const, const unsigned int)
+inline bool GrIsBadReadPtr(const void *const, const size_t)
 {
 	return false;
 }
 
-inline bool GrIsBadWritePtr(const void *const, const unsigned int)
+inline bool GrIsBadWritePtr(const void *const, const size_t)
 {
 	return false;
 }
@@ -163,16 +140,10 @@ inline bool GrIsBadWritePtr(const void *const, const unsigned int)
 
 size_t Platform_UnicodeToANSI(const utf16 * prgchwSrc, size_t cchwSrc, char * prgchsDst, size_t cchsDst);
 size_t Platform_AnsiToUnicode(const char * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst);
-//size_t Platform_UnicodeToANSI(const wchar * prgchwSrc, size_t cchwSrc, char * prgchsDst, size_t cchsDst);
-//size_t Platform_AnsiToUnicode(const char * prgchsSrc, size_t cchsSrc, wchar * prgchwDst, size_t cchwDst);
-size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, int cchsSrc, utf16 * prgchwDst, int cchwDst);
+size_t Platform_8bitToUnicode(int nCodePage, const char * prgchsSrc, size_t cchsSrc, utf16 * prgchwDst, size_t cchwDst);
 
 utf16 *utf16cpy(utf16 *dest, const utf16 *src);
-utf16 *utf16cpy(utf16 *dest, const char *src);
-utf16 *utf16cpy(utf16 *dest, const utf32 *src);
-
 utf16 *utf16ncpy(utf16 *dest, const utf16 *src, size_t n);
-utf16 *utf16ncpy(utf16 *dest, const char *src, size_t n);
 
 #ifdef UTF16DEBUG
 void utf16Output(const utf16 *input);

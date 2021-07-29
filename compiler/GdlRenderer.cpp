@@ -94,12 +94,12 @@ GdlRenderer::~GdlRenderer()
 ----------------------------------------------------------------------------------------------*/
 bool GdlRenderer::AddLanguage(GdlLanguageDefn * plang)
 {
-	int iplangLo = 0;
-	int iplangHi = m_vplang.size();
+	uintptr_t iplangLo = 0;
+	uintptr_t iplangHi = m_vplang.size();
 	while (true)
 	{
-		int iplangMid = (iplangLo + iplangHi) >> 1; // div by 2
-		if (iplangMid >= signed(m_vplang.size()))
+		auto iplangMid = (iplangLo + iplangHi) >> 1; // div by 2
+		if (iplangMid >= m_vplang.size())
 		{
 			m_vplang.push_back(plang);
 			return true;

@@ -108,7 +108,7 @@ protected:
 	bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, int nIIndex, int iritAttachTo);
 	bool IsKeySlotAttr();
 
@@ -118,7 +118,7 @@ private:
 public:
 	//	debuggers:
 	void PrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml,
-		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, int cpavs);
+		bool * pfAtt, bool * pfAttAt, bool * pfAttWith, size_t cpavs);
 	void PrettyPrintAttach(GrcManager * pcman, std::ostream & strmOut, bool fXml);
 	void DebugXml(GrcManager * pcman, std::ostream & strmOut, std::string staPathToCur);
 
@@ -160,16 +160,16 @@ class GdlRuleItem : public GdlObject
 public:
 	//	Constructors & destructors:
 	GdlRuleItem()
-		:	m_psymInput(NULL),
+		:	m_iritContextPos(-1),
+			m_psymInput(NULL),
 			m_pexpConstraint(NULL),
-			m_iritContextPos(-1),
 			m_iritContextPosOrig(-1)
 	{
 	}
 	GdlRuleItem(Symbol psym)
-		:	m_psymInput(psym),
+		:	m_iritContextPos(-1),
+			m_psymInput(psym),
 			m_pexpConstraint(NULL),
-			m_iritContextPos(-1),
 			m_iritContextPosOrig(-1)
 	{
 	}
@@ -249,7 +249,7 @@ public:
 	virtual void ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool>& vfOmit, std::vector<int>& vnNewIndices,
 		GdlRule * prule);
-	virtual void CheckSelectors(GdlRule * prule, int irit, int crit);
+	virtual void CheckSelectors(GdlRule * prule, int irit, size_t crit);
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -294,9 +294,9 @@ public:
 	virtual bool CanBeKeySlot() { return false; }
 	virtual bool IsInsertionSlot() { return false; }
 	void MarkKeyGlyphsForPass(GrcGlyphAttrMatrix * pgax, unsigned int nAttrIdSkipP, int nPassID);
-	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	void GenerateConstraintEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> & viritInput, int iritFirstModItem);
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
+	virtual void GenerateActionEngineCode(GrcManager *, uint32_t fxdRuleVersion,
 		std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 	static void GenerateInsertEqualsFalse(std::vector<gr::byte> & vbOutput);
@@ -515,10 +515,10 @@ public:
 	{
 		return (m_vpavs.size() > 0);
 	}
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion,
+	virtual void GenerateActionEngineCode(GrcManager *, uint32_t fxdRuleVersion,
 		std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
-	bool GenerateAttrSettingCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	bool GenerateAttrSettingCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, int nIIndex);
 
 	//	debuggers:
@@ -625,7 +625,7 @@ public:
 protected:
 	virtual void ReplaceAliases(GdlRule *);
 	virtual bool AdjustSlotRefs(std::vector<bool> &, std::vector<int> &, GdlRule *);
-	virtual void CheckSelectors(GdlRule * prule, int irit, int crit);
+	virtual void CheckSelectors(GdlRule * prule, int irit, size_t crit);
 
 	//	Pre-compiler:
 	virtual void FixGlyphAttrsInRules(GrcManager * pcman,
@@ -655,7 +655,7 @@ protected:
 		else
 			return true;
 	}
-	virtual void GenerateActionEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateActionEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		GdlRule * prule, int irit, bool * pfSetInsertToFalse);
 	virtual bool IsInsertionSlot()
 	{
@@ -797,7 +797,7 @@ public:
 	}
 	int LookupAliasIndex(std::string sta);
 
-	int NumberOfSlots()
+	size_t NumberOfSlots()
 	{
 		return m_vprit.size();
 	}
@@ -865,7 +865,7 @@ public:
 	{
 		return m_vprit.size() == 0;
 	}
-	int ItemCount()
+	size_t ItemCount()
 	{
 		return m_vprit.size();
 	}
@@ -878,7 +878,7 @@ protected:
 	void GenerateOptRanges(
 		std::vector<GdlRule*>&	vpruleNewList,
 		std::vector<bool>	&	vfOmitRange,
-		size_t					irangeCurr);
+		int					irangeCurr);
 	void GenerateOneRuleVersion(
 		std::vector<GdlRule*>&	vpruleNewList,
 		std::vector<bool>	&	vfOmitRange);
@@ -886,7 +886,7 @@ protected:
 
 public:
 	//	Pre-compiler:
-	int CountRulePreContexts();
+	size_t CountRulePreContexts();
 	void FixRulePreContexts(Symbol psymAnyClass, int critNeeded);
 
 	void FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont);
@@ -912,24 +912,21 @@ public:
 	int FindAutoAssocItem(bool fDelete);
 	void CalculateSpaceContextuals(SpaceContextuals * pspconSoFar,
 		std::vector<utf16> & vwSpaceGlyphs);
-	int PrependedAnys() { return m_critPrependedAnys; }
+	size_t PrependedAnys() { return m_critPrependedAnys; }
 
 	//	Compiler:
 	void PassOptimizations(GrcGlyphAttrMatrix * pgax, GrcSymbolTable * psymtbl, 
 		unsigned int nAttrIdSkipP, int nPassID);	
-	void GenerateEngineCode(GrcManager *, int fxdRuleVersion,
+	void GenerateEngineCode(GrcManager *, uint32_t fxdRuleVersion,
 		std::vector<gr::byte> & vbActions, std::vector<gr::byte> & vbConstraints);
-	void GenerateConstraintEngineCode(GrcManager *, int fxdRuleVersion, std::vector<gr::byte> & vbOutput);
+	void GenerateConstraintEngineCode(GrcManager *, uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput);
 	GdlRuleItem * InputItem(int n);
-	int NumberOfInputItems();
-	int NumberOfPreModContextItems()
-	{
-		return m_critPreModContext;
-	}
+	size_t NumberOfInputItems();
+	size_t NumberOfPreModContextItems() { return m_critPreModContext; }
 
 	//	debuggers:
-	void DebugEngineCode(GrcManager * pcman, int fxdRuleVersion, std::ostream & strmOut);
-	static void DebugEngineCode(std::vector<gr::byte> & vb, int fxdRuleVersion, std::ostream & strmOut);
+	void DebugEngineCode(GrcManager * pcman, uint32_t fxdRuleVersion, std::ostream & strmOut);
+	static void DebugEngineCode(std::vector<gr::byte> & vb, uint32_t fxdRuleVersion, std::ostream & strmOut);
 	void RulePrettyPrint(GrcManager * pcman, std::ostream & strmOut, bool fXml);
 	static std::string SlotAttributeDebugString(int slat);
 	static std::string GlyphMetricDebugString(int gmet);
@@ -957,13 +954,13 @@ protected:
 
 	//	number of items in the context before the first modified item (original, before adding
 	//	ANY items)
-	int m_critPreModContext;
+	size_t m_critPreModContext;
 
 	//	number of ANY items that were prepended to the front of the rule
-	int m_critPrependedAnys;
+	size_t m_critPrependedAnys;
 
 	//	original context length
-	int m_critOriginal;
+	size_t m_critOriginal;
 
 	//	scan-advance, adjusted
 	int m_nOutputAdvance;

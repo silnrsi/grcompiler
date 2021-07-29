@@ -394,7 +394,7 @@ public:
 	//	Pre-compiler methods:
 	bool AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTable * psymtblMain,
 		std::vector<Symbol> & vpsymGlyphAttrIDs,
-		int nPass, int cpsymBuiltIn, int cpsymComponents, int nMaxJLevel, int cpass);
+		int nPass, size_t cpsymBuiltIn, size_t cpsymComponents, size_t nMaxJLevel, size_t cpass);
 	Symbol BaseLigComponent();
 
 	//	Debuggers:
@@ -474,7 +474,7 @@ public:
 	}
 
 	//	General:
-	int NumFields() const
+	size_t NumFields() const
 	{
 		return m_vstaFields.size();
 	}
@@ -487,12 +487,12 @@ public:
 		return m_vstaFields[i] == sta;
 	}
 
-	void InsertField(int i, std::string sta)
+	void InsertField(size_t i, std::string sta)
 	{
 		Assert(i <= static_cast<int>(m_vstaFields.size()));
 		m_vstaFields.insert(m_vstaFields.begin() + i, sta);
 	}
-	void DeleteField(int i)
+	void DeleteField(size_t i)
 	{
 		Assert(i < static_cast<int>(m_vstaFields.size()));
 		m_vstaFields.erase(m_vstaFields.begin() + i);

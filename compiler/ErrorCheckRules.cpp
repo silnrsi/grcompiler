@@ -15,6 +15,7 @@ Description:
 /***********************************************************************************************
 	Include files
 ***********************************************************************************************/
+#include <cassert>
 #include "main.h"
 
 #ifdef _MSC_VER
@@ -194,7 +195,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 		// but go ahead and treat it as the zeroth pass for now
 	}
 
-	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
+	for (int ipass = 0; ipass < m_vppass.size(); ++ipass)
 	{
 		char rgchPass[20];
 		itoa(ipass, rgchPass, 10);
@@ -290,20 +291,17 @@ void GdlPass::FixRulePreContexts(Symbol psymAnyClass)
 
 	//	First, calculate the maximum and minimum pre-contexts lengths for all the rules
 	//	in this pass. Also record the original rule length to use as a sort key.
-	size_t iprule;
-	for (iprule = 0; iprule < m_vprule.size(); iprule++)
+	for (auto prule: m_vprule)
 	{
-		int crit = m_vprule[iprule]->CountRulePreContexts();
+		auto crit = prule->CountRulePreContexts();
 		m_critMinPreContext = min(m_critMinPreContext, crit);
 		m_critMaxPreContext = max(m_critMaxPreContext, crit);
 	}
 
 	//	Now add "ANY" class slots to the beginning of each rule to make every rule have
 	//	the same number of pre-context items.
-	for (iprule = 0; iprule < m_vprule.size(); iprule++)
-	{
-		m_vprule[iprule]->FixRulePreContexts(psymAnyClass, m_critMaxPreContext);
-	}
+	for (auto prule: m_vprule)
+		prule->FixRulePreContexts(psymAnyClass, int(m_critMaxPreContext));
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -311,14 +309,14 @@ void GdlPass::FixRulePreContexts(Symbol psymAnyClass)
 	Also record the original rule length to use as a sort key (before it is modified
 	by adding ANY classes to the beginning of the rule).
 ----------------------------------------------------------------------------------------------*/
-int GdlRule::CountRulePreContexts()
+size_t GdlRule::CountRulePreContexts()
 {
 	m_critOriginal = m_vprit.size();
 
 	m_critPreModContext = 0;
-	for (size_t irit = 0; irit < m_vprit.size(); irit++)
+	for (auto const &rit:  m_vprit)
 	{
-		if (dynamic_cast<GdlSetAttrItem *>(m_vprit[irit]))
+		if (dynamic_cast<GdlSetAttrItem *>(rit))
 			return m_critPreModContext;
 		m_critPreModContext++;
 	}
@@ -348,15 +346,15 @@ void GdlRule::FixRulePreContexts(Symbol psymAnyClass, int critNeeded)
 
 	//	Increment the item positions following the inserted items, and adjust any slot
 	//	references.
-	for (int irit = m_critPrependedAnys; irit < signed(m_vprit.size()); irit++)
+	for (auto irit = m_critPrependedAnys; irit < m_vprit.size(); ++irit)
 	{
-		m_vprit[irit]->IncContextPosition(m_critPrependedAnys);
-		m_vprit[irit]->AdjustSlotRefsForPreAnys(m_critPrependedAnys);
+		m_vprit[irit]->IncContextPosition(int(m_critPrependedAnys));
+		m_vprit[irit]->AdjustSlotRefsForPreAnys(int(m_critPrependedAnys));
 	}
 
 	//	Increment the scan advance position, if any.
 	if (m_nScanAdvance > -1)
-		m_nScanAdvance += m_critPrependedAnys;
+		m_nScanAdvance += int(m_critPrependedAnys);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -537,15 +535,14 @@ void GdlRule::MarkReplacementClasses(GrcManager * pcman, int nPassID,
 	std::vector<bool> vfOutput;
 	vfInput.resize(m_vprit.size(), false);
 	vfOutput.resize(m_vprit.size(), false);
-	size_t irit;
 
-	for (irit = 0; irit < m_vprit.size(); irit++)
+	for (int irit = 0; irit < m_vprit.size(); irit++)
 	{
 		m_vprit[irit]->AssignFsmInternalID(pcman, nPassID);
 		m_vprit[irit]->FindSubstitutionSlots(irit, vfInput, vfOutput);
 	}
 
-	for (irit = 0; irit < m_vprit.size(); irit++)
+	for (int irit = 0; irit < m_vprit.size(); irit++)
 	{
 		if (vfInput[irit])
 			m_vprit[irit]->MarkClassAsReplacementClass(pcman, setpglfcReplace, true);
@@ -584,7 +581,7 @@ void GrcManager::AddToFsmClasses(GdlGlyphClassDefn * pglfc, int nPassID)
 		Assert((*pvpglfcThisPass)[pglfc->FsmID(nPassID)] == pglfc);
 		return;
 	}
-	pglfc->MarkFsmClass(nPassID, pvpglfcThisPass->size());
+	pglfc->MarkFsmClass(nPassID, int(pvpglfcThisPass->size()));
 	pvpglfcThisPass->push_back(pglfc);
 }
 
@@ -712,7 +709,7 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 				" allowed for input side of substitution");
 		}
 
-		utf16 wGlyphIDDup;
+		gid16 wGlyphIDDup;
         if (pglfc->HasDuplicateGlyphs(&wGlyphIDDup))
         {
             g_errorList.AddError(3172, this,
@@ -806,7 +803,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 		char rgchMax[20];
 		itoa(kMaxSlotsPerRule, rgchMax, 10);
 		char rgchCount[20];
-		itoa(m_vprit.size(), rgchCount, 10);
+		itoa(int(m_vprit.size()), rgchCount, 10);
 		g_errorList.AddError(3106, this,
 			"Number of slots (",
 			rgchCount,
@@ -828,8 +825,8 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	std::vector<int> vcwClassSizes;
 	vcwClassSizes.resize(crit, false);
 	bool fAnyAssocs = false;
-	size_t irit;
-	for (irit = 0; irit < crit; irit++)
+
+	for (int irit = 0; irit < crit; irit++)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		GdlLineBreakItem * pritlb = dynamic_cast<GdlLineBreakItem *>(prit);
@@ -882,7 +879,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	}
 
 	//	Do the checks for each item.
-	for (irit = 0; irit < crit; irit++)
+	for (int irit = 0; irit < crit; irit++)
 	{
 //		if (m_nScanAdvance > -1 && irit >= m_nScanAdvance &&
 //			(vfInsertion[irit] || vfDeletion[irit]))
@@ -1125,7 +1122,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 						": no slot was associated with deleted item");
 				}
 
-				for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+				for (int ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 				{
 					if (m_vpavs[ipavs]->AttrName()->IsPassKeySlot())
 					{
@@ -1187,7 +1184,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 							if (prit->OutputSymbol()->FullName() != "ANY"
 								&& irit != iritAssoc)
 							{
-								prit->AddAssociation(prule->LineAndFile(), iritAssoc + 1 - prule->PrependedAnys()); // 1-based
+								prit->AddAssociation(prule->LineAndFile(), int(iritAssoc + 1 - prule->PrependedAnys())); // 1-based
 								char rgch[20];
 								itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
 								g_errorList.AddWarning(3533, this,
@@ -1712,7 +1709,7 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 			if (pexpil)
 			{
 				pexpil->SetGlyphIndex(0); // should only be one glyph possible
-				int cValues = pexpil->ValueCount();
+				auto cValues = pexpil->ValueCount();
 				if (cValues == 0)
 					g_errorList.AddError(3163, this,
 							"No glyphs in class ", pexpil->Name()->FullName());
@@ -2441,7 +2438,7 @@ void GdlSetAttrItem::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pf
 	int ipavsColRange = -1;
 	int ipavsColPriority = -1;
 
-	for (size_t ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+	for (auto ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
 	{
 		GdlAttrValueSpec * pavsShift;
 		GdlAttrValueSpec * pavsAdvance;
@@ -2539,9 +2536,9 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 	Symbol psymCollisionFlags = pcman->SymbolTable()->FindSymbol(GrcStructName("collision", "flags"));
 	Symbol psymEquals = pcman->SymbolTable()->FindSymbol("=");
 
-	GdlExpression * pexpFlagsOld = NULL;
-	GdlExpression * pexpRange = NULL;
-	GdlExpression * pexpPriority = NULL;
+	GdlExpression * pexpFlagsOld = nullptr;
+	GdlExpression * pexpRange = nullptr;
+	GdlExpression * pexpPriority = nullptr;
 	if (ipavsFlags >= 0)
 		pexpFlagsOld = m_vpavs[ipavsFlags]->m_pexpValue->Clone();
 	if (ipavsRange >= 0)
@@ -2550,7 +2547,7 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 		pexpPriority = m_vpavs[ipavsPriority]->m_pexpValue->Clone();
 
 	Symbol psymPlus = pcman->SymbolTable()->FindSymbol("+");
-	GdlExpression * pexpFlagsTemp;
+	GdlExpression * pexpFlagsTemp = nullptr;
 	GdlExpression * pexpFlags;
 	SymbolSet setpsymBogus;
 	bool fCanSub;
@@ -2569,6 +2566,7 @@ void GdlSetAttrItem::MergeColRangeAndPriority(GrcManager * pcman, GrcFont * pfon
 	else if (pexpPriority)
 		pexpFlagsTemp = pexpPriority;
 
+	assert(pexpFlagsTemp);
 	pexpFlags = pexpFlagsTemp->SimplifyAndUnscale(pcman->GlyphAttrMatrix(), -1, setpsymBogus, pfont, false, &fCanSub);
 	if (pexpFlagsTemp != pexpFlags)
 		delete pexpFlagsTemp;
@@ -2876,7 +2874,7 @@ int GdlRule::ItemCountOriginal()
 int GdlRule::FindAutoAssocItem(bool fDelete)
 {
 	int iritResult = -1;
-	for (size_t irit = 0; irit <m_vprit.size(); irit++)
+	for (auto irit = 0; irit <m_vprit.size(); irit++)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		if (prit->OutputSymbol()->FullName() == "ANY")

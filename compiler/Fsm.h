@@ -68,8 +68,8 @@ public:
 	bool MatchesOneSource(GdlGlyphClassDefn *);
 
 	//	Output:
-	int NumberOfRanges();
-	utf16 OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm);
+	size_t NumberOfRanges();
+	utf16 OutputRange(gid16 wGlyphID, GrcBinaryStream * pbstrm);
 
 protected:
 	int m_nPass;
@@ -121,35 +121,19 @@ class FsmState
 	friend class GdlPass;
 
 public:
-	FsmState(int ccol, int critSlots, int ifsIndex)
+	FsmState(size_t ccol, int critSlots, int ifsIndex)
+	: m_vgiCells(ccol)
 	{
-		Init(ccol, critSlots, ifsIndex);
-	}
-
-	FsmState()
-	{
-		Assert(false);
-		m_cfsmc = 0;
-		m_prgiCells = NULL;
-		m_pfstateMerged = NULL;
-	}
-
-	void Init(int cfsmc, int critSlots, int ifsIndex)
-	{
-		m_cfsmc = cfsmc;
-		m_prgiCells = new int[cfsmc];
-		memset(m_prgiCells, 0, cfsmc * sizeof(int));
-
 		m_critSlotsMatched = critSlots;
 		m_ifsWorkIndex = ifsIndex;
 		m_ifsFinalIndex = -1;
 		m_pfstateMerged = NULL;
 	}
 
-	~FsmState()
+	FsmState()
 	{
-		if (m_prgiCells)
-			delete[] m_prgiCells;
+		Assert(false);
+		m_pfstateMerged = NULL;
 	}
 
 	int SlotsMatched()
@@ -164,17 +148,15 @@ public:
 
 	int CellValue(int ifsmc)
 	{
-		Assert(m_prgiCells);
-		return m_prgiCells[ifsmc];
+		return m_vgiCells[ifsmc];
 	}
 
 	void SetCellValue(int ifsmc, int ifsValue)
 	{
-		Assert(m_prgiCells);
-		m_prgiCells[ifsmc] = ifsValue;
+		m_vgiCells[ifsmc] = ifsValue;
 	}
 
-	int NumberOfRulesMatched()
+	size_t NumberOfRulesMatched()
 	{
 		return m_setiruleMatched.size();
 	}
@@ -190,7 +172,7 @@ public:
 			m_setiruleMatched.insert(irule);
 	}
 
-	int NumberOfRulesSucceeded()
+	size_t NumberOfRulesSucceeded()
 	{
 		return m_setiruleSuccess.size();
 	}
@@ -230,17 +212,13 @@ public:
 
 	bool AllCellsEmpty()
 	{
-		for (int ifsmc = 0; ifsmc < m_cfsmc; ifsmc++)
-		{
-			if (m_prgiCells[ifsmc] != 0)
-				return false;
-		}
-		return true;
+		return std::all_of(m_vgiCells.begin(), m_vgiCells.end(), [](int c) { 
+			   		return c == 0; 
+			   });
 	}
 
 protected:
 	int m_critSlotsMatched;	// number of slots matched at this state
-	int m_cfsmc;			// number of machine classes, ie columns
 	int m_ifsWorkIndex;		// working index of this state, as the FSM was originally
 							// generated (currently just used for debugging)
 	int m_ifsFinalIndex;	// adjusted index for final output form of FSM (-1 for merged
@@ -249,7 +227,7 @@ protected:
 	std::set<int> m_setiruleMatched;	// indices of rules matched by this state
 	std::set<int> m_setiruleSuccess;	// indices of rules for which this is a success state
 
-	int * m_prgiCells;	// the cells of the state, holding the index of the state
+	std::vector<int> m_vgiCells;	// the cells of the state, holding the index of the state
 						// to transition to
 
 
@@ -275,7 +253,7 @@ class FsmTable
 	friend class GdlPass;
 
 public:
-	FsmTable(int nPass, int cfsmc)
+	FsmTable(int nPass, size_t cfsmc)
 	{
 		m_nPass = nPass;
 		m_cfsmc = cfsmc;
@@ -283,13 +261,13 @@ public:
 
 	~FsmTable()
 	{
-		for (size_t ipfstate = 0; ipfstate < m_vpfstate.size(); ipfstate++)
-			delete m_vpfstate[ipfstate];
+		for (auto && pfstate: m_vpfstate)
+			delete pfstate;
 	}
 
 	void AddState(int critSlotsMatched)
 	{
-		FsmState * pfstateNew = new FsmState(m_cfsmc, critSlotsMatched, m_vpfstate.size());
+		FsmState * pfstateNew = new FsmState(m_cfsmc, critSlotsMatched, int(m_vpfstate.size()));
 		m_vpfstate.push_back(pfstateNew);
 	}
 
@@ -307,19 +285,19 @@ public:
 		return m_vpfstate[ifs];
 	}
 
-	int RawNumberOfStates()
+	size_t RawNumberOfStates()
 	{
-		return signed(m_vpfstate.size());
+		return m_vpfstate.size();
 	}
 
-	int NumberOfColumns()
+	size_t NumberOfColumns()
 	{
 		return m_cfsmc;
 	}
 
 protected:
 	int m_nPass;	// the pass this table pertains to
-	int m_cfsmc;	// the number of machine classes, ie columns, in the table
+	size_t m_cfsmc;	// the number of machine classes, ie columns, in the table
 	std::vector<FsmState *> m_vpfstate;	// the rows
 };
 

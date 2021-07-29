@@ -114,7 +114,7 @@ bool GdlGlyphClassDefn::CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn
 	}
 
 	vpglfcStack.push_back(this);
-	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		bool f = m_vpglfdMembers[iglfd]->CheckRecursiveGlyphClasses(vpglfcStack);
 		if (!f)
@@ -141,11 +141,11 @@ bool GdlGlyphDefn::CheckRecursiveGlyphClasses(std::vector<GdlGlyphClassDefn*> & 
 bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 {
 	PseudoSet setpglfExplicitPseudos;
-	int cExplicitPseudos = m_prndr->ExplicitPseudos(setpglfExplicitPseudos);
+	auto cExplicitPseudos = m_prndr->ExplicitPseudos(setpglfExplicitPseudos);
 
 	std::vector<unsigned int> vnAutoUnicode;
 	std::vector<utf16> vwAutoGlyphID;
-	int cAutoPseudos = (m_prndr->AutoPseudo()) ?
+	size_t cAutoPseudos = (m_prndr->AutoPseudo()) ?
 		pfont->AutoPseudos(vnAutoUnicode, vwAutoGlyphID) :
 		0;
 
@@ -252,7 +252,7 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 	number found. Record an error if the pseudo has an invalid output function (ie, more
 	than one glyph specified).
 ----------------------------------------------------------------------------------------------*/
-int GdlRenderer::ExplicitPseudos(PseudoSet & setpglf)
+size_t GdlRenderer::ExplicitPseudos(PseudoSet & setpglf)
 {
 	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
 		m_vpglfc[iglfc]->ExplicitPseudos(setpglf, true);
@@ -295,7 +295,7 @@ void GdlGlyphDefn::ExplicitPseudos(PseudoSet & setpglf, bool /*fProcessClasses*/
 
 		bogus = pseudo(glyphid(<wGlyphID>), <nUnicode>)
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, utf16 wGlyphID)
+void GrcManager::CreateAutoPseudoGlyphDefn(utf16 wAssigned, int nUnicode, gid16 wGlyphID)
 {
 	GdlGlyphDefn * pglfOutput = new GdlGlyphDefn(kglftGlyphID, wGlyphID);
 	GdlGlyphDefn * pglf = new GdlGlyphDefn(kglftPseudo, pglfOutput, nUnicode);
@@ -418,11 +418,11 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 	GdlGlyphClassDefn * pglfcAny = psym->GlyphClassDefnData();
 	Assert(pglfcAny);
 
-	GdlGlyphDefn * pglf = new GdlGlyphDefn(kglftGlyphID, (utf16)0, m_cwGlyphIDs - 1);
+	GdlGlyphDefn * pglf = new GdlGlyphDefn(kglftGlyphID, 0, int(m_cwGlyphIDs - 1));
 	GrpLineAndFile lnf;	// bogus
 	pglfcAny->AddMember(pglf, lnf);
 
-	pglfcAny->AssignGlyphIDs(pfont, m_cwGlyphIDs, hmActualForPseudo);
+	pglfcAny->AssignGlyphIDs(pfont, gr::gid16(m_cwGlyphIDs), hmActualForPseudo);
 
 	return true;
 }
@@ -434,7 +434,7 @@ bool GrcManager::AddAllGlyphsToTheAnyClass(GrcFont * pfont,
 	Determine the glyph ID equivalents for each glyph definition; ie, convert Unicode,
 	codepoints, postscript to glyph ID.
 ----------------------------------------------------------------------------------------------*/
-bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, gid16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo)
 {
 	for (size_t iglfc = 0; iglfc < m_vpglfc.size(); iglfc++)
@@ -444,20 +444,20 @@ bool GdlRenderer::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+void GdlGlyphClassDefn::AssignGlyphIDs(GrcFont * pfont, gid16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo)
 {
-	for (size_t iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
+	for (int iglfd = 0; iglfd < m_vpglfdMembers.size(); iglfd++)
 	{
 		m_vpglfdMembers[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
 			hmActualForPseudo);
 	}
 }
 
-void GdlGlyphIntersectionClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+void GdlGlyphIntersectionClassDefn::AssignGlyphIDs(GrcFont * pfont, gid16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo)
 {
-	for (size_t iglfd = 0; iglfd < m_vpglfdSets.size(); iglfd++)
+	for (int iglfd = 0; iglfd < m_vpglfdSets.size(); iglfd++)
 	{
 		m_vpglfdSets[iglfd]->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
 			hmActualForPseudo);
@@ -465,7 +465,7 @@ void GdlGlyphIntersectionClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyph
 	ComputeMembers();
 }
 
-void GdlGlyphDifferenceClassDefn::AssignGlyphIDs(GrcFont * pfont, utf16 wGlyphIDLim,
+void GdlGlyphDifferenceClassDefn::AssignGlyphIDs(GrcFont * pfont, gid16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo)
 {
 	m_pglfdMinuend->AssignGlyphIDsToClassMember(pfont, wGlyphIDLim,
@@ -487,14 +487,14 @@ void GdlGlyphClassDefn::AssignGlyphIDsToClassMember(GrcFont * /*pfont8*/, utf16 
 }
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, utf16 wGlyphIDLim,
+void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, gid16 wGlyphIDLim,
 	std::map<utf16, utf16> & hmActualForPseudo, bool fLookUpPseudos)
 {
 	Assert(m_vwGlyphIDs.size() == 0);
 
 	utf16 w;
 	unsigned int n;
-	utf16 wGlyphID;
+	gid16 wGlyphID;
 	unsigned int nUnicode;
 	utf16 wFirst, wLast;
 
@@ -1118,7 +1118,7 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 	{
 		char rgch1[20];
 		char rgch2[20];
-		itoa(m_vpsymGlyphAttrs.size(), rgch1, 10);
+		itoa(int(m_vpsymGlyphAttrs.size()), rgch1, 10);
 		itoa(kMaxGlyphAttrs - 1, rgch2, 10);
 		g_errorList.AddError(4123, NULL,
 			"Number of glyph attributes (",
@@ -1147,8 +1147,8 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 		cpass				- only used in pass 1
 ----------------------------------------------------------------------------------------------*/
 bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTable * psymtblMain,
-	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, int cpsymBuiltIn, int cpsymComponents,
-	int cJLevels, int cpass)
+	std::vector<Symbol> & vpsymGlyphAttrIDs, int gapp, size_t cpsymBuiltIn, size_t cpsymComponents,
+	size_t cJLevels, size_t cpass)
 {
 	bool fCollFix = pcman->Renderer()->HasCollisionPass();
 	bool fBidi = pcman->Renderer()->Bidi();
@@ -1273,8 +1273,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTab
 				Assert(ipsymOffset < kFieldsPerComponent);
 
 				int nBaseID = psym->BaseLigComponent()->InternalID();
-				int ipsym = cpsymBuiltIn + cpsymComponents + ((nBaseID - cpsymBuiltIn) * kFieldsPerComponent) 
-					+ ipsymOffset;
+				int ipsym = int(cpsymBuiltIn + cpsymComponents + ((nBaseID - cpsymBuiltIn) * kFieldsPerComponent) 
+					+ ipsymOffset);
 #ifndef NDEBUG
 				int i = 
 #endif
@@ -1477,13 +1477,13 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTab
 int GrcSymbolTable::AddGlyphAttrSymbolInMap(std::vector<Symbol> & vpsymGlyphAttrIDs,
 	Symbol psymGeneric)
 {
-	for (size_t ipsym = 0; ipsym < vpsymGlyphAttrIDs.size(); ipsym++)
+	for (int ipsym = 0; ipsym < vpsymGlyphAttrIDs.size(); ipsym++)
 	{
 		if (vpsymGlyphAttrIDs[ipsym] == psymGeneric)
 			return ipsym;
 	}
 	
-	psymGeneric->SetInternalID(vpsymGlyphAttrIDs.size());
+	psymGeneric->SetInternalID(int(vpsymGlyphAttrIDs.size()));
 	vpsymGlyphAttrIDs.push_back(psymGeneric);
 	return psymGeneric->InternalID();
 }
@@ -1524,8 +1524,8 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 {
 	Assert(m_pgax == NULL);
 
-	size_t cGlyphAttrs = m_vpsymGlyphAttrs.size();
-	size_t cStdStyles = max(signed(m_vpsymStyles.size()), 1);
+	auto cGlyphAttrs = m_vpsymGlyphAttrs.size();
+	auto cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 	Assert(cStdStyles == 1);	// for now
 	m_pgax = new GrcGlyphAttrMatrix(m_cwGlyphIDs, cGlyphAttrs, cStdStyles);
 
@@ -1640,7 +1640,7 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		char rgchMax[20];
 		itoa(kMaxComponents - 1, rgchMax, 10);
 		char rgchCount[20];
-		itoa(m_cpsymComponents, rgchCount, 10);
+		itoa(int(m_cpsymComponents), rgchCount, 10);
 		g_errorList.AddError(4124, NULL,
 			"Total number of ligature components (",
 			rgchCount,
@@ -1786,7 +1786,7 @@ void GdlGlyphDefn::AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 	Set the (non-zero) system-defined glyph attributes to default values for all the glyphs.
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
-	GrcGlyphAttrMatrix * pgax, int cwGlyphs,
+	GrcGlyphAttrMatrix * pgax, size_t cwGlyphs,
 	std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 	std::vector<GdlExpression *> & vpexpExtra,
 	std::vector<Symbol> & /*vpsymGlyphAttrs*/)
@@ -1824,7 +1824,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 		{
 			int nUnicode = *fit;
 
-			int wGlyphID = pfont->GlyphFromCmap(nUnicode, NULL);
+			auto wGlyphID = pfont->GlyphFromCmap(nUnicode, NULL);
 			if (wGlyphID > 0)
 			{
 				//  Read the character property from ICU.
@@ -1924,7 +1924,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 			continue;	// don't need to set zero values explicitly
 
 		//	Now set any remaining attributes that weren't handled above to the standard defaults.
-		for (int wGlyphID = 0; wGlyphID < cwGlyphs; wGlyphID++)
+		for (auto wGlyphID = 0U; wGlyphID < cwGlyphs; wGlyphID++)
 		{
 			if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 			{
@@ -1945,7 +1945,7 @@ void GdlRenderer::AssignGlyphAttrDefaultValues(GrcFont * pfont,
 //		int nGlyphAttrID = psym->InternalID();
 //		if (psym->LastFieldIs("gpoint"))
 //		{
-//			for (int wGlyphID = 0; wGlyphID < cwGlyphs; wGlyphID++)
+//			for (gid16 wGlyphID = 0; wGlyphID < cwGlyphs; wGlyphID++)
 //			{
 //				if (!pgax->Defined(wGlyphID, nGlyphAttrID))
 //				{
@@ -2066,11 +2066,9 @@ DirCode GdlRenderer::DefaultDirCode(int nUnicode, bool * pfInitFailed)
 		break;
 
 	default:
-		if (nUnicode >= 0x2000 && nUnicode <= 0x200b)	// various kinds of spaces
-			dircDefault = kdircWhiteSpace;
-		else
-			dircDefault = kdircNeutral;	// don't know
-			*pfInitFailed = (bool)Bidi();		// we only care about the failure if this is a bidi font
+		// various kinds of spaces
+		dircDefault = nUnicode >= 0x2000 && nUnicode <= 0x200b ? kdircWhiteSpace : kdircNeutral;
+		*pfInitFailed = (bool)Bidi();		// we only care about the failure if this is a bidi font
 		break;
 	}
 
@@ -2091,9 +2089,9 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 {
 	int cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 
-	for (utf16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
+	for (gid16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
-		for (size_t iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
+		for (int iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
 		{
 			for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
 			{
@@ -2230,14 +2228,14 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 	We do this in a separate loop after both the x and y fields have been processed,
 	simplified to unscaled integers, etc.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, utf16 wGlyphID)
+void GrcManager::ConvertBetweenXYAndGpoint(GrcFont * pfont, gid16 wGlyphID)
 {
 	int cStdStyles = max(signed(m_vpsymStyles.size()), 1);
 	utf16 wActual = ActualForPseudo(wGlyphID);
 	if (wActual == 0)
 		wActual = wGlyphID;
 
-	for (size_t iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
+	for (auto iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); ++iAttrID)
 	{
 		for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
 		{
@@ -2436,7 +2434,7 @@ void GdlRule::FixGlyphAttrsInRules(GrcManager * pcman, GrcFont * pfont)
 	//	Make a list of all the input-classes in the rule, for checking for the definition
 	//	of glyph attributes in constraints and attribute-setters.
 	std::vector<GdlGlyphClassDefn *> vpglfcInClasses;
-	size_t iprit;
+	int iprit;
 	for (iprit = 0; iprit < m_vprit.size();	iprit++)
 	{
 		Symbol psymInput = m_vprit[iprit]->m_psymInput;
@@ -2983,7 +2981,7 @@ void GdlGlyphDefn::CheckExistenceOfGlyphAttr(GdlObject * pgdlAvsOrExp,
 		if (m_vwGlyphIDs[iw] == kBadGlyph)
 			continue;
 
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 		if ((fGpoint && !pgax->GpointDefined(wGlyphID, nGlyphAttrID)) ||
 			(!fGpoint && !pgax->Defined(wGlyphID, nGlyphAttrID)))
 		{
@@ -3083,7 +3081,7 @@ void GdlGlyphDefn::CheckCompleteAttachmentPoint(GdlObject * pgdlAvsOrExp,
 
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 
 		if (wGlyphID == kBadGlyph)
 			continue;
@@ -3175,7 +3173,7 @@ void GdlGlyphDefn::CheckCompBox(GdlObject * pgdlSetAttrItem,
 
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 
 		if (wGlyphID == kBadGlyph)
 			continue;
@@ -3296,11 +3294,11 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 	Symbol psymSkipPasses = m_psymtbl->FindSymbol(GrcStructName("*skipPasses*"));
 	int nAttrIdSkipPasses = psymSkipPasses->InternalID();
 
-	for (utf16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
+	for (gid16 wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
-		for (size_t iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
+		for (auto iAttrID = 0; iAttrID < m_vpsymGlyphAttrs.size(); iAttrID++)
 		{
-			for (int iStyle = 0; iStyle < cStdStyles; iStyle++)
+			for (auto iStyle = 0; iStyle < cStdStyles; iStyle++)
 			{
 				SymbolSet setpsym;
 				GdlExpression * pexp;

@@ -17,7 +17,9 @@ Description:
 ***********************************************************************************************/
 #include "main.h"
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -185,7 +187,7 @@ void GdlPass::GenerateFsmMachineClasses(GrcManager * pcman)
 	machine class it is a member of. Create a new machine class if there is not
 	one corresponding to the SCS. Return the column number of the machine class.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
+int GdlPass::AssignGlyphIDToMachineClasses(gid16 wGlyphID, int nPassID)
 {
 	SourceClassSet * pscsThisGlyph = m_rgscsInclusions + wGlyphID;
 	if (pscsThisGlyph->size() == 0)
@@ -205,7 +207,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 		//	Create a new machine class corresponding to the combination of source classes.
 		//	Make this glyph ID be a member of that machine class.
 		pfsmc = new FsmMachineClass(nPassID);
-		pfsmc->SetColumn(m_vpfsmc.size());
+		pfsmc->SetColumn(int(m_vpfsmc.size()));
 		pfsmc->AddGlyph(wGlyphID);
 		pfsmc->SetSourceClasses(pscsThisGlyph);
 
@@ -240,7 +242,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 			//	Create a new machine class corresponding to the combination of source classes.
 			//	Make this glyph ID be a member of that machine class.
 			pfsmc = new FsmMachineClass(nPassID);
-			pfsmc->SetColumn(m_vpfsmc.size());
+			pfsmc->SetColumn(int(m_vpfsmc.size()));
 			pfsmc->AddGlyph(wGlyphID);
 			pfsmc->SetSourceClasses(pscsThisGlyph);
 
@@ -264,7 +266,7 @@ int GdlPass::AssignGlyphIDToMachineClasses(utf16 wGlyphID, int nPassID)
 	map. The key is the sum of the ID's of the source classes in this glyph's set.
 	This key mechanism is just a convenient way of partioning the various vectors.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::MachineClassKey(utf16 wGlyphID, int nPassID)
+int GdlPass::MachineClassKey(gid16 wGlyphID, int nPassID)
 {
 	SourceClassSet * pscs = m_rgscsInclusions + wGlyphID;
 	int nKey = 0;
@@ -311,12 +313,12 @@ void FsmMachineClass::AddGlyph(utf16 w)
 		return;
 	}
 
-	int iLow = 0;
-	int iHigh = m_wGlyphs.size();
+	uintptr_t iLow = 0;
+	uintptr_t iHigh = m_wGlyphs.size();
 
 	while (iHigh - iLow > 1)
 	{
-		int iMid = (iHigh + iLow) >> 1;	// divide by 2
+		auto iMid = (iHigh + iLow) >> 1;	// divide by 2
 		if (w == m_wGlyphs[iMid])
 			return;
 
@@ -341,7 +343,7 @@ void FsmMachineClass::AddGlyph(utf16 w)
 	source-class-set for the given glyph, return it, otherwise return NULL.
 ----------------------------------------------------------------------------------------------*/
 FsmMachineClass * GdlPass::MachineClassMatching(std::vector<FsmMachineClass *> & vpfsmc,
-	utf16 wGlyphID)
+	gid16 wGlyphID)
 {
 	SourceClassSet * pscsForGlyph = m_rgscsInclusions + wGlyphID;
 
@@ -429,7 +431,7 @@ void GdlGlyphDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * p
 {
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 		ppass->RecordInclusionInClass(wGlyphID, pglfc);
 	}
 }
@@ -438,7 +440,7 @@ void GdlGlyphDefn::RecordInclusionInClass(GdlPass * ppass, GdlGlyphClassDefn * p
 /*----------------------------------------------------------------------------------------------
 	Record the fact that the given glyph ID is a member of the given class.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::RecordInclusionInClass(utf16 wGlyphID, GdlGlyphClassDefn * pglfc)
+void GdlPass::RecordInclusionInClass(gid16 wGlyphID, GdlGlyphClassDefn * pglfc)
 {
 	SourceClassSet * pscs = m_rgscsInclusions + wGlyphID;
 	if (pscs->find(pglfc) == pscs->end()) // not a member
@@ -536,7 +538,7 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 		int critSlotsMatched = pfstateCurr->SlotsMatched();
 		if (!pfstateCurr->HasBeenMerged())
 		{
-			for (size_t iprule = 0; iprule < m_vprule.size(); iprule++)
+			for (auto iprule = 0; iprule < m_vprule.size(); iprule++)
 			{
 				GdlRule * prule = m_vprule[iprule];
 				if (ifsCurrent == 0	||	// for state #0, all rules are consider matched
@@ -561,7 +563,7 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 							if (ifsNextState == 0)
 							{
 								//	Add a new state.
-								ifsNextState = m_pfsm->RawNumberOfStates();
+								ifsNextState = int(m_pfsm->RawNumberOfStates());
 								m_pfsm->AddState(critSlotsMatched + 1);
 								pfstateCurr->SetCellValue(ifsmcColumn, ifsNextState);
 							}
@@ -586,9 +588,9 @@ void GdlPass::GenerateFsmTable(GrcManager * pcman)
 			//	group.)
 
 			MergeIdenticalStates(ifsCurrSlotCntMin, ifsNextSlotCntMin,
-				m_pfsm->RawNumberOfStates());
+				int(m_pfsm->RawNumberOfStates()));
 			ifsCurrSlotCntMin = ifsNextSlotCntMin;
-			ifsNextSlotCntMin = m_pfsm->RawNumberOfStates();
+			ifsNextSlotCntMin = int(m_pfsm->RawNumberOfStates());
 		}
 
 		ifsCurrent++;	// go on to next state
@@ -726,7 +728,7 @@ void GdlGlyphDefn::GetMachineClasses(FsmMachineClass ** ppfsmcAssignments,
 {
 	for (size_t iw = 0; iw < m_vwGlyphIDs.size(); iw++)
 	{
-		utf16 wGlyphID = m_vwGlyphIDs[iw];
+		gid16 wGlyphID = m_vwGlyphIDs[iw];
 		FsmMachineClass * pfsmc = ppfsmcAssignments[wGlyphID];
 		if (setpfsmc.find(pfsmc) == setpfsmc.end()) // not a member
 		{
@@ -753,10 +755,10 @@ GdlRuleItem * GdlRule::InputItem(int n)
 	Return the number of input items in the rule, that is, the number of items minus the
 	number of insertions.
 ----------------------------------------------------------------------------------------------*/
-int GdlRule::NumberOfInputItems()
+size_t GdlRule::NumberOfInputItems()
 {
-	int cRet = 0;
-	for (size_t i = 0; i < m_vprit.size(); i++)
+	size_t cRet = 0;
+	for (auto i = 0; i < m_vprit.size(); i++)
 	{
 		if (m_vprit[i]->m_nInputIndex >= 0)
 			cRet++;
@@ -839,7 +841,7 @@ void GdlPass::ReorderFsmStates(GrcManager * pcman)
 /*----------------------------------------------------------------------------------------------
 	Return the number of machine classes for this pass's FSM.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::NumberOfFsmMachineClasses()
+size_t GdlPass::NumberOfFsmMachineClasses()
 {
 	return m_vpfsmc.size();
 }
@@ -849,9 +851,9 @@ int GdlPass::NumberOfFsmMachineClasses()
 	Return the total number of glyph sub-ranges for all the columns in the FSM. Glyph sub-ranges
 	consist of ranges of contiguous glyph IDs.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::TotalNumGlyphSubRanges()
+size_t GdlPass::TotalNumGlyphSubRanges()
 {
-	int cRanges = 0;
+	size_t cRanges = 0;
 	for (size_t i = 0; i < m_vpfsmc.size(); i++)
 		cRanges += m_vpfsmc[i]->NumberOfRanges();
 
@@ -863,11 +865,11 @@ int GdlPass::TotalNumGlyphSubRanges()
 	Return the number of glyph sub-ranges for the machine class. Glyph sub-ranges consist of
 	ranges of contiguous glyph IDs.
 ----------------------------------------------------------------------------------------------*/
-int FsmMachineClass::NumberOfRanges()
+size_t FsmMachineClass::NumberOfRanges()
 {
 	Assert(m_wGlyphs.size() > 0);
 
-	int cRanges = 1;
+	size_t cRanges = 1;
 	for (size_t i = 1; i < m_wGlyphs.size(); i++)
 	{
 		if (m_wGlyphs[i] > m_wGlyphs[i - 1] + 1)
@@ -880,7 +882,7 @@ int FsmMachineClass::NumberOfRanges()
 /*----------------------------------------------------------------------------------------------
 	Return the total nubmer of states in the FSM.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::NumStates()
+size_t GdlPass::NumStates()
 {
 	return m_vifsFinalToWork.size();
 }
@@ -889,11 +891,11 @@ int GdlPass::NumStates()
 /*----------------------------------------------------------------------------------------------
 	Return the number of accepting (transitional success) states in the FSM.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::NumAcceptingStates()
+size_t GdlPass::NumAcceptingStates()
 {
-	int cRet = 0;
-	size_t ifsLim = m_vifsFinalToWork.size();
-	for (size_t ifs = 0; ifs < ifsLim; ifs++)
+	size_t cRet = 0;
+	auto ifsLim = m_vifsFinalToWork.size();
+	for (auto ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -909,11 +911,11 @@ int GdlPass::NumAcceptingStates()
 /*----------------------------------------------------------------------------------------------
 	Return the number of success states (where a rule is matched) in the FSM.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::NumSuccessStates()
+size_t GdlPass::NumSuccessStates()
 {
-	int cRet = 0;
-	size_t ifsLim = m_vifsFinalToWork.size();
-	for (size_t ifs = 0; ifs < ifsLim; ifs++)
+	size_t cRet = 0;
+	auto ifsLim = m_vifsFinalToWork.size();
+	for (auto ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -929,11 +931,11 @@ int GdlPass::NumSuccessStates()
 /*----------------------------------------------------------------------------------------------
 	Return the number of transitional states in the FSM.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::NumTransitionalStates()
+size_t GdlPass::NumTransitionalStates()
 {
-	int cRet = 0;
-	size_t ifsLim = m_vifsFinalToWork.size();
-	for (size_t ifs = 0; ifs < ifsLim; ifs++)
+	size_t cRet = 0;
+	auto ifsLim = m_vifsFinalToWork.size();
+	for (auto ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -949,11 +951,11 @@ int GdlPass::NumTransitionalStates()
 /*----------------------------------------------------------------------------------------------
 	Return the number of final (non-transitional success) states in the FSM.
 ----------------------------------------------------------------------------------------------*/
-int GdlPass::NumFinalStates()
+size_t GdlPass::NumFinalStates()
 {
-	int cRet = 0;
-	size_t ifsLim = m_vifsFinalToWork.size();
-	for (size_t ifs = 0; ifs < ifsLim; ifs++)
+	size_t cRet = 0;
+	auto ifsLim = m_vifsFinalToWork.size();
+	for (auto ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
 
@@ -1190,21 +1192,20 @@ void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool
 		return;
 	}
 
-	int cfsmc = m_pfsm->NumberOfColumns();
+	auto cfsmc = m_pfsm->NumberOfColumns();
 	if (fWorking)
 		strmOut << "\nWorking Table:          ";
 	else
 		strmOut << "\nFinal Table:            ";
-	int ifsmc;
-	for (ifsmc = 0; ifsmc < cfsmc; ifsmc++)	// column headers
+	for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)	// column headers
 		OutputNumber(strmOut, ifsmc, 6);
 	strmOut << "\n                          ";
-	for (ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+	for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)
 		strmOut << "- - - ";
 
 
-	size_t ifsLim = (fWorking)? m_pfsm->RawNumberOfStates() : m_vifsFinalToWork.size();
-	for (size_t ifs = 0; ifs < ifsLim; ifs++)
+	auto ifsLim = (fWorking)? m_pfsm->RawNumberOfStates() : m_vifsFinalToWork.size();
+	for (auto ifs = 0; ifs < ifsLim; ifs++)
 	{
 		FsmState * pfstate = (fWorking) ?
 			m_pfsm->RawStateAt(ifs) :
@@ -1221,7 +1222,7 @@ void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool
 		{
 			strmOut << "                        ";
 
-			for (int ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+			for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)
 			{
 				strmOut << " ";
 				int ifsmcValue = pfstate->CellValue(ifsmc);
@@ -1239,7 +1240,7 @@ void GdlPass::DebugFsmTable(GrcManager * /*pcman*/, std::ostream & strmOut, bool
 	}
 
 	strmOut << "\n                          ";
-	for (ifsmc = 0; ifsmc < cfsmc; ifsmc++)
+	for (auto ifsmc = 0; ifsmc < cfsmc; ifsmc++)
 		strmOut << "- - - ";
 	strmOut << "\n\n";
 }

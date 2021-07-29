@@ -56,7 +56,7 @@ GrcFont::GrcFont(char * pchFontFile) :
 	m_nMaxGlyfId(-1) 
 {
 	AssertPtr(pchFontFile);
-	int cch = pchFontFile ? strlen(pchFontFile) + 1: 0;
+	auto cch = pchFontFile ? strlen(pchFontFile) + 1: 0;
 	if (cch)
 	{
 		m_pchFileName =  new char[cch];
@@ -279,7 +279,7 @@ int GrcFont::Init(GrcManager * pcman)
 /*----------------------------------------------------------------------------------------------
 	Get the font name out of the name table
 ----------------------------------------------------------------------------------------------*/
-void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
+void GrcFont::GetFontFamilyName(utf16 * rgchwName, size_t cchMax)
 {
 	size_t lOffset;
 	size_t lSize;
@@ -295,7 +295,7 @@ void GrcFont::GetFontFamilyName(utf16 * rgchwName, int cchMax)
 		}
 	}
 
-	int cchw = (lSize / isizeof(utf16)) + 1;
+	auto cchw = (lSize / sizeof(utf16)) + 1;
 	cchw = min(cchw, cchMax);
 	memcpy(rgchwName, (gr::byte *)m_pName + lOffset, lSize);
 	rgchwName[cchw - 1] = 0;  // zero terminate
@@ -334,7 +334,7 @@ utf16 GrcFont::FirstFreeGlyph()
 	Fill in the arrays with the pairs of ambiguous unicode values and assigned glyph IDs.
 	Return the number found.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID)
+size_t GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf16> & vwGlyphID)
 {
 #ifdef _DEBUG
 	if (m_fDebug)
@@ -347,10 +347,10 @@ int GrcFont::AutoPseudos(std::vector<unsigned int> & vnUnicode, std::vector<utf1
 	
 	// Fill the vectors with Unicode values that have duplicate glyph IDs and with the
 	// glyph IDs that parallel the Unicode values.
-	size_t nSize = m_vnCollisions.size();
-	for (size_t i = 0; i < nSize; i++)
+	auto nSize = m_vnCollisions.size();
+	for (auto const collision: m_vnCollisions)
 	{
-		unsigned int nUnicode = m_vnCollisions[i];
+		unsigned int nUnicode = collision;
 		vnUnicode.push_back(nUnicode);
 		utf16 wchGlyph = GlyphFromCmap(nUnicode, NULL);
 		vwGlyphID.push_back(wchGlyph);
@@ -451,7 +451,7 @@ utf16 GrcFont::GlyphFromPostscript(std::string staPostscriptName, GdlObject * pg
 	first point on the path. Normally this path will only have one point.
 	Return -1 if the path is invalid.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::ConvertGPathToGPoint(utf16 wGlyphID, int nPathNumber, GdlObject * pgdlobj)
+int GrcFont::ConvertGPathToGPoint(gid16 wGlyphID, int nPathNumber, GdlObject * pgdlobj)
 {
 #ifdef _DEBUG
 	if (m_fDebug)
@@ -522,7 +522,7 @@ int GrcFont::DesignUnits()
 	Return INT_MIN or INT_MAX on error.
 	Review: does USE_MY_METRICS flag in a composist glyph override the hmtx table?
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlobj)
+int GrcFont::GetGlyphMetric(gid16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlobj)
 {
 	Assert(m_pFile);
 	Assert(m_pLoca);
@@ -661,7 +661,7 @@ int GrcFont::GetGlyphMetric(utf16 wGlyphID, GlyphMetric gmet, GdlObject * pgdlob
 	Engine will NOT be able to determine the coordinates for the point so the compiler should
 	do that (with GetXYAtPoint).
 ----------------------------------------------------------------------------------------------*/
-bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj)
+bool GrcFont::IsPointAlone(gid16 wGlyphID, int nPointNumber, GdlObject * pgdlobj)
 {
 	// these must be declared before goto statements
 	std::vector<int> vnEndPt;
@@ -707,7 +707,7 @@ bool GrcFont::IsPointAlone(utf16 wGlyphID, int nPointNumber, GdlObject * pgdlobj
 	Find the coordinates for a point on a glyph.
 	Return true if successful, otherwise false
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY, 
+int GrcFont::GetXYAtPoint(gid16 wGlyphID, int nPointNumber, int * mX, int * mY, 
 						  GdlObject * pgdlobj)
 {
 	std::vector<int> vnEndPt, vnX, vnY;
@@ -737,7 +737,7 @@ int GrcFont::GetXYAtPoint(utf16 wGlyphID, int nPointNumber, int * mX, int * mY,
 	Try to find an actual on-curve point that is within mPointRadius units of the given
 	x- and y-coordinates. If found, return the point number, otherwise return -1.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetPointAtXY(utf16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj)
+int GrcFont::GetPointAtXY(gid16 wGlyphID, int mX, int mY, int mPointRadius, GdlObject * pgdlobj)
 {
 	std::vector<int> vnEndPt, vnX, vnY;
 	std::vector<bool> vfOnCurve;
@@ -826,7 +826,7 @@ int GrcFont::CloseFile()
 	Read a data from the font storing the data in ppData.
 	Return true if successful, otherwise false.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
+int GrcFont::ReadData(gr::byte ** ppData, ptrdiff_t lnOffset, size_t lnSize)
 {
 	*ppData = new gr::byte[lnSize];
 	if (!*ppData)
@@ -835,7 +835,7 @@ int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
 			"Memory failure: could not allocate ppData array while reading font file");
 		return false;
 	}
-	if (fseek(m_pFile, lnOffset, SEEK_SET))
+	if (fseek(m_pFile, long(lnOffset), SEEK_SET))
 	{
 		g_errorList.AddError(126, NULL, 
 			"Could not seek to correct place in font file");
@@ -855,7 +855,7 @@ int GrcFont::ReadData(gr::byte ** ppData, long lnOffset, long lnSize)
 	Return true if successful, otherwise false. On false, also generate an error message.
 ----------------------------------------------------------------------------------------------*/
 int GrcFont::ReadTable(TableId ktiTableId, void * pHdr, void * pTableDir, 
-	gr::byte ** ppTable, long * plnSize)
+	gr::byte ** ppTable, size_t * plnSize)
 {
 	size_t lnOffset, lnSize;
 
@@ -1012,7 +1012,7 @@ int GrcFont::ScanGlyfIds(void)
 	pvnEndPt - indexes where contours (or paths) end
 	Return true is successful. False otherwise.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
+int GrcFont::GetGlyfContours(gid16 wGlyphID, std::vector<int> * pvnEndPt)
 {
 	Assert(m_pFile);
 	Assert(m_pGlyf);
@@ -1057,7 +1057,7 @@ int GrcFont::GetGlyfContours(utf16 wGlyphID, std::vector<int> * pvnEndPt)
 	pvfOnCurve - flag indicating if parallel coordinate is on curve or off
 	Return true is successful. False otherwise.
 ----------------------------------------------------------------------------------------------*/
-int GrcFont::GetGlyfPts(utf16 wGlyphID, std::vector<int> * pvnEndPt, 
+int GrcFont::GetGlyfPts(gid16 wGlyphID, std::vector<int> * pvnEndPt, 
 	std::vector<int> * pvnX, std::vector<int> * pvnY, std::vector<bool> * pvfOnCurve)
 {
 	Assert(m_pFile);

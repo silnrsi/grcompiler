@@ -75,7 +75,7 @@ public:
 		return fRet;
 	}
 
-	int NumScriptTags()
+	size_t NumScriptTags()
 	{
 		return m_vnScriptTags.size();
 	}
@@ -129,17 +129,17 @@ public:
 	bool CheckSelectors();
 
 	//	Pre-compiler:
-	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, int * pfxdFeatVersion);
+	bool PreCompileFeatures(GrcManager * pcman, GrcFont * pfont, uint32_t * pfxdFeatVersion);
 	void CheckLanguageFeatureSize();
 	bool CheckRecursiveGlyphClasses();
-	int ExplicitPseudos(PseudoSet & setpglf);
+	size_t ExplicitPseudos(PseudoSet & setpglf);
 	int ActualForPseudo(utf16 wPseudo);
-	bool AssignGlyphIDs(GrcFont *, utf16 wGlyphIDLim,
+	bool AssignGlyphIDs(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudos);
 	void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
 		GrcLigComponentList * plclist);
 	void AssignGlyphAttrDefaultValues(GrcFont * pfont,
-		GrcGlyphAttrMatrix * pgax, int cwGlyphs,
+		GrcGlyphAttrMatrix * pgax, size_t cwGlyphs,
 		std::vector<Symbol> & vpsymSysDefined, std::vector<int> & vnSysDefValues,
 		std::vector<GdlExpression *> & vpexpExtra,
 		std::vector<Symbol> & vpsymGlyphAttrs);
@@ -230,12 +230,12 @@ public:
 
 	//	Output:
 	void OutputReplacementClasses(int fxdSilfVersion,
-		std::vector<GdlGlyphClassDefn *> & vpglfc, int cpglfcLinear,
+		std::vector<GdlGlyphClassDefn *> & vpglfc, size_t cpglfcLinear,
 		GrcBinaryStream * pbstrm);
 	void CountPasses(int * pcpass, int * pcpassLB, int * pcpassSub,
 		int * pcpassJust, int * pcpassPos, int * pipassBidi);
-	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-		std::vector<int> & vnOffsets);
+	void OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
+		std::vector<intptr_t> & vnOffsets);
 	bool AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew,
 		std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
 		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,

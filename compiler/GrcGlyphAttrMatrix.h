@@ -53,7 +53,7 @@ public:
 	{
 	}
 
-	~GrcAssignment()
+	virtual ~GrcAssignment()
 	{
 		// Not responsible for deleting the expression.
 	}
@@ -97,7 +97,7 @@ Hungarian: gax
 class GrcGlyphAttrMatrix
 {
 public:
-	GrcGlyphAttrMatrix(int cGlyphIDs, int cGlyphAttrs, int cStyles)
+	GrcGlyphAttrMatrix(size_t cGlyphIDs, size_t cGlyphAttrs, size_t cStyles)
 	{
 		m_cGlyphAttrs = cGlyphAttrs;
 		m_cGlyphIDs = cGlyphIDs;
@@ -109,45 +109,45 @@ public:
 		delete[] m_prgasgnx;
 	}
 
-	int Index(utf16 wGlyphID, int nAttrID, int nStyle)
+	int Index(gid16 wGlyphID, unsigned int nAttrID, unsigned int nStyle)
 	{
 		Assert(wGlyphID < m_cGlyphIDs);
 		Assert(nAttrID < m_cGlyphAttrs);
 		Assert(nStyle < m_cStyles);
-		return (wGlyphID * m_cGlyphAttrs * m_cStyles +
+		return int(wGlyphID * m_cGlyphAttrs * m_cStyles +
 			(nAttrID * m_cStyles) +
 			nStyle);
 	}
 
-	void Get(utf16 wGlyphID, int nAttrID,
+	void Get(gid16 wGlyphID, int nAttrID,
 		GdlExpression ** ppexp, int * pnPR, int * pmunitPR, bool * pfOverride, bool * pfShadow,
 		GrpLineAndFile * plnf)
 	{
 		Get(wGlyphID, nAttrID, 0, ppexp, pnPR, pmunitPR, pfOverride, pfShadow, plnf);
 	}
 
-	void Get(utf16 wGlyphID, int nAttrID, int nStyle,
+	void Get(gid16 wGlyphID, int nAttrID, int nStyle,
 		GdlExpression ** ppexp, int * pnPR, int * pmunitPR, bool * pfOverride, bool * pfShadow,
 		GrpLineAndFile * plnf);
 
-	GdlExpression * GetExpression(utf16 wGlyphID, int nAttrID)
+	GdlExpression * GetExpression(gid16 wGlyphID, int nAttrID)
 	{
 		return GetExpression(wGlyphID, nAttrID, 0);
 	}
-	GdlExpression * GetExpression(utf16 wGlyphID, int nAttrID, int nStyle);
+	GdlExpression * GetExpression(gid16 wGlyphID, int nAttrID, int nStyle);
 
-	void Set(utf16 wGlyphID, int nAttrID,
+	void Set(gid16 wGlyphID, int nAttrID,
 		GdlExpression * pexp, int nPR, int munitPR, bool fOverride, bool fShadow,
 		GrpLineAndFile const& lnf)
 	{
 		Set(wGlyphID, nAttrID, 0, pexp, nPR, munitPR, fOverride, fShadow, lnf);
 	}
 
-	void Set(utf16 wGlyphID, int nAttrID, int nStyle,
+	void Set(gid16 wGlyphID, int nAttrID, int nStyle,
 		GdlExpression * pexp, int nPR, int munitPR, bool fOverride, bool fShadow,
 		GrpLineAndFile const& lnf);
 
-	bool Defined(utf16 wGlyphID, int nAttrID, int nStyle = 0)
+	bool Defined(gid16 wGlyphID, int nAttrID, int nStyle = 0)
 	{
 		if (m_cGlyphAttrs == 0 || m_cGlyphIDs == 0 || m_cStyles == 0)
 			return false;
@@ -155,7 +155,7 @@ public:
 		return (pasgnx->Expression() != NULL);
 	}
 
-	bool DefinedButMaybeShadow(utf16 wGlyphID, int nAttrID, bool *pfShadow, int nStyle = 0)
+	bool DefinedButMaybeShadow(gid16 wGlyphID, int nAttrID, bool *pfShadow, int nStyle = 0)
 	{
 		if (m_cGlyphAttrs == 0 || m_cGlyphIDs == 0 || m_cStyles == 0)
 			return false;
@@ -164,11 +164,11 @@ public:
 		return (pasgnx->Expression());
 	}
 
-	bool GpointDefined(utf16 wGlyphID, int nAttrID = 0, int nStyle = 0);
+	bool GpointDefined(gid16 wGlyphID, int nAttrID = 0, int nStyle = 0);
 
-	void Clear(utf16 wGlyphID, int nAttrID, int nStyle = 0);
+	void Clear(gid16 wGlyphID, int nAttrID, int nStyle = 0);
 
-	GdlExpression * Expression(utf16 wGlyphID, int nAttrID, int nStyle = 0)
+	GdlExpression * Expression(gid16 wGlyphID, int nAttrID, int nStyle = 0)
 	{
 		GrcAssignment * pasgnx = m_prgasgnx + Index(wGlyphID, nAttrID, nStyle);
 		return pasgnx->Expression();
@@ -176,9 +176,9 @@ public:
 
 protected:	
 	GrcAssignment * m_prgasgnx;	// matrix
-	int m_cGlyphAttrs;
-	int m_cGlyphIDs;
-	int m_cStyles;
+	size_t m_cGlyphAttrs;
+	size_t m_cGlyphIDs;
+	size_t m_cStyles;
 };
 
 /*----------------------------------------------------------------------------------------------
@@ -202,11 +202,11 @@ class GrcLigComponentList
 		std::vector<int> m_vinIDs;
 	};
 public:
-	GrcLigComponentList(int cvGlyphIDs);
+	GrcLigComponentList(size_t cvGlyphIDs);
 	~GrcLigComponentList();
 
-	int AddComponentFor(utf16 wGlyphID, Symbol psymComponent, GdlRenderer * prndr);
-	bool FindComponentFor(utf16 wGlyphID, int nID);
+	int AddComponentFor(gid16 wGlyphID, Symbol psymComponent, GdlRenderer * prndr);
+	bool FindComponentFor(gid16 wGlyphID, int nID);
 //	int FindComponentID(Symbol psymComponent);
 
 //	int NumberOfComponents()
@@ -225,7 +225,7 @@ protected:
 //	std::vector<Symbol> m_vpsymDefinedComponents;
 
 	//	List of defined items for each glyph ID.
-	int m_cvGlyphIDs;
+	size_t m_cvGlyphIDs;
 	LigCompMap ** m_prgplcmap;
 };
 

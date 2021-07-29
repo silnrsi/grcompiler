@@ -172,14 +172,14 @@ template<typename XChar>
 ----------------------------------------------------------------------------------------------*/
 template<typename XChar>
 	void StrBase<XChar>::_Replace(int ichMin, int ichLim,
-		const XChar * prgchIns, XChar chIns, int cchIns)
+		const XChar * prgchIns, XChar chIns, size_t cchIns)
 {
 	AssertObj(this);
 	Assert(cchIns >= 0);
 	AssertArrayN(prgchIns, cchIns);
 	Assert(!chIns || !prgchIns);
 
-	int cchCur = m_pbuf->Cch();
+	auto cchCur = m_pbuf->Cch();
 	Assert((unsigned int)ichMin <= (unsigned int)ichLim && (unsigned int)ichLim <= (unsigned int)cchCur);
 
 	if (!cchIns)
@@ -245,14 +245,14 @@ template<typename XChar>
 ----------------------------------------------------------------------------------------------*/
 template<typename XChar>
 	void StrBase<XChar>::_Replace(int ichMin, int ichLim,
-		const YChar * prgchIns, YChar chIns, int cchIns)
+		const YChar * prgchIns, YChar chIns, size_t cchIns)
 {
 	AssertObj(this);
 	Assert(cchIns >= 0);
 	AssertArray(prgchIns, cchIns);
 
 	// These are used ony when prgchIns is NULL.
-	const int kcchMaxChar = 8;
+	const size_t kcchMaxChar = 8;
 	XChar rgchChar[kcchMaxChar];
 	int cchChar;
 
@@ -266,7 +266,7 @@ template<typename XChar>
 	{
 		if (prgchIns)
 		{
-			cchDst = ConvertText(prgchIns, cchIns, (XChar *)NULL, 0);
+			cchDst = ConvertText(prgchIns, cchIns, nullptr, 0);
 			if (!cchDst)
 				ThrowHr(WarnHr(E_FAIL));
 			Assert(cchCur + cchDst > cchCur);
@@ -276,7 +276,7 @@ template<typename XChar>
 			cchChar = ConvertText(&chIns, 1, rgchChar, kcchMaxChar);
 			if (!cchChar)
 				ThrowHr(WarnHr(E_FAIL));
-			Assert((unsigned int)cchChar <= (unsigned int)kcchMaxChar);
+			Assert(cchChar <= kcchMaxChar);
 			cchDst = cchChar * cchIns;
 			Assert(cchCur + cchDst > cchCur);
 		}
@@ -286,7 +286,7 @@ template<typename XChar>
 
 	// Allocate the new buffer.
 	StrBuffer * pbuf;
-	int cchNew = cchCur + cchDst - ichLim + ichMin;
+	auto cchNew = cchCur + cchDst - ichLim + ichMin;
 
 	if (cchNew == cchCur && !m_pbuf->m_crefMinusOne)
 	{

@@ -239,7 +239,7 @@ public:
 //	}
 	virtual int GlyphIDCount();
 	virtual unsigned int FirstGlyphInClass(bool * pfMoreThanOne);
-	virtual void AssignGlyphIDsToClassMember(GrcFont *, utf16 wGlyphIDLim,
+	virtual void AssignGlyphIDsToClassMember(GrcFont *, gid16 wGlyphIDLim,
 		std::map<utf16, utf16> & hmActualForPseudo,
 		bool fLookUpPseudo = true);
 	virtual void AssignGlyphAttrsToClassMembers(GrcGlyphAttrMatrix * pgax,
@@ -255,7 +255,7 @@ public:
 	virtual void StorePseudoToActualAsGlyphAttr(GrcGlyphAttrMatrix * pgax, int nAttrID,
 		std::vector<GdlExpression *> & vpexpExtra);
 
-	static std::string GlyphIDString(utf16 wGlyphID)
+	static std::string GlyphIDString(gid16 wGlyphID)
 	{
 		char rgch[20];
 		itoa(int(wGlyphID), rgch, 10);
@@ -265,7 +265,7 @@ public:
 		char rgchHex[20];
 		itoa(int(wGlyphID), rgchHex, 16);
 		std::string staHex(rgchHex);
-		for (int ich = staHex.size(); ich < 4; ich++)
+		for (auto ich = staHex.size(); ich < 4; ++ich)
 			staRet += "0";
 		staRet += staHex;
 		staRet += "]";
@@ -279,7 +279,7 @@ public:
 		itoa(int(wUsv), rgch, 16);
 		std::string staNum(rgch);
 		std::string staRet;
-		for (int ich = staNum.size(); ich < 4; ich++)
+		for (auto ich = staNum.size(); ich < 4; ich++)
 			staRet += "0";
 		staRet += staNum;
 		return staRet;
@@ -291,7 +291,7 @@ public:
 		itoa(int(n), rgch, 16);
 		std::string staNum(rgch);
 		std::string staRet;
-		for (int ich = staNum.size(); ich < 4; ich++)
+		for (auto ich = staNum.size(); ich < 4; ++ich)
 			staRet += "0";
 		staRet += staNum;
 		return staRet;

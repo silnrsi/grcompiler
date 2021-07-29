@@ -97,9 +97,9 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr) = 0;
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature) = 0;
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub) = 0;
-	virtual GdlExpression * SimplifyAndUnscale(utf16 wGlyphID, GrcFont * pfont)
+	virtual GdlExpression * SimplifyAndUnscale(gid16 wGlyphID, GrcFont * pfont)
 	{
 		SymbolSet setpsym;
 		bool fCanSub;
@@ -132,7 +132,7 @@ public:
 
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue) = 0;
 
@@ -273,7 +273,7 @@ public:
 	}
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int /*fxdRuleVersion*/, std::vector<gr::byte> & /*vbOutput*/,
+	virtual void GenerateEngineCode(uint32_t /*fxdRuleVersion*/, std::vector<gr::byte> & /*vbOutput*/,
 		int /*irit*/, std::vector<int> * /*pviritInput*/, int /*nIIndex*/,
 		bool /*fAttachAt*/, int /*iritAttachTo*/, int * /*pnValue*/)
 	{
@@ -368,7 +368,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void SetSpecialZero();
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
@@ -386,7 +386,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 	void SetValue(int nValue) { m_nValue = nValue; }
@@ -481,7 +481,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -498,7 +498,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -578,7 +578,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -597,7 +597,7 @@ public:
 	std::string StringValue() { return m_staValue; }
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -675,7 +675,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -692,7 +692,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -777,7 +777,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -795,10 +795,10 @@ public:
 	virtual bool CheckAttachToLookup();
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
-	bool GenerateSetBitsOp(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	bool GenerateSetBitsOp(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo);
 
@@ -891,7 +891,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -908,7 +908,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -1018,9 +1018,9 @@ public:
 		:	GdlExpression(exp),
 			m_psymName(exp.m_psymName),
 			m_nClusterLevel(exp.m_nClusterLevel),
+			m_fGlyphAttr(exp.m_fGlyphAttr),
 			m_nInternalID(exp.m_nInternalID),
-			m_nSubIndex(exp.m_nSubIndex),
-			m_fGlyphAttr(exp.m_fGlyphAttr)
+			m_nSubIndex(exp.m_nSubIndex)
 	{
 		m_pexpSelector =
 			(exp.m_pexpSelector) ?
@@ -1080,7 +1080,7 @@ public:
 	virtual GdlExpression * ConvertFeatureSettingValue(GdlFeatureDefn * pfeat, bool & fErr);
 	virtual void LookupExpCheck(bool fInIf, Symbol psymFeature);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual void CheckAndFixGlyphAttrsInRules(GrcManager * pcman,
 		std::vector<GdlGlyphClassDefn *> & vpglfcInClasses, int irit);
@@ -1101,7 +1101,7 @@ public:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
 
 	//	Compiler:
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int irit, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 
@@ -1170,7 +1170,7 @@ public:
 	// Pre-compiler:
 	virtual void GlyphAttrCheck(Symbol psymAttr);
 	virtual GdlExpression * SimplifyAndUnscale(GrcGlyphAttrMatrix * pgax,
-		utf16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
+		gid16 wGlyphID, SymbolSet & setpsym, GrcFont * pfont,
 		bool fGAttrDefChk, bool * pfCanSub);
 	virtual bool CheckTypeAndUnits(ExpressionType * pexptRet);
 	bool ResolveToInteger(int * pnRet, bool fSlotRef);
@@ -1180,11 +1180,11 @@ public:
 		GdlExpression ** ppexpGpoint,
 		GdlExpression ** ppexpXoffset, GdlExpression ** ppexpYoffset);
 
-	int ValueCount();
+	size_t ValueCount();
 
 	// Compiler:
 	virtual bool CompatibleWithVersion(int fxdVersion, int * pfxdNeeded, int * pfxdCpilrNeeded);
-	virtual void GenerateEngineCode(int fxdRuleVersion, std::vector<gr::byte> & vbOutput,
+	virtual void GenerateEngineCode(uint32_t fxdRuleVersion, std::vector<gr::byte> & vbOutput,
 		int iritCurrent, std::vector<int> * pviritInput, int nIIndex,
 		bool fAttachAt, int iritAttachTo, int * pnValue);
 

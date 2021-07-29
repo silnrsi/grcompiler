@@ -204,7 +204,7 @@ public:
 	{
 		return m_staName;
 	}
-	int NumberOfSettings()
+	size_t NumberOfSettings()
 	{
 		return m_vpfset.size();
 	}
@@ -334,7 +334,7 @@ public:
 		memcpy(m_rgchID, staCode.data(), staCode.size() * sizeof(char));
 	}
 
-	int NumberOfSettings()
+	size_t NumberOfSettings()
 	{
 		return m_vpfset.size();
 	}

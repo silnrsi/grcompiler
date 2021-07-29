@@ -38,7 +38,7 @@ DEFINE_THIS_FILE
 /***********************************************************************************************
 	Methods: Constructor
 ***********************************************************************************************/
-//GlyphBoundaries::GlyphBoundaries(GrcFont * pfont, utf16 wGlyphID) : m_pfont(pfont)
+//GlyphBoundaries::GlyphBoundaries(GrcFont * pfont, gid16 wGlyphID) : m_pfont(pfont)
 //{
 //	// Cache some metrics?
 //}

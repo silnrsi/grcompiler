@@ -26,7 +26,9 @@ Description:
 #include <sstream>
 #include <string>
 
+#ifdef _MSC_VER
 #pragma hdrstop
+#endif
 #undef THIS_FILE
 DEFINE_THIS_FILE
 
@@ -213,12 +215,12 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 	suTmp = (cTableOut << 4) - (uint16)(nP2 << 4);
 	pOffsetTableOut->range_shift = read(suTmp);
 	// write offset table (version & search constants)
-	bstrmDst.Write((char *)pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
+	bstrmDst.Write(pOffsetTableOut, offsetof(OffsetSubTable, table_directory));
 	
 	// Copy tables from input stream to output stream.
-	uint32 ibTableOffset = 0;	// initialize to avoid warnings
-	uint32 ibHeadOffset = 0;
-	uint32 cbHeadSize = 0;
+	size_t ibTableOffset = 0;	// initialize to avoid warnings
+	size_t ibHeadOffset = 0;
+	size_t cbHeadSize = 0;
 	int iNameTbl = 0;
 	int iCmapTbl = -1;
 	int iOS2Tbl = -1;
@@ -310,7 +312,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 		}
 
 		// adjust table's directory entry, offset will change since table directory is bigger
-		pDirEntryOut[iOut].offset = read(ibTableOffset);
+		pDirEntryOut[iOut].offset = read(uint32(ibTableOffset));
 		iOut++;
 
 		ibTableOffset = bstrmDst.SeekPadLong(ibTableOffset + cbSize);
@@ -523,10 +525,10 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	int irecFamilyName, irecSubFamily, irecFullName, irecVendor, irecPSName, irecUniqueName,
 		irecPrefFamily, irecCompatibleFull;
 
-	uint16 ibSubFamilyOffset, cbSubFamily;
-	uint16 ibVendorOffset, cbVendor;
+	uint16 ibSubFamilyOffset, ibVendorOffset; 
+	size_t cbSubFamily, cbVendor;
 
-	int cbOldTblRecords = sizeof(FontNames) + (cRecords - 1) * sizeof(NameRecord);
+	auto cbOldTblRecords = sizeof(FontNames) + (cRecords - 1) * sizeof(NameRecord);
 
 	// Make a list of all platform+encodings that have an English family name and therefore
 	// need to be changed. (Include the Unicode platform 0 for which we don't actually know
@@ -616,8 +618,8 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			"Insufficient space available for feature strings in name table.");
 		return false; // checks for legal values
 	}
-	int cbFeatStringData16 = cchwFeatStringData * sizeof(utf16);
-	int cbFeatStringData8 = cchwFeatStringData;
+	auto cbFeatStringData16 = cchwFeatStringData * sizeof(utf16);
+	auto cbFeatStringData8 = cchwFeatStringData;
 	bool f8bitFeatures = false;
 	bool f16bitFeatures = false;
 
@@ -670,7 +672,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 			}
 
 			// Determine size adjustments for font name changes: subtract old names and add new ones.
-			int dbStringDiff = 0;
+			ptrdiff_t dbStringDiff = 0;
 			if (irecFamilyName > -1)
 			{
 				dbStringDiff -= read(pRecord[irecFamilyName].length);
@@ -738,7 +740,7 @@ bool GrcManager::AddFeatsModFamily(uint16 * pchwFamilyNameNew,
 	}
 
 	// Set the output args & clean up.
-	*pcbNameTbl = cbTblNew;
+	*pcbNameTbl = uint32(cbTblNew);
 	delete [] *ppNameTbl;	// old table
 	*ppNameTbl = pTblNew;
 
@@ -837,8 +839,8 @@ bool GrcManager::FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords,
 bool GrcManager::BuildFontNames(bool f8bitTable,
 	uint16 * pchwFamilyName, size_t cchwFamilyName,
 	utf16 * stuDate,
-	uint8 * pchSubFamily, uint16 cbSubFamily,
-	uint8 * pchVendor, uint16 cbVendor,
+	uint8 * pchSubFamily, size_t cbSubFamily,
+	uint8 * pchVendor, size_t cbVendor,
 	PlatEncChange * ppec)
 {
 	Assert(pchwFamilyName);
@@ -906,12 +908,12 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	The method also copies names from pNameTbl into pNewTbl. The feature data is in the three
 	vectors passed in which must parallel each other. The don't need to be sorted. 
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/, 
-	uint8 * pTblNew, uint32 /*cbTblNew*/,
+bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, size_t /*cbTblOld*/, 
+	uint8 * pTblNew, size_t /*cbTblNew*/,
 	std::vector<std::wstring> & vstuExtNames, std::vector<uint16> & vnLangIds,
 	std::vector<uint16> & vnNameTblIds, 
 	uint16 * pchwFamilyName, size_t cchwFamilyName, std::vector<PlatEncChange> & vpec,
-	int nNameTblMinNew)
+	size_t nNameTblMinNew)
 {
     #pragma pack(1)
 	// Struct used to store data from directory entries that need to be sorted.
@@ -1117,8 +1119,7 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 
 			// Convert from wchar_t to 16-bit chars.
 			std::wstring stuWchar = vstuExtNames[istring];
-			int cchw = stuWchar.length();
-			std::copy(stuWchar.data(), stuWchar.data() + cchw, rgch16);
+			std::copy(stuWchar.data(), stuWchar.data() + stuWchar.length(), rgch16);
 
 			if (f8bit && !fStringsStored8)
 			{
@@ -1178,11 +1179,11 @@ bool GrcManager::AddFeatsModFamilyAux(uint8 * pTblOld, uint32 /*cbTblOld*/,
 		...plus more stuff we don't care about
 ----------------------------------------------------------------------------------------------*/
 #ifdef NDEBUG
-bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 /*cbOs2TblSrc*/,
+bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, size_t /*cbOs2TblSrc*/,
 #else
-bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
+bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
 #endif
-	uint8 * pOs2TblMin, uint32 cbOs2TblMin,
+	uint8 * pOs2TblMin, size_t cbOs2TblMin,
 	GrcBinaryStream * pbstrm, uint32 * pcbSizeRet)
 {
 	Assert(cbOs2TblSrc >= 68); // number of bytes we may need to fiddle with
@@ -1192,31 +1193,31 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 		return false;
 
 	// Initialize with minimal font table.
-	memcpy(prgOs2TblNew, pOs2TblMin, isizeof(uint8) * cbOs2TblMin);
+	memcpy(prgOs2TblNew, pOs2TblMin, sizeof(uint8) * cbOs2TblMin);
 
 	// Overwrite key fields with information from the source font.
 
 	// weight class: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 4, pOs2TblSrc + 4, isizeof(uint16));
+	memcpy(prgOs2TblNew + 4, pOs2TblSrc + 4, sizeof(uint16));
 
 	// fsType: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 8, pOs2TblSrc + 8, isizeof(uint16));
+	memcpy(prgOs2TblNew + 8, pOs2TblSrc + 8, sizeof(uint16));
 
 	// family class: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 30, pOs2TblSrc + 30, isizeof(uint16));
+	memcpy(prgOs2TblNew + 30, pOs2TblSrc + 30, sizeof(uint16));
 
 	// char range: 4 32-bit values (16 bytes)
-	memcpy(prgOs2TblNew + 42, pOs2TblSrc + 42, isizeof(uint8)*4 * 4);
+	memcpy(prgOs2TblNew + 42, pOs2TblSrc + 42, sizeof(uint8)*4 * 4);
 
 	// max Unicode value: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 64, pOs2TblSrc + 64, isizeof(uint16));
+	memcpy(prgOs2TblNew + 64, pOs2TblSrc + 64, sizeof(uint16));
 
 	// min Unicode value: 16 bits (2 bytes)
-	memcpy(prgOs2TblNew + 66, pOs2TblSrc + 66, isizeof(uint16));
+	memcpy(prgOs2TblNew + 66, pOs2TblSrc + 66, sizeof(uint16));
 
 	// Write the result onto the output stream.
-	pbstrm->Write((char *)prgOs2TblNew, cbOs2TblMin);
-	*pcbSizeRet = cbOs2TblMin;
+	pbstrm->Write(prgOs2TblNew, cbOs2TblMin);
+	*pcbSizeRet = int(cbOs2TblMin);
 
 	delete[] prgOs2TblNew;
 
@@ -1227,10 +1228,10 @@ bool GrcManager::OutputOS2Table(uint8 * pOs2TblSrc, uint32 cbOs2TblSrc,
 	Write the cmap table to the control file. We are outputting a copy of the cmap in the
 	source file, with every supported character pointing at some bogus glyph (ie, square box).
 ----------------------------------------------------------------------------------------------*/
-bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
+bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, size_t /*cbCmapTblSrc*/,
 	GrcBinaryStream * pbstrm, uint32 * pcbSizeRet)
 {
-	long lPosStart = pbstrm->Position();
+	auto lPosStart = pbstrm->Position();
 
 	//	See if we can get the USC-4 subtable.
 	void * pCmap_3_10 = TtfUtil::FindCmapSubtable(pCmapTblSrc, 3, 10);
@@ -1255,7 +1256,7 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 	pbstrm->WriteShort(0);
 
 	// number of subtables
-	long lPosTableCnt = pbstrm->Position();
+	auto lPosTableCnt = pbstrm->Position();
 	if (pCmap_3_10)
 		pbstrm->WriteShort(2);	// both formats
 	else
@@ -1264,11 +1265,11 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 	// subtable info
 	pbstrm->WriteShort(3);		// platform ID
 	pbstrm->WriteShort(nEncID);	// encoding ID: 1 or 0
-	long lPosOffset31 = pbstrm->Position();
+	auto lPosOffset31 = pbstrm->Position();
 	pbstrm->WriteInt(0);	// offset
 
-	long lPos310Dir = pbstrm->Position();
-	long lPosOffset310 = 0;
+	size_t 	lPos310Dir = pbstrm->Position(),
+			lPosOffset310 = 0;
 	if (pCmap_3_10)
 	{
 		pbstrm->WriteShort(3);	// platform ID
@@ -1285,13 +1286,13 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 		pbstrm->WriteInt(0);
 	}
 
-	int ibOffset31 = pbstrm->Position() - lPosStart;
+	auto ibOffset31 = pbstrm->Position() - lPosStart;
 	bool fNeed310;
 	OutputCmap31Table(
 		(pCmap_3_1) ? pCmap_3_1 : pCmap_3_10,
 		pbstrm, (pCmap_3_1 == NULL), &fNeed310);
 	// fill in the offset
-	long lPosEnd = pbstrm->Position();
+	auto lPosEnd = pbstrm->Position();
 	pbstrm->SetPosition(lPosOffset31);
 	pbstrm->WriteInt(ibOffset31);
 
@@ -1313,7 +1314,7 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 
 	if (pCmap_3_10 || fNeed310)
 	{
-		int ibOffset310 = pbstrm->Position() - lPosStart;
+		auto ibOffset310 = pbstrm->Position() - lPosStart;
 		OutputCmap310Table((pCmap_3_10) ? pCmap_3_10 : pCmap_3_1,
 			pbstrm, (pCmap_3_10 == NULL));
 		// fill in the offset
@@ -1323,7 +1324,7 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 		pbstrm->SetPosition(lPosEnd);
 	}
 
-	*pcbSizeRet = lPosEnd - lPosStart;
+	*pcbSizeRet = int(lPosEnd - lPosStart);
 	return true;
 }
 
@@ -1340,10 +1341,10 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, uint32 /*cbCmapTblSrc*/,
 	have to truncate the 3-1 table, and also make sure to output a 3-10 table which can be
 	quite a bit longer.
 ----------------------------------------------------------------------------------------------*/
-int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
+size_t GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	GrcBinaryStream * pbstrm, bool fFrom310, bool * pfNeed310)
 {
-	long lPosStart = pbstrm->Position();
+	auto lPosStart = pbstrm->Position();
 
 	int cch = 0;	// number of codepoints in the map
 
@@ -1351,14 +1352,14 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	pbstrm->WriteShort(4);
 
 	//	length: fill in later
-	int lPosLen = pbstrm->Position();
+	auto lPosLen = pbstrm->Position();
 	pbstrm->WriteShort(0);
 
 	//	language (irrelevant except on Macintosh)
 	pbstrm->WriteShort(0);
 
 	//	search variables: fill in later
-	int lPosSearch = pbstrm->Position();
+	auto lPosSearch = pbstrm->Position();
 	pbstrm->WriteShort(0);
 	pbstrm->WriteShort(0);
 	pbstrm->WriteShort(0);
@@ -1459,10 +1460,10 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 			pbstrm->WriteShort(3);
 	}
 
-	long lPosEnd = pbstrm->Position();
+	auto lPosEnd = pbstrm->Position();
 
 	//	Fill in the length.
-	int cb = lPosEnd - lPosStart;
+	auto cb = lPosEnd - lPosStart;
 	pbstrm->SetPosition(lPosLen);
 	pbstrm->WriteShort(cb);
 
@@ -1498,7 +1499,7 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	//	we can do.
 	const int cchMax = 8188; // = ((65535 - 14) / 8) - 2
 
-	long lPosStart = pbstrm->Position();
+	auto lPosStart = pbstrm->Position();
 
 	int cch = 0;	// number of items in the map
 
@@ -1581,7 +1582,7 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	for (ich = 0; ich < cchOutput; ich++)
 		pbstrm->WriteShort(0);
 
-	long lPosEnd = pbstrm->Position();
+	auto lPosEnd = pbstrm->Position();
 
 	//	Fill in the length.
 	int cb = lPosEnd - lPosStart;
@@ -1612,10 +1613,10 @@ int GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	case of a source font with a very large number of glyphs but no 3-10 table, we will
 	generate it from the 3-1 table.
 ----------------------------------------------------------------------------------------------*/
-int GrcManager::OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm,
+size_t GrcManager::OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm,
 	bool fFrom31)
 {
-	long lPosStart = pbstrm->Position();
+	auto lPosStart = pbstrm->Position();
 
 	int cch = 0;	// number of items in the map
 
@@ -1626,14 +1627,14 @@ int GrcManager::OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbst
 	pbstrm->WriteShort(0);
 
 	//	length: fill in later
-	int lPosLen = pbstrm->Position();
+	auto lPosLen = pbstrm->Position();
 	pbstrm->WriteInt(0);
 
 	//	language (irrelevant except on Macintosh)
 	pbstrm->WriteInt(0);
 
 	//	number of groups: fill in later
-	int lPosNum = pbstrm->Position();
+	auto lPosNum = pbstrm->Position();
 	pbstrm->WriteInt(0);
 
 	//	Output the ranges of characters. Each character is in its own group.
@@ -1663,10 +1664,10 @@ int GrcManager::OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbst
 			TtfUtil::Cmap310NextCodepoint(pCmapSubTblSrc, ch, &key);
 	}
 
-	int lPosEnd = pbstrm->Position();
+	auto lPosEnd = pbstrm->Position();
 
 	//	Fill in the length.
-	int cb = lPosEnd - lPosStart;
+	auto cb = lPosEnd - lPosStart;
 	pbstrm->SetPosition(lPosLen);
 	pbstrm->WriteInt(cb);
 
@@ -1687,7 +1688,7 @@ void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
 	 unsigned int * pnCreateTime, unsigned int * pnModifyTime,
 	 int * pibOffset, int * pcbSize)
 {
-	*pibOffset = pbstrm->Position();
+	*pibOffset = int(pbstrm->Position());
 
 	// version
 	int fxd = VersionForTable(ktiSile);
@@ -1703,21 +1704,21 @@ void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
 	pbstrm->WriteInt(pnModifyTime[1]);
 
 	// source font family name
-	int cchFontFamily = utf16len(pchSrcFontFamily);
+	auto cchFontFamily = utf16len(pchSrcFontFamily);
 	pbstrm->WriteShort(cchFontFamily);
 	for (int ich = 0; ich < cchFontFamily; ich++)
 		pbstrm->WriteShort(pchSrcFontFamily[ich]);
 	pbstrm->WriteByte(0);
 
 	// source font file
-	int cchFile = strlen(pchSrcFileName);
+	auto cchFile = strlen(pchSrcFileName);
 	pbstrm->WriteShort(cchFile);
 	pbstrm->Write(pchSrcFileName, cchFile);
 	pbstrm->WriteByte(0);
 
 	// handle size and padding
-	long lPos = pbstrm->Position();
-	*pcbSize = lPos - *pibOffset;
+	auto lPos = pbstrm->Position();
+	*pcbSize = int(lPos - *pibOffset);
 	pbstrm->SeekPadLong(lPos);
 }
 
@@ -1726,9 +1727,8 @@ void GrcManager::OutputSileTable(GrcBinaryStream * pbstrm,
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	int * pnGlocOffset, int * pnGlocSize, int * pnGlatOffset, int * pnGlatSize)
-{
-	int * prgibGlyphOffsets = new int[m_cwGlyphIDs + 1];
-	memset(prgibGlyphOffsets, 0, isizeof(int)  * (m_cwGlyphIDs + 1));
+{	
+	std::vector<intptr_t> vibGlyphOffsets(m_cwGlyphIDs+1);
 
 	Symbol psymBw = m_psymtbl->FindSymbol("breakweight");
 	int nAttrIdBw = psymBw->InternalID();
@@ -1737,14 +1737,14 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	int nAttrIdJStr = psymJStr->InternalID();
 
 	//	Output the Glat table, recording the offsets in the array.
-    *pnGlatOffset = pbstrm->Position();
+    *pnGlatOffset = int(pbstrm->Position());
 	const int fxdGlatVersion = TableVersion(ktiGlat);
 
     GrcDiversion dstrm(*pbstrm);
 	pbstrm->WriteInt(fxdGlatVersion);	// version number
 
     bool fOutputOctaboxes = m_prndr->HasCollisionPass();
-    int cbOutput = 4;   // first glyph starts after the version number
+    size_t cbOutput = 4;   // first glyph starts after the version number
 	if (fxdGlatVersion >= 0x00030000)
 	{
 	    // If we're using a version 3 table we start after compression
@@ -1756,10 +1756,10 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	}
 	Assert(fxdGlatVersion < 0x00030000 || fOutputOctaboxes);
 
-	int wGlyphID;
+	gid16 wGlyphID;
 	for (wGlyphID = 0; wGlyphID < m_cwGlyphIDs; wGlyphID++)
 	{
-		prgibGlyphOffsets[wGlyphID] = cbOutput;
+		vibGlyphOffsets[wGlyphID] = cbOutput;
 
 		if (fOutputOctaboxes)
 		{
@@ -1805,7 +1805,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 			
 			if (nAttrIDLim > nAttrIDMin)
 			{
-				int cbHeader;
+				size_t cbHeader;
 				if (fxdGlatVersion < 0x00020000)
 				{
 					Assert(nAttrIDLim - nAttrIDMin < 256);
@@ -1830,9 +1830,9 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	}
 
 	//	Final offset to give total length.
-	prgibGlyphOffsets[m_cwGlyphIDs] = cbOutput;
+	vibGlyphOffsets[m_cwGlyphIDs] = cbOutput;
 
-    double nOriginalSize = dstrm.str().size();
+    double nOriginalSize = double(dstrm.str().size());
     if (!Compress(dstrm))
         g_errorList.AddWarning(5508, NULL, "The Glat table is incompressible and will not be compressed.");
     nOriginalSize /= dstrm.str().size();
@@ -1840,12 +1840,12 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	dstrm.undivert();
 
 	// handle size and padding
-	int nTmp = pbstrm->Position();
-	*pnGlatSize = nTmp - *pnGlatOffset;
+	auto nTmp = pbstrm->Position();
+	*pnGlatSize = int(nTmp - *pnGlatOffset);
 	pbstrm->SeekPadLong(nTmp);
 
 	//	Output the Gloc table.
-	*pnGlocOffset = pbstrm->Position();
+	*pnGlocOffset = int(pbstrm->Position());
 
 	int fxd = VersionForTable(ktiGloc);
 	pbstrm->WriteInt(fxd);	// version number
@@ -1865,33 +1865,26 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 	pbstrm->WriteShort(m_vpsymGlyphAttrs.size());
 
 	//	offsets
-	for (wGlyphID = 0; wGlyphID <= m_cwGlyphIDs; wGlyphID++)
-	{
-		if (fNeedLongFormat)
-			pbstrm->WriteInt(prgibGlyphOffsets[wGlyphID]);
-		else
-			pbstrm->WriteShort(prgibGlyphOffsets[wGlyphID]);
-
-		// Just in case, since incrementing 0xFFFF will produce zero.
-		if (wGlyphID == 0xFFFF)
-			break;
-	}
+	if (fNeedLongFormat)
+		for (auto const ibGlyphOffset: vibGlyphOffsets)
+			pbstrm->WriteInt(ibGlyphOffset);
+	else
+		for (auto const ibGlyphOffset: vibGlyphOffsets)
+			pbstrm->WriteShort(ibGlyphOffset);
 
 	// handle size and padding
 	nTmp = pbstrm->Position();
-	*pnGlocSize = nTmp - *pnGlocOffset;
+	*pnGlocSize = int(nTmp - *pnGlocOffset);
 	pbstrm->SeekPadLong(nTmp);
 
 	//	debug names
 	Assert(!fAttrNames);
-
-	delete[] prgibGlyphOffsets;
 }
 
 /*----------------------------------------------------------------------------------------------
 	Return the final attribute value, resolved to an integer.
 ----------------------------------------------------------------------------------------------*/
-int GrcManager::FinalAttrValue(utf16 wGlyphID, int nAttrID)
+int GrcManager::FinalAttrValue(gid16 wGlyphID, int nAttrID)
 {
 	if (m_cpsymBuiltIn <= nAttrID && nAttrID < m_cpsymBuiltIn + m_cpsymComponents)
 	{
@@ -1901,7 +1894,7 @@ int GrcManager::FinalAttrValue(utf16 wGlyphID, int nAttrID)
 			return 0;
 		else
 			// What does this really mean??
-			return m_cpsymBuiltIn + m_cpsymComponents + (kFieldsPerComponent * nAttrID);
+			return int(m_cpsymBuiltIn + m_cpsymComponents) + (kFieldsPerComponent * nAttrID);
 	}
 	else
 	{
@@ -1923,7 +1916,7 @@ int GrcManager::FinalAttrValue(utf16 wGlyphID, int nAttrID)
 	Convert the breakweight value to the one appropriate for the version of the table
 	being generated.
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::ConvertBwForVersion(int wGlyphID, int nAttrIdBw)
+void GrcManager::ConvertBwForVersion(gid16 wGlyphID, int nAttrIdBw)
 {
 	int lb = FinalAttrValue(wGlyphID, nAttrIdBw);
 	int lbOut;
@@ -2062,7 +2055,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 	{
 		//	Calculate it based on what is needed to handle the size of the class map
 		//	(replacement class data).
-		int cbSpaceNeeded;	// # of bytes needed = max offset
+		size_t cbSpaceNeeded;	// # of bytes needed = max offset
 
 		//	number of classes
 		cbSpaceNeeded = 4;
@@ -2135,7 +2128,7 @@ int GrcManager::CalculateSilfVersion(int fxdSilfSpecVersion)
 	stretchHW attribute. These are guaranteed to follow the list of stretch attributes (see
 	GrcSymbolTable::AssignInternalGlyphAttrIDs).
 ----------------------------------------------------------------------------------------------*/
-void GrcManager::SplitLargeStretchValue(int wGlyphID, int nAttrIdJStr)
+void GrcManager::SplitLargeStretchValue(gid16 wGlyphID, int nAttrIdJStr)
 {
 	int cJLevels = NumJustLevels();
 
@@ -2177,7 +2170,7 @@ void GrcManager::SplitLargeStretchValue(int wGlyphID, int nAttrIdJStr)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, int * pnSilfSize)
 {
-	*pnSilfOffset = pbstrm->Position();
+	*pnSilfOffset = int(pbstrm->Position());
 
 	int fxdSilfVersion = VersionForTable(ktiSilf);
 	fxdSilfVersion = CalculateSilfVersion(fxdSilfVersion);
@@ -2205,28 +2198,28 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
 		//	offset of zeroth table relative to the start of this table
-		pbstrm->WriteInt(isizeof(int) * 3 + isizeof(utf16) * 2);
+		pbstrm->WriteInt(sizeof(int) * 3 + sizeof(utf16) * 2);
 	}
 	else if (fxdSilfVersion >= 0x00020000)
 	{
 		//	reserved - pad bytes
 		pbstrm->WriteShort(0);
 		//	offset of zeroth table relative to the start of this table
-		pbstrm->WriteInt(isizeof(int) * 2 + isizeof(utf16) * 2);
+		pbstrm->WriteInt(sizeof(int) * 2 + sizeof(utf16) * 2);
 	}
 	else
 		//	offset of zeroth table relative to the start of this table
-		pbstrm->WriteInt(isizeof(int) + isizeof(utf16) + isizeof(int));
+		pbstrm->WriteInt(sizeof(int) + sizeof(utf16) + sizeof(int));
 
 	//	Sub-table
 
-	long lTableStartSub = pbstrm->Position();
+	auto lTableStartSub = pbstrm->Position();
 
 	//	rule version - right now this is the same as the table version
 	if (fxdSilfVersion >= 0x00030000)
 		pbstrm->WriteInt(fxdSilfVersion);
 
-	long lOffsetsPos = pbstrm->Position();
+	auto lOffsetsPos = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00030000)
 	{
 		// Place holders for offsets to passes and pseudo-glyphs.
@@ -2385,7 +2378,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	}
 
 	//	number of scripts supported
-	int cScriptTags = m_prndr->NumScriptTags();
+	auto cScriptTags = m_prndr->NumScriptTags();
 	pbstrm->WriteByte(cScriptTags);
 	//	array of script tags
 	int i;
@@ -2397,13 +2390,13 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 
 	//	array of offsets to passes, relative to the start of this subtable--fill in later;
 	//	for now, write (cpass + 1) place holders
-	long lPassOffsetsPos = pbstrm->Position();
-	long nPassOffset = lPassOffsetsPos - lTableStartSub;
+	auto lPassOffsetsPos = pbstrm->Position();
+	auto nPassOffset = lPassOffsetsPos - lTableStartSub;
 	for (i = 0; i <= cpass; i++)
 		pbstrm->WriteInt(0);
 
 	//	number of pseudo mappings and search constants
-	long nPseudoOffset = pbstrm->Position() - lTableStartSub;
+	auto nPseudoOffset = pbstrm->Position() - lTableStartSub;
 	int n = signed(m_vwPseudoForUnicode.size());
 	int nPowerOf2, nLog;
 	BinarySearchConstants(n, &nPowerOf2, &nLog);
@@ -2427,13 +2420,13 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 		pbstrm);
 
 	//	passes
-	std::vector<int> vnPassOffsets;
+	std::vector<intptr_t> vnPassOffsets;
 	m_prndr->OutputPasses(this, pbstrm, lTableStartSub, vnPassOffsets);
 	Assert(vnPassOffsets.size() == static_cast<size_t>(cpass + 1));
 
 	//	Now go back and fill in the offsets.
 
-	long lSavePos = pbstrm->Position();
+	auto lSavePos = pbstrm->Position();
 
 	if (fxdSilfVersion >= 0x00030000)
 	{
@@ -2449,7 +2442,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
 	pbstrm->SetPosition(lSavePos);
 
     // Handle compression
-	double nOriginalSize = dstrm.str().size();
+	double nOriginalSize = double(dstrm.str().size());
     if (!Compress(dstrm))
         g_errorList.AddWarning(5509, NULL, "The Silf table is incompressible and will not be compressed.");
     nOriginalSize /= dstrm.str().size();
@@ -2457,7 +2450,7 @@ void GrcManager::OutputSilfTable(GrcBinaryStream * pbstrm, int * pnSilfOffset, i
     dstrm.undivert();
 
     // handle size and padding
-	*pnSilfSize = pbstrm->Position() - *pnSilfOffset;
+	*pnSilfSize = int(pbstrm->Position() - *pnSilfOffset);
 	pbstrm->SeekPadLong(pbstrm->Position());
 }
 
@@ -2478,7 +2471,7 @@ bool GrcManager::Compress(std::stringbuf & sb)
 
     // Allocate buffers
     const std::string   sPlainBuf = sb.str();
-    uint32 nSize = sPlainBuf.size();
+    uint32 nSize = uint32(sPlainBuf.size());
     char * const pcCompressedBuf = new char [nSize];
 
     // Read in data
@@ -2520,10 +2513,10 @@ bool GrcManager::Compress(std::stringbuf & sb)
 		pbstrm			- output stream
 ----------------------------------------------------------------------------------------------*/
 void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
-	std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, int cpglfcLinear,
+	std::vector<GdlGlyphClassDefn *> & vpglfcReplcmt, size_t cpglfcLinear,
 	GrcBinaryStream * pbstrm)
 {
-	long lClassMapStart = pbstrm->Position();
+	auto lClassMapStart = pbstrm->Position();
 
 	//	number of classes
 	pbstrm->WriteShort(vpglfcReplcmt.size());
@@ -2531,20 +2524,16 @@ void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 	pbstrm->WriteShort(cpglfcLinear);
 
 	//	offsets to classes--fill in later; for now output (# classes + 1) place holders
-	std::vector<int> vnClassOffsets;
-	long lOffsetPos = pbstrm->Position();
-	int ipglfc;
-	for (ipglfc = 0; ipglfc <= signed(vpglfcReplcmt.size()); ipglfc++)
-	{
-		if (fxdSilfVersion < 0x00040000)
-			pbstrm->WriteShort(0);
-		else
-			pbstrm->WriteInt(0);
-	}
+	std::vector<intptr_t> vnClassOffsets;
+	auto lOffsetPos = pbstrm->Position();
+	if (fxdSilfVersion < 0x00040000)
+		for (auto n = vpglfcReplcmt.size()+1; n; --n) pbstrm->WriteShort(0);
+	else
+		for (auto n = vpglfcReplcmt.size()+1; n; --n) pbstrm->WriteInt(0);
 
 	//	linear classes (output)
 	int cTmp = 0;
-	for (ipglfc = 0; ipglfc < cpglfcLinear; ipglfc++)
+	for (auto ipglfc = 0; ipglfc < cpglfcLinear; ipglfc++)
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
@@ -2564,14 +2553,14 @@ void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 		//pbstrm->WriteShort(nLog);
 		//pbstrm->WriteShort(n - nPowerOf2);
 		//	glyph list
-		for (size_t iw = 0; iw < vwGlyphs.size(); iw++)
-			pbstrm->WriteShort(vwGlyphs[iw]);
+		for (auto const glyph: vwGlyphs)
+			pbstrm->WriteShort(glyph);
 
 		cTmp++;
 	}
 
 	//	indexed classes (input)
-	for (ipglfc = cpglfcLinear; ipglfc < signed(vpglfcReplcmt.size()); ipglfc++)
+	for (auto ipglfc = cpglfcLinear; ipglfc < vpglfcReplcmt.size(); ipglfc++)
 	{
 		GdlGlyphClassDefn * pglfc = vpglfcReplcmt[ipglfc];
 
@@ -2605,7 +2594,7 @@ void GdlRenderer::OutputReplacementClasses(int fxdSilfVersion,
 	vnClassOffsets.push_back(pbstrm->Position() - lClassMapStart);
 
 	//	Now go back and fill in the offsets.
-	long lSavePos = pbstrm->Position();
+	auto lSavePos = pbstrm->Position();
 
 	pbstrm->SetPosition(lOffsetPos);
 	for (size_t i = 0; i < vnClassOffsets.size(); i++)
@@ -2783,8 +2772,8 @@ int GdlRuleTable::CountPasses()
 /*----------------------------------------------------------------------------------------------
 	Output the passes to the stream.
 ----------------------------------------------------------------------------------------------*/
-void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-	std::vector<int> & vnOffsets)
+void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
+	std::vector<intptr_t> & vnOffsets)
 {
 	GdlRuleTable * prultbl;
 
@@ -2806,15 +2795,15 @@ void GdlRenderer::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lon
 
 
 /*--------------------------------------------------------------------------------------------*/
-void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, long lTableStart,
-	std::vector<int> & vnOffsets)
+void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart,
+	std::vector<intptr_t> & vnOffsets)
 {
-	for (size_t ipass = 0; ipass < m_vppass.size(); ++ipass)
+	for (auto const ppass: m_vppass)
 	{
-		if (m_vppass[ipass]->ValidPass())
+		if (ppass->ValidPass())
 		{
 			vnOffsets.push_back(pbstrm->Position() - lTableStart);
-			m_vppass[ipass]->OutputPass(pcman, pbstrm, lTableStart);
+			ppass->OutputPass(pcman, pbstrm, lTableStart);
 		}
 	}
 }
@@ -2823,24 +2812,24 @@ void GdlRuleTable::OutputPasses(GrcManager * pcman, GrcBinaryStream * pbstrm, lo
 /*----------------------------------------------------------------------------------------------
 	Output the contents of the pass to the stream.
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTableStart)
+void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, size_t lTableStart)
 {
-	long lPassStart = pbstrm->Position();
+	auto lPassStart = pbstrm->Position();
 
 	int fxdSilfVersion = pcman->VersionForTable(ktiSilf);
-	int fxdRuleVersion = pcman->VersionForRules();
+	uint32_t fxdRuleVersion = pcman->VersionForRules();
 
-	int nOffsetToPConstraint = 0;
-	long lOffsetToPConstraintPos = 0;
+	intptr_t nOffsetToPConstraint = 0;
+	size_t lOffsetToPConstraintPos = 0;
 
-	int nOffsetToConstraint = 0;
-	long lOffsetToConstraintPos = 0;
+	intptr_t nOffsetToConstraint = 0;
+	size_t lOffsetToConstraintPos = 0;
 
-	int nOffsetToAction = 0;
-	long lOffsetToActionPos = 0;
+	intptr_t nOffsetToAction = 0;
+	size_t lOffsetToActionPos = 0;
 
-	int nOffsetToDebugArrays = 0;
-	long lOffsetToDebugArraysPos = 0;
+	intptr_t nOffsetToDebugArrays = 0;
+	size_t lOffsetToDebugArraysPos = 0;
 
 	//	flags: bits 0-2 = collision fix; bits 3-4 = kern; bit 5 = flip direction
 	int nTemp = m_nCollisionFix | ((int)m_nAutoKern << 3 | m_fFlipDir << 5);
@@ -2854,7 +2843,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	//	number of rules
 	pbstrm->WriteShort(m_vprule.size());
 
-	long lFsmOffsetPos = pbstrm->Position();
+	auto lFsmOffsetPos = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
 		// offset to row information, or (<=v2) reserved
@@ -2874,7 +2863,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	lOffsetToDebugArraysPos = pbstrm->Position();
 	pbstrm->WriteInt(0);
 
-	long nFsmOffset = pbstrm->Position() - lPassStart;
+	auto nFsmOffset = pbstrm->Position() - lPassStart;
 
 	//	number of FSM rows
 	pbstrm->WriteShort(NumStates());
@@ -2889,7 +2878,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 		pbstrm->WriteShort(m_pfsm->NumberOfColumns());
 
 	//	number of glyph sub-ranges
-	int n = TotalNumGlyphSubRanges();
+	auto n = int(TotalNumGlyphSubRanges());
 	pbstrm->WriteShort(n);
 	//	glyph sub-range search constants
 	int nPowerOf2, nLog;
@@ -2918,8 +2907,8 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	}
 
 	//	rule list and offsets
-	std::vector<int> vnOffsets;
-	std::vector<int> vnRuleList;
+	std::vector<intptr_t> vnOffsets;
+	std::vector<intptr_t> vnRuleList;
 	GenerateRuleMaps(vnOffsets, vnRuleList);
 	int i;
 	for (i = 0; i < signed(vnOffsets.size()); i++)
@@ -2938,11 +2927,11 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	else
 	{
 		//	minRulePreContext
-		pbstrm->WriteByte(m_critMinPreContext);
+		pbstrm->WriteByte(int(m_critMinPreContext));
 		//	maxRulePreContext
-		pbstrm->WriteByte(m_critMaxPreContext);
+		pbstrm->WriteByte(int(m_critMaxPreContext));
 		//	start states
-		Assert(m_critMaxPreContext - m_critMinPreContext + 1 == static_cast<int>(m_vrowStartStates.size()));
+		Assert(m_critMaxPreContext - m_critMinPreContext + 1 == m_vrowStartStates.size());
 		Assert(m_vrowStartStates[0] == 0);
 		for (i = 0; i < signed(m_vrowStartStates.size()); i++)
 			pbstrm->WriteShort(m_vrowStartStates[i]);
@@ -2962,9 +2951,9 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	//	action and constraint offsets--fill in later;
 	//	for now, write (# rules + 1) place holders
-	std::vector<int> vnActionOffsets;
-	std::vector<int> vnConstraintOffsets;
-	long lCodeOffsets = pbstrm->Position();
+	std::vector<intptr_t> vnActionOffsets;
+	std::vector<intptr_t> vnConstraintOffsets;
+	auto lCodeOffsets = pbstrm->Position();
 	if (fxdSilfVersion >= 0x00020000)
 	{
 		if (pcman->Renderer()->HasCollisionPass())
@@ -2990,7 +2979,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	size_t ib;
 
-	int cbPassConstraint;
+	size_t cbPassConstraint;
 	if (fxdSilfVersion >= 0x00020000)
 	{
 		// reserved - pad byte
@@ -3056,7 +3045,7 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 
 	//	Now go back and fill in the offsets.
 
-	long lSavePos = pbstrm->Position();
+	auto lSavePos = pbstrm->Position();
 
 	if (fxdSilfVersion >= 0x00020000)
 	{
@@ -3094,9 +3083,9 @@ void GdlPass::OutputPass(GrcManager * pcman, GrcBinaryStream * pbstrm, int lTabl
 	due to the way this method is used, we can assme the given glyph ID is the first glyph
 	in the range.
 ----------------------------------------------------------------------------------------------*/
-utf16 FsmMachineClass::OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm)
+utf16 FsmMachineClass::OutputRange(gid16 wGlyphID, GrcBinaryStream * pbstrm)
 {
-	for (size_t iMin = 0; iMin < m_wGlyphs.size(); iMin++)
+	for (auto iMin = 0; iMin < m_wGlyphs.size(); iMin++)
 	{
 		if (m_wGlyphs[iMin] == wGlyphID)
 		{
@@ -3138,7 +3127,7 @@ utf16 FsmMachineClass::OutputRange(utf16 wGlyphID, GrcBinaryStream * pbstrm)
 									6
 	(States 0 - 2 are omitted from the lists; only success states are included.)
 ----------------------------------------------------------------------------------------------*/
-void GdlPass::GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & vnRuleList)
+void GdlPass::GenerateRuleMaps(std::vector<intptr_t> & vnOffsets, std::vector<intptr_t> & vnRuleList)
 {
 	size_t ifsLim = m_vifsFinalToWork.size();
 	for (size_t ifs = 0; ifs < ifsLim; ifs++)
@@ -3192,11 +3181,10 @@ void GdlPass::GenerateRuleMaps(std::vector<int> & vnOffsets, std::vector<int> & 
 ----------------------------------------------------------------------------------------------*/
 void GdlPass::OutputFsmTable(GrcBinaryStream * pbstrm)
 {
-	int cfsmc = m_pfsm->NumberOfColumns();
-	size_t ifsLim = m_vifsFinalToWork.size();
-	for (size_t ifs = 0; ifs < ifsLim; ifs++)
+	auto cfsmc = m_pfsm->NumberOfColumns();
+	for (auto const ifs: m_vifsFinalToWork)
 	{
-		FsmState * pfstate = m_pfsm->StateAt(m_vifsFinalToWork[ifs]);
+		FsmState * pfstate = m_pfsm->StateAt(ifs);
 
 		Assert(!pfstate->HasBeenMerged());
 
@@ -3273,7 +3261,7 @@ bool GdlRenderer::AssignFeatTableNameIds(utf16 wFirstNameId, utf16 wNameIdMinNew
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, int * pnFeatSize)
 {
-	*pnFeatOffset = pbstrm->Position();
+	*pnFeatOffset = int(pbstrm->Position());
 
 	//	version number
 	int fxdFeatVersion = VersionForTable(ktiFeat);
@@ -3283,8 +3271,8 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 	m_prndr->OutputFeatTable(pbstrm, *pnFeatOffset, fxdFeatVersion);
 
 	// handle size and padding
-	int nTmp = pbstrm->Position();
-	*pnFeatSize = nTmp - *pnFeatOffset;
+	auto nTmp = pbstrm->Position();
+	*pnFeatSize = int(nTmp - *pnFeatOffset);
 	pbstrm->SeekPadLong(nTmp);
 }
 
@@ -3293,18 +3281,16 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 	int fxdVersion)
 {
-	std::vector<int> vnOffsets;
-	std::vector<long> vlOffsetPos;
+	std::vector<intptr_t> vnOffsets;
+	std::vector<size_t> vlOffsetPos;
 
 	size_t ifeat;
 	size_t iID;
 
 	//	number of features actually written to the font, including duplicates
-	int cfeatout = 0;
-	for (ifeat = 0; ifeat < m_vpfeat.size(); ifeat++)
-	{
-		cfeatout += m_vpfeat[ifeat]->NumAltIDs();
-	}
+	size_t cfeatout = 0;
+	for (auto const pfeat: m_vpfeat)
+		cfeatout += pfeat->NumAltIDs();
 	pbstrm->WriteShort(cfeatout);
 
 	//	reserved
@@ -3363,7 +3349,7 @@ void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
 
 	//	Now fill in the offsets.
 
-	long lSavePos = pbstrm->Position();
+	auto lSavePos = pbstrm->Position();
 
 	ifeatout = 0;
 	for (ifeat = 0; ifeat < vnOffsets.size(); ifeat++)
@@ -3415,7 +3401,7 @@ void GdlFeatureDefn::OutputSettings(GrcBinaryStream * pbstrm)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, int * pnSillSize)
 {
-	*pnSillOffset = pbstrm->Position();
+	*pnSillOffset = int(pbstrm->Position());
 
 	//	version number
 	int fxd = VersionForTable(ktiSill);
@@ -3425,8 +3411,8 @@ void GrcManager::OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, i
 	m_prndr->OutputSillTable(pbstrm, *pnSillOffset);
 
 	// handle size and padding
-	int nTmp = pbstrm->Position();
-	*pnSillSize = nTmp - *pnSillOffset;
+	auto nTmp = pbstrm->Position();
+	*pnSillSize = int(nTmp - *pnSillOffset);
 	pbstrm->SeekPadLong(nTmp);
 }
 
@@ -3437,11 +3423,11 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	// Note: if the format of the Sill table changes, the CheckLanguageFeatureSize method
 	// needs to be changed to match.
 
-	std::vector<int> vnOffsets;
-	std::vector<long> vlOffsetPos;
+	std::vector<intptr_t> vnOffsets;
+	std::vector<size_t> vlOffsetPos;
 
 	//	search constants
-	int n = m_vplang.size();
+	int n = int(m_vplang.size());
 	int nPowerOf2, nLog;
 	BinarySearchConstants(n, &nPowerOf2, &nLog);
 	pbstrm->WriteShort(n); // number of languages
@@ -3471,7 +3457,7 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 	vlOffsetPos.push_back(pbstrm->Position());
 	pbstrm->WriteShort(0);
 
-	for (ilang = 0; ilang < signed(m_vplang.size()); ilang++)
+	for (ilang = 0; ilang < m_vplang.size(); ilang++)
 	{
 		vnOffsets.push_back(pbstrm->Position() - lTableStart);
 		m_vplang[ilang]->OutputSettings(pbstrm);
@@ -3482,9 +3468,9 @@ void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
 
 	//	Now fill in the offsets.
 
-	long lSavePos = pbstrm->Position();
+	auto lSavePos = pbstrm->Position();
 
-	for (ilang = 0; ilang < signed(vnOffsets.size()); ilang++)
+	for (ilang = 0; ilang < vnOffsets.size(); ilang++)
 	{
 		pbstrm->SetPosition(vlOffsetPos[ilang]);
 		pbstrm->WriteShort(vnOffsets[ilang]);
@@ -3536,26 +3522,26 @@ void BinarySearchConstants(int n, int * pnPowerOf2, int * pnLog)
 /*----------------------------------------------------------------------------------------------
 	Write a byte to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcBinaryStream::WriteByte(int iOutput)
+void GrcBinaryStream::WriteByte(intptr_t iOutput)
 {
 	Assert(((iOutput & 0xFFFFFF00) == 0xFFFFFF00) ||
 		((iOutput & 0xFFFFFF00) == 0x00000000));
 
-	char b = iOutput & 0x000000FF;
+	char b = iOutput & 0xFFUL;
 	write(&b, 1);
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a short integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcBinaryStream::WriteShort(int iOutput)
+void GrcBinaryStream::WriteShort(intptr_t iOutput)
 {
 	Assert(((iOutput & 0xFFFF0000) == 0xFFFF0000) ||
 		((iOutput & 0xFFFF0000) == 0x00000000));
 
 	//	big-endian format:
-	char b1 = (iOutput & 0x000000FF);
-	char b2 = (iOutput & 0x0000FF00) >> 8;
+	char b1 = (iOutput & 0x00FFUL);
+	char b2 = (iOutput & 0xFF00UL) >> 8;
 	write(&b2, 1);
 	write(&b1, 1);
 }
@@ -3563,13 +3549,13 @@ void GrcBinaryStream::WriteShort(int iOutput)
 /*----------------------------------------------------------------------------------------------
 	Write a standard integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcBinaryStream::WriteInt(int iOutput)
+void GrcBinaryStream::WriteInt(intptr_t iOutput)
 {
 	//	big-endian format:
-	char b1 = (iOutput & 0x000000FF);
-	char b2 = (iOutput & 0x0000FF00) >> 8;
-	char b3 = (iOutput & 0x00FF0000) >> 16;
-	char b4 = (iOutput & 0xFF000000) >> 24;
+	char b1 = uint8_t(iOutput & 0x000000FFUL),
+		 b2 = uint8_t((iOutput & 0x0000FF00UL) >> 8),
+		 b3 = uint8_t((iOutput & 0x00FF0000UL) >> 16),
+		 b4 = uint8_t((iOutput & 0xFF000000UL) >> 24);
 
 	write(&b4, 1);
 	write(&b3, 1);
@@ -3581,38 +3567,38 @@ void GrcBinaryStream::WriteInt(int iOutput)
 	Seek to ibOffset then add zero padding for long alignment.
 	Return padded location.
 ----------------------------------------------------------------------------------------------*/
-long GrcBinaryStream::SeekPadLong(long ibOffset)
+std::streamoff GrcBinaryStream::SeekPadLong(std::streamoff ibOffset)
 {
-	int cPad = ((ibOffset + 3) & ~3) - ibOffset;
+	auto cPad = ((ibOffset + 3) & ~3) - ibOffset;
 	seekp(ibOffset);
 	if (cPad)
 		write("\0\0\0", cPad);
-	return (long)tellp();
+	return tellp();
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a byte to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcSubStream::WriteByte(int iOutput)
+void GrcSubStream::WriteByte(intptr_t iOutput)
 {
 	Assert(((iOutput & 0xFFFFFF00) == 0xFFFFFF00) ||
 		((iOutput & 0xFFFFFF00) == 0x00000000));
 
-	char b = iOutput & 0x000000FF;
+	char b = iOutput & 0xFFUL;
 	m_strm.write(&b, 1);
 }
 
 /*----------------------------------------------------------------------------------------------
 	Write a short integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcSubStream::WriteShort(int iOutput)
+void GrcSubStream::WriteShort(intptr_t iOutput)
 {
 	Assert(((iOutput & 0xFFFF0000) == 0xFFFF0000) ||
 		((iOutput & 0xFFFF0000) == 0x00000000));
 
 	//	big-endian format:
-	char b1 = (iOutput & 0x000000FF);
-	char b2 = (iOutput & 0x0000FF00) >> 8;
+	char b1 = (iOutput & 0x00FFUL);
+	char b2 = (iOutput & 0xFF00UL) >> 8;
 	m_strm.write(&b2, 1);
 	m_strm.write(&b1, 1);
 }
@@ -3620,13 +3606,13 @@ void GrcSubStream::WriteShort(int iOutput)
 /*----------------------------------------------------------------------------------------------
 	Write a standard integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-void GrcSubStream::WriteInt(int iOutput)
+void GrcSubStream::WriteInt(intptr_t iOutput)
 {
 	//	big-endian format:
-	char b1 = (iOutput & 0x000000FF);
-	char b2 = (iOutput & 0x0000FF00) >> 8;
-	char b3 = (iOutput & 0x00FF0000) >> 16;
-	char b4 = (iOutput & 0xFF000000) >> 24;
+	char b1 = uint8_t(iOutput & 0x000000FFUL),
+		 b2 = uint8_t((iOutput & 0x0000FF00UL) >> 8),
+		 b3 = uint8_t((iOutput & 0x00FF0000UL) >> 16),
+		 b4 = uint8_t((iOutput & 0xFF000000UL) >> 24);
 
 	m_strm.write(&b4, 1);
 	m_strm.write(&b3, 1);
@@ -3695,7 +3681,7 @@ void GrcManager::DebugOutput()
 	OutputSilfTable(&bstrm, &nSilOffset, &nSilSize);
 	OutputFeatTable(&bstrm, &nFeatOffset, &nFeatSize);
 
-	long lSavePos = bstrm.Position();
+	auto lSavePos = bstrm.Position();
 
 	bstrm.SetPosition(0);
 	bstrm.WriteInt(nSilOffset);
