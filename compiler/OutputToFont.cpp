@@ -3399,13 +3399,13 @@ void GrcManager::OutputSillTable(GrcBinaryStream * pbstrm, int * pnSillOffset, i
 
 /*---------------------------------------------------------------------------------------------*/
 
-void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, long lTableStart)
+void GdlRenderer::OutputSillTable(GrcBinaryStream * pbstrm, offset_t lTableStart)
 {
 	// Note: if the format of the Sill table changes, the CheckLanguageFeatureSize method
 	// needs to be changed to match.
 
-	std::vector<intptr_t> vnOffsets;
-	std::vector<size_t> vlOffsetPos;
+	std::vector<offset_t> vnOffsets;
+	std::vector<offset_t> vlOffsetPos;
 
 	//	search constants
 	int n = int(m_vplang.size());
