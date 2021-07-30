@@ -163,7 +163,7 @@ public:
 		bool * pfFixPassConstraints);
 	void MovePassConstraintsToRules(int fxdSilfVersion);
 	void CalculateSpaceContextuals(GrcFont * pfont);
-	int NumberOfPasses()
+	size_t NumberOfPasses()
 	{
 		size_t cpass, cpassLB, cpassSub, cpassPos, cpassJust;
 		int ipassBidi;
@@ -171,17 +171,14 @@ public:
 		return cpass;
 	}
 
-	void SetNumUserDefn(int c);
-	int NumUserDefn()
+	void SetNumUserDefn(size_t c);
+	size_t NumUserDefn()
 	{
 		return m_cnUserDefn;
 	}
 
-	void SetNumLigComponents(int c);
-	//{
-	//	m_cnComponents = max(m_cnComponents, c);
-	//}
-	int NumLigComponents()
+	void SetNumLigComponents(size_t c);
+	size_t NumLigComponents()
 	{
 		return m_cnComponents;
 	}
@@ -273,8 +270,8 @@ protected:
 	//	space contextuals:
 	SpaceContextuals m_spcon;
 
-	int m_cnUserDefn;	// number of user-defined slot attributes
-	int m_cnComponents;	// max number of components per ligature
+	size_t m_cnUserDefn;	// number of user-defined slot attributes
+	size_t m_cnComponents;	// max number of components per ligature
 
 	enum { kInfiniteXlbContext = 255 };
 };
