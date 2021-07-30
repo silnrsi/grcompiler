@@ -1,8 +1,8 @@
 LZ4 partial library source
 
 The following files were pulled from: 
-    http://github.com/Cyan4973/lz4/tree/master/
-at commit dfabec2d18
+    https://github.com/lz4/lz4
+at commit d443718 (tag v1.9.3)
 
 lib/lz4.c
 lib/lz4.h
