@@ -1453,7 +1453,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 	Symbol psymSkipP2 = m_psymtbl->FindSymbol("*skipPasses2*");
 	if (psymSkipP2)
 		nAttrIdSkipP2 = psymSkipP2->InternalID();
-	int cpass = this->m_prndr->NumberOfPasses();
+	auto cpass = this->m_prndr->NumberOfPasses();
 
 	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
 	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));

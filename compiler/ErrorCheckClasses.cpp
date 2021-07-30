@@ -1078,7 +1078,7 @@ void GrcManager::CalculateCollisionOctaboxes(GrcFont * pfont)
 ----------------------------------------------------------------------------------------------*/
 bool GrcManager::AssignInternalGlyphAttrIDs()
 {
-	int cpass = m_prndr->NumberOfPasses();
+	auto cpass = m_prndr->NumberOfPasses();
 
 	bool fCollFix = m_prndr->HasCollisionPass();
 
@@ -1582,8 +1582,8 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 	{
 		vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("*skipPasses*")));
 		// Default value for the *skipPasses* attributes is a bitmap with 1 set for every pass.
-		int cpass = m_prndr->NumberOfPasses();
-		int cpass1 = (cpass > kPassPerSPbitmap) ? kPassPerSPbitmap : cpass;
+		auto cpass = m_prndr->NumberOfPasses();
+		auto cpass1 = (cpass > kPassPerSPbitmap) ? kPassPerSPbitmap : cpass;
 		unsigned int nDefaultSkipP = 0;
 		for (int i = 0; i < cpass1; i++)
 			nDefaultSkipP = (nDefaultSkipP << 1) + 1;
