@@ -266,7 +266,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			bstrmDst.SetPosition(ibTableOffset);
 			if (!OutputOS2Table(pbTableSrc, cbSizeSrc, pbTable, cbSize, &bstrmDst, cbSize))
 				return 9;
-			pDirEntryOut[iOut].length = read<uint32_t>(cbSize);
+			pDirEntryOut[iOut].length = read<uint32_t>(uint32_t(cbSize));
 
 			delete[] pbTableSrc;
 		}
@@ -284,7 +284,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 			strmSrc.read((char *)pbTableSrc, cbSizeSrc);
 			bstrmDst.SetPosition(ibTableOffset);
 			OutputCmapTable(pbTableSrc, cbSizeSrc, &bstrmDst, cbSize);
-			pDirEntryOut[iOut].length = read<uint32_t>(cbSize);
+			pDirEntryOut[iOut].length = read<uint32_t>(uint32_t(cbSize));
 
 			delete[] pbTableSrc;
 		}
@@ -296,7 +296,7 @@ int GrcManager::OutputToFont(char * pchSrcFileName, char * pchDstFileName,
 				iNameTbl = iOut;
 				if (!AddFeatsModFamily((fModFontName ? pchDstFontFamily : NULL), pbTable, cbSize))
 					return 11;
-				pDirEntryOut[iOut].length = read<uint32_t>(cbSize);
+				pDirEntryOut[iOut].length = read<uint32_t>(uint32_t(cbSize));
 			}
 
 			// remember offset and size of head table to adjust the file checksum later
@@ -2734,7 +2734,7 @@ void GdlRenderer::CountPasses(size_t & cpass, size_t & cpassLB, size_t & cpassSu
 	cpass = cpassLB + cpassSub + cpassJust + cpassPos;
 
 	if (RawBidi() == kFullPass && !HasFlippedPass())
-		ipassBidi = cpassLB + cpassSub;
+		ipassBidi = int(cpassLB + cpassSub);
 	else
 		ipassBidi = -1;
 }
@@ -3516,8 +3516,8 @@ template<typename T>
 void GrcBinaryStream::WriteShort(T iOutput)
 {
 	char const be_short[] = {
-		char(iOutput >> 8 & 0xFFU), 
-		char(iOutput      & 0xFFU)};
+		char(static_cast<uint16_t>(iOutput) >> 8 & 0xFFU), 
+		char(static_cast<uint16_t>(iOutput)      & 0xFFU)};
 	write(be_short, sizeof(uint16_t));
 }
 
@@ -3528,10 +3528,10 @@ template<typename T>
 void GrcBinaryStream::WriteInt(T iOutput)
 {
 	char const be_long[] = {
-		char(iOutput >> 24 & 0xFFU), 
-		char(iOutput >> 16 & 0xFFU),
-		char(iOutput >>  8 & 0xFFU),
-		char(iOutput 	   & 0xFFU)};
+		char(static_cast<uint32_t>(iOutput) >> 24 & 0xFFU), 
+		char(static_cast<uint32_t>(iOutput) >> 16 & 0xFFU),
+		char(static_cast<uint32_t>(iOutput) >>  8 & 0xFFU),
+		char(static_cast<uint32_t>(iOutput) 	   & 0xFFU)};
 	write(be_long, sizeof(uint32_t));
 }
 
