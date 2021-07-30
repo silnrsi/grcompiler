@@ -1529,7 +1529,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 						strmOut << "  / ";
 						// Print out bits in order of passes (low to high).
 						int tValue = nValue;
-						for (int ipass = iStart; ipass < iStop; ipass++)
+						for (auto ipass = iStart; ipass < iStop; ++ipass)
 						{
 							int n = int((tValue & 0x0001) != 0);
 							strmOut << " " << n;
