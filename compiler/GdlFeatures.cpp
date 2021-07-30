@@ -251,14 +251,14 @@ void GdlFeatureDefn::ErrorCheckContd()
 	}
 
 	//std::set<int> setnValues;
-	for (auto ifset = 0; ifset < m_vpfset.size(); ++ifset)
+	for (auto const pfset: m_vpfset)
 	{
 		//	Feature setting with no value set: warning
-		if (!m_vpfset[ifset]->m_fHasValue)
+		if (!pfset->m_fHasValue)
 		{
 			g_errorList.AddWarning(3526, this,
 				"Feature setting with no value specified; value will be zero: ",
-				m_vpfset[ifset]->m_staName);
+				pfset->m_staName);
 		}
 	}
 }
@@ -278,11 +278,11 @@ void GdlFeatureDefn::CalculateDefault()
 
 	if (m_fDefaultSet)
 	{
-		for (auto ifset = 0; ifset < m_vpfset.size(); ++ifset)
+		for (auto const pfset: m_vpfset)
 		{
-			if (m_vpfset[ifset]->m_nValue == m_nDefault)
+			if (pfset->m_nValue == m_nDefault)
 			{
-				m_pfsetDefault = m_vpfset[ifset];
+				m_pfsetDefault = pfset;
 				return;
 			}
 		}
@@ -300,7 +300,7 @@ void GdlFeatureDefn::CalculateDefault()
 
 	m_nDefault = m_vpfset[0]->m_nValue;
 	m_pfsetDefault = m_vpfset[0];
-	for (auto ifset = 1; ifset < m_vpfset.size(); ++ifset)
+	for (auto ifset = 1U; ifset < m_vpfset.size(); ++ifset)
 	{
 		if (m_vpfset[ifset]->m_nValue < m_nDefault)
 		{
@@ -327,9 +327,8 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst, uint8 * pNameTbl,
 	// Look for an existing name string that matches.
 	GdlFeatureDefn * pfeatInput = NULL;
 	std::vector<GdlFeatureSetting *> vpfsetInput;
-	for (auto ifeat = 0; ifeat < vpfeatInput.size(); ifeat++)
+	for (auto const pfeatInput: vpfeatInput)
 	{
-		pfeatInput = vpfeatInput[ifeat];
 		vpfsetInput = pfeatInput->m_vpfset;
 		if (pfeatInput->ID() == this->ID() && pfeatInput->HasExtName(stuBasic))
 		{
@@ -346,16 +345,13 @@ utf16 GdlFeatureDefn::SetNameTblIds(utf16 wFirst, uint8 * pNameTbl,
 		vpfsetInput = vpfsetEmpty;
 	}
 
-	auto cnFeatSet = m_vpfset.size();
-	for (auto ifset = 0; ifset < cnFeatSet; ifset++)
+	for (auto const pfset: m_vpfset)
 	{
-		GdlFeatureSetting * pfset = m_vpfset[ifset];
 		stuBasic = pfset->FindBasicExtName();
 		pfset->SetNameTblId(0);
 		// Look for an existing name string that matches.
-		for (size_t ifsetInput = 0; ifsetInput < vpfsetInput.size(); ifsetInput++)
+		for (auto const pfsetInput: vpfsetInput)
 		{
-			GdlFeatureSetting * pfsetInput = vpfsetInput[ifsetInput];
 			if (pfsetInput->Value() == pfset->Value() && pfsetInput->HasExtName(stuBasic))
 			{
 				pfset->SetNameTblId(pfsetInput->m_wNameTblId); // found it
@@ -459,15 +455,12 @@ std::wstring GdlFeatureDefn::GetLabelFromNameTable(int nNameID, int nLangID, uin
 ----------------------------------------------------------------------------------------------*/
 bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
 	std::vector<utf16> & vwLangIds, std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,
-	int nNameTblIdMinNew, int nNameIdNoName)
+	unsigned int nNameTblIdMinNew, int nNameIdNoName)
 {
-	size_t cnExtNames;
-
 	// Store data for the feature itself.
 	if (NameTblId() >= nNameTblIdMinNew)
 	{
-		cnExtNames = m_vextname.size();
-		if (cnExtNames <= 0)
+		if (m_vextname.empty())
 		{
 			if (nNameIdNoName == -1)	// "NoName" is not in the name table already
 			{
@@ -479,25 +472,22 @@ bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
 		}
 		else
 		{
-			for (size_t i = 0; i < cnExtNames; i++)
+			for (auto & extname: m_vextname)
 			{
-				vstuExtNames.push_back(m_vextname[i].Name());
-				cchwStringData += m_vextname[i].Name().length();
-				vwLangIds.push_back(m_vextname[i].LanguageID());
+				vstuExtNames.push_back(extname.Name());
+				cchwStringData += extname.Name().length();
+				vwLangIds.push_back(extname.LanguageID());
 				vwNameTblIds.push_back(m_wNameTblId);
 			}
 		}
 	}
 
 	// Store data for all settings.
-	auto cnSettings = m_vpfset.size();
-	for (auto i = 0; i < cnSettings; i++)
+	for (auto const pFeatSet: m_vpfset)
 	{
-		GdlFeatureSetting * pFeatSet = m_vpfset[i];
 		if (pFeatSet->NameTblId() >= nNameTblIdMinNew)
 		{
-			cnExtNames = pFeatSet->m_vextname.size();
-			if (cnExtNames <= 0)
+			if (pFeatSet->m_vextname.empty())
 			{
 				if (nNameIdNoName == -1)	// "NoName" is not in the name table already
 				{
@@ -509,11 +499,11 @@ bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
 			}
 			else
 			{
-				for (size_t j = 0; j < cnExtNames; j++)
+				for (auto & extname: pFeatSet->m_vextname)
 				{
-					vstuExtNames.push_back(pFeatSet->m_vextname[j].Name());
-					cchwStringData += pFeatSet->m_vextname[j].Name().length();
-					vwLangIds.push_back(pFeatSet->m_vextname[j].LanguageID());
+					vstuExtNames.push_back(extname.Name());
+					cchwStringData += extname.Name().length();
+					vwLangIds.push_back(extname.LanguageID());
 					vwNameTblIds.push_back(pFeatSet->NameTblId());
 				}
 			}
@@ -528,26 +518,24 @@ bool GdlFeatureDefn::NameTblInfo(std::vector<std::wstring> & vstuExtNames,
 ----------------------------------------------------------------------------------------------*/
 std::wstring GdlFeatureDefn::FindBasicExtName()
 {
-	for (auto iextname = 0; iextname < m_vextname.size(); iextname++)
+	for (auto const extname: m_vextname)
 	{
-		if (m_vextname[iextname].m_wLanguageID == 1033
-				|| m_vextname[iextname].m_wLanguageID == 0)
-			return m_vextname[iextname].m_stuName;
+		if (extname.m_wLanguageID == 1033
+				|| extname.m_wLanguageID == 0)
+			return extname.m_stuName;
 	}
-	std::wstring stuEmpty;
-	return stuEmpty;
+	return std::wstring();
 }
 
 std::wstring GdlFeatureSetting::FindBasicExtName() // find an English or language-neutral label
 {
-	for (auto iextname = 0; iextname < m_vextname.size(); iextname++)
+	for (auto const extname: m_vextname)
 	{
-		if (m_vextname[iextname].m_wLanguageID == 1033
-				|| m_vextname[iextname].m_wLanguageID == 0)
-			return m_vextname[iextname].m_stuName;
+		if (extname.m_wLanguageID == 1033
+				|| extname.m_wLanguageID == 0)
+			return extname.m_stuName;
 	}
-	std::wstring stuEmpty;
-	return stuEmpty;
+	return std::wstring();
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -586,7 +574,7 @@ void GdlFeatureDefn::RecordDebugInfo()
 void GdlLanguageDefn::AddFeatureValue(GdlFeatureDefn * pfeat, GdlFeatureSetting * pfset,
 	int nFset, GrpLineAndFile & lnf)
 {
-	for (auto ifeat = 0; ifeat < m_vpfeat.size(); ++ifeat)
+	for (auto ifeat = 0U; ifeat < m_vpfeat.size(); ++ifeat)
 	{
 		if (m_vpfeat[ifeat] == pfeat)
 		{

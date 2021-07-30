@@ -404,7 +404,7 @@ public:
 	void ConvertBwForVersion(gid16 wGlyphId, int nAttrIdBw);
 	void SplitLargeStretchValue(gid16 wGlyphId, int nAttrIdJStr);
 protected:
-	bool AddFeatsModFamily(uint16 * pchFamilyName, uint8 ** ppNameTbl, uint32 * pcbNameTbl);
+	bool AddFeatsModFamily(uint16 * pchFamilyName, uint8 *& pNameTbl, size_t & cbNameTbl);
 	void BuildDateString(utf16 * stuDate);
 	bool FindNameTblEntries(void * pNameTblRecord, int cNameTblRecords, 
 		uint16 suPlatformId, uint16 suEncodingId, uint16 suLangId, 
@@ -421,9 +421,9 @@ protected:
 		uint16 * pchwFamilyName, size_t cchwFamilyName, std::vector<PlatEncChange> & vpec,
 		size_t nNameTblMinNew);
 	bool OutputOS2Table(uint8 * pOs2TblSrc, size_t cbOs2TblSrc,
-		uint8 * pOs2TblMin, size_t cbOs2TblMin, GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
+		uint8 * pOs2TblMin, size_t cbOs2TblMin, GrcBinaryStream * pbstrm, size_t & chSizeRet);
 	bool OutputCmapTable(uint8 * pCmapTblSrc, size_t cbCmapTblSrc,
-		GrcBinaryStream * pbstrm, uint32 * pchSizeRet);
+		GrcBinaryStream * pbstrm, size_t & chSizeRet);
 	size_t OutputCmap31Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom310,
 		bool * pfNeed310);
 	size_t OutputCmap310Table(void * pCmapSubTblSrc, GrcBinaryStream * pbstrm, bool fFrom31);

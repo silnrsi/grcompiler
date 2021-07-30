@@ -188,12 +188,12 @@ GdlRuleTable * GdlRenderer::FindRuleTable(Symbol psymTableName)
 	Methods: Pre-compiler
 ***********************************************************************************************/
 
-void GdlRenderer::SetNumUserDefn(int c)
+void GdlRenderer::SetNumUserDefn(size_t c)
 {
 	m_cnUserDefn = max(m_cnUserDefn, c+1);
 }
 
-void GdlRenderer::SetNumLigComponents(int c)
+void GdlRenderer::SetNumLigComponents(size_t c)
 {
 	m_cnComponents = max(m_cnComponents, c);
 }

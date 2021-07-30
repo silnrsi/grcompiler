@@ -135,10 +135,8 @@ bool GrcGlyphAttrMatrix::GpointDefined(gid16 wGlyphID, int nAttrID, int nStyle)
 	Constructor.
 ----------------------------------------------------------------------------------------------*/
 GrcLigComponentList::GrcLigComponentList(size_t cvGlyphIDs)
+: m_vgplcmap(cvGlyphIDs)
 {
-	m_prgplcmap = new LigCompMap*[cvGlyphIDs];
-	memset(m_prgplcmap, 0, cvGlyphIDs * sizeof(LigCompMap*));
-	m_cvGlyphIDs = cvGlyphIDs;
 }
 
 
@@ -147,12 +145,8 @@ GrcLigComponentList::GrcLigComponentList(size_t cvGlyphIDs)
 ----------------------------------------------------------------------------------------------*/
 GrcLigComponentList::~GrcLigComponentList()
 {
-	for (auto i = 0; i < m_cvGlyphIDs; ++i)
-	{
-		if (m_prgplcmap[i])
-			delete m_prgplcmap[i];
-	}
-	delete[] m_prgplcmap;
+	for (auto plcmgap: m_vgplcmap)
+		delete plcmgap;
 }
 
 
@@ -172,7 +166,7 @@ int GrcLigComponentList::AddComponentFor(gid16 wGlyphID, Symbol psymComponent,
 		return nID;
 
 	//	Add the internal ID to the list of components for this glyph.
-	LigCompMap * plcmap = m_prgplcmap[wGlyphID];
+	LigCompMap * plcmap = m_vgplcmap[wGlyphID];
 	plcmap->m_vinIDs.push_back(nID);
 
 	int cComp = signed(plcmap->m_vinIDs.size());
@@ -188,11 +182,11 @@ int GrcLigComponentList::AddComponentFor(gid16 wGlyphID, Symbol psymComponent,
 ----------------------------------------------------------------------------------------------*/
 bool GrcLigComponentList::FindComponentFor(gid16 wGlyphID, int nID)
 {
-	LigCompMap * plcmap = m_prgplcmap[wGlyphID];
+	LigCompMap * plcmap = m_vgplcmap[wGlyphID];
 	if (!plcmap)
 	{
 		plcmap = new LigCompMap();
-		m_prgplcmap[wGlyphID] = plcmap;
+		m_vgplcmap[wGlyphID] = plcmap;
 	}
 
 	for (size_t in = 0; in < plcmap->m_vinIDs.size(); in++)

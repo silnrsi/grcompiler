@@ -195,7 +195,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 		// but go ahead and treat it as the zeroth pass for now
 	}
 
-	for (int ipass = 0; ipass < m_vppass.size(); ++ipass)
+	for (auto ipass = 0U; ipass < m_vppass.size(); ++ipass)
 	{
 		char rgchPass[20];
 		itoa(ipass, rgchPass, 10);
@@ -336,7 +336,7 @@ void GdlRule::FixRulePreContexts(Symbol psymAnyClass, int critNeeded)
 	if (m_critPrependedAnys == 0)
 		return;
 
-	for (int iritToAdd = 0; iritToAdd < m_critPrependedAnys; iritToAdd++)
+	for (auto iritToAdd = 0U; iritToAdd < m_critPrependedAnys; ++iritToAdd)
 	{
 		GdlRuleItem * prit = new GdlRuleItem(psymAnyClass);
 		prit->SetLineAndFile(LineAndFile());
@@ -536,13 +536,13 @@ void GdlRule::MarkReplacementClasses(GrcManager * pcman, int nPassID,
 	vfInput.resize(m_vprit.size(), false);
 	vfOutput.resize(m_vprit.size(), false);
 
-	for (int irit = 0; irit < m_vprit.size(); irit++)
+	for (auto irit = 0U; irit < m_vprit.size(); ++irit)
 	{
 		m_vprit[irit]->AssignFsmInternalID(pcman, nPassID);
 		m_vprit[irit]->FindSubstitutionSlots(irit, vfInput, vfOutput);
 	}
 
-	for (int irit = 0; irit < m_vprit.size(); irit++)
+	for (auto irit = 0U; irit < m_vprit.size(); ++irit)
 	{
 		if (vfInput[irit])
 			m_vprit[irit]->MarkClassAsReplacementClass(pcman, setpglfcReplace, true);
@@ -826,7 +826,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	vcwClassSizes.resize(crit, false);
 	bool fAnyAssocs = false;
 
-	for (int irit = 0; irit < crit; irit++)
+	for (auto irit = 0U; irit < crit; ++irit)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		GdlLineBreakItem * pritlb = dynamic_cast<GdlLineBreakItem *>(prit);
@@ -879,7 +879,7 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 	}
 
 	//	Do the checks for each item.
-	for (int irit = 0; irit < crit; irit++)
+	for (auto irit = 0U; irit < crit; ++irit)
 	{
 //		if (m_nScanAdvance > -1 && irit >= m_nScanAdvance &&
 //			(vfInsertion[irit] || vfDeletion[irit]))
@@ -1100,7 +1100,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					{
 						char rgch[20];
 						itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
-						for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
+						for (auto irit = 0U; irit < prule->NumberOfSlots(); ++irit)
 						{
 							GdlRuleItem * prit = prule->Item(irit);
 							if (prit->OutputSymbol()->FullName() != "ANY")
@@ -1122,7 +1122,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 						": no slot was associated with deleted item");
 				}
 
-				for (int ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+				for (auto ipavs = 0U; ipavs < m_vpavs.size(); ++ipavs)
 				{
 					if (m_vpavs[ipavs]->AttrName()->IsPassKeySlot())
 					{
@@ -1178,7 +1178,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					}
 					else
 					{
-						for (int irit = 0; irit < prule->NumberOfSlots(); irit++)
+						for (auto irit = 0U; irit < prule->NumberOfSlots(); ++irit)
 						{
 							GdlRuleItem * prit = prule->Item(irit);
 							if (prit->OutputSymbol()->FullName() != "ANY"
@@ -2438,7 +2438,7 @@ void GdlSetAttrItem::RewriteSlotAttrAssignments(GrcManager * pcman, GrcFont * pf
 	int ipavsColRange = -1;
 	int ipavsColPriority = -1;
 
-	for (auto ipavs = 0; ipavs < m_vpavs.size(); ipavs++)
+	for (auto ipavs = 0U; ipavs < m_vpavs.size(); ++ipavs)
 	{
 		GdlAttrValueSpec * pavsShift;
 		GdlAttrValueSpec * pavsAdvance;
@@ -2874,7 +2874,7 @@ int GdlRule::ItemCountOriginal()
 int GdlRule::FindAutoAssocItem(bool fDelete)
 {
 	int iritResult = -1;
-	for (auto irit = 0; irit <m_vprit.size(); irit++)
+	for (auto irit = 0U; irit < m_vprit.size(); ++irit)
 	{
 		GdlRuleItem * prit = m_vprit[irit];
 		if (prit->OutputSymbol()->FullName() == "ANY")

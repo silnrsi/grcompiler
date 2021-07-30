@@ -97,7 +97,7 @@ bool GdlRenderer::ReplaceAliases()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRuleTable::ReplaceAliases()
 {
-	for (auto ippass = 0; ippass < m_vppass.size(); ippass++)
+	for (auto ippass = 0U; ippass < m_vppass.size(); ++ippass)
 	{
 		if (m_vppass[ippass] == NULL)
 			m_vppass[ippass] = new GdlPass(ippass, 1, 0);	// bogus
@@ -403,7 +403,7 @@ bool GdlRule::AdjustOptRanges()
 void GdlRule::GenerateOptRanges(std::vector<GdlRule*> & vpruleNewList,
 	std::vector<bool> & vfOmitRange, int irangeCurr)
 {
-	if (irangeCurr >= vfOmitRange.size())
+	if (static_cast<unsigned int>(irangeCurr) >= vfOmitRange.size())
 		//	We've got a complete set of omit flags for each of the optional ranges--
 		//	generate the corresponding rule.
 		GenerateOneRuleVersion(vpruleNewList, vfOmitRange);
@@ -679,7 +679,7 @@ void GdlPass::CheckSelectors()
 /*--------------------------------------------------------------------------------------------*/
 void GdlRule::CheckSelectors()
 {
-	for (auto irit = 0; irit < m_vprit.size(); irit++)
+	for (auto irit = 0U; irit < m_vprit.size(); ++irit)
 	{
 		m_vprit[irit]->CheckSelectors(this, irit, m_vprit.size());
 	}
@@ -709,7 +709,7 @@ void GdlSubstitutionItem::CheckSelectors(GdlRule * prule, int /*irit*/, size_t c
 				m_pritSelInput = NULL;
 				return;
 			}
-			else if (m_pexpSelector->SlotNumber() > crit)
+			else if (m_pexpSelector->SlotNumber() > int(crit))
 			{
 				g_errorList.AddError(1178, this,
 					"Item ",

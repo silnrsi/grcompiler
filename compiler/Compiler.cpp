@@ -1469,7 +1469,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 	Symbol psymSkipP2 = m_psymtbl->FindSymbol("*skipPasses2*");
 	if (psymSkipP2)
 		nAttrIdSkipP2 = psymSkipP2->InternalID();
-	int cpass = this->m_prndr->NumberOfPasses();
+	auto cpass = this->m_prndr->NumberOfPasses();
 
 	//Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "0", "stretch"));
 	Symbol psymJStr = m_psymtbl->FindSymbol(GrcStructName("justify", "stretch"));
@@ -1530,8 +1530,8 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 					strmOut  << nValue;
 					if (nAttrID == nAttrIdSkipP || nAttrID == nAttrIdSkipP2)
 					{
-						int iStart = 0;
-						int iStop = cpass;
+						size_t iStart = 0, 
+							   iStop = cpass;
 						if (cpass > kPassPerSPbitmap)
 							iStop = kPassPerSPbitmap;
 						if (nAttrID == nAttrIdSkipP2)
@@ -1545,7 +1545,7 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 						strmOut << "  / ";
 						// Print out bits in order of passes (low to high).
 						int tValue = nValue;
-						for (int ipass = iStart; ipass < iStop; ipass++)
+						for (auto ipass = iStart; ipass < iStop; ++ipass)
 						{
 							int n = int((tValue & 0x0001) != 0);
 							strmOut << " " << n;

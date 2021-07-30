@@ -78,7 +78,7 @@ public:
 	//	Getters:
 	int Value()				{ return m_nValue; }
 	std::string Name()		{ return m_staName; }
-	utf16 NameTblId()		{ return m_wNameTblId; }
+	unsigned short NameTblId()		{ return m_wNameTblId; }
 
 	//	Setters:
 	void SetName(std::string sta)	{ m_staName = sta; }
@@ -112,7 +112,7 @@ protected:
 	std::string				m_staName;
 	std::vector<GdlExtName>	m_vextname;
 	int						m_nValue;
-	utf16					m_wNameTblId;
+	unsigned short			m_wNameTblId;
 	bool					m_fHasValue;
 };
 
@@ -216,10 +216,10 @@ public:
 	{
 		return m_fStdLang;
 	}
-	utf16 NameTblId()	{ return m_wNameTblId; }
+	unsigned short NameTblId()	{ return m_wNameTblId; }
 	bool NameTblInfo(std::vector<std::wstring> & vstuExtNames, std::vector<utf16> & vwLangIds, 
 		std::vector<utf16> & vwNameTblIds, size_t & cchwStringData,
-		int nNameTblIdMinNew, int nNameIdNoName);
+		unsigned int nNameTblIdMinNew, int nNameIdNoName);
 	void AltIDs(std::vector<unsigned int> & vn)
 	{
 		vn = m_vnIDs;
@@ -304,7 +304,7 @@ protected:
 	bool m_fFatalError;		// fatal error in this feature definition
 	int	m_nInternalID;
 	GdlFeatureSetting * m_pfsetDefault;
-	utf16 m_wNameTblId;
+	unsigned short m_wNameTblId;
 };
 
 /*----------------------------------------------------------------------------------------------
