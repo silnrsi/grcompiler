@@ -1318,7 +1318,7 @@ bool GrcManager::OutputCmapTable(uint8 * pCmapTblSrc, size_t /*cbCmapTblSrc*/,
 		pbstrm->SetPosition(lPosEnd);
 	}
 
-	cbSizeRet = lPosEnd - lPosStart;
+	cbSizeRet = size_t(lPosEnd - lPosStart);
 	return true;
 }
 
@@ -1457,7 +1457,7 @@ size_t GrcManager::OutputCmap31Table(void * pCmapSubTblSrc,
 	auto lPosEnd = pbstrm->Position();
 
 	//	Fill in the length.
-	size_t cb = lPosEnd - lPosStart;
+	size_t cb = size_t(lPosEnd - lPosStart);
 	pbstrm->SetPosition(lPosLen);
 	pbstrm->WriteShort(cb);
 
@@ -1880,7 +1880,7 @@ void GrcManager::OutputGlatAndGloc(GrcBinaryStream * pbstrm,
 ----------------------------------------------------------------------------------------------*/
 int GrcManager::FinalAttrValue(gid16 wGlyphID, int nAttrID)
 {
-	if (m_cpsymBuiltIn <= nAttrID && nAttrID < m_cpsymBuiltIn + m_cpsymComponents)
+	if (m_cpsymBuiltIn <= unsigned(nAttrID) && unsigned(nAttrID) < m_cpsymBuiltIn + m_cpsymComponents)
 	{
 		Assert(!m_pgax->Defined(wGlyphID, nAttrID));
 

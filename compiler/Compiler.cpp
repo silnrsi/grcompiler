@@ -1514,8 +1514,8 @@ void GrcManager::DebugGlyphAttributes(char * pchOutputPath)
 					strmOut  << nValue;
 					if (nAttrID == nAttrIdSkipP || nAttrID == nAttrIdSkipP2)
 					{
-						int iStart = 0;
-						int iStop = cpass;
+						size_t iStart = 0, 
+							   iStop = cpass;
 						if (cpass > kPassPerSPbitmap)
 							iStop = kPassPerSPbitmap;
 						if (nAttrID == nAttrIdSkipP2)
