@@ -1097,7 +1097,6 @@ void GdlPass::DebugFsm(GrcManager * pcman, std::ostream & strmOut)
 	for (int w = 0; w < kMaxTotalGlyphs + 1; w++)
 	{
 		utf16 wTmp = w;
-		char rgch[20];
 		int ifsmcColumn;
 
 		if (w == kMaxTotalGlyphs)
