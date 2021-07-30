@@ -3253,7 +3253,7 @@ void GrcManager::OutputFeatTable(GrcBinaryStream * pbstrm, int * pnFeatOffset, i
 
 /*---------------------------------------------------------------------------------------------*/
 
-void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, long lTableStart,
+void GdlRenderer::OutputFeatTable(GrcBinaryStream * pbstrm, offset_t lTableStart,
 	int fxdVersion)
 {
 	std::vector<offset_t> vnOffsets;
