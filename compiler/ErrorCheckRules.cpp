@@ -1168,6 +1168,8 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					}
 					else
 					{
+						auto const iAssoc = int(iritAssoc + 1 - prule->PrependedAnys());
+						auto const staAssoc = std::to_string(iAssoc);
 						for (auto irit = 0U; irit < prule->NumberOfSlots(); ++irit)
 						{
 							GdlRuleItem * prit = prule->Item(irit);
