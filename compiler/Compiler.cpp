@@ -1222,7 +1222,6 @@ void GdlRule::DebugEngineCode(std::vector<gr::byte> & vb, uint32_t /*fxdRuleVers
 ----------------------------------------------------------------------------------------------*/
 std::string GdlRule::SlotAttributeDebugString(int slat)
 {
-	std::string sta("bad-slot-attr-");
 	switch (slat)
 	{
 	case kslatAdvX:				return "advance_x";
@@ -1298,10 +1297,7 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 
 	default:
 		Assert(false);
-		char rgch[20];
-		itoa(slat, rgch, 10);
-		sta += rgch;
-		return sta;
+		return "bad-slot-attr-" + std::to_string(slat);
 	}
 }
 
@@ -1311,7 +1307,6 @@ std::string GdlRule::SlotAttributeDebugString(int slat)
 ----------------------------------------------------------------------------------------------*/
 std::string GdlRule::GlyphMetricDebugString(int gmet)
 {
-	std::string sta("bad-glyph-metric-");
 	switch (gmet)
 	{
 	case kgmetLsb:				return "lsb";
@@ -1328,10 +1323,7 @@ std::string GdlRule::GlyphMetricDebugString(int gmet)
 	case kgmetDescent:			return "descent";
 	default:
 		Assert(false);
-		char rgch[20];
-		itoa(gmet, rgch, 10);
-		sta += rgch;
-		return sta;
+		return "bad-glyph-metric-" + std::to_string(gmet);
 	}
 }
 
@@ -1341,7 +1333,6 @@ std::string GdlRule::GlyphMetricDebugString(int gmet)
 ----------------------------------------------------------------------------------------------*/
 std::string GdlRule::EngineCodeDebugString(int op)
 {
-	std::string sta("bad-engine-op-");
 	switch (op)
 	{
 	case kopNop:					return "Nop";
@@ -1417,10 +1408,7 @@ std::string GdlRule::EngineCodeDebugString(int op)
 	case kopFeatSet:				return "FeatSet";
 	default:
 		Assert(false);
-		char rgch[20];
-		itoa(op, rgch, 10);
-		sta += rgch;
-		return sta;
+		return "bad-engine-op-" + std::to_string(op);
 	}
 }
 
@@ -1429,17 +1417,13 @@ std::string GdlRule::EngineCodeDebugString(int op)
 ----------------------------------------------------------------------------------------------*/
 std::string GdlRule::ProcessStateDebugString(int pstat)
 {
-	std::string sta("bad-process-state-");
 	switch (pstat)
 	{
 	case kpstatJustifyMode:		return "JustifyMode";
 	case kpstatJustifyLevel:	return "JustifyLevel";
 	default:
 		Assert(false);
-		char rgch[20];
-		itoa(pstat, rgch, 10);
-		sta += rgch;
-		return sta;
+		return "bad-process-state-" + std::to_string(pstat);
 	}
 }
 
@@ -2233,8 +2217,6 @@ void GdlGlyphDefn::DebugCmapForMember(GrcFont * pfont,
 		break;
 
 	case kglftCodepoint:
-//		char rgchCdPg[20];
-//		itoa(m_wCodePage, rgchCdPg, 10);
 //		wFirst = (utf16)m_nFirst;
 //		wLast = (utf16)m_nLast;
 //		if (wFirst == 0 && wLast == 0)
@@ -3122,13 +3104,10 @@ void GdlAttrValueSpec::DebugXml(GrcManager * pcman, std::ostream & strmOut, std:
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::DebugHex(std::ostream & strmOut, gid16 wGlyphID)
 {
-	char rgch[20];
-	itoa(wGlyphID, rgch, 16);
-	strmOut << "0x";
-	if (wGlyphID <= 0x0fff) strmOut << "0";
-	if (wGlyphID <= 0x00ff) strmOut << "0";
-	if (wGlyphID <= 0x000f) strmOut << "0";
-	strmOut << rgch;
+	auto const flags = strmOut.flags(std::ios::hex); auto const fill = strmOut.fill();
+	strmOut << std::hex << std::noshowbase
+			<< "0x"  << std::setfill('0') << std::setw(4) << wGlyphID;
+	strmOut.flags(flags); strmOut.fill(fill);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -3136,28 +3115,10 @@ void GrcManager::DebugHex(std::ostream & strmOut, gid16 wGlyphID)
 ----------------------------------------------------------------------------------------------*/
 void GrcManager::DebugUnicode(std::ostream & strmOut, int nUnicode, bool f32bit)
 {
-	char rgch[20];
-	itoa(nUnicode, rgch, 16);
-	for (int ich = 0; ich < 20; ich++)
-	{
-		if ('a' <= rgch[ich] && rgch[ich] <= 'f')
-			rgch[ich] -= 'a' - 'A';	// uppercase
-		if (rgch[ich] == 0)
-			break;
-	}
-
-	strmOut << "U+";
-	if (f32bit)
-	{
-		if (nUnicode <= 0x0FFFFFFF) strmOut << "0";
-		if (nUnicode <= 0x00FFFFFF) strmOut << "0";
-		if (nUnicode <= 0x000FFFFF) strmOut << "0";
-		if (nUnicode <= 0x0000FFFF) strmOut << "0";
-	}
-	if (nUnicode <= 0x0fff) strmOut << "0";
-	if (nUnicode <= 0x00ff) strmOut << "0";
-	if (nUnicode <= 0x000f) strmOut << "0";
-	strmOut << rgch;
+	auto const flags = strmOut.flags(std::ios::hex); auto const fill = strmOut.fill();
+	strmOut << std::hex << std::noshowbase << std::uppercase 
+			<< "U+" << std::setfill('0') << std::setw(f32bit ? 8 : 4) << nUnicode ;
+	strmOut.flags(flags); strmOut.fill(fill);
 }
 
 /*----------------------------------------------------------------------------------------------

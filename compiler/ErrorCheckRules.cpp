@@ -164,15 +164,11 @@ bool GdlRenderer::CheckTablesAndPasses(GrcManager * pcman, int * pcpassValid)
 
 	if (nPassNum >= kMaxPasses)
 	{
-		char rgch1[20];
-		char rgch2[20];
-		itoa(nPassNum, rgch1, 10);
-		itoa(kMaxPasses - 1, rgch2, 10);
 		g_errorList.AddError(3101, NULL,
 			"Number of passes (",
-			rgch1,
+			std::to_string(nPassNum),
 			") exceeds maximum of ",
-			rgch2);
+			std::to_string(kMaxPasses - 1));
 	}
 	else if (nPassNum == 0)
 	{
@@ -197,8 +193,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 
 	for (auto ipass = 0U; ipass < m_vppass.size(); ++ipass)
 	{
-		char rgchPass[20];
-		itoa(ipass, rgchPass, 10);
+		auto const staPass = std::to_string(ipass);
 		if (m_vppass[ipass]->ValidPass())
 		{
 			m_vppass[ipass]->AssignGlobalID(*pnPassNum);
@@ -210,23 +205,21 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 			{
 				g_errorList.AddError(3166, this,
 					"Invalid direction for pass ",
-					rgchPass);
+					staPass);
 			}
 			else if (fsdcPassDir != kfsdcNone && fsdcScriptDir != kfsdcHorizLtr && fsdcScriptDir != kfsdcHorizRtl)
 			{
-				char rgchScrDir[20];
-				itoa(fsdcScriptDir, rgchScrDir, 10);
 				g_errorList.AddError(3167, this,
 					"Direction directive invalid (on pass ",
-					rgchPass,
+					staPass,
 					") due to font ScriptDirection setting of ",
-					rgchScrDir);
+					std::to_string(fsdcScriptDir));
 			}
 			else if (fsdcPassDir != kfsdcNone && fsdcScriptDir == fsdcPassDir)
 			{
 				g_errorList.AddWarning(3539, this,
 					"Direction of pass ",
-					rgchPass,
+					staPass,
 					" matches font's ScriptDirection and will have no effect ");
 			}
 			else
@@ -250,7 +243,7 @@ void GdlRuleTable::CheckTablesAndPasses(GrcManager * pcman, int *pnPassNum, int 
 		{
 			g_errorList.AddWarning(3503, this,
 				"Pass ",
-				rgchPass,
+				staPass,
 				" of ",
 				m_psymName->FullName(),
 				" table contains no rules");
@@ -478,15 +471,11 @@ bool GrcManager::AssignClassInternalIDs()
 
 	if (nSubID >= kMaxReplcmtClasses)
 	{
-		char rgch1[20];
-		char rgch2[20];
-		itoa(nSubID, rgch1, 10);
-		itoa(kMaxReplcmtClasses - 1, rgch2, 10);
 		g_errorList.AddError(3103, NULL,
 			"Number of classes used in glyph substitution (",
-			rgch1,
+			std::to_string(nSubID),
 			") exceeds maximum of ",
-			rgch2);
+			std::to_string(kMaxReplcmtClasses - 1));
 	}
 
 	return true;
@@ -695,17 +684,13 @@ void GdlRuleItem::MarkClassAsReplacementClass(GrcManager * pcman,
 		int cw = pglfc->GlyphIDCount();
 		if (cw > kMaxGlyphsPerInputClass)
 		{
-			char rgchMax[20];
-			itoa(kMaxGlyphsPerInputClass, rgchMax, 10);
-			char rgchCount[20];
-			itoa(cw, rgchCount, 10);
 			g_errorList.AddError(3105, this,
 				"Number of glyphs (",
-				rgchCount,
+				std::to_string(cw),
 				") in class ",
 				pglfc->Name(),
 				" exceeds maximum of ",
-				rgchMax,
+				std::to_string(kMaxGlyphsPerInputClass),
 				" allowed for input side of substitution");
 		}
 
@@ -800,15 +785,11 @@ void GdlRule::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * pfont,
 {
 	if (m_vprit.size() > kMaxSlotsPerRule)
 	{
-		char rgchMax[20];
-		itoa(kMaxSlotsPerRule, rgchMax, 10);
-		char rgchCount[20];
-		itoa(int(m_vprit.size()), rgchCount, 10);
 		g_errorList.AddError(3106, this,
 			"Number of slots (",
-			rgchCount,
+			std::to_string(m_vprit.size()),
 			") exceeds maximum of ",
-			rgchMax);
+			std::to_string(kMaxSlotsPerRule));
 	}
 
 	//	Create lists of flags indicating which items are line-break items, insertions,
@@ -1098,8 +1079,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					}
 					else
 					{
-						char rgch[20];
-						itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
+						auto const staAssoc = std::to_string(iritAssoc + 1 - prule->PrependedAnys());
 						for (auto irit = 0U; irit < prule->NumberOfSlots(); ++irit)
 						{
 							GdlRuleItem * prit = prule->Item(irit);
@@ -1109,7 +1089,7 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 								if (irit != iritAssoc)
 									g_errorList.AddWarning(3532, this,
 										"Item ", prit->PosString(),
-										": slot ", rgch, " automatically associated with deleted item");
+										": slot ", staAssoc, " automatically associated with deleted item");
 							}
 						}
 						prule->SetAutoAssocDone();
@@ -1178,18 +1158,18 @@ bool GdlSubstitutionItem::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont
 					}
 					else
 					{
+						auto const iAssoc = int(iritAssoc + 1 - prule->PrependedAnys());
+						auto const staAssoc = std::to_string(iAssoc);
 						for (auto irit = 0U; irit < prule->NumberOfSlots(); ++irit)
 						{
 							GdlRuleItem * prit = prule->Item(irit);
 							if (prit->OutputSymbol()->FullName() != "ANY"
 								&& irit != iritAssoc)
 							{
-								prit->AddAssociation(prule->LineAndFile(), int(iritAssoc + 1 - prule->PrependedAnys())); // 1-based
-								char rgch[20];
-								itoa(int(iritAssoc + 1 - prule->PrependedAnys()), rgch, 10);
+								prit->AddAssociation(prule->LineAndFile(), iAssoc); // 1-based
 								g_errorList.AddWarning(3533, this,
 									"Item ", prit->PosString(),
-									": inserted item automatically associated with slot ", rgch);
+									": inserted item automatically associated with slot ", staAssoc);
 							}
 						}
 						prule->SetAutoAssocDone();
@@ -1616,11 +1596,9 @@ bool GdlAttrValueSpec::CheckRulesForErrors(GrcGlyphAttrMatrix * pgax, GrcFont * 
 		}
 		else if (nIndex >= kMaxUserDefinableSlotAttrs)
 		{
-			char rgch[20];
-			itoa(kMaxUserDefinableSlotAttrs, rgch, 10);
 			g_errorList.AddError(3128, this,
 				"Invalid slot attribute: ", m_psymName->FullName(),
-				"; maximum is ", rgch);
+				"; maximum is ", std::to_string(kMaxUserDefinableSlotAttrs));
 			fOkay = false;
 		}
 		else

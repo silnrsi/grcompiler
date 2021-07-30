@@ -31,7 +31,6 @@
  */
 
 #include "Antlr/NoViableAltException.hpp"
-#include "Antlr/String.hpp"
 
 NoViableAltException::NoViableAltException(RefAST t)
 : ParserException("NoViableAlt")
@@ -64,7 +63,7 @@ std::string NoViableAltException::getErrorMessage() const
 std::string NoViableAltException::toString() const
 {
 	if (token)
-		return std::string("line(")+getLine()+"), "+getErrorMessage();
+		return std::string("line(")+std::to_string(getLine())+"), "+getErrorMessage();
 	else
 		return getErrorMessage();
 }

@@ -474,11 +474,9 @@ int GrcFont::ConvertGPathToGPoint(gid16 wGlyphID, int nPathNumber, GdlObject * p
 		}
 	}
 
-	char rgch[20];
-	itoa(nPathNumber, rgch, 10);
 	g_errorList.AddError(119, pgdlobj,
 		"Cannot find point number for path number ",
-		rgch,
+		std::to_string(nPathNumber),
 		" in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return -1;
@@ -693,11 +691,9 @@ bool GrcFont::IsPointAlone(gid16 wGlyphID, int nPointNumber, GdlObject * pgdlobj
 	}
 
 	// if we reach here, point doesn't exist in glyph so give error
-	char rgch[20];
-	itoa(nPointNumber, rgch, 10);
 	g_errorList.AddError(122, pgdlobj,
 		"Cannot find contour for point number ",
-		rgch,
+		std::to_string(nPointNumber),
 		" in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return true; // safest fallback value
@@ -723,11 +719,9 @@ int GrcFont::GetXYAtPoint(gid16 wGlyphID, int nPointNumber, int * mX, int * mY,
 		}
 	}
 
- 	char rgch[20];
-	itoa(nPointNumber, rgch, 10);
 	g_errorList.AddError(123, pgdlobj,
 		"Cannot find coordinates for point number ",
-		rgch,
+		std::to_string(nPointNumber),
 		" in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	return false;
@@ -769,13 +763,9 @@ int GrcFont::GetPointAtXY(gid16 wGlyphID, int mX, int mY, int mPointRadius, GdlO
 		return iPtClosest; // initialized to -1
 	}
 
-	char rgch1[20];
-	char rgch2[20];
-	itoa(mX, rgch1, 10);
-	itoa(mY, rgch2, 10);
 	g_errorList.AddWarning(510, pgdlobj,
 		"Cannot find point number for coordinates (",
-		rgch1, ", ", rgch2,
+		std::to_string(mX), ", ", std::to_string(mY),
 		") in glyph ",
 		GdlGlyphDefn::GlyphIDString(wGlyphID));
 	

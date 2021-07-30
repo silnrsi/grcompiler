@@ -31,7 +31,6 @@
  */
 
 #include "Antlr/CommonToken.hpp"
-#include "Antlr/String.hpp"
 
 CommonToken::CommonToken()
 {}
@@ -58,7 +57,7 @@ void CommonToken::setText(const std::string& s)
 
 std::string CommonToken::toString() const
 {
-	return "[\""+getText()+"\",<"+type+">,line="+line+"]";
+	return "[\""+getText()+"\",<"+std::to_string(type)+">,line="+std::to_string(line)+"]";
 }
 
 bool CommonToken::isInvalid() const

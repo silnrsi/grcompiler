@@ -42,8 +42,6 @@ DEFINE_THIS_FILE
 GdlPass* GdlRuleTable::GetPass(GrpLineAndFile & lnf, int ipassNumber,
 	int nMaxRuleLoop, int nMaxBackup)
 {
-	char rgch[20];
-	itoa(ipassNumber, rgch, 10);
 
 	if (ipassNumber < 0)
 	{
@@ -62,23 +60,20 @@ GdlPass* GdlRuleTable::GetPass(GrpLineAndFile & lnf, int ipassNumber,
 		m_vppass[ipassNumber]->SetLineAndFile(lnf);
 	}
 
+	auto const staPassNum = std::to_string(ipassNumber);
 	if (m_vppass[ipassNumber]->MaxRuleLoop() != nMaxRuleLoop && m_vppass[ipassNumber]->HasRules())
 	{
-		int nMax = max(m_vppass[ipassNumber]->MaxRuleLoop(), nMaxRuleLoop);
-		char rgchMax[20];
-		itoa(nMax, rgchMax, 10);
+		auto const nMax = max(m_vppass[ipassNumber]->MaxRuleLoop(), nMaxRuleLoop);
 		g_errorList.AddWarning(3527, NULL,
-			"Conflicting MaxRuleLoop values for pass ", rgch, "; maxiumum value, ", rgchMax, ", will be used",
+			"Conflicting MaxRuleLoop values for pass ", staPassNum, "; maxiumum value, ", std::to_string(nMax), ", will be used",
 			lnf);
 		m_vppass[ipassNumber]->SetMaxRuleLoop(nMax);
 	}
 	if (m_vppass[ipassNumber]->MaxBackup() != nMaxBackup && m_vppass[ipassNumber]->HasRules())
 	{
-		int nMax = max(m_vppass[ipassNumber]->MaxBackup(), nMaxBackup);
-		char rgchMax[20];
-		itoa(nMax, rgchMax, 10);
+		auto const nMax = max(m_vppass[ipassNumber]->MaxBackup(), nMaxBackup);
 		g_errorList.AddWarning(3528, NULL,
-			"Conflicting MaxBackup values for pass ", rgch, "; maxiumum value, ", rgchMax, ", will be used",
+			"Conflicting MaxBackup values for pass ", staPassNum, "; maxiumum value, ", std::to_string(nMax), ", will be used",
 			lnf);
 		m_vppass[ipassNumber]->SetMaxBackup(nMax);
 	}

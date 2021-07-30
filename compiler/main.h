@@ -44,6 +44,7 @@ using std::min;
     #include <unistd.h>
 #endif
 #include <cstring>
+#include <iomanip>
 #include "GrCommon.h"
 #include "GrPlatform.h"
 #endif

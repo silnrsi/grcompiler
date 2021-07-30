@@ -116,7 +116,6 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	    return false;
 	}
 
-	// fprintf(stderr, "hello stderr 1\n");
 	int nOrigStderr = _dup(2); // save original stderr, 2 is stderr file handle
 	if (-1 == _dup2(_fileno(pFilePreProcErr), 2)) //stderr now refers to tmp file opened above
 	{
@@ -180,7 +179,7 @@ bool GrcManager::RunPreProcessor(std::string staFileName, std::string * pstaFile
 	{
 		g_errorList.AddError(1110, NULL, "Could not restore stderr from being redirected.");
 	}
-	// fprintf(stderr, "hello stderr 2\n");
+
 	fclose(pFilePreProcErr);
 	unlink(pszPreProcErr);
 	delete [] pszPreProcErr;
@@ -759,15 +758,11 @@ void GrcManager::ProcessGlobalSetting(RefAST ast)
 
 		if (m_prndr->NumScriptTags() > kMaxScriptTags)
 		{
-			char rgch1[20];
-			char rgch2[20];
-			itoa(int(m_prndr->NumScriptTags()), rgch1, 10);
-			itoa(kMaxScriptTags, rgch2, 10);
 			g_errorList.AddError(1132, NULL,
 				"Number of script tags (",
-				rgch1,
+				std::to_string(int(m_prndr->NumScriptTags())),
 				") exceeds maximum of ",
-				rgch2);
+				std::to_string(kMaxScriptTags));
 		}
 	}
 
@@ -901,11 +896,9 @@ void GrcManager::WalkDirectivesTree(RefAST ast, int * pnCollisionFix, int * pnAu
 						*pnCollisionFix = 3;	// default; should this be 1??
 					else if (nValue > kMaxColIterations || nValue < 0)
 					{
-						char rgchMax[20];
-						itoa(kMaxColIterations, rgchMax, 10);
 						g_errorList.AddError(1186, NULL,
 							"The CollisionFix value must be between 0 and ",
-							rgchMax,
+							std::to_string(kMaxColIterations),
 							LineAndFile(ast));
 						*pnCollisionFix = kMaxColIterations;
 					}
@@ -2237,8 +2230,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	}
 
 	GdlPass * ppass = prultbl->GetPass(lnf, Pass(), MaxRuleLoop(), MaxBackup());
-	char rgchPass[20];
-	itoa(Pass(), rgchPass, 10);
+	auto const staPass = std::to_string(Pass());
 	if (nCollisionFix > 0 && prultbl->Substitution())
 	{
 		g_errorList.AddError(1187, NULL,
@@ -2249,7 +2241,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	{
 		if (nCollisionFix == 0 && ppass->CollisionFix() > 0)
 			g_errorList.AddWarning(1514, NULL,
-				"Clearing previous value of CollisionFix for pass ", rgchPass,
+				"Clearing previous value of CollisionFix for pass ", staPass,
 				LineAndFile(ast)); 
 		ppass->SetCollisionFix(nCollisionFix);
 	}
@@ -2263,7 +2255,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	{
 		if (nAutoKern == 0 && ppass->AutoKern())
 			g_errorList.AddWarning(1517, NULL,
-				"Clearing previous value of AutoKern for pass ", rgchPass,
+				"Clearing previous value of AutoKern for pass ", staPass,
 				LineAndFile(ast)); 
 		ppass->SetAutoKern(nAutoKern);
 	}
@@ -2282,7 +2274,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 		if (nCollisionThreshold == 0 && ppass->CollisionThreshold() != 0
 					&& ppass->CollisionThreshold() != kCollisionThresholdDefault )
 			g_errorList.AddWarning(1518, NULL,
-				"Clearing previous value of CollisionThreshold for pass ", rgchPass,
+				"Clearing previous value of CollisionThreshold for pass ", staPass,
 				LineAndFile(ast)); 
 		else if (nCollisionThreshold > 0 && nCollisionFix == 0 && nAutoKern == 0)
 			g_errorList.AddWarning(1519, NULL,
@@ -2296,7 +2288,7 @@ void GrcManager::WalkPassTree(RefAST ast, GdlRuleTable * prultbl, GdlPass * /*pp
 	if (ppass->Direction() != 0 && ppass->Direction() != nDir)
 	{
 		g_errorList.AddWarning(1520, NULL,
-			"Inconsistent Direction directive specifications on pass ", rgchPass,
+			"Inconsistent Direction directive specifications on pass ", staPass,
 			LineAndFile(ast));
 	}
 	ppass->SetDirection(nDir);
@@ -3675,7 +3667,7 @@ void GrcManager::DebugParseTree(RefAST ast)
 
 	strmOut << "PARSE TREE\n\n";
 
-	ast->Trace(strmOut, 0, 0);
+	ast->Trace(strmOut, nullptr, 0);
 
 	strmOut.close();
 }

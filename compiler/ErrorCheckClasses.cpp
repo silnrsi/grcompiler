@@ -154,10 +154,9 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 
 	if (cwFree < 2)
 	{
-		char rgch[20];
-		itoa(kMaxGlyphsPerFont - 3, rgch, 10);
 		g_errorList.AddError(4101, NULL,
-			"Font exceeds maximum of ", rgch, " used glyphs",
+			"Font exceeds maximum of ", std::to_string(kMaxGlyphsPerFont - 3),
+			" used glyphs",
 			GrpLineAndFile(0, 0, ""));
 		return false;	// terminate compilation
 	}
@@ -224,15 +223,11 @@ bool GrcManager::GeneratePseudoGlyphs(GrcFont * pfont)
 
 	if (wFirstFree - wFirstPseudo >= kMaxPseudos)
 	{
-		char rgch1[20];
-		char rgch2[20];
-		itoa(wFirstFree - wFirstPseudo, rgch1, 10);
-		itoa(kMaxPseudos - 1, rgch2, 10);
 		g_errorList.AddError(4104, NULL,
 			"Number of pseudo-glyphs (",
-			rgch1,
+			std::to_string(wFirstFree - wFirstPseudo),
 			") exceeds maximum of ",
-			rgch2);
+			std::to_string(kMaxPseudos - 1));
 	}
 	else
 	{
@@ -584,14 +579,13 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, gid16 wGlyphIDLi
 		break;
 
 	case kglftCodepoint:
-		char rgchCdPg[20];
-		itoa(m_wCodePage, rgchCdPg, 10);
+	{
+		auto const rgchCdPg = std::to_string(m_wCodePage);
 		if (m_nFirst == 0 && m_nLast == 0)
 		{
 			for (size_t ich = 0; ich < m_sta.length(); ich++)
 			{
-				char rgchCdPt[2] = {0,0};
-				rgchCdPt[0] = m_sta[ich];
+				char rgchCdPt[] = {m_sta[ich], '\0'};
 				nUnicode = pfont->UnicodeFromCodePage(m_wCodePage, m_sta[ich], this);
 				if (nUnicode == 0)
 					g_errorList.AddError(4111, this,
@@ -687,6 +681,7 @@ void GdlGlyphDefn::AssignGlyphIDsToClassMember(GrcFont * pfont, gid16 wGlyphIDLi
 				break;
 		}
 		break;
+	}
 
 	case kglftPseudo:
 		Assert(m_nFirst == 0);
@@ -893,10 +888,9 @@ void GdlGlyphClassDefn::MaxJustificationLevel(int * pnJLevel)
 		int n = psym->JustificationLevel();
 		if (n > kMaxJustLevel)
 		{
-			char rgch[10];
-			itoa(kMaxJustLevel, rgch, 10);
 			g_errorList.AddError(4122, this,
-				"Highest justification level permitted = ", rgch);
+				"Highest justification level permitted = ", 
+				std::to_string(kMaxJustLevel));
 		}
 		*pnJLevel = max(*pnJLevel, n);
 	}
@@ -940,10 +934,9 @@ void GdlRuleItem::MaxJustificationLevel(int * pnJLevel)
 		m_pexpConstraint->MaxJustificationLevel(&n);
 		if (n > kMaxJustLevel)
 		{
-			char rgch[10];
-			itoa(kMaxJustLevel, rgch, 10);
 			g_errorList.AddError(4122, this,
-				"Highest justification level permitted = ", rgch);
+				"Highest justification level permitted = ",
+				std::to_string(kMaxJustLevel));
 		}
 		*pnJLevel = max(*pnJLevel, n);
 	}
@@ -960,10 +953,9 @@ void GdlSetAttrItem::MaxJustificationLevel(int * pnJLevel)
 		m_vpavs[ipavs]->MaxJustificationLevel(&n);
 		if (n > kMaxJustLevel)
 		{
-			char rgch[10];
-			itoa(kMaxJustLevel, rgch, 10);
 			g_errorList.AddError(4122, this,
-				"Highest justification level permitted = ", rgch);
+				"Highest justification level permitted = ", 
+				std::to_string(kMaxJustLevel));
 		}
 		*pnJLevel = max(*pnJLevel, n);
 	}
@@ -975,10 +967,9 @@ void GdlAttrValueSpec::MaxJustificationLevel(int * pnJLevel)
 	int n = m_psymName->JustificationLevel();
 	if (n > kMaxJustLevel)
 	{
-		char rgch[10];
-		itoa(kMaxJustLevel, rgch, 10);
 		g_errorList.AddError(4122, this,
-			"Highest justification level permitted = ", rgch);
+			"Highest justification level permitted = ", 
+			std::to_string(kMaxJustLevel));
 	}
 	*pnJLevel = max(*pnJLevel, n);
 }
@@ -1113,15 +1104,11 @@ bool GrcManager::AssignInternalGlyphAttrIDs()
 
 	if (m_vpsymGlyphAttrs.size() >= kMaxGlyphAttrs)
 	{
-		char rgch1[20];
-		char rgch2[20];
-		itoa(int(m_vpsymGlyphAttrs.size()), rgch1, 10);
-		itoa(kMaxGlyphAttrs - 1, rgch2, 10);
 		g_errorList.AddError(4123, NULL,
 			"Number of glyph attributes (",
-			rgch1,
+			std::to_string(m_vpsymGlyphAttrs.size()),
 			") exceeds maximum of ",
-			rgch2);
+			std::to_string(kMaxGlyphAttrs-1));
 	}
 
 	return true;
@@ -1176,9 +1163,8 @@ bool GrcSymbolTable::AssignInternalGlyphAttrIDs(GrcManager * pcman, GrcSymbolTab
 		{
 			for (auto nLevel = 0U; nLevel < cJLevels; ++nLevel)
 			{
-				char rgchLev[20];
-				itoa(nLevel, rgchLev, 10);
-				GrcStructName xnsJAttr("justify", rgchLev, vstaJAttr[istaJAttr]);
+				GrcStructName xnsJAttr("justify", std::to_string(nLevel), 
+									   vstaJAttr[istaJAttr]);
 
 				Symbol psymJAttr = FindSymbol(xnsJAttr);
 				Assert(psymJAttr);
@@ -1633,15 +1619,11 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 
 	if (m_cpsymComponents >= kMaxComponents)
 	{
-		char rgchMax[20];
-		itoa(kMaxComponents - 1, rgchMax, 10);
-		char rgchCount[20];
-		itoa(int(m_cpsymComponents), rgchCount, 10);
 		g_errorList.AddError(4124, NULL,
 			"Total number of ligature components (",
-			rgchCount,
+			std::to_string(m_cpsymComponents),
 			") exceeds maximum of ",
-			rgchMax);
+			std::to_string(kMaxComponents - 1));
 	}
 
 	return true;
@@ -1988,9 +1970,7 @@ DirCode GdlRenderer::ConvertBidiCode(UCharDirection diricu, utf16 wUnicode)
 	case U_BLOCK_SEPARATOR:				staCode = "B"; break; // not handled
 	case U_SEGMENT_SEPARATOR:			staCode = "S"; break; // not handled
 	default:
-		char rgch[20];
-		itoa(diricu, rgch, 10);
-		staCode = rgch;
+		staCode = std::to_string(diricu);
 		break;
 	}
 
@@ -2179,13 +2159,11 @@ bool GrcManager::ProcessGlyphAttributes(GrcFont * pfont)
 						int nGPointValue = pfont->ConvertGPathToGPoint(wActual, nGPathValue, pexp);
 						if (nGPointValue == -1)
 						{
-							char rgch[20];
-							itoa(nGPointValue, rgch, 10);
 							g_errorList.AddWarning(4512, NULL,
 								"Invalid path for glyph ",
 								GdlGlyphDefn::GlyphIDString(wGlyphID),
 								": ",
-								rgch,
+								std::to_string(nGPointValue),
 								lnf);
 							nGPointValue = 0;
 						}
@@ -3335,33 +3313,25 @@ bool GrcManager::FinalGlyphAttrResolution(GrcFont * pfont)
 					}
 					else if (n <= nMinValue)
 					{
-						char rgch1[20];
-						char rgch2[20];
-						itoa(n, rgch1, 10);
-						itoa(nMinValue + 1, rgch2, 10);
 						g_errorList.AddError(4144, pexp,
 							"Value of glyph attribute ",
 							psymAttr->FullName(),
 							" for glyph ",
 							GdlGlyphDefn::GlyphIDString(wGlyphID),
-							" = ", rgch1,
+							" = ", std::to_string(n),
 							"; minimum is ",
-							rgch2);
+							std::to_string(nMinValue + 1));
 					}
 					else if (n >= nMaxValue)
 					{
-						char rgch1[20];
-						char rgch2[20];
-						itoa(n, rgch1, 10);
-						itoa(nMaxValue - 1, rgch2, 10);
 						g_errorList.AddError(4145, pexp,
 							"Value of glyph attribute ",
 							psymAttr->FullName(),
 							" for glyph ",
 							GdlGlyphDefn::GlyphIDString(wGlyphID),
-							" = ", rgch1,
+							" = ", std::to_string(n),
 							"; maximum is ",
-							rgch2);
+							std::to_string(nMaxValue - 1));
 					}
 					else if (n == 0 && psymAttr->LastFieldIs("gpoint"))
 					{

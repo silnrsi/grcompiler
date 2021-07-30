@@ -310,17 +310,9 @@ Symbol GrcSymbolTable::AddComponentField(const GrcStructName & xns, GrpLineAndFi
 ----------------------------------------------------------------------------------------------*/
 Symbol GrcSymbolTable::AddAnonymousClassSymbol(GrpLineAndFile const& lnf)
 {
-	char rgch[20];
-	itoa(m_csymAnonClass, rgch, 10);
-	m_csymAnonClass++;
-
-	std::string sta = "*GC";
-	sta += rgch;
-	sta += "*";
+	std::string sta = "*GC" + std::to_string(m_csymAnonClass++) + '*';
 	Assert(!FindField(sta));
-
-	GrcStructName xns(sta);
-	return AddClassSymbol(xns, lnf);
+	return AddClassSymbol(sta, lnf);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -2030,16 +2022,15 @@ void GrcSymbolTable::InitSlotAttrs()
 	PreDefineSymbol(GrcStructName("justify", "weight"),		kst, kexptNumber);
 	PreDefineSymbol(GrcStructName("justify", "width"),		kst, kexptMeas);
 
-	char rgchLevel[10];
 	for (int iLevel = 0; iLevel <= kMaxJustLevel; iLevel++)
 	{
-		itoa(iLevel, rgchLevel, 10);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "stretch"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel,	"stretchHW"),kst,kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "shrink"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "step"),	kst, kexptMeas);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "weight"),	kst, kexptNumber);
-		PreDefineSymbol(GrcStructName("justify", rgchLevel, "width"),	kst, kexptMeas);
+		auto staLevel = std::to_string(iLevel);
+		PreDefineSymbol(GrcStructName("justify", staLevel, "stretch"),	kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", staLevel,	"stretchHW"),kst,kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", staLevel, "shrink"),	kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", staLevel, "step"),	kst, kexptMeas);
+		PreDefineSymbol(GrcStructName("justify", staLevel, "weight"),	kst, kexptNumber);
+		PreDefineSymbol(GrcStructName("justify", staLevel, "width"),	kst, kexptMeas);
 	}
 
 	PreDefineSymbol(GrcStructName("collision", "flags"),		kst,	kexptNumber);
@@ -2098,17 +2089,16 @@ void GrcSymbolTable::InitGlyphAttrs()
 	psym = AddType2(GrcStructName("justify", "weight"), ksymtGlyphAttr);
 	psym->m_fGeneric = true;
 
-	char rgchLevel[10];
 	for (int iLevel = 0; iLevel <= kMaxJustLevel; iLevel++)
 	{
-		itoa(iLevel, rgchLevel, 10);
-		psym = AddType2(GrcStructName("justify", rgchLevel, "stretch"), ksymtGlyphAttr);
+		auto staLevel = std::to_string(iLevel);
+		psym = AddType2(GrcStructName("justify", staLevel, "stretch"), ksymtGlyphAttr);
 		psym->m_fGeneric = true;
-		psym = AddType2(GrcStructName("justify", rgchLevel, "shrink"), ksymtGlyphAttr);
+		psym = AddType2(GrcStructName("justify", staLevel, "shrink"), ksymtGlyphAttr);
 		psym->m_fGeneric = true;
-		psym = AddType2(GrcStructName("justify", rgchLevel, "step"), ksymtGlyphAttr);
+		psym = AddType2(GrcStructName("justify", staLevel, "step"), ksymtGlyphAttr);
 		psym->m_fGeneric = true;
-		psym = AddType2(GrcStructName("justify", rgchLevel, "weight"), ksymtGlyphAttr);
+		psym = AddType2(GrcStructName("justify", staLevel, "weight"), ksymtGlyphAttr);
 		psym->m_fGeneric = true;
 	}
 

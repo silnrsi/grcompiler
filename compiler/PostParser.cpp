@@ -129,11 +129,9 @@ void GdlRule::ReplaceAliases()
 			{
 				if (m_vpalias[ipalias]->m_staName != m_vpalias[ipalias2]->m_staName)
 				{
-					char rgch[20];
-					itoa(m_vpalias[ipalias]->m_srIndex, rgch, 10);
 					g_errorList.AddWarning(1510, this,
 						"Item ",
-						rgch,
+						std::to_string(m_vpalias[ipalias]->m_srIndex),
 						" was assigned more than one slot alias");
 				}
 			}

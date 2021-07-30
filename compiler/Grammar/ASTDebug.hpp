@@ -14,6 +14,6 @@ Description:
 -------------------------------------------------------------------------------*//*:End Ignore*/
 public:
 	void Trace(std::ostream & strmOut, const char * s, int level);
-	const char * debugString();
+	std::string debugString();
 //	int line();
 

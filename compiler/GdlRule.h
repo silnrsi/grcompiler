@@ -203,9 +203,7 @@ public:
 	//	Alpha version of original item number (1-based), for error messages
 	std::string PosString()
 	{
-		char rgchItem[20];
-		itoa(m_iritContextPosOrig + 1, rgchItem, 10);
-		return rgchItem;
+		return std::to_string(m_iritContextPosOrig + 1);
 	}
 
 	//	Increment the context position by the given number
