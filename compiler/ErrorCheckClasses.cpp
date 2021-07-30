@@ -1599,15 +1599,15 @@ bool GrcManager::AssignGlyphAttrsToClassMembers(GrcFont * pfont)
 		auto cpass = m_prndr->NumberOfPasses();
 		auto cpass1 = (cpass > kPassPerSPbitmap) ? kPassPerSPbitmap : cpass;
 		unsigned int nDefaultSkipP = 0;
-		for (int i = 0; i < cpass1; i++)
+		for (auto i = 0U; i < cpass1; ++i)
 			nDefaultSkipP = (nDefaultSkipP << 1) + 1;
 		vnSysDefValues.push_back(nDefaultSkipP);
 		if (cpass > kPassPerSPbitmap)
 		{
 			vpsymSysDefined.push_back(SymbolTable()->FindSymbol(GrcStructName("*skipPasses2*")));
-			int cpass2 = (cpass > kPassPerSPbitmap * 2) ? kPassPerSPbitmap * 2 : cpass;
+			auto cpass2 = (cpass > kPassPerSPbitmap * 2) ? kPassPerSPbitmap * 2 : cpass;
 			unsigned int nDefaultSkipP2 = 0;
-			for (int i2 = kPassPerSPbitmap; i2 < cpass2; i2++)
+			for (auto i2 = unsigned(kPassPerSPbitmap); i2 < cpass2; ++i2)
 				nDefaultSkipP2 = (nDefaultSkipP2 << 1) + 1;
 			vnSysDefValues.push_back(nDefaultSkipP2);
 		}
