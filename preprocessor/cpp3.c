@@ -345,13 +345,15 @@ ReturnCode initdefines(struct Global *global)
    * __LINE__, __FILE__, __TIME__ and __DATE__ are always present.
    */
 
-  char **pp;
-  char *tp;
+  char **pp; 
   DEFBUF *dp;
-  struct tm *tm;
-  
   int i;
+
+#if OK_DATE
+  struct tm* tm;
+  char* tp;
   time_t tvec;
+#endif
   
   static char months[12][4] = {
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",

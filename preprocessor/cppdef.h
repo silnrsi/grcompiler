@@ -158,7 +158,7 @@
  * OK_DATE	Predefines the compilation date if set TRUE.
  *		Not permitted by the Nov. 12, 1984 Draft Standard.
  */
-#define OK_DATE TRUE
+#define OK_DATE FALSE
 /*
  *
  * OK_SIZEOF	Permits sizeof in #if preprocessor expressions.
