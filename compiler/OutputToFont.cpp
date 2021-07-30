@@ -909,7 +909,7 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	{ 	// Preserve the date from the input ttf if it's available
 		std::u16string date_field = unique_name.substr(n + 1);
 		std::u16string decade = date_field.substr(date_field.size() - 2);
-		if (std::isdigit(decade[0]) && std::isdigit(decade[1]))
+		if (std::isdigit(int(decade[0])) && std::isdigit(int(decade[1])))
 		{
 			unique_name = vendor + u": " + full_name + u": " + date_field;
 		}
