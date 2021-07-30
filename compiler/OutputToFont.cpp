@@ -907,9 +907,15 @@ bool GrcManager::BuildFontNames(bool f8bitTable,
 	std::string::size_type n = unique_name.rfind(u":");
 	if (n != std::string::npos)
 	{ 	// Preserve the date from the input ttf if it's available
+		std::locale const loc; // Use the system default or "C" locale.
+		// Use the line below instead line of the one above for ASCII only digits.
+		// std::locale const & loc = std::locale::classic(); 
 		std::u16string date_field = unique_name.substr(n + 1);
 		std::u16string decade = date_field.substr(date_field.size() - 2);
-		if (std::isdigit(int(decade[0])) && std::isdigit(int(decade[1])))
+		// These need to be cast to char or wchar_t, as there are no stdlib
+		// supplied std::ctype<char16_t> facets. wchar_t expands the recognised
+		// digits up to the BMP, not just ANSI (where supported by the locale).
+		if (std::isdigit(wchar_t(decade[0]),loc) && std::isdigit(wchar_t(decade[1]),loc))
 		{
 			unique_name = vendor + u": " + full_name + u": " + date_field;
 		}
