@@ -3526,41 +3526,28 @@ void BinarySearchConstants(int n, int * pnPowerOf2, int * pnLog)
 	}
 }
 
-
 /*----------------------------------------------------------------------------------------------
-	Write a byte to the output stream.
+	Write a short to the output stream.
 ----------------------------------------------------------------------------------------------*/
-template<typename T> 
-void GrcBinaryStream::WriteByte(T iOutput)
-{
-	char const b = char(iOutput & 0xFFU);
-	write(&b, sizeof(uint8_t));
+void GrcBinaryStream::write_16bits_be(std::ostream & os, uint16_t x) {
+	uint8_t const be[] = {
+		uint8_t(x >> 8 & 0xFFU), 
+		uint8_t(x 	   & 0xFFU)
+	};
+	os.write(reinterpret_cast<char const *>(&be), sizeof x);
 }
 
 /*----------------------------------------------------------------------------------------------
-	Write a short integer to the output stream.
+	Write an integer to the output stream.
 ----------------------------------------------------------------------------------------------*/
-template<typename T> 
-void GrcBinaryStream::WriteShort(T iOutput)
-{
-	char const be_short[] = {
-		char(static_cast<uint16_t>(iOutput) >> 8 & 0xFFU), 
-		char(static_cast<uint16_t>(iOutput)      & 0xFFU)};
-	write(be_short, sizeof(uint16_t));
-}
-
-/*----------------------------------------------------------------------------------------------
-	Write a standard integer to the output stream.
-----------------------------------------------------------------------------------------------*/
-template<typename T> 
-void GrcBinaryStream::WriteInt(T iOutput)
-{
-	char const be_long[] = {
-		char(static_cast<uint32_t>(iOutput) >> 24 & 0xFFU), 
-		char(static_cast<uint32_t>(iOutput) >> 16 & 0xFFU),
-		char(static_cast<uint32_t>(iOutput) >>  8 & 0xFFU),
-		char(static_cast<uint32_t>(iOutput) 	   & 0xFFU)};
-	write(be_long, sizeof(uint32_t));
+void GrcBinaryStream::write_32bits_be(std::ostream & os, uint32_t x) {
+	uint8_t const be[] = { 
+		uint8_t(x >> 24 & 0xFFU), 
+		uint8_t(x >> 16 & 0xFFU), 
+		uint8_t(x >>  8 & 0xFFU), 
+		uint8_t(x       & 0xFFU)
+	};
+	os.write(reinterpret_cast<char const *>(&be), sizeof x);
 }
 
 /*----------------------------------------------------------------------------------------------
@@ -3574,42 +3561,6 @@ offset_t GrcBinaryStream::SeekPadLong(offset_t ibOffset)
 	if (cPad)
 		write("\0\0\0", cPad);
 	return tellp();
-}
-
-/*----------------------------------------------------------------------------------------------
-	Write a byte to the output stream.
-----------------------------------------------------------------------------------------------*/
-template<typename T>
-void GrcSubStream::WriteByte(T iOutput)
-{
-	char const b = char(iOutput & 0xFFU);
-	m_strm.write(&b, sizeof(uint8_t));
-}
-
-/*----------------------------------------------------------------------------------------------
-	Write a short integer to the output stream.
-----------------------------------------------------------------------------------------------*/
-template<typename T>
-void GrcSubStream::WriteShort(T iOutput)
-{
-	char const be_short[] = {
-		char(iOutput >> 8 & 0xFFU), 
-		char(iOutput      & 0xFFU)};
-	m_strm.write(be_short, sizeof(uint16_t));
-}
-
-/*----------------------------------------------------------------------------------------------
-	Write a standard integer to the output stream.
-----------------------------------------------------------------------------------------------*/
-template<typename T>
-void GrcSubStream::WriteInt(T iOutput)
-{
-	char const be_long[] = {
-		char(iOutput >> 24 & 0xFFU), 
-		char(iOutput >> 16 & 0xFFU),
-		char(iOutput >>  8 & 0xFFU),
-		char(iOutput 	   & 0xFFU)};
-	m_strm.write(be_long, sizeof(uint32_t));
 }
 
 /*----------------------------------------------------------------------------------------------

@@ -26,9 +26,20 @@ Description: Our stream for writing to the TrueType font.
 Hungarian: bstrm
 ----------------------------------------------------------------------------------------------*/
 
+
 class GrcBinaryStream : public fstream
 {
 public:
+	// Write a byte to the output stream.
+    inline
+    static void write_8bits_be(std::ostream & os, uint8_t x) {
+        os.write(reinterpret_cast<char const *>(&x), sizeof x);
+    }
+
+    static void write_16bits_be(std::ostream & os, uint16_t x);
+
+    static void write_32bits_be(std::ostream & os, uint32_t x);
+ 
 	GrcBinaryStream(const char * stFileName)
 		: fstream(stFileName, std::ios::binary | std::ios::out | std::ios::in | std::ios::trunc)
 	{
@@ -39,10 +50,15 @@ public:
 	}
 
 public:
-    template<typename T> void WriteByte(T);
-	template<typename T> void WriteShort(T);
-	template<typename T> void WriteInt(T);
-	
+    template<typename T>
+    void WriteByte(T iOutput) { write_8bits_be(*this, static_cast<uint8_t>(iOutput)); }
+
+    template<typename T> 
+    void WriteShort(T iOutput) { write_16bits_be(*this, static_cast<uint16_t>(iOutput)); }
+
+    template<typename T>
+    void WriteInt(T iOutput) { write_32bits_be(*this, static_cast<uint32_t>(iOutput)); }
+
     void Write(void * pbTable, size_t cbSize)
 	{
 		write(static_cast<char *>(pbTable), cbSize);
@@ -75,9 +91,15 @@ Hungarian: substrm
 class GrcSubStream
 {
 public:
-	template<typename T> void WriteByte(T);
-	template<typename T> void WriteShort(T);
-	template<typename T> void WriteInt(T);
+     template<typename T>
+    void WriteByte(T iOutput) { GrcBinaryStream::write_8bits_be(m_strm, static_cast<uint8_t>(iOutput)); }
+
+    template<typename T> 
+    void WriteShort(T iOutput) { GrcBinaryStream::write_16bits_be(m_strm, static_cast<uint16_t>(iOutput)); }
+
+    template<typename T>
+    void WriteInt(T iOutput) { GrcBinaryStream::write_32bits_be(m_strm, static_cast<uint32_t>(iOutput)); }
+
 
 public:
 	std::ostream m_strm;
