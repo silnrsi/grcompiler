@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+export DH_VERBOSE=1
+
+DEB_BUILD_OPTIONS=nocheck
+
+%:
+	# dh $@ --buildsystem=cmake --with cmake
+	dh $@ -Scmake --parallel
+
+override_dh_compress:
+	dh_compress -X.pdf
+
+override_dh_auto_test:
+	@echo $@
