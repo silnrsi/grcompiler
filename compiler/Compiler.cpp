@@ -3215,7 +3215,7 @@ std::string GrcManager::pathFromOutputToCurrent(char * rgchCurDir, char * rgchOu
 				vstaResultRev.push_back("..");
 		}
 
-		for (auto ista = vstaResultRev.size() - 1; ista >= 0; ista--)
+		for (intptr_t ista = intptr_t(vstaResultRev.size()) - 1; ista >= 0; --ista)
 		{
 			staResult.append(vstaResultRev[ista]);
 			staResult.append(&chSep, 1);
