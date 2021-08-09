@@ -148,7 +148,7 @@ int main(int argc, char * argv[])
 	}
 	if (g_cman.IsVerbose())
 	{
-		std::cout << "Graphite Compiler Version 5.2";
+		std::cout << "Graphite Compiler Version 5.2.1";
 		#ifdef _DEBUG
 			std::cout << "  [debug build]";
 		#else
@@ -156,7 +156,7 @@ int main(int argc, char * argv[])
 		#endif
 		// \xc2\xa9 = copyright symbol
 		std::cout << "\n"
-			<< "Copyright (c) 2002-2020, by SIL International.  All rights reserved.\n";
+			<< "Copyright (c) 2002-2021, by SIL International.  All rights reserved.\n";
 	}
 
 	if (argc < 3 + cargExtra)

@@ -73,9 +73,9 @@ build all three executables and can run the regression tests.
       Linux   | x86    | amd64  
       Windows | Win32  | x64
      
-    For example for Visual Studio 2019 32 bit:
+    For example for Visual Studio 2019 64 bit:
     ```
-    cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release -A Win32 ..
+    cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release -A x64 ..
     ```
 
     or for MinGW:  
@@ -141,10 +141,6 @@ You will need libc++ and libc++-abi packages.
 
 #### Windows specific details
 
-Visual Studio 2017 added support for handling CMake projects. You can find 
-more information and instructions at 
-[CMake projects in Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019).
-
 TIPS:  
 - After generating the project files and optionally doing inital building and 
 testing (above), the easiest way for Visual Studio developers to proceed is to 
@@ -164,11 +160,20 @@ Project is advisable.
 
 - Right clicking on RUN_TESTS and Building will run the regression tests.
 
-If development with cmake is preferred, in Visual Studio 2019,`File-Open-CMake...`
-can be used to open the CMakeCache.txt file. Using `File-Open Folder...` is not
-advisable, since the Ninja project generator will be used. It seems buggy.
-FWIW, it's harder to specify the arguments to use for debugging with cmake 
-development compared to using the sln file.
+- Please note that the files in `test/GrcRegressionTest` compile with warnings. 
+These files are used for regression testing and don't affect the operation of 
+the compiler itself.
+
+Visual Studio 2017 added support for handling CMake projects. You can find 
+more information and instructions at [CMake projects in Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=vs-2019).
+
+Currently, development with CMake in the Visual Studio IDE is not advised 
+because the CMake configuration does not work properly with the Ninja code 
+generator, which is invoked by default from within the IDE. Both 
+`File-Open-CMake...` and `File-Open Folder...` currently fail. 
+See issue [#42](https://github.com/silnrsi/grcompiler/issues/42). Opening 
+the `grcompiler.sln` file generated on the command line (as above) works around 
+this issue.
 
 ### Older build systems
 
