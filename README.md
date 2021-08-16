@@ -142,7 +142,7 @@ You will need libc++ and libc++-abi packages.
 #### Windows specific details
 
 TIPS:  
-- After generating the project files and optionally doing inital building and 
+- After generating the project files and optionally doing initial building and 
 testing (above), the easiest way for Visual Studio developers to proceed is to 
 open the `grcompiler.sln` file that cmake generates.
 
@@ -249,7 +249,7 @@ Linux, or via a pre-built binary distribution archive available from the
     distribution where executables, includes and libraries aren't neatly 
     arranged. This might be the case if you want to pass both debug and 
     release builds of ICU on Windows, in which case it will link the 
-    appopriate version.
+    appropriate version.
 
 #### Linux
 
@@ -260,7 +260,7 @@ You should use your distributions package manager to install icu-dev package.
     your package manager via the use of pkg-config.  
 - autotools:
     This will auto detect the icu installation via the use of pkg-config
-    To overide the detection you need to provide compiler and linker flags via
+    To override the detection you need to provide compiler and linker flags via
     the ICU_CFLAGS and ICU_LIBS environment variables.
 
 
