@@ -8,7 +8,7 @@ AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
 AppUpdatesURL=http://graphite.sil.org/
-DefaultDirName=C:\Program Files (x86)\Graphite Compiler
+DefaultDirName=C:\Program Files\Graphite Compiler
 ; Start Menu item name:
 DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
@@ -69,7 +69,7 @@ begin
   Log('CurStepChanged(' + IntToStr(Ord(CurStep)) + ') called');
   if CurStep = ssPostInstall then
   begin
-    // Inform all windows that the enviroment has changed (ie, via the registry). Note that 26 = x1A.
+    // Inform all windows that the environment has changed (ie, via the registry). Note that 26 = x1A.
     // Above we redefine the SendMessage function because a call with "Environment" needs to have that argument
     // interpreted as a string.
     SendMessage(-1, 26, 0, 'Environment');
