@@ -1,8 +1,8 @@
 FILES INCLUDED
 
 Program Files
-* GrCompiler.exe - Graphite compiler version 5.2
-* icuuc66.dll - ICU character definitions that are used to initialize certain glyph attributes based on the correspnding Unicode character properties.
+* GrCompiler.exe - Graphite compiler 
+* icuuc66.dll - ICU character definitions that are used to initialize certain glyph attributes based on the corresponding Unicode character properties.
 * icudt66.dll - ICU data tables
 * gdlpp.exe - C-like preprocessor to handle #define and #include statements
 * stddef.gdh - standard GDL identifiers
@@ -28,7 +28,7 @@ Please uninstall any prior versions. After running the installer program, all th
 
 If you choose to put the gdlpp.exe file in a different folder from GrCompiler.exe, you need to set the GDLPP environment variable to indicate where this utility is, for instance: "c:\graphite_extras\gdlpp.exe". Note that the variable must include the name of the program as well as well as the path. Also, the actual env var must be set without using quote marks.
 
-The GDLPP_PREFS environment variable is used to indicate where the Graphite compiler will find #included files. The value consists of "-I" followed by the path or paths to files of interest, for instance, "-Ic:\graphite" (without quotes marks in actual use). At the very least, you will want to be able to #include "stddef.gdh", which is the standard include file that contains all the standard GDL abbrevations. If it is located in a different folder than the GDL source code and font file, you will need to put its path in the GDLPP_PREFS environment variable. The installer will initialize GDLPP_PREFS to point to the directory containing this file, which will be in the same directory as grcompiler.exe.
+The GDLPP_PREFS environment variable is used to indicate where the Graphite compiler will find #included files. The value consists of "-I" followed by the path or paths to files of interest, for instance, "-Ic:\graphite" (without quotes marks in actual use). At the very least, you will want to be able to #include "stddef.gdh", which is the standard include file that contains all the standard GDL abbreviations. If it is located in a different folder than the GDL source code and font file, you will need to put its path in the GDLPP_PREFS environment variable. The installer will initialize GDLPP_PREFS to point to the directory containing this file, which will be in the same directory as grcompiler.exe.
 
 NOTE: GDLPP_PREFS must not contain directory names with spaces. If there are spaces in your path, you will need to use 8-character directory names. So if, for instance, your "stddef.gdh" file is located in C:\Program Files\Graphite Compiler, GDLPP_PREFS should be set to "-IC:\Progra~1\Graphi~1" (without quotes). If the compiler is having trouble finding the stddef.gdh file (ie, standard definitions are not recognized), check your GDLPP_PREFS environment variable and change it to use short names if necessary.
 
