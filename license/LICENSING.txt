@@ -1,7 +1,5 @@
 Graphite Compiler Licensing
 ============================
-
-
 Copyright 1999-2021, SIL International  (http://ww.sil.org).
 
 This program is free software; you can redistribute it and/or modify
@@ -39,7 +37,6 @@ For convenient reference, a text version has been included with this
 distribution in the file named "License_GPLv2.txt".  All of the licenses 
 mentioned above can also be found at http://www.opensource.org/licenses/.
 
-
 Copyright notices and licensing for other components:
 =====================================================
 
@@ -63,7 +60,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
-
 
 Files: compiler/Grammar/*
 Copyright: none
@@ -96,7 +92,6 @@ The ANTLR gang:
 @author John Lilley, http://www.Empathy.com Empathy Software
 @author pete@yamuna.demon.co.uk" Pete Wells
 
-
 Files: compiler/Grammar/lz4*.*
 Copyright: Copyright (C) 2011-2015, Yann Collet
 License: BSD 2-Clause License
@@ -131,43 +126,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 You can contact the author at :
 - LZ4 source repository : https://github.com/Cyan4973/lz4
 - LZ4 public forum : https://groups.google.com/forum/#!forum/lz4c
-
-
-Files: compiler/Grammar/lz4*.*
-Copyright: Copyright (C) 2011-2015, Yann Collet
-License: BSD 2-Clause License
-LZ4 - Fast LZ compression algorithm
-Copyright (C) 2011-2015, Yann Collet.
-
-BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-copyright notice, this list of conditions and the following disclaimer
-in the documentation and/or other materials provided with the
-distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-You can contact the author at :
-- LZ4 source repository : https://github.com/Cyan4973/lz4
-- LZ4 public forum : https://groups.google.com/forum/#!forum/lz4c
-
 
 Files:  test/GrcRegressionTest/fonts/*, installer/example/*.ttf
 Copyright: Copyright (c) SIL International, 1994-2021
@@ -264,9 +222,6 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
-
-
-
 
 COPYRIGHT AND PERMISSION NOTICE (ICU 58 and later)
 
@@ -680,6 +635,3 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-
