@@ -1,4 +1,4 @@
-project(compiler VERSION 5.2)
+project(compiler VERSION 5.2.1)
 cmake_policy(SET CMP0074 NEW)
 
 FetchContent_Declare(icu URL ${ICU_URL})

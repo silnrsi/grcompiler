@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Graphite Compiler
-AppVerName=Graphite Compiler 5.2
+AppVerName=Graphite Compiler 5.2.1
 AppPublisher=SIL International
 AppPublisherURL=http://graphite.sil.org/
 AppSupportURL=http://graphite.sil.org/
@@ -14,9 +14,11 @@ DefaultGroupName=Graphite Compiler
 ; allows them to say they don't want a start menu item:
 AllowNoIcons=yes
 ; installer file name:
-OutputBaseFilename=grcompiler_setup_5_2
+OutputBaseFilename=grcompiler_setup_5_2_1
 Compression=lzma
 SolidCompression=yes
+LicenseFile= "..\..\license\LICENSING.txt"
+InfoAfterFile= "..\..\installer\readme.txt"
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -25,12 +27,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\..\release\GrCompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\release\icuuc66.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\release\icudt66.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\compiler\Release\grcompiler.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\compiler\Release\icuuc66.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\compiler\Release\icudt66.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; Don't need this because the ICU stuff is built with /MT:
 ;Source: "C:\Windows\system32\msvcr71.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\release\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\preprocessor\Release\gdlpp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\installer\readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\compiler\stddef.gdh"; DestDir: "{app}"; Flags: ignoreversion
 ;Source: "..\..\installer\gr_buildbat.bat"; DestDir: "{app}"; Flags: ignoreversion
