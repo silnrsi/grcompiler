@@ -98,7 +98,7 @@ License: public-domain
 
 Files: compiler/Grammar/lz4*.*
 Copyright: Copyright (C) 2011-2015, Yann Collet
-License: BSD 2-Clause License
+License: BSD-2-clause
    LZ4 - Fast LZ compression algorithm
    Copyright (C) 2011-2015, Yann Collet.
  .

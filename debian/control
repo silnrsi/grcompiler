@@ -4,7 +4,7 @@ Section: devel
 Priority: optional
 Maintainer: Nicolas Spalinger <nicolas.spalinger@sil.org>
 Uploaders: Tim Eves <tim_eves@sil.org>, Martin Hosken <martin_hosken@sil.org>
-Standards-Version: 3.9.5
+Standards-Version: 4.5.1
 
 Package: grcompiler
 Architecture: any

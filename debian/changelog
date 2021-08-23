@@ -1,3 +1,10 @@
+grcompiler (5.2.1-1ubuntu1~ppa1) focal; urgency=medium
+
+  * New minor release.  
+  * Packaging adjustments. 
+
+ -- Nicolas Spalinger <nicolas.spalinger@sil.org>  Mon, 23 Aug 2021 09:48:47 -0500
+
 grcompiler (5.2-1ubuntu1~ppa1) focal; urgency=medium
 
   * Bumped version
