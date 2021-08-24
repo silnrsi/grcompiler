@@ -1,9 +1,12 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: GrCompiler
-Source: http://sourceforge.net/projects/silgraphite/files/grcompiler/
+Upstream-Contact: silgraphite-devel@lists.sourceforge.net
+Source: https://github.com/silnrsi/grcompiler
 License: LGPL-2.1+ or CPL-0.5+
 
 Files: *
+       compiler/Grammar/ASTDebug.hpp
+       test/GrcRegressionTest/fonts/stddef.gdh
 Copyright: Copyright (c) 1999-2012 SIL International
 License: LGPL-2.1+ or CPL-0.5+
     This library is free software; you can redistribute it and/or modify
@@ -95,15 +98,9 @@ License: public-domain
  * @author <br>John Lilley, <a href=http://www.Empathy.com>Empathy Software</a>
  * @author <br><a href="mailto:pete@yamuna.demon.co.uk">Pete Wells</a>
 
-
-Files: compiler/Grammar/lz4*.*
-Copyright: Copyright (C) 2011-2015, Yann Collet
+Files: compiler/LZ4/lz4*
+Copyright: Copyright (C) 2011-2015, Yann Collet.
 License: BSD-2-clause
-   LZ4 - Fast LZ compression algorithm
-   Copyright (C) 2011-2015, Yann Collet.
- .
-   BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
- .
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -126,11 +123,6 @@ License: BSD-2-clause
    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- .
-   You can contact the author at :
-   - LZ4 source repository : https://github.com/Cyan4973/lz4
-   - LZ4 public forum : https://groups.google.com/forum/#!forum/lz4c
-
 
 Files:  test/GrcRegressionTest/fonts/*
 Copyright: Copyright (c) SIL International, 1994-2012
@@ -224,24 +216,7 @@ License: OFL-1.1
 
 Files: debian*/*
 Copyright: 2012 Daniel Glassey <wdg@debian.org>
-License: LGPL-2+
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
- .
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Library General Public License for more details.
- .
-    On Debian systems you should have a local copy of the GNU Library
-    General Public License in /usr/share/common-licenses/LGPL-2. If you
-    downloaded the source you will find it in the file LICENSE; if not,
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-
-License: LGPL-2.1+
+License: LGPL-2.1+ or CPL-0.5+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
     License as published by the Free Software Foundation; either
@@ -257,8 +232,7 @@ License: LGPL-2.1+
     downloaded the source you will find it in the file license/License_LGPLv21.txt
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-
-License: CPL-0.5+
+ .
  THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS COMMON PUBLIC LICENSE
  ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S
  ACCEPTANCE OF THIS AGREEMENT.
