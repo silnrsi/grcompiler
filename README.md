@@ -176,6 +176,8 @@ the `grcompiler.sln` file generated on the command line (as above) works around
 this issue.
 
 ### Older build systems
+***Please note that these older build systems are no longer being mainatained
+and will likely be removed soon.***
 
 #### For Unix style system with autotools
 
