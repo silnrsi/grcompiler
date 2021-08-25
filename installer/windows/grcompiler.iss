@@ -56,8 +56,8 @@ Name: "{group}\Compiler Debug Files Doc"; Filename: "{app}\doc\CompilerDebugFile
 Name: "{commondesktop}\Graphite Compiler"; Filename: "{app}\GrCompiler.exe"; Tasks: desktopicon
 
 [Registry]
-Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "GDLPP_PREFS"; ValueData: "-I{code:GetShortName|{app}}"
-Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Check: NeedsAddPath('{app}')
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "GDLPP_PREFS"; ValueData: "-I{code:GetShortName|{app}}"; Flags: uninsdeletevalue
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Check: NeedsAddPath(ExpandConstant('{app}'))
 
 
 [Messages]
@@ -78,7 +78,8 @@ begin
   end;
 end;
 
-// This check does not seem to be working (as of 2/28/2012):
+// Check if install directory should be added to the PATH
+// see https://stackoverflow.com/questions/3304463/how-do-i-modify-the-path-environment-variable-when-running-an-inno-setup-install
 function NeedsAddPath(NewDir: string): boolean;
 var
   OrigPath: string;
