@@ -22,7 +22,7 @@ if  (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 
     if (NOT DEFINED ICU_ROOT AND NOT DEFINED FETCHCONTENT_SOURCE_DIR_ICU)
         string(REGEX REPLACE "^x64$" "Win64" _icu_platform_name ${CMAKE_VS_PLATFORM_NAME})
-        set(ICU_URL https://github.com/unicode-org/icu/releases/download/release-66-1/icu4c-66_1-${_icu_platform_name}-MSVC2017.zip)
+        set(ICU_URL https://github.com/unicode-org/icu/releases/download/release-74-2/icu4c-74_2-${_icu_platform_name}-MSVC2019.zip)
     endif()
 endif()
 
