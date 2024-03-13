@@ -1,9 +1,9 @@
 project(compiler VERSION 5.2.1)
 cmake_policy(SET CMP0074 NEW)
 
-FetchContent_Declare(icu URL ${ICU_URL})
 
 if (DEFINED ICU_URL OR DEFINED FETCHCONTENT_SOURCE_DIR_ICU)
+    FetchContent_Declare(icu URL ${ICU_URL})
     FetchContent_GetProperties(icu)
     if (NOT icu_POPULATED)
         message(STATUS "Fetching: " ${ICU_URL})
