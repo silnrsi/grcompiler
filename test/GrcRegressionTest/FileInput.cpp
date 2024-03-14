@@ -199,7 +199,7 @@ void GrBufferIStream::SetPositionInFont(long lPos)
 //:>********************************************************************************************
 //:>	Swap byte order.
 //:>********************************************************************************************
-int swapb(int nArg)
+int32_t swapb(int32_t nArg)
 {
 #if WORDS_BIGENDIAN
 return nArg;
@@ -214,7 +214,7 @@ return nArg;
 #endif
 }
 
-unsigned int swapb(unsigned int nArg)
+uint32_t swapb(uint32_t nArg)
 {
 #if WORDS_BIGENDIAN
 return nArg;
@@ -229,7 +229,7 @@ return nArg;
 #endif
 }
 
-utf16 swapb(utf16 chwArg)
+uint16_t swapb(uint16_t chwArg)
 {
 #if WORDS_BIGENDIAN
 return chwArg;
@@ -242,7 +242,7 @@ return chwArg;
 #endif
 }
 
-short swapb(short snArg)
+int16_t swapb(int16_t snArg)
 {
 #if WORDS_BIGENDIAN
 return snArg;
