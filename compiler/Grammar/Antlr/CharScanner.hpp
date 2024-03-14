@@ -44,7 +44,7 @@
 
 class CharScanner;
 
-class CharScannerLiteralsLess : public std::binary_function<std::string,std::string,bool> {
+class CharScannerLiteralsLess {
 private:
 	const CharScanner* scanner;
 public:

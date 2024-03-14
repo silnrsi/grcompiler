@@ -403,7 +403,7 @@ std::wstring StringFromNameTable(const gr::byte * pNameTbl, int nLangID, int nNa
 	size_t cchw = (unsigned(lSize) / sizeof(utf16));
 	utf16 * pchwName = new utf16[cchw+1]; // lSize - byte count for Uni str
 	const utf16 *pchwSrcName = reinterpret_cast<const utf16*>(pNameTbl + lOffset);
-    std::transform(pchwSrcName, pchwSrcName + cchw, pchwName, std::ptr_fun<utf16,utf16>(lsbf));
+    std::transform(pchwSrcName, pchwSrcName + cchw, pchwName, [] (const utf16 &cp) { return lsbf(cp); });
 	pchwName[cchw] = 0;  // zero terminate
 	#ifdef _WIN32
 		stuName.assign((const wchar_t*)pchwName, cchw);
