@@ -18,15 +18,16 @@ Description:
 #ifndef FILEINPUT_INCLUDED
 #define FILEINPUT_INCLUDED
 
+#include <cstdint>
 //:End Ignore
 
 namespace gr
 {
 
-int swapb(int nArg);
-unsigned int swapb(unsigned int nArg);
-utf16 swapb(utf16 chwArg);
-short swapb(short snArg);
+int32_t  swapb(int32_t);
+int16_t  swapb(int16_t);
+uint32_t swapb(uint32_t);
+uint16_t swapb(uint16_t);
 #ifndef _WIN32
 size_t utf16len(const utf16 *s);
 #endif

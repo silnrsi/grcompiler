@@ -86,6 +86,7 @@ SOFTWARE.
  */
 
 #include    <ctype.h>
+#include    <limits.h>
 #include    <stdint.h>
 #include    <stdio.h>
 #include    "cppdef.h"
@@ -738,41 +739,40 @@ ReturnCode openinclude( struct Global *global,
         {
         len = strlen(*incptr);
 
-        if( len + strlen(filename) >= sizeof(tmpname) )
-            {
+        int actual_len = INT_MAX;
+        #if HOST == SYS_AMIGADOS
+        if( (*incptr)[len-1] != '/' && (*incptr)[len-1] != ':' )
+            actual_len = snprintf( tmpname, sizeof(tmpname), "%s/%s", *incptr, filename );
+        #else
+        if( (*incptr)[len-1] != '/' )
+            actual_len = snprintf( tmpname, sizeof(tmpname), "%s/%s", *incptr, filename );
+        #endif
+        else
+            actual_len = snprintf( tmpname, sizeof(tmpname), "%s%s", *incptr, filename );
+
+        if( actual_len >= sizeof(tmpname) )
+        {
             cfatal( global, FATAL_FILENAME_BUFFER_OVERFLOW );
 
             return( FPP_FILENAME_BUFFER_OVERFLOW );
-            }
-        else
-            {
-            #if HOST == SYS_AMIGADOS
-            if( (*incptr)[len-1] != '/' && (*incptr)[len-1] != ':' )
-	            sprintf( tmpname, "%s/%s", *incptr, filename );
-            #else
-            if( (*incptr)[len-1] != '/' )
-                sprintf( tmpname, "%s/%s", *incptr, filename );
-            #endif
-            else
-                sprintf( tmpname, "%s%s", *incptr, filename );
+        }
 
-            #if HOST == SYS_AMIGADOS
-            //
-            //  amp July 9, 1997
-            //
-            //  OK, hack in multiassign support for the buitin
-            //  search directories...
-            //
-            if( (*incptr)[len-1] == ':' )
-                {
-                if( ! MultiAssignLoad( global, *incptr, filename, tmpname ) )
-                    return(FPP_OK);
-                }
-            else
-            #endif
-            if( !openfile( global, tmpname ) )
+        #if HOST == SYS_AMIGADOS
+        //
+        //  amp July 9, 1997
+        //
+        //  OK, hack in multiassign support for the buitin
+        //  search directories...
+        //
+        if( (*incptr)[len-1] == ':' )
+            {
+            if( ! MultiAssignLoad( global, *incptr, filename, tmpname ) )
                 return(FPP_OK);
             }
+        else
+        #endif
+        if( !openfile( global, tmpname ) )
+            return(FPP_OK);
         }
 
     return( FPP_NO_INCLUDE );

@@ -2324,7 +2324,13 @@ bool GrcManager::DebugXml(GrcFont * pfont, char * pchOutputFilename, bool fAbsGd
 {
 	// Current working directory, for calculating file paths in GDX file:
 	char rgchCurWkDir[128];
-	(void)getcwd(rgchCurWkDir, 128);
+
+	if (getcwd(rgchCurWkDir, sizeof(rgchCurWkDir)) == NULL)
+	{
+		g_errorList.AddWarning(6501, NULL,
+			"Error getting current working directory");
+		return false;
+	}
 
 	// Calculate the name of the debugger-xml file. It is the name of the font file, but with
 	// a .gdx extension.
